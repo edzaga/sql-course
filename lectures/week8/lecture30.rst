@@ -1,4 +1,4 @@
-Lecture 30 - Control Command Language (CCL) Introduction
+Lecture 30 - Database Maintenance
 --------------------------------------------------------
 
 ALMA Control Subsystem

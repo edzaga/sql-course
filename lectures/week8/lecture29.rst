@@ -1,4 +1,4 @@
-Lecture 29 - IPython
+Lecture 29 - Views: Materialized views
 ---------------------
 
 Introduction

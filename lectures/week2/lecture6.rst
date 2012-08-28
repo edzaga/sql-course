@@ -1,4 +1,4 @@
-Lecture 6 - Control statements
+Lecture 6 - Data Types
 -------------------------------
 
 (`Python control flow official documentation`_)

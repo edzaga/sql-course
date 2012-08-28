@@ -1,4 +1,4 @@
-Lecture 5 - Input and output
+Lecture 5 - Introduction
 -----------------------------
 
 (`Python input and output official documentation`_)

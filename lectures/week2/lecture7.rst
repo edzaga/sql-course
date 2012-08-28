@@ -1,4 +1,4 @@
-Lecture 7 - Loops
+Lecture 7 - Basic SELECT Statement
 -----------------
 
 (`Python while official documentation`_)

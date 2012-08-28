@@ -1,4 +1,4 @@
-Lecture 22 - More on class creation
+Lecture 22 - Constraints and triggers: Constraints of several types
 ------------------------------------
 
 There are another thing that you can use
