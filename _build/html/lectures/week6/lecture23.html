@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 23 - Inheritance &mdash; sql-course 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="sql-course 1 documentation" href="../../index.html" />
+    <link rel="up" title="Sixth week" href="index.html" />
+    <link rel="next" title="Lecture 24 - Design good practices" href="lecture24.html" />
+    <link rel="prev" title="Lecture 22 - More on class creation" href="lecture22.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lecture24.html" title="Lecture 24 - Design good practices"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lecture22.html" title="Lecture 22 - More on class creation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Sixth week</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-23-inheritance">
+<h1>Lecture 23 - Inheritance<a class="headerlink" href="#lecture-23-inheritance" title="Permalink to this headline">¶</a></h1>
+<p>One of the major benefits of the object-oriented paradigm
+is that you can reuse code, because a <em>class</em> is a kind
+of a data type structure template.</p>
+<p>An easiest way to reuse code, is using <strong>Inheritance</strong>,
+which is a good approach to implement relationship between classes,
+and objects.</p>
+<p>A diagram to understand the hierarchy of the <strong>classes</strong>, <strong>sub-classes</strong> and <strong>objects</strong>:</p>
+<blockquote>
+<div><img alt="(inheritance diagram)" src="lectures/week6/../../diagrams/inheritance.png" />
+</div></blockquote>
+<p>The best way to understand the concept behind <em>inheritance</em>,
+is with an example situation.</p>
+<p>Lets think in a program to coordinate
+the people in a virtual system created by us (University).</p>
+<p>If we think in people, there are several characteristics
+in common, regardless the profession or activity,
+like some functionalities, and attributes (age, sex, address,
+name, etc).
+But, depending of the activity their have specific characteristics,
+like the amount of the salary, the marks, the courses, etc.</p>
+<p>We can create a first class called <cite>People</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">People</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">sex</span><span class="p">,</span><span class="n">address</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sex</span> <span class="o">=</span> <span class="n">sex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">address</span>
+    <span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">def</span> <span class="nf">get_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span>
+    <span class="k">def</span> <span class="nf">get_sex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sex</span>
+    <span class="k">def</span> <span class="nf">get_address</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">address</span>
+    <span class="k">def</span> <span class="nf">talk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;Hello, my name is&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_name</span>
+</pre></div>
+</div>
+<p>Looks complicated, but the idea is very simple,
+returning the <em>data</em> of the class with <em>methods</em>,
+and a little methods to present the person,
+saying <cite>Hello</cite>.</p>
+<p>Now we need to create two different classes
+which <strong>inherit</strong> from the <cite>People</cite> class their structure,
+called <cite>Student</cite> and <cite>Professor</cite>.</p>
+<p>Note that creating another classes to differentiate
+the students from the professors, we have more possibilities
+to add and change new functionality. Also, you can always
+refer to a student or professor object as a <cite>People</cite> object,
+which will be very useful in cases when you try to know
+the total amount of people in the University.</p>
+<p>Lets create the <cite>Professor</cite> class:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Professor</span><span class="p">(</span><span class="n">People</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">sex</span><span class="p">,</span><span class="n">address</span><span class="p">):</span>
+        <span class="n">People</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">sex</span><span class="p">,</span><span class="n">address</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">courses</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">def</span> <span class="nf">add_course</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">course</span><span class="p">,</span><span class="n">number</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">courses</span><span class="p">[</span><span class="n">number</span><span class="p">]</span> <span class="o">=</span> <span class="n">course</span>
+    <span class="k">def</span> <span class="nf">del_course</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">number</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">courses</span><span class="p">[</span><span class="n">number</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">get_courses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">courses</span>
+</pre></div>
+</div>
+<p>The only strange lines for you,
+will be:</p>
+<div class="highlight-python"><pre>class Professor(People):</pre>
+</div>
+<p>This means, that we are creating a new class called <cite>Professor</cite>
+which inherit attributes (variables and methods) from <cite>People</cite> class.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">People</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">sex</span><span class="p">,</span><span class="n">address</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This means that we will initialize the <cite>Professor</cite>
+instance using the method in the <em>parent class</em>,
+called <cite>People</cite>.</p>
+<p>A couple of live examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Professor</span><span class="p">(</span><span class="s">&#39;John Smith&#39;</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="s">&#39;male&#39;</span><span class="p">,</span><span class="s">&#39;Evergreen Terrace, 742&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">p</span><span class="o">.</span><span class="n">get_address</span><span class="p">()</span>
+<span class="go">Evergreen Terrace, 742</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">talk</span><span class="p">()</span>
+<span class="go">Hello, my name is John Smith</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">add_course</span><span class="p">(</span><span class="s">&#39;Python&#39;</span><span class="p">,</span><span class="s">&#39;PPC01&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">p</span><span class="o">.</span><span class="n">get_courses</span><span class="p">()</span>
+<span class="go">{&#39;PPC01&#39;: &#39;Python&#39;}</span>
+</pre></div>
+</div>
+<p>Now we will create the <cite>Student</cite> class:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="n">People</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">sex</span><span class="p">,</span><span class="n">address</span><span class="p">):</span>
+        <span class="n">People</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">sex</span><span class="p">,</span><span class="n">address</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grades</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">def</span> <span class="nf">add_course</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">course</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grades</span><span class="p">[</span><span class="n">course</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">add_grade</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">course</span><span class="p">,</span><span class="n">grade</span><span class="p">):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grades</span><span class="p">[</span><span class="n">course</span><span class="p">]</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grades</span><span class="p">[</span><span class="n">course</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
+    <span class="k">def</span> <span class="nf">get_average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">course</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grades</span><span class="p">:</span>
+            <span class="n">tot</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">grade</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grades</span><span class="p">[</span><span class="n">course</span><span class="p">]:</span>
+                <span class="n">tot</span> <span class="o">+=</span> <span class="n">grade</span>
+            <span class="k">print</span> <span class="s">&#39;Course:&#39;</span><span class="p">,</span> <span class="n">course</span><span class="p">,</span> <span class="s">&#39;:&#39;</span><span class="p">,</span><span class="n">tot</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grades</span><span class="p">[</span><span class="n">course</span><span class="p">]),</span> <span class="s">&#39;(&#39;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">grades</span><span class="p">[</span><span class="n">course</span><span class="p">],</span><span class="s">&#39;)&#39;</span>
+</pre></div>
+</div>
+<p>The methods here are different to the <cite>Professor</cite> methods,
+and if you note, both classes has a method with the same name (this is called <strong>Polymorphism</strong>).
+The idea is to have a dictionary with the grades of the courses,
+in the form:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&#39;PPC01&#39;</span><span class="p">:[</span><span class="mi">100</span><span class="p">,</span><span class="mi">65</span><span class="p">,</span><span class="mi">20</span><span class="p">],</span><span class="s">&#39;PPC02&#39;</span><span class="p">:[</span><span class="mi">20</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>Then we have methods to add new courses and calculate the
+average of each course.</p>
+<p>A couple of live examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&#39;Marge Simpson&#39;</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="s">&#39;female&#39;</span><span class="p">,</span><span class="s">&#39;Good street, 657&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_course</span><span class="p">(</span><span class="s">&#39;PPC01&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_grade</span><span class="p">(</span><span class="s">&#39;PPC01&#39;</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_grade</span><span class="p">(</span><span class="s">&#39;PPC01&#39;</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_course</span><span class="p">(</span><span class="s">&#39;PPC02&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_grade</span><span class="p">(</span><span class="s">&#39;PPC01&#39;</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_grade</span><span class="p">(</span><span class="s">&#39;PPC02&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">get_average</span><span class="p">()</span>
+<span class="go">Course: PPC02 , Average: 10 ( [10] )</span>
+<span class="go">Course: PPC01 , Average: 60 ( [100, 50, 30] )</span>
+</pre></div>
+</div>
+<p>So finally, we have one parent class,
+who is the base for another two new subclasses.
+We are reusing code,
+we write a good structure to work
+with different data,
+and the main idea is that the OO paradigm,
+is very huge and useful, this is only
+a little example to understand
+the concept behind, but will be really
+good if you can read an Object-Oriented book.</p>
+<p>Another simple and used example to understand
+the <strong>polymorphism</strong> and the <strong>inheritance</strong> concepts,
+is the following:</p>
+<p>Two Cat objects and one Dog are instantiated and given names, and then they are gathered in an array animals and their talk() method is called.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">def</span> <span class="nf">talk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;You need to implement this method in a Subclass&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Cat</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">talk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;Meow!&#39;</span>
+
+<span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">talk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;Woof! Woof!&#39;</span>
+
+<span class="k">class</span> <span class="nc">Cow</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">talk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;Moooo!&#39;</span>
+
+<span class="k">class</span> <span class="nc">Snake</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">talk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;Ssssss!&#39;</span>
+</pre></div>
+</div>
+<p>All the subclasses inherit the empty method from
+<cite>Animal</cite> and their implemented with the sound
+of the animals.</p>
+<p>So, lets try this code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">animals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">animals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Cat</span><span class="p">(</span><span class="s">&#39;Tom&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">animals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Dog</span><span class="p">(</span><span class="s">&#39;Bobby&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">animals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Cow</span><span class="p">(</span><span class="s">&#39;Amy&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">animals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Snake</span><span class="p">(</span><span class="s">&#39;Beast&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">animals</span><span class="p">:</span>
+<span class="gp">... </span>   <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s">&#39;:&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">talk</span><span class="p">()</span>
+<span class="gp">...</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">Tom : Meow!</span>
+<span class="go">Bobby : Woof! Woof!</span>
+<span class="go">Amy : Moooo!</span>
+<span class="go">Beast : Ssssss!</span>
+</pre></div>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Look carefully the next example, and without execute it,
+answer the question, What will be the output?</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;A&#39;</span>
+<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;B&#39;</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">B</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">f</span><span class="p">(),</span> <span class="n">b</span><span class="o">.</span><span class="n">f</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">g</span><span class="p">(),</span> <span class="n">b</span><span class="o">.</span><span class="n">g</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Execute the code and verify your answer.</p>
+</li>
+<li><p class="first">Lets consider the idea of a simple TV, as a parent class,
+with some simple characteristics and methods, like:</p>
+<ul class="simple">
+<li>We can turn-on and turn-off the TV,</li>
+<li>We can change the channel and volume of the TV</li>
+</ul>
+<p>But is widely know that the actual TV, has much more functionalities,
+for example, the LCD TV provide, media centers, USB port, etc,
+and the more actual ones, like LED TV,
+provide besides internet connection, Skype calls, etc.</p>
+<p>Develop a parent class called <tt class="docutils literal"><span class="pre">TV</span></tt>, and two child classes
+which inherit from the parent class, called <tt class="docutils literal"><span class="pre">Lcd</span></tt> and <tt class="docutils literal"><span class="pre">Led</span></tt>.</p>
+<p>There are not special methods, only variable changing, like,
+channels, volume, status, and in the special cases, you need
+to develop methods like <tt class="docutils literal"><span class="pre">connect_to_internet</span></tt> and <tt class="docutils literal"><span class="pre">skype_call</span></tt>.</p>
+<p>The main idea here, is not develop some big methods, but
+understand the inheritance meaning.</p>
+</li>
+<li><p class="first">A Chess figure has three main characteristics,
+the position, the color and the type.</p>
+<p>Create a class called figure, with the generic
+attributes mentioned before.</p>
+<p>All the figures in the chess has different
+movement, so develop sub-classes for the
+<em>Horse</em>  figure, which inherit the attributes
+from the parent class, and also implement
+the <tt class="docutils literal"><span class="pre">movements</span></tt> method, which display all the possibilities
+of movement of the object. (consider that the
+horse start in the first square of the chess board),
+Also develop a <tt class="docutils literal"><span class="pre">move</span></tt> method which receive the destiny
+position, and check the availability of the movement.</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 23 - Inheritance</a><ul>
+<li><a class="reference internal" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture22.html"
+                        title="previous chapter">Lecture 22 - More on class creation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lecture24.html"
+                        title="next chapter">Lecture 24 - Design good practices</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week6/lecture23.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lecture24.html" title="Lecture 24 - Design good practices"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lecture22.html" title="Lecture 22 - More on class creation"
+             >previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Sixth week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Patricia Fredes, Joao Fuentes, Margarita Ortega.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

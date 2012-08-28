@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 24 - Design good practices &mdash; sql-course 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="sql-course 1 documentation" href="../../index.html" />
+    <link rel="up" title="Sixth week" href="index.html" />
+    <link rel="next" title="Assignment 6" href="assignment6.html" />
+    <link rel="prev" title="Lecture 23 - Inheritance" href="lecture23.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="assignment6.html" title="Assignment 6"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lecture23.html" title="Lecture 23 - Inheritance"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Sixth week</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-24-design-good-practices">
+<h1>Lecture 24 - Design good practices<a class="headerlink" href="#lecture-24-design-good-practices" title="Permalink to this headline">¶</a></h1>
+<p>The content of this lecture is based on the chapters 28 and 30
+of the Learning Python 4th edition book.</p>
+<div class="section" id="the-class-statement">
+<h2>The <cite>class</cite> Statement<a class="headerlink" href="#the-class-statement" title="Permalink to this headline">¶</a></h2>
+<p>The Python class statement is very similar to another languages statement,
+but only by the <em>name</em>, because if we see the closer implementation, is quite
+different.</p>
+<p>In Python, a class is not a declaration, but is an object builder.</p>
+<p>The form of a class are very simple, and you must view and work
+with its structure. Here is the statement&#8217;s general form.</p>
+<div class="highlight-python"><pre>class &lt;name&gt;(superclass,...): # Assign to name
+    data = value              # Shared class data
+    def method(self,...):     # Methods
+        self.member = value   # Per-instance data</pre>
+</div>
+<p>Any assignment inside a class, will be a class attribute.</p>
+<p>To explain in more details the classes functionality,
+lets study the namespace behavior of the classes.</p>
+<p>The idea is to perform the same steps of a module creation,
+but with a different statement declaration.</p>
+<p>When Python executes a class statement,
+it perform the execution of all the statement inside
+the class body, the idea is to create the names in a local
+scope, to be a future attribute in a class object..</p>
+<p>The main reason of the classes are different of the modules,
+is because a class can use the idea of <cite>inheritance</cite>.</p>
+<p>For example, the assignment of a simple object (not a function)
+produce a shared attribute by all the class instances:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SharedData</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">spam</span> <span class="o">=</span> <span class="mi">42</span>            <span class="c"># Generates a class data attribute</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">SharedData</span><span class="p">()</span> <span class="c"># Make two instances</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">SharedData</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">spam</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">spam</span>   <span class="c"># They inherit and share &#39;spam&#39;</span>
+<span class="go">(42, 42)</span>
+</pre></div>
+</div>
+<p>We can change a class attribute manually, for example,
+if we need to change the value of <cite>spam</cite> from 42 to 99:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">SharedData</span><span class="o">.</span><span class="n">spam</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">spam</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">spam</span><span class="p">,</span> <span class="n">SharedData</span><span class="o">.</span><span class="n">spam</span>
+<span class="go">(99, 99, 99)</span>
+</pre></div>
+</div>
+<p>But also, you can personalize the objects attributes,
+it means, that for each object you can change the attribute values:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">spam</span> <span class="o">=</span> <span class="mi">88</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">spam</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">spam</span><span class="p">,</span> <span class="n">SharedData</span><span class="o">.</span><span class="n">spam</span>
+<span class="go">(88, 99, 99)</span>
+</pre></div>
+</div>
+<p>It also possible to create attributes in a class,
+which are not inheritable by the objects,
+for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MixedNames</span><span class="p">:</span><span class="c"># Define class</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s">&#39;spam&#39;</span><span class="c"># Assign class attr</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span><span class="c"># Assign method name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">value</span> <span class="c"># Assign instance attr</span>
+    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">MixedNames</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="c"># Instance attr, class attr</span>
+</pre></div>
+</div>
+<p>This implementation contains a class variable called <cite>data</cite> (simple variable assignation), but
+also has an internal variable (inheritable) called <cite>self.data</cite> (class&#8217;s local scope).</p>
+<p>You can compare this issue, with the following example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">MixedNames</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c"># Make two instance objects</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">MixedNames</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c"># Each has its own data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">display</span><span class="p">();</span> <span class="n">y</span><span class="o">.</span><span class="n">display</span><span class="p">()</span> <span class="c"># self.data differs, MixedNames.data is the same</span>
+<span class="go">1 spam</span>
+<span class="go">2 spam</span>
+</pre></div>
+</div>
+<p>The result is different because the variables lives in two places,
+in the instances objects (created inside the <tt class="docutils literal"><span class="pre">__init__</span></tt> method)
+and in the class (simple assignation).</p>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<p>As we mentioned before, the methods are only functions created nested in a class.
+If you see the concept from an abstract perspective, methods provide to instances (object)
+a certain behavior.</p>
+<p>The internal mechanism of the object methods is related to the first
+argument of a method, the <cite>self</cite> statement.
+When you write a method call like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">instance</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">args</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Python automatically translated to a class method calls:</p>
+<div class="highlight-python"><pre>class.method(instance, args...)</pre>
+</div>
+<p>As you can see, both calls are valid in Python,
+because besides the normal inheritance in the instance,
+the real magic is the first argument in the methods (<cite>self</cite>),</p>
+<p>An example to understand this mechanism will be:</p>
+<p>Suppose we define the following class:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">PrinterClass</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">printer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">text</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">txt</span> <span class="o">=</span> <span class="n">text</span>    <span class="c"># Modify the instance</span>
+        <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">txt</span>     <span class="c"># Access the instance</span>
+</pre></div>
+</div>
+<p>Note that <cite>self.txt</cite> is an internal class variable,
+so it is possible to perform the next lines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PrinterClass</span><span class="p">()</span> <span class="c"># Make instance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">printer</span><span class="p">(</span><span class="s">&#39;calling from an instance&#39;</span><span class="p">)</span>
+<span class="go">calling from an instance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">txt</span>
+<span class="go">&#39;calling from an instance&#39;</span>
+</pre></div>
+</div>
+<p>So, as we mentioned before, we have two ways to called a method,
+by an instance or the class itself.</p>
+<div class="highlight-python"><pre>&gt;&gt; PrinterClass.printer(x, 'calling from the class')
+calling from the class
+&gt;&gt; x.txt
+calling from the class</pre>
+</div>
+</div>
+<div class="section" id="specializing-inherited-methods">
+<h2>Specializing Inherited Methods<a class="headerlink" href="#specializing-inherited-methods" title="Permalink to this headline">¶</a></h2>
+<p>You can easily change the methods
+from the class instances, trying to optimize
+the functionality.</p>
+<p>A simple way to do this,
+is to use the previous method (provided by a class),
+but adding some other functionality,
+to &#8216;specialize&#8217; the idea.</p>
+<p>The main idea is to re-write some methods
+provided by the class.</p>
+<div class="highlight-python"><pre>Class SuperClass:
+   def method(self):
+       print('in Super.method')
+
+Class SubClass(Super):
+   def method(self):                # Override method
+       print('starting Sub.method') # Adding extra actions
+       Super.method(self)           # Run default action
+       print('ending Sub.method')   # Adding extra actions</pre>
+</div>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>The docstring can be used by classes and by the class components,
+being strings literals to describe the mechanism and details of some
+Python statement, using the <span class="math">\(\_\_doc\_\_\)</span> reserved function.
+(this can be used by modules, functions, classes and methods).</p>
+<p>The following example summarizes the places where doctstrings can show up
+in the code.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># File: docstr.py</span>
+
+<span class="s">&quot;I am: docstr.__doc__&quot;</span>
+
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="s">&quot;I am: docstr.func.__doc__&quot;</span>
+    <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">spam</span><span class="p">:</span>
+    <span class="s">&quot;I am: spam.__doc__ or docstr.spam.__doc__&quot;</span>
+    <span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+        <span class="s">&quot;I am: spam.method.__doc__ or self.method.__doc__&quot;</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>The main advantage is that they stick around at runtime,
+and are very useful for not-trivial implementations.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">docstr</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">docstr</span><span class="o">.</span><span class="n">__doc__</span>
+<span class="go">&#39;I am: docstr.__doc__&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">docstr</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">__doc__</span>
+<span class="go">&#39;I am: docstr.func.__doc__&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">docstr</span><span class="o">.</span><span class="n">spam</span><span class="o">.</span><span class="n">__doc__</span>
+<span class="go">&#39;I am: spam.__doc__ or docstr.spam.__doc__&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">docstr</span><span class="o">.</span><span class="n">spam</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">__doc__</span>
+<span class="go">&#39;I am: spam.method.__doc__ or self.method.__doc__&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="classes-vs-modules">
+<h2>Classes vs Modules<a class="headerlink" href="#classes-vs-modules" title="Permalink to this headline">¶</a></h2>
+<p>Will be good to clarify the difference between this two Python namespaces,
+because their are very similar.</p>
+<ul class="simple">
+<li>Modules</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Are data/logic packages</li>
+<li>Are created by writing Python files or C extensions</li>
+<li>Are used by being imported</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>Classes</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Implement new objects</li>
+<li>Are created by class statements</li>
+<li>Are used by being called</li>
+<li>Always live within a module</li>
+</ul>
+</div></blockquote>
+<p>Is important to note that the <cite>classes</cite> support extra features that modules don&#8217;t,
+for example, the multiple instance generation, inheritance, etc.</p>
+</div>
+<div class="section" id="method-overload">
+<h2>Method overload<a class="headerlink" href="#method-overload" title="Permalink to this headline">¶</a></h2>
+<p>Another issue related to the method specialization
+is the method overload.
+If you are not familiarized with this concept,
+in simple words consist to write more than one
+method with the same name but with different
+signature, it means that the arguments inside
+the parenthesis is different.</p>
+<p>A simple method overload can be:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">ExampleClass</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">z</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span>
+</pre></div>
+</div>
+<p>But this example will not work,
+because there are no type declarations
+in Python, so, this concept does not apply,
+because the polymorphism is based in the
+object interfaces, not the types.</p>
+<p>One patch, solution can be to use the <cite>*args</cite> parameter:</p>
+<div class="highlight-python"><pre>class ExampleClass():
+    def average(self, *args):
+        if len(args) == 1:
+            pass
+        elif ...</pre>
+</div>
+<p>But this is not recommended too,
+because we were losing the idea behind object oriented paradigm,
+so, the next way to use this mechanism.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="c"># Assume x does the right thing</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Because with this implementation,
+you can use the widely object-oriented.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 24 - Design good practices</a><ul>
+<li><a class="reference internal" href="#the-class-statement">The <cite>class</cite> Statement</a></li>
+<li><a class="reference internal" href="#methods">Methods</a></li>
+<li><a class="reference internal" href="#specializing-inherited-methods">Specializing Inherited Methods</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#classes-vs-modules">Classes vs Modules</a></li>
+<li><a class="reference internal" href="#method-overload">Method overload</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture23.html"
+                        title="previous chapter">Lecture 23 - Inheritance</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="assignment6.html"
+                        title="next chapter">Assignment 6</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week6/lecture24.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="assignment6.html" title="Assignment 6"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lecture23.html" title="Lecture 23 - Inheritance"
+             >previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Sixth week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Patricia Fredes, Joao Fuentes, Margarita Ortega.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

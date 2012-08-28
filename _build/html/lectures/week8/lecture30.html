@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 30 - Control Command Language (CCL) Introduction &mdash; sql-course 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="sql-course 1 documentation" href="../../index.html" />
+    <link rel="up" title="Eighth week" href="index.html" />
+    <link rel="next" title="Lecture 31 - Graphical Interfaces" href="lecture31.html" />
+    <link rel="prev" title="Lecture 29 - IPython" href="lecture29.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lecture31.html" title="Lecture 31 - Graphical Interfaces"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lecture29.html" title="Lecture 29 - IPython"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Eighth week</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-30-control-command-language-ccl-introduction">
+<h1>Lecture 30 - Control Command Language (CCL) Introduction<a class="headerlink" href="#lecture-30-control-command-language-ccl-introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="alma-control-subsystem">
+<h2>ALMA Control Subsystem<a class="headerlink" href="#alma-control-subsystem" title="Permalink to this headline">¶</a></h2>
+<p>The ALMA Control Subsystem is all the referring to the
+software used to operate devices,
+like <a class="reference external" href="http://aivwiki.alma.cl/index.php/FronEnd_Devices">frontend</a> devices, <a class="reference external" href="http://aivwiki.alma.cl/index.php/BackEnd_Devices">backend</a> devices,
+and antennas.</p>
+<p>You can download the <a class="reference external" href="http://edm.alma.cl/forums/alma/dispatch.cgi/SubsystemDesign/showFile/100015/d20030221230518/Yes/Control+Design.pdf">Control Subsystem Design</a> for a
+more thorough reference.</p>
+<p>The Control Subsystem is part of every regular ALMA
+Software installation, on an STE.</p>
+<p>The Control subsystem is a part of the ALMA Common Software (ACS),
+that uses a CORBA-based Control framework, so the idea is that
+each hardware device control module has one ACS Component, running
+inside the ABM of each antenna. Also, each ACS Component provides
+an external communication interface.</p>
+<p>The following diagram shows how <strong>Components</strong>,
+<strong>Containers</strong>, <strong>ABM</strong>, and <strong>Antenna</strong> are related:</p>
+<img alt="CCL Diagram" src="lectures/week8/../../_static/images/ccl_01.png" style="width: 700px;" />
+<p>To understand the relationship between the aforementioned elements,
+it is proper to say that:</p>
+<ul class="simple">
+<li>Containers contain a set of Components.</li>
+<li>Components usually wrap physical hardware devices.</li>
+<li>Components contain a set of Properties.</li>
+<li>Properties are specific control or monitor points of a component</li>
+<li>For standard hardware devices the control and monitor points are defined
+at the <em>Interface Control Documents (ICDs)</em>.</li>
+</ul>
+<p>You can see this <a class="reference external" href="https://docs.google.com/viewer?a=v&amp;pid=sites&amp;srcid=ZGlzYy51Y24uY2x8YWNzd29ya3Nob3B8Z3g6NjI0YTc5ZDVjYTEwNTljYQ">ACS basic presentation</a>,
+if you want to clarify some doubts.</p>
+<p>Please note that not all the CCL classes,
+are necessarily controlling devices through <a class="reference external" href="http://en.wikipedia.org/wiki/Controller_area_network">Controller Area Network (CAN)</a> communication,
+because there are some higher level components,
+which are compatible, like <tt class="docutils literal"><span class="pre">FrontEnd</span></tt> controller,
+<tt class="docutils literal"><span class="pre">Antenna</span></tt> controller or <tt class="docutils literal"><span class="pre">Observing</span> <span class="pre">Modes</span></tt>.</p>
+<p>Following the previous idea,
+please note that not all CAN devices are inside the antennas.
+For example, some of them are in
+the <tt class="docutils literal"><span class="pre">CentralLO</span></tt> and <tt class="docutils literal"><span class="pre">Correlator</span></tt>.</p>
+</div>
+<div class="section" id="the-control-command-language-ccl">
+<h2>The Control Command Language (CCL)<a class="headerlink" href="#the-control-command-language-ccl" title="Permalink to this headline">¶</a></h2>
+<p>CCL is a language for accessing the Control software
+using a very simple Python wrapper, so it is considered a high-level
+scripting language.</p>
+<p>Each device control component (written in C++)
+has an associated Python wrapper, being a part of the CCL libraries.
+Therefore, CCL commands directly execute one precise action of the
+control component communication interface.</p>
+<p>In simple words, a CCL class interacts directly with a Component
+of a Container.</p>
+<p>CCL has two main functions:</p>
+<ol class="arabic simple">
+<li>Serve as the language &#8220;observing scripts&#8221; are written in.</li>
+<li>Serve as a suite of interactive commands to be used by hardware engineers,
+testing or debugging equipment, or staff astronomers, developing new observation
+procedures.</li>
+</ol>
+<p>The next diagram explains the architecture
+and the relationship between CCL and the control subsystem:</p>
+<img alt="CCL Architecture" src="lectures/week8/../../_static/images/ccl_02.png" style="width: 500px;" />
+<p>Most of the information regarding CCL is self-contained in the CCL wrapper,
+based on the Python documentation utility <strong>pydoc</strong>.
+To access the documentation, use the command <tt class="docutils literal"><span class="pre">help(&lt;function&gt;)</span></tt> where <tt class="docutils literal"><span class="pre">&lt;function&gt;</span></tt>
+can be any of the device types or functions listed at <tt class="docutils literal"><span class="pre">cclhelp()</span></tt>.
+You can also use the special IPython operator <tt class="docutils literal"><span class="pre">?</span></tt> to obtain help,
+for example, by typing <tt class="docutils literal"><span class="pre">MountVertex.GET_ANTENNA_TEMPS?</span></tt>.</p>
+<p>It is not necessary to be a Python expert in order to use CCL.
+The only two things that are very critical to be understood are
+the <strong>modules</strong> and <strong>object-oriented paradigm</strong> topics,
+which you learnt in previous lectures.</p>
+<p>For example,
+a little example using CCL could be:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">CCL.MountVertex</span> <span class="kn">import</span> <span class="n">MountVertex</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mount</span> <span class="o">=</span> <span class="n">MountVertex</span><span class="p">(</span><span class="s">&#39;DV01&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mount</span><span class="o">.</span><span class="n">GET_ANTENNA_TEMPS</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To enter the CCL environment, you can use <tt class="docutils literal"><span class="pre">startCCL</span></tt> command line.
+This is the initialization script that provides the whole CCL environment.
+Furthermore, you can import CCL classes from any Python script
+that you write, or that you need to modify to perform some task.</p>
+<p>When you execute <tt class="docutils literal"><span class="pre">startCCL</span></tt>, you are starting an <strong>ipython</strong>
+environment, along with some basic control <strong>imports</strong> and
+some <strong>special functions</strong>.
+If you understood the previous lectures content,
+like classes, objects, methods and IPython,
+working with CCL will be an easy task.</p>
+<p>Please note that each time you obtain a device reference,
+you are interacting with a real device,
+so you generate CAN traffic.</p>
+<p>The theoretical limit per channel per <em>Test Environment (TE)</em> is 90 messages,
+where the first half of messages is used to send commands,
+and the second half, to send monitor requests
+(<em>Control Subsystem convention</em>).
+In the worst case, the 90 messages can be reduced because some
+non-responding device, because the CAN message timeout is about
+2 ms.</p>
+<p>Please be aware in order to avoid using CAN commands inside
+loops that take many iterations.</p>
+</div>
+<div class="section" id="commissioning">
+<h2>Commissioning<a class="headerlink" href="#commissioning" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="instantiating-objects-devices">
+<h3>Instantiating Objects/Devices<a class="headerlink" href="#instantiating-objects-devices" title="Permalink to this headline">¶</a></h3>
+<p>Its applies only to classes/device types,
+and it is possible to work with multiple instances,
+for example, the same device on two different antennas,
+because each device will provide a different class constructor.</p>
+<p>Once the object is created,
+you can use it to access all the properties and values of the hardware device.</p>
+<p>For example,
+we can obtain an digital clock object:</p>
+<div class="highlight-python"><pre>In [1]: dgck = DGCK(“DV01”)</pre>
+</div>
+<p>Now with the <tt class="docutils literal"><span class="pre">dgck</span></tt> object,
+you can call its methods.</p>
+<p>The methods correspond mostly to monitor and control
+point, normally using only uppercase attributes,
+like <tt class="docutils literal"><span class="pre">MountVertex.GET_ANTENNA_TEMPS</span></tt>,
+if we are using a device controller instance.
+Also, you can use higher-level methods,
+like <tt class="docutils literal"><span class="pre">FrontEnd.powerUpBand</span></tt>.</p>
+</div>
+<div class="section" id="status-command">
+<h3>STATUS() Command<a class="headerlink" href="#status-command" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">STATUS()</span></tt> method provides a summary of the device
+status, showing device information like <strong>type</strong>, <strong>name</strong> and
+the <strong>status</strong> monitor point.</p>
+<p>You can use this command for each device,
+and you can call it from the Python interface
+as <tt class="docutils literal"><span class="pre">&lt;device&gt;.STATUS()</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="ccl-language-description">
+<h2>CCL Language Description<a class="headerlink" href="#ccl-language-description" title="Permalink to this headline">¶</a></h2>
+<p>The following content was extracted from the <a class="reference external" href="http://wikis.alma.cl/twiki/pub/AIV/AIV_COMP/COMP-70.35.60.00-001-C-MAN.pdf">CCL User Manual Version C</a>.</p>
+<div class="section" id="observing-modes">
+<h3>Observing Modes<a class="headerlink" href="#observing-modes" title="Permalink to this headline">¶</a></h3>
+<p>The observing modes are the highest level of synchronization in the CCL.
+These modules provide functionality for managing all the equipment in an array.</p>
+<p>For instance, tuning the LO system to a specified frequency or having all antennas in the array point in the same direction.</p>
+<p>The observing modes can be coupled to data capture
+and the production of astronomical data in the ALMA Science Data Model (ASDM) format.</p>
+<p>For most scientific users,
+there should be no reason to work below the level of an observing mode.</p>
+<p>The observing modes are tied to specific ALMA use cases.
+For instance, Single-Field Interferometry,
+Optical Pointing,
+and Tower Holography all have observing modes tailored to their specific requirements.</p>
+<p>The name of these objects as observing modes can cause some confusion.
+An observing mode in the CCL is a class that has been designed to simplify and coordinate a type of observing.</p>
+<p>The standard observing modes which you encounter in the ALMA ObservingTool,
+and later in this document are scripts written in the CCL to implement a particular observing strategy.</p>
+<p>Thus the standard observing mode scripts make use of the observing mode CCL objects to implement a particular observing strategy.</p>
+<p>As an example the standard observing mode script to perform a calibrator survey is very different from the script to do an observation of a single source,
+but both scripts would make use of the functionality provided by the single-field interferometry observing mode class in the CCL.</p>
+</div>
+<div class="section" id="mode-controllers">
+<h3>Mode Controllers<a class="headerlink" href="#mode-controllers" title="Permalink to this headline">¶</a></h3>
+<p>Mode controllers play the same role for an antenna that the observing modes do for an Array.
+These objects still have a concept of scientific intent for instance knowing that setting frequency
+when using the holography receiver and setting frequency when using the front-end are very different actions.</p>
+<p>Users should be aware that there is no effort to synchronize changes made at the mode controller level,
+with status at the observing mode level.
+As an example consider the following case:
+the user sets the frequency of an entire array using the <tt class="docutils literal"><span class="pre">setFrequency</span></tt> command of the observing mode.</p>
+<p>Then the user sets the frequency of antenna <strong>DA41</strong> using the mode controller <tt class="docutils literal"><span class="pre">setFrequency</span></tt> command.</p>
+<p>Only the hardware in the antenna <strong>DA41</strong> will be affected,
+so the array will be in an inconsistent state and,
+depending on the settings of the central photonic reference,
+the LO chain in <strong>DA41</strong> may not even lock.</p>
+<p>This level of flexibility is required to allow system testing but should only be utilized by users
+who are aware of the full system implications.</p>
+</div>
+<div class="section" id="devices">
+<h3>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h3>
+<p>Devices form the lowest layer in our hierarchy.
+These classes are mapped one-to-one to the physical hardware,
+and provide both integrated methods
+(i.e. a single method to tune and lock the second local oscillator module)
+and simple peek/poke level access,
+allowing direct manipulation of most monitor and control points.</p>
+</div>
+<div class="section" id="utility-classes">
+<h3>Utility Classes<a class="headerlink" href="#utility-classes" title="Permalink to this headline">¶</a></h3>
+<p>There are a set of utility classes also contained within the CCL, these classes provide a wide range of services.
+For example the <tt class="docutils literal"><span class="pre">SkyDelayServer</span></tt> module allows communication and control of the delay server,
+while the classes in the CCL.
+Source package provide flexible ways to specify an astronomical source.</p>
+</div>
+</div>
+<div class="section" id="extra-lecture-material">
+<h2>Extra lecture material<a class="headerlink" href="#extra-lecture-material" title="Permalink to this headline">¶</a></h2>
+<p>The following links and documents are extracted from ALMA wikis:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://almasw.hq.eso.org/almasw/pub/CONTROL/ControlCommandLanguage/ALMAControlCommandLanguage.pdf">ALMA Control Command Language Brief Introduction</a></li>
+<li><a class="reference external" href="http://ccl.aiv.alma.cl/">CCL official site</a></li>
+<li><a class="reference external" href="http://wikis.alma.cl/bin/view/AIV/CCLCommissioningProcedure">CCL Commissioning Procedure</a></li>
+<li><a class="reference external" href="http://aivwiki.alma.cl/index.php/CCL_Device_Software">CCL Device Software</a></li>
+</ul>
+</div>
+<div class="section" id="faq-ccl">
+<h2>FAQ CCL<a class="headerlink" href="#faq-ccl" title="Permalink to this headline">¶</a></h2>
+<p>This is a FAQ obtained from the <a class="reference external" href="http://aivwiki.alma.cl/index.php/CCL_FAQ">ALMA wiki</a>.</p>
+<div class="section" id="how-do-i-run-ccl-on-my-computer">
+<h3>How do I run CCL on my computer?<a class="headerlink" href="#how-do-i-run-ccl-on-my-computer" title="Permalink to this headline">¶</a></h3>
+<p>The idea of CCL, is interact with the devices,
+connected to a corresponding control units (ABM),
+remotely, i.e. using a SSH-client to connect
+to the machine.</p>
+</div>
+<div class="section" id="how-do-i-monitor-and-control-a-device">
+<h3>How do I monitor and control a device?<a class="headerlink" href="#how-do-i-monitor-and-control-a-device" title="Permalink to this headline">¶</a></h3>
+<p>First of all you need to create an &#8220;instance&#8221; belonging to the physical device
+you want to monitor or control.
+For this review the list of device types you obtain when issuing <cite>cclhelp()</cite>.
+Once you know the device type you create your instance by indicating its location
+(e.g. antenna name), its absolute component name,
+and eventually some additional parameters (e.g. polarization), for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lpr</span> <span class="o">=</span> <span class="n">LPR</span><span class="p">(</span><span class="s">&quot;DA41&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ifp0</span> <span class="o">=</span> <span class="n">IFProc</span><span class="p">(</span><span class="s">&quot;DA41&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lo20</span> <span class="o">=</span> <span class="n">LO2</span><span class="p">(</span><span class="n">componentName</span><span class="o">=</span><span class="s">&quot;CONTROL/DA41/LO2BBpr0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Use <tt class="docutils literal"><span class="pre">help(&lt;device</span> <span class="pre">type&gt;)</span></tt>, e.g. <tt class="docutils literal"><span class="pre">help(LO2)</span></tt>, for a detailed description and an
+example of usage if you encounter problems.
+Note that &#8220;lorr&#8221;, &#8220;ifp0&#8221; and &#8220;lo20&#8221; are variables that you can define as you want,
+for example, you could have used &#8220;x&#8221;, &#8220;y&#8221; and &#8220;z&#8221; instead.
+However, a good convention is to use the device&#8217;s name in lowercase.
+You can now use your variable to access both monitor- and control points, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lpr</span><span class="o">.</span><span class="n">GET_TEMP0_TEMP</span><span class="p">()</span>
+<span class="go">(2.9744236469268799, 134315513756484480L)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lpr</span><span class="o">.</span><span class="n">SET_OPT_SWITCH_PORT</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As you can see, the methods that retrieve the monitor points all start with
+<tt class="docutils literal"><span class="pre">GET_</span></tt>, and the ones for control points with <tt class="docutils literal"><span class="pre">SET_</span></tt>. Use tab-completion and
+<tt class="docutils literal"><span class="pre">help(&lt;function&gt;)</span></tt> for further details:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">lo20</span><span class="o">.</span><span class="n">SET_PHASE_VALS</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Last but not least,
+you can also display the the status information
+using the helper function <tt class="docutils literal"><span class="pre">status</span></tt>, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">status</span><span class="p">(</span><span class="n">lpr</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> If you want to try some CCL command in real machines,
+please make contact with people working in STE at OSF.</p>
+</div>
+<div class="section" id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<p>Some of the following exercises are extracted from the <a class="reference external" href="http://aivwiki.alma.cl/~acaceres/CCLTraining_v2.pdf">CCL Training presentation</a> (by Bernhard Lopez and Ruben Soto).</p>
+<p>Remember that you can access to the documentation of each <cite>Observing Mode</cite>, <cite>Mode Controllers</cite>, <cite>Devices</cite>, etc
+in the <a class="reference external" href="http://ccl.aiv.alma.cl/CCLReferenceManual.711/">official documentation page</a>.</p>
+<ul>
+<li><p class="first">Exercise 1</p>
+<blockquote>
+<div><ul class="simple">
+<li>Start CCL</li>
+<li>Display the available device types, functions and variables</li>
+<li>Display the help-text for the classes <em>WVR</em> and for the <em>DGCK</em>.</li>
+<li>Display the help-text for the functions <tt class="docutils literal"><span class="pre">pingabm()</span></tt> and <tt class="docutils literal"><span class="pre">get_devices()</span></tt>.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Exercise 2</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Instantiate the following objects (check the help-text for <tt class="docutils literal"><span class="pre">__init__</span></tt> to obtain the constructors parameters):</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>DGCK</em> on container <tt class="docutils literal"><span class="pre">DV01</span></tt> (if available)</li>
+<li><em>WVR</em> on container <tt class="docutils literal"><span class="pre">DV01</span></tt> (if available)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Exercise 3</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Access the device functionality (use tab-completion to see the available methods):</p>
+<blockquote>
+<div><ul class="simple">
+<li>Read the value of <tt class="docutils literal"><span class="pre">PS_VOLTAGE_CLOCK</span></tt> of the <em>DGCK</em>.</li>
+<li>Get the alarms associated to the <em>WVR</em> instance. (use the <em>GET_WVR_ALARMS()</em> method).</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Exercise 4</p>
+<blockquote>
+<div><ul class="simple">
+<li>Execute the STATUS method for <em>DGCK</em> on container <tt class="docutils literal"><span class="pre">DV01</span></tt>.</li>
+<li>Execute the STATUS method for <em>FLOOG</em> on container <tt class="docutils literal"><span class="pre">DA41</span></tt>.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Exercise 5</p>
+<blockquote>
+<div><ul class="simple">
+<li>Instantiate a group of DGCKs devices for <em>DV01</em> and <em>DA41</em> containers.</li>
+<li>Execute <tt class="docutils literal"><span class="pre">STATUS()</span></tt> method for the group.</li>
+<li>Use <tt class="docutils literal"><span class="pre">DelayTrackingEnabled()</span></tt> method for the DGCK group.</li>
+<li>Set DelayTracking to False over the DGCK group.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 30 - Control Command Language (CCL) Introduction</a><ul>
+<li><a class="reference internal" href="#alma-control-subsystem">ALMA Control Subsystem</a></li>
+<li><a class="reference internal" href="#the-control-command-language-ccl">The Control Command Language (CCL)</a></li>
+<li><a class="reference internal" href="#commissioning">Commissioning</a><ul>
+<li><a class="reference internal" href="#instantiating-objects-devices">Instantiating Objects/Devices</a></li>
+<li><a class="reference internal" href="#status-command">STATUS() Command</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ccl-language-description">CCL Language Description</a><ul>
+<li><a class="reference internal" href="#observing-modes">Observing Modes</a></li>
+<li><a class="reference internal" href="#mode-controllers">Mode Controllers</a></li>
+<li><a class="reference internal" href="#devices">Devices</a></li>
+<li><a class="reference internal" href="#utility-classes">Utility Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extra-lecture-material">Extra lecture material</a></li>
+<li><a class="reference internal" href="#faq-ccl">FAQ CCL</a><ul>
+<li><a class="reference internal" href="#how-do-i-run-ccl-on-my-computer">How do I run CCL on my computer?</a></li>
+<li><a class="reference internal" href="#how-do-i-monitor-and-control-a-device">How do I monitor and control a device?</a></li>
+<li><a class="reference internal" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture29.html"
+                        title="previous chapter">Lecture 29 - IPython</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lecture31.html"
+                        title="next chapter">Lecture 31 - Graphical Interfaces</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week8/lecture30.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lecture31.html" title="Lecture 31 - Graphical Interfaces"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lecture29.html" title="Lecture 29 - IPython"
+             >previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Eighth week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Patricia Fredes, Joao Fuentes, Margarita Ortega.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

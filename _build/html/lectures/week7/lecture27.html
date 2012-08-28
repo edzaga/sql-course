@@ -1,0 +1,587 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 27 - NumPy arrays (part III) &mdash; sql-course 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="sql-course 1 documentation" href="../../index.html" />
+    <link rel="up" title="Seventh week" href="index.html" />
+    <link rel="next" title="Lecture 28 - Interactive matplotlib plots" href="lecture28.html" />
+    <link rel="prev" title="Lecture 26 - NumPy arrays (part II)" href="lecture26.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lecture28.html" title="Lecture 28 - Interactive matplotlib plots"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lecture26.html" title="Lecture 26 - NumPy arrays (part II)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Seventh week</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-27-numpy-arrays-part-iii">
+<h1>Lecture 27 - NumPy arrays (part III)<a class="headerlink" href="#lecture-27-numpy-arrays-part-iii" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="products-between-arrays">
+<h2>Products between arrays<a class="headerlink" href="#products-between-arrays" title="Permalink to this headline">¶</a></h2>
+<p>Remember that a <strong>vector</strong> is a one dimension array synonymous,
+and a <strong>matrix</strong> is a synonymous of a bi-dimensional array.</p>
+<div class="section" id="inner-product-vector-vector">
+<h3>Inner product (vector-vector)<a class="headerlink" href="#inner-product-vector-vector" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>inner product</strong> between two vectors
+is the product sum between corresponding elements:</p>
+<img alt="lectures/week7/../../diagrams/inner-product.png" src="lectures/week7/../../diagrams/inner-product.png" />
+<p>The inner product between two vectors
+is obtained using the <tt class="docutils literal"><span class="pre">dot</span></tt> function
+provided by NumPy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.8</span> <span class="p">,</span> <span class="o">-</span><span class="mf">0.88</span><span class="p">,</span>  <span class="mf">2.76</span><span class="p">,</span>  <span class="mf">1.3</span> <span class="p">,</span>  <span class="mf">4.43</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span> <span class="mf">0.25</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.58</span><span class="p">,</span>  <span class="mf">1.32</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.34</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.22</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="go">-14.803</span>
+</pre></div>
+</div>
+<p>The inner product is a very common operation.
+For example, is often used to calculate totals:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">prices</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">150</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">quantities</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_to_pay</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="n">quantities</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_to_pay</span>
+<span class="go">1400</span>
+</pre></div>
+</div>
+<p>It is also used to calculate weighted averages:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">grades</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">45</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">32</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">weights</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span> <span class="o">/</span> <span class="mf">100.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">final_grade</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">final_grade</span>
+<span class="go">55.7</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="matrix-vector-product">
+<h3>Matrix-Vector Product<a class="headerlink" href="#matrix-vector-product" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>matrix-vector product</strong>
+is the vector of the inner products.
+The matrix-vector product can be viewed
+simply as several inner products
+calculated at once.</p>
+<p>This operation is also obtained
+using the <tt class="docutils literal"><span class="pre">dot</span></tt> function
+between the rows of matrix and vector:</p>
+<img alt="lectures/week7/../../diagrams/matrix-vector.png" class="align-center" src="lectures/week7/../../diagrams/matrix-vector.png" />
+<p>An example using the <tt class="docutils literal"><span class="pre">dot</span></tt> function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span>  <span class="mf">4.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">],</span>
+<span class="go">               [-2. , -3.6, -2.1],</span>
+<span class="go">               [ 1.7,  4.9,  0. ]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span> <span class="p">,</span>  <span class="mf">1.7</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="go">array([-11.28,   4.83, -10.82])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="matrix-matrix-product">
+<h3>Matrix-Matrix Product<a class="headerlink" href="#matrix-matrix-product" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>matrix-matrix product</strong>
+is the matrix of inner products
+between the first matrix rows
+and columns of the second matrix:</p>
+<img alt="lectures/week7/../../diagrams/matrix-matrix.png" class="align-center" src="lectures/week7/../../diagrams/matrix-matrix.png" />
+<p>This operation is also obtained
+using the <tt class="docutils literal"><span class="pre">dot</span></tt> function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">8</span><span class="p">],</span>
+<span class="go">               [-3,  7],</span>
+<span class="go">               [-8, -5]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">],</span>
+<span class="go">             [-9, -2,  3, -3]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="go">array([[-78, -26,  12, -30],</span>
+<span class="go">       [-54,   1,  39, -12],</span>
+<span class="go">       [ 69,  50,  33,  39]])</span>
+</pre></div>
+</div>
+<p>Matrix multiplication
+can be viewed as several matrix-vector products
+(using all second matrix rows as vectors),
+calculated at once.</p>
+<p>In summary,
+when using the <tt class="docutils literal"><span class="pre">dot</span></tt> function,
+the result structure
+depends on which parameters are passed:</p>
+<div class="highlight-python"><pre>dot(vector, vector) → number
+dot(matrix, vector) → vector
+dot(matrix, matrix) → matrix</pre>
+</div>
+</div>
+</div>
+<div class="section" id="lineal-systems-resolution">
+<h2>Lineal Systems Resolution<a class="headerlink" href="#lineal-systems-resolution" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s review the matrix-vector product:</p>
+<img alt="lectures/week7/../../diagrams/diet-1.png" class="align-center" src="lectures/week7/../../diagrams/diet-1.png" />
+<p>This operation has two operands:
+a matrix and a vector.
+The result is a vector.
+The operands will call them respectively <tt class="docutils literal"><span class="pre">A</span></tt> and <tt class="docutils literal"><span class="pre">x</span></tt>,
+and the result, <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+<p>A recurring problem in engineering
+is to obtain which is the <tt class="docutils literal"><span class="pre">x</span></tt> vector
+when <tt class="docutils literal"><span class="pre">A</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> are given:</p>
+<img alt="lectures/week7/../../diagrams/diet-2.png" class="align-center" src="lectures/week7/../../diagrams/diet-2.png" />
+<p>The matrix equation <span class="math">\(Ax = b\)</span> is a shorthand way
+of expressing a <a class="reference external" href="http://en.wikipedia.org/wiki/System_of_linear_equations">system of linear equations</a>.
+For example,
+the equation of the diagram
+is equivalent to the following system of three equations
+which has three unknowns variables <cite>w</cite>, <cite>y</cite> and <cite>z</cite>:</p>
+<div class="math">
+\[\begin{split}\begin{align}
+  36w + 51y + 13z &amp;= 3 \\
+  52w + 34y + 74z &amp;= 45 \\
+         7y + 1.1z &amp;= 33 \\
+\end{align}\end{split}\]</div>
+<p>In mathematics,
+this system is represented in matrix, as follows:</p>
+<div class="math">
+\[\begin{split}\begin{bmatrix}
+  36 &amp; 51 &amp; 13 \\
+  52 &amp; 34 &amp; 74 \\
+     &amp;  7 &amp; 1.1 \\
+\end{bmatrix}
+\begin{bmatrix}
+   w \\ y \\ z \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+   3 \\ 45 \\ 33 \\
+\end{bmatrix}\end{split}\]</div>
+<p>The theory behind solving problems like this
+you learned in your math classes.
+However,
+as this type of problem occurs often in practice,
+we learn how to quickly get the solution
+using Python.</p>
+<p>Among the modules included in NumPy
+(for example, we saw <tt class="docutils literal"><span class="pre">numpy.random</span></tt>),
+is the <tt class="docutils literal"><span class="pre">numpy.linalg</span></tt> module,
+which provides some functions that implement linear algebra algorithms,
+which is the mathematics branch that studies this type of problems.
+In this module is the <tt class="docutils literal"><span class="pre">solve</span></tt> function,
+which gives the <tt class="docutils literal"><span class="pre">x</span></tt> system solution
+from the <tt class="docutils literal"><span class="pre">A</span></tt> matrix and the <tt class="docutils literal"><span class="pre">b</span></tt> vector:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span> <span class="mf">36.</span> <span class="p">,</span>  <span class="mf">51.</span> <span class="p">,</span>  <span class="mf">13.</span> <span class="p">],</span>
+<span class="gp">... </span>           <span class="p">[</span> <span class="mf">52.</span> <span class="p">,</span>  <span class="mf">34.</span> <span class="p">,</span>  <span class="mf">74.</span> <span class="p">],</span>
+<span class="gp">... </span>           <span class="p">[</span>  <span class="mf">0.</span> <span class="p">,</span>   <span class="mf">7.</span> <span class="p">,</span>   <span class="mf">1.1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">45.</span><span class="p">,</span>  <span class="mf">33.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">array([-7.10829222,  4.13213834,  3.70457422])</span>
+</pre></div>
+</div>
+<p>We can see that indeed the <tt class="docutils literal"><span class="pre">x</span></tt> vector
+satisfies the <tt class="docutils literal"><span class="pre">Ax</span> <span class="pre">=</span> <span class="pre">b</span></tt> equation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="go">array([  3.,  45.,  33.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([  3.,  45.,  33.])</span>
+</pre></div>
+</div>
+<p>However, it is important to note that
+the real types values
+are rarely represented accurately on the computer,
+and the algorithm result that involves many operations
+may suffer from some rounding errors.
+For this reason,
+it may happen that although the results look the same on the console,
+the obtained data are only approximations
+and not exactly the same values:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Bartender</strong></p>
+<p>To prepare an appetizer, a  bartender stores in three pails
+different wine, gin and lemon juice measures,
+following the next table:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="28%" />
+<col width="28%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><p class="first last">Pail</p>
+</th>
+<th class="head"><p class="first last">Wine</p>
+</th>
+<th class="head"><p class="first last">Gin</p>
+</th>
+<th class="head"><p class="first last">Lemon juice</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last">A</p>
+</td>
+<td><p class="first last">20</p>
+</td>
+<td><p class="first last">30</p>
+</td>
+<td><p class="first last">50</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last">B</p>
+</td>
+<td><p class="first last">30</p>
+</td>
+<td><p class="first last">20</p>
+</td>
+<td><p class="first last">60</p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last">C</p>
+</td>
+<td><p class="first last">30</p>
+</td>
+<td><p class="first last">30</p>
+</td>
+<td><p class="first last">32</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>On the other hand,
+we have the information related to the prices by liter
+of each liquid:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="62%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><p class="first last">Liquid</p>
+</th>
+<th class="head"><p class="first last">Price</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last">Wine</p>
+</td>
+<td><p class="first last">5</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last">Gin</p>
+</td>
+<td><p class="first last">45</p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last">Lemon Juice</p>
+</td>
+<td><p class="first last">10</p>
+</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li>Write a program which show the price of
+each one of the pails.</li>
+<li>Write a program which show the total price of
+10 A pails, 4 B pails and 5 C pails.</li>
+</ol>
+</li>
+<li><p class="first"><strong>Car production</strong></p>
+<p>A car factory produce three models:
+sedan, van and economic.
+Each car production needs materials, manpower, taxes and transport.
+The cost in units per each concept are the following:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="22%" />
+<col width="16%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><p class="first last">(Cost)</p>
+</th>
+<th class="head"><p class="first last">Sedan</p>
+</th>
+<th class="head"><p class="first last">Van</p>
+</th>
+<th class="head"><p class="first last">Economic</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last">Material</p>
+</td>
+<td><p class="first last">7</p>
+</td>
+<td><p class="first last">8</p>
+</td>
+<td><p class="first last">5</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last">Manpower</p>
+</td>
+<td><p class="first last">10</p>
+</td>
+<td><p class="first last">9</p>
+</td>
+<td><p class="first last">7</p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last">Taxes</p>
+</td>
+<td><p class="first last">5</p>
+</td>
+<td><p class="first last">3</p>
+</td>
+<td><p class="first last">2</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last">Transport</p>
+</td>
+<td><p class="first last">2</p>
+</td>
+<td><p class="first last">3</p>
+</td>
+<td><p class="first last">1</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Weekly, the production amount is of
+60 sedan, 40 van and 90 economic.</p>
+<p>The cost of a unit of material, manpower, taxes and transport
+are 5, 15, 7 y 2 respectively.</p>
+<p>Write a program which show:</p>
+<ul class="simple">
+<li>the weekly needed units of material, manpower, taxes and transport,</li>
+<li>the total cost of a car of each model,</li>
+<li>the total cost of the weekly production.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Gas production report</strong></p>
+<p>In the annual report of a gas enterprise,
+the president reports to their shareholders
+the annual amount of the barrel production
+of 50 liter of normal, extra and super lubricant
+in two refineries:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="24%" />
+<col width="24%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><p class="first last">Refinery</p>
+</th>
+<th class="head"><p class="first last">Normal</p>
+</th>
+<th class="head"><p class="first last">Extra</p>
+</th>
+<th class="head"><p class="first last">Super</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last">A</p>
+</td>
+<td><p class="first last">3000</p>
+</td>
+<td><p class="first last">7000</p>
+</td>
+<td><p class="first last">2000</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last">B</p>
+</td>
+<td><p class="first last">4000</p>
+</td>
+<td><p class="first last">500</p>
+</td>
+<td><p class="first last">600</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Also, reports that in each 50 liter lubricant barrel
+exist the following composition in liter of
+fine oils, tar and residual fat:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="21%" />
+<col width="21%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><p class="first last">Component</p>
+</th>
+<th class="head"><p class="first last">Normal</p>
+</th>
+<th class="head"><p class="first last">Extra</p>
+</th>
+<th class="head"><p class="first last">Super</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last">Fine oils</p>
+</td>
+<td><p class="first last">10</p>
+</td>
+<td><p class="first last">5</p>
+</td>
+<td><p class="first last">35</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last">Tar</p>
+</td>
+<td><p class="first last">15</p>
+</td>
+<td><p class="first last">4</p>
+</td>
+<td><p class="first last">31</p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last">Residual fat</p>
+</td>
+<td><p class="first last">18</p>
+</td>
+<td><p class="first last">2</p>
+</td>
+<td><p class="first last">30</p>
+</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li>Write a function called <tt class="docutils literal"><span class="pre">annual_totals(a,</span> <span class="pre">b)</span></tt>
+which receive as parameter both matrix
+and return an array with the totals of
+fine oils, tar and residual fats present in the annual production.</li>
+<li>Write a function called <tt class="docutils literal"><span class="pre">maximum_tar(a,</span> <span class="pre">b)</span></tt>
+which receive as parameter both matrix
+and return the maximum of tar liters
+consumed by both refineries.</li>
+<li>Determine which is the matrix that return
+the total consumption of the elements that
+are part of the lubricant, in each refinery.</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 27 - NumPy arrays (part III)</a><ul>
+<li><a class="reference internal" href="#products-between-arrays">Products between arrays</a><ul>
+<li><a class="reference internal" href="#inner-product-vector-vector">Inner product (vector-vector)</a></li>
+<li><a class="reference internal" href="#matrix-vector-product">Matrix-Vector Product</a></li>
+<li><a class="reference internal" href="#matrix-matrix-product">Matrix-Matrix Product</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lineal-systems-resolution">Lineal Systems Resolution</a></li>
+<li><a class="reference internal" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture26.html"
+                        title="previous chapter">Lecture 26 - NumPy arrays (part II)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lecture28.html"
+                        title="next chapter">Lecture 28 - Interactive matplotlib plots</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week7/lecture27.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lecture28.html" title="Lecture 28 - Interactive matplotlib plots"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lecture26.html" title="Lecture 26 - NumPy arrays (part II)"
+             >previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Seventh week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Patricia Fredes, Joao Fuentes, Margarita Ortega.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

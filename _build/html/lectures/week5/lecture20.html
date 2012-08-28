@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 20 - Coding good practices &mdash; sql-course 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="sql-course 1 documentation" href="../../index.html" />
+    <link rel="up" title="Fifth week" href="index.html" />
+    <link rel="next" title="Assignment 5" href="assignment5.html" />
+    <link rel="prev" title="Lecture 19 - Iterators" href="lecture19.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="assignment5.html" title="Assignment 5"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lecture19.html" title="Lecture 19 - Iterators"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Fifth week</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-20-coding-good-practices">
+<h1>Lecture 20 - Coding good practices<a class="headerlink" href="#lecture-20-coding-good-practices" title="Permalink to this headline">¶</a></h1>
+<p>In every programming language (fortran, Java, C/C++, Perl, etc)
+there are some proposed normative by the language creators
+or actual maintainers, which are a good advise to new programmers
+or for people who wants to improve their code.</p>
+<p>In the cases which have a very strict normative, is when you want to
+send your code to some institution related with your selected programming language.</p>
+<p>For example, the developers of the python modules
+<em>must</em> achieve this norms.</p>
+<p>For this course, the only important idea is to tell you <tt class="docutils literal"><span class="pre">how</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">written</span></tt> but
+there will be <tt class="docutils literal"><span class="pre">not</span></tt> a normative, this is only for educational purpose.</p>
+<p>The following material are some ideas extracted from
+the official <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">Style Guide for Python Code</a> which is an adaptation from
+the original Python Style Guide Essay written by Python&#8217;s creator,
+<a class="reference external" href="http://en.wikipedia.org/wiki/Guido_van_Rossum">Guido van Rossum</a>.</p>
+<p>Do not worry if you see some <tt class="docutils literal"><span class="pre">class</span></tt> or <tt class="docutils literal"><span class="pre">method</span></tt> reference,
+because in the next lectures we will get deep into the Object Oriented world!.</p>
+<div class="section" id="code-lay-out">
+<h2>Code lay-out<a class="headerlink" href="#code-lay-out" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Indentation</strong></p>
+<p>When you are writing code and you need to enter into a new indentation level,
+for example, in an <tt class="docutils literal"><span class="pre">if</span></tt> statement, you must use 4 spaces per each indentation
+level.</p>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+    <span class="n">do_some_stuff</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+ <span class="n">do_some_stuff</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+      <span class="n">do_some_stuff</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>etc.</p>
+<p>If you have very long lines calling functions, or creating variables, etc,
+you can use more than one line to do this.</p>
+<p>There are two ways to write this statements with parenthesis,
+without parameters in the first line or with some parameters,
+for example.</p>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Aligned with opening delimiter</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span><span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span>
+                         <span class="n">var_three</span><span class="p">,</span> <span class="n">var_four</span><span class="p">)</span>
+
+<span class="c"># Double code indention for hanging indent; nothing on first line</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span>
+        <span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span> <span class="n">var_three</span><span class="p">,</span>
+        <span class="n">var_four</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Stuff on first line forbidden</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span><span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span>
+    <span class="n">var_three</span><span class="p">,</span> <span class="n">var_four</span><span class="p">)</span>
+
+<span class="c"># 2-space hanging indent forbidden</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span>
+  <span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span> <span class="n">var_three</span><span class="p">,</span>
+  <span class="n">var_four</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Tabs or Spaces?</strong></p>
+<p>Is very important to note that the programmer will never mix tabs and spaces.</p>
+<p>The most popular way to indent Python code is with spaces only.
+The second popular way, is with tabs.</p>
+<p>So, you can choose.</p>
+</li>
+<li><p class="first"><strong>Maximum Line length</strong></p>
+<p>The programmer must limit all lines to a maximum of 79 characters.
+(there are several plugins for text editors to do this, do not think
+that you must count every character!)</p>
+</li>
+<li><p class="first"><strong>Blank Lines</strong></p>
+<p>You must use blank lines in different times:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Two blank lines, to separate top-level function and class definitions.</li>
+<li>One blank line, to separate method definitions inside a class.</li>
+<li>One blank line, to separate groups of related functions.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Separate lines</strong></p>
+<p>In several scripts you need to import more than one Python module,
+so, What is the correct way to do this?</p>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+</pre></div>
+</div>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+</pre></div>
+</div>
+<p>But when you are importing just a couple of methods from a Python module
+you can use the expression with the commas:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">Popen</span><span class="p">,</span> <span class="n">PIPE</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Top of the file</strong></p>
+<p>The module import of any script must be at the top of the file,
+does not matter where do you use it in your code,
+and must be after any module comment and docstring,
+and before module globals and constants.</p>
+<p>Imports should be grouped in the following order:</p>
+<ol class="arabic">
+<li><p class="first">standard library imports, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">related third party imports, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">local application/library specific imports, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">my_module</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Is important to note that you need to leave a blank line between each group
+of imports.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="whitespace-in-expressions-and-statements">
+<h2>Whitespace in Expressions and Statements<a class="headerlink" href="#whitespace-in-expressions-and-statements" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Avoiding whitespace</strong></p>
+<p>Is important to avoid the unnecessary whitespaces in your code,
+in the following situations:</p>
+<ul>
+<li><p class="first">Immediately inside parentheses, brackets or braces.</p>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">spam</span><span class="p">(</span><span class="n">ham</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">{</span><span class="n">eggs</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">spam</span><span class="p">(</span> <span class="n">ham</span><span class="p">[</span> <span class="mi">1</span> <span class="p">],</span> <span class="p">{</span> <span class="n">eggs</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span> <span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Immediately before a comma, semicolon, or colon:</p>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span> <span class="k">print</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span>
+</pre></div>
+</div>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">4</span> <span class="p">:</span> <span class="k">print</span> <span class="n">x</span> <span class="p">,</span> <span class="n">y</span> <span class="p">;</span> <span class="n">x</span> <span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="p">,</span> <span class="n">x</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Immediately before an open parenthesis that starts the argument list of a function call:</p>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">spam</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">spam</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Immediately before an open parenthesis that starts an indexing or slicing:</p>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">dict</span><span class="p">[</span><span class="s">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">dict</span> <span class="p">[</span><span class="s">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span> <span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">More than one space around an assignment (or other) operator to align it with another.</p>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">long_variable</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span>             <span class="o">=</span> <span class="mi">1</span>
+<span class="n">y</span>             <span class="o">=</span> <span class="mi">2</span>
+<span class="n">long_variable</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p class="first"><strong>Other recommendations</strong></p>
+<p>Another situations when you must be careful, are the following:</p>
+<ul>
+<li><p class="first">Use spaces around arithmetic operators:</p>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">submitted</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">hypot2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">submitted</span> <span class="o">+=</span><span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">hypot2</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Don&#8217;t use spaces around the &#8216;=&#8217; sign when used to indicate a
+keyword argument or a default parameter value.</p>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">complex</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">imag</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">magic</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">real</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">imag</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">complex</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">imag</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">magic</span><span class="p">(</span><span class="n">r</span> <span class="o">=</span> <span class="n">real</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">imag</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Compound statements (multiple statements on the same line) are
+generally discouraged.</p>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">foo</span> <span class="o">==</span> <span class="s">&#39;blah&#39;</span><span class="p">:</span>
+    <span class="n">do_blah_thing</span><span class="p">()</span>
+<span class="n">do_one</span><span class="p">()</span>
+<span class="n">do_two</span><span class="p">()</span>
+<span class="n">do_three</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">foo</span> <span class="o">==</span> <span class="s">&#39;blah&#39;</span><span class="p">:</span> <span class="n">do_blah_thing</span><span class="p">()</span>
+<span class="n">do_one</span><span class="p">();</span> <span class="n">do_two</span><span class="p">();</span> <span class="n">do_three</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">While sometimes it&#8217;s okay to put an if/for/while with a small
+body on the same line, never do this for multi-clause
+statements.  Also avoid folding such long lines!</p>
+<p>Rather not:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">foo</span> <span class="o">==</span> <span class="s">&#39;blah&#39;</span><span class="p">:</span> <span class="n">do_blah_thing</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span> <span class="n">total</span> <span class="o">+=</span> <span class="n">x</span>
+<span class="k">while</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span> <span class="n">t</span> <span class="o">=</span> <span class="n">delay</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Definitely not:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">foo</span> <span class="o">==</span> <span class="s">&#39;blah&#39;</span><span class="p">:</span> <span class="n">do_blah_thing</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span> <span class="n">do_non_blah_thing</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span> <span class="n">something</span><span class="p">()</span>
+<span class="k">finally</span><span class="p">:</span> <span class="n">cleanup</span><span class="p">()</span>
+
+<span class="n">do_one</span><span class="p">();</span> <span class="n">do_two</span><span class="p">();</span> <span class="n">do_three</span><span class="p">(</span><span class="nb">long</span><span class="p">,</span> <span class="n">argument</span><span class="p">,</span>
+                             <span class="nb">list</span><span class="p">,</span> <span class="n">like</span><span class="p">,</span> <span class="n">this</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">foo</span> <span class="o">==</span> <span class="s">&#39;blah&#39;</span><span class="p">:</span> <span class="n">one</span><span class="p">();</span> <span class="n">two</span><span class="p">();</span> <span class="n">three</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<p>The comments are the main component of a code,
+to understand the programmer&#8217;s thought,
+so it is very important to keep it simple and updated.</p>
+<p>There are two types of comments:</p>
+<ul>
+<li><p class="first"><strong>Block comments</strong></p>
+<p>Block comments generally apply to some (or all) code that follows them,
+and are indented to the same level as that code.</p>
+<p>Each line of a block comment starts with a # and a single space (unless it
+is indented text inside the comment).</p>
+<p>Paragraphs inside a block comment are separated by a line containing a
+single #.</p>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># This is my comment first line</span>
+<span class="c"># and this is the second line.</span>
+<span class="c">#</span>
+<span class="c"># This is a new paragraph.</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Inline comments</strong></p>
+<p>Is fundamental to use inline comments sparingly.</p>
+<p>Inline comments should be separated by at least two spaces from the statement.
+They should start with a # and a single space.</p>
+<p>Inline comments are unnecessary and in fact distracting if they state
+the obvious.</p>
+<p>Avoid obvious comments:</p>
+<p>Wrong:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>                 <span class="c"># Increment x</span>
+</pre></div>
+</div>
+<p>Correct:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>                 <span class="c"># Compensate for border</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="documentation-strings">
+<h2>Documentation Strings<a class="headerlink" href="#documentation-strings" title="Permalink to this headline">¶</a></h2>
+<p>The documentation process for some programmers
+is a very terrible situation, however it is a vital
+process, because the first approximation of an external
+person to a programming project is their documentation.</p>
+<p>In big words, the user must write docstrings for the following
+situations:</p>
+<ul class="simple">
+<li>Public modules,</li>
+<li>Functions,</li>
+<li>Classes,</li>
+<li>Methods,</li>
+</ul>
+<p>The docstring must appear after the <tt class="docutils literal"><span class="pre">def</span></tt> line.</p>
+<p>The structure of a docstring is very simple:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot; This is a one-line docstring &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">This is a multiline docstring</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>And the general way to do this is as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">my_function</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; function which do some stuff &quot;&quot;&quot;</span>
+
+    <span class="n">do_some_stuff</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For more information about the docstring conventions,
+please take a look of the <a class="reference external" href="http://www.python.org/dev/peps/pep-0257/">official document</a>.</p>
+</div>
+<div class="section" id="version-bookkeeping">
+<h2>Version bookkeeping<a class="headerlink" href="#version-bookkeeping" title="Permalink to this headline">¶</a></h2>
+<p>Some development projects use software version control,
+like SVN, CVS, Git, Bazaar, Mercurial, etc, so it is important
+to show the version inside the files.</p>
+<p>The properly way to do this is, as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">__version__</span> <span class="o">=</span> <span class="s">&quot;$Revision: 864b604d3742 $&quot;</span>
+<span class="c"># $Source$</span>
+</pre></div>
+</div>
+<p>You must include the previous lines after the module&#8217;s docstring,
+and before any other code, using a blank line above and below
+to separate it.</p>
+</div>
+<div class="section" id="naming-conventions">
+<h2>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h2>
+<p>The naming conventions is a very discussed section
+into the standard of Python, so there is now such thing
+like a gold rule, but there are a lot of recommendations.</p>
+<p>It does not matter what style you use, the important
+thing is that you must be consistent.</p>
+<ul>
+<li><p class="first"><strong>Descriptive:</strong> <em>Naming Styles</em></p>
+<p>The following naming styles are commonly distinguished:</p>
+<ul class="simple">
+<li>b (single lowercase letter)</li>
+<li>B (single uppercase letter)</li>
+<li>lowercase</li>
+<li>lower_case_with_underscores</li>
+<li>UPPERCASE</li>
+<li>UPPER_CASE_WITH_UNDERSCORES</li>
+<li>CapitalizedWords (or <a class="reference external" href="http://en.wikipedia.org/wiki/CamelCase">CamelCase</a>)</li>
+<li>mixedCase (differs from CapitalizedWords by initial lowercase
+character!)</li>
+<li>Capitalized_Words_With_Underscores (ugly!)</li>
+</ul>
+<p>In addition, the following special forms using leading or trailing
+underscores are recognized (these can generally be combined with any case
+convention):</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">_single_leading_underscore</span></tt>: weak &#8220;internal use&#8221; indicator.</li>
+<li><tt class="docutils literal"><span class="pre">single_trailing_underscore_</span></tt>: used by convention to avoid conflicts with
+Python keyword, for example <tt class="docutils literal"><span class="pre">class</span></tt> is protected, so we will use <tt class="docutils literal"><span class="pre">class_</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">__double_leading_and_trailing_underscore__</span></tt>: attributes that live in user-controlled namespaces.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Prescriptive</strong></p>
+<ul>
+<li><p class="first"><strong>Names to avoid</strong></p>
+<p>Never use the characters which are indistinguishable,
+from the numerals one and zero, or if are used for another things.</p>
+<ul class="simple">
+<li><cite>l</cite> (lowercase letter el),</li>
+<li><cite>O</cite> (uppercase letter oh),</li>
+<li><cite>I</cite> (uppercase letter eye)</li>
+</ul>
+</li>
+<li><p class="first"><strong>Module names</strong></p>
+<p>Modules should have short, all-lowercase names.
+Underscores can be used only if it improves readability.</p>
+</li>
+<li><p class="first"><strong>Class names</strong></p>
+<p>Almost without exception, class names use the CapWords convention.
+Classes for internal use have a leading underscore in addition.</p>
+</li>
+<li><p class="first"><strong>Global variable names</strong></p>
+<p>The conventions are about the same as those for functions.</p>
+</li>
+<li><p class="first"><strong>Functions names</strong></p>
+<p>Function names should be lowercase, with words separated by underscores
+as necessary to improve readability.</p>
+</li>
+<li><p class="first"><strong>Method arguments</strong></p>
+<p>Always use &#8216;self&#8217; for the first argument to instance methods.</p>
+</li>
+<li><p class="first"><strong>Constants</strong></p>
+<p>Constants are usually defined on a module level and written in all
+capital letters with underscores separating words, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">MAX_OVERFLOW</span> <span class="o">=</span> <span class="mf">0.4523</span>
+<span class="n">TOTAL</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 20 - Coding good practices</a><ul>
+<li><a class="reference internal" href="#code-lay-out">Code lay-out</a></li>
+<li><a class="reference internal" href="#imports">Imports</a></li>
+<li><a class="reference internal" href="#whitespace-in-expressions-and-statements">Whitespace in Expressions and Statements</a></li>
+<li><a class="reference internal" href="#comments">Comments</a></li>
+<li><a class="reference internal" href="#documentation-strings">Documentation Strings</a></li>
+<li><a class="reference internal" href="#version-bookkeeping">Version bookkeeping</a></li>
+<li><a class="reference internal" href="#naming-conventions">Naming Conventions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture19.html"
+                        title="previous chapter">Lecture 19 - Iterators</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="assignment5.html"
+                        title="next chapter">Assignment 5</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week5/lecture20.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="assignment5.html" title="Assignment 5"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lecture19.html" title="Lecture 19 - Iterators"
+             >previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Fifth week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Patricia Fredes, Joao Fuentes, Margarita Ortega.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

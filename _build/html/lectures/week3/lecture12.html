@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 12 - Tuples &mdash; sql-course 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="sql-course 1 documentation" href="../../index.html" />
+    <link rel="up" title="Third week" href="index.html" />
+    <link rel="next" title="Assignment 3" href="assignment3.html" />
+    <link rel="prev" title="Lecture 11 - Dictionaries" href="lecture11.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="assignment3.html" title="Assignment 3"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lecture11.html" title="Lecture 11 - Dictionaries"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Third week</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-12-tuples">
+<h1>Lecture 12 - Tuples<a class="headerlink" href="#lecture-12-tuples" title="Permalink to this headline">¶</a></h1>
+<p id="index-0">A <strong>tuple</strong> is a sequence of grouped values.</p>
+<p>A tuple is used to group several related values as a single value.</p>
+<p>The data type that represents the tuple is called <tt class="docutils literal"><span class="pre">tuple</span></tt>.
+The <tt class="docutils literal"><span class="pre">tuple</span></tt> type is immutable: a tuple cannot be modified once created.</p>
+<p id="index-1">A tuple can be created
+setting comma separated values and in round brackets.
+For example,
+we can create a tuple with the first-name and last-name of a person:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">person</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;John&#39;</span><span class="p">,</span> <span class="s">&#39;Smith&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">person</span>
+<span class="go">(&#39;John&#39;, &#39;Smith&#39;)</span>
+</pre></div>
+</div>
+<div class="section" id="unpacking-tuples">
+<h2>Unpacking tuples<a class="headerlink" href="#unpacking-tuples" title="Permalink to this headline">¶</a></h2>
+<p id="index-2">The tuple values can be recovered assigning the tuple to the corresponding variables.
+This is called <strong>unpacking tuples</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">person</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;John&#39;</span><span class="p">,</span> <span class="s">&#39;Smith&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name</span><span class="p">,</span> <span class="n">surname</span> <span class="o">=</span> <span class="n">person</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name</span>
+<span class="go">&#39;John&#39;</span>
+</pre></div>
+</div>
+<p>If you try to unpack the wrong number of values,
+a value error occurs:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">person</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ValueError</span>: <span class="n">need more than 2 values to unpack</span>
+</pre></div>
+</div>
+<p>Also, it is possible to extract the values using their index:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">person</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">&#39;Smith&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tuple-comparison">
+<h2><tt class="docutils literal"><span class="pre">tuple</span></tt> comparison<a class="headerlink" href="#tuple-comparison" title="Permalink to this headline">¶</a></h2>
+<p>Two tuples are the same
+when they have the same size
+and each of their items have the same value:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p id="index-3">To determine if a tuple is smaller than other,
+the rule called <strong>lexicographic order</strong> is used.
+If the items in the first position from both tuples are different,
+comparing them determines the order of the tuples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>The first comparison is  <tt class="docutils literal"><span class="pre">True</span></tt> because <tt class="docutils literal"><span class="pre">1</span> <span class="pre">&lt;</span> <span class="pre">2</span></tt>.
+The second comparison is <tt class="docutils literal"><span class="pre">False</span></tt> because <tt class="docutils literal"><span class="pre">1</span> <span class="pre">&gt;</span> <span class="pre">0</span></tt>.
+No matter the value of the following values
+or if a tuple has more elements than the other.</p>
+<p>If the first position items are the same,
+then the same comparison is used with the next value:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>The first comparison is  <tt class="docutils literal"><span class="pre">True</span></tt> because <tt class="docutils literal"><span class="pre">6</span> <span class="pre">==</span> <span class="pre">6</span></tt> and <tt class="docutils literal"><span class="pre">1</span> <span class="pre">&lt;</span> <span class="pre">2</span></tt>.
+The second comparison is <tt class="docutils literal"><span class="pre">False</span></tt> because <tt class="docutils literal"><span class="pre">6</span> <span class="pre">==</span> <span class="pre">6</span></tt> and <tt class="docutils literal"><span class="pre">1</span> <span class="pre">&gt;</span> <span class="pre">0</span></tt>.</p>
+<p>If the respective items continue being the same,
+we continue comparing with the next values.
+If a tuple runs out of items to compare before the other,
+then it is immediately smaller than the other:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>The first comparison is <tt class="docutils literal"><span class="pre">True</span></tt> because <tt class="docutils literal"><span class="pre">1</span> <span class="pre">==</span> <span class="pre">1</span></tt>, <tt class="docutils literal"><span class="pre">2</span> <span class="pre">==</span> <span class="pre">2</span></tt>
+and, at this point, all the elements from the first tuple have been compared.
+The second comparison is <tt class="docutils literal"><span class="pre">False</span></tt> because <tt class="docutils literal"><span class="pre">1</span> <span class="pre">==</span> <span class="pre">1</span></tt> and <tt class="docutils literal"><span class="pre">3</span> <span class="pre">&lt;</span> <span class="pre">2</span></tt>;
+in this case, it does reach the outcome before any of the tuples run out of elements.</p>
+<p>This comparison method is the same used to sort words in alphabetic order.
+(for example, in directories and dictionaries):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;car&#39;</span> <span class="o">&lt;</span> <span class="s">&#39;carousel&#39;</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;car&#39;</span> <span class="o">&lt;</span> <span class="s">&#39;cars&#39;</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;mon&#39;</span> <span class="o">&lt;</span> <span class="s">&#39;month&#39;</span> <span class="o">&lt;</span> <span class="s">&#39;monthly&#39;</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="typical-tuple-uses">
+<h2>Typical tuple uses<a class="headerlink" href="#typical-tuple-uses" title="Permalink to this headline">¶</a></h2>
+<p>The tuples are used everytime that is needed to group values.
+Usually, real world concepts are represented as tuples that
+group information on them.
+For example,
+A football match can be represented
+as a tuple of the opposing teams:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">match1</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;Milan&#39;</span><span class="p">,</span> <span class="s">&#39;Bayern&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To represent plane points,
+is possible to use two element tuples <tt class="docutils literal"><span class="pre">(x,</span> <span class="pre">y)</span></tt>.
+For example, we can create a function called <tt class="docutils literal"><span class="pre">distance</span></tt>
+which receive two points and return the distance between them:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">p1</span>
+    <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">p2</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">dx</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+</pre></div>
+</div>
+<p>When the function is called, is necesary to give two tuples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="go">13.0</span>
+</pre></div>
+</div>
+<p>Usually the dates are represented as tuples
+grouping the year, month and the day.
+The advantage of use the previous order (year first)
+is that the relational operation allow to know the order
+of the dates:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">today</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2011</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">yesterday</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2011</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">christmas</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2011</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_year</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">today</span> <span class="o">&lt;</span> <span class="n">yesterday</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">today</span> <span class="o">&lt;</span> <span class="n">christmas</span> <span class="o">&lt;</span> <span class="n">new_year</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>A tuple can contain another tuples.
+For example,
+a person can be described by his name, his ID and his birth day:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">person</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;John Smith&#39;</span><span class="p">,</span> <span class="s">&#39;12345678-9&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1980</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In this case,
+the data can be unpacking like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">name</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">person</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>Sometimes one is interested only one of the tuple values.
+To avoid create innecesary variables,
+usually is possible to assign this values to the <tt class="docutils literal"><span class="pre">_</span></tt> variable.
+For example, if only is necessary to know the month of the birth,
+we can obtain it as follow:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">person</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">month</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>A data table usually is represented as a tuple list.
+For example,
+the student information from a course,
+can be represented as follow:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s">&#39;James&#39;</span><span class="p">,</span> <span class="s">&#39;Smith&#39;</span><span class="p">,</span> <span class="s">&#39;201199001-5&#39;</span><span class="p">,</span> <span class="s">&#39;Civil&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;Joseph&#39;</span><span class="p">,</span> <span class="s">&#39;Jones&#39;</span><span class="p">,</span>      <span class="s">&#39;201199002-6&#39;</span><span class="p">,</span> <span class="s">&#39;Electrical&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;Joseph&#39;</span><span class="p">,</span> <span class="s">&#39;Jones&#39;</span><span class="p">,</span>      <span class="s">&#39;201199003-7&#39;</span><span class="p">,</span> <span class="s">&#39;Mechanics&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>In this case, the tuple can be unpacked automatically iterating
+the list with a <tt class="docutils literal"><span class="pre">for</span></tt> cycle:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">carrer</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">firstname</span><span class="p">,</span> <span class="s">&#39;study&#39;</span><span class="p">,</span> <span class="n">carrer</span>
+</pre></div>
+</div>
+<p>Is possible to create tuples of a fixed length,
+for example one, leaving only the comma next to the unique value:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<p>In other languages, the tuples receive
+the name of <strong>register</strong>.
+This name is common, so is convenient to know it.</p>
+</div>
+<div class="section" id="tuples-iteration">
+<h2>Tuples iteration<a class="headerlink" href="#tuples-iteration" title="Permalink to this headline">¶</a></h2>
+<p>Like the lists, the tuples are iterables:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">value</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Furthermore,
+is possible to convert a tuple in a list
+using the <tt class="docutils literal"><span class="pre">list</span></tt> function,
+and is possible to convert a list in a tuple using the
+<tt class="docutils literal"><span class="pre">tuple</span></tt> function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[1, 2, 3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">tuple</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">(4, 5, 6)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">In the card games, a card has two attributes:
+a value (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q o K) and
+a suit (<span class="math">\(\heartsuit\)</span>, <span class="math">\(\spadesuit\)</span>, <span class="math">\(\diamondsuit\)</span> or <span class="math">\(\clubsuit\)</span>).</p>
+<p>In a program, a card can be represented as a tuple
+of two elements: the value and the suit.
+The value is a number from 1 to 13, and the suit is a string (&#8216;H&#8217;, &#8216;C&#8217;, &#8216;S&#8217; or &#8216;D&#8217;).</p>
+<p>A hand can be represented as a set of cards.
+For example, we can represented the hand 5:math:<cite>clubsuit</cite> 2:math:<cite>heartsuit</cite> 1:math:<cite>spadesuit</cite> Q:math:<cite>heartsuit</cite> K:math:<cite>clubsuit</cite> as the next way:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hand</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>In the <a class="reference external" href="http://en.wikipedia.org/wiki/Carioca_(card_game)">Carioca</a> a straight is a hand with four cards which have the same suit and have consecutive values.</p>
+<p>For example:</p>
+<ul class="simple">
+<li><span class="math">\(3\heartsuit 6\heartsuit 5\heartsuit 4\heartsuit\)</span> is a straight, because all the card have the suit <span class="math">\(\heartsuit\)</span> and their consecutive values
+are from 3 to 6.</li>
+<li><span class="math">\(3\clubsuit 6\diamondsuit 5\diamondsuit 4\heartsuit\)</span> is not a straight, because the cards have different suits.</li>
+<li><span class="math">\(3\clubsuit A\clubsuit J\clubsuit 5\clubsuit\)</span> is not a straight, because the values are not consecutive.</li>
+<li><span class="math">\(3\spadesuit 4\spadesuit 5\spadesuit\)</span> is not a straight, because the hand does not have four cards.</li>
+</ul>
+<p>Write a function called <em>is_straight(hand)</em> which indicates if the hand is or not a straight.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">is_straight</span><span class="p">({(</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)})</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_straight</span><span class="p">({(</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;T&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)})</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_straight</span><span class="p">({(</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;T&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">))</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_straight</span><span class="p">({(</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)})</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">In the card games, a card have two attributes:
+a value (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K)
+and a suit (<span class="math">\(\heartsuit, \diamondsuit, \clubsuit, \spadesuit\)</span>).</p>
+<p>In a program, the value can be represented by a number between 1 and 13,
+and the suit like a string:
+<span class="math">\(\heartsuit \rightarrow\)</span> <tt class="docutils literal"><span class="pre">'H'</span></tt>,
+<span class="math">\(\diamondsuit \rightarrow\)</span> <tt class="docutils literal"><span class="pre">'D'</span></tt>,
+<span class="math">\(\clubsuit \rightarrow\)</span> <tt class="docutils literal"><span class="pre">'C'</span></tt> and
+<span class="math">\(\spadesuit \rightarrow\)</span> <tt class="docutils literal"><span class="pre">'S'</span></tt>.</p>
+<p>A card can be represented as a tuple of two elements, the value and the suit:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">card1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="n">card2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To simplify, the ace can be represented as the number 1,
+and the J, Q and K cards as  11, 12 and 13:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># ace of spades and heart queen</span>
+<span class="n">card3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">)</span>
+<span class="n">card4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the poker game,
+a hand have five cards,
+which in a program could be a set of five tuples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hand</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">)}</span>
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p class="first">A <em>full</em> is a hand in which three cards must have a common value,
+and the other two cards has another common value.
+Write a function which indicates if the hand is or not a full:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hand_1</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hand_2</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_full</span><span class="p">(</span><span class="n">hand_1</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_full</span><span class="p">(</span><span class="n">hand_2</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">A <em>color</em> is a hand in which all the cards have the same suit.
+Write a function which indicates if the hand is a color or not:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hand_1</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">8</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">)}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hand_2</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">12</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_color</span><span class="p">(</span><span class="n">hand_1</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_color</span><span class="p">(</span><span class="n">hand_2</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">A <em>straight</em> is a hand in which the cards have consecutive values
+(for example: 5, 6, 7, 8 y 9).
+Write a function which indicates if the hand is or not a straight:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hand_1</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hand_2</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">12</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_straight</span><span class="p">(</span><span class="n">hand_1</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_straight</span><span class="p">(</span><span class="n">hand_2</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p class="first">The dates can be represented as tuples <tt class="docutils literal"><span class="pre">(year,</span> <span class="pre">month,</span> <span class="pre">day)</span></tt>.</p>
+<p>To associate each person with his birth day,
+you can use a dictionary:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s">&#39;Peter&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s">&#39;Anna&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1992</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s">&#39;Fran&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1989</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s">&#39;Alice&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1989</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s">&#39;Joan&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1991</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+<span class="gp">... </span><span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p class="first">Write a function called <tt class="docutils literal"><span class="pre">same_day(date1,</span> <span class="pre">date2)</span></tt>
+that indicates if both dates occur the same day of the year
+(consider different years):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">same_day</span><span class="p">((</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="p">(</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">same_day</span><span class="p">((</span><span class="mi">1981</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">1981</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Write a function called <tt class="docutils literal"><span class="pre">older(n)</span></tt>
+that indicates how is the older person,
+verifying the birth day in the <tt class="docutils literal"><span class="pre">n</span></tt> dictionary:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">older</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="go">&#39;Fran&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Write a function called <tt class="docutils literal"><span class="pre">first_birthday(n)</span></tt>
+which indicates how is the person that have the first birthday
+of the year:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">first_birthday</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="go">&#39;Joan&#39;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p class="first">A line (or straight line) in the Euclidean plane is described by the equation:</p>
+<div class="math">
+\[y = mx + b,\]</div>
+<p>where <cite>m</cite> is the <em>slope</em> (or gradient)
+and <cite>b</cite> is the <em>y-intercept</em>.
+All the line points satisfied the equation.</p>
+<p>In a program,
+a line can be represented as a tuple <tt class="docutils literal"><span class="pre">(m,</span> <span class="pre">b)</span></tt>.</p>
+<p>The algorithms to solve the next equation are very simple,
+if you do not remember,,
+you can search it in your favorite math book or in internet.</p>
+<ol class="arabic">
+<li><p class="first">Write a function called <tt class="docutils literal"><span class="pre">point_in_line(p,</span> <span class="pre">r)</span></tt>
+which indicates if the <tt class="docutils literal"><span class="pre">p</span></tt> point is in the <tt class="docutils literal"><span class="pre">r</span></tt> line:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">line</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">point_in_line</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">line</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">point_in_line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">line</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">point_in_line</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">line</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Write a function called <tt class="docutils literal"><span class="pre">are_parallel(r1,</span> <span class="pre">r2)</span></tt>
+which determine if two lines <tt class="docutils literal"><span class="pre">r1</span></tt> and <tt class="docutils literal"><span class="pre">r2</span></tt> are parallel,
+i.e., do not intersect at any point.</p>
+</li>
+<li><p class="first">Write a function called <tt class="docutils literal"><span class="pre">line_through(p1,</span> <span class="pre">p2)</span></tt>
+which return the line that through the <tt class="docutils literal"><span class="pre">p1</span></tt> and <tt class="docutils literal"><span class="pre">p2</span></tt> points:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">line_through</span><span class="p">((</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="go">(-0.5, 3.0)</span>
+</pre></div>
+</div>
+<p>You can verify if the function is correct with the previous function <tt class="docutils literal"><span class="pre">point_in_line(p,r)</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">line_through</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">point_in_line</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">point_in_line</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Write a function called <tt class="docutils literal"><span class="pre">point_of_intersection(r1,</span> <span class="pre">r2)</span></tt>
+which return the point where the two lines intersect:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">point_of_intersection</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span>
+<span class="go">(1.0, 3.0)</span>
+</pre></div>
+</div>
+<p>If the lines are parallel,
+the function must return <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
+</li>
+</ol>
+</li>
+<li><p class="first">For this problem, consider the following characteristics of a person:</p>
+<ul class="simple">
+<li>Name,</li>
+<li>Sex (male or female),</li>
+<li>Age,</li>
+<li>Favorite music, and</li>
+<li>zodiacal sign.</li>
+</ul>
+<p>In the program to do, a person will be represented as a tuple:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">person_1</span> <span class="o">=</span>    <span class="p">(</span><span class="s">&#39;Peter&#39;</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="s">&#39;rock&#39;</span><span class="p">,</span> <span class="s">&#39;leo&#39;</span><span class="p">)</span>
+<span class="n">person_2</span> <span class="o">=</span>    <span class="p">(</span><span class="s">&#39;Anna&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="s">&#39;cumbia&#39;</span><span class="p">,</span> <span class="s">&#39;virgo&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Two  people are compatible if:</p>
+<ul class="simple">
+<li>Are of opposite sex (man and women),</li>
+<li>under 10 years of age difference,</li>
+<li>like the same music, and</li>
+<li>their zodiac sign are compatible.</li>
+</ul>
+<p>To find out which signs are compatible,
+there is a set <tt class="docutils literal"><span class="pre">compatible_signs</span></tt>
+tuples having <tt class="docutils literal"><span class="pre">(woman_sign,men_sign)</span></tt>,
+that <a class="reference external" href="../../_static/programs/signs.py">you can download here</a>.
+If a tuple is in the set, means that the signs are compatible.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="s">&#39;aries&#39;</span><span class="p">,</span> <span class="s">&#39;taurus&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">compatible_signs</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p class="first">means that Aries women</p>
+</li>
+<li><p class="first">is compatible with Taurus man.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="s">&#39;capricorn&#39;</span><span class="p">,</span> <span class="s">&#39;libra&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">compatible_signs</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">It means that women Capricorn</p>
+</li>
+<li><p class="first">is not compatible with free men.</p>
+</li>
+</ol>
+<p>Write a function <tt class="docutils literal"><span class="pre">compatibles(p1,</span> <span class="pre">p2)</span></tt>, to indicate
+if two people are compatible or not.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 12 - Tuples</a><ul>
+<li><a class="reference internal" href="#unpacking-tuples">Unpacking tuples</a></li>
+<li><a class="reference internal" href="#tuple-comparison"><tt class="docutils literal"><span class="pre">tuple</span></tt> comparison</a></li>
+<li><a class="reference internal" href="#typical-tuple-uses">Typical tuple uses</a></li>
+<li><a class="reference internal" href="#tuples-iteration">Tuples iteration</a></li>
+<li><a class="reference internal" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture11.html"
+                        title="previous chapter">Lecture 11 - Dictionaries</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="assignment3.html"
+                        title="next chapter">Assignment 3</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week3/lecture12.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="assignment3.html" title="Assignment 3"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lecture11.html" title="Lecture 11 - Dictionaries"
+             >previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Third week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Patricia Fredes, Joao Fuentes, Margarita Ortega.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

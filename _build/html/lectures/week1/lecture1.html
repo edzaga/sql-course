@@ -1,0 +1,253 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 1 - Program development &mdash; sql-course 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="sql-course 1 documentation" href="../../index.html" />
+    <link rel="up" title="First week" href="index.html" />
+    <link rel="next" title="Lecture 2 - Algorithm elements" href="lecture2.html" />
+    <link rel="prev" title="First week" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lecture2.html" title="Lecture 2 - Algorithm elements"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="First week"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">First week</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-1-program-development">
+<h1>Lecture 1 - Program development<a class="headerlink" href="#lecture-1-program-development" title="Permalink to this headline">¶</a></h1>
+<p>A <strong>program</strong> is a text file that contains
+code to be executed by the computer.</p>
+<p>In the case of the Python programming language,
+the program is executed by an <strong>interpreter</strong>.
+The interpreter is a program that executes programs.</p>
+<p>The programs written in Python
+must be contained in a file
+with the <tt class="docutils literal"><span class="pre">.py</span></tt> extension.
+In Windows, the program can be executed by double-clicking the file icon.</p>
+<div class="section" id="python-interpreter-installation">
+<h2>Python interpreter installation<a class="headerlink" href="#python-interpreter-installation" title="Permalink to this headline">¶</a></h2>
+<p id="index-0">One thing is to edit the program and another one is to execute it.
+The <strong>interpreter</strong> must be installed in order to
+be able to execute the program using Python.</p>
+<p>You can find the installer list
+in the <a class="reference external" href="http://www.python.org/download/">Python download web</a>
+You must download the one indicated for your computer
+and operating system.</p>
+<p>You must install the version <strong>2.7.1</strong>,
+not 3.1.3.</p>
+<p>If you are using a <a class="reference external" href="http://en.wikipedia.org/wiki/Linux">Linux</a> distribution
+install it with you software installer system.</p>
+<ul>
+<li><p class="first">In <cite>Ubuntu/Debian</cite>:</p>
+<div class="highlight-python"><pre>apt-get install python</pre>
+</div>
+</li>
+<li><p class="first">In <cite>Fedora/RedHat/ScientificLinux</cite>:</p>
+<div class="highlight-python"><pre>yum install python</pre>
+</div>
+</li>
+</ul>
+<p>If you have a local <a class="reference external" href="http://www.eso.org/~almamgr/AlmaAcs/">ACS</a> installation,
+you can use the Python provided by the <a class="reference external" href="http://www.eso.org/~almamgr/AlmaAcs/">ACS</a> in:</p>
+<div class="highlight-python"><pre>/alma/ACS-X.X/Python/bin/python</pre>
+</div>
+<p>Do not use the <tt class="docutils literal"><span class="pre">x86-64</span></tt> installers
+unless you are sure that your computer
+has a 64-bit architecture.</p>
+<p>To test your Python installation
+download the <a class="reference external" href="../../_static/programs/primes.py">primes.py</a> file,
+which allows to determine if a natural number is prime or not.</p>
+</div>
+<div class="section" id="editing-programs">
+<h2>Editing programs<a class="headerlink" href="#editing-programs" title="Permalink to this headline">¶</a></h2>
+<p id="index-1">A program is a <a class="reference external" href="http://en.wikipedia.org/wiki/Text_file">text file</a>.
+Therefore, it can be created or edited
+using any <a class="reference external" href="http://en.wikipedia.org/wiki/Text_editor">text editor</a>,
+like Notepad.</p>
+<p>What cannot be used
+is a text processor,
+like Microsoft Word.</p>
+<p>Try it:
+open the <a class="reference external" href="../../_static/programs/quadratic.py">quadratic.py</a> program
+with Notepad (or any other editor)
+and you will see its contents.</p>
+<p id="index-2">Other text editors
+(much better than Notepad)
+that you can install are:</p>
+<ul class="simple">
+<li>in Windows:
+<a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a>,
+<a class="reference external" href="http://www.textpad.com/">Textpad</a>;</li>
+<li>in Mac:
+<a class="reference external" href="http://www.barebones.com/products/textwrangler/">TextWrangler</a>,
+<a class="reference external" href="http://macromates.com/">TextMate</a>;</li>
+<li>in Linux:
+<a class="reference external" href="http://projects.gnome.org/gedit/">Gedit</a>,
+<a class="reference external" href="http://kate-editor.org/">Kate</a>.</li>
+</ul>
+</div>
+<div class="section" id="program-execution">
+<h2>Program execution<a class="headerlink" href="#program-execution" title="Permalink to this headline">¶</a></h2>
+<p>Once the program is written and the interpreter has been installed,
+it is possible to execute the programs.</p>
+<p>In <strong>Windows</strong> you only need to double click the program icon.</p>
+<p>In <strong>Linux</strong> you need to open a Linux terminal and execute it:</p>
+<div class="highlight-python"><pre>localhost &gt; python my_program.py</pre>
+</div>
+</div>
+<div class="section" id="console-use">
+<h2>Console use<a class="headerlink" href="#console-use" title="Permalink to this headline">¶</a></h2>
+<p id="index-3">Executing the programs
+is not the only way to use the interpreter.
+If we execute Python without passing any program,
+the <strong>console</strong> (or <strong>interactive interpreter</strong>) will open.</p>
+<p>The console allows to enter a program through the command line.
+It also allows to evaluate expressions and see the results immediately.
+This allows, for example, to use Python like a calculator.</p>
+<p>The interactive console
+always shows the <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt> symbol,
+to indicate the possibility to enter code.
+In all the books about Python
+and in all these lectures,
+each time an example appears using this symbol
+means that it must be executed in a console
+and not in a program. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">10</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="go">25</span>
+</pre></div>
+</div>
+<p>In this example, at the time the expressions are entered <tt class="docutils literal"><span class="pre">a</span> <span class="pre">&gt;</span> <span class="pre">10</span></tt> and <tt class="docutils literal"><span class="pre">a</span> <span class="pre">**</span> <span class="pre">2</span></tt>,
+the interactive interpreter gives the results <tt class="docutils literal"><span class="pre">False</span></tt> and <tt class="docutils literal"><span class="pre">25</span></tt>.</p>
+<p>There is no reason to write the <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt> symbol
+in a program, because it is not part of the language syntax.</p>
+</div>
+<div class="section" id="development-environment">
+<h2>Development environment<a class="headerlink" href="#development-environment" title="Permalink to this headline">¶</a></h2>
+<p id="index-4">In general,
+using a simple text editor to write programs is not
+the most efficient way to work.</p>
+<p>The  <strong>development environments</strong>
+(also called <em>IDE</em>)
+are applications that facilitate the task of writing programs.</p>
+<p>Python comes with its own development environment, called <strong>IDLE</strong>.</p>
+<p>Other good advanced Python development environments are:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://code.google.com/p/pyscripter/downloads/list">PyScripter</a>,</li>
+<li><a class="reference external" href="http://www.wingware.com/downloads/wingide-101/3.2.12-1/binaries">WingIDE 101</a></li>
+</ul>
+<p>You can test them and use the most comfortable for you.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 1 - Program development</a><ul>
+<li><a class="reference internal" href="#python-interpreter-installation">Python interpreter installation</a></li>
+<li><a class="reference internal" href="#editing-programs">Editing programs</a></li>
+<li><a class="reference internal" href="#program-execution">Program execution</a></li>
+<li><a class="reference internal" href="#console-use">Console use</a></li>
+<li><a class="reference internal" href="#development-environment">Development environment</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">First week</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lecture2.html"
+                        title="next chapter">Lecture 2 - Algorithm elements</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week1/lecture1.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lecture2.html" title="Lecture 2 - Algorithm elements"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="First week"
+             >previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >First week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Patricia Fredes, Joao Fuentes, Margarita Ortega.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

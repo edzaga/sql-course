@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 21 - Class creation &mdash; sql-course 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="sql-course 1 documentation" href="../../index.html" />
+    <link rel="up" title="Sixth week" href="index.html" />
+    <link rel="next" title="Lecture 22 - More on class creation" href="lecture22.html" />
+    <link rel="prev" title="Sixth week" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lecture22.html" title="Lecture 22 - More on class creation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Sixth week"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Sixth week</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-21-class-creation">
+<h1>Lecture 21 - Class creation<a class="headerlink" href="#lecture-21-class-creation" title="Permalink to this headline">¶</a></h1>
+<p>The object-oriented (OO) programming paradigm,
+is widely used in serious project,
+the main idea is to work with objects as data structures,
+which contain a lot of functionality programmed by
+the user, called methods, giving the chance to interact
+with another objects.</p>
+<p>There are some concepts in the object-oriented paradigm,
+which will be explained in this lectures, like,
+polymorphism, modularity, encapsulation, etc.</p>
+<p>The modern and robust programming languages
+support object-oriented programming,
+like, <em>C++</em>, <em>Java</em>, <em>.NET</em>, etc.</p>
+<div class="section" id="understanding-the-oo-paradigm">
+<h2>Understanding the OO paradigm<a class="headerlink" href="#understanding-the-oo-paradigm" title="Permalink to this headline">¶</a></h2>
+<p>A very simple example to understand the idea behind
+the <strong>classes</strong> and <strong>objects</strong>, is the following:</p>
+<p>A <strong>human</strong> being is an animal specie,
+which can <em>walk</em>, <em>talk</em>, <em>run</em>, <em>jump</em>, etc.
+We are humans, so, we are types of humans.</p>
+<p>So, we can think the concepts, as  the following,</p>
+<ul class="simple">
+<li>Human, will be a <em>class</em>,</li>
+<li>Functionalists (walk, talk, etc) will be <em>methods</em>,</li>
+<li>We, people, are <em>objects</em> of the <em>human class</em>.</li>
+</ul>
+<p><em>Objects</em> (humans) can <em>walk</em>, <em>talk</em>, etc.
+because we inherit the <strong>methods</strong> from the <strong>class</strong> Human.</p>
+<blockquote>
+<div><img alt="(object interaction diagram)" src="lectures/week6/../../diagrams/object-interaction.png" />
+</div></blockquote>
+<p>Formally,
+and <em>object</em> is an instance of a <em>class</em></p>
+<p>There are five main reasons to use OO,</p>
+<ul class="simple">
+<li><strong>Inheritance</strong>, we can obtain special object, which
+inherit some <em>methods</em> from main <em>class</em>, so can
+be reused by all the class objects. Also, we can develop
+<em>classes</em> who inherit a structure from another <em>class</em>.</li>
+<li><strong>Composition</strong>, you can see an object as a composition
+of component working together. (methods, attributes)</li>
+<li><strong>Multiple instances</strong>, you can create more than one
+object for each class.</li>
+<li><strong>Customization via inheritance</strong>, you can instance an object
+from a class, adding new attributes, and methods, which is
+the customization of an existing object which previously
+has a inherit from the main class.</li>
+<li><strong>Operator overloading</strong>, you can develop and operator
+which could be called, using different parameters.</li>
+</ul>
+<p>Following, we will explain the previous terms,
+writing in code, to make more easy to understand the OO
+paradigm.</p>
+</div>
+<div class="section" id="class-and-objects">
+<h2>Class and Objects<a class="headerlink" href="#class-and-objects" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>class</strong> is like an instance factory,
+in which their attributes, variable, functions, etc;
+provide a certain behavior for all the instances.</p>
+<p>An <strong>instance</strong> represent the concrete items in a program&#8217;s
+domain. An instance will be the object, something called as,
+a class abstraction.</p>
+<p>A <strong>method</strong> is a functionality inside a class,
+in simple words, a method is a function inside
+a class with the parameter <em>self</em> as the first argument.</p>
+<p>A <strong>constructor</strong> is a special method called <em>__init__</em> inside a class,
+which initialize the attributes with a certain value,
+the class attributes must be written with a <em>self</em>
+statement before their name.</p>
+<p>A Python class will be wrote as follow:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">my_class</span><span class="p">():</span>
+<span class="gp">... </span>   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c"># Constructor</span>
+<span class="gp">... </span>       <span class="bp">self</span><span class="o">.</span><span class="n">first_attribute</span> <span class="o">=</span> <span class="mi">0</span> <span class="c"># attribute</span>
+<span class="gp">... </span>       <span class="bp">self</span><span class="o">.</span><span class="n">second_attribute</span> <span class="o">=</span> <span class="mf">3.14</span> <span class="c"># attribute</span>
+<span class="gp">... </span>   <span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">):</span> <span class="c"># method</span>
+<span class="gp">... </span>       <span class="k">return</span> <span class="n">my_parameter</span> <span class="o">*</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>An object will be create as follow:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">my_object</span> <span class="o">=</span> <span class="n">my_class</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_object</span>
+<span class="go">&lt;__main__.my_class instance at 0xb74218ac&gt;</span>
+</pre></div>
+</div>
+<p>The attributes and methods will be callable as follow:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">my_object</span><span class="o">.</span><span class="n">first_attribute</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_object</span><span class="o">.</span><span class="n">second_attribute</span>
+<span class="go">3.14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_object</span><span class="o">.</span><span class="n">my_method</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">)</span>
+<span class="go">&#39;hellohello&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_object</span><span class="o">.</span><span class="n">my_method</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p>You can <em>instance</em> every <em>object</em> as you want from a <em>class</em>.</p>
+</div>
+<div class="section" id="the-init-method">
+<h2>The __init__ method<a class="headerlink" href="#the-init-method" title="Permalink to this headline">¶</a></h2>
+<p>Lets look deeply into the <em>__init__</em> method.</p>
+<p>As we mention earlier, the idea of a class is be an object
+factory, so, we will need a more <em>personalized</em> objects
+from a class, it means give some initial arguments
+to build an object.</p>
+<p>The <em>__init__</em> method will be able to manipulate
+the arguments of a class, passing in the object constructor.</p>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Square</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
+    <span class="k">def</span> <span class="nf">perimeter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span>
+</pre></div>
+</div>
+<p>If you can see the <em>__init__</em> method has two
+extra argument, <em>length</em> and <em>width</em> and in the body
+of the <em>__init__</em> method, is applied an initialization
+of two internal class variables, <em>self.length</em> and <em>self.width</em>.</p>
+<p>So, how we can pass these two arguments?
+We can pass the value of the attributes inside the class
+parenthesis:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">my_square</span> <span class="o">=</span> <span class="n">Square</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">my_square</span><span class="p">)</span>
+<span class="go">&lt;type &#39;instance&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_square</span><span class="o">.</span><span class="n">length</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_square</span><span class="o">.</span><span class="n">width</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_square</span><span class="o">.</span><span class="n">perimeter</span><span class="p">()</span>
+<span class="go">14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_square</span><span class="o">.</span><span class="n">area</span><span class="p">()</span>
+<span class="go">12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">another_square</span> <span class="o">=</span> <span class="n">Square</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">another_square</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">another_square</span><span class="o">.</span><span class="n">length</span>
+<span class="go">(2, 2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">another_square</span><span class="o">.</span><span class="n">perimeter</span><span class="p">()</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">another_square</span><span class="o">.</span><span class="n">area</span><span class="p">()</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Lets consider a class called <cite>Bag</cite>, which will provide a lot of functionalities.
+To personalize my own bag (instance) with a certain total volume, each element has a name and dimensions
+(width, height, profundity (z))</p>
+<p>Create the class <cite>Bag</cite> and develop the following methods:</p>
+<ul class="simple">
+<li>Sort the bag elements by volume,</li>
+<li>Add new elements,</li>
+<li>Remove elements,</li>
+<li>Search elements with a given volume,</li>
+<li>Show elements with the same volume,</li>
+<li>Put the whole content of my bag in another new bag.</li>
+</ul>
+</li>
+<li><p class="first">The vectors in two dimensions are structures which contain two pair of coordinates:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span>
+</pre></div>
+</div>
+<p>which means that the origin point is constructed by <tt class="docutils literal"><span class="pre">(x1,y1)</span></tt> and the end of the vector
+is giving by <tt class="docutils literal"><span class="pre">(x2,y2)</span></tt>.</p>
+<p>Create a class called <cite>Vector</cite> which contain the previous variables as local variables,
+and provide the following methods:</p>
+<ul>
+<li><p class="first">Imagine the vector as the diagonal of a rectangle, so, now it is possible to calculate
+the rectangle area. Create a method to calculate the associated rectangle area.</p>
+</li>
+<li><p class="first">Calculate the distance between the points of the vector.
+Remember that the distance can be calculated as follows:</p>
+<div class="math">
+\[distance = \sqrt{(x_{2}-x_{1})^{2}+(y_{2}-y_{1})^{2}}\]</div>
+</li>
+</ul>
+</li>
+<li><p class="first">The previous exercise consider a vector with a position in the space,
+because we have the origin and destiny point.
+Lets consider now vectors but without a position in the space,
+it means, we provide a vector with one x and y component,
+for example the vector <tt class="docutils literal"><span class="pre">(3,4)</span></tt> will be a vector</p>
+<img alt="(simple-vector diagram)" src="lectures/week6/../../diagrams/simple-vector.png" />
+<p>Develop a class called <cite>Vector</cite> which provide the following methods:</p>
+<ul>
+<li><p class="first">The method will receive an object, which will be another <cite>Vector</cite>
+and will calculate the addition of both vectors, for example
+the addition of the vectors <tt class="docutils literal"><span class="pre">(1,3)</span></tt> and <tt class="docutils literal"><span class="pre">(4,2)</span></tt> will be <tt class="docutils literal"><span class="pre">(5,5)</span></tt>.</p>
+<img alt="(addition-vector diagram)" src="lectures/week6/../../diagrams/suma-vectores.png" />
+</li>
+<li><p class="first">The method will receive an object, which will be another <cite>Vector</cite>
+and will calculate the subtraction of both vectors, for example
+the subtraction of the vectors <tt class="docutils literal"><span class="pre">(4,2)</span></tt> and <tt class="docutils literal"><span class="pre">(1,-2)</span></tt> will be <tt class="docutils literal"><span class="pre">(3,4)</span></tt>.</p>
+<img alt="(subtraction-vector diagram)" src="lectures/week6/../../diagrams/resta-vectores.png" />
+</li>
+<li><p class="first">The method will receive an object, which will be another <cite>Vector</cite>
+and will calculate the angle between both vectors, for example
+the angle between the vectors <tt class="docutils literal"><span class="pre">(3,0)</span></tt> and <tt class="docutils literal"><span class="pre">(5,5)</span></tt> is <cite>alpha = 45^{o}</cite>.</p>
+<img alt="(angle-vector diagram)" src="lectures/week6/../../diagrams/angulo-vectores.png" />
+<p>Remember the formula:</p>
+<div class="math">
+\[\begin{split}\vec{u} = (3,0) \\
+\vec{v} = (5,5) \\
+\cos \alpha = \frac{3\cdot 5 + 0\cdot 5}{\sqrt{3^{2} + 0^{2}} \cdot \sqrt{5^{2}+5^{2}}} = \frac{\sqrt{2}}{2}\end{split}\]</div>
+</li>
+</ul>
+</li>
+<li><p class="first">Create two classes called <cite>Cube</cite> and <cite>Sphere</cite>, which receive the dimensions, and radius respectively,
+and provide three methods:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">get_area(self)</span></tt>, which return the figure area.</li>
+<li><tt class="docutils literal"><span class="pre">get_volume(self)</span></tt>, which return the figure volume.</li>
+<li><tt class="docutils literal"><span class="pre">get_difference(self,object)</span></tt>, which return the volume difference between the figure and an object
+of the same kind, giving as parameter.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 21 - Class creation</a><ul>
+<li><a class="reference internal" href="#understanding-the-oo-paradigm">Understanding the OO paradigm</a></li>
+<li><a class="reference internal" href="#class-and-objects">Class and Objects</a></li>
+<li><a class="reference internal" href="#the-init-method">The __init__ method</a></li>
+<li><a class="reference internal" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Sixth week</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lecture22.html"
+                        title="next chapter">Lecture 22 - More on class creation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week6/lecture21.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lecture22.html" title="Lecture 22 - More on class creation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Sixth week"
+             >previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Sixth week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Patricia Fredes, Joao Fuentes, Margarita Ortega.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

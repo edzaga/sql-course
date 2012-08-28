@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 5 - Input and output &mdash; sql-course 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="sql-course 1 documentation" href="../../index.html" />
+    <link rel="up" title="Second week" href="index.html" />
+    <link rel="next" title="Lecture 6 - Control statements" href="lecture6.html" />
+    <link rel="prev" title="Second week" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lecture6.html" title="Lecture 6 - Control statements"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Second week"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Second week</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-5-input-and-output">
+<h1>Lecture 5 - Input and output<a class="headerlink" href="#lecture-5-input-and-output" title="Permalink to this headline">¶</a></h1>
+<p>(<a class="reference external" href="http://docs.python.org/tutorial/inputoutput.html">Python input and output official documentation</a>)</p>
+<div class="section" id="input">
+<h2>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h2>
+<p id="index-0">The <strong>input</strong> is the program part
+in which the user enters data.</p>
+<p id="index-1">The simplest way to enter data
+is doing it through the keyboard.
+The <tt class="docutils literal"><span class="pre">raw_input(message)</span></tt> function
+asks the user to enter a value
+that can be assigned to a variable
+to be used by the program.
+The <tt class="docutils literal"><span class="pre">message</span></tt> is to be displayed to the user
+before he enters a value.</p>
+<p>The input value provided by the user
+is always interpreted as text,
+so its type is <tt class="docutils literal"><span class="pre">str</span></tt>.
+If a different type is required,
+we need to convert it explicitly.</p>
+<p>For example,
+in the <a class="reference external" href="../../_static/programs/temperature.py">temperature conversion program</a>,
+the input is converted to a real value
+by the following statement:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">f</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Enter temperature in Fahrenheit degrees: &#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>When the program gets to this line,
+the message <tt class="docutils literal"><span class="pre">Enter</span> <span class="pre">temperature</span> <span class="pre">in</span> <span class="pre">Fahrenheit</span> <span class="pre">degrees:</span></tt>
+is shown to the user, who must enter a value,
+which is converted into a real number
+and bound to the name <tt class="docutils literal"><span class="pre">f</span></tt>.</p>
+<p>From that line onward,
+variable <tt class="docutils literal"><span class="pre">f</span></tt> can be used by the program
+to refer to the entered value.</p>
+<p>The <tt class="docutils literal"><span class="pre">raw_input()</span></tt> function, that we use
+to read the input of the user,
+always return a string as result.
+Be careful with the type of the return
+values, because you need to convert them
+to the properly type.</p>
+<p>For example,
+the next program has a type incompatibility error:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">n</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Write a number:&#39;</span><span class="p">)</span>
+<span class="n">square</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">n</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;The square of n is &#39;</span><span class="p">,</span> <span class="n">square</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="output">
+<h2>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h2>
+<p id="index-2">The <strong>output</strong> is the program part
+in which the results are delivered to the user.</p>
+<p id="index-3">The simplest way to deliver the output
+is to display text on the screen.
+In Python, the program output is performed by the
+<strong>print</strong> statement.</p>
+<p>If one wants to display a single value,
+the syntax is as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">value_to_print</span>
+</pre></div>
+</div>
+<p>If there are several values to be printed,
+they should be separated by commas.
+For example, the temperature conversion program
+has the following output statement:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">&#39;The Celsius degrees equivalent is:&#39;</span><span class="p">,</span> <span class="n">c</span>
+</pre></div>
+</div>
+<p>In this case, the message <tt class="docutils literal"><span class="pre">The</span> <span class="pre">Celsius</span> <span class="pre">degrees</span> <span class="pre">equivalent</span> <span class="pre">is:</span></tt>
+is being printed and, after it, in the same line,
+the value of the variable <tt class="docutils literal"><span class="pre">c</span></tt>.</p>
+<p>The quotation marks allow to represent a string but are not part of it.
+When printing the string by using <tt class="docutils literal"><span class="pre">print</span></tt>, the quotation marks do not appear:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;Hello&#39;</span>
+<span class="go">&#39;Hello&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&#39;Hello&#39;</span>
+<span class="go">Hello</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<p id="index-4">A <strong>comment</strong> is a section of code
+that is ignored by the interpreter.
+A comment can be used by the programmer
+to place messages in the code that can be useful
+for someone that needs to read the code
+in the future.</p>
+<p>In Python,
+any text that appears to the right of a <tt class="docutils literal"><span class="pre">#</span></tt> sign
+is a comment:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span>  <span class="c"># This is a sum</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># This is ignored</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>The only exception are the <tt class="docutils literal"><span class="pre">#</span></tt> signs that appear in a string:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="s">&quot;123 # 456&quot;</span> <span class="c"># 789</span>
+<span class="go">&#39;123 # 456&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="precedence">
+<h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
+<p id="index-5">The <strong>operator precedences</strong>
+is a set of rules that specified
+the order to evaluate some
+operations in an expression.</p>
+<p>The precedence is given by the next list,
+in which the operators was listed in order
+of precedence:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">or</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">and</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">not</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">&lt;</span></tt>, <tt class="docutils literal"><span class="pre">&lt;=</span></tt>, <tt class="docutils literal"><span class="pre">&gt;</span></tt>, <tt class="docutils literal"><span class="pre">&gt;=</span></tt>, <tt class="docutils literal"><span class="pre">!=</span></tt>, <tt class="docutils literal"><span class="pre">==</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">+</span></tt>, <tt class="docutils literal"><span class="pre">-</span></tt> (sum and subtraction)</li>
+<li><tt class="docutils literal"><span class="pre">*</span></tt>, <tt class="docutils literal"><span class="pre">/</span></tt>, <tt class="docutils literal"><span class="pre">%</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">+</span></tt>, <tt class="docutils literal"><span class="pre">-</span></tt> (positive and negative)</li>
+<li><tt class="docutils literal"><span class="pre">**</span></tt></li>
+</ul>
+<p>This means, for example,
+that the multiplications are evaluated before the additions,
+and the comparisons are evaluated before the logic operations:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="go">14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="mi">3</span> <span class="o">&lt;</span> <span class="mi">4</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Operations inside the same level
+are evaluated in the order from left to right:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">15</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">%</span> <span class="mi">7</span>    <span class="c"># is the same to (15 * 12) % 7</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>The only exception to the previous rule are the powers,
+which are evaluated from right to left:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">**</span> <span class="mi">2</span>    <span class="c"># is the same to 2 ** (3 ** 2)</span>
+<span class="go">512</span>
+</pre></div>
+</div>
+<p>To force a different evaluation order in comparison to the previous rules,
+you must use brackets:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="go">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">15</span> <span class="o">*</span> <span class="p">(</span><span class="mi">12</span> <span class="o">%</span> <span class="mi">7</span><span class="p">)</span>
+<span class="go">75</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="go">64</span>
+</pre></div>
+</div>
+<p>Another way to force the order
+is saving the intermediate results in variables:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">12</span> <span class="o">%</span> <span class="mi">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">15</span> <span class="o">*</span> <span class="n">n</span>
+<span class="go">75</span>
+</pre></div>
+</div>
+<p>As an example, consider the next expression:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">15</span> <span class="o">+</span> <span class="mi">59</span> <span class="o">*</span> <span class="mi">75</span> <span class="o">/</span> <span class="mi">9</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">**</span> <span class="mi">2</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">15</span> <span class="o">+</span> <span class="mi">59</span><span class="p">)</span> <span class="o">*</span> <span class="mi">75</span> <span class="o">%</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>and we will suppose that the <tt class="docutils literal"><span class="pre">n</span></tt> variable has the value 2.
+Here we can see how the expression is evaluated until
+arrive in the final result, that is <tt class="docutils literal"><span class="pre">False</span></tt>:</p>
+<div class="highlight-python"><pre>15 + 59 * 75 / 9 &lt; 2 ** 3 ** 2 and (15 + 59) * 75 % n == 1
+#                         ↓
+15 + 59 * 75 / 9 &lt; 2 **   9    and (15 + 59) * 75 % n == 1
+#                    ↓
+15 + 59 * 75 / 9 &lt; 512         and (15 + 59) * 75 % n == 1
+#       ↓
+15 +  4425   / 9 &lt; 512         and (15 + 59) * 75 % n == 1
+#            ↓
+15 +        491  &lt; 512         and (15 + 59) * 75 % n == 1
+#                                      ↓
+15 +        491  &lt; 512         and    74     * 75 % n == 1
+#                                            ↓
+15 +        491  &lt; 512         and          5550  % n == 1
+#                                                   ↓
+15 +        491  &lt; 512         and          5550  % 2 == 1
+#                                                 ↓
+15 +        491  &lt; 512         and                0   == 1
+#  ↓
+  506            &lt; 512         and                0   == 1
+#                ↓
+                True           and                0   == 1
+#                                                     ↓
+                True           and                  False
+#                               ↓
+                              False</pre>
+</div>
+<p>The operations between brackets <tt class="docutils literal"><span class="pre">(15</span> <span class="pre">+</span> <span class="pre">59)</span></tt>
+must be evaluated before the multiplication by 75,
+because is necessary to know their result to be able to calculate the product.
+The precise moment in which that occurs is not important.</p>
+<p>The same thing occurs with the evaluation of the variable <tt class="docutils literal"><span class="pre">n</span></tt>:
+the only important thing is that it is evaluated before being used by the
+modulus operator.</p>
+<p>In the example,
+both cases were evaluated immediately before their value was required.</p>
+<p>The entire precedence rules,
+including another operator that we have not seen,
+can be checked in the <a class="reference external" href="http://docs.python.org/reference/expressions.html#summary">expressions section</a>
+of the official Python documentation.</p>
+</div>
+<div class="section" id="how-to-learn-the-precedence-rules">
+<h2>How to learn the precedence rules ?<a class="headerlink" href="#how-to-learn-the-precedence-rules" title="Permalink to this headline">¶</a></h2>
+<p>The answer is: better not to learn them.
+The rules of precedence are many and not always intuitive.</p>
+<p>A program is easier to understand if you explicitly
+indicate the evaluation order using brackets or saving in variables
+the intermediate results of the calculation.</p>
+<p>A good programmer always worry about their code being easy to understand
+by others and ¡even for himself in a few weeks!</p>
+</div>
+<div class="section" id="function-calls">
+<h2>Function calls<a class="headerlink" href="#function-calls" title="Permalink to this headline">¶</a></h2>
+<p id="index-6">(<a class="reference external" href="http://docs.python.org/library/functions.html">Python built-in function official documentation</a>)</p>
+<p>Complementary to the previous lectures, we will take a look
+at some useful functions.</p>
+<p>The operators form a very reduced set of operations.
+More commonly, the more general operations are represented
+as <strong>functions</strong>.</p>
+<p id="index-7">As in math, a function has a name,
+and receive <strong>parameters</strong> (or <strong>arguments</strong>)
+which are between brackets after the name.
+The operation to use a function to obtain a result
+is called a <strong>function call</strong>.</p>
+<p>We already know the <tt class="docutils literal"><span class="pre">raw_input()</span></tt> function,
+that returns as result
+the text entered by the user through the keyboard.</p>
+<p id="index-8">The <tt class="docutils literal"><span class="pre">abs</span></tt> function returns the absolute value of their argument:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<p id="index-9">The <tt class="docutils literal"><span class="pre">len</span></tt> function receives a string and returns its length.
+(you might remember from the past week lecture):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="s">&#39;hello world&#39;</span><span class="p">)</span>
+<span class="go">11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="s">&#39;hello&#39;</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">50</span>
+</pre></div>
+</div>
+<p id="index-10">The names of the types are also functions,
+which return the equivalent of its parameter in the corresponding type:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="mf">3.8</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">float</span><span class="p">(</span><span class="s">&#39;1.5&#39;</span><span class="p">)</span>
+<span class="go">1.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span>
+<span class="go">&#39;11&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="s">&#39;5&#39;</span> <span class="o">+</span> <span class="s">&#39;6&#39;</span><span class="p">)</span>
+<span class="go">56</span>
+</pre></div>
+</div>
+<p id="index-11">The <tt class="docutils literal"><span class="pre">min</span></tt> and <tt class="docutils literal"><span class="pre">max</span></tt> functions
+return the minimum or the maximum value among its arguments:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">min</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">min</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">max</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+<p id="index-12">The <tt class="docutils literal"><span class="pre">round</span></tt> function rounds a real number to the closest integer:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="mf">4.4</span><span class="p">)</span>
+<span class="go">4.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="mf">4.6</span><span class="p">)</span>
+<span class="go">5.0</span>
+</pre></div>
+</div>
+<p id="index-13">Some mathematical functions,
+like the exponential, the logarithm
+and the trigonometric can be used,
+but first must be imported
+using the <tt class="docutils literal"><span class="pre">import</span></tt> statement,
+which we will look deeply in the next lectures:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">7.3890560989306504</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cos</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+<span class="go">-0.9999987317275395</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sin</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+<span class="go">0.0015926529164868282</span>
+</pre></div>
+</div>
+<p>The entire mathematical function list
+that can be imported is available at the <a class="reference external" href="http://docs.python.org/library/math.html">math module description</a>
+in the official Python documentation.</p>
+<p>Later, we will also learn to create
+our own functions.
+But now, we only need to know how to call one.</p>
+<p>Of course, it is
+always necessary to provide arguments of appropriate type to the function call:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="s">&#39;dog&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;console&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">a float is required</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;console&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">object of type &#39;int&#39; has no len()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Write a program that receives two words, and indicates the extra
+characters of the second word in comparison the first word.</p>
+</li>
+<li><p class="first">Write a program that receives a real number and calculates the <tt class="docutils literal"><span class="pre">sine</span></tt> and
+the <tt class="docutils literal"><span class="pre">cosine</span></tt>.</p>
+</li>
+<li><p class="first">Write a program that receives two numbers,
+with the greatest number, you must determinate the <cite>e^{max_number}</cite>
+and with the lowest, you must determinate the <cite>sqrt{min_number}</cite>.</p>
+</li>
+<li><p class="first">Given n-bodies with an initial position <cite>x_i</cite> and a velocity <cite>v_i</cite>, <cite>1&lt;=i&lt;=N</cite>,
+the force vector <cite>f_{ij}</cite> over the i-body by the gravitational attraction
+to the j-body, will be:</p>
+<div class="math">
+\[f_{ij} = G\cdot \frac{m_i \cdot m_j}{\parallel r_{ij}\parallel^{2}} \cdot \frac{r_{ij}}{||r_{ij}||}\]</div>
+<p>with:</p>
+<ul class="simple">
+<li><cite>m_i</cite>: mass of the i-body</li>
+<li><cite>m_j</cite>: mass of the j-body</li>
+<li><cite>r_{ij} = (xj-xi)</cite>, vector between the <cite>i</cite> and <cite>j</cite> bodies.</li>
+<li><cite>G</cite>: gravitational constant (<cite>6.67428*10-11 m^{3}cdot kg^{-1}cdot s^{-2}</cite>)</li>
+</ul>
+<p>Write a program that receives the previous values (<cite>x_i</cite>, <cite>v_i</cite>, <cite>m_i</cite>) of two bodies,
+consider only a 1-dimension space and only two bodies.</p>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 5 - Input and output</a><ul>
+<li><a class="reference internal" href="#input">Input</a></li>
+<li><a class="reference internal" href="#output">Output</a></li>
+<li><a class="reference internal" href="#comments">Comments</a></li>
+<li><a class="reference internal" href="#precedence">Precedence</a></li>
+<li><a class="reference internal" href="#how-to-learn-the-precedence-rules">How to learn the precedence rules ?</a></li>
+<li><a class="reference internal" href="#function-calls">Function calls</a></li>
+<li><a class="reference internal" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Second week</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lecture6.html"
+                        title="next chapter">Lecture 6 - Control statements</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week2/lecture5.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lecture6.html" title="Lecture 6 - Control statements"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Second week"
+             >previous</a> |</li>
+        <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Second week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Patricia Fredes, Joao Fuentes, Margarita Ortega.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
