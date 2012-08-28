@@ -1,5 +1,5 @@
-Lecture 27 - NumPy arrays (part III)
--------------------------------------
+Lecture 27 - Views: Defining and using views
+--------------------------------------------
 
 Products between arrays
 ========================

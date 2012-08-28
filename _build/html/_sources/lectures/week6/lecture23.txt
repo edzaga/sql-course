@@ -1,4 +1,4 @@
-Lecture 23 - Inheritance
+Lecture 23 - Constraints and triggers: Referential integrity
 -------------------------
 
 One of the major benefits of the object-oriented paradigm

@@ -1,5 +1,5 @@
-Lecture 20 - Coding good practices
------------------------------------
+Lecture 20 - Unified Modeling Language: UML to relations
+--------------------------------------------------------
 
 In every programming language (fortran, Java, C/C++, Perl, etc)
 there are some proposed normative by the language creators

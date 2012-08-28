@@ -1,4 +1,4 @@
-Lecture 32 - An extra bite of Python
+Lecture 32 - Using SQL Developer
 -------------------------------------
 
 As the final lecture,

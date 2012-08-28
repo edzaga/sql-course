@@ -1,5 +1,5 @@
-Lecture 3 - Data types
-----------------------
+Lecture 3 - Relation algebra: Select, project, join
+---------------------------------------------------
 
 .. index:: Data types
 

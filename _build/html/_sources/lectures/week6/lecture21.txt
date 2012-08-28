@@ -1,4 +1,4 @@
-Lecture 21 - Class creation
+Lecture 21 - Constraints and triggers: Introduction
 ----------------------------
 
 The object-oriented (OO) programming paradigm,

@@ -1,4 +1,4 @@
-Lecture 8 - Functions
+Lecture 8 - Table variable and set operators
 ---------------------
 
 (`Python function official documentation`_)

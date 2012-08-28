@@ -1,4 +1,4 @@
-Lecture 24 - Design good practices
+Lecture 24 - Constraints and triggers: Triggers intro and demo
 -----------------------------------
 
 The content of this lecture is based on the chapters 28 and 30

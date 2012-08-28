@@ -1,5 +1,5 @@
-Lecture 19 - Iterators
-----------------------
+Lecture 19 - Unified Modeling Language: UML data modeling
+---------------------------------------------------------
 
 In simple words
 an iterator is a type of object which has a method

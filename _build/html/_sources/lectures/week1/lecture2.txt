@@ -1,5 +1,5 @@
-Lecture 2 - Algorithm elements
-------------------------------
+Lecture 2 - Relational Databases: Querying relational databases
+---------------------------------------------------------------
 
 Expressions
 ~~~~~~~~~~~

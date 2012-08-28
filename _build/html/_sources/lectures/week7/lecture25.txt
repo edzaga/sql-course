@@ -1,5 +1,5 @@
-Lecture 25 - NumPy arrays (part I)
-----------------------------------
+Lecture 25 - Transactions: Introduction
+---------------------------------------
  
 Arrays
 ~~~~~~

@@ -1,4 +1,4 @@
-Lecture13 - SQL: Null Values
+Lecture 13 - SQL: Null Values
 -------------------
 
 .. index:: module, library

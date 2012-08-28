@@ -1,5 +1,5 @@
-Lecture 18 - Higher-order functions
-------------------------------------
+Lecture 18 - Relational Design Theory: Multivalued dependencies (4th normal form)
+---------------------------------------------------------------------------------
 
 List comprehension
 ~~~~~~~~~~~~~~~~~~~

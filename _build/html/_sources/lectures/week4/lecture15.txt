@@ -1,4 +1,4 @@
-Lecture 15 - Use of objects and Files
+Lecture 15 - Relational Desing Theory: Overview
 -------------------------------------
 
 In Python, the **objects** are abstraction for data.

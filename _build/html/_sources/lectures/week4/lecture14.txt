@@ -1,4 +1,4 @@
-Lecture 14 - Modules creation
+Lecture 14 - SQL: Data modifications statements
 -----------------------------
 .. index:: module (creation)
 

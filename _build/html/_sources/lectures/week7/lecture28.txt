@@ -1,5 +1,5 @@
-Lecture 28 - Interactive matplotlib plots 
-------------------------------------------
+Lecture 28 - Views: View and automatic modifications 
+----------------------------------------------------
 
 Introduction
 ~~~~~~~~~~~~

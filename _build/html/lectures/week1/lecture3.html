@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Lecture 3 - Data types &mdash; sql-course 1 documentation</title>
+    <title>Lecture 3 - Relation algebra: Select, project, join &mdash; sql-course 1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -28,8 +28,8 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="sql-course 1 documentation" href="../../index.html" />
     <link rel="up" title="First week" href="index.html" />
-    <link rel="next" title="Lecture 4 - Data types" href="lecture4.html" />
-    <link rel="prev" title="Lecture 2 - Algorithm elements" href="lecture2.html" /> 
+    <link rel="next" title="Lecture 4 - Relation algebra: Set operators, renaming, notation" href="lecture4.html" />
+    <link rel="prev" title="Lecture 2 - Relational Databases: Querying relational databases" href="lecture2.html" /> 
   </head>
   <body>
     <div class="related">
@@ -39,10 +39,10 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="lecture4.html" title="Lecture 4 - Data types"
+          <a href="lecture4.html" title="Lecture 4 - Relation algebra: Set operators, renaming, notation"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="lecture2.html" title="Lecture 2 - Algorithm elements"
+          <a href="lecture2.html" title="Lecture 2 - Relational Databases: Querying relational databases"
              accesskey="P">previous</a> |</li>
         <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">First week</a> &raquo;</li> 
@@ -54,8 +54,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="lecture-3-data-types">
-<h1>Lecture 3 - Data types<a class="headerlink" href="#lecture-3-data-types" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="lecture-3-relation-algebra-select-project-join">
+<h1>Lecture 3 - Relation algebra: Select, project, join<a class="headerlink" href="#lecture-3-relation-algebra-select-project-join" title="Permalink to this headline">¶</a></h1>
 <p id="index-0">(<a class="reference external" href="http://docs.python.org/library/stdtypes.html">Python standard data types official documentation</a>)</p>
 <p>A <strong>data type</strong> is the property of a value
 that defines its domain (possible values),
@@ -137,11 +137,11 @@ are equal, respectively, to
 <p id="index-4">The <strong>complex</strong>  type allows to represent complex numbers.
 The complex numbers have a <tt class="docutils literal"><span class="pre">real</span></tt> and an <tt class="docutils literal"><span class="pre">imaginary</span></tt> part.
 The imaginary part is denoted adding a <tt class="docutils literal"><span class="pre">j</span></tt> after its value.:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">+</span> <span class="mi">9</span><span class="n">j</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">+</span> <span class="mi">9j</span>
 <span class="go">(3+9j)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="o">-</span><span class="mf">1.4</span> <span class="o">+</span> <span class="mf">2.7</span><span class="n">j</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">-</span><span class="mf">1.4</span> <span class="o">+</span> <span class="mf">2.7j</span>
 <span class="go">(-1.4+2.7j)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="mf">3.1</span><span class="n">j</span> <span class="o">-</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">3.1j</span> <span class="o">-</span> <span class="mi">100</span>
 <span class="go">(-100+3.1j)</span>
 </pre></div>
 </div>
@@ -172,7 +172,7 @@ For example, look the next situations.</p>
 <span class="go">1.55</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">(((((((</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">8</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="mf">3.1</span><span class="n">j</span> <span class="o">-</span> <span class="mi">100</span> <span class="o">-</span> <span class="mi">5</span><span class="n">j</span> <span class="o">+</span><span class="mi">80</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">3.1j</span> <span class="o">-</span> <span class="mi">100</span> <span class="o">-</span> <span class="mi">5j</span> <span class="o">+</span><span class="mi">80</span>
 <span class="go">(-20-1.9j)</span>
 </pre></div>
 </div>
@@ -193,7 +193,7 @@ the <tt class="docutils literal"><span class="pre">%</span></tt> operator return
 <span class="go">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span><span class="o">%</span><span class="mi">3</span>
 <span class="go">1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mf">5.1</span><span class="n">j</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mf">5.1j</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span>
 <span class="go">(1+5.1j)</span>
 </pre></div>
 </div>
@@ -218,7 +218,7 @@ the <tt class="docutils literal"><span class="pre">%</span></tt> operator return
 <span class="go">0.5333333333333333</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="mi">4</span><span class="o">//</span><span class="mf">7.5</span>
 <span class="go">0.0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mf">5.1</span><span class="n">j</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mf">5.1j</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
 <span class="go">(1+0j)</span>
 </pre></div>
 </div>
@@ -237,7 +237,7 @@ the <tt class="docutils literal"><span class="pre">%</span></tt> operator return
 <span class="go">0.2222222222222222</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="mi">56</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">2.31</span><span class="p">)</span>
 <span class="go">9.155575695903145e-05</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="mf">2.7</span><span class="n">j</span><span class="o">**</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">2.7j</span><span class="o">**</span><span class="mi">2</span>
 <span class="go">(-7.290000000000001+0j)</span>
 </pre></div>
 </div>
@@ -337,7 +337,7 @@ to pass the course with a final grade of 60.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Lecture 3 - Data types</a><ul>
+<li><a class="reference internal" href="#">Lecture 3 - Relation algebra: Select, project, join</a><ul>
 <li><a class="reference internal" href="#integers">Integers</a></li>
 <li><a class="reference internal" href="#reals">Reals</a></li>
 <li><a class="reference internal" href="#complex">Complex</a></li>
@@ -349,10 +349,10 @@ to pass the course with a final grade of 60.</p>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="lecture2.html"
-                        title="previous chapter">Lecture 2 - Algorithm elements</a></p>
+                        title="previous chapter">Lecture 2 - Relational Databases: Querying relational databases</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="lecture4.html"
-                        title="next chapter">Lecture 4 - Data types</a></p>
+                        title="next chapter">Lecture 4 - Relation algebra: Set operators, renaming, notation</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../../_sources/lectures/week1/lecture3.txt"
@@ -382,10 +382,10 @@ to pass the course with a final grade of 60.</p>
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="lecture4.html" title="Lecture 4 - Data types"
+          <a href="lecture4.html" title="Lecture 4 - Relation algebra: Set operators, renaming, notation"
              >next</a> |</li>
         <li class="right" >
-          <a href="lecture2.html" title="Lecture 2 - Algorithm elements"
+          <a href="lecture2.html" title="Lecture 2 - Relational Databases: Querying relational databases"
              >previous</a> |</li>
         <li><a href="../../index.html">sql-course 1 documentation</a> &raquo;</li>
           <li><a href="index.html" >First week</a> &raquo;</li> 

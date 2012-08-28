@@ -1,4 +1,4 @@
-Lecture 16 - Errors and exceptions
+Lecture 16 - Relational Desing Theory: Multivalued dependencies (4th normal form)
 -----------------------------------
 
 .. index:: error

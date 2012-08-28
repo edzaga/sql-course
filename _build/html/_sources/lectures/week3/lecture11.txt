@@ -1,5 +1,5 @@
-Lecture 11 - Dictionaries
--------------------------
+Lecture 11 - The JOIN family of operators
+-----------------------------------------
 
 .. index:: dictionary
 
