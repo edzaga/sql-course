@@ -1,4 +1,4 @@
-Lecture 1 - Program development
+Lecture 1 - Relational Databases: The relational model
 -------------------------------
 
 A **program** is a text file that contains
