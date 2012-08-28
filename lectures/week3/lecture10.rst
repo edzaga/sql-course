@@ -1,5 +1,5 @@
-Lecture 10 - Sets
------------------
+Lecture 10 - Subqueries in FROM and SELECT
+------------------------------------------
 
 .. index:: sets
 

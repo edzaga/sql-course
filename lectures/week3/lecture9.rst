@@ -1,5 +1,5 @@
-Lecture 9 - Lists
------------------
+Lecture 9 - Subqueries in WHERE clause
+--------------------------------------
 
 .. index:: list
 

@@ -1,5 +1,5 @@
-Lecture 4 - Data types
-----------------------
+Lecture 4 - Relation algebra: Set operators, renaming, notation
+---------------------------------------------------------------
 
 .. index:: Data types
 

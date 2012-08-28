@@ -1,5 +1,5 @@
 Lecture 17 - Advanced topics on functions
-------------------------------------------
+-----------------------------------------
 
 When you read the lecture about functions,
 maybe you had some questions about the existence of extra function functionality,

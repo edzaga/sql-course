@@ -1,5 +1,5 @@
-Lecture 12 - Tuples
--------------------
+Lecture 12 - Aggregation functions
+----------------------------------
 
 .. index:: tuple
 

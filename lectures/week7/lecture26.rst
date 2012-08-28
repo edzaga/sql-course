@@ -1,5 +1,5 @@
-Lecture 26 - NumPy arrays (part II)
-------------------------------------
+Lecture 26 - Transactions: Properties
+-------------------------------------
 
 Bi-dimensional Arrays
 ~~~~~~~~~~~~~~~~~~~~~~
