@@ -1,4 +1,6 @@
 Lecture 1 - Relational Databases: The relational model
 -------------------------------
 
-sdasdas
+¿Qué son las Bases de Datos relacionales?
+
+asdasd
