@@ -2,65 +2,35 @@
 
 Lecture 1: Relational Databases: The relational model
 
-DB relacionales
-    La definición de base de datos relacional indica que es una base de datos que se apoya en el
-modelo de datos relacional, es decir, el dato es representado en forma de relaciones (relations) o tablas.
+**Base de datos Relacionales**
 
-    Sistemas de base de datos utilizada por las empresas comerciales más importantes.
-    Modelo simple.
-    Consultas a través de lenguajes de alto nivel.
-    Implementación eficiente
+La definición de base de datos relacional indica que es una base de datos que se apoya en el modelo de datos relacional, es decir, el dato es representado en forma de relaciones (relations) o tablas.
 
-Estructura mínima de almacenamiento:
+Ventajas:
 
-    Tabla: Objeto de almacenamiento perteneciente a una BD. Es una estructura en donde se almacenan registros o filas de datos. Cada tabla tiene un nombre único en la BD.
+  * Sistemas de base de datos utilizada por las empresas comerciales más importantes.
+  * Modelo simple.
+  * Consultas a través de lenguajes de alto nivel.
+  * Implementación eficiente
 
-    Registro: Cada una de las filas de una tabla, esta compuesto por atributos.
+Una base de datos es un conjunto de relaciones con nombre (o tablas), que tiene un conjunto de atributos con nombre (o columnas) y cada tupla (o fila) 
+tiene un valor para cada atributo que tiene un tipo de dato (o dominio).
 
-    Atributo: Una mejor definicion (falta)???. Cada atributo tiene un nombre único para la tabla de la cual forma parte, además es de un tipo determinado, por tanto no encontraremos un dato alfanumérico (letras y números) en un campo diseñado para guardar datos numéricos. 
+**Tabla Estudiante** 
 
+==== ====== ====   
+ID   Nombre Nota      
+==== ====== ====          
+123  Amy    3.9           
+234  Bob    3.4
+345  Craig  NULL
+==== ====== ====
 
-Ejemplo de tabla:
-Tabla Empleado:
-ID_Empleado	Nombre	Apellidos	F_Nacimiento	Cargo	Sexo	Salario
-1	Patricia	Fredes	1987-02-11			
-2	Joao	Fuentes				
-3	Andrea	Ortega				
-4	José	Godoy				
+**Tabla Colegio**
 
-
-
-Cada registro de datos de la tabla contiene información de un empleado. En el ejemplo observamos que la tabla tiene un diseño de siete atributos y que almacena cuatro registros.
-El dato que contiene el campo ID_EMPLEADO identifica a cada registro y se le llama llave primaria (una definición bonita) .
-Hay que hablar que en algún atributo de un registro puede tener valor nulo según el curso de stanford que lo nombra
-
-Despues podriamos hacer esa tabla como actividad onda
-CREATE
-INSERT
-eso...
-
-Tabla:
-Las tablas, en un sistema relacional, son consideradas como una estructura de datos lógica. Es una estructura en forma de cuadrante donde se almacenan registros o filas de datos.
-En general, cada tabla presenta las siguientes características:
-Cada tabla tiene un nombre único en la BD.
-Cada columna tiene un valor simple.
-Todas las filas (registros) son del mismo tipo.
-Las columnas (campos) no tienen un orden particular.
-Las filas tienen un campo identificador (o un conjunto de campos) que forman su
-clave primaria.
-Las filas no tienen un orden particular.
-
-
-Relacion
-
-Columna(atributo)
-Tupla(fila)
-Llave primaria (simple y compuesta)
-Una  entidad es una persona, objeto o evento sobre lo que la organización decide coleccionar y almacenar datos. Una entidad puede ser tangible o intangible Una clase de entidades, es un conjunto de entidades que poseen características similares.
-Un atributo es una propiedad de una clase de entidades que se desea almacenar. Para cada clase existe un conjunto de atributos de interés para la organización. Cada entidad dentro de una clase, debe poseer al menos un atributo (o una combinación de ellos) que la distinga de otras entidades dentro de su clase. A este atributo se le llama llave primaria. Este atributo debe ser único.
-
-
-
-principales motores de la bdrelaciones (explicar q es un motor de bd)
-
+===== ====== =============
+Name  Ciudad Total alumnos
+===== ====== =============
+Belén Miami  15,000
+===== ====== =============
 
