@@ -1,7 +1,7 @@
 Lecture 2 - Relational Databases: Querying relational databases
 ---------------------------------------------------------------
 
-Expressions
+Pasos para crear una base de datos relacional
 ~~~~~~~~~~~
 
 .. index:: expression
