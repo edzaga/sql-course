@@ -11,10 +11,24 @@ Ventajas:
   * Consultas a través de lenguajes de alto nivel.
   * Implementación eficiente
 
-**Estructura mínima de almacenamiento:**
+Una base de datos es un conjunto de relaciones con nombre (o tablas), que tiene un conjunto de atributos con nombre (o columnas) y cada tupla (o fila) 
+tiene un valor para cada atributo que tiene un tipo de dato (o dominio).
 
-  * **Tabla:** Objeto de almacenamiento perteneciente a una BD. Es una estructura en donde se almacenan registros o filas de datos. Cada tabla tiene un nombre único en la BD.
+**Tabla Estudiante** 
 
-  * **Registro:** Cada una de las filas de una tabla, esta compuesto por atributos.
+==== ====== ====   
+ID   Nombre Nota      
+==== ====== ====          
+123  Amy    3.9           
+234  Bob    3.4
+345  Craig  NULL
+==== ====== ====
 
-  * **Atributo:** Una mejor definicion (falta)???. Cada atributo tiene un nombre único para la tabla de la cual forma parte, además es de un tipo determinado, por tanto no encontraremos un dato alfanumérico (letras y números) en un campo diseñado para guardar datos numéricos. 
+**Tabla Colegio**
+
+===== ====== =============
+Name  Ciudad Total alumnos
+===== ====== =============
+Belén Miami  15,000
+===== ====== =============
+
