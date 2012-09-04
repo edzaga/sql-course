@@ -1,14 +1,20 @@
 Lecture 2: Relational Databases: Querying relational databases
 --------------------------------------------------------------
 
-**Utilizando una Base de Datos Relacional**
+Utilizando una Base de Datos Relacional
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: Uso de una base de datos relacional
 
 Los pasos necesarios a la hora de crear una Base de Datos (BD) Relacional
   * Diseñar el esquema, es decir, la estrucutra entre las relaciones, usando un DDL (Data Definition Languaje)
   * Ingresar los datos iniciales
   * Ejecutar operaciones de consulta y modificación
 
-**Consultas en lenguajes de alto nivel**
+Consultas en lenguajes de alto nivel
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: consultas, lenguaje alto nivel
 
 Existen lenguajes de alto nivel que permiten realizar consultas relativamente simples en la BD, sin la necesidad de escribir complejos
 algoritmos. 
@@ -25,14 +31,20 @@ Independiente del lenguaje que se utilize, se debe tener en cuenta que:
   * El lenguaje utilizado para ejecutar consultas puede modificar/actualizar información de la BD, a esto se le llama Data Manipulation Languaje (DML). 
 
 
-**Consultas y relaciones**
+Consultas y relaciones
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: consultas y relaciones
 
 Las consultas realizadas a las relaciones de una BD al momento de ser ejecutadas producen, como resultado, relaciones; las cuales pueden ser:
   * Cerradas: Cuando la estructura del objeto que se obtiene de la consulta, es igual a la estructura de los objetos consultados, se tiene una relación cerrada
   * Compuestas: Cuando la consulta se hace sobre, al menos una relación que corresponde al resultado de una consulta previa. En otras palabras, corresponde a la consulta del resultado de una consulta.
 
 
-**Lenguajes de consultas**
+Lenguajes de consultas
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: Lenguajes de consultas
 
 Algunos de los lenguajes de consultas son
   * Álgebra Relacional: Lenguaje formal y matemático
