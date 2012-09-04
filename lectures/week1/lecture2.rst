@@ -1,14 +1,14 @@
 Lecture 2: Relational Databases: Querying relational databases
 --------------------------------------------------------------
 
- **Utilizando una Base de Datos Relacional**
+**Utilizando una Base de Datos Relacional**
 
 Los pasos necesarios a la hora de crear una Base de Datos (BD) Relacional
   * Diseñar el esquema, es decir, la estrucutra entre las relaciones, usando un DDL (Data Definition Languaje)
   * Ingresar los datos iniciales
   * Ejecutar operaciones de consulta y modificación
 
- **Consultas en lenguajes de alto nivel**
+**Consultas en lenguajes de alto nivel**
 
 Existen lenguajes de alto nivel que permiten realizar consultas relativamente simples en la BD, sin la necesidad de escribir complejos
 algoritmos. 
@@ -25,14 +25,22 @@ Independiente del lenguaje que se utilize, se debe tener en cuenta que:
   * El lenguaje utilizado para ejecutar consultas puede modificar/actualizar información de la BD, a esto se le llama Data Manipulation Languaje (DML). 
 
 
- **Lenguajes de consultas**
+**Consultas y relaciones**
+
+Las consultas realizadas a las relaciones de una BD al momento de ser ejecutadas producen, como resultado, relaciones; las cuales pueden ser:
+  * Cerradas: Cuando la estructura del objeto que se obtiene de la consulta, es igual a la estructura de los objetos consultados, se tiene una relación cerrada
+  * Compuestas: Cuando la consulta se hace sobre, al menos una relación que corresponde al resultado de una consulta previa. En otras palabras, corresponde a la consulta del resultado de una consulta.
+
+
+**Lenguajes de consultas**
 
 Algunos de los lenguajes de consultas son
-  * Algebra Relacional: Lenguaje formal y matemático
+  * Álgebra Relacional: Lenguaje formal y matemático
   * SQL: Lenguaje actual e implementado que nace del Algebra relacional.
 
-Si bien se profundizará sobre ambos, a medida que avance el curso, se deja el siguiente ejemplo:
-Consultar por el "ID de los alumnos con nota mayor o igual a 55 en programación":
+Si bien se profundizará sobre ambos, a medida que avance el curso, se deja el siguiente ejemplo::
+
+        Consultar por el "ID de los alumnos con nota mayor o igual a 55 en programación":
 
 Utilizando Algebra relacional:
 
@@ -42,4 +50,7 @@ Utilizando Algebra relacional:
 
 Utilizando SQL::
         
-        SELECT alumnos.ID FROM alumnos, ramos WHERE alumnos.ID = ramos.ID AND nota :math:\geq 55 and ramos.nombre='progamacion'
+        SELECT alumnos.ID FROM alumnos, ramos WHERE alumnos.ID = ramos.ID AND nota > 55 and ramos.nombre='progamacion'
+
+
+En las próximas lecturas, se estudiará con mayor detalle tanto el álgebra relacional, como el lenguaje SQL.
