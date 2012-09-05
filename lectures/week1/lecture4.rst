@@ -6,16 +6,20 @@ college: cName, state, enr
 student: sID, sName, GPA, HS
 apply: sID, cName, major, dec
 
-Set operators
-~~~~~~~~~~~~~~
+Union
+~~~~~
 
-.. index:: set operators
+.. index:: union
 
 **union**
 Lista de nombres de colegios y estudiantes
 
 agregar ejeplos...
 
+Resta
+~~~~~
+
+.. index:: resta
 
 **difference**
 ID de los estudiantes who didnt aplly anywhere
@@ -23,6 +27,12 @@ ID de los estudiantes who didnt aplly anywhere
 ID y el nombre de los estudiantes who didnt aplly anywhere
 
 agregar ejemplos...
+
+
+Interseccion
+~~~~~~~~~~~~
+
+.. index:: interseccion
 
 **intersection**
 Nombres q son de colegios y alumnos
@@ -34,6 +44,12 @@ no agrega poder expresivo, pues se puede reemplezar por otra operación
 Para intersectar, se debe tener el mismo esquema
 
 agregar ejemplos:
+
+
+Rename
+~~~~~~
+
+.. index:: rename
 
 **rename**
 
