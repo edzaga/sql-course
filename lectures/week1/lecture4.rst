@@ -1,65 +1,101 @@
 Lecture 4 - Relation algebra: Set operators, renaming, notation
 ---------------------------------------------------------------
 
-En el video se consideran 3 tablas: college, student y apply
-college: cName, state, enr
-student: sID, sName, GPA, HS
-apply: sID, cName, major, dec
+Operaciones de conjunto: 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. index:: Operaciones de conjunto: 
 
-Union
-~~~~~
+* UNION: La unión de dos relaciones R y S, es otra relación que contiene las tuplas que están en R, o en S, o en ambas, eliminándose las tuplas duplicadas. R y S deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (R y S deben tener esquemas idénticos. El orden de las columnas debe ser el mismo).
 
-.. index:: union
+**Tabla Ingenieros** 
 
-**union**
-Lista de nombres de colegios y estudiantes
+==== ====== ====   
+ID   Nombre Edad     
+==== ====== ====          
+123  León  39           
+234  Tomás    34
+345  José   45
+143  Josefa   25
+==== ====== ====
 
-agregar ejeplos...
+**Tabla Jefes** 
 
-Resta
-~~~~~
+==== ====== ====   
+ID   Nombre Edad      
+==== ====== ====          
+123  León   39           
+235  María   29
+==== ====== ====
 
-.. index:: resta
+**Ejemplo Ingenieros ``U``Jefes ** 
 
-**difference**
-ID de los estudiantes who didnt aplly anywhere
+==== ====== ====   
+ID   Nombre Edad     
+==== ====== ====          
+123  León  39           
+234  Tomás    34
+345  José   45
+143  Josefa   25
+235  María   29
+==== ====== ====
 
-ID y el nombre de los estudiantes who didnt aplly anywhere
+* INTERSECT: Define una relación que contiene el conjunto de todas las filas que están tanto en la relación R como en S. R y S deben ser unión-compatible.
+Utilizando las mismas tablas del ejemplo anterior:
 
-agregar ejemplos...
+**Ejemplo Ingenieros INTERSECT Jefes ** 
 
+==== ====== ====   
+ID   Nombre Edad      
+==== ====== ====          
+123  León   39           
+==== ====== ====
 
-Interseccion
-~~~~~~~~~~~~
+* MINUS (o DIFFERENCE): La diferencia de dos relaciones R y S, es otra relación que contiene las tuplas que están en la relación R, pero no están en S. R y S deben ser unión-compatible. Es importante resaltar que R - S es diferente a S - R.
 
-.. index:: interseccion
+**Ejemplo Ingenieros ``-`` Jefes ** 
 
-**intersection**
-Nombres q son de colegios y alumnos
+==== ====== ====   
+ID   Nombre Edad     
+==== ====== ====          
+234  Tomás    34
+345  José   45
+143  Josefa   25
+==== ====== ====
 
-no agrega poder expresivo, pues se puede reemplezar por otra operación
-1)e1 intersectado con e2 equivale a e1- (e1-e2)
-2) e1 intersectado con e2 equivale a join
+ * TIMES (producto cartesiano):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S. 
 
-Para intersectar, se debe tener el mismo esquema
+**Tabla Ingenieros** 
 
-agregar ejemplos:
+==== ====== ====   
+ID   Nombre D#     
+==== ====== ====          
+123  León  39           
+234  Tomás    34
+143  Josefa   25
+==== ====== ====
 
+**Tabla Proyectos** 
 
-Rename
-~~~~~~
+======== ========   
+Proyecto   Duración      
+======== ========          
+ACU0034  300  
+USM7345  60   
+======== ======== 
 
-.. index:: rename
+**Ejemplo Ingenieros ``x`` Proyectos** 
 
-**rename**
+==== ====== ==== ======== ========   
+ID   Nombre D# Proyecto   Duración      
+==== ====== ==== ======== ========          
+123  León  39  ACU0034  300  
+123  León  39  USM7345  60   
+234  Tomás    34 ACU0034  300  
+234  Tomás    34 USM7345  60   
+143  Josefa   25 ACU0034  300     
+143  Josefa   25 USM7345  60   
+==== ====== ==== ======== ======== 
 
-1) ro (griega)_{R(a{1},...a_{n})}(E) -> general
-2) ro(griega _{r} (e)
-3) ro griega _{a{1},...a_{n}}
-
-sirve para unificar esquemas para set operators
-sirve para desambiguar en los "self joins"
-        ejemplo: pares de colegios en el mismo estado
 
 
 **sumario**
