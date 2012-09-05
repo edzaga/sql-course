@@ -1,14 +1,26 @@
 Lecture 1 - Relational Databases: The relational model
 -------------------------------
-**Base de datos Relacionales**
+Base de datos Relacionales
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+Permiten establecer interconexiones (relaciones) entre los datos (que están guardados en tablas), y a través de dichas conexiones relacionar los datos de ambas tablas.
+
+**Ventajas:**
 
   * Sistemas de base de datos utilizada por las empresas comerciales más importantes.
   * Modelo simple.
   * Consultas a través de lenguajes de alto nivel.
   * Implementación eficiente
 
-Una base de datos es un conjunto de relaciones con nombre (o tablas), que tiene un conjunto de atributos con nombre (o columnas) y cada tupla (o fila) 
-tiene un valor para cada atributo que tiene un tipo de dato (o dominio) estos pueden ser enteros, string, etc.
+**Características**
+  * Se compone de varias tablas o relaciones.
+  * No existen dos o más tablas con el mismo nombre.
+  * Una tabla es un conjunto de registros (filas o columnas).
+  * La relación entre una tabla padre y un hijo se lleva a cabo por medio de clave primarias y foráneas.
+  * Las claves primarias son la clave principal de un registro dentro de una tabla y éstas deben cumplir con la integridad de datos. 
+  * Las claves foráneas se colocan en la tabla hija, contienen el mismo valor que la clave primaria del registro padre; por medio de éstas se hacen las relaciones.
+
+Ejemplo:
+~~~~~~~~
 
 **Tabla Estudiante** 
 
@@ -34,6 +46,8 @@ La tabla Estudiante posee 3 atributos (ID, Nombre, Nota) y 3 registros (o filas)
 
 La tabla Colegio posee 3 atributos (Name, Ciudad, Total alumnos) y 3 registros (o filas). Esta tabla posee un conjunto de atributos cuyos valores son únicos combinados que son name y Ciudad y se le llama llave compuesta.
 
+Ejemplo en SQL
+~~~~~~~~~~~~~~
 .. index:: string, text data types, str
 
 **La creación de relaciones (tablas) en SQL**

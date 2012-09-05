@@ -6,15 +6,25 @@ El álgebra relacional se define como un conjunto de operaciones que se ejecutan
 
 Operaciones relacionales: 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. index:: Operaciones relacionales:
+Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 
-* SELECT: picking certain rows. 
+======
+SELECT 
+======
+
+Realiza una selección de las **filas** de una tabla, según sea la condición.
+
+**Notación en algebra relacional**
 
 .. math::
 
-	\sigma_{ c} R1 
+    \sigma_{c} \hspace{0.5cm} R
+ 
+c is a condition (as in “if” statements) that refers to attributes of R (tabla o relación). 
 
-C  is a condition (as in “if” statements) that refers to attributes of R. 
+------------
+Ejercicio 1
+------------
 
 **Ingenieros** 
 
@@ -27,10 +37,14 @@ ID   Nombre Edad Años trabajados(AT)
 143  Josefa  25           1
 ==== ====== ==== ===================
 
-Seleccionar ingenieros que tienen más de 30 años:
+Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años:
+
+**Respuesta** 
 
 .. math::
-	\sigma_{edad}>30 Ingenieros
+ 	\sigma_{edad}>30 \hspace{1cm} Ingenieros
+
+Así quedaría la tabla:
 
 **Ingenieros** 
 
@@ -42,10 +56,18 @@ ID   Nombre Edad Años trabajados(AT)
 345  José    45           21
 ==== ====== ==== ===================
 
-Seleccionar ingenieros que tienen más de 30 años y que lleven menos de 16 años trabajando: 
+-----------
+Ejercicio 2
+-----------
+
+Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años y que lleven menos de 16 años trabajando: 
+
+**Respuesta**
 
 .. math::
-	\sigma_{edad >30 \wedge AT <16}    Ingenieros
+	\sigma_{edad >30 \wedge AT <16}  \hspace{1cm}  Ingenieros
+
+Así finalmente quedaría la tabla:
 
 **Ingenieros** 
 
@@ -56,12 +78,67 @@ ID   Nombre Edad Años trabajados(AT)
 234  Tomás   34           10
 ==== ====== ==== ===================
 
+=======
+PROJECT
+=======
 
-* PROJECT: picking certain columns.
-Escoger columnas de ID y nombre de la tabla de ingenieros:
+Realiza la selección de las **columnas** de una tabla.
+
+**Notación en algebra relacional**
 
 .. math::
-	\pi_{ID,Nombre} Ingenieros
+
+    \pi_{A_1,...,A_n} \hspace{0.5cm} R
+
+`A_1,...,A_n` son las columnas que se estan seleccionando en la tabla o relación R. 
+
+-----------
+Ejercicio 1
+-----------
+
+**Ingenieros**
+
+==== ====== ==== ===================   
+ID   Nombre Edad Años trabajados(AT)
+==== ====== ==== ===================          
+123  León    39           15
+234  Tomás   34           10
+345  José    45           21
+143  Josefa  25           1
+==== ====== ==== ===================
+
+Escoger columnas de ID y nombre de la tabla de ingenieros:
+
+**Respuesta**
+
+.. math::
+        \pi_{ID,Nombre} \hspace{1cm} Ingenieros
+
+La tabla finalmente queda como:
+
+**Ingenieros**
+
+==== ====== 
+ID   Nombre
+==== ====== 
+123  León
+234  Tomás
+345  José
+143  Josefa
+==== ====== 
+
+-----------
+Ejercicio 2
+-----------
+ 
+Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
+
+**Respuesta**
+
+.. math::
+	\pi_{ID,Nombre} (\sigma_{edad}>30 \hspace{1cm} Ingenieros)
+
+Finalmente la tabla queda de la siguiente manera:
 
 **Ingenieros** 
 
@@ -71,27 +148,11 @@ ID   Nombre
 123  León  
 234  Tomás    
 345  José   
-143  Josefa   
 ==== ====== 
 
-
-To pick both rows and columns
-Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años
-
-.. math::
-	\pi_{ID,Nombre} (\sigma_{edad}>30 Ingenieros)
-
-** Ingenieros** 
-
-==== ====== 
-ID   Nombre 
-==== ====== 
-123  León  
-234  Tomás    
-345  José   
-==== ====== 
-
-* JOIN 
+====
+JOIN
+==== 
 
 **Exercises[1]**
 
