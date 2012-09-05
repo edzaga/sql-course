@@ -78,3 +78,9 @@ Utilizando SQL::
 
 
 En las próximas lecturas, se estudiará con mayor detalle tanto el álgebra relacional, como el lenguaje SQL.
+
+To begin our study of operations on relations, we shall learn about a special
+algebra, called relattonal algebra (lectures 3 and), that consists of some simple but powerful ways
+to construct new relations from given relations. When the given relations are
+stored data, then the constructed relations can be answers to queries about this data.
+
