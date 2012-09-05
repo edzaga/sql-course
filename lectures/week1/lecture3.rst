@@ -11,7 +11,9 @@ Operaciones relacionales:
 * SELECT: picking certain rows. 
 
 .. math::
-\sigma_{ c} R1 
+
+	\sigma_{ c} R1 
+
 C  is a condition (as in “if” statements) that refers to attributes of R. 
 
 **Ingenieros** 
@@ -28,7 +30,7 @@ ID   Nombre Edad Años trabajados(AT)
 Seleccionar ingenieros que tienen más de 30 años:
 
 .. math::
-\sigma_{edad}>30 Ingenieros
+	\sigma_{edad}>30 Ingenieros
 
 **Ingenieros** 
 
@@ -43,7 +45,7 @@ ID   Nombre Edad Años trabajados(AT)
 Seleccionar ingenieros que tienen más de 30 años y que lleven menos de 16 años trabajando: 
 
 .. math::
-\sigma_{edad >30 \wedge AT <16}    Ingenieros
+	\sigma_{edad >30 \wedge AT <16}    Ingenieros
 
 **Ingenieros** 
 
@@ -59,7 +61,7 @@ ID   Nombre Edad Años trabajados(AT)
 Escoger columnas de ID y nombre de la tabla de ingenieros:
 
 .. math::
-\pi_{ID,Nombre} Ingenieros
+	\pi_{ID,Nombre} Ingenieros
 
 **Ingenieros** 
 
@@ -77,7 +79,7 @@ To pick both rows and columns
 Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años
 
 .. math::
-\pi_{ID,Nombre} (\sigma_{edad}>30 Ingenieros)
+	\pi_{ID,Nombre} (\sigma_{edad}>30 Ingenieros)
 
 ** Ingenieros** 
 
