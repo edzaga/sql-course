@@ -16,5 +16,8 @@ Realizar una introduccion (su historia loca, como en las tareas del departamento
 
 3) alternativas?
   * en la videolectura 4 aparece una pregunta asi (solo al verla online, al bajarla no)
-
 No se me ocurre agregar algo respecto a las lecturas 1 y 2, que son mas introductorias.
+
+Sería bueno agregar http://www.cs.duke.edu/~junyang/ra/, un interprete en java de algebra relacional???
+
+
