@@ -39,6 +39,5 @@ La tabla Colegio posee 3 atributos (Name, Ciudad, Total alumnos) y 3 registros (
 **La creación de relaciones (tablas) en SQL**
 :: 
          Create Table Estudiante(ID, Nombre, Nota)
-         Create Table Colegio(Name, Ciudad, Total alumnos)
-
-   
+         Create Table Colegio(Name string, Ciudad string, Total alumnos integer)
+	 
