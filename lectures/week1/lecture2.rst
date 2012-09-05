@@ -11,6 +11,18 @@ Los pasos necesarios a la hora de crear una Base de Datos (BD) Relacional
   * Ingresar los datos iniciales
   * Ejecutar operaciones de consulta y modificación
 
+Nota: Existen las llamadas "Opraciones Básicas" que se pueden realizar en una Base de Datos Relacional:
+  
+  1)Consultar: SELECT
+
+  2)Almacenar: CREATE, INSERT
+  
+  3)Actualizar: UPDATE
+  
+  4)Borrar: DELETE, DROP
+
+Por ahora sólo se nombran junto a sus funciones SQL relacionadas. A medida que el curso avance, se profundizará el contenido.
+
 Consultas en lenguajes de alto nivel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

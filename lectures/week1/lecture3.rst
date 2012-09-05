@@ -93,4 +93,22 @@ ID   Nombre
 
 * JOIN 
 
+**Exercises[1]**
+
+ Consider a database with the following schema:
+
+1) Person ( name, age, gender ) : name is a key
+2) Frequents ( name, pizzeria ) : (name, pizzeria) is a key
+3) Eats ( name, pizza ) : (name, pizza) is a key
+4) Serves ( pizzeria, pizza, price ): (pizzeria, pizza) is a key
+
+Write relational algebra expressions for the following five queries.
+ 
+  * Seleccionar a las personas que comen pizzas con extra queso.
+  * Seleccionar a las personas que comen pizzas con extra queso y frecuentan la pizzeria X
+  *
+  * 
+  *
+
+[1] http://www.db-class.org/course/resources/index?page=opt-rel-algebra
 
