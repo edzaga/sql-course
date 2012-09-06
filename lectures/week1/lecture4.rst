@@ -158,7 +158,7 @@ R <SUBCONJUNTO>  S: each tuple t appears in S at least as many times as it appea
 
 
 
-===========
+============
 Exercises[1]
 ============
  Consider a database with the following schema:
