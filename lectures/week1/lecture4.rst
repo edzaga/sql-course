@@ -1,11 +1,17 @@
 Lecture 4 - Relation algebra: Set operators, renaming, notation
 ---------------------------------------------------------------
+The three most common operations on sets are union. intersection; and difference. Which are defined as follows arbitrary sets R and S:
+
 
 Operaciones de conjunto: 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. index:: Operaciones de conjunto: 
 
-* UNION: La unión de dos relaciones R y S, es otra relación que contiene las tuplas que están en R, o en S, o en ambas, eliminándose las tuplas duplicadas. R y S deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (R y S deben tener esquemas idénticos. El orden de las columnas debe ser el mismo).
+=====
+UNION 
+=====
+
+La unión de dos relaciones R y S, es otra relación que contiene las tuplas que están en R, o en S, o en ambas, eliminándose las tuplas duplicadas. R y S deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (R y S deben tener esquemas idénticos. El orden de las columnas debe ser el mismo).
 
 **Tabla Ingenieros** 
 
@@ -39,7 +45,11 @@ ID   Nombre Edad
 235  María  29
 ==== ====== ====
 
-* INTERSECT: Define una relación que contiene el conjunto de todas las filas que están tanto en la relación R como en S. R y S deben ser unión-compatible.
+=========
+INTERSECT
+=========
+
+ Define una relación que contiene el conjunto de todas las filas que están tanto en la relación R como en S. R y S deben ser unión-compatible.
 Utilizando las mismas tablas del ejemplo anterior:
 
 **Ejemplo Ingenieros INTERSECT Jefes** 
@@ -62,7 +72,18 @@ ID   Nombre Edad
 143  Josefa   25
 ==== ====== ====
 
-* TIMES (producto cartesiano):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S. 
+
+**IMPORTANT** When we apply these operations to relations, we need to put some conditions on R and S:
+
+ * R and S must have schemas with identical sets of attributes, and the types (domains) for each attribute must be the same in R and S.
+ * Before compute the set-theoretic union, intersection, or difference of sets of tuples, the columns of R and S must be ordered so that the order
+of attributes is the same for both relations.
+
+
+=====
+TIMES 
+=====
+(producto cartesiano):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S. 
 
 **Tabla Ingenieros** 
 
@@ -96,8 +117,11 @@ ID   Nombre D#   Proyecto Duración
 143  Josefa  25  USM7345  60   
 ==== ====== ==== ======== ======== 
 
-**Exercises[1]**
 
+
+===========
+Exercises[1]
+============
  Consider a database with the following schema:
 
 1) Person ( name, age, gender ) : name is a key

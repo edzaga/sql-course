@@ -4,8 +4,50 @@ Lecture 3 - Relation algebra: Select, project, join
 El álgebra relacional se define como un conjunto de operaciones que se ejecutan sobre las relaciones (tablas) para obtener un resultado (el cual es otra relación), es preescriptivo o procedural (algorítmico). 
 
 
+Basics of relational algebra
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: basics of relational algebra
+
+An algebra, in general, consists of operators and atomic operands. For in stance, in the algebra of arithmetic, the atomic operands are 
+variables like \textit{r}, and constants like 15. The operators are the usual arithmetic ones: 
+
+  * addition
+  * subtraction
+  * multiplication
+  * division. 
+
+Any algebra allows us to build expressions by applying operators to atomic operands and/or other expressions of the algebra.
+Usually, parentheses are needed to group operators and their operands. For instance, in arithmetic we have expressions such 
+as (x + y) * z or ((x + 7)/(y - 3)) + x. Relational algebra is another example of an algebra. Its atomic operands are:
+
+1) Variables that stand for relations
+
+2) Constants, which are finite relations
+
+As we mentioned, in the classical relational algebra, all operands and the results of expressions are sets.
+The operations of the traditional relational algebra fall into four broad classes:
+
+  a) The usual set operations - union, intersection, and difference - applied to relations.
+ 
+  b) Operations that remove parts of a relation: "selection" eliminates some rows (tuples), and "projection" eliminates some columns.
+  
+  c) Operations that combine the tuples of two relations, including "Cartesian product," which pairs the tuples of two relations in all possible ways and various kinds of "join" operations, which selectively pair tuples from two relations.
+  
+  d) An operation called .'renaming" that does not affect the tuples of a relation, but changes the relation schema, i.e., the names of the attributesand/or the name of the relation itself.
+
+
+We shall generally refer to expressions of relational algebra as queries. While we don't yet have the symbols needed to show vmany 
+of the expressions of relational algebra, you should be familiar with the operations of group (a); and  thus recognize (R U S) as an example 
+of an expression of relational algebra. R and S are atomic operands standing for relations, whose sets of tuples are unknown. This query asks
+for the union of whatever tuples are in the relations named R and S.
+
+
 Operaciones relacionales: 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: relational operators
+
 Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 
 ======
@@ -150,12 +192,19 @@ ID   Nombre
 345  José   
 ==== ====== 
 
-====
-JOIN
-==== 
+===========
+NATURALJOIN
+===========
 
-**Exercises[1]**
 
+==========
+THETA JOIN
+==========
+
+
+============
+EXERCISES[1]
+===========
  Consider a database with the following schema:
 
 1) Person ( name, age, gender ) : name is a key
