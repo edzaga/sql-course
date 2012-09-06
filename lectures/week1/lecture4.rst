@@ -117,6 +117,45 @@ ID   Nombre D#   Proyecto Duración
 143  Josefa  25  USM7345  60   
 ==== ====== ==== ======== ======== 
 
+====================================
+DEPENDENT AND INDEPENDENT OPERATIONS
+====================================
+
+Some of the operations that we have described in the lectures 3 and 4, can be expressed in terms of other relational-algebra operations. For example, 
+intersection can be expressed in terms of set difference: R <INTERSECTION> S = R - (R - S). That is, if R and S are any two relations with the 
+same schema, the intersection of R and S can be computed by first subtracting S from R to form a relation T consisting of all those tuples in R but
+not S. We then subtract T from R, leaving only those tuples of R that are also in S.
+
+agregar:
+natural join
+theta join
+
+
+===========================================
+RELATIONAL ALGEBRA AS A CONSTRAINT LANGUAJE
+===========================================
+
+There are two ways in which we can use expressions of relational algebra to express constraints:
+
+1) If R is an expression of relational algebra, then R = 0 is a constraint that says "The value of R must be empty," or equivalently 
+"There are no tuples in the result of R."
+
+2) If R and S are expressions of relational algebra, then R <SUBCONJUNTO> S is a constraint that says "Every tuple in the result of R must also 
+be in the result of S." Of course the result of S may contain additional tuples not produced by R.
+
+These ways of expressing constraints are actually equivalent in what they can espress. but sometimes one or the other is clearer or more succinct. 
+That is. the constraint R <SUBCONJUNTO> S could just as well have been written R - S = 0. To see why, notice that if every tuple in R is also in S, 
+then surely R - S is empty. Conversely, if R - S contains no tuples, then every tuple in R must be in S (or else it would be in R - S).
+
+On the other hand, a constraint of the first form. R = 0, could just as well have been written R <SUBCONJUNTO> 0. Technically, 0 is not 
+an expression of relational algebra. but since there are espressions that evaluate to 0, such as R - R, there is no harm in using 0 as a 
+relational-algebra espression. Note that these equivalences hold even if R and S are bags. provided lve make the conventional interpretation of 
+R <SUBCONJUNTO>  S: each tuple t appears in S at least as many times as it appears in R.
+
+
+
+
+
 
 
 ===========
