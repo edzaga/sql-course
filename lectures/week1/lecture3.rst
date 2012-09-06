@@ -206,7 +206,8 @@ THETA JOIN
 
 ============
 EXERCISES[1]
-===========
+============
+
  Consider a database with the following schema:
 
 1) Person ( name, age, gender ) : name is a key
