@@ -24,7 +24,9 @@ Sería bueno agregar http://www.cs.duke.edu/~junyang/ra/, un interprete en java 
 Questions of alternatives:
 --------------------------
 
+^^^^^^^^^^^
 Question 1:
+^^^^^^^^^^^
 
 Suppose relation R(A,B,C) has the following tuples
 
@@ -32,13 +34,9 @@ Suppose relation R(A,B,C) has the following tuples
 A B C
 = = =
 1 2 3
-= = =
 4 2 3
-= = =
 4 5 6
-= = = 
 2 5 3
-= = =
 1 2 6
 = = =
 
@@ -48,11 +46,8 @@ and relation S(A,B,C) has the following tuples:
 A B C
 = = =
 2 5 3
-= = =
 2 5 4
-= = =
 4 5 6
-= = = 
 1 2 3
 = = =
 
@@ -63,8 +58,9 @@ b) (1,2,6)
 c) (4,2,3)
 d) (2,4,3)
 
-
+^^^^^^^^^^^
 Question 2:
+^^^^^^^^^^^
 
 Suppose relation R(A,B,C) has the following tuples:
 
@@ -72,13 +68,9 @@ Suppose relation R(A,B,C) has the following tuples:
 A B C
 = = =
 1 2 3
-= = =
 4 2 3
-= = =
 4 5 6
-= = = 
 2 5 3
-= = =
 1 2 6
 = = =
 
@@ -88,11 +80,8 @@ and relation S(A,B,C) has the following tuples:
 A B C
 = = =
 2 5 3
-= = =
 2 5 4
-= = =
 4 5 6
-= = = 
 1 2 3
 = = =
 
@@ -103,7 +92,9 @@ b) (4,2,3)
 c) (4,5,6)
 d) (4,5,3)
 
+^^^^^^^^^^^
 Question 3:
+^^^^^^^^^^^
 
 Suppose relation R(A,B,C) has the following tuples:
 
@@ -111,13 +102,9 @@ Suppose relation R(A,B,C) has the following tuples:
 A B C
 = = =
 1 2 3
-= = =
 4 2 3
-= = =
 4 5 6
-= = = 
 2 5 3
-= = =
 1 2 6
 = = =
 
@@ -127,11 +114,8 @@ and relation S(A,B,C) has de following tuples:
 A B C
 = = =
 2 5 3
-= = =
 2 5 4
-= = =
 4 5 6
-= = = 
 1 2 3
 = = =
 
