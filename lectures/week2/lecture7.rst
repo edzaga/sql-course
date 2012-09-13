@@ -1,5 +1,5 @@
 Lecture 7 - Basic SELECT Statement
------------------
+----------------------------------
 
 Perhaps the simplest form of query in SQL asks for those tuples of some one relation that satisfy a condition. Such a query is analogous to a 
 selection in relational algebra. This simple query, like almost all SQL queries, uses the three keywords, SELECT, FROM, and WHEHE that 
@@ -30,9 +30,9 @@ Algunos ejemplos de comparasión::
         mesesVidaUtil <> 5
         otros...
 
-============================
+=================
 SELECT-FROM-WHERE
-============================
+=================
 
 Trabajemos bajo el siguiente ejemplo::
 
@@ -42,6 +42,7 @@ Trabajemos bajo el siguiente ejemplo::
 
 This query exibits the characteristic select-from-where form of most SQL queries. The FROM clause gives the relation or relations to 
 which the query refers 1x1 our example. the query is about the relation Juegos.
+
 In the example, the attribute studioName of the relation Juegos is tested for equality against the constant 'Infinity Ward'. This constant is 
 string-valued: strings in SQL are denoted by surrounding them with single quotes. Numeric constants, integers and reals, are also allowed, and 
 SQL uses the common notations for reals such as -12.34 or 1.23E45.
@@ -56,8 +57,7 @@ El resultado de esta consulta es el listado de los Juegos cuyo StudioName sea ig
 
 
 The result of a comparison is a boolean value: either TRUE or FALSE. Boolean values may be combined by the logical operators AND, OR, and NOT.
-with their espected meanings. For instance, we saw in Example 6.1 how t conditions could be combined by AND. The WHERE clause of this example 
-evaluates to true if and only if both comparisons are satisfied; that is, the studio name is 'Disney' and the year is 1990.
+with their espected meanings. 
 
 
 ====================
@@ -70,13 +70,22 @@ ejemplo, si en una base de datos hipotética <agregar ejemplo>::
          SELECT FROM WHERE
          SELECT DISTINCT FROM WHERE
 
+=====
+NOTAS
+=====
+
+SQL es case insensitive, es decir que no distingue entre mayusculas y minusculas. Por ejemplo, FROM (palabra reservada) es 
+equivalente a from, inclusive a From. Los nombres de los atributos, relaciones, etc. son, también, case insensitive.
+
+El único caso en que s distingue entre mayuscula y minusculas es al momento de encerrar un string entre ' '. Por ejemplo 'FROM' es diferente
+a 'from'; por supuesto ambas son diferentes de FROM.
 
 
+==========
+Ejercicios
+==========
 
-
-
-
-
+Algunos ejercicios propuestos son:
 
 
 
