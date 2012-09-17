@@ -195,14 +195,84 @@ ID   Nombre
 ===========
 NATURALJOIN
 ===========
+El resultado es una relación con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones que tengan el mismo valor en los atributos comunes.
+
+**Notación en algebra relacional**
+
+.. math::
+	R1 \rhd\lhd R2
+
+**Equivalencia con operadores básicos**
+
+.. math::
+	R1 \rhd\lhd R2=
+
+**Método**
+1) Se realiza el producto cartesiano R1 x R2
+2) Se seleccionan aquellas filas del producto cartesiano para las que los atributos comunes tengan el mismo valor
+3) Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos comunes
+
+
+-----------
+Ejercicio 1
+-----------
+
+Realizar NATURALJOIN a las siguientes tablas:
+
+**Tabla Ingenieros** 
+
+==== ======= ====   
+ID    Nombre  D#     
+==== ======= ====          
+123   León    39           
+234   Tomás   34
+143   Josefa  25
+090   María   34
+==== ======= ====
+
+**Tabla Proyectos** 
+
+====== ========   
+D#     Proyecto      
+====== ========        
+39     ACU0034      
+34     USM7345        
+====== ======== 
+
+**Respuesta**
+
+**Ingenieros join Proyectos**
+
+==== ======= ==== ========   
+ID   Nombre   D#  Proyecto
+==== ======= ==== ========          
+123  León     39   ACU0034           
+234  Tomás    34   USM7345
+090  María    34   USM7345
+==== ======= ==== ========
 
 
 ==========
 THETA JOIN
 ==========
 
+Define una relación que contiene las tuplas que satisfacen el predicado F en el producto cartesiano de R1 y R2. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. El predicado F es de la forma R1.ai operador_de_comparación R2.bi. El predicado no tiene por que definirse sobre atributos comunes.
 
+**Notación en algebra relacional**
 
+.. math::
+	R1 R2
+
+**Equivalencia con operadores básicos**
+
+.. math::
+	R1  R2=
+
+-----------
+Ejercicio 1
+-----------
+
+**Respuesta**
 
 ============
 EXERCISES[1]

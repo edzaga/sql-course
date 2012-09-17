@@ -1,9 +1,0 @@
-Lecture 3: Relation algebra: Select, project, join
-
-El álgebra relacional se define como un conjunto de operaciones que se ejecutan sobre las relaciones (tablas) para obtener un resultado (el cual es otra relación), es preescriptivo o procedural (algorítmico). Sus operaciones se pueden dividir en dos categorías:
-
-    Operaciones de conjunto: UNION, INTERSECT, MINUS (o DIFFERENCE)  y TIMES (producto cartesiano) 
-
-    Operaciones relacionales: SELECT, PROJECT, JOIN y DIVISION 
-
-
