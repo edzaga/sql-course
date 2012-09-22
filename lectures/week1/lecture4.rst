@@ -46,11 +46,40 @@ ID   Nombre Edad
 ==== ====== ====
 
 =========
-INTERSECT
+DIFFERENCE
 =========
+
+La diferencia de dos relaciones R y S, es otra relación que contiene las tuplas que están en la relación R, pero no están en S. R y S deben ser unión-compatible. Es importante resaltar que R - S es diferente a S - R.
+
+**Ejemplo Ingenieros ``-`` Jefes** 
+
+==== ====== ====   
+ID   Nombre Edad     
+==== ====== ====          
+234  Tomás   34
+345  José    45
+143  Josefa  25
+==== ====== ====
+
+**Ejemplo Jefes ``-`` Ingenieros ** 
+
+==== ====== ====   
+ID   Nombre Edad      
+==== ====== ====                 
+235  María  29
+==== ====== ====
+
+============
+INTERSECTION
+============
 
  Define una relación que contiene el conjunto de todas las filas que están tanto en la relación R como en S. R y S deben ser unión-compatible.
 Utilizando las mismas tablas del ejemplo anterior:
+
+**Equivalencia con operadores anteriores**
+
+.. math::
+	R \cap S= R-(R-S)
 
 **Ejemplo Ingenieros INTERSECT Jefes** 
 
@@ -58,18 +87,6 @@ Utilizando las mismas tablas del ejemplo anterior:
 ID   Nombre Edad      
 ==== ====== ====          
 123  León   39           
-==== ====== ====
-
-* MINUS (o DIFFERENCE): La diferencia de dos relaciones R y S, es otra relación que contiene las tuplas que están en la relación R, pero no están en S. R y S deben ser unión-compatible. Es importante resaltar que R - S es diferente a S - R.
-
-**Ejemplo Ingenieros ``-`` Jefes** 
-
-==== ====== ====   
-ID   Nombre Edad     
-==== ====== ====          
-234  Tomás    34
-345  José   45
-143  Josefa   25
 ==== ====== ====
 
 
@@ -80,43 +97,6 @@ ID   Nombre Edad
 of attributes is the same for both relations.
 
 
-=====
-TIMES 
-=====
-(producto cartesiano):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S. 
-
-**Tabla Ingenieros** 
-
-==== ====== ====   
-ID   Nombre D#     
-==== ====== ====          
-123  León     39           
-234  Tomás    34
-143  Josefa   25
-==== ====== ====
-
-**Tabla Proyectos** 
-
-======== ========   
-Proyecto Duración      
-======== ========          
-ACU0034  300  
-USM7345  60   
-======== ======== 
-
-**Ejemplo Ingenieros ``x`` Proyectos** 
-
-==== ====== ==== ======== ========   
-ID   Nombre D#   Proyecto Duración      
-==== ====== ==== ======== ========          
-123  León    39  ACU0034  300  
-123  León    39  USM7345  60   
-234  Tomás   34  ACU0034  300  
-234  Tomás   34  USM7345  60   
-143  Josefa  25  ACU0034  300     
-143  Josefa  25  USM7345  60   
-==== ====== ==== ======== ======== 
-
 ====================================
 DEPENDENT AND INDEPENDENT OPERATIONS
 ====================================
@@ -125,10 +105,6 @@ Some of the operations that we have described in the lectures 3 and 4, can be ex
 intersection can be expressed in terms of set difference: R <INTERSECTION> S = R - (R - S). That is, if R and S are any two relations with the 
 same schema, the intersection of R and S can be computed by first subtracting S from R to form a relation T consisting of all those tuples in R but
 not S. We then subtract T from R, leaving only those tuples of R that are also in S.
-
-agregar:
-natural join
-theta join
 
 
 ===========================================
@@ -151,11 +127,6 @@ On the other hand, a constraint of the first form. R = 0, could just as well hav
 an expression of relational algebra. but since there are espressions that evaluate to 0, such as R - R, there is no harm in using 0 as a 
 relational-algebra espression. Note that these equivalences hold even if R and S are bags. provided lve make the conventional interpretation of 
 R <SUBCONJUNTO>  S: each tuple t appears in S at least as many times as it appears in R.
-
-
-
-
-
 
 
 ============

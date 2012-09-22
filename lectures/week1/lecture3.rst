@@ -192,6 +192,44 @@ ID   Nombre
 345  José   
 ==== ====== 
 
+
+=============
+Cross-product
+=============
+(Cartesian product):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S. 
+
+**Tabla Ingenieros** 
+
+==== ====== ====   
+ID   Nombre D#     
+==== ====== ====          
+123  León     39           
+234  Tomás    34
+143  Josefa   25
+==== ====== ====
+
+**Tabla Proyectos** 
+
+======== ========   
+Proyecto Duración      
+======== ========          
+ACU0034  300  
+USM7345  60   
+======== ======== 
+
+**Ejemplo Ingenieros ``x`` Proyectos** 
+
+==== ====== ==== ======== ========   
+ID   Nombre D#   Proyecto Duración      
+==== ====== ==== ======== ========          
+123  León    39  ACU0034  300  
+123  León    39  USM7345  60   
+234  Tomás   34  ACU0034  300  
+234  Tomás   34  USM7345  60   
+143  Josefa  25  ACU0034  300     
+143  Josefa  25  USM7345  60   
+==== ====== ==== ======== ======== 
+
 ===========
 NATURALJOIN
 ===========
@@ -200,16 +238,19 @@ El resultado es una relación con los atributos de ambas relaciones y se obtiene
 **Notación en algebra relacional**
 
 .. math::
-	R1 \rhd\lhd R2
+	R \rhd\lhd S
 
 **Equivalencia con operadores básicos**
 
 .. math::
-	R1 \rhd\lhd R2=
+	R \rhd\lhd S=
 
 **Método**
-1) Se realiza el producto cartesiano R1 x R2
+
+1) Se realiza el producto cartesiano R x S
+
 2) Se seleccionan aquellas filas del producto cartesiano para las que los atributos comunes tengan el mismo valor
+
 3) Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos comunes
 
 
@@ -251,28 +292,69 @@ ID   Nombre   D#  Proyecto
 090  María    34   USM7345
 ==== ======= ==== ========
 
-
 ==========
 THETA JOIN
 ==========
 
-Define una relación que contiene las tuplas que satisfacen el predicado F en el producto cartesiano de R1 y R2. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. El predicado F es de la forma R1.ai operador_de_comparación R2.bi. El predicado no tiene por que definirse sobre atributos comunes.
+Define una relación que contiene las tuplas que satisfacen el predicado F en el producto cartesiano de R y S. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. El predicado F es de la forma R.ai operador_de_comparación S.bi. El predicado no tiene por que definirse sobre atributos comunes. Term “join” often means theta join.
 
 **Notación en algebra relacional**
 
 .. math::
-	R1 R2
+	R \rhd\lhd_F S
 
 **Equivalencia con operadores básicos**
 
 .. math::
-	R1  R2=
+	R \rhd\lhd_F S= \sigma_{F} (R x S)
+
+**Método**
+
+1) Se forma el producto cartesiano R y S
+
+2) Se selecciona, en el producto, solo la tupla que cumplan la condición F
 
 -----------
 Ejercicio 1
 -----------
 
+**R**
+
+=== === === ===   
+ A   B   C   D
+=== === === ===  
+ 1   3   5   7 
+ 3   2   9   1
+ 2   3   5   4    
+=== === === ===  
+
+**S**
+
+=== === ===    
+ A   C   E
+=== === ===   
+ 1   5   2   
+ 1   5   9  
+ 3   9   2
+ 2   3   7   
+=== === ===   
+
+.. math::
+      R \rhd\lhd_(A >= E) S 
+
 **Respuesta**
+
+**S**
+
+=== === === === ===== ===== ===   
+ A   B   C   D   S.A   S.C  E
+=== === === === ===== ===== ===   
+ 3   2   9   1    1     5    2   
+ 3   2   9   1    3     9    2  
+ 2   3   5   4    1     5    2
+ 2   3   5   4    3     9    2
+=== === === === ===== ===== ===    
+
 
 ============
 EXERCISES[1]
