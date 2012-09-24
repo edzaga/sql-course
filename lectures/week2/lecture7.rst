@@ -70,9 +70,9 @@ ejemplo, si en una base de datos hipotética <agregar ejemplo>::
          SELECT FROM WHERE
          SELECT DISTINCT FROM WHERE
 
-================
+======
 Notas
-================
+======
 
 SQL es case insensitive, es decir que no distingue entre mayusculas y minusculas. Por ejemplo, FROM (palabra reservada) es 
 equivalente a from, inclusive a From. Los nombres de los atributos, relaciones, etc. son, también, case insensitive.
