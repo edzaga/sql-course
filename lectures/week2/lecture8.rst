@@ -44,7 +44,32 @@ todos los pares de estudiantes con el mismo GPA::
 
         SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
         FROM Student S1, Student S2
-        WHERE S1.GPA = S2.GPA and S1.sID < S2.sID;
+        WHERE S1.GPA = S2.GPA
+
+Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla),  el resultado contendrá uno o varios duplicados; por ejemplo, consideremos
+4 estudantes::
+        
+        sName   sID     GPA
+        Amy     123     4.0
+        Doris   456     4.0
+        Edward  567     4.1
+
+Los pares de estudiantes serán::
+        
+         Amy    -       Doris
+
+pero también::
+        
+         Amy    -       Amy   
+         Doris  -       Doris
+
+lo cual se puede evitar modificando la cosulta::
+
+        SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
+        FROM Student S1, Student S2
+        WHERE S1.GPA = S2.GPA and S1.sID <> S2.sID
+
+es decir, que el id del estudiante S1 sea diferente al id del estudiante S2.
 
 Set Operators
 ~~~~~~~~~~~~~~~
@@ -57,7 +82,16 @@ Los Set Operators son 3:
   * Intersección
   * Excepción
 
-======
+=====
 Unión
-======
+=====
 
+
+============
+Intersección
+============
+
+
+=========
+Excepción
+=========
