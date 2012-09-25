@@ -1,5 +1,5 @@
 Lecture 23 - Constraints and triggers: Referential integrity
--------------------------
+-------------------------------------------------------------
 
 One of the major benefits of the object-oriented paradigm
 is that you can reuse code, because a *class* is a kind

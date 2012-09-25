@@ -3,8 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to sql-course's documentation!
-======================================
+.. Defining SQL role
+
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
+
+ALMA SQL Course
+================
 
 Contents:
 
@@ -21,5 +27,3 @@ Contents:
    lectures/week6/index
    lectures/week7/index
    lectures/week8/index
-==================
-

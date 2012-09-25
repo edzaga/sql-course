@@ -1,7 +1,7 @@
 Lecture 3 - Relation algebra: Select, project, join
 ---------------------------------------------------
 
-El álgebra relacional se define como un conjunto de operaciones que se ejecutan sobre las relaciones (tablas) para obtener un resultado (el cual es otra relación), es preescriptivo o procedural (algorítmico). 
+El álgebra relacional se define como un conjunto de operaciones que se ejecutan sobre las relaciones (tablas) para obtener un resultado (el cual es otra relación), es preescriptivo o procedural (algorítmico).
 
 
 Basics of relational algebra
@@ -9,17 +9,17 @@ Basics of relational algebra
 
 .. index:: basics of relational algebra
 
-An algebra, in general, consists of operators and atomic operands. For in stance, in the algebra of arithmetic, the atomic operands are 
-variables like \textit{r}, and constants like 15. The operators are the usual arithmetic ones: 
+An algebra, in general, consists of operators and atomic operands. For in stance, in the algebra of arithmetic, the atomic operands are
+variables like \textit{r}, and constants like 15. The operators are the usual arithmetic ones:
 
   * addition
   * subtraction
   * multiplication
-  * division. 
+  * division.
 
 Any algebra allows us to build expressions by applying operators to atomic operands and/or other expressions of the algebra.
-Usually, parentheses are needed to group operators and their operands. For instance, in arithmetic we have expressions such 
-as (x + y) * z or ((x + 7)/(y - 3)) + x. Relational algebra is another example of an algebra. Its atomic operands are:
+Usually, parentheses are needed to group operators and their operands. For instance, in arithmetic we have expressions such
+as :math:`(x + y) * z` or :math:`((x + 7)/(y - 3)) + x`. Relational algebra is another example of an algebra. Its atomic operands are:
 
 1) Variables that stand for relations
 
@@ -28,22 +28,19 @@ as (x + y) * z or ((x + 7)/(y - 3)) + x. Relational algebra is another example o
 As we mentioned, in the classical relational algebra, all operands and the results of expressions are sets.
 The operations of the traditional relational algebra fall into four broad classes:
 
-  a) The usual set operations - union, intersection, and difference - applied to relations.
- 
-  b) Operations that remove parts of a relation: "selection" eliminates some rows (tuples), and "projection" eliminates some columns.
-  
-  c) Operations that combine the tuples of two relations, including "Cartesian product," which pairs the tuples of two relations in all possible ways and various kinds of "join" operations, which selectively pair tuples from two relations.
-  
-  d) An operation called .'renaming" that does not affect the tuples of a relation, but changes the relation schema, i.e., the names of the attributesand/or the name of the relation itself.
+  a. The usual set operations - union, intersection, and difference - applied to relations.
+  b. Operations that remove parts of a relation: "selection" eliminates some rows (tuples), and "projection" eliminates some columns.
+  c. Operations that combine the tuples of two relations, including "Cartesian product," which pairs the tuples of two relations in all possible ways and various kinds of "join" operations, which selectively pair tuples from two relations.
+  d. An operation called .'renaming" that does not affect the tuples of a relation, but changes the relation schema, i.e., the names of the attributesand/or the name of the relation itself.
 
 
-We shall generally refer to expressions of relational algebra as queries. While we don't yet have the symbols needed to show vmany 
-of the expressions of relational algebra, you should be familiar with the operations of group (a); and  thus recognize (R U S) as an example 
+We shall generally refer to expressions of relational algebra as queries. While we don't yet have the symbols needed to show vmany
+of the expressions of relational algebra, you should be familiar with the operations of group (a); and  thus recognize (R U S) as an example
 of an expression of relational algebra. R and S are atomic operands standing for relations, whose sets of tuples are unknown. This query asks
 for the union of whatever tuples are in the relations named R and S.
 
 
-Operaciones relacionales: 
+Operaciones relacionales:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. index:: relational operators
@@ -51,7 +48,7 @@ Operaciones relacionales:
 Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 
 ======
-SELECT 
+SELECT
 ======
 
 Realiza una selección de las **filas** de una tabla, según sea la condición.
@@ -61,18 +58,18 @@ Realiza una selección de las **filas** de una tabla, según sea la condición.
 .. math::
 
     \sigma_{c} \hspace{0.5cm} R
- 
-c is a condition (as in “if” statements) that refers to attributes of R (tabla o relación). 
+
+c is a condition (as in “if” statements) that refers to attributes of R (tabla o relación).
 
 ------------
 Ejercicio 1
 ------------
 
-**Ingenieros** 
+**Ingenieros**
 
-==== ====== ==== ===================   
-ID   Nombre Edad Años trabajados(AT)    
-==== ====== ==== ===================          
+==== ====== ==== ===================
+ID   Nombre Edad Años trabajados(AT)
+==== ====== ==== ===================
 123  León    39           15
 234  Tomás   34           10
 345  José    45           21
@@ -81,18 +78,18 @@ ID   Nombre Edad Años trabajados(AT)
 
 Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años:
 
-**Respuesta** 
+**Respuesta**
 
 .. math::
  	\sigma_{edad}>30 \hspace{1cm} Ingenieros
 
 Así quedaría la tabla:
 
-**Ingenieros** 
+**Ingenieros**
 
-==== ====== ==== ===================   
-ID   Nombre Edad Años trabajados(AT)    
-==== ====== ==== ===================          
+==== ====== ==== ===================
+ID   Nombre Edad Años trabajados(AT)
+==== ====== ==== ===================
 123  León    39           15
 234  Tomás   34           10
 345  José    45           21
@@ -102,7 +99,7 @@ ID   Nombre Edad Años trabajados(AT)
 Ejercicio 2
 -----------
 
-Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años y que lleven menos de 16 años trabajando: 
+Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años y que lleven menos de 16 años trabajando:
 
 **Respuesta**
 
@@ -111,11 +108,11 @@ Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años 
 
 Así finalmente quedaría la tabla:
 
-**Ingenieros** 
+**Ingenieros**
 
-==== ====== ==== ===================   
-ID   Nombre Edad Años trabajados(AT)    
-==== ====== ==== ===================          
+==== ====== ==== ===================
+ID   Nombre Edad Años trabajados(AT)
+==== ====== ==== ===================
 123  León    39           15
 234  Tomás   34           10
 ==== ====== ==== ===================
@@ -132,7 +129,7 @@ Realiza la selección de las **columnas** de una tabla.
 
     \pi_{A_1,...,A_n} \hspace{0.5cm} R
 
-`A_1,...,A_n` son las columnas que se estan seleccionando en la tabla o relación R. 
+`A_1,...,A_n` son las columnas que se estan seleccionando en la tabla o relación R.
 
 -----------
 Ejercicio 1
@@ -140,9 +137,9 @@ Ejercicio 1
 
 **Ingenieros**
 
-==== ====== ==== ===================   
+==== ====== ==== ===================
 ID   Nombre Edad Años trabajados(AT)
-==== ====== ==== ===================          
+==== ====== ==== ===================
 123  León    39           15
 234  Tomás   34           10
 345  José    45           21
@@ -160,19 +157,19 @@ La tabla finalmente queda como:
 
 **Ingenieros**
 
-==== ====== 
+==== ======
 ID   Nombre
-==== ====== 
+==== ======
 123  León
 234  Tomás
 345  José
 143  Josefa
-==== ====== 
+==== ======
 
 -----------
 Ejercicio 2
 -----------
- 
+
 Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
 
 **Respuesta**
@@ -182,53 +179,53 @@ Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
 
 Finalmente la tabla queda de la siguiente manera:
 
-**Ingenieros** 
+**Ingenieros**
 
-==== ====== 
-ID   Nombre 
-==== ====== 
-123  León  
-234  Tomás    
-345  José   
-==== ====== 
+==== ======
+ID   Nombre
+==== ======
+123  León
+234  Tomás
+345  José
+==== ======
 
 
 =============
 Cross-product
 =============
-(Cartesian product):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S. 
+(Cartesian product):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S.
 
-**Tabla Ingenieros** 
+**Tabla Ingenieros**
 
-==== ====== ====   
-ID   Nombre D#     
-==== ====== ====          
-123  León     39           
+==== ====== ====
+ID   Nombre D#
+==== ====== ====
+123  León     39
 234  Tomás    34
 143  Josefa   25
 ==== ====== ====
 
-**Tabla Proyectos** 
+**Tabla Proyectos**
 
-======== ========   
-Proyecto Duración      
-======== ========          
-ACU0034  300  
-USM7345  60   
-======== ======== 
+======== ========
+Proyecto Duración
+======== ========
+ACU0034  300
+USM7345  60
+======== ========
 
-**Ejemplo Ingenieros ``x`` Proyectos** 
+**Ejemplo Ingenieros ``x`` Proyectos**
 
-==== ====== ==== ======== ========   
-ID   Nombre D#   Proyecto Duración      
-==== ====== ==== ======== ========          
-123  León    39  ACU0034  300  
-123  León    39  USM7345  60   
-234  Tomás   34  ACU0034  300  
-234  Tomás   34  USM7345  60   
-143  Josefa  25  ACU0034  300     
-143  Josefa  25  USM7345  60   
-==== ====== ==== ======== ======== 
+==== ====== ==== ======== ========
+ID   Nombre D#   Proyecto Duración
+==== ====== ==== ======== ========
+123  León    39  ACU0034  300
+123  León    39  USM7345  60
+234  Tomás   34  ACU0034  300
+234  Tomás   34  USM7345  60
+143  Josefa  25  ACU0034  300
+143  Josefa  25  USM7345  60
+==== ====== ==== ======== ========
 
 ===========
 NATURALJOIN
@@ -260,34 +257,34 @@ Ejercicio 1
 
 Realizar NATURALJOIN a las siguientes tablas:
 
-**Tabla Ingenieros** 
+**Tabla Ingenieros**
 
-==== ======= ====   
-ID    Nombre  D#     
-==== ======= ====          
-123   León    39           
+==== ======= ====
+ID    Nombre  D#
+==== ======= ====
+123   León    39
 234   Tomás   34
 143   Josefa  25
 090   María   34
 ==== ======= ====
 
-**Tabla Proyectos** 
+**Tabla Proyectos**
 
-====== ========   
-D#     Proyecto      
-====== ========        
-39     ACU0034      
-34     USM7345        
-====== ======== 
+====== ========
+D#     Proyecto
+====== ========
+39     ACU0034
+34     USM7345
+====== ========
 
 **Respuesta**
 
 **Ingenieros join Proyectos**
 
-==== ======= ==== ========   
+==== ======= ==== ========
 ID   Nombre   D#  Proyecto
-==== ======= ==== ========          
-123  León     39   ACU0034           
+==== ======= ==== ========
+123  León     39   ACU0034
 234  Tomás    34   USM7345
 090  María    34   USM7345
 ==== ======= ==== ========
@@ -320,24 +317,24 @@ Ejercicio 1
 
 **R**
 
-=== === === ===   
+=== === === ===
  A   B   C   D
-=== === === ===  
- 1   3   5   7 
+=== === === ===
+ 1   3   5   7
  3   2   9   1
- 2   3   5   4    
-=== === === ===  
+ 2   3   5   4
+=== === === ===
 
 **S**
 
-=== === ===    
+=== === ===
  A   C   E
-=== === ===   
- 1   5   2   
- 1   5   9  
+=== === ===
+ 1   5   2
+ 1   5   9
  3   9   2
- 2   3   7   
-=== === ===   
+ 2   3   7
+=== === ===
 
 .. math::
       R \rhd\lhd_(A >= E) S 
@@ -346,20 +343,19 @@ Ejercicio 1
 
 **S**
 
-===== === ===== === ===== ===== ===   
+===== === ===== === ===== ===== ===
  R.A   B   R.C   D   S.A   S.C  E
-===== === ===== === ===== ===== ===   
-  3    2    9    1    1     5    2   
-  3    2    9    1    3     9    2  
+===== === ===== === ===== ===== ===
+  3    2    9    1    1     5    2
+  3    2    9    1    3     9    2
   2    3    5    4    1     5    2
   2    3    5    4    3     9    2
-===== === ===== === ===== ===== ===    
+===== === ===== === ===== ===== ===
 
 
 
-============
-EXERCISES[1]
-============
+EXERCISES [1]_
+==============
 
  Consider a database with the following schema:
 
@@ -369,12 +365,12 @@ EXERCISES[1]
 4) Serves ( pizzeria, pizza, price ): (pizzeria, pizza) is a key
 
 Write relational algebra expressions for the following five queries.
- 
+
   * Seleccionar a las personas que comen pizzas con extra queso.
   * Seleccionar a las personas que comen pizzas con extra queso y frecuentan la pizzeria X
   *
-  * 
+  *
   *
 
-[1] http://www.db-class.org/course/resources/index?page=opt-rel-algebra
+.. [1] http://www.db-class.org/course/resources/index?page=opt-rel-algebra
 
