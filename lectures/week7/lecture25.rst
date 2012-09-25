@@ -1,5 +1,5 @@
 Lecture 25 - Transactions: Introduction
----------------------------------------
+-----------------------------------------
  
 Arrays
 ~~~~~~
@@ -54,7 +54,7 @@ which can be used in the algorithm design
 to solve really interesting problems.
 
 Array Creation
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 .. index:: NumPy
 
 The module which provides data structures

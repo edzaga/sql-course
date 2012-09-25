@@ -1,5 +1,5 @@
 Lecture 21 - Constraints and triggers: Introduction
-----------------------------
+-----------------------------------------------------
 
 The object-oriented (OO) programming paradigm,
 is widely used in serious project,
