@@ -122,12 +122,23 @@ es::
         Scott, Stephen
 
 
-Ojo, exiten dos empleados con el mismo nombre, sin embargo en la salida sólo se nombra uno. Para evitar esto, se utliza "union all"::
+Ojo, existen dos empleados con el mismo nombre en ambas tablas. Sin embargo en la salida sólo se nombra uno. Para evitar esto, se utliza "UNION ALL"::
 
-        SELECT E_Name FROM Employees_Norway
+        SELECT E_Name as name FROM Employees_Norway
         UNION ALL
-        SELECT E_Name FROM Employees_USA
+        SELECT E_Name as name FROM Employees_USA
 
+Utilizando "as" es posible cambiar el nombre de la columna resultado::
+
+        name
+        Hansen, Ola
+        Svendson, Tove
+        Svendson, Stephen
+        Pettersen, Kari
+        Turner, Sally
+        Kent, Clark
+        Svendson, Stephen
+        Scott, Stephen
 
 
 
@@ -135,6 +146,34 @@ Ojo, exiten dos empleados con el mismo nombre, sin embargo en la salida sólo se
 Intersección
 ============
 
+Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT. La diferencia consiste en que UNION actua como un OR, e INTERSECT
+lo hace como AND. Es decir que INTERSECT devuelve los valores repetidos. Consideremos el sigueinte esquema::
+
+        Table Store_Information
+        store_name      Sales   Date
+        Los Angeles     $1500   Jan-05-1999
+        San Diego       $250    Jan-07-1999
+        Los Angeles     $300    Jan-08-1999
+        Boston  $700    Jan-08-1999
+        
+        Table Internet_Sales
+        Date    Sales
+        Jan-07-1999     $250
+        Jan-10-1999     $535
+        Jan-11-1999     $320
+        Jan-12-1999     $750
+
+
+Al realizar la consulta::
+
+        SELECT Date FROM Store_Information
+        INTERSECT
+        SELECT Date FROM Internet_Sales
+
+Su resultado es::
+  
+        Date
+        Jan-07-1999
 
 =========
 Excepción
