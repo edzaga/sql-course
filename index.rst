@@ -3,6 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. Defining SQL role
+
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
+
 ALMA SQL Course
 ================
 
