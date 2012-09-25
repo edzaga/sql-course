@@ -1,5 +1,5 @@
-Lecture 2: Relational Databases: Querying relational databases
---------------------------------------------------------------
+Lecture 2 - Relational Databases: Querying relational databases
+----------------------------------------------------------------
 
 Utilizando una Base de Datos Relacional
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -12,14 +12,11 @@ Los pasos necesarios a la hora de crear una Base de Datos (BD) Relacional
   * Ejecutar operaciones de consulta y modificación
 
 Nota: Existen las llamadas "Opraciones Básicas" que se pueden realizar en una Base de Datos Relacional:
-  
-  1)Consultar: SELECT
 
-  2)Almacenar: CREATE, INSERT
-  
-  3)Actualizar: UPDATE
-  
-  4)Borrar: DELETE, DROP
+    1. Consultar: :sql:`SELECT`
+    2. Almacenar: :sql:`CREATE, INSERT`
+    3. Actualizar: :sql:`UPDATE`
+    4. Borrar: :sql:`DELETE, DROP`
 
 Por ahora sólo se nombran junto a sus funciones SQL relacionadas. A medida que el curso avance, se profundizará el contenido.
 
@@ -29,7 +26,7 @@ Consultas en lenguajes de alto nivel
 .. index:: consultas, lenguaje alto nivel
 
 Existen lenguajes de alto nivel que permiten realizar consultas relativamente simples en la BD, sin la necesidad de escribir complejos
-algoritmos. 
+algoritmos.
 
 Una 'consulta a la BD', puede entenderse como una pregunta que se le realiza para obtener 'cierta información'. Algunos ejemplos pueden ser:
   * "Todos los estudiantes con nota mayor o igual a 55"
@@ -40,7 +37,7 @@ Independiente del lenguaje que se utilize, se debe tener en cuenta que:
   * Algunas consultas son faciles de formular, otras son un poco más difíciles.
   * Algunos Data Base Management System (DBMS) las ejecutan de forma eficiente, otros no.
   * Los 2 puntos anteriores no son dependientes uno del otro, puede existir una consulta fácil de formular, pero difícil de ejecutar de forma eficiente, dependiendo del DBMS.
-  * El lenguaje utilizado para ejecutar consultas puede modificar/actualizar información de la BD, a esto se le llama Data Manipulation Languaje (DML). 
+  * El lenguaje utilizado para ejecutar consultas puede modificar/actualizar información de la BD, a esto se le llama Data Manipulation Languaje (DML).
 
 
 Consultas y relaciones
@@ -72,9 +69,11 @@ Utilizando Algebra relacional:
 
         \prod_{ID} \sigma_{\geq 55 \wedge ramos.nombre ='programacion' (alumnos \infty ramos)}
 
-Utilizando SQL::
-        
-        SELECT alumnos.ID FROM alumnos, ramos WHERE alumnos.ID = ramos.ID AND nota > 55 and ramos.nombre='progamacion'
+Utilizando SQL
+
+.. code-block:: sql
+
+   SELECT alumnos.ID FROM alumnos, ramos WHERE alumnos.ID = ramos.ID AND nota > 55 and ramos.nombre='progamacion'
 
 
 En las próximas lecturas, se estudiará con mayor detalle tanto el álgebra relacional, como el lenguaje SQL.
