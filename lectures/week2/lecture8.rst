@@ -12,7 +12,7 @@ Consideremos el siguiente schema::
         Student (sID, sName, GPA, sizeHS)
         Apply (sID, cName, major, decision)
 
-Ahora consideremos la  siguente consulta::
+Ahora consideremos la siguente consulta::
 
         SELECT Student.sID, sName, Apply.cName, GPA
         FROM Student, Apply
@@ -39,7 +39,7 @@ Si el lector se fija en el esquema, hay ciertos atributos cuyos nombres se repit
 
 Es decir, se antepone el nombre de la tabla o su respectiva variable definida en el FROM.
 
-En variadas ocasiones,los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo, se buscan
+En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo, se buscan
 todos los pares de estudiantes con el mismo GPA::
 
         SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
@@ -85,6 +85,50 @@ Los Set Operators son 3:
 =====
 Unión
 =====
+
+El operador "UNION", permite combinar el resultado de dos o más sentencias SELECT. Es necesario que estas tengan el mismo número de columnas, y que
+éstas tengan los mismos tipos de datos, por ejemplo::
+
+     Employees_Norway":
+        E_ID    E_Name
+        01      Hansen, Ola
+        02      Svendson, Tove
+        03      Svendson, Stephen
+        04      Pettersen, Kari
+                    
+        "Employees_USA":
+        E_ID    E_Name
+        01      Turner, Sally
+        02      Kent, Clark
+        03      Svendson, Stephen
+        04      Scott, Stephen
+
+El resultado de la consulta::
+
+        SELECT E_Name FROM Employees_Norway
+        UNION
+        SELECT E_Name FROM Employees_USA
+
+
+es::
+
+        E_Name
+        Hansen, Ola
+        Svendson, Tove
+        Svendson, Stephen
+        Pettersen, Kari
+        Turner, Sally
+        Kent, Clark
+        Scott, Stephen
+
+
+Ojo, exiten dos empleados con el mismo nombre, sin embargo en la salida sólo se nombra uno. Para evitar esto, se utliza "union all"::
+
+        SELECT E_Name FROM Employees_Norway
+        UNION ALL
+        SELECT E_Name FROM Employees_USA
+
+
 
 
 ============
