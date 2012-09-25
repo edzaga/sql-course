@@ -1,5 +1,6 @@
-Lecture 1 - Relational Databases: The relational model
--------------------------------
+Lecture 1 - Relational Databases, "The relational model"
+--------------------------------------------------------
+
 Base de datos Relacionales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 Permiten establecer interconexiones (relaciones) entre los datos (que están guardados en tablas), y a través de dichas conexiones relacionar los datos de ambas tablas.
@@ -50,8 +51,13 @@ Ejemplo en SQL
 ~~~~~~~~~~~~~~
 .. index:: string, text data types, str
 
-**La creación de relaciones (tablas) en SQL**
-:: 
-         Create Table Estudiante(ID, Nombre, Nota)
-         Create Table Colegio(Name string, Ciudad string, Total alumnos integer)
-	 
+.. CMA: Cambié las instrucciones, pues no eran correctas, si es que sólo querían dar un ejemplo que no funciona,
+.. pero que sirve para darse cuenta de como es la sintaxis, creo que no es la mejor forma de hacerlo dentro de un "Ejemplo SQL"
+
+La creación de relaciones (tablas) en SQL
+
+.. code-block:: sql
+
+   CREATE TABLE student(ID int, name varchar(50), grade int);
+   CREATE TABLE school(name varchar(50), city varchar(50), total_students int);
+
