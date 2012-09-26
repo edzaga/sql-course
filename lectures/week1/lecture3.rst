@@ -289,6 +289,95 @@ ID   Nombre   D#  Proyecto
 090  María    34   USM7345
 ==== ======= ==== ========
 
+-----------
+Ejercicio 1
+-----------
+
+Realizar NATURALJOIN a las siguientes tablas:
+
+**Tabla Ingenieros** 
+
+==== ======= ====   
+ID    Nombre  D#     
+==== ======= ====          
+123   León    39           
+234   Tomás   34
+143   Josefa  25
+090   María   34
+==== ======= ====
+
+**Tabla Proyectos** 
+
+====== ========   
+D#     Proyecto      
+====== ========        
+39     ACU0034      
+34     USM7345        
+====== ======== 
+
+**Respuesta**
+
+**Ingenieros join Proyectos**
+
+==== ======= ==== ========   
+ID   Nombre   D#  Proyecto
+==== ======= ==== ========          
+123  León     39   ACU0034           
+234  Tomás    34   USM7345
+090  María    34   USM7345
+==== ======= ==== ========
+
+-----------
+Ejercicio 2
+-----------
+
+Dada las siguientes tablas:
+
+**College**
+
+======= ====== ==========   
+cName   State  enrollment      
+======= ====== ==========   
+ 
+======= ====== ==========          
+
+**Student**
+
+==== ======= ====== ======   
+sID   sName   GPA   sizeHS      
+==== ======= ====== ======        
+ 
+==== ======= ====== ======        
+
+**Apply**
+
+==== ======= ====== ====   
+sID   cName  major  dec      
+==== ======= ====== ====        
+ 
+==== ======= ====== ====        
+
+Describa con palabras el resultado de esta expresión:
+
+.. math::
+\pi_{sName,cName} (\sigma_{ sizeHS > enrollment }   (\sigma_{ state = ‘California’}College \rhd\lhd Student   \rhd\lhd \sigma_{ major = ‘CS’ } Apply))   
+
+
+**Respuesta**
+
+Students paired with all California colleges smaller than the student’s high school to which the student applied to major in CS
+
+-----------
+Ejercicio 3
+-----------
+Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre los IDs de todos los estudiantes tal que alguna universidad coincida con el nombre del estudiante.
+
+
+**Respuesta**
+
+.. math::
+\pi_{sID} (\sigma_{ cName=sName } (College x Student)) 
+
 ==========
 THETA JOIN
 ==========
