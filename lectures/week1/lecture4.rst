@@ -133,7 +133,7 @@ There are two ways in which we can use expressions of relational algebra to expr
       that says "Every tuple in the result of R must also be in the result of S."
       Of course the result of `S` may contain additional tuples not produced by `R`.
 
-These ways of expressing constraints are actually equivalent in what they can espress,
+These ways of expressing constraints are actually equivalent in what they can express,
 but sometimes one or the other is clearer or more succinct.
 That is, the constraint `R \subset S` could just as well have been written `R - S = 0`.
 To see why, notice that if every tuple in `R` is also in `S`, then surely `R - S` is empty.
@@ -142,10 +142,10 @@ Conversely, if `R - S` contains no tuples, then every tuple in `R` must be in `S
 
 On the other hand, a constraint of the first form, `R = 0`, could just as well have been written
 `R \subset 0`.
-Technically, `0` is not an expression of relational algebra, but since there are espressions
+Technically, `0` is not an expression of relational algebra, but since there are expressions
 that evaluate to `0`, such as `R - R`, there is no harm in using `0` as a relational-algebra
-espression.
-Note that these equivalences hold even if `R` and `S` are bags, provided lve make the conventional
+expression.
+Note that these equivalences hold even if `R` and `S` are bags, provided we make the conventional
 interpretation of `R \subset S`: each tuple **t** appears in `S` at least as many times as it
 appears in `R`.
 

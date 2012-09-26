@@ -11,7 +11,7 @@ y a través de dichas conexiones relacionar los datos de ambas tablas.
 
 **Ventajas:**
 
-  * Sistemas de base de datos utilizada por las empresas comerciales más importantes.
+  * Sistemas de bases de datos utilizada por las empresas comerciales más importantes.
   * Modelo simple.
   * Consultas a través de lenguajes de alto nivel.
   * Implementación eficiente
@@ -20,10 +20,10 @@ y a través de dichas conexiones relacionar los datos de ambas tablas.
   * Se compone de varias tablas o relaciones.
   * No existen dos o más tablas con el mismo nombre.
   * Una tabla es un conjunto de registros (filas o columnas).
-  * La relación entre una tabla padre y un hijo se lleva a cabo por medio de clave primarias
+  * La relación entre una tabla padre y un hijo se lleva a cabo por medio de claves primarias
     y foráneas.
-  * Las claves primarias son la clave principal de un registro dentro de una tabla y éstas deben
-    cumplir con la integridad de datos.
+  * Las claves primarias representan la clave principal de un registro dentro de una tabla y éstas deben
+    cumplir con la integridad de los datos.
   * Las claves foráneas se colocan en la tabla hija, contienen el mismo valor que la clave
     primaria del registro padre; por medio de éstas se hacen las relaciones.
 
@@ -85,14 +85,11 @@ Motores de bases de datos Relacionales
 Hoy en día existen muchas empresas y sitios web que necesitan mantener de forma 
 eficiente un gran volumen de datos. Muchos de ellos optan por soluciones comerciales 
 (Oracle Database o IBM DB2 entre otras ), aunque muchas otras confían en el software 
-libre optando por una solución como PostGreSQL o MySQL. Hoy en día existen muchas empresas 
-y sitios web que necesitan mantener de forma eficiente un gran volumen de datos. Muchos 
-de ellos optan por soluciones comerciales, aunque muchas otras confían en el software libre 
-optando por una solución como PostGreSQL o MySQL.
+libre optando por una solución como PostGreSQL o MySQL. 
 
-Es muy común la pregunta entre las personas que se adentran por primera vez en el mundo 
-de las bases de datos libres: ¿MySQL o PostGreSQL?. A continuación se verán algunos 
-detalles de ambos motores.
+Es muy común la pregunta, entre las personas que se adentran por primera vez en el mundo 
+de las bases de datos libres, ¿Qué motor de bases de datos debo usar? ¿MySQL o PostGreSQL?. 
+A continuación se verán algunos detalles de ambos motores.
 
 
 

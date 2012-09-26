@@ -2,14 +2,14 @@ Lecture 7 - Basic SELECT Statement
 ----------------------------------
 
 Perhaps the simplest form of query in SQL asks for those tuples of some one relation that satisfy a condition. Such a query is analogous to a 
-selection in relational algebra. This simple query, like almost all SQL queries, uses the three keywords, SELECT, FROM, and WHEHE that 
+selection in relational algebra. This simple query, like almost all SQL queries, uses the three keywords, SELECT, FROM, and WHERE that 
 characterize SQL.
 
 ===========================
 Desde el álgebra relacional
 ===========================
 
-The selection operator of relational algebra, and much more, is available through the WHERE clause of SQL. The expressions that may follow WHERE
+The selection operator of relational algebra, and several others, make use of the WHERE SQL clause. The expressions that may follow WHERE
 include conditional expressions like those found in common languages such as C or Java
 
 We may build expressions by comparing values using the six common comparison operators:
@@ -19,7 +19,7 @@ We may build expressions by comparing values using the six common comparison ope
   * >    "mayor que"
   * <=   "menor o igual a"
   * >=   "mayor o igual a"
-These operators have the same meanings as in C, but <> is the SQL symbol for "not equal to"; it corresponds to != in C.
+These operators have the same meanings as in C, but <> is the SQL symbol for "not equal to"; it corresponds to != in C and also SQL uses = for "equal" as opposed to == on C.
 
 The values that may be compared include constants and attributes of the relations mentioned after FROM. We may also apply the usual arithmetic
 operators, +, * , and so on, to numeric values before we compare them. We may apply the concatenation operator || to strings; for example 
@@ -40,10 +40,10 @@ Trabajemos bajo el siguiente ejemplo::
         FROM Juegos
         WHERE StudioName = 'Ubisoft' AND year = 2000;
 
-This query exibits the characteristic select-from-where form of most SQL queries. The FROM clause gives the relation or relations to 
-which the query refers 1x1 our example. the query is about the relation Juegos.
+This query exhibits the typical select-from-where form of most SQL queries. The FROM clause gives the relation or relations to 
+which the query refers to(1x1 in our example). The query is about the relation Juegos.
 
-In the example, the attribute studioName of the relation Juegos is tested for equality against the constant 'Infinity Ward'. This constant is 
+In the example, the attribute studioName of the relation Juegos is tested for equality against the constant 'Ubisoft'. This constant is 
 string-valued: strings in SQL are denoted by surrounding them with single quotes. Numeric constants, integers and reals, are also allowed, and 
 SQL uses the common notations for reals such as -12.34 or 1.23E45.
 
@@ -74,10 +74,10 @@ ejemplo, si en una base de datos hipotética <agregar ejemplo>::
 Notas
 ======
 
-SQL es case insensitive, es decir que no distingue entre mayusculas y minusculas. Por ejemplo, FROM (palabra reservada) es 
+SQL es case insensitive, es decir que no distingue entre mayúsculas y minúsculas. Por ejemplo, FROM (palabra reservada) es 
 equivalente a from, inclusive a From. Los nombres de los atributos, relaciones, etc. son, también, case insensitive.
 
-El único caso en que s distingue entre mayuscula y minusculas es al momento de encerrar un string entre ' '. Por ejemplo 'FROM' es diferente
+El único caso en que se distingue entre mayúsculas y minúsculas es al momento de encerrar un string entre ' '. Por ejemplo 'FROM' es diferente
 a 'from'; por supuesto ambas son diferentes de FROM.
 
 
@@ -94,7 +94,7 @@ relational algebra espression
 .. math::
    \pi_{L} (\theta_{C} (R))
 
-That is, we start with the relation in the FROMO clause, apply to each tuple whatever condition is indicated in the WHEHE clause, and 
+That is, we start with the relation in the FROM clause, apply to each tuple whatever condition is indicated in the WHEHE clause, and 
 then project onto the list of attributes and/or expressions in the SELECT clause. 
 
 

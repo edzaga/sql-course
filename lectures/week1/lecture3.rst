@@ -11,7 +11,7 @@ Basics of relational algebra
 
 .. index:: basics of relational algebra
 
-An algebra, in general, consists of operators and atomic operands. For in stance,
+An algebra, in general, consists of operators and atomic operands. For instance,
 in the algebra of arithmetic, the atomic operands are variables like `r`,
 and constants like 15. The operators are the usual arithmetic ones:
 
