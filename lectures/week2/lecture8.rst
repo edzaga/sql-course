@@ -170,11 +170,35 @@ Al realizar la consulta::
         INTERSECT
         SELECT Date FROM Internet_Sales
 
-Su resultado es::
+Su resultado esperado es::
   
         Date
         Jan-07-1999
 
+
+Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos), 
+pero que puede escribirse como otra consulta (agregarla)
+
 =========
 Excepción
 =========
+
+Similar a los operadores anteriores, su estructura se compone de dos o mas sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
+en el álgebra relacional. 
+
+Utilizando el esquema del ejemplo anterior, y realizando la siguiente consulta::
+
+        SELECT Date FROM Store_Information
+        EXCEPT
+        SELECT Date FROM Internet_Sales
+
+Su resultado esperado es::
+
+        Date
+        Jan-10-1999
+        Jan-11-1999
+        Jan-12-1999
+
+Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
+pero que puede escribirse como otra consulta (agregarla)
+
