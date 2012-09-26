@@ -12,7 +12,7 @@ Sobre la máquina virtual
 Datos de la máquina virtual:
 
   * *Programa de Virtualizador*: VMWare
-  * *Sistema Operativo*: Ubuntu 12.04 32-bits.
+  * *Sistema Operativo*: CentOS 6.3 32-bits.
   * *Motor de Base de Datos*: PostGreSQL **agregar versión**
   * *Tamaño de la máquina* **Agregar tamaño**
 
