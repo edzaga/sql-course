@@ -1,6 +1,16 @@
 Lecture 1 - Relational Databases, "The relational model"
 --------------------------------------------------------
 
+¿Qué son las Bases de datos?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: ¿Qué son las Bases de datos?
+
+Una base de datos (BD) es un conjunto de datos  interrelacionados almacenados en
+conjunto, sin redundancias innecesarias,de forma independiente de los programas
+que acceden a ellos.
+
+
 Base de datos Relacionales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -61,7 +71,7 @@ Esta tabla posee un conjunto de atributos cuyos valores son únicos combinados q
 Ciudad y se le llama llave compuesta.
 
 Ejemplo en SQL
-~~~~~~~~~~~~~~
+==============
 .. index:: string, text data types, str
 
 
@@ -92,8 +102,6 @@ de las bases de datos libres, ¿Qué motor de bases de datos debo usar? ¿MySQL 
 A continuación se verán algunos detalles de ambos motores.
 
 
-
-
 PostGreSQL
 ==========
 
@@ -103,10 +111,7 @@ el profesor Michael Stonebraker, y fue patrocinado por Defense Advanced Research
 Agency (DARPA), el Army Research Office (ARO), el National Science Foundation (NSF), y ESL, Inc.
 
 
-
-
 **Un poco de historia**
-
 
 PostGreSQL fue derivado del proyecto Postgres. A sus espaldas, este proyecto lleva más de 
 una década de desarrollo, siendo hoy en día, el sistema libre más avanzado con diferencia, 
@@ -128,10 +133,7 @@ En 1996, los desarrolladores decidieron cambiar el nombre a al DBMS, y lo llamar
 para reflejar la relación entre Postgres y las versiones recientes de SQL. 
 
 
-
-
 **Características**
-
 
   * Implementación del estándar SQL92/SQL99.
   * Licencia BSD.
@@ -141,10 +143,7 @@ para reflejar la relación entre Postgres y las versiones recientes de SQL.
   * Incorpora una estructura de datos array.
   * Incluye herencia entre tablas (aunque no entre objetos, ya que no existen), por lo que a este gestor de bases de datos se le incluye entre los gestores objeto-relacionales.
   * Implementa el uso de rollback's, subconsultas y transacciones, haciendo su funcionamiento mucho más eficaz.
- Se pueden realizar varias opreraciones al mismo tiempo sobre la misma tabla sin necesidad de bloquearla. 
-
-
-
+  * Se pueden realizar varias opreraciones al mismo tiempo sobre la misma tabla sin necesidad de bloquearla. 
 
 
 MySQL
@@ -160,10 +159,7 @@ diferencia de la versión libre más que en el soporte técnico que se ofrece, y
 de integrar este gestor en un software propietario, ya que de no ser así, se vulneraría la licencia GPL.
 
 
-
-
 **Un poco de historia**
-
 
 MySQL surgió como un intento de conectar el gestor mSQL a las tablas propias de MySQL AB, usando 
 sus propias rutinas a bajo nivel. Tras unas primeras pruebas, vieron que mSQL no era lo bastante 
@@ -176,10 +172,7 @@ se llama My. No saben cuál de estas dos causas (aunque bien podrían tratarse d
 lugar al nombre de este conocido gestor de bases de datos.
 
 
-
-
 **Características**
-
 
   * Lo mejor de MySQL es su velocidad a la hora de realizar las operaciones, lo que le hace uno de los gestores que ofrecen mayor rendimiento.
   * Consume muy pocos recursos ya sea de CPU como asi tambien de memoria.
@@ -189,9 +182,6 @@ lugar al nombre de este conocido gestor de bases de datos.
   * Mejor integracion con PHP.
   * Permite la gestión de diferentes usuarios, como también los permisos asignados a cada uno de ellos.
   * Tiene soporte para transacciones y ademas posee una caracteristica unica de MySQL que es poder agrupar transacciones.
-
-
-
 
 
 Elección
