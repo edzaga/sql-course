@@ -380,7 +380,8 @@ sID   cName  major  dec
 Describa con palabras el resultado de esta expresión:
 
 .. math::
-\pi_{sName,cName} (\sigma_{ sizeHS > enrollment }   (\sigma_{ state = ‘California’}College \rhd\lhd Student   \rhd\lhd \sigma_{ major = ‘CS’ } Apply))
+
+   \pi_{sName,cName} (\sigma_{ sizeHS > enrollment }   (\sigma_{ state = ‘California’}College \rhd\lhd Student   \rhd\lhd \sigma_{ major = ‘CS’ } Apply))
 
 
 **Respuesta**
@@ -396,7 +397,8 @@ Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre
 **Respuesta**
 
 .. math::
-\pi_{sID} (\sigma_{ cName=sName } (College x Student))
+
+   \pi_{sID} (\sigma_{ cName=sName } (College x Student))
 
 ==========
 THETA JOIN

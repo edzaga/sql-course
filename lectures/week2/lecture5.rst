@@ -1,6 +1,10 @@
 Lecture 5 - Introduction
 -----------------------------
 
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
+
 SQL (Structured Query Language) es un tipo de lenguaje vinculado con la gestión de bases de datos de carácter relacional que permite la especificación de distintas clases de operaciones entre éstas. Gracias a la utilización del álgebra y de cálculos relacionales, el lenguaje SQL brinda la posibilidad de realizar consultas que ayuden a recuperar información de las bases de datos de manera sencilla.
 
 Characteristics
@@ -17,7 +21,7 @@ Data Definition Languaje (DDL)
 Data definition language or data description language (DDL) is a syntax similar to a computer programming language for defining data structures, especially database schemas.
 
 Examples::
- 
+
      'Create table ...'
      'Drop table ... '
 
@@ -48,31 +52,27 @@ A SELECT statement retrieves zero or more rows from one or more database tables 
 
 The Basic SELECT Statement::
 
-  Select A_1,...,A_n From R_1,...,R_m Where condition
+  Select `A_{1},\ldots, A_{n}` From `R_{1}, \ldots, R_{m}` Where condition
 
 **Significado:**
 
-Select A_1,...,A_n: What to return
-
-From R_1,...,R_m: relations
-
-Where condition: combine, filter
+   * Select `A_{1}, \ldots, A_{n}`: What to return
+   * From `R_{1}, \ldots,R_{m}`: relations
+   * Where `condition`: combine, filter
 
 **Algebra relacional:**
 
 .. math::
 
-    \pi_{A_1,...,A_n} (\sigma_{condition}(R_1 x ... x R_m))
+    \pi_{A_{1},\ldots, A_{n}} (\sigma_{condition}(R_{1} \times \ldots \times R_{m}))
 
-**INSERT** - adds one or more records to any single table in a relational database.
-
-**DELETE** -  removes one or more records from a table. A subset may be defined for deletion using a condition, otherwise all records are removed.
-
-**UPDATE** - changes the data of one or more records in a table. Either all the rows can be updated, or a subset may be chosen using a condition.
+   * :sql:`INSERT` - adds one or more records to any single table in a relational database.
+   * :sql:`DELETE` - removes one or more records from a table. A subset may be defined for deletion using a condition, otherwise all records are removed.
+   * :sql:`UPDATE` - changes the data of one or more records in a table. Either all the rows can be updated, or a subset may be chosen using a condition.
 
 Other Commands
 ~~~~~~~~~~~~~~
 
 indexes, constraints, views, triggers, transactions, authorization, ...
 
- 
+
