@@ -32,7 +32,7 @@ Cuidado con los duplicados!!
 ============================
 
 Si el lector se fija en el esquema, hay ciertos atributos cuyos nombres se repiten en las diferentes tablas. Tal es el caso de 
-\textbf{cName y sID}. En las consultas se aprecia que la diferencia se realiza a través de::
+**cName y sID**. En las consultas se aprecia que la diferencia se realiza a través de::
 
         Student.sID ó S.sID
         Apply.sID ó A.sID

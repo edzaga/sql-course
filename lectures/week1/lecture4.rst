@@ -114,10 +114,12 @@ ID   Nombre Edad
 DEPENDENT AND INDEPENDENT OPERATIONS
 ====================================
 
-Some of the operations that we have described in the lectures 3 and 4, can be expressed in terms of other relational-algebra operations. For example,
-intersection can be expressed in terms of set difference: R <INTERSECTION> S = R - (R - S). That is, if R and S are any two relations with the
-same schema, the intersection of R and S can be computed by first subtracting S from R to form a relation T consisting of all those tuples in R but
-not S. We then subtract T from R, leaving only those tuples of R that are also in S.
+Some of the operations that we have described in the lectures 3 and 4, can be expressed in 
+terms of other relational-algebra operations. For example, intersection can be expressed in terms 
+of set difference: R <INTERSECTION> S = R - (R - S). That is, if R and S are any two relations with the
+same schema, the intersection of R and S can be computed by first subtracting S from R to form a 
+relation T consisting of all those tuples in R but not S. We then subtract T from R, leaving only those 
+tuples of R that are also in S.
 
 
 RELATIONAL ALGEBRA AS A CONSTRAINT LANGUAJE
