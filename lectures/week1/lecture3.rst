@@ -338,23 +338,25 @@ Dada las siguientes tablas:
 ======= ====== ==========   
 cName   State  enrollment      
 ======= ====== ==========   
- 
-======= ====== ==========          
+ -	-	-
+======= ====== ==========   
+      
 
 **Student**
 
 ==== ======= ====== ======   
 sID   sName   GPA   sizeHS      
 ==== ======= ====== ======        
- 
+ -	-	-	-
 ==== ======= ====== ======        
+
 
 **Apply**
 
 ==== ======= ====== ====   
 sID   cName  major  dec      
 ==== ======= ====== ====        
- 
+ -	-	-    -
 ==== ======= ====== ====        
 
 Describa con palabras el resultado de esta expresión:
