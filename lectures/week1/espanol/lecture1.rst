@@ -1,19 +1,19 @@
 Lecture 1 - Relational Databases, "The relational model"
 --------------------------------------------------------
 
-¿Qué son las Bases de datos?
+¿Qué son las Bases de Datos (BD)?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. index:: ¿Qué son las Bases de datos?
 
-Una base de datos (BD) es un conjunto de datos  interrelacionados almacenados en
+Una BD es un conjunto de datos  interrelacionados almacenados en
 conjunto, sin redundancias innecesarias,de forma independiente de los programas
 que acceden a ellos.
 
-El SGBD
-=======
+El Sistema Gestor de Base de Datos (SGBD)
+=========================================
 
-Un Sistema Gestor de base de datos (SGBD) es un conjunto de programas que permiten crear y mantener 
+Un Sistema Gestor de Base de Datos SGBD es un conjunto de programas que permiten crear y mantener 
 una Base de datos, asegurando su integridad, confidencialidad y seguridad. Por tanto debe permitir:
 
   * Definir una base de datos: especificar tipos, estructuras y restricciones de datos..
@@ -27,14 +27,14 @@ Algunas de las características deseables en un Sistema Gestor de base de datos 
   * Cumplimiento de las restricciones de integridad: el SGBD ha de ofrecer recursos para definir y garantizar el cumplimiento de las restricciones de integridad.
 
 
-El modelo E-R
-=============
+El modelo Entidad-Relación (E-R)
+================================
      
-Cuando se utiliza una base de datos para gestionar información, se está plasmando una parte del mundo 
+Cuando se utiliza una BD para gestionar información, se está plasmando una parte del mundo 
 real en una serie de tablas, registros y campos; creándose un modelo parcial de la realidad. Antes de 
-crear físicamente estas tablas en el la base de datos se debe realizar un modelo de datos. 
+crear físicamente estas tablas en la BD se debe realizar un modelo de datos. 
 
-El modelo de datos más extendido es el denominado *ENTIDAD-RELACIÓN (E-R)* En el modelo E-R se parte de 
+El modelo de datos más extendido es el denominado *E-R* En el modelo E-R se parte de 
 una situación real a partir de la cual se definen entidades y relaciones entre dichas entidades: 
 
 **Entidades**
@@ -169,7 +169,7 @@ A continuación se verán algunos detalles de ambos motores.
 PostGreSQL
 ==========
 
-PostGreSQL es un sistema de gestión de bases de datos objeto-relacional (ORDBMS) basado 
+PostGreSQL es un sistema de gestión de bases de datos objeto-relacional basado 
 en el proyecto POSTGRES, de la universidad de Berkeley. El director de este proyecto es 
 el profesor Michael Stonebraker, y fue patrocinado por Defense Advanced Research Projects 
 Agency (DARPA), el Army Research Office (ARO), el National Science Foundation (NSF), y ESL, Inc.
@@ -193,7 +193,7 @@ en C, y la primera versión fue un 25% más pequeña que Postgres, y entre un 30
 A parte de la corrección de algunos bugs, se mejoró el motor interno, se añadió un nuevo programa 
 monitor, y se compiló usando la utilidad GNU Make y el compilador gcc.
 
-En 1996, los desarrolladores decidieron cambiar el nombre a al DBMS, y lo llamaron PostGreSQL 
+En 1996, los desarrolladores decidieron cambiar el nombre a al SGDB, y lo llamaron PostGreSQL 
 para reflejar la relación entre Postgres y las versiones recientes de SQL. 
 
 
