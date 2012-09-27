@@ -62,7 +62,6 @@ Operaciones relacionales:
 
 Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 
-======
 SELECT
 ======
 
@@ -79,9 +78,9 @@ Realiza una selección de las **filas** de una tabla, según sea la condición.
 
 c is a condition (as in “if” statements) that refers to attributes of R (tabla o relación).
 
-------------
+
 Ejercicio 1
-------------
+===========
 
 **Ingenieros**
 
@@ -135,7 +134,7 @@ ID   Nombre Edad Años trabajados(AT)
 234  Tomás   34           10
 ==== ====== ==== ===================
 
-=======
+
 PROJECT
 =======
 
@@ -184,7 +183,6 @@ ID   Nombre
 143  Josefa
 ==== ======
 
------------
 Ejercicio 2
 -----------
 
@@ -208,7 +206,6 @@ ID   Nombre
 ==== ======
 
 
-=============
 Cross-product
 =============
 (Cartesian product):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S.
@@ -245,7 +242,7 @@ ID   Nombre D#   Proyecto Duración
 143  Josefa  25  USM7345  60
 ==== ====== ==== ======== ========
 
-===========
+
 NATURALJOIN
 ===========
 El resultado es una relación con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones que tengan el mismo valor en los atributos comunes.
@@ -307,7 +304,7 @@ ID   Nombre   D#  Proyecto
 090  María    34   USM7345
 ==== ======= ==== ========
 
------------
+
 Ejercicio 1
 -----------
 
@@ -345,7 +342,7 @@ ID   Nombre   D#  Proyecto
 090  María    34   USM7345
 ==== ======= ==== ========
 
------------
+
 Ejercicio 2
 -----------
 
@@ -388,7 +385,6 @@ Describa con palabras el resultado de esta expresión:
 
 Students paired with all California colleges smaller than the student’s high school to which the student applied to major in CS
 
------------
 Ejercicio 3
 -----------
 Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre los IDs de todos los estudiantes tal que alguna universidad coincida con el nombre del estudiante.
@@ -400,7 +396,7 @@ Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre
 
    \pi_{sID} (\sigma_{ cName=sName } (College x Student))
 
-==========
+
 THETA JOIN
 ==========
 
@@ -464,7 +460,7 @@ Ejercicio 1
 
 
 
-EXERCISES [1]_
+EXERCISES [1]
 ==============
 
 Consider a database with the following schema:
