@@ -10,6 +10,70 @@ Una base de datos (BD) es un conjunto de datos  interrelacionados almacenados en
 conjunto, sin redundancias innecesarias,de forma independiente de los programas
 que acceden a ellos.
 
+El SGBD
+=======
+
+Un Sistema Gestor de base de datos (SGBD) es un conjunto de programas que permiten crear y mantener 
+una Base de datos, asegurando su integridad, confidencialidad y seguridad. Por tanto debe permitir:
+
+  * Definir una base de datos: especificar tipos, estructuras y restricciones de datos..
+  * Construir la base de datos: guardar los datos en algún medio controlado por el mismo SGBD
+  * Manipular la base de datos: realizar consultas, actualizarla, generar informes.
+
+Algunas de las características deseables en un Sistema Gestor de base de datos SGBD son:
+
+  * Control de la redundancia: La redundancia de datos tiene varios efectos negativos (duplicar el trabajo al actualizar, deperdicia espacio en disco, puede provocar inconsistencia de datos) aunque a veces es deseable por cuestiones de rendimiento.
+  * Restricción de los accesos no autorizados: cada usuario ha de tener unos permisos de acceso y autorización.
+  * Cumplimiento de las restricciones de integridad: el SGBD ha de ofrecer recursos para definir y garantizar el cumplimiento de las restricciones de integridad.
+
+
+El modelo E-R
+=============
+     
+Cuando se utiliza una base de datos para gestionar información, se está plasmando una parte del mundo 
+real en una serie de tablas, registros y campos; creándose un modelo parcial de la realidad. Antes de 
+crear físicamente estas tablas en el la base de datos se debe realizar un modelo de datos. 
+
+El modelo de datos más extendido es el denominado *ENTIDAD-RELACIÓN (E-R)* En el modelo E-R se parte de 
+una situación real a partir de la cual se definen entidades y relaciones entre dichas entidades: 
+
+**Entidades**
+
+Los objetos que aparecen en la vida real, corresponden a una *entidad*. Por ejemplo: alumnos, empleados, 
+aviones, coches, alojamientos, etc.
+Una entidad da lugar a una *tabla* en la BD.
+
+Estas entidades están compuestas por varios *atributos*, que vienen a ser sus propiedades. Por ejemplo: 
+la entidad alumnos, tendrá los atributos nombre, R.U.N, nacionalidad, fecha de nacimiento, etc.
+Los atributos también reciben el nombre de *columnas* en la terminología de BD
+De entre los atributos habrá uno o un conjunto de ellos que no se repite; a este atributo o conjunto de 
+atributos se le llama clave de la entidad, en el caso de los alumnos, sería el R.U.N. En toda entidad 
+siempre hay al menos  una clave que en el peor de los casos estará formada por todos los atributos de la 
+tabla. Ya que pueden haber varias claves y necesitamos elegir una, lo haremos atendiendo a estas normas:
+
+  * Que sea única.
+  * Que se tenga pleno conocimiento de ella.- ¿Por qué en las empresas se asigna a cada cliente un número de cliente?.
+  * Que sea mínima, ya que será muy utilizada por el gestor de base de datos. 
+
+
+Cada entidad tendrá un número ilimitado de *elementos*. Por ejemplo: un elemento de la entidad alumnos 
+será un alumno en sí; así el alumno Pepe será un elemento, José será otro.
+Cada uno de esos elementos también recibe el nombre de *fila* en la terminología de BD
+
+
+*Combinando estos tres conceptos tenemos una estructura del tipo tabla, la base de las BD.*
+
+
+**Relaciones**
+
+Las entidades no están aisladas sino que están relacionadas entre sí. Estas relaciones no existen en el 
+mundo real que estamos modelando, pero son necesarias para reflejar las interacciones existentes entre 
+entidades. Las relaciones pueden ser de tres tipos:
+
+  * Relaciones 1 - 1: Las entidades que intervienen en la relación se asocian una a una (Ej: la entidad HOMBRE, la entidad MUJER y entre ellos la relación MATRIMONIO).
+  * Relaciones 1 - N: Una ocurrencia de una entidad está asociada con muchas (n) de otra (Ej: la entidad EMPERSA, la entidad TRABAJADOR y entre ellos la relación TRABAJAR-EN).
+  * Relaciones M - N: Cada ocurrencia, en cualquiera de las dos entidades de la relación, puede estar asociada con muchas (n) de la otra y viceversa (Ej: la entidad ALUMNO, la entidad EMPRESA y entre ellos la relación MATRÍCULA). 
+
 
 Base de datos Relacionales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
