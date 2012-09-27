@@ -70,9 +70,9 @@ Las entidades no están aisladas sino que están relacionadas entre sí. Estas r
 mundo real que estamos modelando, pero son necesarias para reflejar las interacciones existentes entre 
 entidades. Las relaciones pueden ser de tres tipos:
 
-  * Relaciones 1 - 1: Las entidades que intervienen en la relación se asocian una a una (Ej: la entidad HOMBRE, la entidad MUJER y entre ellos la relación MATRIMONIO).
-  * Relaciones 1 - N: Una ocurrencia de una entidad está asociada con muchas (n) de otra (Ej: la entidad EMPERSA, la entidad TRABAJADOR y entre ellos la relación TRABAJAR-EN).
-  * Relaciones M - N: Cada ocurrencia, en cualquiera de las dos entidades de la relación, puede estar asociada con muchas (n) de la otra y viceversa (Ej: la entidad ALUMNO, la entidad EMPRESA y entre ellos la relación MATRÍCULA). 
+  * Relaciones 1 - 1: Las entidades que intervienen en la relación se asocian una a una (Ej: la entidad HOMBRE, la entidad MUJER y entre ellos la relación MATRIMONIO). **(agregar la foto)**
+  * Relaciones 1 - N: Una ocurrencia de una entidad está asociada con muchas (n) de otra (Ej: la entidad EMPERSA, la entidad TRABAJADOR y entre ellos la relación TRABAJAR-EN). **(agregar la foto)**
+  * Relaciones M - N: Cada ocurrencia, en cualquiera de las dos entidades de la relación, puede estar asociada con muchas (n) de la otra y viceversa (Ej: la entidad ALUMNO, la entidad EMPRESA y entre ellos la relación MATRÍCULA). **(agregar la foto)**
 
 
 Base de datos Relacionales

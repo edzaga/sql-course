@@ -1,6 +1,20 @@
 Assignment 1
 ============
 
+-----------------------
+Modelo Entidad Relación
+-----------------------
+
+^^^^^^^^^^^
+Question 1:
+^^^^^^^^^^^
+
+Hacer un modelo E-R entidad relación:
+
+  1. Tenemos una universidad, en la que hay varios cursos. Cada curso está dirigido por un profesor, el cual puede dirigir varios cursos. Los cursos son subveniados, por lo que sólo se permite que un alumno se matricule de un curso
+  2. supongamos que un curso está compuesto por varias asignaturas. Cada una de ellas tiene un número de créditos. Los alumnos se matriculan de las asignaturas que quieren. Por último el alumno recibe una nota para cada asignatura, al final del curso.
+
+
 --------------------------
 Questions of alternatives:
 --------------------------
