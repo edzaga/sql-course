@@ -261,9 +261,9 @@ P5 C6 T4 500
 
 **ENVIO:** Suministros realizados por los diferentes proveedores de determinadas cantidades de componentes asignadas para la elaboración del artículo correspondiente.
 
-^^^^^^^^^
+^^^^^^^^^^
 Preguntas:
-^^^^^^^^^
+^^^^^^^^^^
 
 1) Seleccionar todos los detalles de los articulos que se montan en la ciudad Caceres.
 2) Obtener todos los valores de P# para los proveedores que abastecen el articulo T1.
