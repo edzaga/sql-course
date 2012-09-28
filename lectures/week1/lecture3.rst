@@ -62,6 +62,7 @@ Operaciones relacionales:
 
 Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 
+======
 SELECT
 ======
 
@@ -69,18 +70,18 @@ Realiza una selección de las **filas** de una tabla, según sea la condición.
 
 **Notación en algebra relacional**
 
-
 .. CMA: Que significa esta relación matemática?
 
 .. math::
 
-    \sigma_{c} \hspace{0.5cm} R
+    \sigma_{c} \hspace{0.3cm} R
+
 
 c is a condition (as in “if” statements) that refers to attributes of R (tabla o relación).
 
-
+^^^^^^^^^^^
 Ejercicio 1
-===========
+^^^^^^^^^^^
 
 **Ingenieros**
 
@@ -98,7 +99,8 @@ Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años:
 **Respuesta**
 
 .. math::
- 	\sigma_{edad}>30 \hspace{1cm} Ingenieros
+ 	\sigma_{edad}>30  \hspace{0.3cm} Ingenieros
+
 
 Así quedaría la tabla:
 
@@ -112,16 +114,16 @@ ID   Nombre Edad Años trabajados(AT)
 345  José    45           21
 ==== ====== ==== ===================
 
------------
+^^^^^^^^^^^
 Ejercicio 2
------------
+^^^^^^^^^^^
 
 Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años y que lleven menos de 16 años trabajando:
 
 **Respuesta**
 
 .. math::
-	\sigma_{edad >30 \wedge AT <16}  \hspace{1cm}  Ingenieros
+	\sigma_{edad >30 \wedge AT <16}   \hspace{0.3cm}  Ingenieros
 
 Así finalmente quedaría la tabla:
 
@@ -134,7 +136,7 @@ ID   Nombre Edad Años trabajados(AT)
 234  Tomás   34           10
 ==== ====== ==== ===================
 
-
+=======
 PROJECT
 =======
 
@@ -144,13 +146,13 @@ Realiza la selección de las **columnas** de una tabla.
 
 .. math::
 
-    \pi_{A_1,...,A_n} \hspace{0.5cm} R
+       \prod \hspace{0.2cm} _{A_1,...,A_n} \hspace{0.3cm} R
 
 `A_1,...,A_n` son las columnas que se estan seleccionando en la tabla o relación R.
 
------------
+^^^^^^^^^^^
 Ejercicio 1
------------
+^^^^^^^^^^^
 
 **Ingenieros**
 
@@ -168,7 +170,7 @@ Escoger columnas de ID y nombre de la tabla de ingenieros:
 **Respuesta**
 
 .. math::
-        \pi_{ID,Nombre} \hspace{1cm} Ingenieros
+           \prod \hspace{0.2cm}_{ID,Nombre} \hspace{0.3cm} Ingenieros
 
 La tabla finalmente queda como:
 
@@ -183,15 +185,16 @@ ID   Nombre
 143  Josefa
 ==== ======
 
+^^^^^^^^^^^
 Ejercicio 2
------------
+^^^^^^^^^^^
 
 Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
 
 **Respuesta**
 
 .. math::
-	\pi_{ID,Nombre} (\sigma_{edad}>30 \hspace{1cm} Ingenieros)
+	   \prod \hspace{0.2cm} _{ID,Nombre} (\sigma_{edad}>30 \hspace{0.3cm} Ingenieros)
 
 Finalmente la tabla queda de la siguiente manera:
 
@@ -206,9 +209,20 @@ ID   Nombre
 ==== ======
 
 
+=============
 Cross-product
 =============
-(Cartesian product):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S.
+
+(Producto Cartesiano):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S.
+
+**Notación en algebra relacional**
+
+.. math::
+	R \times S
+
+^^^^^^^
+Ejemplo
+^^^^^^^
 
 **Tabla Ingenieros**
 
@@ -229,7 +243,7 @@ ACU0034  300
 USM7345  60
 ======== ========
 
-**Ejemplo Ingenieros ``x`` Proyectos**
+**Ingenieros x Proyectos**
 
 ==== ====== ==== ======== ========
 ID   Nombre D#   Proyecto Duración
@@ -242,22 +256,23 @@ ID   Nombre D#   Proyecto Duración
 143  Josefa  25  USM7345  60
 ==== ====== ==== ======== ========
 
-
+===========
 NATURALJOIN
 ===========
+
 El resultado es una relación con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones que tengan el mismo valor en los atributos comunes.
 
 **Notación en algebra relacional**
 
 .. CMA: Que es esto?????
 .. math::
-   R \rhd\lhd S
+   R \rhd \hspace{-0.1cm} \lhd S
 
 **Equivalencia con operadores básicos**
 
 .. CMA: Que es esto?????
 .. math::
-   R \rhd\lhd S=
+   R \rhd \hspace{-0.1cm} \lhd S=
 
 **Método**
 
@@ -265,10 +280,9 @@ El resultado es una relación con los atributos de ambas relaciones y se obtiene
    2. Se seleccionan aquellas filas del producto cartesiano para las que los atributos comunes tengan el mismo valor
    3. Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos comunes
 
-
------------
+^^^^^^^^^^^
 Ejercicio 1
------------
+^^^^^^^^^^^
 
 Realizar NATURALJOIN a las siguientes tablas:
 
@@ -304,9 +318,9 @@ ID   Nombre   D#  Proyecto
 090  María    34   USM7345
 ==== ======= ==== ========
 
-
+^^^^^^^^^^^
 Ejercicio 1
------------
+^^^^^^^^^^^
 
 Realizar NATURALJOIN a las siguientes tablas:
 
@@ -342,9 +356,9 @@ ID   Nombre   D#  Proyecto
 090  María    34   USM7345
 ==== ======= ==== ========
 
-
+^^^^^^^^^^^
 Ejercicio 2
------------
+^^^^^^^^^^^
 
 Dada las siguientes tablas:
 
@@ -378,15 +392,17 @@ Describa con palabras el resultado de esta expresión:
 
 .. math::
 
-   \pi_{sName,cName} (\sigma_{ sizeHS > enrollment }   (\sigma_{ state = ‘California’}College \rhd\lhd Student   \rhd\lhd \sigma_{ major = ‘CS’ } Apply))
+   \prod _{sName,cName} (\sigma_{ sizeHS > enrollment }   (\sigma_{ state = ‘California’}College \rhd\lhd Student   \rhd\lhd \sigma_{ major = ‘CS’ } Apply))
 
 
 **Respuesta**
 
 Students paired with all California colleges smaller than the student’s high school to which the student applied to major in CS
 
+^^^^^^^^^^^
 Ejercicio 3
------------
+^^^^^^^^^^^
+
 Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre los IDs de todos los estudiantes tal que alguna universidad coincida con el nombre del estudiante.
 
 
@@ -394,13 +410,13 @@ Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre
 
 .. math::
 
-   \pi_{sID} (\sigma_{ cName=sName } (College x Student))
+   \prod_{sID} (\sigma_{ cName=sName } (College \times Student))
 
-
+==========
 THETA JOIN
 ==========
 
-Define una relación que contiene las tuplas que satisfacen el predicado F en el producto cartesiano de R y S. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. El predicado F es de la forma R.ai operador_de_comparación S.bi. El predicado no tiene por que definirse sobre atributos comunes. Term “join” often means theta join.
+Define una relación que contiene las tuplas que satisfacen el predicado F en el producto cartesiano de R \times S. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. El predicado F es de la forma R.ai operador_de_comparación S.bi. El predicado no tiene por que definirse sobre atributos comunes. Term “join” often means theta join.
 
 **Notación en algebra relacional**
 
@@ -414,7 +430,7 @@ Define una relación que contiene las tuplas que satisfacen el predicado F en el
 
 **Método**
 
-   1. Se forma el producto cartesiano `R` y `S`.
+   1. Se forma el producto cartesiano `R` \times `S`.
    2. Se selecciona, en el producto, solo la tupla que cumplan la condición `F`.
 
 -----------
@@ -459,7 +475,7 @@ Ejercicio 1
 ===== === ===== === ===== ===== ===
 
 
-
+==============
 EXERCISES [1]
 ==============
 

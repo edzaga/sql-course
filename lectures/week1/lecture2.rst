@@ -84,7 +84,10 @@ Utilizando Algebra relacional:
 
 .. math::
 
-   \prod_{ID} \sigma_{\geq 55 \wedge \text{ramos.nombre ='programacion'} (alumnos \infty ramos)}
+   \prod \hspace{0.2cm} _{ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{ramos.nombre ='programacion'} (alumnos \rhd \hspace{-0.1cm} \lhd ramos)}
+
+.. math::
+	En algebra relacional \prod realiza un PROJECT sobre una tabla, es decir selecciona una columna. \sigma selecciona una fila que cumpla con una cierta condición, en el ejemplo dado se seleccionan las filas que cumplen con tener nota mayor a 55 y que el ramos.nombre sea 'programación'. \rhd \hspace{-0.1cm} \lhd realiza un JOIN entre dos relaciones en la lectura 3 se profundiza acerca de estos operadores.
 
 Utilizando SQL
 
