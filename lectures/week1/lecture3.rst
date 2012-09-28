@@ -327,7 +327,7 @@ ID   Nombre D#   Proyecto Duración
 NATURALJOIN
 ===========
 
-El resultado es una relación con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones que tengan el mismo valor en los atributos comunes.
+Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando sólo las tuplas que coinciden de alguna manera.  NATURALJOIN une sólo los pares de tuplas de R y S que sean comunes. Más precisamente una tupla r de R y una tupla s de S se emparejan correctamente si y sólo si r y s coinciden en cada uno de los valores de los atributos comunes, el resultado de la vinculación es una tupla, llamada “joined tuple”.  Entonces, al realizar  NATURALJOIN se obtiene una relación con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones que tengan el mismo valor en los atributos comunes.
 
 **Notación en algebra relacional**
 
@@ -346,6 +346,40 @@ El resultado es una relación con los atributos de ambas relaciones y se obtiene
    1. Se realiza el producto cartesiano `R \times S`
    2. Se seleccionan aquellas filas del producto cartesiano para las que los atributos comunes tengan el mismo valor
    3. Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos comunes
+
+^^^^^^^^
+Ejemplo
+^^^^^^^^
+
+**R**
+
+=== === ===
+ A   B   C
+=== === ===
+ 1   2   3
+ 4   5   6
+=== === ===
+
+**S**
+
+=== === 
+ C   D  
+=== === 
+ 7   5
+ 6   2
+ 3   4
+=== === 
+
+.. math::
+	R \rhd \hspace{-0.1cm} \lhd S
+
+=== === === ===
+ A   B   C   D
+=== === === ===
+ 1   2   3   4
+ 4   5   6   2
+=== === === ===
+
 
 ^^^^^^^^^^^
 Ejercicio 1
