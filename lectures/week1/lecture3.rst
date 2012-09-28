@@ -339,7 +339,7 @@ Este operador se utiliza cuando se tiene la necesidad de unir relaciones vincula
 
 .. CMA: Que es esto?????
 .. math::
-   R \rhd \hspace{-0.1cm} \lhd S=
+   R \rhd \hspace{-0.1cm} \lhd S=  \prod \hspace{0.2cm} _{R.A_1,...,R.A_n,  S.A_1,...,S.A_n} (\sigma_{R.A_1=S.A_1 \wedge ... \wedge R.A_n=S.A_n  }\hspace{0.3cm} (R \times S ))
 
 **Método**
 
@@ -517,7 +517,7 @@ Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre
 THETA JOIN
 ==========
 
-Define una relación que contiene las tuplas que satisfacen el predicado F en el producto cartesiano de R \times S. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. El predicado F es de la forma R.ai operador_de_comparación S.bi. El predicado no tiene por que definirse sobre atributos comunes. Term “join” often means theta join.
+Define una relación que contiene las tuplas que satisfacen el predicado F en el producto cartesiano de R \times S. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. El predicado F es de la forma R.ai operador_de_comparación S.bi. El predicado no tiene por que definirse sobre atributos comunes. Termino “join” suele referirse a theta join.
 
 **Notación en algebra relacional**
 
@@ -534,9 +534,9 @@ Define una relación que contiene las tuplas que satisfacen el predicado F en el
    1. Se forma el producto cartesiano `R` \times `S`.
    2. Se selecciona, en el producto, solo la tupla que cumplan la condición `F`.
 
------------
-Ejercicio 1
------------
+^^^^^^^^^^
+Ejemplo 1
+^^^^^^^^^^
 
 **R**
 
