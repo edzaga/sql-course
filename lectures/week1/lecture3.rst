@@ -66,7 +66,7 @@ Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 SELECT
 ======
 
-Realiza una selección de las **filas** de una tabla, según sea la condición.
+Se aplica a una relación R, produce una nueva relación con un subconjunto de tuplas de R. Las tuplas de la relación resultante son los que satisfacen una condición C (expresión condicional, similar a las declaraciones del tipo “if”) sobre algún atributo de R. Es decir selecciona **filas** de una tabla según un cierto criterio C. El esquema de la relación resultante es el mismo esquema R, se muestran los atributos en el mismo orden que se usan en la tabla R.
 
 **Notación en algebra relacional**
 
@@ -76,8 +76,6 @@ Realiza una selección de las **filas** de una tabla, según sea la condición.
 
     \sigma_{c} \hspace{0.3cm} R
 
-
-c is a condition (as in “if” statements) that refers to attributes of R (tabla o relación).
 
 ^^^^^^^^^^^
 Ejercicio 1
@@ -94,7 +92,7 @@ ID   Nombre Edad Años trabajados(AT)
 143  Josefa  25           1
 ==== ====== ==== ===================
 
-Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años:
+Seleccionar las tuplas de la tabla **Ingenieros** que cumplan con tener una edad mayor a 30 años:
 
 **Respuesta**
 
@@ -113,6 +111,8 @@ ID   Nombre Edad Años trabajados(AT)
 234  Tomás   34           10
 345  José    45           21
 ==== ====== ==== ===================
+
+
 
 ^^^^^^^^^^^
 Ejercicio 2
@@ -140,7 +140,7 @@ ID   Nombre Edad Años trabajados(AT)
 PROJECT
 =======
 
-Realiza la selección de las **columnas** de una tabla.
+El operador PROJECT se utiliza para producir una nueva relación desde R. Esta nueva relación contiene solo algunas de las columnas de R, es decir, realiza la selección de algunas de las **columnas** de una tabla R.
 
 **Notación en algebra relacional**
 
@@ -148,7 +148,7 @@ Realiza la selección de las **columnas** de una tabla.
 
        \prod \hspace{0.2cm} _{A_1,...,A_n} \hspace{0.3cm} R
 
-`A_1,...,A_n` son las columnas que se estan seleccionando en la tabla o relación R.
+`A_1,...,A_n` son las columnas que se estan seleccionando de la relación R.
 
 ^^^^^^^^^^^
 Ejercicio 1
@@ -213,16 +213,75 @@ ID   Nombre
 Cross-product
 =============
 
-(Producto Cartesiano):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S.
+En teoría de conjuntos, el producto cartesiano de dos conjuntos es una operación que resulta en otro conjunto cuyos elementos son todos los pares ordenados que pueden formarse tomando el primer elemento del par del primer conjunto, y el segundo elemento del segundo conjunto. En el algebra relacional se mantiene esta idea con la diferencia que R y S son relaciones, entonces los miembros de R y S son tuplas, que generalmente consiste de más de un componente, el resultado de la vinculación de una tupla de R con una tupla de S es una tupla más larga, con un componente para cada uno de los componentes de las tuplas constituyentes. Es decir Cross-product define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S.
+
 
 **Notación en algebra relacional**
 
 .. math::
 	R \times S
 
-^^^^^^^
+Por convención para la sentencia anterior, los componentes de R preceden a los componentes de S en el orden de atributo para el resultado.
+
+Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüedad de un atributo A, que se encuentra en R y S, usamos R.A para el atributo de R y S.A para el atributo de S.
+
+^^^^^^^^
 Ejemplo
-^^^^^^^
+^^^^^^^^
+
+**R**
+
+=== === ===
+ A   B   D
+=== === ===
+ 1   2   3
+ 4   5   6
+=== === ===
+
+**S**
+
+=== === 
+ A   C  
+=== === 
+ 7   5
+ 9   2
+ 3   4
+=== === 
+
+.. math::
+	R \times S
+
+===== === === ===== ===
+ R.A   B   D   S.A   C
+===== === === ===== ===
+ 1     2   3    7   5
+ 1     2   3    9   2
+ 1     2   3    3   4
+ 4     5   6    7   5
+ 4     5   6    3   4
+ 4     5   6    9   2
+===== === === ===== ===
+
+.. math::
+	S \times R
+
+===== === ===== === ===
+ S.A   C   R.A   B   D
+===== === ===== === ===
+  7    5    1    2   3
+  7    5    4    5   6
+  9    2    1    2   3
+  9    2    4    5   6
+  3    4    1    2   3
+  3    4    4    5   6
+===== === ===== === ===
+
+
+^^^^^^^^^^^
+Ejercicio 1
+^^^^^^^^^^^
+
+Dada las siguientes tablas:
 
 **Tabla Ingenieros**
 
@@ -243,6 +302,13 @@ ACU0034  300
 USM7345  60
 ======== ========
 
+Escriba la tabla resultante al realizar la siguiente operación:
+ 
+.. math::
+	Ingenieros \times Proyectos
+
+**Respuesta**
+
 **Ingenieros x Proyectos**
 
 ==== ====== ==== ======== ========
@@ -255,6 +321,7 @@ ID   Nombre D#   Proyecto Duración
 143  Josefa  25  ACU0034  300
 143  Josefa  25  USM7345  60
 ==== ====== ==== ======== ========
+
 
 ===========
 NATURALJOIN
