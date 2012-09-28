@@ -66,7 +66,7 @@ Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 SELECT
 ======
 
-Se aplica a una relación R, produce una nueva relación con un subconjunto de tuplas de R. Las tuplas de la relación resultante son los que satisfacen una condición C (expresión condicional, similar a las declaraciones del tipo “if”) sobre algún atributo de R. Es decir selecciona **filas** de una tabla según un cierto criterio C. El esquema de la relación resultante es el mismo esquema R, se muestran los atributos en el mismo orden que se usan en la tabla R.
+Este operador se aplica a una relación R, produce una nueva relación con un subconjunto de tuplas de R. Las tuplas de la relación resultante son los que satisfacen una condición C (expresión condicional, similar a las declaraciones del tipo “if”) sobre algún atributo de R. Es decir selecciona **filas** de una tabla según un cierto criterio C. El esquema de la relación resultante es el mismo esquema R, se muestran los atributos en el mismo orden que se usan en la tabla R.
 
 **Notación en algebra relacional**
 
@@ -74,7 +74,7 @@ Se aplica a una relación R, produce una nueva relación con un subconjunto de t
 
 .. math::
 
-    \sigma_{c} \hspace{0.3cm} R
+    \sigma_{c} \hspace{0.2cm} R
 
 
 ^^^^^^^^^^^
@@ -97,7 +97,7 @@ Seleccionar las tuplas de la tabla **Ingenieros** que cumplan con tener una edad
 **Respuesta**
 
 .. math::
- 	\sigma_{edad}>30  \hspace{0.3cm} Ingenieros
+ 	\sigma_{edad>30} \hspace{0.2cm} Ingenieros
 
 
 Así quedaría la tabla:
@@ -123,7 +123,7 @@ Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años 
 **Respuesta**
 
 .. math::
-	\sigma_{edad >30 \wedge AT <16}   \hspace{0.3cm}  Ingenieros
+	\sigma_{edad >30 \wedge AT <16}  \hspace{0.3cm}  Ingenieros
 
 Así finalmente quedaría la tabla:
 
@@ -194,7 +194,7 @@ Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
 **Respuesta**
 
 .. math::
-	   \prod \hspace{0.2cm} _{ID,Nombre} (\sigma_{edad}>30 \hspace{0.3cm} Ingenieros)
+	   \prod \hspace{0.2cm} _{ID,Nombre} (\sigma_{edad>30} \hspace{0.3cm} Ingenieros)
 
 Finalmente la tabla queda de la siguiente manera:
 
@@ -343,7 +343,7 @@ Este operador se utiliza cuando se tiene la necesidad de unir relaciones vincula
 
 **Método**
 
-   1. Se realiza el producto cartesiano `R \times S`
+   1. Se realiza el producto cartesiano `R x S`
    2. Se seleccionan aquellas filas del producto cartesiano para las que los atributos comunes tengan el mismo valor
    3. Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos comunes
 
@@ -517,7 +517,7 @@ Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre
 THETA JOIN
 ==========
 
-Define una relación que contiene las tuplas que satisfacen el predicado F en el producto cartesiano de R \times S. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. El predicado F es de la forma R.ai operador_de_comparación S.bi. El predicado no tiene por que definirse sobre atributos comunes. Termino “join” suele referirse a theta join.
+Define una relación que contiene las tuplas que satisfacen el predicado F en el producto cartesiano de R x S. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. El predicado F es de la forma R.ai operador_de_comparación S.bi. El predicado no tiene por que definirse sobre atributos comunes. Termino “join” suele referirse a theta join.
 
 **Notación en algebra relacional**
 
@@ -527,11 +527,11 @@ Define una relación que contiene las tuplas que satisfacen el predicado F en el
 **Equivalencia con operadores básicos**
 
 .. math::
-   R \rhd\lhd_F S= \sigma_{F} (R x S)
+   R \rhd\lhd_F S= \sigma_{F} (R \times S)
 
 **Método**
 
-   1. Se forma el producto cartesiano `R` \times `S`.
+   1. Se forma el producto cartesiano `R` x `S`.
    2. Se selecciona, en el producto, solo la tupla que cumplan la condición `F`.
 
 ^^^^^^^^^^
