@@ -142,21 +142,21 @@ Empleando las mismas tablas dadas en el ejemplo anterior, realice Ingenieros ``-
 
 Ingenieros ``-`` Jefes
 
-==== ====== ====
-ID   Nombre Edad
-==== ====== ====
-234  Tomás   34
-345  José    45
-143  Josefa  25
-==== ====== ====
+	==== ====== ====
+	ID   Nombre Edad
+	==== ====== ====
+	234  Tomás   34
+	345  José    45
+	143  Josefa  25
+	==== ====== ====
 
 Jefes ``-`` Ingenieros
 
-==== ====== ====
-ID   Nombre Edad
-==== ====== ====
-235  María  29
-==== ====== ====
+	==== ====== ====
+	ID   Nombre Edad
+	==== ====== ====
+	235  María  29
+	==== ====== ====
 
 Como se puede apreciar, ambas operaciones dieron como resultado distintas relaciones, tal como se había mencionado anteriormente.
 
@@ -187,11 +187,11 @@ Utilizando las mismas tablas del ejemplo anterior, encontrar la interseccion de 
 .. math::
     Ingenieros \cap Jefes
  
-==== ====== ====
-ID   Nombre Edad
-==== ====== ====
-123  León   39
-==== ====== ====
+	==== ====== ====
+	ID   Nombre Edad
+	==== ====== ====
+	123  León   39
+	==== ====== ====
 
 
 .. important::
