@@ -1,19 +1,19 @@
 Lecture 1 - Relational Databases, "The relational model"
 --------------------------------------------------------
 
-¿Qué son las Bases de datos?
+¿Qué son las Bases de Datos (BD)?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. index:: ¿Qué son las Bases de datos?
 
-Una base de datos (BD) es un conjunto de datos  interrelacionados almacenados en
+Una BD es un conjunto de datos  interrelacionados almacenados en
 conjunto, sin redundancias innecesarias,de forma independiente de los programas
 que acceden a ellos.
 
-El SGBD
-=======
+El Sistema Gestor de Base de Datos (SGBD)
+=========================================
 
-Un Sistema Gestor de base de datos (SGBD) es un conjunto de programas que permiten crear y mantener 
+Un Sistema Gestor de Base de Datos SGBD es un conjunto de programas que permiten crear y mantener 
 una Base de datos, asegurando su integridad, confidencialidad y seguridad. Por tanto debe permitir:
 
   * Definir una base de datos: especificar tipos, estructuras y restricciones de datos..
@@ -22,19 +22,19 @@ una Base de datos, asegurando su integridad, confidencialidad y seguridad. Por t
 
 Algunas de las características deseables en un Sistema Gestor de base de datos SGBD son:
 
-  * Control de la redundancia: La redundancia de datos tiene varios efectos negativos (duplicar el trabajo al actualizar, deperdicia espacio en disco, puede provocar inconsistencia de datos) aunque a veces es deseable por cuestiones de rendimiento.
+  * Control de la redundancia: La redundancia de datos tiene varios efectos negativos (duplicar el trabajo al actualizar, desperdicia espacio en disco, puede provocar inconsistencia de datos) aunque a veces es deseable por cuestiones de rendimiento.
   * Restricción de los accesos no autorizados: cada usuario ha de tener unos permisos de acceso y autorización.
   * Cumplimiento de las restricciones de integridad: el SGBD ha de ofrecer recursos para definir y garantizar el cumplimiento de las restricciones de integridad.
 
 
-El modelo E-R
-=============
+El modelo Entidad-Relación (E-R)
+================================
      
-Cuando se utiliza una base de datos para gestionar información, se está plasmando una parte del mundo 
+Cuando se utiliza una BD para gestionar información, se está plasmando una parte del mundo 
 real en una serie de tablas, registros y campos; creándose un modelo parcial de la realidad. Antes de 
-crear físicamente estas tablas en el la base de datos se debe realizar un modelo de datos. 
+crear físicamente estas tablas en la BD se debe realizar un modelo de datos. 
 
-El modelo de datos más extendido es el denominado *ENTIDAD-RELACIÓN (E-R)* En el modelo E-R se parte de 
+El modelo de datos más extendido es el denominado *E-R* En el modelo E-R se parte de 
 una situación real a partir de la cual se definen entidades y relaciones entre dichas entidades: 
 
 **Entidades**
@@ -43,8 +43,14 @@ Los objetos que aparecen en la vida real, corresponden a una *entidad*. Por ejem
 aviones, coches, alojamientos, etc.
 Una entidad da lugar a una *tabla* en la BD.
 
+.. image:: ../../../sql-course/src/entidad.jpg
+
 Estas entidades están compuestas por varios *atributos*, que vienen a ser sus propiedades. Por ejemplo: 
 la entidad alumnos, tendrá los atributos nombre, R.U.N, nacionalidad, fecha de nacimiento, etc.
+
+.. image::../../../sql-course/src/entidad.jpg
+.. image:: ../../../sql-course/src/atributo.jpg
+
 Los atributos también reciben el nombre de *columnas* en la terminología de BD
 De entre los atributos habrá uno o un conjunto de ellos que no se repite; a este atributo o conjunto de 
 atributos se le llama clave de la entidad, en el caso de los alumnos, sería el R.U.N. En toda entidad 
@@ -70,9 +76,17 @@ Las entidades no están aisladas sino que están relacionadas entre sí. Estas r
 mundo real que estamos modelando, pero son necesarias para reflejar las interacciones existentes entre 
 entidades. Las relaciones pueden ser de tres tipos:
 
-  * Relaciones 1 - 1: Las entidades que intervienen en la relación se asocian una a una (Ej: la entidad HOMBRE, la entidad MUJER y entre ellos la relación MATRIMONIO). **(agregar la foto)**
-  * Relaciones 1 - N: Una ocurrencia de una entidad está asociada con muchas (n) de otra (Ej: la entidad EMPERSA, la entidad TRABAJADOR y entre ellos la relación TRABAJAR-EN). **(agregar la foto)**
-  * Relaciones M - N: Cada ocurrencia, en cualquiera de las dos entidades de la relación, puede estar asociada con muchas (n) de la otra y viceversa (Ej: la entidad ALUMNO, la entidad EMPRESA y entre ellos la relación MATRÍCULA). **(agregar la foto)**
+*Relaciones 1 - 1*: Las entidades que intervienen en la relación se asocian una a una (Ej: la entidad HOMBRE, la entidad MUJER y entre ellos la relación MATRIMONIO). 
+
+.. image:: ../../../sql-course/src/1a1.jpg
+
+*Relaciones 1 - N*: Una ocurrencia de una entidad está asociada con muchas (n) de otra (Ej: la entidad EMPRESA, la entidad TRABAJADOR y entre ellos la relación TRABAJAR-EN).
+
+.. image:: ../../../sql-course/src/1aN.jpg
+
+*Relaciones M - N*: Cada ocurrencia, en cualquiera de las dos entidades de la relación, puede estar asociada con muchas (n) de la otra y viceversa (Ej: la entidad ALUMNO, la entidad EMPRESA y entre ellos la relación MATRÍCULA).
+
+.. image:: ../../../sql-course/src/MaN.jpg
 
 
 Base de datos Relacionales
@@ -120,8 +134,8 @@ ID   Nombre Nota
 Name        Ciudad     Total alumnos
 =========== ========== =============
 Princess    Santiago   15.000
-Saint Louis Valparaiso 16.000
-Idop        Concepcion 20.000
+Saint Louis Valparaíso 16.000
+Idop        Concepción 20.000
 =========== ========== =============
 
 La tabla Estudiante posee 3 atributos (ID, Nombre, Nota) y 3 registros (o filas), en el tercer
@@ -169,7 +183,7 @@ A continuación se verán algunos detalles de ambos motores.
 PostGreSQL
 ==========
 
-PostGreSQL es un sistema de gestión de bases de datos objeto-relacional (ORDBMS) basado 
+PostGreSQL es un sistema de gestión de bases de datos objeto-relacional basado 
 en el proyecto POSTGRES, de la universidad de Berkeley. El director de este proyecto es 
 el profesor Michael Stonebraker, y fue patrocinado por Defense Advanced Research Projects 
 Agency (DARPA), el Army Research Office (ARO), el National Science Foundation (NSF), y ESL, Inc.
@@ -193,7 +207,7 @@ en C, y la primera versión fue un 25% más pequeña que Postgres, y entre un 30
 A parte de la corrección de algunos bugs, se mejoró el motor interno, se añadió un nuevo programa 
 monitor, y se compiló usando la utilidad GNU Make y el compilador gcc.
 
-En 1996, los desarrolladores decidieron cambiar el nombre a al DBMS, y lo llamaron PostGreSQL 
+En 1996, los desarrolladores decidieron cambiar el nombre a al SGDB, y lo llamaron PostGreSQL 
 para reflejar la relación entre Postgres y las versiones recientes de SQL. 
 
 
@@ -202,7 +216,7 @@ para reflejar la relación entre Postgres y las versiones recientes de SQL.
   * Implementación del estándar SQL92/SQL99.
   * Licencia BSD.
   * Por su arquitectura de diseño, escala muy bien al aumentar el numero de CPUs y la cantidad de RAM.
-  * Soporta transacciones y desde la version 7.0, claves ajenas (con comprobaciones de integridad referencial).
+  * Soporta transacciones y desde la versión 7.0, claves ajenas (con comprobaciones de integridad referencial).
   * Tiene mejor soporte para triggers y procedimientos en el servidor.
   * Incorpora una estructura de datos array.
   * Incluye herencia entre tablas (aunque no entre objetos, ya que no existen), por lo que a este gestor de bases de datos se le incluye entre los gestores objeto-relacionales.
@@ -239,13 +253,13 @@ lugar al nombre de este conocido gestor de bases de datos.
 **Características**
 
   * Lo mejor de MySQL es su velocidad a la hora de realizar las operaciones, lo que le hace uno de los gestores que ofrecen mayor rendimiento.
-  * Consume muy pocos recursos ya sea de CPU como asi tambien de memoria.
-  * Licencia GPL y tambien posee una licencia comercial para aquellas empresas que deseen incluirlo en sus aplicaciones privativas.
+  * Consume muy pocos recursos ya sea de CPU como así también de memoria.
+  * Licencia GPL y también posee una licencia comercial para aquellas empresas que deseen incluirlo en sus aplicaciones privativas.
   * Dispone de API's en gran cantidad de lenguajes (C, C++, Java, PHP, etc).
-  * Soporta hasta 64 índices por tabla, una mejora notable con repecto a la version 4.1.2.
-  * Mejor integracion con PHP.
+  * Soporta hasta 64 índices por tabla, una mejora notable con respecto a la versión 4.1.2.
+  * Mejor integración con PHP.
   * Permite la gestión de diferentes usuarios, como también los permisos asignados a cada uno de ellos.
-  * Tiene soporte para transacciones y ademas posee una caracteristica unica de MySQL que es poder agrupar transacciones.
+  * Tiene soporte para transacciones y además posee una característica única de MySQL que es poder agrupar transacciones.
 
 
 Elección

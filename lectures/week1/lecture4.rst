@@ -11,8 +11,9 @@ Operaciones de conjunto:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. index:: Operaciones de conjunto:
 
+=====
 UNION
-======
+=====
 
 La unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`,
 o en `S`, o en ambas, eliminándose las tuplas duplicadas.
@@ -52,8 +53,9 @@ ID   Nombre Edad
 235  María  29
 ==== ====== ====
 
+==========
 DIFFERENCE
-===========
+==========
 
 La diferencia de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están
 en la relación `R`, pero no están en `S`.
@@ -79,6 +81,7 @@ ID   Nombre Edad
 235  María  29
 ==== ====== ====
 
+============
 INTERSECTION
 ============
 
@@ -111,6 +114,7 @@ ID   Nombre Edad
         the columns of `R` and `S` must be ordered so that the order of attributes is the
         same for both relations.
 
+====================================
 DEPENDENT AND INDEPENDENT OPERATIONS
 ====================================
 
@@ -122,6 +126,7 @@ relation T consisting of all those tuples in R but not S. We then subtract T fro
 tuples of R that are also in S.
 
 
+===========================================
 RELATIONAL ALGEBRA AS A CONSTRAINT LANGUAJE
 ===========================================
 
@@ -150,8 +155,10 @@ interpretation of `R \subset S`: each tuple **t** appears in `S` at least as man
 appears in `R`.
 
 
-Exercises [1]_
-===============
+=========
+Exercises
+=========
+
  Consider a database with the following schema:
 
    1. Person ( name, age, gender ) : name is a key
@@ -170,7 +177,3 @@ Write relational algebra expressions for the following nine queries. (Warning: s
    * Find the names of all people who frequent only pizzerias serving at least one pizza they eat.
    * Find the names of all people who frequent every pizzeria serving at least one pizza they eat.
    * Find the pizzeria serving the cheapest pepperoni pizza. In the case of ties, return all of the cheapest-pepperoni pizzerias.
-
-
-.. [1] http://www.db-class.org/course/resources/index?page=opt-rel-algebra
-

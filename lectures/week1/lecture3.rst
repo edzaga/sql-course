@@ -42,7 +42,7 @@ The operations of the traditional relational algebra fall into four broad classe
      which pairs the tuples of two relations in all possible ways and various kinds of
      "join" operations, which selectively pair tuples from two relations.
   d. An operation called .'renaming" that does not affect the tuples of a relation, but
-     changes the relation schema, i.e., the names of the attributesand/or the name of the
+     changes the relation schema, i.e., the names of the attribute sand/or the name of the
      relation itself.
 
 
@@ -576,9 +576,9 @@ Ejemplo 1
 ===== === ===== === ===== ===== ===
 
 
-==============
-EXERCISES [1]
-==============
+=========
+EXERCISES 
+=========
 
 Consider a database with the following schema:
 
@@ -592,5 +592,4 @@ Write relational algebra expressions for the following five queries.
   * Seleccionar a las personas que comen pizzas con extra queso.
   * Seleccionar a las personas que comen pizzas con extra queso y frecuentan la pizzeria X
 
-.. [1] http://www.db-class.org/course/resources/index?page=opt-rel-algebra
 

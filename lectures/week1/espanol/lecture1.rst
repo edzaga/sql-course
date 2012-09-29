@@ -43,6 +43,9 @@ Los objetos que aparecen en la vida real, corresponden a una *entidad*. Por ejem
 aviones, coches, alojamientos, etc.
 Una entidad da lugar a una *tabla* en la BD.
 
+**Agregar una imagen de una entidad**
+.. image:: 
+
 Estas entidades están compuestas por varios *atributos*, que vienen a ser sus propiedades. Por ejemplo: 
 la entidad alumnos, tendrá los atributos nombre, R.U.N, nacionalidad, fecha de nacimiento, etc.
 Los atributos también reciben el nombre de *columnas* en la terminología de BD

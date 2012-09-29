@@ -12,7 +12,7 @@ Utilizando una Base de Datos Relacional
 .. index:: Uso de una base de datos relacional
 
 Los pasos necesarios a la hora de crear una Base de Datos (BD) Relacional
-  * Diseñar el esquema, es decir, la estrucutra entre las relaciones, usando un DDL
+  * Diseñar el esquema, es decir, la estructura entre las relaciones, usando un DDL
     (Data Definition Languaje)
   * Ingresar los datos iniciales
   * Ejecutar operaciones de consulta y modificación
@@ -41,11 +41,11 @@ en la BD, sin la necesidad de escribir complejos algoritmos.
 Una 'consulta a la BD', puede entenderse como una pregunta que se le realiza para obtener
 'cierta información'. Algunos ejemplos pueden ser:
   * "Todos los estudiantes con nota mayor o igual a 55"
-  * "Todas los departamentos de Ingniería con una cantidad mayor o igual a 1000 alumnos"
+  * "Todas los departamentos de Ingeniería con una cantidad mayor o igual a 1000 alumnos"
   * "Los 5 primeros estudiantes con mejor promedio de notas en el ramo de Química"
 
-Independiente del lenguaje que se utilize, se debe tener en cuenta que:
-  * Algunas consultas son faciles de formular, otras son un poco más difíciles.
+Independiente del lenguaje que se utiliza, se debe tener en cuenta que:
+  * Algunas consultas son fáciles de formular, otras son un poco más difíciles.
   * Algunos Data Base Management System (DBMS) las ejecutan de forma eficiente, otros no.
   * Los 2 puntos anteriores no son dependientes uno del otro, puede existir una consulta
     fácil de formular, pero difícil de ejecutar de forma eficiente, dependiendo del DBMS.
@@ -72,22 +72,35 @@ Lenguajes de consultas
 
 Algunos de los lenguajes de consultas son
   * Álgebra Relacional: Lenguaje formal y matemático
-  * SQL: Lenguaje actual e implementado que nace del Algebra relacional.
+  * SQL: Lenguaje actual e implementado que nace del Álgebra relacional.
 
 Si bien se profundizará sobre ambos, a medida que avance el curso, se deja el siguiente ejemplo::
 
         Consultar por el "ID de los alumnos con nota mayor o igual a 55 en programación":
 
-Utilizando Algebra relacional:
+Utilizando Álgebra relacional:
 
-.. CMA: QUE ES ESTO?????? No puedo entender que significa esta productoria :/
+.. CMA: QUE ES ESTO?????? No puedo entender que significa esta productora :/
 
 .. math::
-
    \prod \hspace{0.2cm} _{ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{ramos.nombre ='programacion'} (alumnos \rhd \hspace{-0.1cm} \lhd ramos)}
 
+Se puede decir que 
+
 .. math::
-	En algebra relacional \prod realiza un PROJECT sobre una tabla, es decir selecciona una columna. \sigma selecciona una fila que cumpla con una cierta condición, en el ejemplo dado se seleccionan las filas que cumplen con tener nota mayor a 55 y que el ramos.nombre sea 'programación'. \rhd \hspace{-0.1cm} \lhd realiza un JOIN entre dos relaciones en la lectura 3 se profundiza acerca de estos operadores.
+        \prod 
+
+realiza un PROJECT sobre una tabla, es decir selecciona una columna. Por otro lado
+
+.. math::
+        \sigma
+
+selecciona una fila que cumpla con una cierta condición, en el ejemplo dado se seleccionan las filas que cumplen con tener nota mayor a 55 y que el ramos.nombre sea 'programación'. 
+
+.. math::
+        \rhd \hspace{-0.1cm} \lhd 
+
+realiza un JOIN entre dos relaciones en la lectura 3 se profundiza acerca de estos operadores y sus respectivos significados.
 
 Utilizando SQL
 
@@ -99,7 +112,7 @@ Utilizando SQL
 En las próximas lecturas, se estudiará con mayor detalle tanto el álgebra relacional,
 como el lenguaje SQL.
 
-To begin our study of operations on relations, we shall learn about a special
-algebra, called relational algebra (lectures 3 and 4), that consists of some simple but powerful ways
-to construct new relations from given relations. When the given relations are
-stored data, then the constructed relations can be answers to queries about this data.
+.. To begin our study of operations on relations, we shall learn about a special
+.. algebra, called relational algebra (lectures 3 and 4), that consists of some simple but powerful ways
+.. to construct new relations from given relations. When the given relations are
+.. stored data, then the constructed relations can be answers to queries about this data.
