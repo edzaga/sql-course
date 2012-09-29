@@ -63,9 +63,9 @@ Operaciones de conjunto:
 =====
 UNION
 =====
-En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos A y B es el conjunto A ∪ B que contiene todos los elementos de A y de B.
+En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos A y B es el conjunto que contiene todos los elementos de A y de B.
 
-De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas.`R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).
+De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas. `R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).
 
 **Notación en algebra relacional**
 
@@ -77,42 +77,46 @@ De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que 
 
 	\textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado} \\
 
+^^^^^^^^
+Ejemplo 
+^^^^^^^^
 
+Dadas las siguientes relaciones:
 
 **Tabla Ingenieros**
-
-     ==== ====== ====
-     ID   Nombre Edad
-     ==== ====== ====
-     123  León    39
-     234  Tomás   34
-     345  José    45
-     143  Josefa  25
-     ==== ====== ====
+	==== ====== ====
+	ID   Nombre Edad	
+	==== ====== ====
+	123  León    39
+     	234  Tomás   34
+     	345  José    45
+     	143  Josefa  25
+     	==== ====== ====
 
 **Tabla Jefes**
 
-     ==== ====== ====
-     ID   Nombre Edad
-     ==== ====== ====
-     123  León   39
-     235  María  29
-     ==== ====== ====
+     	==== ====== ====
+     	ID   Nombre Edad
+     	==== ====== ====
+     	123  León   39
+     	235  María  29
+     	==== ====== ====
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Ejemplo Ingenieros ``U`` Jefes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Aplicar el opedador Unión:
 
-==== ====== ====
-ID   Nombre Edad
-==== ====== ====
-123  León   39
-234  Tomás  34
-345  José   45
-143  Josefa 25
-235  María  29
-==== ====== ====
+Ingenieros ``U`` Jefes
 
+	==== ====== ====
+	ID   Nombre Edad
+	==== ====== ====
+	123  León   39
+	234  Tomás  34
+	345  José   45
+	143  Josefa 25
+	235  María  29
+	==== ====== ====
+
+Como se mencionó anteriormente realizar la operación Jefes ``U`` Ingenieros daría como resultado la misma tabla anterior.
 
 ==========
 DIFFERENCE
@@ -130,9 +134,13 @@ De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación q
 
 Es importante resaltar que `R - S` es diferente a `S - R`.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Ejemplo Ingenieros ``-`` Jefes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^
+Ejemplo 
+^^^^^^^^
+
+Empleando las mismas tablas dadas en el ejemplo anterior, realice Ingenieros ``-`` Jefes y Jefes ``-`` Ingenieros:
+
+Ingenieros ``-`` Jefes
 
 ==== ====== ====
 ID   Nombre Edad
@@ -142,15 +150,15 @@ ID   Nombre Edad
 143  Josefa  25
 ==== ====== ====
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Ejemplo Jefes ``-`` Ingenieros
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Jefes ``-`` Ingenieros
 
 ==== ====== ====
 ID   Nombre Edad
 ==== ====== ====
 235  María  29
 ==== ====== ====
+
+Como se puede apreciar, ambas operaciones dieron como resultado distintas relaciones, tal como se había mencionado anteriormente.
 
 ============
 INTERSECTION
