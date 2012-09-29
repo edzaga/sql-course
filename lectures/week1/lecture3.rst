@@ -6,55 +6,6 @@ relaciones (tablas) para obtener un resultado (el cual es otra relación), es pr
 o procedural (algorítmico).
 
 
-Basics of relational algebra
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. index:: basics of relational algebra
-
-An algebra, in general, consists of operators and atomic operands. For instance,
-in the algebra of arithmetic, the atomic operands are variables like `r`,
-and constants like 15. The operators are the usual arithmetic ones:
-
-  * addition
-  * subtraction
-  * multiplication
-  * division.
-
-Any algebra allows us to build expressions by applying operators to atomic operands
-and/or other expressions of the algebra.
-Usually, parentheses are needed to group operators and their operands. For instance,
-in arithmetic we have expressions such as `(x + y) * z` or
-`((x + 7)/(y - 3)) + x`.
-
-Relational algebra is another example of an algebra. Its atomic operands are:
-
-   1. Variables that stand for relations
-   2. Constants, which are finite relations
-
-As we mentioned, in the classical relational algebra, all operands and the results of
-expressions are sets.
-The operations of the traditional relational algebra fall into four broad classes:
-
-  a. The usual set operations - union, intersection, and difference - applied to relations.
-  b. Operations that remove parts of a relation: "selection" eliminates some rows (tuples),
-     and "projection" eliminates some columns.
-  c. Operations that combine the tuples of two relations, including "Cartesian product",
-     which pairs the tuples of two relations in all possible ways and various kinds of
-     "join" operations, which selectively pair tuples from two relations.
-  d. An operation called .'renaming" that does not affect the tuples of a relation, but
-     changes the relation schema, i.e., the names of the attribute sand/or the name of the
-     relation itself.
-
-
-We shall generally refer to expressions of relational algebra as queries.
-While we don't yet have the symbols needed to show many of the expressions of relational algebra,
-you should be familiar with the operations of group `(a)`;
-and  thus recognize `(R U S)` as an example of an expression of relational algebra.
-`R` and `S` are atomic operands standing for relations,
-whose sets of tuples are unknown.
-This query asks for the union of whatever tuples are in the relations named `R` and `S`.
-
-
 Operaciones relacionales:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -493,7 +444,7 @@ Describa con palabras el resultado de esta expresión:
 
 .. math::
 
-   \prod _{sName,cName} (\sigma_{ sizeHS > enrollment }   (\sigma_{ state = ‘California’}College \rhd\lhd Student   \rhd\lhd \sigma_{ major = ‘CS’ } Apply))
+   \prod _{sName,cName} (\sigma_{ sizeHS > enrollment } (\sigma_{ state = ‘California’}College \rhd \hspace{-0.1cm} \lhd Student   \rhd \hspace{-0.1cm} \lhd \sigma_{major = ‘CS’} Apply))
 
 
 **Respuesta**
@@ -522,12 +473,12 @@ Define una relación que contiene las tuplas que satisfacen el predicado F en el
 **Notación en algebra relacional**
 
 .. math::
-   R \rhd\lhd_F S
+   R \rhd \hspace{-0.1cm} \lhd_F S
 
 **Equivalencia con operadores básicos**
 
 .. math::
-   R \rhd\lhd_F S= \sigma_{F} (R \times S)
+   R \rhd \hspace{-0.1cm} \lhd_F S= \sigma_{F} (R \times S)
 
 **Método**
 
@@ -560,7 +511,7 @@ Ejemplo 1
 === === ===
 
 .. math::
-   R \rhd\lhd_(A >= E) S 
+   R \rhd \hspace{-0.1cm} \lhd_(A >= E) S 
 
 **Respuesta**
 

@@ -1,5 +1,54 @@
 Lecture 4 - Relation algebra: Set operators, renaming, notation
 ---------------------------------------------------------------
+
+Basics of relational algebra
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: basics of relational algebra
+
+An algebra, in general, consists of operators and atomic operands. For instance,
+in the algebra of arithmetic, the atomic operands are variables like `r`,
+and constants like 15. The operators are the usual arithmetic ones:
+
+  * addition
+  * subtraction
+  * multiplication
+  * division.
+
+Any algebra allows us to build expressions by applying operators to atomic operands
+and/or other expressions of the algebra.
+Usually, parentheses are needed to group operators and their operands. For instance,
+in arithmetic we have expressions such as `(x + y) * z` or
+`((x + 7)/(y - 3)) + x`.
+
+Relational algebra is another example of an algebra. Its atomic operands are:
+
+   1. Variables that stand for relations
+   2. Constants, which are finite relations
+
+As we mentioned, in the classical relational algebra, all operands and the results of
+expressions are sets.
+The operations of the traditional relational algebra fall into four broad classes:
+
+  a. The usual set operations - union, intersection, and difference - applied to relations.
+  b. Operations that remove parts of a relation: "selection" eliminates some rows (tuples),
+     and "projection" eliminates some columns.
+  c. Operations that combine the tuples of two relations, including "Cartesian product",
+     which pairs the tuples of two relations in all possible ways and various kinds of
+     "join" operations, which selectively pair tuples from two relations.
+  d. An operation called .'renaming" that does not affect the tuples of a relation, but
+     changes the relation schema, i.e., the names of the attribute sand/or the name of the
+     relation itself.
+
+
+We shall generally refer to expressions of relational algebra as queries.
+While we don't yet have the symbols needed to show many of the expressions of relational algebra,
+you should be familiar with the operations of group `(a)`;
+and  thus recognize `(R U S)` as an example of an expression of relational algebra.
+`R` and `S` are atomic operands standing for relations,
+whose sets of tuples are unknown.
+This query asks for the union of whatever tuples are in the relations named `R` and `S`.
+
 The three most common operations on sets are union, intersection;
 and difference. Which are defined as follows arbitrary sets `R` and `S`:
 
@@ -14,13 +63,23 @@ Operaciones de conjunto:
 =====
 UNION
 =====
+En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos A y B es el conjunto A ∪ B que contiene todos los elementos de A y de B.
 
-La unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`,
-o en `S`, o en ambas, eliminándose las tuplas duplicadas.
-`R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo
-(`R` y `S` deben tener esquemas idénticos. El orden de las columnas debe ser el mismo).
+De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas.`R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).
 
-   * **Tabla Ingenieros**
+**Notación en algebra relacional**
+
+.. math::
+
+	R \cup S \\ 
+
+.. math::
+
+	\textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado} \\
+
+
+
+**Tabla Ingenieros**
 
      ==== ====== ====
      ID   Nombre Edad
@@ -31,7 +90,7 @@ o en `S`, o en ambas, eliminándose las tuplas duplicadas.
      143  Josefa  25
      ==== ====== ====
 
-   * **Tabla Jefes**
+**Tabla Jefes**
 
      ==== ====== ====
      ID   Nombre Edad
@@ -40,8 +99,9 @@ o en `S`, o en ambas, eliminándose las tuplas duplicadas.
      235  María  29
      ==== ====== ====
 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Ejemplo Ingenieros ``U`` Jefes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ==== ====== ====
 ID   Nombre Edad
@@ -53,16 +113,26 @@ ID   Nombre Edad
 235  María  29
 ==== ====== ====
 
+
 ==========
 DIFFERENCE
 ==========
 
-La diferencia de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están
-en la relación `R`, pero no están en `S`.
-`R` y `S` deben ser unión-compatible. Es importante resaltar que `R - S` es diferente a `S - R`.
+Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos A y B es el conjunto que contiene todos los elementos de A que no pertenecen a B.
+De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en la relación `R`, pero no están en `S`.
+`R` y `S` deben ser unión-compatible. 
 
+**Notación en algebra relacional**
+
+.. math::
+
+	R - S
+
+Es importante resaltar que `R - S` es diferente a `S - R`.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Ejemplo Ingenieros ``-`` Jefes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ==== ====== ====
 ID   Nombre Edad
@@ -72,6 +142,7 @@ ID   Nombre Edad
 143  Josefa  25
 ==== ====== ====
 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Ejemplo Jefes ``-`` Ingenieros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -85,18 +156,29 @@ ID   Nombre Edad
 INTERSECTION
 ============
 
-Define una relación que contiene el conjunto de todas las filas que están tanto en la relación
-`R` como en `S`. `R` y `S` deben ser unión-compatible.
-Utilizando las mismas tablas del ejemplo anterior:
+En  álgebra de conjuntos la intersección de dos conjuntos A y B es el conjunto que contiene todos los elementos comunes de A y B. De forma homóloga en álgebra relacional INTERSECTION define una relación que contiene las tuplas que están tanto en la relación `R` como en `S`. `R` y `S` deben ser unión-compatible.
+
+**Notación en algebra relacional**
+
+.. math::
+	R \cap S
+
+.. math::
+	\textrm{ Si se realiza } R \cap S \textrm{ es lo mismo que }  S \cap R \textrm{ , es decir se obtiene el mismo resultado} \\
 
 **Equivalencia con operadores anteriores**
 
 .. math::
     R \cap S= R-(R-S)
 
-Ejemplo Ingenieros :sql:`INTERSECT` Jefes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^
+Ejemplo 
+^^^^^^^^
+Utilizando las mismas tablas del ejemplo anterior, encontrar la interseccion de la tabla de Ingenieros con la de Jefes:
 
+.. math::
+    Ingenieros \cap Jefes
+ 
 ==== ====== ====
 ID   Nombre Edad
 ==== ====== ====
