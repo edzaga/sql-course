@@ -28,20 +28,27 @@ Este operador se aplica a una relación R, produce una nueva relación con un su
     \sigma_{c} \hspace{0.2cm} R
 
 
-^^^^^^^^^^^
-Ejercicio 1
-^^^^^^^^^^^
+^^^^^^^^^
+Ejemplo 1
+^^^^^^^^^
 
-**Ingenieros**
+.. math::
 
-==== ====== ==== ===================
-ID   Nombre Edad Años trabajados(AT)
-==== ====== ==== ===================
-123  León    39           15
-234  Tomás   34           10
-345  José    45           21
-143  Josefa  25           1
-==== ====== ==== ===================
+ \textbf{Tabla Ingenieros}
+
+   \begin{array}{|c|c|c|c|}
+    \hline
+    \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)}\\
+    \hline
+    123 & León & 39 & 15 \\
+    \hline
+    234 & Tomás & 34 & 10 \\
+    \hline
+    345 & José & 45 & 21 \\
+    \hline
+    143 & Josefa & 25 &  1 \\
+    \hline
+  \end{array}
 
 Seleccionar las tuplas de la tabla **Ingenieros** que cumplan con tener una edad mayor a 30 años:
 
@@ -53,21 +60,25 @@ Seleccionar las tuplas de la tabla **Ingenieros** que cumplan con tener una edad
 
 Así quedaría la tabla:
 
-**Ingenieros**
+.. math::
 
-==== ====== ==== ===================
-ID   Nombre Edad Años trabajados(AT)
-==== ====== ==== ===================
-123  León    39           15
-234  Tomás   34           10
-345  José    45           21
-==== ====== ==== ===================
+ \textbf{Tabla Ingenieros}
 
+   \begin{array}{|c|c|c|c|}
+    \hline
+    \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)}\\
+    \hline
+    123 & León & 39 & 15 \\
+    \hline
+    234 & Tomás & 34 & 10 \\
+    \hline
+    345 & José & 45 & 21 \\
+    \hline
+  \end{array}
 
-
-^^^^^^^^^^^
-Ejercicio 2
-^^^^^^^^^^^
+^^^^^^^^^
+Ejemplo 2
+^^^^^^^^^
 
 Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años y que lleven menos de 16 años trabajando:
 
@@ -78,14 +89,19 @@ Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años 
 
 Así finalmente quedaría la tabla:
 
-**Ingenieros**
+.. math::
 
-==== ====== ==== ===================
-ID   Nombre Edad Años trabajados(AT)
-==== ====== ==== ===================
-123  León    39           15
-234  Tomás   34           10
-==== ====== ==== ===================
+ \textbf{Tabla Ingenieros}
+
+ \begin{array}{|c|c|c|c|}
+  \hline
+  \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)} \\
+  \hline
+  123 & León & 39 & 15 \\
+  \hline
+  234 & Tomás & 34 & 10 \\
+  \hline
+ \end{array}
 
 =======
 PROJECT
@@ -101,20 +117,26 @@ El operador PROJECT se utiliza para producir una nueva relación desde R. Esta n
 
 `A_1,...,A_n` son las columnas que se estan seleccionando de la relación R.
 
-^^^^^^^^^^^
-Ejercicio 1
-^^^^^^^^^^^
+^^^^^^^^^
+Ejemplo 1
+^^^^^^^^^
+.. math::
 
-**Ingenieros**
+ \textbf{Tabla Ingenieros}
 
-==== ====== ==== ===================
-ID   Nombre Edad Años trabajados(AT)
-==== ====== ==== ===================
-123  León    39           15
-234  Tomás   34           10
-345  José    45           21
-143  Josefa  25           1
-==== ====== ==== ===================
+ \begin{array}{|c|c|c|c|}
+  \hline
+  \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)} \\
+  \hline
+  123 & León & 39 & 15 \\
+  \hline
+  234 & Tomás & 34 & 10 \\
+  \hline
+  345 & José & 45 & 21 \\
+  \hline
+  143 & Josefa & 25 & 1 \\
+  \hline
+ \end{array}
 
 Escoger columnas de ID y nombre de la tabla de ingenieros:
 
@@ -125,20 +147,27 @@ Escoger columnas de ID y nombre de la tabla de ingenieros:
 
 La tabla finalmente queda como:
 
-**Ingenieros**
+.. math::
 
-==== ======
-ID   Nombre
-==== ======
-123  León
-234  Tomás
-345  José
-143  Josefa
-==== ======
+ \textbf{Tabla Ingenieros}
 
-^^^^^^^^^^^
-Ejercicio 2
-^^^^^^^^^^^
+ \begin{array}{|c|c|}
+  \hline
+  \textbf{ID} & \textbf{Nombre} \\
+  \hline
+  123 & León \\
+  \hline
+  234 & Tomás \\
+  \hline
+  345 & José \\
+  \hline
+  143 & Josefa\\
+  \hline
+ \end{array}
+
+^^^^^^^^^
+Ejemplo 2
+^^^^^^^^^
 
 Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
 
@@ -149,16 +178,21 @@ Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
 
 Finalmente la tabla queda de la siguiente manera:
 
-**Ingenieros**
+.. math::
 
-==== ======
-ID   Nombre
-==== ======
-123  León
-234  Tomás
-345  José
-==== ======
+ \textbf{Tabla Ingenieros}
 
+ \begin{array}{|c|c|}
+  \hline
+  \textbf{ID} & \textbf{Nombre} \\
+  \hline
+  123 & León \\
+  \hline
+  234 & Tomás \\
+  \hline
+  345 & José \\
+  \hline
+ \end{array}
 
 =============
 Cross-product
@@ -176,44 +210,60 @@ Por convención para la sentencia anterior, los componentes de R preceden a los 
 
 Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüedad de un atributo A, que se encuentra en R y S, usamos R.A para el atributo de R y S.A para el atributo de S.
 
-^^^^^^^^
-Ejemplo
-^^^^^^^^
-
-**R**
-
-=== === ===
- A   B   D
-=== === ===
- 1   2   3
- 4   5   6
-=== === ===
-
-**S**
-
-=== === 
- A   C  
-=== === 
- 7   5
- 9   2
- 3   4
-=== === 
+^^^^^^^^^
+Ejemplo 1
+^^^^^^^^^
 
 .. math::
-	R \times S
 
-	===== === === ===== ===
- 	R.A   B   D   S.A   C
-	===== === === ===== ===
- 	1     2   3    7   5
- 	1     2   3    9   2
- 	1     2   3    3   4
- 	4     5   6    7   5	
-	4     5   6    3   4
- 	4     5   6    9   2
-	===== === === ===== ===
+ \textbf{R}
+
+ \begin{array}{|c|c|c|}
+  \hline
+  \textbf{A} & \textbf{B} & \textbf{D} \\
+  \hline
+  1 & 2 & 3 \\
+  \hline
+  4 & 5 & 6 \\
+  \hline
+ \end{array}
+
+ \textbf{S}
+
+ \begin{array}{|c|c|}
+  \hline
+  \textbf{A} & \textbf{C} \\  
+  \hline 
+  7 & 5 \\
+  \hline
+  9 & 2 \\
+  \hline
+  3 & 4 \\
+  \hline
+ \end{array} 
+
+ \textbf{R} \times \textbf{S}
+
+   \begin{array}{|c|c|c|c|c|}
+    \hline
+    \textbf{R.A} & \textbf{B} & \textbf{D} & \textbf{S.A} & \textbf{C} \\
+    \hline
+     1 & 2 & 3 & 7 & 5 \\
+    \hline
+     1 & 2 & 3 & 9 & 2 \\
+    \hline
+     1 & 2 & 3 & 3 & 4 \\
+    \hline
+     4 & 5 & 6 & 7 & 5 \\
+    \hline	
+     4 & 5 & 6 & 3 & 4 \\
+    \hline
+     4 & 5 & 6 & 9 & 2 \\
+    \hline
+  \end{array}
 
 .. math::
+
 	S \times R
 
 	===== === ===== === ===
