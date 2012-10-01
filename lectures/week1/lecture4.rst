@@ -77,14 +77,30 @@ De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que 
 
 	\textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado} \\
 
-^^^^^^^^
-Ejemplo 
-^^^^^^^^
-
+^^^^^^^^^
+Ejemplo 1
+^^^^^^^^^
 Dadas las siguientes relaciones:
 
+
 **Tabla Ingenieros**
-	==== ====== ====
+
+.. math:: 
+   \begin{array}{|c|c|c|}
+        \hline 
+         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+        \hline
+        123 & León   & 39\\
+        \hline
+        234 & Tomás  & 34\\
+        \hline
+        345 & José   & 45\\
+        \hline
+        143 & Josefa & 25\\
+        \hline
+   \end{array}
+       
+..      ==== ====== ====
 	ID   Nombre Edad	
 	==== ====== ====
 	123  León    39
@@ -95,18 +111,48 @@ Dadas las siguientes relaciones:
 
 **Tabla Jefes**
 
-     	==== ====== ====
+.. math::
+      \begin{array}{|c|c|c|}
+        \hline 
+         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+        \hline
+        123 & León   & 39\\
+        \hline
+        235 & María   & 29\\
+        \hline
+      \end{array}
+      
+..     	==== ====== ====
      	ID   Nombre Edad
      	==== ====== ====
      	123  León   39
      	235  María  29
      	==== ====== ====
 
-Aplicar el opedador Unión:
+Aplicar el operador Unión:
 
 Ingenieros ``U`` Jefes
 
-	==== ====== ====
+
+.. math:: 
+   \begin{array}{|c|c|c|}
+        \hline 
+         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+        \hline
+        123 & León   & 39\\
+        \hline
+        234 & Tomás  & 34\\
+        \hline
+        345 & José   & 45\\
+        \hline
+        143 & Josefa & 25\\
+        \hline
+        235 & María & 29\\
+        \hline
+   \end{array}
+       
+
+..	==== ====== ====
 	ID   Nombre Edad
 	==== ====== ====
 	123  León   39
@@ -134,15 +180,32 @@ De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación q
 
 Es importante resaltar que `R - S` es diferente a `S - R`.
 
-^^^^^^^^
-Ejemplo 
-^^^^^^^^
+^^^^^^^^^
+Ejemplo 2 
+^^^^^^^^^
 
 Empleando las mismas tablas dadas en el ejemplo anterior, realice Ingenieros ``-`` Jefes y Jefes ``-`` Ingenieros:
 
 Ingenieros ``-`` Jefes
 
-	==== ====== ====
+
+
+
+.. math:: 
+   \begin{array}{|c|c|c|}
+        \hline 
+         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+        \hline
+        234 & Tomás  & 34\\
+        \hline
+        345 & José   & 45\\
+        \hline
+        143 & Josefa & 25\\
+        \hline
+   \end{array}
+       
+
+..	==== ====== ====
 	ID   Nombre Edad
 	==== ====== ====
 	234  Tomás   34
@@ -152,7 +215,17 @@ Ingenieros ``-`` Jefes
 
 Jefes ``-`` Ingenieros
 
-	==== ====== ====
+.. math:: 
+   \begin{array}{|c|c|c|}
+        \hline 
+        \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+        \hline
+        235 & María & 29\\
+        \hline
+   \end{array}
+
+
+..	==== ====== ====
 	ID   Nombre Edad
 	==== ====== ====
 	235  María  29
@@ -179,15 +252,23 @@ En  álgebra de conjuntos la intersección de dos conjuntos A y B es el conjunto
 .. math::
     R \cap S= R-(R-S)
 
-^^^^^^^^
-Ejemplo 
-^^^^^^^^
+^^^^^^^^^
+Ejemplo 3
+^^^^^^^^^
 Utilizando las mismas tablas del ejemplo anterior, encontrar la interseccion de la tabla de Ingenieros con la de Jefes:
 
 .. math::
     Ingenieros \cap Jefes
  
-	==== ====== ====
+      \begin{array}{|c|c|c|}
+        \hline 
+         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+        \hline
+        123 & León   & 39\\
+        \hline
+      \end{array}
+ 
+..	==== ====== ====
 	ID   Nombre Edad
 	==== ====== ====
 	123  León   39
