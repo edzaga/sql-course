@@ -33,9 +33,11 @@ Algunos ejemplos de comparasión::
         mesesVidaUtil <> 5
         otros...
 
-=================
 SELECT-FROM-WHERE
-=================
+~~~~~~~~~~~~~~~~~
+
+.. index:: SELECT-FROM-WHERE
+
 
 Trabajemos bajo el siguiente ejemplo::
 
