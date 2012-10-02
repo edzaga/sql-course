@@ -17,9 +17,30 @@ Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 SELECT
 ======
 
-Este operador se aplica a una relación R, produce una nueva relación con un subconjunto de tuplas de R. Las tuplas de la relación resultante son los que satisfacen una condición C (expresión condicional, similar a las declaraciones del tipo “if”) sobre algún atributo de R. Es decir selecciona **filas** de una tabla según un cierto criterio C. El esquema de la relación resultante es el mismo esquema R, se muestran los atributos en el mismo orden que se usan en la tabla R.
+Este operador se aplica a una relación R produciendo una nueva relación con un subconjunto de tuplas de R. Las tuplas de la relación resultante son las que satisfacen una condición C sobre algún atributo de R. Es decir selecciona **filas** de una tabla según un cierto criterio C. C es una expresión condicional, similar a las declaraciones del tipo “if”, es “booleana” esto quiere decir que para cada tupla de R toma el valor Verdad o Falso.
+
+• Valores de atributos con NULL no cumplirán ninguna condición.
+
+• Cada condición simple o cláusula C tiene el formato:
+
+.. math::
+	<Atributo> <Comparador> <Atributo|Cte.del Dominio> \\
+	\textrm{Donde:}\\
+	<Comparador>  \in {\{=,\geq,>,<, \neq,\leq \}}\\
+
+• Las cláusulas C pueden conectarse con los operadores logicos: 
+
+**NOT**: El operador NOT denota una salida verdadera si la entrada esfalsa, y una salida falsa si la entrada es verdadera. 
+
+**AND**: El operador AND denota una salida verdadera si y sólo si susentradas son verdaderas. 
+
+**OR**: El operador OR denota una salida verdadera si hay alguna delas entradas (o ambas) verdaderas.
+
+Se aplica la condición a cada tupla de R. Si la condición es Verdad (true), dicha tupla pertenecerá al resultado y si es Falsa (false), dicha tupla no será seleccionada. El esquema de la relación resultante es el mismo esquema R, se muestran los atributos en el mismo orden que se usan en la tabla R.
 
 **Notación en algebra relacional**
+
+Para representar SELECT en algebra relacional se utiliza la letra griega sigma:
 
 .. CMA: Que significa esta relación matemática?
 
@@ -107,13 +128,14 @@ Así finalmente quedaría la tabla:
 PROJECT
 =======
 
-El operador PROJECT se utiliza para producir una nueva relación desde R. Esta nueva relación contiene solo algunas de las columnas de R, es decir, realiza la selección de algunas de las **columnas** de una tabla R.
+El operador PROJECT se utiliza para producir una nueva relación desde R. Esta nueva relación contiene solo algunos de los atributos de R, es decir, realiza la selección de algunas de las **columnas** de una tabla R.
 
 **Notación en algebra relacional**
 
-.. math::
+PROJECT en algebra relacional se representa por la letra griega pi:
 
-       \prod \hspace{0.2cm} _{A_1,...,A_n} \hspace{0.3cm} R
+.. math::
+       \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} R
 
 `A_1,...,A_n` son las columnas que se estan seleccionando de la relación R.
 
@@ -143,7 +165,7 @@ Escoger columnas de ID y nombre de la tabla de ingenieros:
 **Respuesta**
 
 .. math::
-           \prod \hspace{0.2cm}_{ID,Nombre} \hspace{0.3cm} Ingenieros
+           \pi \hspace{0.2cm}_{(ID,Nombre)} \hspace{0.3cm} Ingenieros
 
 La tabla finalmente queda como:
 
@@ -174,7 +196,7 @@ Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
 **Respuesta**
 
 .. math::
-	   \prod \hspace{0.2cm} _{ID,Nombre} (\sigma_{edad>30} \hspace{0.3cm} Ingenieros)
+	   \pi \hspace{0.2cm} _{(ID,Nombre)} (\sigma_{edad>30} \hspace{0.3cm} Ingenieros)
 
 Finalmente la tabla queda de la siguiente manera:
 
@@ -202,6 +224,7 @@ En teoría de conjuntos, el producto cartesiano de dos conjuntos es una operaci�
 
 
 **Notación en algebra relacional**
+
 
 .. math::
 	R \times S
@@ -362,7 +385,7 @@ Este operador se utiliza cuando se tiene la necesidad de unir relaciones vincula
 
 .. CMA: Que es esto?????
 .. math::
-   R \rhd \hspace{-0.1cm} \lhd S=  \prod \hspace{0.2cm} _{R.A_1,...,R.A_n,  S.A_1,...,S.A_n} (\sigma_{R.A_1=S.A_1 \wedge ... \wedge R.A_n=S.A_n  }\hspace{0.3cm} (R \times S ))
+   R \rhd \hspace{-0.1cm} \lhd S=  \pi \hspace{0.2cm} _{R.A_1,...,R.A_n,  S.A_1,...,S.A_n} (\sigma_{R.A_1=S.A_1 \wedge ... \wedge R.A_n=S.A_n  }\hspace{0.3cm} (R \times S ))
 
 **Método**
 
@@ -504,7 +527,7 @@ Describa con palabras el resultado de esta expresión:
 
 .. math::
 
-   \prod _{sName,cName} (\sigma_{ sizeHS > enrollment } (\sigma_{ state = ‘California’}College \rhd \hspace{-0.1cm} \lhd Student   \rhd \hspace{-0.1cm} \lhd \sigma_{major = ‘CS’} Apply))
+   \pi _{sName,cName} (\sigma_{ sizeHS > enrollment } (\sigma_{ state = ‘California’}College \rhd \hspace{-0.1cm} \lhd Student   \rhd \hspace{-0.1cm} \lhd \sigma_{major = ‘CS’} Apply))
 
 
 **Respuesta**
@@ -522,7 +545,7 @@ Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre
 
 .. math::
 
-   \prod_{sID} (\sigma_{ cName=sName } (College \times Student))
+   \pi_{sID} (\sigma_{ cName=sName } (College \times Student))
 
 ==========
 THETA JOIN
