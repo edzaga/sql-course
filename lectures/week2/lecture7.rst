@@ -5,9 +5,11 @@ Perhaps the simplest form of query in SQL asks for those tuples of some one rela
 selection in relational algebra. This simple query, like almost all SQL queries, uses the three keywords, SELECT, FROM, and WHERE that 
 characterize SQL.
 
-===========================
+
 Desde el álgebra relacional
-===========================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: Desde el álgebra relacional
 
 The selection operator of relational algebra, and several others, make use of the WHERE SQL clause. The expressions that may follow WHERE
 include conditional expressions like those found in common languages such as C or Java
@@ -19,6 +21,7 @@ We may build expressions by comparing values using the six common comparison ope
   * >    "mayor que"
   * <=   "menor o igual a"
   * >=   "mayor o igual a"
+
 These operators have the same meanings as in C, but <> is the SQL symbol for "not equal to"; it corresponds to != in C and also SQL uses = for "equal" as opposed to == on C.
 
 The values that may be compared include constants and attributes of the relations mentioned after FROM. We may also apply the usual arithmetic
@@ -70,15 +73,13 @@ ejemplo, si en una base de datos hipotética <agregar ejemplo>::
          SELECT FROM WHERE
          SELECT DISTINCT FROM WHERE
 
-======
-Notas
-======
 
-SQL es case insensitive, es decir que no distingue entre mayúsculas y minúsculas. Por ejemplo, FROM (palabra reservada) es 
-equivalente a from, inclusive a From. Los nombres de los atributos, relaciones, etc. son, también, case insensitive.
+.. note::
+        SQL es case insensitive, es decir que no distingue entre mayúsculas y minúsculas. Por ejemplo, FROM (palabra reservada) es 
+        equivalente a from, inclusive a From. Los nombres de los atributos, relaciones, etc. son, también, case insensitive.
 
-El único caso en que se distingue entre mayúsculas y minúsculas es al momento de encerrar un string entre ' '. Por ejemplo 'FROM' es diferente
-a 'from'; por supuesto ambas son diferentes de FROM.
+        El único caso en que se distingue entre mayúsculas y minúsculas es al momento de encerrar un string entre ' '. Por ejemplo 'FROM' es diferente
+        a 'from'; por supuesto ambas son diferentes de FROM.
 
 
 
@@ -98,12 +99,9 @@ That is, we start with the relation in the FROM clause, apply to each tuple what
 then project onto the list of attributes and/or expressions in the SELECT clause. 
 
 
-
-
-
-==========
+^^^^^^^^^^
 Ejercicios
-==========
+^^^^^^^^^^
 
 Algunos ejercicios propuestos son:
 

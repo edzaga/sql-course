@@ -10,6 +10,10 @@ SQL (Structured Query Language) es un tipo de lenguaje vinculado con la gestión
 Characteristics
 ~~~~~~~~~~~~~~~~
 
+.. index:: Características
+
+Algunas de las características de este lenguaje son:
+
  * "SQL" or "sequel"
  * Supported by all major commercial database systems
  * Standardized - many new features over time
@@ -18,6 +22,10 @@ Characteristics
 
 Data Definition Languaje (DDL)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: Data Definition Languaje (DDL)
+
+
 Data definition language or data description language (DDL) is a syntax similar to a computer programming language for defining data structures, especially database schemas.
 
 Examples::
@@ -65,6 +73,8 @@ The Basic SELECT Statement::
 .. math::
 
     \pi_{A_{1},\ldots, A_{n}} (\sigma_{condition}(R_{1} \times \ldots \times R_{m}))
+
+Comandos SQL:
 
    * :sql:`INSERT` - adds one or more records to any single table in a relational database.
    * :sql:`DELETE` - removes one or more records from a table. A subset may be defined for deletion using a condition, otherwise all records are removed.
