@@ -136,11 +136,8 @@ PROJECT en algebra relacional se representa por la letra griega pi:
 .. math::
        \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} R
 
- El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la relación R.
+ El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la relación R. Si `A_1,...,A_n` no incluye una llave (o clave), podrían producirse tuplas repetidas en el resultado, las cuales serán eliminadas.
 
-• Si `A_1,...,A_n` no incluye una llave, podrán producirse tuplas repetidas en el resultado, las cuales serán eliminadas.
-
-• Si algún `A_1,...,A_n` es una superllave, el número de tuplas del resultado será el mismo que el de R. En otro caso será menor o igual.
 
 ^^^^^^^^^
 Ejemplo 1
@@ -228,13 +225,15 @@ En teoría de conjuntos, el producto cartesiano de dos conjuntos es una operaci�
 
 **Notación en algebra relacional**
 
+Para representar Cross-product en algebra relacional se utiliza la siguiente terminología:
 
 .. math::
 	R \times S
 
-Por convención para la sentencia anterior, los componentes de R preceden a los componentes de S en el orden de atributo para el resultado.
+Por convención para la sentencia anterior, los componentes de R preceden a los componentes de S en el orden de atributos para el resultado, creando así una nueva relación con todas las combinaciones posibles de tuplas de R y S. El número de tuplas de la nueva relación resultante es la multiplicación de la cantidad de tuplas de R por la cantidad de tuplas que tenga S (producto de ambos).
 
-Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüedad de un atributo A, que se encuentra en R y S, usamos R.A para el atributo de R y S.A para el atributo de S.
+Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüedad de un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para el atributo de S.
+
 
 ^^^^^^^^^
 Ejemplo 1
