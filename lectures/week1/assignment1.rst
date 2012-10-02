@@ -11,8 +11,9 @@ Question 1:
 
 Hacer un modelo E-R entidad relación:
 
-  1. Tenemos una universidad, en la que hay varios cursos. Cada curso está dirigido por un profesor, el cual puede dirigir varios cursos. Los cursos son subveniados, por lo que sólo se permite que un alumno se matricule de un curso
-  2. supongamos que un curso está compuesto por varias asignaturas. Cada una de ellas tiene un número de créditos. Los alumnos se matriculan de las asignaturas que quieren. Por último el alumno recibe una nota para cada asignatura, al final del curso.
+  1. Tenemos una universidad, en la que hay varios cursos. Cada curso está dirigido por un profesor, el cual puede dirigir varios cursos. Los cursos son subveniados, por lo que sólo se permite que un alumno se matricule de un curso. supongamos que un curso está compuesto por varias asignaturas. Cada una de ellas tiene un número de créditos. Los alumnos se matriculan de las asignaturas que quieren. Por último el alumno recibe una nota para cada asignatura, al final del curso.
+
+  2. Queremos hacer una base de datos con los discos que tenemos en casa. Un disco puede tener un cantante o grupo, o varios. Además un disco tiene una discográfica. Vamos a complicar un poco el ejemplo anterior: ahora hemos de tener en cuenta que un disco está compuesto por canciones. Éstas pueden estar escritas por la misma persona que las canta, pero a menudo se trata de personas diferentes.
 
 
 --------------------------
