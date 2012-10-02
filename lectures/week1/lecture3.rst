@@ -36,8 +36,6 @@ Este operador se aplica a una relación R produciendo una nueva relación con un
 
 **OR**: El operador OR denota una salida verdadera si hay alguna delas entradas (o ambas) verdaderas.
 
-Se aplica la condición a cada tupla de R. Si la condición es Verdad (true), dicha tupla pertenecerá al resultado y si es Falsa (false), dicha tupla no será seleccionada. El esquema de la relación resultante es el mismo esquema R, se muestran los atributos en el mismo orden que se usan en la tabla R.
-
 **Notación en algebra relacional**
 
 Para representar SELECT en algebra relacional se utiliza la letra griega sigma:
@@ -48,6 +46,7 @@ Para representar SELECT en algebra relacional se utiliza la letra griega sigma:
 
     \sigma_{c} \hspace{0.2cm} R
 
+Se aplica la condición C a cada tupla de R. Si la condición es Verdad (true), dicha tupla pertenecerá al resultado y si es Falsa (false), dicha tupla no será seleccionada. El esquema de la relación resultante es el mismo esquema R, se muestran los atributos en el mismo orden que se usan en la tabla R.
 
 ^^^^^^^^^
 Ejemplo 1
@@ -137,7 +136,11 @@ PROJECT en algebra relacional se representa por la letra griega pi:
 .. math::
        \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} R
 
-`A_1,...,A_n` son las columnas que se estan seleccionando de la relación R.
+ El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la relación R.
+
+• Si `A_1,...,A_n` no incluye una llave, podrán producirse tuplas repetidas en el resultado, las cuales serán eliminadas.
+
+• Si algún `A_1,...,A_n` es una superllave, el número de tuplas del resultado será el mismo que el de R. En otro caso será menor o igual.
 
 ^^^^^^^^^
 Ejemplo 1
