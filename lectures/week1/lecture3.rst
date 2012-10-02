@@ -262,67 +262,89 @@ Ejemplo 1
     \hline
   \end{array}
 
-.. math::
+ \textbf{S} \times \textbf{R}
 
-	S \times R
+ \begin{array}{|c|c|c|c|c|}
+  \hline
+  \textbf{S.A} & \textbf{C} & \textbf{R.A} & \textbf{B} & \textbf{D} \\
+  \hline	  
+  7 & 5 & 1 & 2 & 3 \\
+  \hline
+  7 & 5 & 4 & 5 & 6 \\
+  \hline
+  9 & 2 & 1 & 2 & 3 \\
+  \hline
+  9 & 2 & 4 & 5 & 6 \\
+  \hline
+  3 & 4 & 1 & 2 & 3 \\
+  \hline
+  3 & 4 & 4 & 5 & 6 \\
+  \hline
+ \end{array}
 
-	===== === ===== === ===
- 	S.A   C   R.A   B   D
-	===== === ===== === ===
-	  7    5    1    2   3
-	  7    5    4    5   6
-	  9    2    1    2   3
-	  9    2    4    5   6
-	  3    4    1    2   3
-	  3    4    4    5   6
-	===== === ===== === ===
-
-
-^^^^^^^^^^^
-Ejercicio 1
-^^^^^^^^^^^
+^^^^^^^^^
+Ejemplo 1
+^^^^^^^^^
 
 Dada las siguientes tablas:
 
-**Tabla Ingenieros**
+.. math::
 
-==== ====== ====
-ID   Nombre D#
-==== ====== ====
-123  León     39
-234  Tomás    34
-143  Josefa   25
-==== ====== ====
+ \textbf{Tabla Ingenieros}
 
-**Tabla Proyectos**
+ \begin{array}{|c|c|c|}
+  \hline  
+  \textbf{ID} & \textbf{Nombre} & \textbf{D#} \\
+  \hline
+  123 & León & 39 \\
+  \hline
+  234 & Tomás & 34 \\
+  \hline
+  143 & Josefa & 25 \\
+  \hline
+ \end{array}
 
-======== ========
-Proyecto Duración
-======== ========
-ACU0034  300
-USM7345  60
-======== ========
+ \textbf{Tabla Proyectos}
+
+ \begin{array}{|c|c|}
+  \hline
+  \textbf{Proyecto} & \textbf{Duración} \\
+  \hline
+  ACU0034 & 300 \\
+  \hline
+  USM7345 & 60 \\
+  \hline
+ \end{array}
 
 Escriba la tabla resultante al realizar la siguiente operación:
  
 .. math::
-	Ingenieros \times Proyectos
+
+	\textbf{Ingenieros} \times \textbf{Proyectos}
 
 **Respuesta**
 
-**Ingenieros x Proyectos**
+.. math::
 
-	==== ====== ==== ======== ========
-	ID   Nombre D#   Proyecto Duración
-	==== ====== ==== ======== ========
-	123  León    39  ACU0034  300
-	123  León    39  USM7345  60
-	234  Tomás   34  ACU0034  300
-	234  Tomás   34  USM7345  60
-	143  Josefa  25  ACU0034  300
-	143  Josefa  25  USM7345  60
-	==== ====== ==== ======== ========
+ \textbf{Ingenieros x Proyectos}
 
+ \begin{array}{|c|c|c|c|c|}
+  \hline
+  \textbf{ID} & \textbf{Nombre} & \textbf{D#} & \textbf{Proyecto} & \textbf{Duración} \\
+  \hline
+  123 & León & 39 & ACU0034 & 300 \\
+  \hline
+  123 & León & 39 & USM7345 & 60 \\
+  \hline
+  234 & Tomás & 34 & ACU0034 & 300 \\
+  \hline
+  234 & Tomás & 34 & USM7345 & 60 \\
+  \hline
+  143 & Josefa & 25 & ACU0034 & 300 \\
+  \hline
+  143 & Josefa & 25 & USM7345 & 60 \\
+  \hline
+ \end{array}
 
 ===========
 NATURALJOIN
@@ -348,84 +370,107 @@ Este operador se utiliza cuando se tiene la necesidad de unir relaciones vincula
    2. Se seleccionan aquellas filas del producto cartesiano para las que los atributos comunes tengan el mismo valor
    3. Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos comunes
 
-^^^^^^^^
-Ejemplo
-^^^^^^^^
-
-**R**
-
-=== === ===
- A   B   C
-=== === ===
- 1   2   3
- 4   5   6
-=== === ===
-
-**S**
-
-=== === 
- C   D  
-=== === 
- 7   5
- 6   2
- 3   4
-=== === 
+^^^^^^^^^
+Ejemplo 1
+^^^^^^^^^
 
 .. math::
-	R \rhd \hspace{-0.1cm} \lhd S
 
-	=== === === ===
- 	A   B   C   D
-	=== === === ===
-	 1   2   3   4
-	 4   5   6   2
-	=== === === ===
+ \textbf{R}
 
+ \begin{array}{|c|c|c|}
+  \hline
+  \textbf{A} & \textbf{B} & \textbf{C} \\
+  \hline
+  1 & 2 & 3 \\
+  \hline
+  4 & 5 & 6 \\
+  \hline
+ \end{array}
 
-^^^^^^^^^^^
-Ejercicio 1
-^^^^^^^^^^^
+ \textbf{S}
+
+ \begin{array}{|c|c|}
+  \hline
+  \textbf{C} & \textbf{D} \\  
+  \hline 
+  7 & 5 \\
+  \hline
+  6 & 2 \\
+  \hline
+  3 & 4 \\
+  \hline
+ \end{array} 
+
+ \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S}
+
+ \begin{array}{|c|c|c|c|}
+  \hline
+  \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} \\
+  \hline
+  1 & 2 & 3 & 4 \\
+  \hline
+  4 & 5 & 6 & 2 \\
+  \hline
+ \end{array}
+
+^^^^^^^^^
+Ejemplo 1
+^^^^^^^^^
 
 Realizar NATURALJOIN a las siguientes tablas:
 
-**Tabla Ingenieros**
+.. math::
 
-==== ======= ====
-ID    Nombre  D#
-==== ======= ====
-123   León    39
-234   Tomás   34
-143   Josefa  25
-090   María   34
-==== ======= ====
+ \textbf{Tabla Ingenieros}
 
-**Tabla Proyectos**
+ \begin{array}{|c|c|c|}
+  \hline
+  \textbf{ID} & \textbf{Nombre} & \textbf{D#} \\
+  \hline
+  123 & León & 39 \\
+  \hline
+  234 & Tomás & 34\\
+  \hline
+  143 & Josefa & 25 \\
+  \hline
+  090 & María & 34 \\
+  \hline
+ \end{array}
 
-====== ========
-D#     Proyecto
-====== ========
-39     ACU0034
-34     USM7345
-====== ========
+ \textbf{Tabla Proyectos}
+
+ \begin{array}{|c|c|}
+  \hline
+  \textbf{D#} & \textbf{Proyecto}\\
+  \hline
+  39 & ACU0034 \\
+  \hline
+  34 & USM7345 \\
+  \hline
+ \end{array}
 
 **Respuesta**
 
 .. math::
-	Ingenieros \rhd \hspace{-0.1cm} \lhd Proyectos
+	
+ \textbf{Ingenieros} \rhd \hspace{-0.1cm} \lhd \textbf{Proyectos}
 
+ \begin{array}{|c|c|c|c|}
+  \hline
+  \textbf{ID} & \textbf{Nombre} & \textbf{D#} & \textbf{Proyecto} \\
+  \hline
+  123 & León & 39 & ACU0034 \\
+  \hline
+  234 & Tomás & 34 & USM7345 \\
+  \hline
+  090 & María & 34 & USM7345 \\
+  \hline
+ \end{array}
 
-==== ======= ==== ========
-ID   Nombre   D#  Proyecto
-==== ======= ==== ========
-123  León     39   ACU0034
-234  Tomás    34   USM7345
-090  María    34   USM7345
-==== ======= ==== ========
-
-
-^^^^^^^^^^^
-Ejercicio 2
-^^^^^^^^^^^
+^^^^^^^^^
+Ejemplo 2
+^^^^^^^^^
 
 Dada las siguientes tablas:
 
@@ -466,9 +511,9 @@ Describa con palabras el resultado de esta expresión:
 
 Students paired with all California colleges smaller than the student’s high school to which the student applied to major in CS
 
-^^^^^^^^^^^
-Ejercicio 3
-^^^^^^^^^^^
+^^^^^^^^^
+Ejemplo 3
+^^^^^^^^^
 
 Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre los IDs de todos los estudiantes tal que alguna universidad coincida con el nombre del estudiante.
 
@@ -500,47 +545,64 @@ Define una relación que contiene las tuplas que satisfacen el predicado F en el
    1. Se forma el producto cartesiano `R` x `S`.
    2. Se selecciona, en el producto, solo la tupla que cumplan la condición `F`.
 
-^^^^^^^^^^
+^^^^^^^^^
 Ejemplo 1
-^^^^^^^^^^
+^^^^^^^^^
 
-**R**
+.. math::
 
-=== === === ===
- A   B   C   D
-=== === === ===
- 1   3   5   7
- 3   2   9   1
- 2   3   5   4
-=== === === ===
+ \textbf{R}
 
-**S**
+ \begin{array}{|c|c|c|c|}
+  \hline
+  \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} \\
+  \hline
+  1 & 3 & 5 & 7 \\
+  \hline
+  3 & 2 & 9 & 1 \\
+  \hline
+  2 & 3 & 5 & 4 \\
+  \hline
+ \end{array}
 
-=== === ===
- A   C   E
-=== === ===
- 1   5   2
- 1   5   9
- 3   9   2
- 2   3   7
-=== === ===
+ \textbf{S}
+
+ \begin{array}{|c|c|c|}
+  \hline
+  \textbf{A} & \textbf{C} & \textbf{E} \\
+  \hline
+  1 & 5 & 2 \\
+  \hline
+  1 & 5 & 9 \\
+  \hline
+  3 & 9 & 2 \\
+  \hline
+  2 & 3 & 7 \\
+  \hline
+ \end{array}
 
 .. math::
    R \rhd \hspace{-0.1cm} \lhd_(A >= E) S 
 
 **Respuesta**
 
-	**S**
+.. math::
 
-	===== === ===== === ===== ===== ===
-	 R.A   B   R.C   D   S.A   S.C  E
-	===== === ===== === ===== ===== ===
-	  3    2    9    1    1     5    2
-	  3    2    9    1    3     9    2
-	  2    3    5    4    1     5    2
-	  2    3    5    4    3     9    2
-	===== === ===== === ===== ===== ===
+ \textbf{S}
 
+ \begin{array}{|c|c|c|c|c|c|c|}
+  \hline
+  \textbf{R.A} & \textbf{B} & \textbf{R.C} & \textbf{D} & \textbf{S.A} & \textbf{S.C} & \textbf{E} \\
+  \hline
+  3 & 2 & 9 & 1 & 1 & 5 & 2 \\
+  \hline
+  3 & 2 & 9 & 1 & 3 & 9 & 2 \\
+  \hline
+  2 & 3 & 5 & 4 & 1 & 5 & 2 \\
+  \hline
+  2 & 3 & 5 & 4 & 3 & 9 & 2 \\
+  \hline
+ \end{array}
 
 =========
 EXERCISES 
