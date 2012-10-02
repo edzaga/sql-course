@@ -379,6 +379,8 @@ Este operador se utiliza cuando se tiene la necesidad de unir relaciones vincula
 
 **Notación en algebra relacional**
 
+
+
 .. CMA: Que es esto?????
 .. math::
    R \rhd \hspace{-0.1cm} \lhd S
@@ -628,6 +630,19 @@ Ejemplo 1
   2 & 3 & 5 & 4 & 3 & 9 & 2 \\
   \hline
  \end{array}
+
+^^^^^^^^^
+Ejemplo 2
+^^^^^^^^^
+ Con el esquema conceptual siguiente, hallar los nombres de los directores de cada departamento:
+Dpto (NumDpto, Nombre, NIFDirector, Fecha_inicio)
+Empleado (NIF, Nombre, Direccion, Salario, Dpto, NIFSupervisor)
+
+.. math::
+	\pi_{(Dpto.Nombre,Empleado.Nombre)} (Dpto \rhd \hspace{-0.1cm} \lhd_{NIFDirector=NIF} Empleado)
+
+• Tuplas con Null en los “Atributos de la Reunión”, no se incluyen
+en el resultado.
 
 =========
 EXERCISES 
