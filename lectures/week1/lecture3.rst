@@ -136,8 +136,7 @@ PROJECT en algebra relacional se representa por la letra griega pi:
 .. math::
        \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} R
 
- El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la relación R. Si `A_1,...,A_n` no incluye una llave (o clave), podrían producirse tuplas repetidas en el resultado, las cuales serán eliminadas.
-
+El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la relación R. Si `A_1,...,A_n` no incluye una llave (o clave), podrían producirse tuplas repetidas en el resultado, las cuales serán eliminadas.
 
 ^^^^^^^^^
 Ejemplo 1
