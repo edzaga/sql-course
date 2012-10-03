@@ -495,61 +495,7 @@ Realizar NATURALJOIN a las siguientes tablas:
   \hline
  \end{array}
 
-^^^^^^^^^
-Ejemplo 2
-^^^^^^^^^
 
-Dada las siguientes tablas:
-
-**College**
-
-======= ====== ==========
-cName   State  enrollment
-======= ====== ==========
- -	-	-
-======= ====== ==========
-
-
-**Student**
-
-==== ======= ====== ======
-sID   sName   GPA   sizeHS
-==== ======= ====== ======
- -	-	-	-
-==== ======= ====== ======
-
-
-**Apply**
-
-==== ======= ====== ====
-sID   cName  major  dec
-==== ======= ====== ====
- -	-	-    -
-==== ======= ====== ====
-
-Describa con palabras el resultado de esta expresión:
-
-.. math::
-
-   \pi _{sName,cName} (\sigma_{ sizeHS > enrollment } (\sigma_{ state = ‘California’}College \rhd \hspace{-0.1cm} \lhd Student   \rhd \hspace{-0.1cm} \lhd \sigma_{major = ‘CS’} Apply))
-
-
-**Respuesta**
-
-Students paired with all California colleges smaller than the student’s high school to which the student applied to major in CS
-
-^^^^^^^^^
-Ejemplo 3
-^^^^^^^^^
-
-Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre los IDs de todos los estudiantes tal que alguna universidad coincida con el nombre del estudiante.
-
-
-**Respuesta**
-
-.. math::
-
-   \pi_{sID} (\sigma_{ cName=sName } (College \times Student))
 
 ==========
 THETA JOIN
@@ -635,18 +581,21 @@ Ejemplo 1
 Ejemplo 2
 ^^^^^^^^^
  Con el esquema conceptual siguiente, hallar los nombres de los directores de cada departamento:
+
 Dpto (NumDpto, Nombre, NIFDirector, Fecha_inicio)
+
 Empleado (NIF, Nombre, Direccion, Salario, Dpto, NIFSupervisor)
 
 .. math::
 	\pi_{(Dpto.Nombre,Empleado.Nombre)} (Dpto \rhd \hspace{-0.1cm} \lhd_{NIFDirector=NIF} Empleado)
 
-• Tuplas con Null en los “Atributos de la Reunión”, no se incluyen
-en el resultado.
+• Tuplas con Null en los “Atributos de la Reunión”, no se incluyen en el resultado.
 
 =========
 EXERCISES 
 =========
+
+
 
 Consider a database with the following schema:
 

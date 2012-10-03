@@ -330,6 +330,46 @@ appears in `R`.
 Exercises
 =========
 
+^^^^^^^^^^^^
+Ejercicio 1 
+^^^^^^^^^^^^
+Las relaciones base que forman la base de datos de un video club son las siguientes:
+
+SOCIO(**codsocio**,nombre,direccion,telefono)
+
+PELICULA(**codpeli**,titulo,genero)
+
+CINTA(**codcinta**,codpeli)
+
+PRESTAMO(**codsocio,codcinta,fecha**,pres_dev)
+
+LISTA_ESPERA(**codsocio,codpeli**,fecha)
+
+SOCIO: almacena los datos de cada uno de los socios del video club: código del socio, nombre, dirección y teléfono. 
+
+PELICULA: almacena información sobre cada una de las películas de las cuales tiene copias el video club: código de la película, título y género (terror, comedia, etc.). 
+
+CINTA: almacena información referente a las copias que hay de cada película (copias distintas de una misma película tendrán distinto código de cinta). 
+
+PRESTAMO: almacena información de los préstamos que se han realizado. Cada préstamo es de una cinta a un socio en una fecha. Si el préstamo aún no ha finalizado, pres_dev tiene el valor 'prestada'; si no su valor es 'devuelta'. 
+
+LISTA_ESPERA: almacena información sobre los socios que esperan a que haya copias disponibles de películas, para tomarlas prestadas. Se guarda también la fecha en que comenzó la espera para mantener el orden. Es importante tener en cuenta que cuando el socio consigue la película esperada, éste desaparece de la lista de espera. 
+
+En las relaciones anteriores, son claves primarias los atributos y grupos de atributos que aparecen en negrita. Las claves ajenas se muestran en los siguientes diagramas referenciales:
+
+Resolver las siguientes consultas mediante el álgebra relacional 
+
+1.1. Obtener los nombres de los socios que tienen actualmente prestada una película que ya tuvieron prestada con anterioridad.
+
+**Respuesta**
+
+.. math::
+	\pi_{nombre} ( \{(PRESTAMO \rhd \hspace{-0.1cm} \lhd_{ (pres\_dev='prestada')} CINTA) \cap (PRESTAMO \rhd \hspace{-0.1cm} \lhd_{(pres\_dev='devuelta')} CINTA)\} \rhd \hspace{-0.1cm}\lhd SOCIO )      
+
+^^^^^^^^^^^^
+Ejercicio 2 
+^^^^^^^^^^^^
+
  Consider a database with the following schema:
 
    1. Person ( name, age, gender ) : name is a key
