@@ -83,12 +83,12 @@ Utilizando Álgebra relacional:
 .. CMA: QUE ES ESTO?????? No puedo entender que significa esta productora :/
 
 .. math::
-   \prod \hspace{0.2cm} _{ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{ramos.nombre ='programacion'} (alumnos \rhd \hspace{-0.1cm} \lhd ramos)}
+   \pi \hspace{0.2cm} _{ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{ramos.nombre ='programacion'} (alumnos \rhd \hspace{-0.1cm} \lhd ramos)}
 
 Se puede decir que 
 
 .. math::
-        \prod 
+        \pi 
 
 realiza un PROJECT sobre una tabla, es decir selecciona una columna. Por otro lado
 
