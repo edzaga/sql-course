@@ -1,4 +1,4 @@
-Lecture 4 - Relation algebra: Set operators, renaming, notation
+Lecture 4 - Relational Algebra: Set operators, renaming, notation
 ---------------------------------------------------------------
 
 Basics of relational algebra
