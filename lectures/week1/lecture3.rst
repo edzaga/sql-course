@@ -596,7 +596,7 @@ EXERCISES
 
 
 
-Consider a database with the following schema:
+Considere la siguiente base de datos:
 
    1. Person ( name, age, gender ) : name is a key
    2. Frequents ( name, pizzeria ) : (name, pizzeria) is a key

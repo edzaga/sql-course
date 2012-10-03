@@ -370,7 +370,7 @@ Resolver las siguientes consultas mediante el álgebra relacional
 Ejercicio 2 
 ^^^^^^^^^^^^
 
- Consider a database with the following schema:
+ Considere la siguiente base de datos:
 
    1. Person ( name, age, gender ) : name is a key
    2. Frequents ( name, pizzeria ) : (name, pizzeria) is a key
@@ -380,8 +380,6 @@ Ejercicio 2
 Write relational algebra expressions for the following nine queries. (Warning: some of the later queries are a bit challenging.)
 
    * Find all pizzerias frequented by at least one person under the age of 18.
-   * Find the names of all females who eat either mushroom or pepperoni pizza (or both).
-   * Find the names of all females who eat both mushroom and pepperoni pizza.
    * Find all pizzerias that serve at least one pizza that Amy eats for less than $10.00.
    * Find all pizzerias that are frequented by only females or only males.
    * For each person, find all pizzas the person eats that are not served by any pizzeria the person frequents. Return all such person (name) / pizza pairs.
