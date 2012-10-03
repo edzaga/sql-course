@@ -382,7 +382,7 @@ A continuación se realizarán una serie de preguntas de consultas sobre la base
 Preguntas:
 ^^^^^^^^^^
 
-1) Seleccionar todos los detalles de los articulos que se montan en la ciudad Caceres.
+1) Seleccionar todos los detalles de los articulos que se montan en la ciudad Santiago.
 2) Obtener todos los valores de P# para los proveedores que abastecen el articulo T1.
 3) Obtener la lista de pares de atributos (COLOR,CIUDAD) de la tabla componentes eliminando los pares duplicados.
 4) Seleccionar los valores de P# para los proveedores que suministran para el articulo T1 el componente C1

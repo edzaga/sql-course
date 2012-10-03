@@ -15,30 +15,7 @@ En SQL se tienen varios tipos de datos. Cuando creamos una tabla con la instrucc
 
 6. Dates and times can be represented by the data types DATE and TIME, respectively. These values are essentially character strings of a special form. We may, in fact, coerce dates and times to string types, and we may do the reverse if the string "makes sense" as a date or time.
 
-Simple Table Declarations
-~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-The simplest form of declaration of a relation schema consists of the keyrwords CREATE TABLE followed by the name of the relation and a parenthesized list of the attribute names and their types.
-
--------
-Example
--------
-
-The first two attributes, name and address , have each been declared to be character strings. However, with the name, we have made the decision to use a fixed-length string of 30 characters: padding a name out with blanks at the end if necessary and truncating a name to 30 characters if it is longer. In contrast, we have declared addresses to be variable-length character strings of up to 255 characters. It is not clear that these two choices are the best possible, but we use them to illustrate two kinds of string data types.
-The gender attribute has values that are a single letter, M or F. Thus we can safely use a single character as the type of this attribute. Finally, the birthdate attribute naturally deserves the data type DATE. If this type were not available in a system that did not conform to the SQL standard, we could use CHAR(10) instead, since all DATE values are actually strings of 10 characters eight digits and two hyphens.
-
-::
-
-   CREATE TABLE Person (
-
-          name CHAR(30),
-
-          address VARCHAR(255),
-
-          gender CHAR(1),
-
-          birthdate DATE
-
-   );
+Ejemplo práctico
+~~~~~~~~~~~~~~~~ 
 
 
