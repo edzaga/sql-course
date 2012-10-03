@@ -335,15 +335,15 @@ Ejercicio 1
 ^^^^^^^^^^^^
 Las relaciones base que forman la base de datos de un video club son las siguientes:
 
-SOCIO(**codsocio**,nombre,direccion,telefono)
+* SOCIO(**codsocio**,nombre,direccion,telefono)
 
-PELICULA(**codpeli**,titulo,genero)
+* PELICULA(**codpeli**,titulo,genero)
 
-CINTA(**codcinta**,codpeli)
+* CINTA(**codcinta**,codpeli)
 
-PRESTAMO(**codsocio,codcinta,fecha**,pres_dev)
+* PRESTAMO(**codsocio,codcinta,fecha**,pres_dev)
 
-LISTA_ESPERA(**codsocio,codpeli**,fecha)
+* LISTA_ESPERA(**codsocio,codpeli**,fecha)
 
 SOCIO: almacena los datos de cada uno de los socios del video club: código del socio, nombre, dirección y teléfono. 
 
@@ -357,9 +357,38 @@ LISTA_ESPERA: almacena información sobre los socios que esperan a que haya copi
 
 En las relaciones anteriores, son claves primarias los atributos y grupos de atributos que aparecen en negrita. Las claves ajenas se muestran en los siguientes diagramas referenciales:
 
-Resolver las siguientes consultas mediante el álgebra relacional 
+Resolver las siguientes consultas mediante el álgebra relacional (recuerde que en la lectura 3 también se dieron algunos operadores de álgebra relacional):
 
-1.1. Obtener los nombres de los socios que tienen actualmente prestada una película que ya tuvieron prestada con anterioridad.
+1.1. Seleccionar todos los socios que se llaman: "Charles".
+
+**Respuesta**
+
+.. math::
+	\sigma_{nombre='Charles'} (SOCIO)  
+
+1.2. Seleccionar el codigo socio de todos los socios que se llaman: "Charles".
+
+**Respuesta**
+
+.. math::
+	\pi_{codsocio}(\sigma_{nombre='Charles'} (SOCIO))
+
+1.3. Seleccionar los nombres de las películas que se encuentran en lista de espera.
+
+**Respuesta**
+
+.. math::
+	\pi_{titulo}(PELICULA \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)
+	
+
+1.4. Obtener los nombres de los socios que esperan películas.
+
+**Respuesta**
+
+.. math::
+	pi_{nombre}(SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)
+
+1.5. Obtener los nombres de los socios que tienen actualmente prestada una película que ya tuvieron prestada con anterioridad.
 
 **Respuesta**
 
@@ -367,14 +396,28 @@ Resolver las siguientes consultas mediante el álgebra relacional
 	\pi_{nombre} ( \{(PRESTAMO \rhd \hspace{-0.1cm} \lhd_{ (pres\_dev='prestada')} CINTA) \cap (PRESTAMO \rhd \hspace{-0.1cm} \lhd_{(pres\_dev='devuelta')} CINTA)\} \rhd \hspace{-0.1cm}\lhd SOCIO )   
    
 
-1.2. Obtener los títulos de las películas que nunca han sido prestadas.
+1.6. Obtener los títulos de las películas que nunca han sido prestadas.
 
 **Respuesta**
 
 .. math::
-	\pi_{titulo} (PELICULA  - (PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA) ) \rhd \hspace{-0.1cm} \lhd PELICULA
+	\pi_{titulo} \{(\pi_{codpeli} PELICULA  - \pi_{codpeli} (PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA) ) \rhd \hspace{-0.1cm} \lhd PELICULA \}
 
 (todas las películas) menos (las películas que han sido prestadas alguna vez)
+
+1.7. Obtener los nombres de los socios que han tomado prestada la película “WALL*E” alguna  vez o que están esperando para tomarla prestada.
+
+**Respuesta**
+
+.. math::
+	\pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cup \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )
+
+1.8. Obtener los nombres de los socios que han tomado prestada la película “WALL*E” alguna vez y que además están en su lista de espera.
+
+**Respuesta**
+
+.. math::
+	\pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cap \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )
 
 ^^^^^^^^^^^^
 Ejercicio 2 
