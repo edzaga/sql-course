@@ -376,17 +376,19 @@ NATURALJOIN
 
 Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando sólo las tuplas que coinciden de alguna manera.  NATURALJOIN une sólo los pares de tuplas de R y S que sean comunes. Más precisamente una tupla r de R y una tupla s de S se emparejan correctamente si y sólo si r y s coinciden en cada uno de los valores de los atributos comunes, el resultado de la vinculación es una tupla, llamada “joined tuple”.  Entonces, al realizar  NATURALJOIN se obtiene una relación con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones que tengan el mismo valor en los atributos comunes.
 
-**Notación en algebra relacional**
+**Notación en álgebra relacional**
 
+Para denotar NATURALJOIN se utiliza la siguiente simbología: 
 
-
-.. CMA: Que es esto?????
+.. CMA: Que es esto????? simbologia 
 .. math::
    R \rhd \hspace{-0.1cm} \lhd S
 
 **Equivalencia con operadores básicos**
 
-.. CMA: Que es esto?????
+NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos, la equivalencia es la siguiente:
+
+.. CMA: Que es esto????? operadores que fueron explicados anteriormente y son equivalentes 
 .. math::
    R \rhd \hspace{-0.1cm} \lhd S=  \pi \hspace{0.2cm} _{R.A_1,...,R.A_n,  S.A_1,...,S.A_n} (\sigma_{R.A_1=S.A_1 \wedge ... \wedge R.A_n=S.A_n  }\hspace{0.3cm} (R \times S ))
 
@@ -441,7 +443,7 @@ Ejemplo 1
  \end{array}
 
 ^^^^^^^^^
-Ejemplo 1
+Ejemplo 2
 ^^^^^^^^^
 
 Realizar NATURALJOIN a las siguientes tablas:
@@ -497,25 +499,32 @@ Realizar NATURALJOIN a las siguientes tablas:
 
 
 ==========
-THETA JOIN
+THETAJOIN
 ==========
 
-Define una relación que contiene las tuplas que satisfacen el predicado F en el producto cartesiano de R x S. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. El predicado F es de la forma R.ai operador_de_comparación S.bi. El predicado no tiene por que definirse sobre atributos comunes. Termino “join” suele referirse a theta join.
+Define una relación que contiene las tuplas que satisfacen el predicado C en el producto cartesiano de `R x S`. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. La condición C es de la forma `R.ai` <operador_de_comparación> `S.bi`, esta condición es del mismo tipo que se utiliza SELECT. El predicado no tiene por que definirse sobre atributos comunes. Termino “join” suele referirse a THETAJOIN.
 
 **Notación en algebra relacional**
 
+La notación de THETAJOIN es el mismo simbolo que se utiliza para NATURALJOIN, la diferencia radica en que THETAJOIN lleva el predicado C:
+  
 .. math::
-   R \rhd \hspace{-0.1cm} \lhd_F S
+	R \rhd \hspace{-0.1cm} \lhd_C S
+	C = <Atributo> <Comparador> <Atributo o Constante del Dominio> \\
+	\textrm{Donde:}\\
+	<Comparador> \in {\{=,\geq,>,<, \neq,\leq \}}\\
 
 **Equivalencia con operadores básicos**
 
+Al igual NATURALJOIN, THETAJOIN puede ser escrito en función de los operadores vistos anteriormente:
+
 .. math::
-   R \rhd \hspace{-0.1cm} \lhd_F S= \sigma_{F} (R \times S)
+   R \rhd \hspace{-0.1cm} \lhd_C S= \sigma_{F} (R \times S)
 
 **Método**
 
    1. Se forma el producto cartesiano `R` x `S`.
-   2. Se selecciona, en el producto, solo la tupla que cumplan la condición `F`.
+   2. Se selecciona, en el producto, solo la tupla que cumplan la condición `C`.
 
 ^^^^^^^^^
 Ejemplo 1
