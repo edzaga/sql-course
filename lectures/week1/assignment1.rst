@@ -233,8 +233,11 @@ Suppose relation R(A,B,C) has the following tuples:
  \end{array}
 
 Compute the projection
+
 .. math::
-     \pi_{C,B} (R)
+     
+ \pi_{C,B} (R)
+
 Which of the following tuples is in the result? 
 
 a) (6,2)
@@ -384,4 +387,4 @@ Preguntas:
 3) Obtener la lista de pares de atributos (COLOR,CIUDAD) de la tabla componentes eliminando los pares duplicados.
 4) Seleccionar los valores de P# para los proveedores que suministran para el articulo T1 el componente C1
 5) Obtener para los valores de P# para los proveedores que suministren los articulos T1 y T2.
-   
+	   

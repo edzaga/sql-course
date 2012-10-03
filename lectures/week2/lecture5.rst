@@ -47,10 +47,10 @@ DML son las siglas de Data Manipulation Language y se refiere a los comandos que
 
 Examples of DML::
 
-   'Select'
-   'Insert'
-   'Delete'
-   'Update'
+   `SELECT`
+   `INSERT`
+   `DELETE`
+   `UPDATE`
 
 **Description of commands**
 
@@ -58,15 +58,17 @@ Examples of DML::
 **SELECT** -  returns a result set of records from one or more tables.
 A SELECT statement retrieves zero or more rows from one or more database tables or database views. In most applications, SELECT is the most commonly used Data Manipulation Language (DML) command. As SQL is a declarative programming language, SELECT queries specify a result set, but do not specify how to calculate it. The database translates the query into a "query plan" which may vary between executions, database versions and database software. This functionality is called the "query optimizer" as it is responsible for finding the best possible execution plan for the query, within applicable constraints.
 
-The Basic SELECT Statement::
+The Basic SELECT Statement
 
-  Select `A_{1},\ldots, A_{n}` From `R_{1}, \ldots, R_{m}` Where condition
+.. code-block:: sql
+
+ SELECT 'A_{1},\ldots,A_{n}' FROM 'R_{1}, \ldots, R_{m}' WHERE 'condition'
 
 **Significado:**
 
-   * Select `A_{1}, \ldots, A_{n}`: What to return
-   * From `R_{1}, \ldots,R_{m}`: relations
-   * Where `condition`: combine, filter
+   * :sql:`SELECT` `A_{1}, \ldots, A_{n}`: What to return
+   * :sql:`FROM` `R_{1}, \ldots,R_{m}`: relations
+   * :sql:`WHERE` `condition`: combine, filter
 
 **Algebra relacional:**
 
@@ -84,5 +86,107 @@ Other Commands
 ~~~~~~~~~~~~~~
 
 indexes, constraints, views, triggers, transactions, authorization, ...
+
+Ejemplo práctico
+~~~~~~~~~~~~~~~~
+
+.. index:: ejemplo practico 
+
+Instalamos por consola Postgresql ingresando el siguiente comando::
+
+ sudo apt-get install postgresql postgresql-client postgresql-contrib libpq-dev
+
+Luego para ingresar al entorno de psql escribimos en consola::
+
+ sudo su postgres -c psql
+
+Para crear una base de datos en este caso la llamaremos example::
+
+ postgres=# create database example;
+ CREATE DATABASE
+
+Para ingresar a la base de datos example::
+
+ postgres=# \c example
+ psql (8.4.14)
+ Ahora está conectado a la base de datos «example».
+
+Ahora comenzamos a crear una tabla llamada cliente con las variables id que se define como serial en que al ir agregando datos se autoincrementará automaticamente en la base de datos example::
+
+ example=# CREATE TABLE cliente (id SERIAL, nombre VARCHAR(50), apellido VARCHAR(50), edad INTEGER, direccion VARCHAR(50), pais VARCHAR(25)); 
+ NOTICE:  CREATE TABLE creará una secuencia implícita «cliente_id_seq» para la columna serial «cliente.id»
+ CREATE TABLE
+
+Para ingresar datos a la tabla se realiza de la siguiente manera::
+
+ example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('John', 'Smith', 35, '7635 N La Cholla Blvd', 'EEUU');
+ INSERT 0 1
+
+Agregar más datos a la tabla clientes::
+
+ example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('John', 'Smith', 35, '7635 N La Cholla Blvd', 'EEUU');
+ INSERT 0 1
+ example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('Judith', 'Ford', 20, '3901 W Ina Rd', 'Inglaterra');
+ INSERT 0 1
+ example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('Sergio', 'Honores', 35, '1256 San Luis', 'Chile');
+ INSERT 0 1
+ example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('Ana', 'Caprile', 25, '3456 Matta', 'Chile');
+ INSERT 0 1
+
+Seleccionar todos los datos de la tabla cliente::
+
+ example=# SELECT * FROM cliente;
+ id | nombre | apellido | edad |       direccion       |    pais    
+ ----+--------+----------+------+-----------------------+------------
+  1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
+  2 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
+  3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
+  4 | Sergio | Honores  |   35 | 1256 San Luis         | Chile
+  5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
+ (5 filas)
+
+Como cometimos el error de ingresar en la segunda fila datos repetidos podemos eliminarla de esta manera::
+
+ example=# DELETE FROM cliente WHERE id=2;
+ DELETE 1
+
+Verificamos que se haya borrado::
+
+ example=# SELECT * FROM cliente;
+ id | nombre | apellido | edad |       direccion       |    pais    
+ ----+--------+----------+------+-----------------------+------------
+  1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
+  3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
+  4 | Sergio | Honores  |   35 | 1256 San Luis         | Chile
+  5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
+ (4 filas)
+
+Si se desea actualizar la dirección del cliente Sergio::
+
+ example=# UPDATE cliente SET direccion='1459 Patricio Lynch' WHERE id=4;
+ UPDATE 1
+
+Verificamos que se haya actualizado la información::
+ 
+ example=# SELECT * FROM cliente;
+  id | nombre | apellido | edad |       direccion       |    pais    
+ ----+--------+----------+------+-----------------------+------------
+  1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
+  3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
+  5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
+  4 | Sergio | Honores  |   35 | 1459 Patricio Lynch   | Chile
+ (4 filas)
+
+Si queremos borrar toda la tabla::
+
+ example=# DROP TABLE cliente;
+ DROP TABLE
+
+Verificamos que se haya eliminado la tabla cliente::
+ 
+ example=# SELECT * FROM cliente;
+ ERROR:  no existe la relación «cliente»
+ LÍNEA 1: SELECT * FROM cliente;
+                       ^
 
 
