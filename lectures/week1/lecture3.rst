@@ -307,7 +307,7 @@ Ejemplo 1
  \end{array}
 
 ^^^^^^^^^
-Ejemplo 1
+Ejemplo 2
 ^^^^^^^^^
 
 Dada las siguientes tablas:

@@ -364,7 +364,17 @@ Resolver las siguientes consultas mediante el álgebra relacional
 **Respuesta**
 
 .. math::
-	\pi_{nombre} ( \{(PRESTAMO \rhd \hspace{-0.1cm} \lhd_{ (pres\_dev='prestada')} CINTA) \cap (PRESTAMO \rhd \hspace{-0.1cm} \lhd_{(pres\_dev='devuelta')} CINTA)\} \rhd \hspace{-0.1cm}\lhd SOCIO )      
+	\pi_{nombre} ( \{(PRESTAMO \rhd \hspace{-0.1cm} \lhd_{ (pres\_dev='prestada')} CINTA) \cap (PRESTAMO \rhd \hspace{-0.1cm} \lhd_{(pres\_dev='devuelta')} CINTA)\} \rhd \hspace{-0.1cm}\lhd SOCIO )   
+   
+
+1.2. Obtener los títulos de las películas que nunca han sido prestadas.
+
+**Respuesta**
+
+.. math::
+	\pi_{titulo} (PELICULA  - (PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA) ) \rhd \hspace{-0.1cm} \lhd PELICULA
+
+(todas las películas) menos (las películas que han sido prestadas alguna vez)
 
 ^^^^^^^^^^^^
 Ejercicio 2 
