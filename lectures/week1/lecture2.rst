@@ -109,7 +109,7 @@ Si bien se profundizará sobre ambos, a medida que avance el curso, se deja la s
   \hline
  \end{array}
 
- \textbf{Tabla Ramos}
+ \textbf{Tabla RAMOS}
 
  \begin{array}{|c|c|}
   \hline
