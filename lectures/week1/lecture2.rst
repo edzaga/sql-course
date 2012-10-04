@@ -24,9 +24,9 @@ Los pasos necesarios a la hora de crear una Base de Datos Relacional (BDR) son:
    Datos Relacional:
 
     1. Consultar: :sql:`SELECT`
-    2. Almacenar: :sql:`CREATE, INSERT`
+    2. Almacenar: :sql:`INSERT`
     3. Actualizar: :sql:`UPDATE`
-    4. Borrar: :sql:`DELETE, DROP`
+    4. Borrar: :sql:`DELETE`
 
 .. note::
 
@@ -50,6 +50,7 @@ en la BD, sin la necesidad de escribir complejos algoritmos.
 
 Una 'consulta a la BD', puede entenderse como una pregunta que se le realiza para obtener
 'cierta información'. Algunos ejemplos pueden ser:
+
   * "Todos los estudiantes con nota mayor o igual a 55".
   * "Todas los departamentos de Ingeniería con una cantidad mayor o igual a 1000 alumnos".
   * "Los 5 primeros estudiantes con mejor promedio de notas en el ramo de Química".
@@ -69,6 +70,7 @@ Consultas y relaciones (tablas)
 
 Las consultas realizadas a las tablas de una BD al momento de ser ejecutadas producen,
 como resultado, tablas; las cuales pueden ser:
+  
   * Cerradas: Cuando la estructura del objeto que se obtiene de la consulta, es igual
     a la estructura de los objetos consultados, se tiene una tabla cerrada
   * Compuestas: Cuando la consulta se hace sobre, al menos una tabla que corresponde
@@ -81,6 +83,7 @@ Lenguajes de consultas
 .. index:: Lenguajes de consultas
 
 Algunos de los lenguajes de consultas son
+  
   * Álgebra Relacional: Lenguaje formal y matemático
   * SQL: Lenguaje actual e implementado que nace del Álgebra Relacional.
 
@@ -88,11 +91,11 @@ Si bien se profundizará sobre ambos, a medida que avance el curso, se deja la s
 
 .. math::
  
- \textbf{Tabla Alumnos}
+ \textbf{Tabla ALUMNOS}
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & textbf{ID_ramo} & textbf{nombre_alumno} & \textbf{promedio_nota} \\
+  \textbf{ID} & \textbf{ID_ramo} & \textbf{nombre_alumno} & \textbf{promedio_nota} \\
   \hline
   1 & 1 & Robert & 45 \\
   \hline
@@ -112,15 +115,15 @@ Si bien se profundizará sobre ambos, a medida que avance el curso, se deja la s
   \hline
   \textbf{ID} & \textbf{nombre_ramo} \\
   \hline
-  1 & Lenguajes de Programación \\
+  1 & Programacion \\
   \hline
-  2 & Base de datos \\
+  2 & Base\ de\ datos \\
   \hline
-  3 & Estructuras de datos \\
+  3 & Estructuras\ de\ datos \\
   \hline
  \end{array}
 
-Consultar por el "ID de los alumnos con nota mayor o igual a 55 en programación":
+Consultar por el "ID de los alumnos con promedio de notas mayor o igual a 55 en el ramo de Programación":
 
 Utilizando Álgebra Relacional:
 
@@ -150,8 +153,7 @@ Utilizando SQL
 
 .. code-block:: sql
 
-   SELECT alumnos.ID FROM alumnos, ramos WHERE alumnos.ID = ramos.ID AND nota > 55 AND ramos.nombre='progamacion'
-
+ SELECT ALUMNOS.ID FROM ALUMNOS, RAMOS WHERE ALUMNOS.ID_ramo=RAMOS.ID AND ALUMNOS.promedio_nota>=55 AND RAMOS.nombre_ramo='Programacion';
 
 En las próximas lecturas, se estudiará con mayor detalle tanto el álgebra relacional,
 como el lenguaje SQL.

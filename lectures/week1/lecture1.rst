@@ -106,12 +106,13 @@ Ejemplo:
 
 Se tiene una base de datos que contiene dos relaciones: una denominada EMPLEADOS, que almacena datos de los empleados de una empresa, y otra con el nombre DESPACHOS, que almacena los datos de los despachos que tiene la empresa. Los empleados que trabajan para una empresa pueden estar vinculados con los despachos de la empresa, porque a cada empleado se le asigna un despacho concreto para trabajar.
 
-**Relación DESPACHOS**
-
 .. math:: 
+ 
+ \textbf{Tabla DESPACHOS}
+
    \begin{array}{|c|c|c|}
         \hline 
-         \textbf{edificio} & \textbf{número} & \textbf{superficie}\\
+         \textbf{edificio} & \textbf{numero} & \textbf{superficie}\\
         \hline
         Princess & 120  & 10\\
         \hline
@@ -128,12 +129,13 @@ Se tiene una base de datos que contiene dos relaciones: una denominada EMPLEADOS
 La tabla DESPACHOS posee 3 atributos (*edificio*, *número*, superficie) y 5 registros (o filas).
 Esta tabla posee un conjunto de atributos cuyos valores combinados dan la unicidad a cada fila. Se trata de los atributos edificio y número; se les llama clave primaria compuesta.
 
-**Relación EMPLEADOS**
-
 .. math:: 
+
+ \textbf{Tabla EMPLEADOS}
+
    \begin{array}{|c|c|c|c|c|c|}
         \hline 
-         \textbf{DNI} & \textbf{nombre} & \textbf{apellido} & \textbf{DNIjefe} & \textbf{edificiodesp}& \textbf{númerodesp}\\
+         \textbf{DNI} & \textbf{nombre} & \textbf{apellido} & \textbf{DNIjefe} & \textbf{edificiodesp}& \textbf{numerodesp}\\
         \hline
         40.444.255 &  Alex   &   Karev  &    40.783.150   &   Princess   &    120\\
         \hline
@@ -163,8 +165,8 @@ La creación de relaciones (tablas) en SQL
 
 .. code-block:: sql
 
-   CREATE TABLE student(id INTEGER, name VARCHAR(50), grade INTEGER, PRIMARY KEY(id));
-   CREATE TABLE school(name VARCHAR(50), city VARCHAR(50), total_students INTEGER);
+ CREATE TABLE DESPACHOS(edificio VARCHAR(50), numero INTEGER, superficie INTEGER, PRIMARY KEY(edificio,numero));  
+ CREATE TABLE EMPLEADOS(DNI VARCHAR(50), nombre VARCHAR(50), apellido VARCHAR(50), DNIjefe VARCHAR(50), edificiodesp VARCHAR(50), numerodesp INTEGER, PRIMARY KEY(DNI), FOREIGN KEY(edificiodesp,numerodesp) REFERENCES DESPACHOS(edificio,numero));
 
 Motores de Bases de Datos Relacionales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
