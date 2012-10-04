@@ -125,7 +125,7 @@ Se tiene una base de datos que contiene dos relaciones: una denominada EMPLEADOS
         \hline
    \end{array}
 
-La tabla DESPACHOS posee 3 atributos (**edificio, número**, superficie) y 5 registros (o filas).
+La tabla DESPACHOS posee 3 atributos (*edificio*, *número*, superficie) y 5 registros (o filas).
 Esta tabla posee un conjunto de atributos cuyos valores combinados dan la unicidad a cada fila. Se trata de los atributos edificio y número; se les llama clave primaria compuesta.
 
 **Relación EMPLEADOS**
@@ -146,10 +146,10 @@ Esta tabla posee un conjunto de atributos cuyos valores combinados dan la unicid
    \end{array}
 
 
-La tabla EMPLEADOS posee 6 atributos (**DNI**, nombre, apellido, DNIjefe, edificiodesp, númerodesp) y 4 registros (o filas), en el segundo registro se aprecia que Georfe no posee despacho asignado por lo que se agrega el valor "unknown" o "undefined" que se define como NULL.
+La tabla EMPLEADOS posee 6 atributos (*DNI*, nombre, apellido, DNIjefe, edificiodesp, númerodesp) y 4 registros (o filas), en el segundo registro se aprecia que George no posee despacho asignado por lo que se agrega el valor "unknown" o "undefined" que se define como NULL.
 Esta tabla posee un atributo cuyo valor es único en cada tupla que es atributo DNI y se le llama clave primaria.
 
-En la relación de esquema EMPLEADOS(**DNI**, nombre, apellido, DNIjefe, edificiodesp, númerodesp), la clave foránea formada por los atributos{edificiodesp, númerodesp} referencia la clave primaria de la relación DESPACHOS(**edificio, número**, superficie). De este modo, se cumple que todos los valores que no son nulos de los atributos edificiodesp y númerodesp son valores que existen para los atributos edificio y número de DESPACHOS. Esta clave foránea indica, para cada empleado, el despacho donde trabaja. Además, el atributo DNIjefe es otra clave foránea que referencia la clave primaria de la misma relación EMPLEADOS, e indica, para cada empleado, quien es su jefe.
+En la relación de esquema EMPLEADOS, la clave foránea formada por los atributos{edificiodesp, númerodesp} referencia la clave primaria de la relación DESPACHOS. De este modo, se cumple que todos los valores que no son nulos de los atributos edificiodesp y númerodesp son valores que existen para los atributos edificio y número de DESPACHOS. Esta clave foránea indica, para cada empleado, el despacho donde trabaja. Además, el atributo DNIjefe es otra clave foránea que referencia la clave primaria de la misma relación EMPLEADOS, e indica, para cada empleado, quien es su jefe.
 
 Ejemplo en SQL
 ==============
