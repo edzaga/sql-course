@@ -47,7 +47,7 @@ Estas entidades están compuestas por varios *atributos*, que vienen a ser sus p
 .. image::../../../sql-course/src/entidad.jpg
 .. image:: ../../../sql-course/src/atributo.jpg
 
-Los atributos también reciben el nombre de *columnas* en la terminología de BD. De entre los atributos habrá uno o un conjunto de ellos, que no asegura la unicidad de una fila; a este atributo o conjunto de atributos se le llama clave de la entidad, en el caso de los alumnos, sería el #pasaporte. En toda entidad siempre hay al menos  una clave que en el peor de los casos estará formada por todos los atributos de la tabla. Ya que pueden haber varias claves y necesitamos elegir una, lo haremos atendiendo a estas normas:
+Los atributos también reciben el nombre de *columnas* en la terminología de BD . De entre los atributos habrá uno o un conjunto de ellos, que no asegura la unicidad de una fila; a este atributo o conjunto de atributos se le llama clave de la entidad, en el caso de los alumnos, sería el #pasaporte. En toda entidad siempre hay al menos  una clave que en el peor de los casos estará formada por todos los atributos de la tabla. Ya que pueden haber varias claves y necesitamos elegir una, lo haremos atendiendo a estas normas:
 
   * Que sea única.
   * Que se tenga pleno conocimiento de ella.- ¿Por qué en las empresas se asigna a cada cliente un número de cliente?.
@@ -104,34 +104,52 @@ Es una BD que utiliza como estructura de almacenamiento tablas. Las interconexio
 Ejemplo:
 ========
 
-**Tabla Estudiante**
+Se tiene una base de datos que contiene dos relaciones: una denominada EMPLEADOS, que almacena datos de los empleados de una empresa, y otra con el nombre DESPACHOS, que almacena los datos de los despachos que tiene la empresa. Los empleados que trabajan para una empresa pueden estar vinculados con los despachos de la empresa, porque a cada empleado se le asigna un despacho concreto para trabajar.
 
-==== ====== ====
-ID   Nombre Nota
-==== ====== ====
-123  Juan   3.9
-234  Ana    3.4
-345  José   NULL
-==== ====== ====
+**Relación DESPACHOS**
 
-**Tabla Colegio**
+.. math:: 
+   \begin{array}{|c|c|c|}
+        \hline 
+         \textbf{edificio} & \textbf{número} & \textbf{superficie}\\
+        \hline
+        Princess & 120  & 10\\
+        \hline
+	Princess &  121 & 12\\
+        \hline
+        Princess &  122 & 15\\
+        \hline
+        Grey & 230  & 20\\
+        \hline
+        Diagonal & 110 & 10\\
+        \hline
+   \end{array}
 
-=========== ========== =============
-Name        Ciudad     Total alumnos
-=========== ========== =============
-Princess    Santiago   15.000
-Saint Louis Valparaíso 16.000
-Idop        Concepción 20.000
-=========== ========== =============
+La tabla DESPACHOS posee 3 atributos (**edificio, número**, superficie) y 5 registros (o filas).
+Esta tabla posee un conjunto de atributos cuyos valores combinados dan la unicidad a cada fila. Se trata de los atributos edificio y número; se les llama clave primaria compuesta.
 
-La tabla Estudiante posee 3 atributos (ID, Nombre, Nota) y 3 registros (o filas), en el tercer
-registro se aprecia que José no posee nota por lo que se agrega el valor "unknown" o "undefined"
-que se define como NULL.
-Esta tabla posee un atributo cuyo valor es único en cada tupla que es atributo ID y se le llama
-clave primaria.
+**Relación EMPLEADOS**
 
-La tabla Colegio posee 3 atributos (Name, Ciudad, Total alumnos) y 3 registros (o filas).
-Esta tabla posee un conjunto de atributos cuyos valores combinados dan la unicidad a cada fila. Se trata de los atributos Name y Ciudad; se les llama clave primaria compuesta.
+.. math:: 
+   \begin{array}{|c|c|c|c|c|c|}
+        \hline 
+         \textbf{DNI} & \textbf{nombre} & \textbf{apellido} & \textbf{DNIjefe} & \textbf{edificiodesp}& \textbf{númerodesp}\\
+        \hline
+        40.444.255 &  Alex   &   Karev  &    40.783.150   &   Princess   &    120\\
+        \hline
+        33.567.711 &  George  &   O'Malley   &  40.444.255  &  NULL & NULL\\
+        \hline
+        55.898.425 & Derek  & Shepherd  & 40.444.255 & Diagonal & 110\\
+        \hline
+        77.232.144 & Arizona & Robbins & 40.444.255 & Grey & 230\\
+        \hline
+   \end{array}
+
+
+La tabla EMPLEADOS posee 6 atributos (**DNI**, nombre, apellido, DNIjefe, edificiodesp, númerodesp) y 4 registros (o filas), en el segundo registro se aprecia que Georfe no posee despacho asignado por lo que se agrega el valor "unknown" o "undefined" que se define como NULL.
+Esta tabla posee un atributo cuyo valor es único en cada tupla que es atributo DNI y se le llama clave primaria.
+
+En la relación de esquema EMPLEADOS(**DNI**, nombre, apellido, DNIjefe, edificiodesp, númerodesp), la clave foránea formada por los atributos{edificiodesp, númerodesp} referencia la clave primaria de la relación DESPACHOS(**edificio, número**, superficie). De este modo, se cumple que todos los valores que no son nulos de los atributos edificiodesp y númerodesp son valores que existen para los atributos edificio y número de DESPACHOS. Esta clave foránea indica, para cada empleado, el despacho donde trabaja. Además, el atributo DNIjefe es otra clave foránea que referencia la clave primaria de la misma relación EMPLEADOS, e indica, para cada empleado, quien es su jefe.
 
 Ejemplo en SQL
 ==============
