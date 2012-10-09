@@ -67,7 +67,7 @@ En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas qu
 
 De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas. `R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).
 
-**Notación en algebra relacional**
+**Notación en álgebra relacional**
 
 .. math::
 
@@ -172,7 +172,7 @@ Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conju
 De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en la relación `R`, pero no están en `S`.
 `R` y `S` deben ser unión-compatible. 
 
-**Notación en algebra relacional**
+**Notación en álgebra relacional**
 
 .. math::
 
@@ -255,7 +255,7 @@ En  álgebra de conjuntos la intersección de dos conjuntos A y B es el conjunto
 ^^^^^^^^^
 Ejemplo 3
 ^^^^^^^^^
-Utilizando las mismas tablas del ejemplo anterior, encontrar la interseccion de la tabla de Ingenieros con la de Jefes:
+Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de la tabla de Ingenieros con la de Jefes:
 
 .. math::
     Ingenieros \cap Jefes
@@ -347,11 +347,11 @@ Las relaciones base que forman la base de datos de un video club son las siguien
 
 SOCIO: almacena los datos de cada uno de los socios del video club: código del socio, nombre, dirección y teléfono. 
 
-PELICULA: almacena información sobre cada una de las películas de las cuales tiene copias el video club: código de la película, título y género (terror, comedia, etc.). 
+PELÍCULA: almacena información sobre cada una de las películas de las cuales tiene copias el vídeo club: código de la película, título y género (terror, comedia, etc.). 
 
 CINTA: almacena información referente a las copias que hay de cada película (copias distintas de una misma película tendrán distinto código de cinta). 
 
-PRESTAMO: almacena información de los préstamos que se han realizado. Cada préstamo es de una cinta a un socio en una fecha. Si el préstamo aún no ha finalizado, pres_dev tiene el valor 'prestada'; si no su valor es 'devuelta'. 
+PRÉSTAMO: almacena información de los préstamos que se han realizado. Cada préstamo es de una cinta a un socio en una fecha. Si el préstamo aún no ha finalizado, pres_dev tiene el valor 'prestada'; si no su valor es 'devuelta'. 
 
 LISTA_ESPERA: almacena información sobre los socios que esperan a que haya copias disponibles de películas, para tomarlas prestadas. Se guarda también la fecha en que comenzó la espera para mantener el orden. Es importante tener en cuenta que cuando el socio consigue la película esperada, éste desaparece de la lista de espera. 
 
@@ -366,7 +366,7 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 .. math::
 	\sigma_{nombre='Charles'} (SOCIO)  
 
-1.2. Seleccionar el codigo socio de todos los socios que se llaman: "Charles".
+1.2. Seleccionar el código socio de todos los socios que se llaman: "Charles".
 
 **Respuesta**
 

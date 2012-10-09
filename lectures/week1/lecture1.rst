@@ -82,7 +82,7 @@ Base de Datos Relacionales
 
 .. index:: Base de datos Relacionales
 
-Es una BD que utiliza como estructura de almacenamiento tablas. Las interconexiones (relaciones) entre los datos (que están guardados en tablas), se generan a través de atributos comúnes entre ellas llamadas claves primarias y foráneas.
+Es una BD que utiliza como estructura de almacenamiento tablas. Las interconexiones (relaciones) entre los datos (que están guardados en tablas), se generan a través de atributos comunes entre ellas llamadas claves primarias y foráneas.
 
 **Ventajas:**
 
@@ -213,7 +213,7 @@ para reflejar la relación entre Postgres y las versiones recientes de SQL.
   * Incorpora una estructura de datos array.
   * Incluye herencia entre tablas (aunque no entre objetos, ya que no existen), por lo que a este SGBD se le incluye entre los gestores objeto-relacionales.
   * Implementa el uso de rollback's, subconsultas y transacciones, haciendo su funcionamiento mucho más eficaz.
-  * Se pueden realizar varias opreraciones al mismo tiempo sobre la misma tabla sin necesidad de bloquearla. 
+  * Se pueden realizar varias operaciones al mismo tiempo sobre la misma tabla sin necesidad de bloquearla. 
 
 
 MySQL

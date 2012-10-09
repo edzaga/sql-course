@@ -30,7 +30,7 @@ una tabla según un cierto criterio C. C es una expresión condicional, similar 
 	\textrm{Donde:}\\
 	<Comparador>  \in {\{=,\geq,>,<, \neq,\leq \}}\\
 
-• Las cláusulas C pueden conectarse con los operadores logicos: 
+• Las cláusulas C pueden conectarse con los operadores lógicos: 
 
 **NOT**: El operador NOT denota una salida verdadera si la entrada es falsa, y una salida falsa si la entrada es verdadera. 
 
@@ -40,7 +40,7 @@ una tabla según un cierto criterio C. C es una expresión condicional, similar 
 
 **Notación en Álgebra Relacional**
 
-Para representar SELECT en algebra relacional se utiliza la letra griega sigma:
+Para representar SELECT en álgebra relacional se utiliza la letra griega sigma:
 
 .. CMA: Que significa esta relación matemática?
 
@@ -529,7 +529,7 @@ El predicado no tiene por que definirse sobre atributos comunes. El término “
 
 **Notación en Álgebra Relacional**
 
-La notación de THETAJOIN es el mismo simbolo que se utiliza para NATURALJOIN, la diferencia radica en que THETAJOIN lleva el predicado C:
+La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN, la diferencia radica en que THETAJOIN lleva el predicado C:
   
 .. math::
 	R \rhd \hspace{-0.1cm} \lhd_C S
@@ -638,6 +638,6 @@ Considere la siguiente base de datos:
 Write relational algebra expressions for the following five queries.
 
   * Seleccionar a las personas que comen pizzas con extra queso.
-  * Seleccionar a las personas que comen pizzas con extra queso y frecuentan la pizzeria X
+  * Seleccionar a las personas que comen pizzas con extra queso y frecuentan la pizzería X
 
 
