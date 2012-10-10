@@ -145,6 +145,9 @@ Seleccionar todos los datos de la tabla cliente::
   5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
  (5 filas)
 
+.. note::
+ El asterisco (*) que está entre el :sql:`SELECT` y el :sql:`FROM` significa que se seleccionan todas las columnas de la tabla.
+
 Como cometimos el error de ingresar en la segunda fila datos repetidos podemos eliminarla de esta manera::
 
  example=# DELETE FROM cliente WHERE id=2;

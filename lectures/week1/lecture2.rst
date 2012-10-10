@@ -97,15 +97,15 @@ Si bien se profundizará sobre ambos, a medida que avance el curso, se deja la s
   \hline
   \textbf{ID} & \textbf{ID_ramo} & \textbf{nombre_alumno} & \textbf{promedio_nota} \\
   \hline
-  1 & 1 & Robert & 45 \\
+  1 & 1 & \mbox{Robert} & 45 \\
   \hline
-  2 & 2 & Robert & 70 \\
+  2 & 2 & \mbox{Robert} & 70 \\
   \hline
-  3 & 1 & Harry & 55 \\
+  3 & 1 & \mbox{Harry} & 55 \\
   \hline
-  4 & 1 & Jane & 60 \\
+  4 & 1 & \mbox{Jane} & 60 \\
   \hline
-  5 & 3 & Mary & 35 \\
+  5 & 3 & \mbox{Mary} & 35 \\
   \hline
  \end{array}
 
@@ -115,11 +115,11 @@ Si bien se profundizará sobre ambos, a medida que avance el curso, se deja la s
   \hline
   \textbf{ID} & \textbf{nombre_ramo} \\
   \hline
-  1 & Programacion \\
+  1 & \mbox{Programacion} \\
   \hline
-  2 & Base\ de\ datos \\
+  2 & \mbox{Base de datos} \\
   \hline
-  3 & Estructuras\ de\ datos \\
+  3 & \mbox{Estructuras de datos} \\
   \hline
  \end{array}
 
@@ -130,7 +130,7 @@ Utilizando Álgebra Relacional:
 .. CMA: QUE ES ESTO?????? No puedo entender que significa esta productora :/
 
 .. math::
-   \pi \hspace{0.2cm} _{ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{ramos.nombre ='programacion'} (alumnos \rhd \hspace{-0.1cm} \lhd ramos)}
+   \pi \hspace{0.2cm} _{ALUMNOS.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{RAMOS.nombre_ramo ='Programacion'} (ALUMNOS \rhd \hspace{-0.1cm} \lhd RAMOS)}
 
 Se puede decir que: 
 

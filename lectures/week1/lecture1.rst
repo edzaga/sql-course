@@ -114,15 +114,15 @@ Se tiene una base de datos que contiene dos relaciones: una denominada EMPLEADOS
         \hline 
          \textbf{edificio} & \textbf{numero} & \textbf{superficie}\\
         \hline
-        Princess & 120  & 10\\
+        \mbox{Princess} & 120  & 10\\
         \hline
-	Princess &  121 & 12\\
+	\mbox{Princess} &  121 & 12\\
         \hline
-        Princess &  122 & 15\\
+        \mbox{Princess} &  122 & 15\\
         \hline
-        Grey & 230  & 20\\
+        \mbox{Grey} & 230  & 20\\
         \hline
-        Diagonal & 110 & 10\\
+        \mbox{Diagonal} & 110 & 10\\
         \hline
    \end{array}
 
@@ -137,13 +137,13 @@ Esta tabla posee un conjunto de atributos cuyos valores combinados dan la unicid
         \hline 
          \textbf{DNI} & \textbf{nombre} & \textbf{apellido} & \textbf{DNIjefe} & \textbf{edificiodesp}& \textbf{numerodesp}\\
         \hline
-        40.444.255 &  Alex   &   Karev  &    40.783.150   &   Princess   &    120\\
+        40.444.255 &  \mbox{Alex}   &   \mbox{Karev}  &    40.783.150   &   \mbox{Princess}   &    120\\
         \hline
-        33.567.711 &  George  &   O'Malley   &  40.444.255  &  NULL & NULL\\
+        33.567.711 &  \mbox{George}  &   \mbox{O'Malley}   &  40.444.255  &  \mbox{NULL} & \mbox{NULL}\\
         \hline
-        55.898.425 & Derek  & Shepherd  & 40.444.255 & Diagonal & 110\\
+        55.898.425 & \mbox{Derek}  & \mbox{Shepherd}  & 40.444.255 & \mbox{Diagonal} & 110\\
         \hline
-        77.232.144 & Arizona & Robbins & 40.444.255 & Grey & 230\\
+        77.232.144 & \mbox{Arizona} & \mbox{Robbins} & 40.444.255 & \mbox{Grey} & 230\\
         \hline
    \end{array}
 

@@ -26,9 +26,11 @@ una tabla según un cierto criterio C. C es una expresión condicional, similar 
 • Cada condición simple o cláusula C tiene el formato:
 
 .. math::
-	<Atributo> <Comparador> <Atributo|Cte.del Dominio> \\
-	\textrm{Donde:}\\
-	<Comparador>  \in {\{=,\geq,>,<, \neq,\leq \}}\\
+	\mbox{<Atributo> <Comparador> <Atributo|Cte.del Dominio>} \\
+	
+        \mbox{Donde:} \\
+
+	\mbox{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}\\
 
 • Las cláusulas C pueden conectarse con los operadores lógicos: 
 
@@ -46,7 +48,7 @@ Para representar SELECT en álgebra relacional se utiliza la letra griega sigma:
 
 .. math::
 
-    \sigma_{c} \hspace{0.2cm} R
+    \sigma_{c} \hspace{0.2cm} \mbox{R}
 
 Se aplica la condición C a cada tupla de R. Si la condición es Verdad (true), dicha tupla pertenecerá al resultado 
 y si es Falsa (false), dicha tupla no será seleccionada. El esquema de la relación resultante es el mismo esquema 
@@ -64,13 +66,13 @@ Ejemplo 1
     \hline
     \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)}\\
     \hline
-    123 & León & 39 & 15 \\
+    123 & \mbox{Leon} & 39 & 15 \\
     \hline
-    234 & Tomás & 34 & 10 \\
+    234 & \mbox{Tomas} & 34 & 10 \\
     \hline
-    345 & José & 45 & 21 \\
+    345 & \mbox{Jose} & 45 & 21 \\
     \hline
-    143 & Josefa & 25 &  1 \\
+    143 & \mbox{Josefa} & 25 &  1 \\
     \hline
   \end{array}
 
@@ -79,7 +81,7 @@ Seleccionar las tuplas de la tabla **Ingenieros** que cumplan con tener una edad
 **Respuesta**
 
 .. math::
- 	\sigma_{edad>30} \hspace{0.2cm} Ingenieros
+ 	\sigma_{edad>30} \hspace{0.2cm} \mbox{Ingenieros}
 
 
 Así quedaría la tabla:
@@ -92,11 +94,11 @@ Así quedaría la tabla:
     \hline
     \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)}\\
     \hline
-    123 & León & 39 & 15 \\
+    123 & \mbox{Leon} & 39 & 15 \\
     \hline
-    234 & Tomás & 34 & 10 \\
+    234 & \mbox{Tomas} & 34 & 10 \\
     \hline
-    345 & José & 45 & 21 \\
+    345 & \mbox{Jose} & 45 & 21 \\
     \hline
   \end{array}
 
@@ -109,7 +111,7 @@ Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años 
 **Respuesta**
 
 .. math::
-	\sigma_{edad >30 \wedge AT <16}  \hspace{0.3cm}  Ingenieros
+	\sigma_{edad >30 \wedge AT <16}  \hspace{0.3cm}  \mbox{Ingenieros}
 
 Así finalmente quedaría la tabla:
 
@@ -121,9 +123,9 @@ Así finalmente quedaría la tabla:
   \hline
   \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)} \\
   \hline
-  123 & León & 39 & 15 \\
+  123 & \mbox{Leon} & 39 & 15 \\
   \hline
-  234 & Tomás & 34 & 10 \\
+  234 & \mbox{Tomas} & 34 & 10 \\
   \hline
  \end{array}
 
@@ -139,7 +141,7 @@ es decir, realiza la selección de algunas de las **columnas** de una tabla R.
 PROJECT en Álgebra Relacional se representa por la letra griega **pi**:
 
 .. math::
-       \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} R
+       \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \mbox{R}
 
 El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la relación R. 
 Si `A_1,...,A_n` no incluye una llave (o clave), podrían producirse tuplas repetidas en el resultado, las cuales serán eliminadas.
@@ -155,13 +157,13 @@ Ejemplo 1
   \hline
   \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)} \\
   \hline
-  123 & León & 39 & 15 \\
+  123 & \mbox{Leon} & 39 & 15 \\
   \hline
-  234 & Tomás & 34 & 10 \\
+  234 & \mbox{Tomas} & 34 & 10 \\
   \hline
-  345 & José & 45 & 21 \\
+  345 & \mbox{Jose} & 45 & 21 \\
   \hline
-  143 & Josefa & 25 & 1 \\
+  143 & \mbox{Josefa} & 25 & 1 \\
   \hline
  \end{array}
 
@@ -170,7 +172,7 @@ Escoger columnas de ID y nombre de la tabla de ingenieros:
 **Respuesta**
 
 .. math::
-           \pi \hspace{0.2cm}_{(ID,Nombre)} \hspace{0.3cm} Ingenieros
+           \pi \hspace{0.2cm}_{(ID,Nombre)} \hspace{0.3cm} \mbox{Ingenieros}
 
 La tabla finalmente queda como:
 
@@ -182,13 +184,13 @@ La tabla finalmente queda como:
   \hline
   \textbf{ID} & \textbf{Nombre} \\
   \hline
-  123 & León \\
+  123 & \mbox{Leon} \\
   \hline
-  234 & Tomás \\
+  234 & \mbox{Tomas} \\
   \hline
-  345 & José \\
+  345 & \mbox{Jose} \\
   \hline
-  143 & Josefa\\
+  143 & \mbox{Josefa} \\
   \hline
  \end{array}
 
@@ -201,7 +203,7 @@ Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
 **Respuesta**
 
 .. math::
-	   \pi \hspace{0.2cm} _{(ID,Nombre)} (\sigma_{edad>30} \hspace{0.3cm} Ingenieros)
+	   \pi \hspace{0.2cm} _{(\mbox{ID,Nombre})} (\sigma_{edad>30} \hspace{0.3cm} \mbox{Ingenieros})
 
 Finalmente la tabla queda de la siguiente manera:
 
@@ -213,11 +215,11 @@ Finalmente la tabla queda de la siguiente manera:
   \hline
   \textbf{ID} & \textbf{Nombre} \\
   \hline
-  123 & León \\
+  123 & \mbox{Leon} \\
   \hline
-  234 & Tomás \\
+  234 & \mbox{Tomas} \\
   \hline
-  345 & José \\
+  345 & \mbox{Jose} \\
   \hline
  \end{array}
 
@@ -239,7 +241,7 @@ de cada una de las filas de la relación R con cada una de las filas de la relac
 Para representar Cross-product en Álgebra Relacional se utiliza la siguiente terminología:
 
 .. math::
-	R \times S
+	\mbox{R} \times \mbox{S}
 
 Por convención para la sentencia anterior, los componentes de R preceden a los componentes de S en el orden de atributos 
 para el resultado, creando así una nueva relación con todas las combinaciones posibles de tuplas de R y S. El número de tuplas 
@@ -335,11 +337,11 @@ Dada las siguientes tablas:
   \hline  
   \textbf{ID} & \textbf{Nombre} & \textbf{D#} \\
   \hline
-  123 & León & 39 \\
+  123 & \mbox{Leon} & 39 \\
   \hline
-  234 & Tomás & 34 \\
+  234 & \mbox{Tomas} & 34 \\
   \hline
-  143 & Josefa & 25 \\
+  143 & \mbox{Josefa} & 25 \\
   \hline
  \end{array}
 
@@ -349,9 +351,9 @@ Dada las siguientes tablas:
   \hline
   \textbf{Proyecto} & \textbf{Duración} \\
   \hline
-  ACU0034 & 300 \\
+  \mbox{ACU0034} & 300 \\
   \hline
-  USM7345 & 60 \\
+  \mbox{USM7345} & 60 \\
   \hline
  \end{array}
 
@@ -371,17 +373,17 @@ Escriba la tabla resultante al realizar la siguiente operación:
   \hline
   \textbf{ID} & \textbf{Nombre} & \textbf{D#} & \textbf{Proyecto} & \textbf{Duración} \\
   \hline
-  123 & León & 39 & ACU0034 & 300 \\
+  123 & \mbox{Leon} & 39 & \mbox{ACU0034} & 300 \\
   \hline
-  123 & León & 39 & USM7345 & 60 \\
+  123 & \mbox{Leon} & 39 & \mbox{USM7345} & 60 \\
   \hline
-  234 & Tomás & 34 & ACU0034 & 300 \\
+  234 & \mbox{Tomas} & 34 & \mbox{ACU0034} & 300 \\
   \hline
-  234 & Tomás & 34 & USM7345 & 60 \\
+  234 & \mbox{Tomas} & 34 & \mbox{USM7345} & 60 \\
   \hline
-  143 & Josefa & 25 & ACU0034 & 300 \\
+  143 & \mbox{Josefa} & 25 & \mbox{ACU0034} & 300 \\
   \hline
-  143 & Josefa & 25 & USM7345 & 60 \\
+  143 & \mbox{Josefa} & 25 & \mbox{USM7345} & 60 \\
   \hline
  \end{array}
 
@@ -402,7 +404,7 @@ Para denotar NATURALJOIN se utiliza la siguiente simbología:
 
 .. CMA: Que es esto????? simbologia 
 .. math::
-   R \rhd \hspace{-0.1cm} \lhd S
+   \mbox{R} \rhd \hspace{-0.1cm} \lhd \mbox{S}
 
 **Equivalencia con operadores básicos**
 
@@ -476,13 +478,13 @@ Realizar NATURALJOIN a las siguientes tablas:
   \hline
   \textbf{ID} & \textbf{Nombre} & \textbf{D#} \\
   \hline
-  123 & León & 39 \\
+  123 & \mbox{Leon} & 39 \\
   \hline
-  234 & Tomás & 34\\
+  234 & \mbox{Tomas} & 34\\
   \hline
-  143 & Josefa & 25 \\
+  143 & \mbox{Josefa} & 25 \\
   \hline
-  090 & María & 34 \\
+  090 & \mbox{Maria} & 34 \\
   \hline
  \end{array}
 
@@ -492,9 +494,9 @@ Realizar NATURALJOIN a las siguientes tablas:
   \hline
   \textbf{D#} & \textbf{Proyecto}\\
   \hline
-  39 & ACU0034 \\
+  39 & \mbox{ACU0034} \\
   \hline
-  34 & USM7345 \\
+  34 & \mbox{USM7345} \\
   \hline
  \end{array}
 
@@ -508,11 +510,11 @@ Realizar NATURALJOIN a las siguientes tablas:
   \hline
   \textbf{ID} & \textbf{Nombre} & \textbf{D#} & \textbf{Proyecto} \\
   \hline
-  123 & León & 39 & ACU0034 \\
+  123 & \mbox{Leon} & 39 & \mbox{ACU0034} \\
   \hline
-  234 & Tomás & 34 & USM7345 \\
+  234 & \mbox{Tomas} & 34 & \mbox{USM7345} \\
   \hline
-  090 & María & 34 & USM7345 \\
+  090 & \mbox{Maria} & 34 & \mbox{USM7345} \\
   \hline
  \end{array}
 
@@ -532,10 +534,13 @@ El predicado no tiene por que definirse sobre atributos comunes. El término “
 La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN, la diferencia radica en que THETAJOIN lleva el predicado C:
   
 .. math::
-	R \rhd \hspace{-0.1cm} \lhd_C S
-	C = <Atributo> <Comparador> <Atributo o Constante del Dominio> \\
-	\textrm{Donde:}\\
-	<Comparador> \in {\{=,\geq,>,<, \neq,\leq \}}\\
+	\mbox{R} \rhd \hspace{-0.1cm} \lhd_C \mbox{S} \\
+
+	\mbox{C = <Atributo> <Comparador> <Atributo o Constante del Dominio>} \\
+
+	\mbox{Donde:}\\
+
+	\mbox{<Comparador>} \in {\{=,\geq,>,<, \neq,\leq \}}\\
 
 **Equivalencia con operadores básicos**
 
@@ -618,7 +623,7 @@ Dpto (NumDpto, Nombre, NIFDirector, Fecha_inicio)
 Empleado (NIF, Nombre, Direccion, Salario, Dpto, NIFSupervisor)
 
 .. math::
-	\pi_{(Dpto.Nombre,Empleado.Nombre)} (Dpto \rhd \hspace{-0.1cm} \lhd_{NIFDirector=NIF} Empleado)
+	\pi_{(Dpto.Nombre,Empleado.Nombre)} (Dpto \rhd \hspace{-0.1cm} \lhd_{NIFDirector=NIF} \mbox{Empleado})
 
 • Tuplas con Null en los “Atributos de la Reunión”, no se incluyen en el resultado.
 
