@@ -1,5 +1,8 @@
 Lecture 7 - Basic SELECT Statement
 ----------------------------------
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
 
 Perhaps the simplest form of query in SQL asks for those tuples of some one relation that satisfy a condition. Such a query is analogous to a 
 selection in relational algebra. This simple query, like almost all SQL queries, uses the three keywords, SELECT, FROM, and WHERE that 
@@ -39,7 +42,9 @@ SELECT-FROM-WHERE
 .. index:: SELECT-FROM-WHERE
 
 
-Trabajemos bajo el siguiente ejemplo::
+Trabajemos bajo el siguiente ejemplo
+
+.. code-block:: sql
 
         SELECT *
         FROM Juegos
@@ -52,7 +57,9 @@ In the example, the attribute studioName of the relation Juegos is tested for eq
 string-valued: strings in SQL are denoted by surrounding them with single quotes. Numeric constants, integers and reals, are also allowed, and 
 SQL uses the common notations for reals such as -12.34 or 1.23E45.
 
-El siguiente ejemplo combina dos relaciones a la hora de realizar la consulta::
+El siguiente ejemplo combina dos relaciones a la hora de realizar la consulta
+
+.. code-block:: sql
 
         SELECT *
         FROM Juegos, Tipo
@@ -70,10 +77,12 @@ Resultados Repetidos
 ====================
 
 Al realizar una consulta SELECT, no hay omisión de resultados repetidos, este "problema" se soluciona agregando DISTINCT a la consulta. Por
-ejemplo, si en una base de datos hipotética <agregar ejemplo>::
-        
-         SELECT FROM WHERE
-         SELECT DISTINCT FROM WHERE
+ejemplo, si en una base de datos hipotética <agregar ejemplo>
+
+.. code-block:: sql
+
+        SELECT FROM WHERE
+        SELECT DISTINCT FROM WHERE
 
 
 .. note::
@@ -85,8 +94,10 @@ ejemplo, si en una base de datos hipotética <agregar ejemplo>::
 
 
 
-The simple SQL queries that we have seen so far all have the form::
-        
+The simple SQL queries that we have seen so far all have the form
+
+.. code-block:: sql
+
         SELECT L
         FROM R
         WHERE C
@@ -101,11 +112,56 @@ That is, we start with the relation in the FROM clause, apply to each tuple what
 then project onto the list of attributes and/or expressions in the SELECT clause. 
 
 
+SELECT-BY-ORDER
+~~~~~~~~~~~~~~~
+
+.. index:: SELECT-BY-ORDER
+
+
+Hasta este momento, podemos obtener datos de una tabla utilizando los comandos SELECT y WHERE. Sin embargo, muchas veces es
+necesario enumerar el resultado en un orden particular. Esto podría ser en orden ascendente, en orden descendente, o podría 
+basarse en valores numéricos o de texto. En tales casos, podemos utilizar la palabra clave ORDER BY para lograr esto.
+
+.. code-block:: sql
+
+        SELECT "a"
+        FROM "b"
+        WHERE "c"
+        ORDER BY "a" [ASC, DESC];
+
+donde:
+
+  * "a" corresponde al nombre de la columna.
+  * "b" corresponde al nombre de la tabla.
+  * "c" corresponde a la condición de la selección.
+  * ASC corresponde a un orden ascendente (corresponde a la opción por defecto)
+  * DESC corresponde a uno descendente.
+
+
+Su sintaxis corresponde a  ORDER BY y luego una lista de Campos que definirán los campos a ordenar:
+
+.. code-block:: sql
+
+        SELECT campo1, campo2, campo3, campo4 FROM Clientes ORDER BY campo_ordenar_primero, campo_ordenar_segundo...
+
+Como se puede apreciar, con la sentencia ORDER BY se pueden ordenar las consultas a través de multiples campos. En este caso 
+todos los campos estarían ordenados de forma ascendente (ASC).
+
+
+NOT-IN
+~~~~~~
+
+.. index:: NOT-IN
+
+
+
+
+
+
 ^^^^^^^^^^
 Ejercicios
 ^^^^^^^^^^
 
-Algunos ejercicios propuestos son:
 
 
 
