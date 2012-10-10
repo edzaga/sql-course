@@ -130,7 +130,11 @@ Utilizando Álgebra Relacional:
 .. CMA: QUE ES ESTO?????? No puedo entender que significa esta productora :/
 
 .. math::
+<<<<<<< HEAD
    \pi \hspace{0.2cm} _{ALUMNOS.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{RAMOS.nombre_ramo ='Programacion'} (ALUMNOS \rhd \hspace{-0.1cm} \lhd RAMOS)}
+=======
+   \pi \hspace{0.2cm} _{ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{RAMOS.nombre_ramo ='Programacion'} (ALUMNOS \rhd \hspace{-0.1cm} \lhd RAMOS)}
+>>>>>>> 5dc917df4d1ad99503883f446584526dcfccbafc
 
 Se puede decir que: 
 
@@ -142,7 +146,7 @@ realiza un PROJECT sobre una tabla, es decir selecciona una columna. Por otro la
 .. math::
         \sigma
 
-selecciona una fila que cumpla con una cierta condición, en el ejemplo dado se seleccionan las filas que cumplen con tener nota mayor a 55 y que el ramo.nombre sea 'programación'. 
+selecciona una fila que cumpla con una cierta condición, en el ejemplo dado se seleccionan las filas que cumplen con tener nota mayor a 55 y que el nombre_ramo sea 'programación'. 
 
 .. math::
         \rhd \hspace{-0.1cm} \lhd 
