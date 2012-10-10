@@ -90,13 +90,13 @@ Dadas las siguientes relaciones:
         \hline 
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        123 & León   & 39\\
+        123 & \mbox{Leon}   & 39\\
         \hline
-        234 & Tomás  & 34\\
+        234 & \mbox{Tomas}  & 34\\
         \hline
-        345 & José   & 45\\
+        345 & \mbox{Jose}   & 45\\
         \hline
-        143 & Josefa & 25\\
+        143 & \mbox{Josefa} & 25\\
         \hline
    \end{array}
        
@@ -116,9 +116,9 @@ Dadas las siguientes relaciones:
         \hline 
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        123 & León   & 39\\
+        123 & \mbox{Leon}   & 39\\
         \hline
-        235 & María   & 29\\
+        235 & \mbox{Maria}   & 29\\
         \hline
       \end{array}
       
@@ -139,15 +139,15 @@ Ingenieros ``U`` Jefes
         \hline 
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        123 & León   & 39\\
+        123 & \mbox{Leon}   & 39\\
         \hline
-        234 & Tomás  & 34\\
+        234 & \mbox{Tomas}  & 34\\
         \hline
-        345 & José   & 45\\
+        345 & \mbox{Jose}   & 45\\
         \hline
-        143 & Josefa & 25\\
+        143 & \mbox{Josefa} & 25\\
         \hline
-        235 & María & 29\\
+        235 & \mbox{Maria} & 29\\
         \hline
    \end{array}
        
@@ -196,11 +196,11 @@ Ingenieros ``-`` Jefes
         \hline 
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        234 & Tomás  & 34\\
+        234 & \mbox{Tomas}  & 34\\
         \hline
-        345 & José   & 45\\
+        345 & \mbox{Jose}   & 45\\
         \hline
-        143 & Josefa & 25\\
+        143 & \mbox{Josefa} & 25\\
         \hline
    \end{array}
        
@@ -220,7 +220,7 @@ Jefes ``-`` Ingenieros
         \hline 
         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        235 & María & 29\\
+        235 & \mbox{Maria} & 29\\
         \hline
    \end{array}
 
@@ -264,7 +264,7 @@ Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de
         \hline 
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        123 & León   & 39\\
+        123 & \mbox{Leon}   & 39\\
         \hline
       \end{array}
  
