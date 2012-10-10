@@ -87,8 +87,9 @@ Other Commands
 
 indexes, constraints, views, triggers, transactions, authorization, ...
 
+----------------
 Ejemplo práctico
-~~~~~~~~~~~~~~~~
+----------------
 
 .. index:: ejemplo practico 
 
@@ -191,5 +192,14 @@ Verificamos que se haya eliminado la tabla cliente::
  ERROR:  no existe la relación «cliente»
  LÍNEA 1: SELECT * FROM cliente;
                        ^
+
+Clave Primaria y Foránea
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+En las bases de datos relacionales, se le llama clave primaria a un campo o a una combinación de campos que identifica de forma única a cada fila de una tabla. Por lo que no pueden existir dos filas en una tabla que tengan la misma clave primaria.
+
+----------------
+Ejemplo Práctico
+----------------
 
 
