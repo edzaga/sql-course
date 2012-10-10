@@ -87,8 +87,9 @@ Other Commands
 
 indexes, constraints, views, triggers, transactions, authorization, ...
 
+----------------
 Ejemplo práctico
-~~~~~~~~~~~~~~~~
+----------------
 
 .. index:: ejemplo practico 
 
@@ -192,4 +193,4 @@ Verificamos que se haya eliminado la tabla cliente::
  LÍNEA 1: SELECT * FROM cliente;
                        ^
 
-
+Clave Primaria y Foránea
