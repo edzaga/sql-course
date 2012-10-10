@@ -130,11 +130,8 @@ Utilizando Álgebra Relacional:
 .. CMA: QUE ES ESTO?????? No puedo entender que significa esta productora :/
 
 .. math::
-<<<<<<< HEAD
+
    \pi \hspace{0.2cm} _{ALUMNOS.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{RAMOS.nombre_ramo ='Programacion'} (ALUMNOS \rhd \hspace{-0.1cm} \lhd RAMOS)}
-=======
-   \pi \hspace{0.2cm} _{ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{RAMOS.nombre_ramo ='Programacion'} (ALUMNOS \rhd \hspace{-0.1cm} \lhd RAMOS)}
->>>>>>> 5dc917df4d1ad99503883f446584526dcfccbafc
 
 Se puede decir que: 
 
