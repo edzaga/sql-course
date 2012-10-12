@@ -97,9 +97,9 @@ The simple SQL queries that we have seen so far all have the form
 
 .. code-block:: sql
 
-        SELECT L
-        FROM R
-        WHERE C
+        SELECT "L"
+        FROM "R"
+        WHERE "C";
 
 in which L is a list of espressions, R is a relation, and C is a condition. The meaning of any such expression is the same as that of the
 relational algebra espression
@@ -145,12 +145,6 @@ Su sintaxis corresponde a  ORDER BY y luego una lista de Campos que definirán l
 
 Como se puede apreciar, con la sentencia ORDER BY se pueden ordenar las consultas a través de multiples campos. En este caso
 todos los campos estarían ordenados de forma ascendente (ASC).
-
-
-NOT-IN
-~~~~~~
-
-.. index:: NOT-IN
 
 
 Ejercicios
