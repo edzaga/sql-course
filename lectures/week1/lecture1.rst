@@ -27,16 +27,16 @@ Algunas de las características deseables en un SGBD son:
 
 El modelo Entidad-Relación (E-R)
 ================================
-     
-Cuando se utiliza una BD para gestionar información, se está plasmando una parte del mundo 
-real en una serie de tablas, registros y campos; creándose un modelo parcial de la realidad. Antes de 
-crear físicamente estas tablas en la BD se debe realizar un modelo de datos. 
 
-El modelo de datos más utilizado es denominado *E-R*. En el modelo E-R se representa una situación real a través de entidades y relaciones entre dichas entidades: 
+Cuando se utiliza una BD para gestionar información, se está plasmando una parte del mundo
+real en una serie de tablas, registros y campos; creándose un modelo parcial de la realidad. Antes de
+crear físicamente estas tablas en la BD se debe realizar un modelo de datos.
+
+El modelo de datos más utilizado es denominado *E-R*. En el modelo E-R se representa una situación real a través de entidades y relaciones entre dichas entidades:
 
 **Entidades**
 
-Los objetos que aparecen en la vida real, corresponden a una *entidad*. Por ejemplo: alumnos, empleados, 
+Los objetos que aparecen en la vida real, corresponden a una *entidad*. Por ejemplo: alumnos, empleados,
 aviones, coches, alojamientos, etc.
 Una entidad da lugar a una *tabla* en la BD.
 
@@ -51,7 +51,7 @@ Los atributos también reciben el nombre de *columnas* en la terminología de BD
 
   * Que sea única.
   * Que se tenga pleno conocimiento de ella.- ¿Por qué en las empresas se asigna a cada cliente un número de cliente?.
-  * Que sea pequeña, ya que será muy utilizada por el SGBD. 
+  * Que sea pequeña, ya que será muy utilizada por el SGBD.
 
 
 Cada entidad tendrá un número ilimitado de *elementos*. Por ejemplo: un elemento de la entidad alumnos será un alumno en sí; así el alumno Juan será un elemento, José será otro. Cada uno de esos elementos también recibe el nombre de *fila o tuplas* en la terminología de BD.
@@ -64,7 +64,7 @@ Cada entidad tendrá un número ilimitado de *elementos*. Por ejemplo: un elemen
 
 Las entidades no están aisladas sino que están relacionadas entre sí. Estas relaciones reflejan las interacciones lógicas existentes entre entidades. Las relaciones pueden ser de tres tipos:
 
-*Relaciones 1 - 1*: Las entidades que intervienen en la relación se asocian una a una (Ej: la entidad HOMBRE, la entidad MUJER y entre ellos la relación MATRIMONIO). 
+*Relaciones 1 - 1*: Las entidades que intervienen en la relación se asocian una a una (Ej: la entidad HOMBRE, la entidad MUJER y entre ellos la relación MATRIMONIO).
 
 .. image:: ../../../sql-course/src/1a1.jpg
 
@@ -106,12 +106,12 @@ Ejemplo:
 
 Se tiene una base de datos que contiene dos relaciones: una denominada EMPLEADOS, que almacena datos de los empleados de una empresa, y otra con el nombre DESPACHOS, que almacena los datos de los despachos que tiene la empresa. Los empleados que trabajan para una empresa pueden estar vinculados con los despachos de la empresa, porque a cada empleado se le asigna un despacho concreto para trabajar.
 
-.. math:: 
- 
+.. math::
+
  \textbf{Tabla DESPACHOS}
 
    \begin{array}{|c|c|c|}
-        \hline 
+        \hline
          \textbf{edificio} & \textbf{numero} & \textbf{superficie}\\
         \hline
         \mbox{Princess} & 120  & 10\\
@@ -129,12 +129,12 @@ Se tiene una base de datos que contiene dos relaciones: una denominada EMPLEADOS
 La tabla DESPACHOS posee 3 atributos (*edificio*, *número*, superficie) y 5 registros (o filas).
 Esta tabla posee un conjunto de atributos cuyos valores combinados dan la unicidad a cada fila. Se trata de los atributos edificio y número; se les llama clave primaria compuesta.
 
-.. math:: 
+.. math::
 
  \textbf{Tabla EMPLEADOS}
 
    \begin{array}{|c|c|c|c|c|c|}
-        \hline 
+        \hline
          \textbf{DNI} & \textbf{nombre} & \textbf{apellido} & \textbf{DNIjefe} & \textbf{edificiodesp}& \textbf{numerodesp}\\
         \hline
         40.444.255 &  \mbox{Alex}   &   \mbox{Karev}  &    40.783.150   &   \mbox{Princess}   &    120\\
@@ -165,7 +165,7 @@ La creación de relaciones (tablas) en SQL
 
 .. code-block:: sql
 
- CREATE TABLE DESPACHOS(edificio VARCHAR(50), numero INTEGER, superficie INTEGER, PRIMARY KEY(edificio,numero));  
+ CREATE TABLE DESPACHOS(edificio VARCHAR(50), numero INTEGER, superficie INTEGER, PRIMARY KEY(edificio,numero));
  CREATE TABLE EMPLEADOS(DNI VARCHAR(50), nombre VARCHAR(50), apellido VARCHAR(50), DNIjefe VARCHAR(50), edificiodesp VARCHAR(50), numerodesp INTEGER, PRIMARY KEY(DNI), FOREIGN KEY(edificiodesp,numerodesp) REFERENCES DESPACHOS(edificio,numero));
 
 Motores de Bases de Datos Relacionales
@@ -173,17 +173,17 @@ Motores de Bases de Datos Relacionales
 
 .. index:: Motores de bases de datos Relacionales
 
-Hoy en día existen muchas empresas y sitios web que necesitan mantener de forma eficiente un gran volumen de datos. Muchos de ellos optan por soluciones comerciales 
+Hoy en día existen muchas empresas y sitios web que necesitan mantener de forma eficiente un gran volumen de datos. Muchos de ellos optan por soluciones comerciales
 (Oracle Database o IBM DB2 entre otras ), aunque muchas otras confían en el software libre optando por una solución como PostGreSQL o MySQL. Cabe mencionar que un motor de BD relacional (BDR) es equivalente a un SGBDR.
 
-Es muy común la pregunta, entre las personas que se adentran por primera vez en el mundo de las bases de datos libres, ¿Qué motor de bases de datos debo usar? ¿MySQL o PostGreSQL?. 
+Es muy común la pregunta, entre las personas que se adentran por primera vez en el mundo de las bases de datos libres, ¿Qué motor de bases de datos debo usar? ¿MySQL o PostGreSQL?.
 A continuación se verán algunos detalles de ambos motores.
 
 
 PostGreSQL
 ==========
 
-PostGreSQL es un sistema de gestión de bases de datos objeto-relacional basado en el proyecto POSTGRES, de la Universidad de Berkeley. El director de este proyecto es 
+PostGreSQL es un sistema de gestión de bases de datos objeto-relacional basado en el proyecto POSTGRES, de la Universidad de Berkeley. El director de este proyecto es
 el profesor Michael Stonebraker, patrocinado por Defense Advanced Research Projects Agency (DARPA), Army Research Office (ARO), National Science Foundation (NSF), y ESL, Inc.
 
 
@@ -193,14 +193,14 @@ PostGreSQL fue derivado del proyecto Postgres, lleva más de una década de desa
 
 La implementación de Postgres DBMS comenzó en 1986, y no hubo una versión operativa hasta 1987. La versión 1.0 fue liberada en Junio de 1989 a unos pocos usuarios, tras la cual se liberó la versión 2.0 en Junio de 1990 debido a fuertes críticas sobre el sistema de integridad referencial, que obligó a su reimplementación. La versión 3.0 apareció en el año 1991.
 
-En 1994, Andrew Yu y Jolly Chen añadieron un intérprete de SQL a este gestor. Postgres95, como 
-así se llamó fue liberado a Internet como un proyecto libre (OpenSource). Estaba escrito totalmente 
-en C, y la primera versión fue un 25% más pequeña que Postgres, y entre un 30 y un 50% más rápida. 
-A parte de la corrección de algunos bugs, se mejoró el motor interno, se añadió un nuevo programa 
+En 1994, Andrew Yu y Jolly Chen añadieron un intérprete de SQL a este gestor. Postgres95, como
+así se llamó fue liberado a Internet como un proyecto libre (OpenSource). Estaba escrito totalmente
+en C, y la primera versión fue un 25% más pequeña que Postgres, y entre un 30 y un 50% más rápida.
+A parte de la corrección de algunos bugs, se mejoró el motor interno, se añadió un nuevo programa
 monitor, y se compiló usando GNU Make y el compilador gcc.
 
-En 1996, los desarrolladores decidieron cambiar el nombre al SGDB, y lo llamaron PostGreSQL 
-para reflejar la relación entre Postgres y las versiones recientes de SQL. 
+En 1996, los desarrolladores decidieron cambiar el nombre al SGDB, y lo llamaron PostGreSQL
+para reflejar la relación entre Postgres y las versiones recientes de SQL.
 
 
 **Características**
@@ -213,32 +213,32 @@ para reflejar la relación entre Postgres y las versiones recientes de SQL.
   * Incorpora una estructura de datos array.
   * Incluye herencia entre tablas (aunque no entre objetos, ya que no existen), por lo que a este SGBD se le incluye entre los gestores objeto-relacionales.
   * Implementa el uso de rollback's, subconsultas y transacciones, haciendo su funcionamiento mucho más eficaz.
-  * Se pueden realizar varias operaciones al mismo tiempo sobre la misma tabla sin necesidad de bloquearla. 
+  * Se pueden realizar varias operaciones al mismo tiempo sobre la misma tabla sin necesidad de bloquearla.
 
 
 MySQL
 =====
 
-MySQL es un sistema de gestión de bases de datos relacional, licenciado bajo GPL de la GNU. 
-Su diseño multihilo permite soportar una gran carga de forma muy eficiente. MySQL fue creado 
-por la empresa sueca MySQL AB, que mantiene el copyright del código fuente del servidor SQL, así 
+MySQL es un sistema de gestión de bases de datos relacional, licenciado bajo GPL de la GNU.
+Su diseño multihilo permite soportar una gran carga de forma muy eficiente. MySQL fue creado
+por la empresa sueca MySQL AB, que mantiene el copyright del código fuente del servidor SQL, así
 como también de la marca.
 
-Aunque MySQL es software libre, MySQL AB distribuye una versión comercial, que no se 
-diferencia de la versión libre más que en el soporte técnico que se ofrece, y la posibilidad 
+Aunque MySQL es software libre, MySQL AB distribuye una versión comercial, que no se
+diferencia de la versión libre más que en el soporte técnico que se ofrece, y la posibilidad
 de integrar este gestor en un software propietario, ya que de no ser así, se vulneraría la licencia GPL.
 
 
 **Un poco de historia**
 
-MySQL surgió como un intento de conectar el gestor mSQL a las tablas propias de MySQL AB, usando 
-sus propias rutinas a bajo nivel. Tras unas primeras pruebas, vieron que mSQL no era lo bastante 
-flexible para lo que necesitaban, por lo que tuvieron que desarrollar nuevas funciones. Esto 
+MySQL surgió como un intento de conectar el gestor mSQL a las tablas propias de MySQL AB, usando
+sus propias rutinas a bajo nivel. Tras unas primeras pruebas, vieron que mSQL no era lo bastante
+flexible para lo que necesitaban, por lo que tuvieron que desarrollar nuevas funciones. Esto
 resultó en una interfaz SQL a su base de datos, con una interfaz totalmente compatible a mSQL.
 
-No se sabe con certeza de donde proviene su nombre. Por un lado dicen que sus librerías han llevado 
-el prefijo *'my'*  durante los diez últimos años. Por otro lado, la hija de uno de los desarrolladores 
-se llama My. No saben cuál de estas dos causas (aunque bien podrían tratarse de la misma), han dado 
+No se sabe con certeza de donde proviene su nombre. Por un lado dicen que sus librerías han llevado
+el prefijo *'my'*  durante los diez últimos años. Por otro lado, la hija de uno de los desarrolladores
+se llama My. No saben cuál de estas dos causas (aunque bien podrían tratarse de la misma), han dado
 lugar al nombre de este conocido gestor de bases de datos.
 
 
@@ -257,10 +257,10 @@ lugar al nombre de este conocido gestor de bases de datos.
 Selección
 =========
 
-Es indispensable tener en cuenta para qué se necesitará. En múltiples foros, se asocia a PostGreSQL a 
-estabilidad, bases de datos de gran tamaño y de alta concurrencia. Por otra parte, se asocia MySQL a bases 
+Es indispensable tener en cuenta para qué se necesitará. En múltiples foros, se asocia a PostGreSQL a
+estabilidad, bases de datos de gran tamaño y de alta concurrencia. Por otra parte, se asocia MySQL a bases
 de datos de menor tamaño, pero de mayor velocidad de respuesta ante una consulta.
 
-Cada uno de estos gestores poseen características que los convierten en una gran opción en su 
+Cada uno de estos gestores poseen características que los convierten en una gran opción en su
 respectivo campo al momento de elegir, ya que fueron concebidos para una determinada implementación.
- 
+

@@ -19,7 +19,7 @@ Ahora consideremos la siguente consulta::
         WHERE Apply.sID = Student.sID
 
 es posible realizarla como::
-        
+
         SELECT S.sID, sName, A.cName, GPA
         FROM Student S, Apply A
         WHERE A.sID = S.sID
@@ -31,7 +31,7 @@ La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WH
 Cuidado con los duplicados!!
 ============================
 
-Si el lector se fija en el esquema, hay ciertos atributos cuyos nombres se repiten en las diferentes tablas. Tal es el caso de 
+Si el lector se fija en el esquema, hay ciertos atributos cuyos nombres se repiten en las diferentes tablas. Tal es el caso de
 **cName y sID**. En las consultas se aprecia que la diferencia se realiza a través de::
 
         Student.sID ó S.sID
@@ -48,19 +48,19 @@ todos los pares de estudiantes con el mismo GPA::
 
 Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla),  el resultado contendrá uno o varios duplicados; por ejemplo, consideremos
 4 estudantes::
-        
+
         sName   sID     GPA
         Amy     123     4.0
         Doris   456     4.0
         Edward  567     4.1
 
 Los pares de estudiantes serán::
-        
+
          Amy    -       Doris
 
 pero también::
-        
-         Amy    -       Amy   
+
+         Amy    -       Amy
          Doris  -       Doris
 
 lo cual se puede evitar modificando la cosulta::
@@ -95,7 +95,7 @@ El operador "UNION", permite combinar el resultado de dos o más sentencias SELE
         02      Svendson, Tove
         03      Svendson, Stephen
         04      Pettersen, Kari
-                    
+
         "Employees_USA":
         E_ID    E_Name
         01      Turner, Sally
@@ -155,7 +155,7 @@ lo hace como AND. Es decir que INTERSECT devuelve los valores repetidos. Conside
         San Diego       $250    Jan-07-1999
         Los Angeles     $300    Jan-08-1999
         Boston  $700    Jan-08-1999
-        
+
         Table Internet_Sales
         Date    Sales
         Jan-07-1999     $250
@@ -171,12 +171,12 @@ Al realizar la consulta::
         SELECT Date FROM Internet_Sales
 
 Su resultado esperado es::
-  
+
         Date
         Jan-07-1999
 
 
-Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos), 
+Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
 pero que puede escribirse como otra consulta (agregarla)
 
 =========
@@ -184,7 +184,7 @@ Excepción
 =========
 
 Similar a los operadores anteriores, su estructura se compone de dos o mas sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
-en el álgebra relacional. 
+en el álgebra relacional.
 
 Utilizando el esquema del ejemplo anterior, y realizando la siguiente consulta::
 

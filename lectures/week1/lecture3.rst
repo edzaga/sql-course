@@ -1,8 +1,8 @@
 Lecture 3 - Relational Algebra: Select, Project, Join
----------------------------------------------------
+-------------------------------------------------------
 
 El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan sobre las
-relaciones (tablas) para obtener un resultado, el cual es otra relación. 
+relaciones (tablas) para obtener un resultado, el cual es otra relación.
 
 
 Operaciones relacionales:
@@ -16,9 +16,9 @@ Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 SELECT
 ======
 
-Este operador se aplica a una relación R produciendo una nueva relación con un subconjunto de tuplas de R. Las tuplas de 
-la relación resultante son las que satisfacen una condición C sobre algún atributo de R. Es decir selecciona **filas** de 
-una tabla según un cierto criterio C. C es una expresión condicional, similar a las declaraciones del tipo “if”, es 
+Este operador se aplica a una relación R produciendo una nueva relación con un subconjunto de tuplas de R. Las tuplas de
+la relación resultante son las que satisfacen una condición C sobre algún atributo de R. Es decir selecciona **filas** de
+una tabla según un cierto criterio C. C es una expresión condicional, similar a las declaraciones del tipo “if”, es
 “booleana” esto quiere decir que para cada tupla de R toma el valor Verdad o Falso.
 
 • Valores de atributos con NULL no cumplirán ninguna condición.
@@ -27,16 +27,16 @@ una tabla según un cierto criterio C. C es una expresión condicional, similar 
 
 .. math::
 	\mbox{<Atributo> <Comparador> <Atributo|Cte.del Dominio>} \\
-	
+
         \mbox{Donde:} \\
 
 	\mbox{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}\\
 
-• Las cláusulas C pueden conectarse con los operadores lógicos: 
+• Las cláusulas C pueden conectarse con los operadores lógicos:
 
-**NOT**: El operador NOT denota una salida verdadera si la entrada es falsa, y una salida falsa si la entrada es verdadera. 
+**NOT**: El operador NOT denota una salida verdadera si la entrada es falsa, y una salida falsa si la entrada es verdadera.
 
-**AND**: El operador AND denota una salida verdadera si y sólo si sus entradas son verdaderas. 
+**AND**: El operador AND denota una salida verdadera si y sólo si sus entradas son verdaderas.
 
 **OR**: El operador OR denota una salida verdadera si hay alguna de las entradas (o ambas) verdaderas.
 
@@ -50,8 +50,8 @@ Para representar SELECT en álgebra relacional se utiliza la letra griega sigma:
 
     \sigma_{c} \hspace{0.2cm} \mbox{R}
 
-Se aplica la condición C a cada tupla de R. Si la condición es Verdad (true), dicha tupla pertenecerá al resultado 
-y si es Falsa (false), dicha tupla no será seleccionada. El esquema de la relación resultante es el mismo esquema 
+Se aplica la condición C a cada tupla de R. Si la condición es Verdad (true), dicha tupla pertenecerá al resultado
+y si es Falsa (false), dicha tupla no será seleccionada. El esquema de la relación resultante es el mismo esquema
 R, se muestran los atributos en el mismo orden que se usan en la tabla R.
 
 ^^^^^^^^^
@@ -133,7 +133,7 @@ Así finalmente quedaría la tabla:
 PROJECT
 =======
 
-El operador PROJECT se utiliza para producir una nueva relación desde R. Esta nueva relación contiene sólo algunos de los atributos de R, 
+El operador PROJECT se utiliza para producir una nueva relación desde R. Esta nueva relación contiene sólo algunos de los atributos de R,
 es decir, realiza la selección de algunas de las **columnas** de una tabla R.
 
 **Notación en Álgebra Relacional**
@@ -143,7 +143,7 @@ PROJECT en Álgebra Relacional se representa por la letra griega **pi**:
 .. math::
        \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \mbox{R}
 
-El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la relación R. 
+El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la relación R.
 Si `A_1,...,A_n` no incluye una llave (o clave), podrían producirse tuplas repetidas en el resultado, las cuales serán eliminadas.
 
 ^^^^^^^^^
@@ -227,12 +227,12 @@ Finalmente la tabla queda de la siguiente manera:
 Cross-product
 =============
 
-En teoría de conjuntos, el producto cartesiano de dos conjuntos es una operación que resulta en otro conjunto cuyos 
-elementos son todos los pares ordenados que pueden formarse tomando el primer elemento del par del primer conjunto, 
-y el segundo elemento del segundo conjunto. En el Álgebra Relacional se mantiene esta idea con la diferencia que R y 
-S son relaciones, entonces los miembros de R y S son tuplas, que generalmente consisten de más de un componente, 
-cuyo resultado de la vinculación de una tupla de R con una tupla de S es una tupla más larga, con un componente para 
-cada uno de los componentes de las tuplas constituyentes. Es decir Cross-product define una relación que es la concatenación 
+En teoría de conjuntos, el producto cartesiano de dos conjuntos es una operación que resulta en otro conjunto cuyos
+elementos son todos los pares ordenados que pueden formarse tomando el primer elemento del par del primer conjunto,
+y el segundo elemento del segundo conjunto. En el Álgebra Relacional se mantiene esta idea con la diferencia que R y
+S son relaciones, entonces los miembros de R y S son tuplas, que generalmente consisten de más de un componente,
+cuyo resultado de la vinculación de una tupla de R con una tupla de S es una tupla más larga, con un componente para
+cada uno de los componentes de las tuplas constituyentes. Es decir Cross-product define una relación que es la concatenación
 de cada una de las filas de la relación R con cada una de las filas de la relación S.
 
 
@@ -243,11 +243,11 @@ Para representar Cross-product en Álgebra Relacional se utiliza la siguiente te
 .. math::
 	\mbox{R} \times \mbox{S}
 
-Por convención para la sentencia anterior, los componentes de R preceden a los componentes de S en el orden de atributos 
-para el resultado, creando así una nueva relación con todas las combinaciones posibles de tuplas de R y S. El número de tuplas 
+Por convención para la sentencia anterior, los componentes de R preceden a los componentes de S en el orden de atributos
+para el resultado, creando así una nueva relación con todas las combinaciones posibles de tuplas de R y S. El número de tuplas
 de la nueva relación resultante es la multiplicación de la cantidad de tuplas de R por la cantidad de tuplas que tenga S (producto de ambos).
 
-Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres para al menos uno de cada par de atributos 
+Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres para al menos uno de cada par de atributos
 idénticos. Para eliminar la ambigüedad de un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para el atributo de S.
 
 
@@ -273,15 +273,15 @@ Ejemplo 1
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{A} & \textbf{C} \\  
-  \hline 
+  \textbf{A} & \textbf{C} \\
+  \hline
   7 & 5 \\
   \hline
   9 & 2 \\
   \hline
   3 & 4 \\
   \hline
- \end{array} 
+ \end{array}
 
  \textbf{R} \times \textbf{S}
 
@@ -296,7 +296,7 @@ Ejemplo 1
      1 & 2 & 3 & 3 & 4 \\
     \hline
      4 & 5 & 6 & 7 & 5 \\
-    \hline	
+    \hline
      4 & 5 & 6 & 3 & 4 \\
     \hline
      4 & 5 & 6 & 9 & 2 \\
@@ -308,7 +308,7 @@ Ejemplo 1
  \begin{array}{|c|c|c|c|c|}
   \hline
   \textbf{S.A} & \textbf{C} & \textbf{R.A} & \textbf{B} & \textbf{D} \\
-  \hline	  
+  \hline
   7 & 5 & 1 & 2 & 3 \\
   \hline
   7 & 5 & 4 & 5 & 6 \\
@@ -334,7 +334,7 @@ Dada las siguientes tablas:
  \textbf{Tabla Ingenieros}
 
  \begin{array}{|c|c|c|}
-  \hline  
+  \hline
   \textbf{ID} & \textbf{Nombre} & \textbf{D#} \\
   \hline
   123 & \mbox{Leon} & 39 \\
@@ -358,7 +358,7 @@ Dada las siguientes tablas:
  \end{array}
 
 Escriba la tabla resultante al realizar la siguiente operación:
- 
+
 .. math::
 
 	\textbf{Ingenieros} \times \textbf{Proyectos}
@@ -391,18 +391,18 @@ Escriba la tabla resultante al realizar la siguiente operación:
 NATURALJOIN
 ===========
 
-Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando sólo las tuplas que coinciden 
-de alguna manera.  NATURALJOIN une sólo los pares de tuplas de R y S que sean comunes. Más precisamente una tupla 
-r de R y una tupla s de S se emparejan correctamente si y sólo si r y s coinciden en cada uno de los valores de 
-los atributos comunes, el resultado de la vinculación es una tupla, llamada “joined tuple”.  Entonces, al realizar  
-NATURALJOIN se obtiene una relación con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas 
+Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando sólo las tuplas que coinciden
+de alguna manera.  NATURALJOIN une sólo los pares de tuplas de R y S que sean comunes. Más precisamente una tupla
+r de R y una tupla s de S se emparejan correctamente si y sólo si r y s coinciden en cada uno de los valores de
+los atributos comunes, el resultado de la vinculación es una tupla, llamada “joined tuple”.  Entonces, al realizar
+NATURALJOIN se obtiene una relación con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas
 relaciones que tengan el mismo valor en los atributos comunes.
 
 **Notación en Álgebra Relacional**
 
-Para denotar NATURALJOIN se utiliza la siguiente simbología: 
+Para denotar NATURALJOIN se utiliza la siguiente simbología:
 
-.. CMA: Que es esto????? simbologia 
+.. CMA: Que es esto????? simbologia
 .. math::
    \mbox{R} \rhd \hspace{-0.1cm} \lhd \mbox{S}
 
@@ -410,7 +410,7 @@ Para denotar NATURALJOIN se utiliza la siguiente simbología:
 
 NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos, la equivalencia es la siguiente:
 
-.. CMA: Que es esto????? operadores que fueron explicados anteriormente y son equivalentes 
+.. CMA: Que es esto????? operadores que fueron explicados anteriormente y son equivalentes
 .. math::
    R \rhd \hspace{-0.1cm} \lhd S=  \pi \hspace{0.2cm} _{R.A_1,...,R.A_n,  S.A_1,...,S.A_n} (\sigma_{R.A_1=S.A_1 \wedge ... \wedge R.A_n=S.A_n  }\hspace{0.3cm} (R \times S ))
 
@@ -442,15 +442,15 @@ Ejemplo 1
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{C} & \textbf{D} \\  
-  \hline 
+  \textbf{C} & \textbf{D} \\
+  \hline
   7 & 5 \\
   \hline
   6 & 2 \\
   \hline
   3 & 4 \\
   \hline
- \end{array} 
+ \end{array}
 
  \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S}
 
@@ -503,7 +503,7 @@ Realizar NATURALJOIN a las siguientes tablas:
 **Respuesta**
 
 .. math::
-	
+
  \textbf{Ingenieros} \rhd \hspace{-0.1cm} \lhd \textbf{Proyectos}
 
  \begin{array}{|c|c|c|c|}
@@ -524,15 +524,15 @@ Realizar NATURALJOIN a las siguientes tablas:
 THETAJOIN
 ==========
 
-Define una relación que contiene las tuplas que satisfacen el predicado C en el producto cartesiano de `R x S`. 
-Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. La condición 
-C es de la forma `R.ai` <operador_de_comparación> `S.bi`, esta condición es del mismo tipo que se utiliza SELECT. 
+Define una relación que contiene las tuplas que satisfacen el predicado C en el producto cartesiano de `R x S`.
+Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. La condición
+C es de la forma `R.ai` <operador_de_comparación> `S.bi`, esta condición es del mismo tipo que se utiliza SELECT.
 El predicado no tiene por que definirse sobre atributos comunes. El término “join” suele referirse a THETAJOIN.
 
 **Notación en Álgebra Relacional**
 
 La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN, la diferencia radica en que THETAJOIN lleva el predicado C:
-  
+
 .. math::
 	\mbox{R} \rhd \hspace{-0.1cm} \lhd_C \mbox{S} \\
 
@@ -628,7 +628,7 @@ Empleado (NIF, Nombre, Direccion, Salario, Dpto, NIFSupervisor)
 • Tuplas con Null en los “Atributos de la Reunión”, no se incluyen en el resultado.
 
 =========
-EXERCISES 
+EXERCISES
 =========
 
 

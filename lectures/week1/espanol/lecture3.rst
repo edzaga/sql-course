@@ -1,5 +1,5 @@
 Lecture 3 - Relation algebra: Select, project, join
----------------------------------------------------
+=---------------------------------------------------
 
 El álgebra relacional se define como un conjunto de operaciones que se ejecutan sobre las
 relaciones (tablas) para obtener un resultado (el cual es otra relación), es preescriptivo
@@ -63,7 +63,7 @@ Operaciones relacionales:
 Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 
 SELECT
-======
+=======
 
 Realiza una selección de las **filas** de una tabla, según sea la condición.
 
@@ -136,7 +136,7 @@ ID   Nombre Edad Años trabajados(AT)
 
 
 PROJECT
-=======
+========
 
 Realiza la selección de las **columnas** de una tabla.
 
@@ -207,7 +207,7 @@ ID   Nombre
 
 
 Cross-product
-=============
+==============
 (Cartesian product):  Define una relación que es la concatenación de cada una de las filas de la relación R con cada una de las filas de la relación S.
 
 **Tabla Ingenieros**
@@ -244,7 +244,7 @@ ID   Nombre D#   Proyecto Duración
 
 
 NATURALJOIN
-===========
+============
 El resultado es una relación con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones que tengan el mismo valor en los atributos comunes.
 
 **Notación en algebra relacional**
@@ -398,7 +398,7 @@ Empleando las mismas tablas del ejercicio 2, escriba una sentencia que encuentre
 
 
 THETA JOIN
-==========
+===========
 
 Define una relación que contiene las tuplas que satisfacen el predicado F en el producto cartesiano de R y S. Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. El predicado F es de la forma R.ai operador_de_comparación S.bi. El predicado no tiene por que definirse sobre atributos comunes. Term “join” often means theta join.
 

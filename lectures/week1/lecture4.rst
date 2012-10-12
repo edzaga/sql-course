@@ -1,5 +1,5 @@
 Lecture 4 - Relational Algebra: Set operators, renaming, notation
----------------------------------------------------------------
+-------------------------------------------------------------------
 
 Basics of relational algebra
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,7 +71,7 @@ De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que 
 
 .. math::
 
-	R \cup S \\ 
+	R \cup S \\
 
 .. math::
 
@@ -85,9 +85,9 @@ Dadas las siguientes relaciones:
 
 **Tabla Ingenieros**
 
-.. math:: 
+.. math::
    \begin{array}{|c|c|c|}
-        \hline 
+        \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
         123 & \mbox{Leon}   & 39\\
@@ -99,9 +99,9 @@ Dadas las siguientes relaciones:
         143 & \mbox{Josefa} & 25\\
         \hline
    \end{array}
-       
+
 ..      ==== ====== ====
-	ID   Nombre Edad	
+	ID   Nombre Edad
 	==== ====== ====
 	123  León    39
      	234  Tomás   34
@@ -113,7 +113,7 @@ Dadas las siguientes relaciones:
 
 .. math::
       \begin{array}{|c|c|c|}
-        \hline 
+        \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
         123 & \mbox{Leon}   & 39\\
@@ -121,7 +121,7 @@ Dadas las siguientes relaciones:
         235 & \mbox{Maria}   & 29\\
         \hline
       \end{array}
-      
+
 ..     	==== ====== ====
      	ID   Nombre Edad
      	==== ====== ====
@@ -134,9 +134,9 @@ Aplicar el operador Unión:
 Ingenieros ``U`` Jefes
 
 
-.. math:: 
+.. math::
    \begin{array}{|c|c|c|}
-        \hline 
+        \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
         123 & \mbox{Leon}   & 39\\
@@ -150,7 +150,7 @@ Ingenieros ``U`` Jefes
         235 & \mbox{Maria} & 29\\
         \hline
    \end{array}
-       
+
 
 ..	==== ====== ====
 	ID   Nombre Edad
@@ -170,7 +170,7 @@ DIFFERENCE
 
 Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos A y B es el conjunto que contiene todos los elementos de A que no pertenecen a B.
 De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en la relación `R`, pero no están en `S`.
-`R` y `S` deben ser unión-compatible. 
+`R` y `S` deben ser unión-compatible.
 
 **Notación en álgebra relacional**
 
@@ -181,7 +181,7 @@ De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación q
 Es importante resaltar que `R - S` es diferente a `S - R`.
 
 ^^^^^^^^^
-Ejemplo 2 
+Ejemplo 2
 ^^^^^^^^^
 
 Empleando las mismas tablas dadas en el ejemplo anterior, realice Ingenieros ``-`` Jefes y Jefes ``-`` Ingenieros:
@@ -191,9 +191,9 @@ Ingenieros ``-`` Jefes
 
 
 
-.. math:: 
+.. math::
    \begin{array}{|c|c|c|}
-        \hline 
+        \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
         234 & \mbox{Tomas}  & 34\\
@@ -203,7 +203,7 @@ Ingenieros ``-`` Jefes
         143 & \mbox{Josefa} & 25\\
         \hline
    \end{array}
-       
+
 
 ..	==== ====== ====
 	ID   Nombre Edad
@@ -215,9 +215,9 @@ Ingenieros ``-`` Jefes
 
 Jefes ``-`` Ingenieros
 
-.. math:: 
+.. math::
    \begin{array}{|c|c|c|}
-        \hline 
+        \hline
         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
         235 & \mbox{Maria} & 29\\
@@ -259,15 +259,15 @@ Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de
 
 .. math::
     Ingenieros \cap Jefes
- 
+
       \begin{array}{|c|c|c|}
-        \hline 
+        \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
         123 & \mbox{Leon}   & 39\\
         \hline
       \end{array}
- 
+
 ..	==== ====== ====
 	ID   Nombre Edad
 	==== ====== ====
@@ -289,11 +289,11 @@ Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de
 DEPENDENT AND INDEPENDENT OPERATIONS
 ====================================
 
-Some of the operations that we have described in the lectures 3 and 4, can be expressed in 
-terms of other relational-algebra operations. For example, intersection can be expressed in terms 
+Some of the operations that we have described in the lectures 3 and 4, can be expressed in
+terms of other relational-algebra operations. For example, intersection can be expressed in terms
 of set difference: R <INTERSECTION> S = R - (R - S). That is, if R and S are any two relations with the
-same schema, the intersection of R and S can be computed by first subtracting S from R to form a 
-relation T consisting of all those tuples in R but not S. We then subtract T from R, leaving only those 
+same schema, the intersection of R and S can be computed by first subtracting S from R to form a
+relation T consisting of all those tuples in R but not S. We then subtract T from R, leaving only those
 tuples of R that are also in S.
 
 
@@ -331,7 +331,7 @@ Exercises
 =========
 
 ^^^^^^^^^^^^
-Ejercicio 1 
+Ejercicio 1
 ^^^^^^^^^^^^
 Las relaciones base que forman la base de datos de un video club son las siguientes:
 
@@ -345,15 +345,15 @@ Las relaciones base que forman la base de datos de un video club son las siguien
 
 * LISTA_ESPERA(**codsocio,codpeli**,fecha)
 
-SOCIO: almacena los datos de cada uno de los socios del video club: código del socio, nombre, dirección y teléfono. 
+SOCIO: almacena los datos de cada uno de los socios del video club: código del socio, nombre, dirección y teléfono.
 
-PELÍCULA: almacena información sobre cada una de las películas de las cuales tiene copias el vídeo club: código de la película, título y género (terror, comedia, etc.). 
+PELÍCULA: almacena información sobre cada una de las películas de las cuales tiene copias el vídeo club: código de la película, título y género (terror, comedia, etc.).
 
-CINTA: almacena información referente a las copias que hay de cada película (copias distintas de una misma película tendrán distinto código de cinta). 
+CINTA: almacena información referente a las copias que hay de cada película (copias distintas de una misma película tendrán distinto código de cinta).
 
-PRÉSTAMO: almacena información de los préstamos que se han realizado. Cada préstamo es de una cinta a un socio en una fecha. Si el préstamo aún no ha finalizado, pres_dev tiene el valor 'prestada'; si no su valor es 'devuelta'. 
+PRÉSTAMO: almacena información de los préstamos que se han realizado. Cada préstamo es de una cinta a un socio en una fecha. Si el préstamo aún no ha finalizado, pres_dev tiene el valor 'prestada'; si no su valor es 'devuelta'.
 
-LISTA_ESPERA: almacena información sobre los socios que esperan a que haya copias disponibles de películas, para tomarlas prestadas. Se guarda también la fecha en que comenzó la espera para mantener el orden. Es importante tener en cuenta que cuando el socio consigue la película esperada, éste desaparece de la lista de espera. 
+LISTA_ESPERA: almacena información sobre los socios que esperan a que haya copias disponibles de películas, para tomarlas prestadas. Se guarda también la fecha en que comenzó la espera para mantener el orden. Es importante tener en cuenta que cuando el socio consigue la película esperada, éste desaparece de la lista de espera.
 
 En las relaciones anteriores, son claves primarias los atributos y grupos de atributos que aparecen en negrita. Las claves ajenas se muestran en los siguientes diagramas referenciales:
 
@@ -364,7 +364,7 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 **Respuesta**
 
 .. math::
-	\sigma_{nombre='Charles'} (SOCIO)  
+	\sigma_{nombre='Charles'} (SOCIO)
 
 1.2. Seleccionar el código socio de todos los socios que se llaman: "Charles".
 
@@ -379,7 +379,7 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 
 .. math::
 	\pi_{titulo}(PELICULA \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)
-	
+
 
 1.4. Obtener los nombres de los socios que esperan películas.
 
@@ -393,8 +393,8 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 **Respuesta**
 
 .. math::
-	\pi_{nombre} ( \{(PRESTAMO \rhd \hspace{-0.1cm} \lhd_{ (pres\_dev='prestada')} CINTA) \cap (PRESTAMO \rhd \hspace{-0.1cm} \lhd_{(pres\_dev='devuelta')} CINTA)\} \rhd \hspace{-0.1cm}\lhd SOCIO )   
-   
+	\pi_{nombre} ( \{(PRESTAMO \rhd \hspace{-0.1cm} \lhd_{ (pres\_dev='prestada')} CINTA) \cap (PRESTAMO \rhd \hspace{-0.1cm} \lhd_{(pres\_dev='devuelta')} CINTA)\} \rhd \hspace{-0.1cm}\lhd SOCIO )
+
 
 1.6. Obtener los títulos de las películas que nunca han sido prestadas.
 
@@ -420,7 +420,7 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 	\pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cap \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )
 
 ^^^^^^^^^^^^
-Ejercicio 2 
+Ejercicio 2
 ^^^^^^^^^^^^
 
  Considere la siguiente base de datos:

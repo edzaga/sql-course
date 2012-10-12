@@ -126,7 +126,7 @@ Question 4:
 ^^^^^^^^^^^
 Suppose relation R(A,B) has the following tuples:
 
-= = 
+= =
 A B
 = =
 1 2
@@ -146,7 +146,7 @@ B C D
 
 Compute the natural-join of R and S. Which of the following tuples is in the result? Assume each tuple has schema (A,B,C,D).
 
-a) (5,6,4,6) 
+a) (5,6,4,6)
 b) (1,4,6,8)
 c) (5,6,7,9)
 d) (3,4,7,9)
@@ -159,17 +159,19 @@ Suppose relation R(A,B,C) has the following tuples:
 = = =
 A B C
 = = =
-1 2 3 
-4 2 3 
+1 2 3
+4 2 3
 4 5 6
 2 5 3
 1 2 6
 = = =
 
 Compute the projection
+
 .. math::
-     \pi_{C,B} (R)
-Which of the following tuples is in the result? 
+    \pi_{C,B} (R)
+
+Which of the following tuples is in the result?
 
 a) (6,2)
 b) (2,5)
@@ -202,7 +204,7 @@ C# CNOMBRE COLOR PESO CIUDAD
 == ======= ===== ==== =======
 C1 X3A     Rojo  12   Sevilla
 C2 B85     Verde 17   Madrid
-C3 C4B     Azul  17   Malaga 
+C3 C4B     Azul  17   Malaga
 C4 C4B     Rojo  14   Sevilla
 C5 VT8     Azul  12   Madrid
 C6 C30     Rojo  19   Sevilla
@@ -270,4 +272,4 @@ Preguntas:
 3) Obtener la lista de pares de atributos (COLOR,CIUDAD) de la tabla componentes eliminando los pares duplicados.
 4) Seleccionar los valores de P# para los proveedores que suministran para el articulo T1 el componente C1
 5) Obtener para los valores de P# para los proveedores que suministren los articulos T1 y T2.
-   
+
