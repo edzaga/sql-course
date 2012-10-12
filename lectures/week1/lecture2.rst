@@ -13,15 +13,16 @@ Utilizando una Base de Datos Relacional
 
 Los pasos necesarios a la hora de crear una Base de Datos Relacional (BDR) son:
 
-  * Diseñar el esquema, es decir, la estructura de las tablas y las relaciones, usando un DDL
-    (Data Definition Language).
+  * Diseñar el esquema, es decir, la estructura de las tablas y las relaciones,
+    usando un DDL (Data Definition Language).
   * Ingresar los datos iniciales.
-  * Ejecutar operaciones de consulta y mantención usando en DML (Data Manipulation Language).
+  * Ejecutar operaciones de consulta y mantención usando en DML (Data Manipulation
+    Language).
 
 .. note::
 
-   Existen las llamadas "Operaciones Básicas" de DML que se pueden realizar en una Base de
-   Datos Relacional:
+   Existen las llamadas "Operaciones Básicas" de DML que se pueden realizar en una
+   Base de Datos Relacional:
 
     1. Consultar: :sql:`SELECT`
     2. Almacenar: :sql:`INSERT`
@@ -30,8 +31,8 @@ Los pasos necesarios a la hora de crear una Base de Datos Relacional (BDR) son:
 
 .. note::
 
-   Existen las llamadas "Operaciones Básicas" de DDL que se pueden realizar en una Base de
-   Datos Relacional:
+   Existen las llamadas "Operaciones Básicas" de DDL que se pueden realizar en una
+   Base de Datos Relacional:
 
     1. Almacenar: :sql:`CREATE`
     2. Borrar: :sql:`DROP`
@@ -45,14 +46,15 @@ Consultas en lenguajes de alto nivel
 
 .. index:: consultas, lenguaje alto nivel
 
-Existen lenguajes de alto nivel que permiten realizar consultas relativamente simples
-en la BD, sin la necesidad de escribir complejos algoritmos.
+Existen lenguajes de alto nivel que permiten realizar consultas relativamente
+simples en la BD, sin la necesidad de escribir complejos algoritmos.
 
-Una 'consulta a la BD', puede entenderse como una pregunta que se le realiza para obtener
-'cierta información'. Algunos ejemplos pueden ser:
+Una 'consulta a la BD', puede entenderse como una pregunta que se le realiza para
+obtener 'cierta información'. Algunos ejemplos pueden ser:
 
   * "Todos los estudiantes con nota mayor o igual a 55".
-  * "Todas los departamentos de Ingeniería con una cantidad mayor o igual a 1000 alumnos".
+  * "Todas los departamentos de Ingeniería con una cantidad mayor o igual a 1000
+    alumnos".
   * "Los 5 primeros estudiantes con mejor promedio de notas en el ramo de Química".
 
 Independiente del lenguaje que se utiliza, se debe tener en cuenta que:
@@ -70,12 +72,12 @@ Consultas y relaciones (tablas)
 
 Las consultas realizadas a las tablas de una BD al momento de ser ejecutadas producen,
 como resultado, tablas; las cuales pueden ser:
-  
+
   * Cerradas: Cuando la estructura del objeto que se obtiene de la consulta, es igual
     a la estructura de los objetos consultados, se tiene una tabla cerrada
   * Compuestas: Cuando la consulta se hace sobre, al menos una tabla que corresponde
-    al resultado de una consulta previa. En otras palabras, corresponde a la consulta del
-    resultado de una consulta.
+    al resultado de una consulta previa. En otras palabras, corresponde a la
+    consulta del resultado de una consulta.
 
 Lenguajes de consultas
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -83,29 +85,30 @@ Lenguajes de consultas
 .. index:: Lenguajes de consultas
 
 Algunos de los lenguajes de consultas son
-  
+
   * Álgebra Relacional: Lenguaje formal y matemático
   * SQL: Lenguaje actual e implementado que nace del Álgebra Relacional.
 
-Si bien se profundizará sobre ambos, a medida que avance el curso, se deja la siguientes tablas
+Si bien se profundizará sobre ambos, a medida que avance el curso, se deja la
+siguientes tablas
 
 .. math::
- 
+
  \textbf{Tabla ALUMNOS}
 
  \begin{array}{|c|c|c|c|}
   \hline
   \textbf{ID} & \textbf{ID_ramo} & \textbf{nombre_alumno} & \textbf{promedio_nota} \\
   \hline
-  1 & 1 & \mbox{Robert} & 45 \\
+  1           & 1                & \mbox{Robert}          & 45 \\
   \hline
-  2 & 2 & \mbox{Robert} & 70 \\
+  2           & 2                & \mbox{Robert}          & 70 \\
   \hline
-  3 & 1 & \mbox{Harry} & 55 \\
+  3           & 1                & \mbox{Harry}           & 55 \\
   \hline
-  4 & 1 & \mbox{Jane} & 60 \\
+  4           & 1                & \mbox{Jane}            & 60 \\
   \hline
-  5 & 3 & \mbox{Mary} & 35 \\
+  5           & 3                & \mbox{Mary}            & 35 \\
   \hline
  \end{array}
 
@@ -115,15 +118,16 @@ Si bien se profundizará sobre ambos, a medida que avance el curso, se deja la s
   \hline
   \textbf{ID} & \textbf{nombre_ramo} \\
   \hline
-  1 & \mbox{Programacion} \\
+  1           & \mbox{Programacion} \\
   \hline
-  2 & \mbox{Base de datos} \\
+  2           & \mbox{Base de datos} \\
   \hline
-  3 & \mbox{Estructuras de datos} \\
+  3           & \mbox{Estructuras de datos} \\
   \hline
  \end{array}
 
-Consultar por el "ID de los alumnos con promedio de notas mayor o igual a 55 en el ramo de Programación":
+Consultar por el "ID de los alumnos con promedio de notas mayor o igual a 55 en el
+ramo de Programación":
 
 Utilizando Álgebra Relacional:
 
@@ -133,22 +137,25 @@ Utilizando Álgebra Relacional:
 
    \pi \hspace{0.2cm} _{ALUMNOS.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{RAMOS.nombre_ramo ='Programacion'} (ALUMNOS \rhd \hspace{-0.1cm} \lhd RAMOS)}
 
-Se puede decir que: 
+Se puede decir que:
 
 .. math::
-        \pi 
+        \pi
 
 realiza un PROJECT sobre una tabla, es decir selecciona una columna. Por otro lado:
 
 .. math::
         \sigma
 
-selecciona una fila que cumpla con una cierta condición, en el ejemplo dado se seleccionan las filas que cumplen con tener nota mayor a 55 y que el nombre_ramo sea 'programación'. 
+selecciona una fila que cumpla con una cierta condición, en el ejemplo dado se
+seleccionan las filas que cumplen con tener nota mayor a 55 y que el nombre_ramo
+sea 'programación'.
 
 .. math::
-        \rhd \hspace{-0.1cm} \lhd 
+        \rhd \hspace{-0.1cm} \lhd
 
-realiza un JOIN entre dos relaciones en la lectura 3 se profundiza acerca de estos operadores y sus respectivos significados.
+realiza un JOIN entre dos relaciones en la lectura 3 se profundiza acerca de estos
+operadores y sus respectivos significados.
 
 Utilizando SQL
 

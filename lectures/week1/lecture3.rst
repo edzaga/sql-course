@@ -1,8 +1,8 @@
 Lecture 3 - Relational Algebra: Select, Project, Join
 -------------------------------------------------------
 
-El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan sobre las
-relaciones (tablas) para obtener un resultado, el cual es otra relación.
+El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan
+sobre las relaciones (tablas) para obtener un resultado, el cual es otra relación.
 
 
 Operaciones relacionales:
@@ -12,33 +12,37 @@ Operaciones relacionales:
 
 Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 
-======
 SELECT
-======
+********
 
-Este operador se aplica a una relación R produciendo una nueva relación con un subconjunto de tuplas de R. Las tuplas de
-la relación resultante son las que satisfacen una condición C sobre algún atributo de R. Es decir selecciona **filas** de
-una tabla según un cierto criterio C. C es una expresión condicional, similar a las declaraciones del tipo “if”, es
-“booleana” esto quiere decir que para cada tupla de R toma el valor Verdad o Falso.
+Este operador se aplica a una relación R produciendo una nueva relación con un
+subconjunto de tuplas de R. Las tuplas de la relación resultante son las que
+satisfacen una condición C sobre algún atributo de R. Es decir selecciona **filas**
+de una tabla según un cierto criterio C. C es una expresión condicional, similar
+a las declaraciones del tipo “if”, es “booleana” esto quiere decir que para cada
+tupla de R toma el valor Verdad o Falso.
 
 • Valores de atributos con NULL no cumplirán ninguna condición.
 
 • Cada condición simple o cláusula C tiene el formato:
 
 .. math::
-	\mbox{<Atributo> <Comparador> <Atributo|Cte.del Dominio>} \\
+    \mbox{<Atributo> <Comparador> <Atributo|Cte.del Dominio>} \\
 
         \mbox{Donde:} \\
 
-	\mbox{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}\\
+    \mbox{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}\\
 
 • Las cláusulas C pueden conectarse con los operadores lógicos:
 
-**NOT**: El operador NOT denota una salida verdadera si la entrada es falsa, y una salida falsa si la entrada es verdadera.
+**NOT**: El operador NOT denota una salida verdadera si la entrada es falsa, y una
+salida falsa si la entrada es verdadera.
 
-**AND**: El operador AND denota una salida verdadera si y sólo si sus entradas son verdaderas.
+**AND**: El operador AND denota una salida verdadera si y sólo si sus entradas son
+verdaderas.
 
-**OR**: El operador OR denota una salida verdadera si hay alguna de las entradas (o ambas) verdaderas.
+**OR**: El operador OR denota una salida verdadera si hay alguna de las entradas
+(o ambas) verdaderas.
 
 **Notación en Álgebra Relacional**
 
@@ -50,11 +54,12 @@ Para representar SELECT en álgebra relacional se utiliza la letra griega sigma:
 
     \sigma_{c} \hspace{0.2cm} \mbox{R}
 
-Se aplica la condición C a cada tupla de R. Si la condición es Verdad (true), dicha tupla pertenecerá al resultado
-y si es Falsa (false), dicha tupla no será seleccionada. El esquema de la relación resultante es el mismo esquema
-R, se muestran los atributos en el mismo orden que se usan en la tabla R.
+Se aplica la condición C a cada tupla de R. Si la condición es Verdad (true),
+dicha tupla pertenecerá al resultado
+y si es Falsa (false), dicha tupla no será seleccionada. El esquema de la relación
+resultante es el mismo esquema R, se muestran los atributos en el mismo orden que
+se usan en la tabla R.
 
-^^^^^^^^^
 Ejemplo 1
 ^^^^^^^^^
 
@@ -76,12 +81,13 @@ Ejemplo 1
     \hline
   \end{array}
 
-Seleccionar las tuplas de la tabla **Ingenieros** que cumplan con tener una edad mayor a 30 años:
+Seleccionar las tuplas de la tabla **Ingenieros** que cumplan con tener una edad
+mayor a 30 años:
 
 **Respuesta**
 
 .. math::
- 	\sigma_{edad>30} \hspace{0.2cm} \mbox{Ingenieros}
+     \sigma_{edad>30} \hspace{0.2cm} \mbox{Ingenieros}
 
 
 Así quedaría la tabla:
@@ -89,7 +95,6 @@ Así quedaría la tabla:
 .. math::
 
  \textbf{Tabla Ingenieros}
-
    \begin{array}{|c|c|c|c|}
     \hline
     \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)}\\
@@ -102,16 +107,16 @@ Así quedaría la tabla:
     \hline
   \end{array}
 
-^^^^^^^^^
 Ejemplo 2
 ^^^^^^^^^
 
-Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años y que lleven menos de 16 años trabajando:
+Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años
+y que lleven menos de 16 años trabajando:
 
 **Respuesta**
 
 .. math::
-	\sigma_{edad >30 \wedge AT <16}  \hspace{0.3cm}  \mbox{Ingenieros}
+    \sigma_{edad >30 \wedge AT <16}  \hspace{0.3cm}  \mbox{Ingenieros}
 
 Así finalmente quedaría la tabla:
 
@@ -129,11 +134,11 @@ Así finalmente quedaría la tabla:
   \hline
  \end{array}
 
-=======
 PROJECT
-=======
+********
 
-El operador PROJECT se utiliza para producir una nueva relación desde R. Esta nueva relación contiene sólo algunos de los atributos de R,
+El operador PROJECT se utiliza para producir una nueva relación desde R. Esta
+nueva relación contiene sólo algunos de los atributos de R,
 es decir, realiza la selección de algunas de las **columnas** de una tabla R.
 
 **Notación en Álgebra Relacional**
@@ -143,10 +148,11 @@ PROJECT en Álgebra Relacional se representa por la letra griega **pi**:
 .. math::
        \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \mbox{R}
 
-El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la relación R.
-Si `A_1,...,A_n` no incluye una llave (o clave), podrían producirse tuplas repetidas en el resultado, las cuales serán eliminadas.
+El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la
+relación R.
+Si `A_1,...,A_n` no incluye una llave (o clave), podrían producirse tuplas
+repetidas en el resultado, las cuales serán eliminadas.
 
-^^^^^^^^^
 Ejemplo 1
 ^^^^^^^^^
 .. math::
@@ -194,7 +200,6 @@ La tabla finalmente queda como:
   \hline
  \end{array}
 
-^^^^^^^^^
 Ejemplo 2
 ^^^^^^^^^
 
@@ -203,7 +208,7 @@ Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
 **Respuesta**
 
 .. math::
-	   \pi \hspace{0.2cm} _{(\mbox{ID,Nombre})} (\sigma_{edad>30} \hspace{0.3cm} \mbox{Ingenieros})
+       \pi \hspace{0.2cm} _{(\mbox{ID,Nombre})} (\sigma_{edad>30} \hspace{0.3cm} \mbox{Ingenieros})
 
 Finalmente la tabla queda de la siguiente manera:
 
@@ -227,38 +232,43 @@ Finalmente la tabla queda de la siguiente manera:
 Cross-product
 =============
 
-En teoría de conjuntos, el producto cartesiano de dos conjuntos es una operación que resulta en otro conjunto cuyos
-elementos son todos los pares ordenados que pueden formarse tomando el primer elemento del par del primer conjunto,
-y el segundo elemento del segundo conjunto. En el Álgebra Relacional se mantiene esta idea con la diferencia que R y
-S son relaciones, entonces los miembros de R y S son tuplas, que generalmente consisten de más de un componente,
-cuyo resultado de la vinculación de una tupla de R con una tupla de S es una tupla más larga, con un componente para
-cada uno de los componentes de las tuplas constituyentes. Es decir Cross-product define una relación que es la concatenación
+En teoría de conjuntos, el producto cartesiano de dos conjuntos es una operación
+que resulta en otro conjunto cuyos elementos son todos los pares ordenados que
+pueden formarse tomando el primer elemento del par del primer conjunto,
+y el segundo elemento del segundo conjunto. En el Álgebra Relacional se mantiene
+esta idea con la diferencia que R y S son relaciones, entonces los miembros de R
+y S son tuplas, que generalmente consisten de más de un componente,
+cuyo resultado de la vinculación de una tupla de R con una tupla de S es una tupla
+más larga, con un componente para cada uno de los componentes de las tuplas
+constituyentes. Es decir Cross-product define una relación que es la concatenación
 de cada una de las filas de la relación R con cada una de las filas de la relación S.
 
 
 **Notación en Álgebra Relacional**
 
-Para representar Cross-product en Álgebra Relacional se utiliza la siguiente terminología:
+Para representar Cross-product en Álgebra Relacional se utiliza la siguiente
+terminología:
 
 .. math::
-	\mbox{R} \times \mbox{S}
+    \mbox{R} \times \mbox{S}
 
-Por convención para la sentencia anterior, los componentes de R preceden a los componentes de S en el orden de atributos
-para el resultado, creando así una nueva relación con todas las combinaciones posibles de tuplas de R y S. El número de tuplas
-de la nueva relación resultante es la multiplicación de la cantidad de tuplas de R por la cantidad de tuplas que tenga S (producto de ambos).
+Por convención para la sentencia anterior, los componentes de R preceden a los
+componentes de S en el orden de atributos para el resultado, creando así una nueva
+relación con todas las combinaciones posibles de tuplas de R y S.
+El número de tuplas de la nueva relación resultante es la multiplicación de la
+cantidad de tuplas de R por la cantidad de tuplas que tenga S (producto de ambos).
 
-Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres para al menos uno de cada par de atributos
-idénticos. Para eliminar la ambigüedad de un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para el atributo de S.
+Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos
+nombres para al menos uno de cada par de atributos idénticos. Para eliminar la
+ambigüedad de un atributo A, que se encuentra en R y S, se usa R.A para el atributo
+de R y S.A para el atributo de S.
 
-
-^^^^^^^^^
 Ejemplo 1
 ^^^^^^^^^
 
 .. math::
 
  \textbf{R}
-
  \begin{array}{|c|c|c|}
   \hline
   \textbf{A} & \textbf{B} & \textbf{D} \\
@@ -270,7 +280,6 @@ Ejemplo 1
  \end{array}
 
  \textbf{S}
-
  \begin{array}{|c|c|}
   \hline
   \textbf{A} & \textbf{C} \\
@@ -323,7 +332,6 @@ Ejemplo 1
   \hline
  \end{array}
 
-^^^^^^^^^
 Ejemplo 2
 ^^^^^^^^^
 
@@ -361,7 +369,7 @@ Escriba la tabla resultante al realizar la siguiente operación:
 
 .. math::
 
-	\textbf{Ingenieros} \times \textbf{Proyectos}
+    \textbf{Ingenieros} \times \textbf{Proyectos}
 
 **Respuesta**
 
@@ -387,15 +395,16 @@ Escriba la tabla resultante al realizar la siguiente operación:
   \hline
  \end{array}
 
-===========
 NATURALJOIN
-===========
+************
 
-Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando sólo las tuplas que coinciden
-de alguna manera.  NATURALJOIN une sólo los pares de tuplas de R y S que sean comunes. Más precisamente una tupla
-r de R y una tupla s de S se emparejan correctamente si y sólo si r y s coinciden en cada uno de los valores de
-los atributos comunes, el resultado de la vinculación es una tupla, llamada “joined tuple”.  Entonces, al realizar
-NATURALJOIN se obtiene una relación con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas
+Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando
+sólo las tuplas que coinciden de alguna manera.  NATURALJOIN une sólo los pares de
+tuplas de R y S que sean comunes. Más precisamente una tupla r de R y una tupla s
+de S se emparejan correctamente si y sólo si r y s coinciden en cada uno de los
+valores de los atributos comunes, el resultado de la vinculación es una tupla,
+llamada “joined tuple”.  Entonces, al realizar NATURALJOIN se obtiene una relación
+con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas
 relaciones que tengan el mismo valor en los atributos comunes.
 
 **Notación en Álgebra Relacional**
@@ -408,7 +417,8 @@ Para denotar NATURALJOIN se utiliza la siguiente simbología:
 
 **Equivalencia con operadores básicos**
 
-NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos, la equivalencia es la siguiente:
+NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos,
+la equivalencia es la siguiente:
 
 .. CMA: Que es esto????? operadores que fueron explicados anteriormente y son equivalentes
 .. math::
@@ -417,17 +427,17 @@ NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos, la e
 **Método**
 
    1. Se realiza el producto cartesiano `R x S`
-   2. Se seleccionan aquellas filas del producto cartesiano para las que los atributos comunes tengan el mismo valor
-   3. Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos comunes
+   2. Se seleccionan aquellas filas del producto cartesiano para las que los
+      atributos comunes tengan el mismo valor
+   3. Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos
+      comunes
 
-^^^^^^^^^
 Ejemplo 1
 ^^^^^^^^^
 
 .. math::
 
  \textbf{R}
-
  \begin{array}{|c|c|c|}
   \hline
   \textbf{A} & \textbf{B} & \textbf{C} \\
@@ -464,7 +474,6 @@ Ejemplo 1
   \hline
  \end{array}
 
-^^^^^^^^^
 Ejemplo 2
 ^^^^^^^^^
 
@@ -520,31 +529,36 @@ Realizar NATURALJOIN a las siguientes tablas:
 
 
 
-==========
 THETAJOIN
-==========
+**********
 
-Define una relación que contiene las tuplas que satisfacen el predicado C en el producto cartesiano de `R x S`.
-Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. La condición
-C es de la forma `R.ai` <operador_de_comparación> `S.bi`, esta condición es del mismo tipo que se utiliza SELECT.
-El predicado no tiene por que definirse sobre atributos comunes. El término “join” suele referirse a THETAJOIN.
+Define una relación que contiene las tuplas que satisfacen el predicado C en el
+producto cartesiano de `R x S`.
+Conecta relaciones cuando los valores de determinadas columnas tienen una
+interrelación específica. La condición C es de la forma `R.ai`
+<operador_de_comparación> `S.bi`, esta condición es del mismo tipo que se utiliza
+SELECT.
+El predicado no tiene por que definirse sobre atributos comunes.
+El término “join” suele referirse a THETAJOIN.
 
 **Notación en Álgebra Relacional**
 
-La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN, la diferencia radica en que THETAJOIN lleva el predicado C:
+La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN,
+la diferencia radica en que THETAJOIN lleva el predicado C:
 
 .. math::
-	\mbox{R} \rhd \hspace{-0.1cm} \lhd_C \mbox{S} \\
+    \mbox{R} \rhd \hspace{-0.1cm} \lhd_C \mbox{S} \\
 
-	\mbox{C = <Atributo> <Comparador> <Atributo o Constante del Dominio>} \\
+    \mbox{C = <Atributo> <Comparador> <Atributo o Constante del Dominio>} \\
 
-	\mbox{Donde:}\\
+    \mbox{Donde:}\\
 
-	\mbox{<Comparador>} \in {\{=,\geq,>,<, \neq,\leq \}}\\
+    \mbox{<Comparador>} \in {\{=,\geq,>,<, \neq,\leq \}}\\
 
 **Equivalencia con operadores básicos**
 
-Al igual NATURALJOIN, THETAJOIN puede ser escrito en función de los operadores vistos anteriormente:
+Al igual NATURALJOIN, THETAJOIN puede ser escrito en función de los operadores
+vistos anteriormente:
 
 .. math::
    R \rhd \hspace{-0.1cm} \lhd_C S= \sigma_{F} (R \times S)
@@ -554,7 +568,6 @@ Al igual NATURALJOIN, THETAJOIN puede ser escrito en función de los operadores 
    1. Se forma el producto cartesiano `R` x `S`.
    2. Se selecciona, en el producto, solo la tupla que cumplan la condición `C`.
 
-^^^^^^^^^
 Ejemplo 1
 ^^^^^^^^^
 
@@ -613,25 +626,23 @@ Ejemplo 1
   \hline
  \end{array}
 
-^^^^^^^^^
 Ejemplo 2
 ^^^^^^^^^
- Con el esquema conceptual siguiente, hallar los nombres de los directores de cada departamento:
+
+Con el esquema conceptual siguiente, hallar los nombres de los directores de
+cada departamento:
 
 Dpto (NumDpto, Nombre, NIFDirector, Fecha_inicio)
 
 Empleado (NIF, Nombre, Direccion, Salario, Dpto, NIFSupervisor)
 
 .. math::
-	\pi_{(Dpto.Nombre,Empleado.Nombre)} (Dpto \rhd \hspace{-0.1cm} \lhd_{NIFDirector=NIF} \mbox{Empleado})
+    \pi_{(Dpto.Nombre,Empleado.Nombre)} (Dpto \rhd \hspace{-0.1cm} \lhd_{NIFDirector=NIF} \mbox{Empleado})
 
 • Tuplas con Null en los “Atributos de la Reunión”, no se incluyen en el resultado.
 
-=========
 EXERCISES
-=========
-
-
+**********
 
 Considere la siguiente base de datos:
 
@@ -643,6 +654,7 @@ Considere la siguiente base de datos:
 Write relational algebra expressions for the following five queries.
 
   * Seleccionar a las personas que comen pizzas con extra queso.
-  * Seleccionar a las personas que comen pizzas con extra queso y frecuentan la pizzería X
+  * Seleccionar a las personas que comen pizzas con extra queso y frecuentan la
+    pizzería X.
 
 

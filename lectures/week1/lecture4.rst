@@ -26,8 +26,8 @@ Relational algebra is another example of an algebra. Its atomic operands are:
    1. Variables that stand for relations
    2. Constants, which are finite relations
 
-As we mentioned, in the classical relational algebra, all operands and the results of
-expressions are sets.
+As we mentioned, in the classical relational algebra, all operands and the results
+of expressions are sets.
 The operations of the traditional relational algebra fall into four broad classes:
 
   a. The usual set operations - union, intersection, and difference - applied to relations.
@@ -42,12 +42,13 @@ The operations of the traditional relational algebra fall into four broad classe
 
 
 We shall generally refer to expressions of relational algebra as queries.
-While we don't yet have the symbols needed to show many of the expressions of relational algebra,
-you should be familiar with the operations of group `(a)`;
+While we don't yet have the symbols needed to show many of the expressions of
+relational algebra, you should be familiar with the operations of group `(a)`;
 and  thus recognize `(R U S)` as an example of an expression of relational algebra.
 `R` and `S` are atomic operands standing for relations,
 whose sets of tuples are unknown.
-This query asks for the union of whatever tuples are in the relations named `R` and `S`.
+This query asks for the union of whatever tuples are in the relations
+named `R` and `S`.
 
 The three most common operations on sets are union, intersection;
 and difference. Which are defined as follows arbitrary sets `R` and `S`:
@@ -57,25 +58,32 @@ and difference. Which are defined as follows arbitrary sets `R` and `S`:
    :class: highlight
 
 Operaciones de conjunto:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. index:: Operaciones de conjunto:
 
-=====
 UNION
-=====
-En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos A y B es el conjunto que contiene todos los elementos de A y de B.
+******
 
-De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas. `R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).
+En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que
+pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es
+una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos
+A y B es el conjunto que contiene todos los elementos de A y de B.
+
+De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que
+contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas
+duplicadas. `R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo
+conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las
+mismas columnas y su orden debe ser el mismo).
 
 **Notación en álgebra relacional**
 
 .. math::
 
-	R \cup S \\
+    R \cup S \\
 
 .. math::
 
-	\textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado} \\
+    \textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado} \\
 
 ^^^^^^^^^
 Ejemplo 1
@@ -101,13 +109,13 @@ Dadas las siguientes relaciones:
    \end{array}
 
 ..      ==== ====== ====
-	ID   Nombre Edad
-	==== ====== ====
-	123  León    39
-     	234  Tomás   34
-     	345  José    45
-     	143  Josefa  25
-     	==== ====== ====
+    ID   Nombre Edad
+    ==== ====== ====
+    123  León    39
+         234  Tomás   34
+         345  José    45
+         143  Josefa  25
+         ==== ====== ====
 
 **Tabla Jefes**
 
@@ -122,12 +130,12 @@ Dadas las siguientes relaciones:
         \hline
       \end{array}
 
-..     	==== ====== ====
-     	ID   Nombre Edad
-     	==== ====== ====
-     	123  León   39
-     	235  María  29
-     	==== ====== ====
+..         ==== ====== ====
+         ID   Nombre Edad
+         ==== ====== ====
+         123  León   39
+         235  María  29
+         ==== ====== ====
 
 Aplicar el operador Unión:
 
@@ -152,31 +160,34 @@ Ingenieros ``U`` Jefes
    \end{array}
 
 
-..	==== ====== ====
-	ID   Nombre Edad
-	==== ====== ====
-	123  León   39
-	234  Tomás  34
-	345  José   45
-	143  Josefa 25
-	235  María  29
-	==== ====== ====
+..    ==== ====== ====
+    ID   Nombre Edad
+    ==== ====== ====
+    123  León   39
+    234  Tomás  34
+    345  José   45
+    143  Josefa 25
+    235  María  29
+    ==== ====== ====
 
-Como se mencionó anteriormente realizar la operación Jefes ``U`` Ingenieros daría como resultado la misma tabla anterior.
+Como se mencionó anteriormente realizar la operación Jefes ``U`` Ingenieros daría
+como resultado la misma tabla anterior.
 
-==========
 DIFFERENCE
-==========
+************
 
-Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos A y B es el conjunto que contiene todos los elementos de A que no pertenecen a B.
-De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en la relación `R`, pero no están en `S`.
+Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos
+conjuntos A y B es el conjunto que contiene todos los elementos de A que no
+pertenecen a B.
+De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación que
+contiene las tuplas que están en la relación `R`, pero no están en `S`.
 `R` y `S` deben ser unión-compatible.
 
 **Notación en álgebra relacional**
 
 .. math::
 
-	R - S
+    R - S
 
 Es importante resaltar que `R - S` es diferente a `S - R`.
 
@@ -184,12 +195,10 @@ Es importante resaltar que `R - S` es diferente a `S - R`.
 Ejemplo 2
 ^^^^^^^^^
 
-Empleando las mismas tablas dadas en el ejemplo anterior, realice Ingenieros ``-`` Jefes y Jefes ``-`` Ingenieros:
+Empleando las mismas tablas dadas en el ejemplo anterior, realice Ingenieros
+``-`` Jefes y Jefes ``-`` Ingenieros:
 
 Ingenieros ``-`` Jefes
-
-
-
 
 .. math::
    \begin{array}{|c|c|c|}
@@ -205,13 +214,13 @@ Ingenieros ``-`` Jefes
    \end{array}
 
 
-..	==== ====== ====
-	ID   Nombre Edad
-	==== ====== ====
-	234  Tomás   34
-	345  José    45
-	143  Josefa  25
-	==== ====== ====
+..    ==== ====== ====
+    ID   Nombre Edad
+    ==== ====== ====
+    234  Tomás   34
+    345  José    45
+    143  Josefa  25
+    ==== ====== ====
 
 Jefes ``-`` Ingenieros
 
@@ -225,37 +234,41 @@ Jefes ``-`` Ingenieros
    \end{array}
 
 
-..	==== ====== ====
-	ID   Nombre Edad
-	==== ====== ====
-	235  María  29
-	==== ====== ====
+..    ==== ====== ====
+    ID   Nombre Edad
+    ==== ====== ====
+    235  María  29
+    ==== ====== ====
 
-Como se puede apreciar, ambas operaciones dieron como resultado distintas relaciones, tal como se había mencionado anteriormente.
+Como se puede apreciar, ambas operaciones dieron como resultado distintas
+relaciones, tal como se había mencionado anteriormente.
 
-============
 INTERSECTION
-============
+**************
 
-En  álgebra de conjuntos la intersección de dos conjuntos A y B es el conjunto que contiene todos los elementos comunes de A y B. De forma homóloga en álgebra relacional INTERSECTION define una relación que contiene las tuplas que están tanto en la relación `R` como en `S`. `R` y `S` deben ser unión-compatible.
+En  álgebra de conjuntos la intersección de dos conjuntos A y B es el conjunto que
+contiene todos los elementos comunes de A y B. De forma homóloga en álgebra
+relacional INTERSECTION define una relación que contiene las tuplas que están tanto
+en la relación `R` como en `S`. `R` y `S` deben ser unión-compatible.
 
 **Notación en algebra relacional**
 
 .. math::
-	R \cap S
+    R \cap S
 
 .. math::
-	\textrm{ Si se realiza } R \cap S \textrm{ es lo mismo que }  S \cap R \textrm{ , es decir se obtiene el mismo resultado} \\
+    \textrm{ Si se realiza } R \cap S \textrm{ es lo mismo que }  S \cap R \textrm{ , es decir se obtiene el mismo resultado} \\
 
 **Equivalencia con operadores anteriores**
 
 .. math::
     R \cap S= R-(R-S)
 
-^^^^^^^^^
 Ejemplo 3
-^^^^^^^^^
-Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de la tabla de Ingenieros con la de Jefes:
+***********
+
+Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de la
+tabla de Ingenieros con la de Jefes:
 
 .. math::
     Ingenieros \cap Jefes
@@ -268,11 +281,11 @@ Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de
         \hline
       \end{array}
 
-..	==== ====== ====
-	ID   Nombre Edad
-	==== ====== ====
-	123  León   39
-	==== ====== ====
+..    ==== ====== ====
+    ID   Nombre Edad
+    ==== ====== ====
+    123  León   39
+    ==== ====== ====
 
 
 .. important::
@@ -285,9 +298,8 @@ Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de
         the columns of `R` and `S` must be ordered so that the order of attributes is the
         same for both relations.
 
-====================================
 DEPENDENT AND INDEPENDENT OPERATIONS
-====================================
+************************************
 
 Some of the operations that we have described in the lectures 3 and 4, can be expressed in
 terms of other relational-algebra operations. For example, intersection can be expressed in terms
@@ -297,9 +309,8 @@ relation T consisting of all those tuples in R but not S. We then subtract T fro
 tuples of R that are also in S.
 
 
-===========================================
 RELATIONAL ALGEBRA AS A CONSTRAINT LANGUAJE
-===========================================
+**********************************************
 
 There are two ways in which we can use expressions of relational algebra to express constraints:
 
@@ -326,11 +337,9 @@ interpretation of `R \subset S`: each tuple **t** appears in `S` at least as man
 appears in `R`.
 
 
-=========
 Exercises
-=========
+**********
 
-^^^^^^^^^^^^
 Ejercicio 1
 ^^^^^^^^^^^^
 Las relaciones base que forman la base de datos de un video club son las siguientes:
@@ -345,40 +354,51 @@ Las relaciones base que forman la base de datos de un video club son las siguien
 
 * LISTA_ESPERA(**codsocio,codpeli**,fecha)
 
-SOCIO: almacena los datos de cada uno de los socios del video club: código del socio, nombre, dirección y teléfono.
+SOCIO: almacena los datos de cada uno de los socios del video club: código del
+socio, nombre, dirección y teléfono.
 
-PELÍCULA: almacena información sobre cada una de las películas de las cuales tiene copias el vídeo club: código de la película, título y género (terror, comedia, etc.).
+PELÍCULA: almacena información sobre cada una de las películas de las cuales tiene
+copias el vídeo club: código de la película, título y género (terror, comedia, etc.).
 
-CINTA: almacena información referente a las copias que hay de cada película (copias distintas de una misma película tendrán distinto código de cinta).
+CINTA: almacena información referente a las copias que hay de cada película
+(copias distintas de una misma película tendrán distinto código de cinta).
 
-PRÉSTAMO: almacena información de los préstamos que se han realizado. Cada préstamo es de una cinta a un socio en una fecha. Si el préstamo aún no ha finalizado, pres_dev tiene el valor 'prestada'; si no su valor es 'devuelta'.
+PRÉSTAMO: almacena información de los préstamos que se han realizado. Cada préstamo
+es de una cinta a un socio en una fecha. Si el préstamo aún no ha finalizado,
+pres_dev tiene el valor 'prestada'; si no su valor es 'devuelta'.
 
-LISTA_ESPERA: almacena información sobre los socios que esperan a que haya copias disponibles de películas, para tomarlas prestadas. Se guarda también la fecha en que comenzó la espera para mantener el orden. Es importante tener en cuenta que cuando el socio consigue la película esperada, éste desaparece de la lista de espera.
+LISTA_ESPERA: almacena información sobre los socios que esperan a que haya copias
+disponibles de películas, para tomarlas prestadas. Se guarda también la fecha en
+que comenzó la espera para mantener el orden. Es importante tener en cuenta que
+cuando el socio consigue la película esperada, éste desaparece de la lista de espera.
 
-En las relaciones anteriores, son claves primarias los atributos y grupos de atributos que aparecen en negrita. Las claves ajenas se muestran en los siguientes diagramas referenciales:
+En las relaciones anteriores, son claves primarias los atributos y grupos de
+atributos que aparecen en negrita. Las claves ajenas se muestran en los siguientes
+diagramas referenciales:
 
-Resolver las siguientes consultas mediante el álgebra relacional (recuerde que en la lectura 3 también se dieron algunos operadores de álgebra relacional):
+Resolver las siguientes consultas mediante el álgebra relacional (recuerde que en
+la lectura 3 también se dieron algunos operadores de álgebra relacional):
 
 1.1. Seleccionar todos los socios que se llaman: "Charles".
 
 **Respuesta**
 
 .. math::
-	\sigma_{nombre='Charles'} (SOCIO)
+    \sigma_{nombre='Charles'} (SOCIO)
 
 1.2. Seleccionar el código socio de todos los socios que se llaman: "Charles".
 
 **Respuesta**
 
 .. math::
-	\pi_{codsocio}(\sigma_{nombre='Charles'} (SOCIO))
+    \pi_{codsocio}(\sigma_{nombre='Charles'} (SOCIO))
 
 1.3. Seleccionar los nombres de las películas que se encuentran en lista de espera.
 
 **Respuesta**
 
 .. math::
-	\pi_{titulo}(PELICULA \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)
+    \pi_{titulo}(PELICULA \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)
 
 
 1.4. Obtener los nombres de los socios que esperan películas.
@@ -386,14 +406,15 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 **Respuesta**
 
 .. math::
-	\pi_{nombre}(SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)
+    \pi_{nombre}(SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)
 
-1.5. Obtener los nombres de los socios que tienen actualmente prestada una película que ya tuvieron prestada con anterioridad.
+1.5. Obtener los nombres de los socios que tienen actualmente prestada una película
+que ya tuvieron prestada con anterioridad.
 
 **Respuesta**
 
 .. math::
-	\pi_{nombre} ( \{(PRESTAMO \rhd \hspace{-0.1cm} \lhd_{ (pres\_dev='prestada')} CINTA) \cap (PRESTAMO \rhd \hspace{-0.1cm} \lhd_{(pres\_dev='devuelta')} CINTA)\} \rhd \hspace{-0.1cm}\lhd SOCIO )
+    \pi_{nombre} ( \{(PRESTAMO \rhd \hspace{-0.1cm} \lhd_{ (pres\_dev='prestada')} CINTA) \cap (PRESTAMO \rhd \hspace{-0.1cm} \lhd_{(pres\_dev='devuelta')} CINTA)\} \rhd \hspace{-0.1cm}\lhd SOCIO )
 
 
 1.6. Obtener los títulos de las películas que nunca han sido prestadas.
@@ -401,25 +422,26 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 **Respuesta**
 
 .. math::
-	\pi_{titulo} \{(\pi_{codpeli} PELICULA  - \pi_{codpeli} (PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA) ) \rhd \hspace{-0.1cm} \lhd PELICULA \}
+    \pi_{titulo} \{(\pi_{codpeli} PELICULA  - \pi_{codpeli} (PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA) ) \rhd \hspace{-0.1cm} \lhd PELICULA \}
 
 (todas las películas) menos (las películas que han sido prestadas alguna vez)
 
-1.7. Obtener los nombres de los socios que han tomado prestada la película “WALL*E” alguna  vez o que están esperando para tomarla prestada.
+1.7. Obtener los nombres de los socios que han tomado prestada la película
+“WALL*E” alguna  vez o que están esperando para tomarla prestada.
 
 **Respuesta**
 
 .. math::
-	\pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cup \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )
+    \pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cup \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )
 
-1.8. Obtener los nombres de los socios que han tomado prestada la película “WALL*E” alguna vez y que además están en su lista de espera.
+1.8. Obtener los nombres de los socios que han tomado prestada la película
+“WALL*E” alguna vez y que además están en su lista de espera.
 
 **Respuesta**
 
 .. math::
-	\pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cap \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )
+    \pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cap \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )
 
-^^^^^^^^^^^^
 Ejercicio 2
 ^^^^^^^^^^^^
 
