@@ -5,7 +5,8 @@ Lecture 6 - Data Types
    :language: sql
    :class: highlight
 
-En SQL se tienen varios tipos de datos. Cuando creamos una tabla con la instrucción create table, tenemos que especificar el tipo de dato de cada columna.
+En SQL se tienen varios tipos de datos. Cuando creamos una tabla con la instrucción
+create table, tenemos que especificar el tipo de dato de cada columna.
 
 1. Character strings of fixed or varying length: The type CHAR(n) denotes a fixed-length string of n characters. That is, if an attribute has type CHAR(n), then in any tuple the component for this attribute will be a string of n characters. VARCHAR(n) denotes a string of up to n characters. Components for an attribute of this type will be strings of between 0 and n characters. SQL permits reasonable coercions between values of character-string types. Normally, a string is padded by trailing blanks if it becomes the value of a component that is a fixed-length string of greater length. For example, the string "foo", if it became the value of a component for an attribute of type CHAR(5), would assume the value "foo  ", (with two blanks following the second o). The padding blanks can then be ignored if the value of this component were compared with another string.
 
@@ -43,18 +44,18 @@ En SQL se tienen varios tipos de datos. Cuando creamos una tabla con la instrucc
  \end{array}
 
 Ejemplo práctico
-~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~
 
 A continuación se mostrarán ejemplos realizados con PostgreSQL de los tipos de datos nombrados anteriormente.
 
 Este ejemplo trata del juego adivina quien y se realizan preguntas como: tu personaje tiene gafas, es rubio, es alto. La tabla queda de la siguiente manera utilizando los valores booleanos para crear las tablas:::
-  
+
  postgres=# CREATE TABLE Adivina_quien(Personaje VARCHAR(30), GAFAS BOOL, RUBIO BOOL, ALTO BOOL);
  CREATE TABLE
  postgres=# INSERT INTO Adivina_quien(Personaje,GAFAS,RUBIO,ALTO) VALUES('Tomas',true,false,true);
  INSERT 0 1
  postgres=# SELECT*FROM Adivina_quien;
- personaje | gafas | rubio | alto 
+ personaje | gafas | rubio | alto
  -----------+-------+-------+------
  Tomas     | t     | f     | t
  (1 fila)

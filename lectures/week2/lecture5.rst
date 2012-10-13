@@ -5,7 +5,11 @@ Lecture 5 - Introduction
    :language: sql
    :class: highlight
 
-SQL (Structured Query Language) es un tipo de lenguaje vinculado con la gestión de bases de datos de carácter relacional que permite la especificación de distintas clases de operaciones entre éstas. Gracias a la utilización del álgebra y de cálculos relacionales, el lenguaje SQL brinda la posibilidad de realizar consultas que ayuden a recuperar información de las bases de datos de manera sencilla.
+SQL (Structured Query Language) es un tipo de lenguaje vinculado con la gestión de
+bases de datos de carácter relacional que permite la especificación de distintas
+clases de operaciones entre éstas. Gracias a la utilización del álgebra y de
+cálculos relacionales, el lenguaje SQL brinda la posibilidad de realizar consultas
+que ayuden a recuperar información de las bases de datos de manera sencilla.
 
 Characteristics
 ~~~~~~~~~~~~~~~~
@@ -26,7 +30,9 @@ Data Definition Languaje (DDL)
 .. index:: Data Definition Languaje (DDL)
 
 
-Data definition language or data description language (DDL) is a syntax similar to a computer programming language for defining data structures, especially database schemas.
+Data definition language or data description language (DDL) is a syntax similar
+to a computer programming language for defining data structures, especially
+database schemas.
 
 Examples::
 
@@ -35,15 +41,26 @@ Examples::
 
 **Description of commands**
 
-**Create** - To make a new database, table, index, or stored query. A CREATE statement in SQL creates an object inside of a relational database management system (RDBMS). The types of objects that can be created depends on which RDBMS is being used, but most support the creation of tables, indexes, users, synonyms and databases. Some systems (such as PostgreSQL) allow CREATE, and other DDL commands, inside of a transaction and thus they may be rolled back.
+**Create** - To make a new database, table, index, or stored query. A CREATE
+statement in SQL creates an object inside of a relational database management system
+(RDBMS). The types of objects that can be created depends on which RDBMS is being
+used, but most support the creation of tables, indexes, users, synonyms and
+databases. Some systems (such as PostgreSQL) allow CREATE, and other DDL commands,
+inside of a transaction and thus they may be rolled back.
 
 **Drop** - To destroy an existing database, table, index, or view.
-A DROP statement in SQL removes an object from a relational database management system (RDBMS). The types of objects that can be dropped depends on which RDBMS is being used, but most support the dropping of tables, users, and databases. Some systems (such as PostgreSQL) allow DROP and other DDL commands to occur inside of a transaction and thus be rolled back.
+A DROP statement in SQL removes an object from a relational database management
+system (RDBMS). The types of objects that can be dropped depends on which RDBMS is
+being used, but most support the dropping of tables, users, and databases. Some
+systems (such as PostgreSQL) allow DROP and other DDL commands to occur inside of
+a transaction and thus be rolled back.
 
 Data Manipulation Languaje (DML)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-DML son las siglas de Data Manipulation Language y se refiere a los comandos que permiten a un usuario manipular los datos en un repositorio, es decir, añadir, consultar, borrar o actualizar.
+DML son las siglas de Data Manipulation Language y se refiere a los comandos que
+permiten a un usuario manipular los datos en un repositorio, es decir, añadir,
+consultar, borrar o actualizar.
 
 Examples of DML::
 
@@ -56,7 +73,14 @@ Examples of DML::
 
 
 **SELECT** -  returns a result set of records from one or more tables.
-A SELECT statement retrieves zero or more rows from one or more database tables or database views. In most applications, SELECT is the most commonly used Data Manipulation Language (DML) command. As SQL is a declarative programming language, SELECT queries specify a result set, but do not specify how to calculate it. The database translates the query into a "query plan" which may vary between executions, database versions and database software. This functionality is called the "query optimizer" as it is responsible for finding the best possible execution plan for the query, within applicable constraints.
+A SELECT statement retrieves zero or more rows from one or more database tables or
+database views. In most applications, SELECT is the most commonly used Data
+Manipulation Language (DML) command. As SQL is a declarative programming language,
+SELECT queries specify a result set, but do not specify how to calculate it. The
+database translates the query into a "query plan" which may vary between executions,
+database versions and database software. This functionality is called the "query
+optimizer" as it is responsible for finding the best possible execution plan for
+the query, within applicable constraints.
 
 The Basic SELECT Statement
 
@@ -78,9 +102,12 @@ The Basic SELECT Statement
 
 Comandos SQL:
 
-   * :sql:`INSERT` - adds one or more records to any single table in a relational database.
-   * :sql:`DELETE` - removes one or more records from a table. A subset may be defined for deletion using a condition, otherwise all records are removed.
-   * :sql:`UPDATE` - changes the data of one or more records in a table. Either all the rows can be updated, or a subset may be chosen using a condition.
+   * :sql:`INSERT` - adds one or more records to any single table in a relational
+     database.
+   * :sql:`DELETE` - removes one or more records from a table. A subset may be
+     defined for deletion using a condition, otherwise all records are removed.
+   * :sql:`UPDATE` - changes the data of one or more records in a table. Either all
+     the rows can be updated, or a subset may be chosen using a condition.
 
 Other Commands
 ~~~~~~~~~~~~~~
@@ -91,7 +118,7 @@ indexes, constraints, views, triggers, transactions, authorization, ...
 Ejemplo práctico
 ----------------
 
-.. index:: ejemplo practico 
+.. index:: ejemplo practico
 
 Instalamos por consola Postgresql ingresando el siguiente comando::
 
@@ -112,9 +139,11 @@ Para ingresar a la base de datos example::
  psql (8.4.14)
  Ahora está conectado a la base de datos «example».
 
-Ahora comenzamos a crear una tabla llamada cliente con las variables id que se define como serial en que al ir agregando datos se autoincrementará automaticamente en la base de datos example::
+Ahora comenzamos a crear una tabla llamada cliente con las variables id que se
+define como serial en que al ir agregando datos se autoincrementará automaticamente
+en la base de datos example::
 
- example=# CREATE TABLE cliente (id SERIAL, nombre VARCHAR(50), apellido VARCHAR(50), edad INTEGER, direccion VARCHAR(50), pais VARCHAR(25)); 
+ example=# CREATE TABLE cliente (id SERIAL, nombre VARCHAR(50), apellido VARCHAR(50), edad INTEGER, direccion VARCHAR(50), pais VARCHAR(25));
  NOTICE:  CREATE TABLE creará una secuencia implícita «cliente_id_seq» para la columna serial «cliente.id»
  CREATE TABLE
 
@@ -137,7 +166,7 @@ Agregar más datos a la tabla clientes::
 Seleccionar todos los datos de la tabla cliente::
 
  example=# SELECT * FROM cliente;
- id | nombre | apellido | edad |       direccion       |    pais    
+ id | nombre | apellido | edad |       direccion       |    pais
  ----+--------+----------+------+-----------------------+------------
   1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
   2 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
@@ -149,7 +178,8 @@ Seleccionar todos los datos de la tabla cliente::
 .. note::
  El asterisco (*) que está entre el :sql:`SELECT` y el :sql:`FROM` significa que se seleccionan todas las columnas de la tabla.
 
-Como cometimos el error de ingresar en la segunda fila datos repetidos podemos eliminarla de esta manera::
+Como cometimos el error de ingresar en la segunda fila datos repetidos podemos
+eliminarla de esta manera::
 
  example=# DELETE FROM cliente WHERE id=2;
  DELETE 1
@@ -157,7 +187,7 @@ Como cometimos el error de ingresar en la segunda fila datos repetidos podemos e
 Verificamos que se haya borrado::
 
  example=# SELECT * FROM cliente;
- id | nombre | apellido | edad |       direccion       |    pais    
+ id | nombre | apellido | edad |       direccion       |    pais
  ----+--------+----------+------+-----------------------+------------
   1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
   3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
@@ -171,9 +201,9 @@ Si se desea actualizar la dirección del cliente Sergio::
  UPDATE 1
 
 Verificamos que se haya actualizado la información::
- 
+
  example=# SELECT * FROM cliente;
-  id | nombre | apellido | edad |       direccion       |    pais    
+  id | nombre | apellido | edad |       direccion       |    pais
  ----+--------+----------+------+-----------------------+------------
   1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
   3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
@@ -187,7 +217,7 @@ Si queremos borrar toda la tabla::
  DROP TABLE
 
 Verificamos que se haya eliminado la tabla cliente::
- 
+
  example=# SELECT * FROM cliente;
  ERROR:  no existe la relación «cliente»
  LÍNEA 1: SELECT * FROM cliente;
@@ -196,7 +226,9 @@ Verificamos que se haya eliminado la tabla cliente::
 Clave Primaria y Foránea
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-En las bases de datos relacionales, se le llama clave primaria a un campo o a una combinación de campos que identifica de forma única a cada fila de una tabla. Por lo que no pueden existir dos filas en una tabla que tengan la misma clave primaria.
+En las bases de datos relacionales, se le llama clave primaria a un campo o a una
+combinación de campos que identifica de forma única a cada fila de una tabla. Por lo
+que no pueden existir dos filas en una tabla que tengan la misma clave primaria.
 
 ----------------
 Ejemplo Práctico

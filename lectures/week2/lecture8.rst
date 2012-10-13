@@ -31,7 +31,8 @@ La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WH
 Cuidado con los duplicados!!
 ============================
 
-Si el lector se fija en el esquema, hay ciertos atributos cuyos nombres se repiten en las diferentes tablas. Tal es el caso de
+Si el lector se fija en el esquema, hay ciertos atributos cuyos nombres se repiten
+en las diferentes tablas. Tal es el caso de
 **cName y sID**. En las consultas se aprecia que la diferencia se realiza a través de::
 
         Student.sID ó S.sID
@@ -39,14 +40,16 @@ Si el lector se fija en el esquema, hay ciertos atributos cuyos nombres se repit
 
 Es decir, se antepone el nombre de la tabla o su respectiva variable definida en el FROM.
 
-En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo, se buscan
+En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan
+dos instancias de una tabla. En el siguiente ejemplo, se buscan
 todos los pares de estudiantes con el mismo GPA::
 
         SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
         FROM Student S1, Student S2
         WHERE S1.GPA = S2.GPA
 
-Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla),  el resultado contendrá uno o varios duplicados; por ejemplo, consideremos
+Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla),
+el resultado contendrá uno o varios duplicados; por ejemplo, consideremos
 4 estudantes::
 
         sName   sID     GPA
@@ -86,7 +89,8 @@ Los Set Operators son 3:
 Unión
 =====
 
-El operador "UNION", permite combinar el resultado de dos o más sentencias SELECT. Es necesario que estas tengan el mismo número de columnas, y que
+El operador "UNION", permite combinar el resultado de dos o más sentencias SELECT.
+Es necesario que estas tengan el mismo número de columnas, y que
 éstas tengan los mismos tipos de datos, por ejemplo::
 
      Employees_Norway":
@@ -122,7 +126,8 @@ es::
         Scott, Stephen
 
 
-Ojo, existen dos empleados con el mismo nombre en ambas tablas. Sin embargo en la salida sólo se nombra uno. Para evitar esto, se utliza "UNION ALL"::
+Ojo, existen dos empleados con el mismo nombre en ambas tablas. Sin embargo en la
+salida sólo se nombra uno. Para evitar esto, se utliza "UNION ALL"::
 
         SELECT E_Name as name FROM Employees_Norway
         UNION ALL
@@ -146,8 +151,10 @@ Utilizando "as" es posible cambiar el nombre de la columna resultado::
 Intersección
 ============
 
-Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT. La diferencia consiste en que UNION actua como un OR, e INTERSECT
-lo hace como AND. Es decir que INTERSECT devuelve los valores repetidos. Consideremos el sigueinte esquema::
+Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT.
+La diferencia consiste en que UNION actua como un OR, e INTERSECT
+lo hace como AND. Es decir que INTERSECT devuelve los valores repetidos.
+Consideremos el sigueinte esquema::
 
         Table Store_Information
         store_name      Sales   Date
@@ -183,7 +190,8 @@ pero que puede escribirse como otra consulta (agregarla)
 Excepción
 =========
 
-Similar a los operadores anteriores, su estructura se compone de dos o mas sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
+Similar a los operadores anteriores, su estructura se compone de dos o mas
+sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
 en el álgebra relacional.
 
 Utilizando el esquema del ejemplo anterior, y realizando la siguiente consulta::
