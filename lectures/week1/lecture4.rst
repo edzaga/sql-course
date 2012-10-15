@@ -1,8 +1,8 @@
 Lecture 4 - Relational Algebra: Set operators, renaming, notation
--------------------------------------------------------------------
+===================================================================
 
 Basics of relational algebra
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 .. index:: basics of relational algebra
 
@@ -58,7 +58,8 @@ and difference. Which are defined as follows arbitrary sets `R` and `S`:
    :class: highlight
 
 Operaciones de conjunto:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
+
 .. index:: Operaciones de conjunto:
 
 UNION
@@ -85,7 +86,6 @@ mismas columnas y su orden debe ser el mismo).
 
     \textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado} \\
 
-^^^^^^^^^
 Ejemplo 1
 ^^^^^^^^^
 Dadas las siguientes relaciones:
@@ -94,6 +94,7 @@ Dadas las siguientes relaciones:
 **Tabla Ingenieros**
 
 .. math::
+
    \begin{array}{|c|c|c|}
         \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
@@ -108,14 +109,14 @@ Dadas las siguientes relaciones:
         \hline
    \end{array}
 
-..      ==== ====== ====
-    ID   Nombre Edad
-    ==== ====== ====
-    123  León    39
-         234  Tomás   34
-         345  José    45
-         143  Josefa  25
-         ==== ====== ====
+..    ==== ====== ====
+..    ID   Nombre Edad
+..    ==== ====== ====
+..    123  León    39
+..         234  Tomás   34
+..         345  José    45
+..         143  Josefa  25
+..         ==== ====== ====
 
 **Tabla Jefes**
 
@@ -143,6 +144,7 @@ Ingenieros ``U`` Jefes
 
 
 .. math::
+
    \begin{array}{|c|c|c|}
         \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
@@ -161,14 +163,14 @@ Ingenieros ``U`` Jefes
 
 
 ..    ==== ====== ====
-    ID   Nombre Edad
-    ==== ====== ====
-    123  León   39
-    234  Tomás  34
-    345  José   45
-    143  Josefa 25
-    235  María  29
-    ==== ====== ====
+..    ID   Nombre Edad
+..    ==== ====== ====
+..    123  León   39
+..    234  Tomás  34
+..    345  José   45
+..    143  Josefa 25
+..    235  María  29
+..    ==== ====== ====
 
 Como se mencionó anteriormente realizar la operación Jefes ``U`` Ingenieros daría
 como resultado la misma tabla anterior.
@@ -191,7 +193,6 @@ contiene las tuplas que están en la relación `R`, pero no están en `S`.
 
 Es importante resaltar que `R - S` es diferente a `S - R`.
 
-^^^^^^^^^
 Ejemplo 2
 ^^^^^^^^^
 
@@ -201,6 +202,7 @@ Empleando las mismas tablas dadas en el ejemplo anterior, realice Ingenieros
 Ingenieros ``-`` Jefes
 
 .. math::
+
    \begin{array}{|c|c|c|}
         \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
@@ -215,16 +217,17 @@ Ingenieros ``-`` Jefes
 
 
 ..    ==== ====== ====
-    ID   Nombre Edad
-    ==== ====== ====
-    234  Tomás   34
-    345  José    45
-    143  Josefa  25
-    ==== ====== ====
+..    ID   Nombre Edad
+..    ==== ====== ====
+..    234  Tomás   34
+..    345  José    45
+..    143  Josefa  25
+..    ==== ====== ====
 
 Jefes ``-`` Ingenieros
 
 .. math::
+
    \begin{array}{|c|c|c|}
         \hline
         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
@@ -235,10 +238,10 @@ Jefes ``-`` Ingenieros
 
 
 ..    ==== ====== ====
-    ID   Nombre Edad
-    ==== ====== ====
-    235  María  29
-    ==== ====== ====
+..    ID   Nombre Edad
+..    ==== ====== ====
+..    235  María  29
+..    ==== ====== ====
 
 Como se puede apreciar, ambas operaciones dieron como resultado distintas
 relaciones, tal como se había mencionado anteriormente.
