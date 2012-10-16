@@ -9,8 +9,8 @@
    :language: sql
    :class: highlight
 
-ALMA SQL Course
-================
+Curso ALMA SQL
+==============
 
 Contents:
 
