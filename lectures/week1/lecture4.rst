@@ -1,4 +1,4 @@
-Lectura 4 - Algebra Relacional: Set operators, renaming, notation
+Lectura 4 - Álgebra Relacional: Set operators, renaming, notation
 ===================================================================
 
 Conceptos básicos de álgebra relacional
@@ -6,7 +6,7 @@ Conceptos básicos de álgebra relacional
 
 .. index:: basics of relational algebra
 
-Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo, een el álgebra de la aritmética, los operandos atómicos son variable como `r`, y constantes como 15. 
+Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo, en el álgebra de la aritmética, los operandos atómicos son variable como `r`, y constantes como 15. 
 Los operadores son los usuales en la aritmética:
 
   * Suma
@@ -193,7 +193,7 @@ En  álgebra de conjuntos la intersección de dos conjuntos A y B es el conjunto
     R \cap S= R-(R-S)
 
 Ejemplo 3
-*********
+^^^^^^^^^
 
 Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de la tabla de Ingenieros con la de Jefes:
 
@@ -235,8 +235,8 @@ Estas formas para expresar restricción son de hecho equivalentes en lo que pued
 Por otra parte, una restricción de la primera forma, `R = 0`, también pudo haber sido escrita como `R \subset 0`. Técnicamente, `0` no es una expresión de algebra relacional, pero ya que hay expresiones que evalúan a `0`, tal como `R - R`, no hay nada malo en usar `0` como una expresión de algebra relacional. Tenga en cuenta que estas equivalencias sostienen se sostienen incluso si `R` y `S` son bolsas, dado que hacemos la interpretación convencional de `R \subset S`: cada tupla `t` aparece en `S` al menos tantas veces como aparece en `R`.
 
 
-Ejercicios
-**********
+EJERCICIOS PROPUESTOS
+*********************
 
 Ejercicio 1
 ^^^^^^^^^^^^

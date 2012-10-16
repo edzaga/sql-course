@@ -1,5 +1,5 @@
-Lecture 2 - Relational Databases: Querying relational databases
-----------------------------------------------------------------
+Lectura 2 - Bases de datos relacionales: Consulta de bases de datos relacionales
+--------------------------------------------------------------------------------
 
 .. role:: sql(code)
    :language: sql

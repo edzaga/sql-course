@@ -1,5 +1,5 @@
-Assignment 1
-============
+Tarea 1
+=======
 
 -----------------------
 Modelo Entidad Relación

@@ -12,12 +12,10 @@
 Curso ALMA SQL
 ==============
 
-Contents:
+Contenidos:
 
 .. toctree::
    :maxdepth: 2
-
-
 
    lectures/week1/index
    lectures/week2/index

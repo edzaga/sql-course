@@ -1,5 +1,5 @@
-First week
-----------
+Primera Semana
+--------------
 
 Lectures:
 

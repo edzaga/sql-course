@@ -1,5 +1,5 @@
-Lecture 1 - Relational Databases: "The relational model"
---------------------------------------------------------
+Lectura 1 - Bases de datos relacionales: "El modelo relacional"
+---------------------------------------------------------------
 
 ¿Qué son las Bases de Datos (BD)?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
