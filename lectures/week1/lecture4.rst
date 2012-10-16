@@ -1,69 +1,70 @@
-Lecture 4 - Relational Algebra: Set operators, renaming, notation
+Lectura 4 - Algebra Relacional: Set operators, renaming, notation
 ===================================================================
 
-Basics of relational algebra
-------------------------------
+Conceptos básicos de álgebra relacional
+---------------------------------------
 
 .. index:: basics of relational algebra
 
-An algebra, in general, consists of operators and atomic operands. For instance,
-in the algebra of arithmetic, the atomic operands are variables like `r`,
-and constants like 15. The operators are the usual arithmetic ones:
+Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo,
+en el álgebra de la aritmética, los operandos atómicos son variable como `r`,
+y constantes como 15. Los operadores son los usuales en la aritmética:
 
-  * addition
-  * subtraction
-  * multiplication
-  * division.
+  * Suma
+  * Resta
+  * Multiplicación
+  * División.
 
-Any algebra allows us to build expressions by applying operators to atomic operands
-and/or other expressions of the algebra.
-Usually, parentheses are needed to group operators and their operands. For instance,
-in arithmetic we have expressions such as `(x + y) * z` or
+Cualquier álgebra nos permite construir expresiones mediante la aplicación de 
+operadores a operandos atómicos y/o otras expresiones del álgebra. En general, los 
+paréntesis son necesarios para agrupar operadores y sus operandos. Por ejemplo,
+en aritmética tenemos expresiones tales como `(x + y) * z` ó
 `((x + 7)/(y - 3)) + x`.
 
-Relational algebra is another example of an algebra. Its atomic operands are:
+El Álgebra Relacional es otro ejemplo del álgebra. Sus operandos atómicos son:
 
-   1. Variables that stand for relations
-   2. Constants, which are finite relations
+   1. Variables que representan relaciones.
+   2. Constantes que son relaciones finitas.
 
-As we mentioned, in the classical relational algebra, all operands and the results
-of expressions are sets.
-The operations of the traditional relational algebra fall into four broad classes:
+Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus 
+resultados de expresiones son conjuntos. Los operadores del álgebra relacional 
+tradicional se divide en cuatro grandes categorías: 
 
-  a. The usual set operations - union, intersection, and difference - applied to relations.
-  b. Operations that remove parts of a relation: "selection" eliminates some rows (tuples),
-     and "projection" eliminates some columns.
-  c. Operations that combine the tuples of two relations, including "Cartesian product",
-     which pairs the tuples of two relations in all possible ways and various kinds of
-     "join" operations, which selectively pair tuples from two relations.
-  d. An operation called .'renaming" that does not affect the tuples of a relation, but
-     changes the relation schema, i.e., the names of the attribute sand/or the name of the
-     relation itself.
+  a. Los conjuntos habituales de operaciones –unión, intersección, y diferencia- 
+se aplica a las relaciones. 
+  b. Las operaciones que eliminan parte de una relación: “selección” elimina algunas 
+filas (tuplas), y “proyección” elimina algunas columnas.
+  c. Las operaciones que combinan las tuplas de dos relaciones, como el 
+“producto cartesiano,” que empareja las tuplas de dos relaciones en todas las maneras 
+posibles y varios tipos de operadores “unión”, los cuales forman parejas de tuplas de 
+dos relaciones selectivamente.
+  d. Una operación llama “renombrar” que no afecta las tuplas de una relación, pero 
+que cambia el esquema de relación, es decir, lo nombres de los atributos y/o los nombres 
+de la relación misma.
 
 
-We shall generally refer to expressions of relational algebra as queries.
-While we don't yet have the symbols needed to show many of the expressions of
-relational algebra, you should be familiar with the operations of group `(a)`;
-and  thus recognize `(R U S)` as an example of an expression of relational algebra.
-`R` and `S` are atomic operands standing for relations,
-whose sets of tuples are unknown.
-This query asks for the union of whatever tuples are in the relations
-named `R` and `S`.
+Debemos por lo general referirnos a las expresiones del álgebra relacional como consultas. 
+A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones
+del algebra relacional, se debería familiarizar con las operaciones de grupo `(a)`;
+y por lo tanto reconocer `(R U S)` como un ejemplo de una expresión de álgebra relacional.
+`R` y `S` son operandos atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas. 
+Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones nombradas
+`R` y `S`.
 
-The three most common operations on sets are union, intersection;
-and difference. Which are defined as follows arbitrary sets `R` and `S`:
+Las tres operaciones más comunes en conjuntos son unión, intersección, y diferencia. 
+Las cuales se definen como los siguientes conjuntos arbitrarios `R` y `S`:
 
 .. role:: sql(code)
    :language: sql
    :class: highlight
 
 Operaciones de conjunto:
-----------------------------
+------------------------
 
 .. index:: Operaciones de conjunto:
 
-UNION
-******
+UNIÓN
+*****
 
 En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que
 pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es
@@ -175,8 +176,8 @@ Ingenieros ``U`` Jefes
 Como se mencionó anteriormente realizar la operación Jefes ``U`` Ingenieros daría
 como resultado la misma tabla anterior.
 
-DIFFERENCE
-************
+DIFERENCIA
+**********
 
 Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos
 conjuntos A y B es el conjunto que contiene todos los elementos de A que no
@@ -246,8 +247,8 @@ Jefes ``-`` Ingenieros
 Como se puede apreciar, ambas operaciones dieron como resultado distintas
 relaciones, tal como se había mencionado anteriormente.
 
-INTERSECTION
-**************
+INTERSECCIÓN
+************
 
 En  álgebra de conjuntos la intersección de dos conjuntos A y B es el conjunto que
 contiene todos los elementos comunes de A y B. De forma homóloga en álgebra
@@ -268,7 +269,7 @@ en la relación `R` como en `S`. `R` y `S` deben ser unión-compatible.
     R \cap S= R-(R-S)
 
 Ejemplo 3
-***********
+*********
 
 Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de la
 tabla de Ingenieros con la de Jefes:
@@ -293,29 +294,31 @@ tabla de Ingenieros con la de Jefes:
 
 .. important::
 
-   When we apply these operations to relations, we need to put some conditions on R and S:
+   Cuando aplicamos estas operaciones a relaciones, necesitamos poner algunas condiciones R y S:
 
-      * `R` and `S` must have schemas with identical sets of attributes, and the types
-        (domains) for each attribute must be the same in `R` and `S`.
-      * Before compute the set-theoretic union, intersection, or difference of sets of tuples,
-        the columns of `R` and `S` must be ordered so that the order of attributes is the
-        same for both relations.
+      * `R` y `S` deben tener esquemas con conjuntos de atributos idénticos, y de tipos (dominios) 
+      para cada atributo deben ser las mismas en `R` y `S`.
+      * Antes de computar el conjunto-teórico unión, intersección, o diferencia de conjuntos
+      de tuplas, las columnas de `R` y `S` deben ser ordenadas para que el orden de los atributos sean
+      los mismos para ambas relaciones.
 
-DEPENDENT AND INDEPENDENT OPERATIONS
-************************************
+OPERACIONES DEPENDIENTES Y INDEPENDIENTES
+*****************************************
 
-Some of the operations that we have described in the lectures 3 and 4, can be expressed in
-terms of other relational-algebra operations. For example, intersection can be expressed in terms
-of set difference: R <INTERSECTION> S = R - (R - S). That is, if R and S are any two relations with the
-same schema, the intersection of R and S can be computed by first subtracting S from R to form a
-relation T consisting of all those tuples in R but not S. We then subtract T from R, leaving only those
-tuples of R that are also in S.
+Algunas de las operaciones que hemos descrito en las lecturas 3 y 4, 
+pueden ser expresadas en términos de operadores de algebra relacional. 
+Por ejemplo, la intersección puede ser expresada en términos de conjuntos de diferencia:
+R <INTERSECCCIÓN> S = R - (R - S). Es decir, si R y S son dos relaciones con el mismo 
+esquema, la intersección de R y S puede ser resuelta restando primero S de R para 
+formar una relación T que consiste en todas aquellas tuplas en R pero no en S. Cuando
+restamos T de R, dejamos solo esas tuplas de R que están también en S.
 
 
-RELATIONAL ALGEBRA AS A CONSTRAINT LANGUAJE
-**********************************************
+ÁLGEBRA RELACIONAL COMO IDIOMA RESTRICTOR
+*****************************************
 
-There are two ways in which we can use expressions of relational algebra to express constraints:
+Hay dos maneras en las cuales podemos usar expresiones de algebra relacional para expresar 
+restricción:
 
    1. If `R` is an expression of relational algebra, then `R = 0` is a constraint that says
       "The value of R must be empty," or equivalently "There are no tuples in the result of R."
