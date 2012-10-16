@@ -6,50 +6,32 @@ Conceptos básicos de álgebra relacional
 
 .. index:: basics of relational algebra
 
-Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo,
-en el álgebra de la aritmética, los operandos atómicos son variable como `r`,
-y constantes como 15. Los operadores son los usuales en la aritmética:
+Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo, een el álgebra de la aritmética, los operandos atómicos son variable como `r`, y constantes como 15. 
+Los operadores son los usuales en la aritmética:
 
   * Suma
   * Resta
   * Multiplicación
   * División.
 
-Cualquier álgebra nos permite construir expresiones mediante la aplicación de 
-operadores a operandos atómicos y/o otras expresiones del álgebra. En general, los 
-paréntesis son necesarios para agrupar operadores y sus operandos. Por ejemplo,
-en aritmética tenemos expresiones tales como `(x + y) * z` ó
-`((x + 7)/(y - 3)) + x`.
+Cualquier álgebra nos permite construir expresiones mediante la aplicación de operadores a operandos atómicos y/o otras expresiones del álgebra. En general, los paréntesis son necesarios para agrupar operadores y sus operandos. Por ejemplo, en aritmética tenemos expresiones tales como `(x + y) * z` ó `((x + 7)/(y - 3)) + x`.
 
-El Álgebra Relacional es otro ejemplo del álgebra. Sus operandos atómicos son:
+El Álgebra Relacional es otro ejemplo del álgebra. Sus operandos atómicos son: 
 
    1. Variables que representan relaciones.
    2. Constantes que son relaciones finitas.
 
-Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus 
-resultados de expresiones son conjuntos. Los operadores del álgebra relacional 
-tradicional se divide en cuatro grandes categorías: 
+Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus resultados de expresiones son conjuntos. Los operadores del álgebra relacional tradicional se divide en cuatro grandes categorías: 
 
-  a. Los conjuntos habituales de operaciones –unión, intersección, y diferencia- 
-se aplica a las relaciones. 
-  b. Las operaciones que eliminan parte de una relación: “selección” elimina algunas 
-filas (tuplas), y “proyección” elimina algunas columnas.
-  c. Las operaciones que combinan las tuplas de dos relaciones, como el 
-“producto cartesiano,” que empareja las tuplas de dos relaciones en todas las maneras 
-posibles y varios tipos de operadores “unión”, los cuales forman parejas de tuplas de 
-dos relaciones selectivamente.
-  d. Una operación llama “renombrar” que no afecta las tuplas de una relación, pero 
-que cambia el esquema de relación, es decir, lo nombres de los atributos y/o los nombres 
-de la relación misma.
-
+  a. Los conjuntos habituales de operaciones –unión, intersección, y diferencia- se aplica a las relaciones. 
+  b. Las operaciones que eliminan parte de una relación: “selección” elimina algunas filas (tuplas), y “proyección” elimina algunas columnas.
+  c. Las operaciones que combinan las tuplas de dos relaciones, como el “producto cartesiano,” que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de operadores “unión”, los cuales forman parejas de tuplas de dos relaciones selectivamente.
+  d. Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que cambia el esquema de relación, es decir, lo nombres de los atributos y/o los nombres de la relación misma.
 
 Debemos por lo general referirnos a las expresiones del álgebra relacional como consultas. 
-A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones
-del algebra relacional, se debería familiarizar con las operaciones de grupo `(a)`;
-y por lo tanto reconocer `(R U S)` como un ejemplo de una expresión de álgebra relacional.
+A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones del algebra relacional, se debería familiarizar con las operaciones de grupo `(a)`; y por lo tanto reconocer `(R U S)` como un ejemplo de una expresión de álgebra relacional.
 `R` y `S` son operandos atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas. 
-Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones nombradas
-`R` y `S`.
+Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones nombradas `R` y `S`.
 
 Las tres operaciones más comunes en conjuntos son unión, intersección, y diferencia. 
 Las cuales se definen como los siguientes conjuntos arbitrarios `R` y `S`:
@@ -66,16 +48,9 @@ Operaciones de conjunto:
 UNIÓN
 *****
 
-En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que
-pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es
-una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos
-A y B es el conjunto que contiene todos los elementos de A y de B.
+En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos A y B es el conjunto que contiene todos los elementos de A y de B.
 
-De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que
-contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas
-duplicadas. `R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo
-conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las
-mismas columnas y su orden debe ser el mismo).
+De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas. `R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).
 
 **Notación en álgebra relacional**
 
@@ -173,17 +148,13 @@ Ingenieros ``U`` Jefes
 ..    235  María  29
 ..    ==== ====== ====
 
-Como se mencionó anteriormente realizar la operación Jefes ``U`` Ingenieros daría
-como resultado la misma tabla anterior.
+Como se mencionó anteriormente realizar la operación Jefes ``U`` Ingenieros daría como resultado la misma tabla anterior.
 
 DIFERENCIA
 **********
 
-Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos
-conjuntos A y B es el conjunto que contiene todos los elementos de A que no
-pertenecen a B.
-De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación que
-contiene las tuplas que están en la relación `R`, pero no están en `S`.
+Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos A y B es el conjunto que contiene todos los elementos de A que no pertenecen a B.
+De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en la relación `R`, pero no están en `S`.
 `R` y `S` deben ser unión-compatible.
 
 **Notación en álgebra relacional**
@@ -244,16 +215,12 @@ Jefes ``-`` Ingenieros
 ..    235  María  29
 ..    ==== ====== ====
 
-Como se puede apreciar, ambas operaciones dieron como resultado distintas
-relaciones, tal como se había mencionado anteriormente.
+Como se puede apreciar, ambas operaciones dieron como resultado distintas relaciones, tal como se había mencionado anteriormente.
 
 INTERSECCIÓN
 ************
 
-En  álgebra de conjuntos la intersección de dos conjuntos A y B es el conjunto que
-contiene todos los elementos comunes de A y B. De forma homóloga en álgebra
-relacional INTERSECTION define una relación que contiene las tuplas que están tanto
-en la relación `R` como en `S`. `R` y `S` deben ser unión-compatible.
+En  álgebra de conjuntos la intersección de dos conjuntos A y B es el conjunto que contiene todos los elementos comunes de A y B. De forma homóloga en álgebra relacional INTERSECTION define una relación que contiene las tuplas que están tanto en la relación `R` como en `S`. `R` y `S` deben ser unión-compatible.
 
 **Notación en algebra relacional**
 
@@ -271,8 +238,7 @@ en la relación `R` como en `S`. `R` y `S` deben ser unión-compatible.
 Ejemplo 3
 *********
 
-Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de la
-tabla de Ingenieros con la de Jefes:
+Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de la tabla de Ingenieros con la de Jefes:
 
 .. math::
     Ingenieros \cap Jefes
@@ -296,29 +262,20 @@ tabla de Ingenieros con la de Jefes:
 
    Cuando aplicamos estas operaciones a relaciones, necesitamos poner algunas condiciones R y S:
 
-      * `R` y `S` deben tener esquemas con conjuntos de atributos idénticos, y de tipos (dominios) 
-      para cada atributo deben ser las mismas en `R` y `S`.
-      * Antes de computar el conjunto-teórico unión, intersección, o diferencia de conjuntos
-      de tuplas, las columnas de `R` y `S` deben ser ordenadas para que el orden de los atributos sean
-      los mismos para ambas relaciones.
+      * `R` y `S` deben tener esquemas con conjuntos de atributos idénticos, y de tipos (dominios) para cada atributo deben ser las mismas en `R` y `S`.
+      * Antes de computar el conjunto-teórico unión, intersección, o diferencia de conjuntos de tuplas, las columnas de `R` y `S` deben ser ordenadas para que el orden de los atributos sean los mismos para ambas relaciones.
 
 OPERACIONES DEPENDIENTES Y INDEPENDIENTES
 *****************************************
 
-Algunas de las operaciones que hemos descrito en las lecturas 3 y 4, 
-pueden ser expresadas en términos de operadores de algebra relacional. 
-Por ejemplo, la intersección puede ser expresada en términos de conjuntos de diferencia:
-R <INTERSECCCIÓN> S = R - (R - S). Es decir, si R y S son dos relaciones con el mismo 
-esquema, la intersección de R y S puede ser resuelta restando primero S de R para 
-formar una relación T que consiste en todas aquellas tuplas en R pero no en S. Cuando
-restamos T de R, dejamos solo esas tuplas de R que están también en S.
+Algunas de las operaciones que hemos descrito en las lecturas 3 y 4, pueden ser expresadas en términos de operadores de algebra relacional. 
+Por ejemplo, la intersección puede ser expresada en términos de conjuntos de diferencia: R <INTERSECCCIÓN> S = R - (R - S). Es decir, si R y S son dos relaciones con el mismo esquema, la intersección de R y S puede ser resuelta restando primero S de R para formar una relación T que consiste en todas aquellas tuplas en R pero no en S. Cuando restamos T de R, dejamos solo esas tuplas de R que están también en S.
 
 
 ÁLGEBRA RELACIONAL COMO IDIOMA RESTRICTOR
 *****************************************
 
-Hay dos maneras en las cuales podemos usar expresiones de algebra relacional para expresar 
-restricción:
+Hay dos maneras en las cuales podemos usar expresiones de algebra relacional para expresar restricción:
 
    1. If `R` is an expression of relational algebra, then `R = 0` is a constraint that says
       "The value of R must be empty," or equivalently "There are no tuples in the result of R."
