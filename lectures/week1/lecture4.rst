@@ -85,15 +85,6 @@ Dadas las siguientes relaciones:
         \hline
    \end{array}
 
-..    ==== ====== ====
-..    ID   Nombre Edad
-..    ==== ====== ====
-..    123  León    39
-..         234  Tomás   34
-..         345  José    45
-..         143  Josefa  25
-..         ==== ====== ====
-
 **Tabla Jefes**
 
 .. math::
@@ -106,13 +97,6 @@ Dadas las siguientes relaciones:
         235 & \mbox{Maria}   & 29\\
         \hline
       \end{array}
-
-..         ==== ====== ====
-         ID   Nombre Edad
-         ==== ====== ====
-         123  León   39
-         235  María  29
-         ==== ====== ====
 
 Aplicar el operador Unión:
 
@@ -136,17 +120,6 @@ Ingenieros ``U`` Jefes
         235 & \mbox{Maria} & 29\\
         \hline
    \end{array}
-
-
-..    ==== ====== ====
-..    ID   Nombre Edad
-..    ==== ====== ====
-..    123  León   39
-..    234  Tomás  34
-..    345  José   45
-..    143  Josefa 25
-..    235  María  29
-..    ==== ====== ====
 
 Como se mencionó anteriormente realizar la operación Jefes ``U`` Ingenieros daría como resultado la misma tabla anterior.
 
@@ -187,15 +160,6 @@ Ingenieros ``-`` Jefes
         \hline
    \end{array}
 
-
-..    ==== ====== ====
-..    ID   Nombre Edad
-..    ==== ====== ====
-..    234  Tomás   34
-..    345  José    45
-..    143  Josefa  25
-..    ==== ====== ====
-
 Jefes ``-`` Ingenieros
 
 .. math::
@@ -207,13 +171,6 @@ Jefes ``-`` Ingenieros
         235 & \mbox{Maria} & 29\\
         \hline
    \end{array}
-
-
-..    ==== ====== ====
-..    ID   Nombre Edad
-..    ==== ====== ====
-..    235  María  29
-..    ==== ====== ====
 
 Como se puede apreciar, ambas operaciones dieron como resultado distintas relaciones, tal como se había mencionado anteriormente.
 
@@ -251,13 +208,6 @@ Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de
         \hline
       \end{array}
 
-..    ==== ====== ====
-    ID   Nombre Edad
-    ==== ====== ====
-    123  León   39
-    ==== ====== ====
-
-
 .. important::
 
    Cuando aplicamos estas operaciones a relaciones, necesitamos poner algunas condiciones R y S:
@@ -277,30 +227,15 @@ Por ejemplo, la intersección puede ser expresada en términos de conjuntos de d
 
 Hay dos maneras en las cuales podemos usar expresiones de algebra relacional para expresar restricción:
 
-   1. If `R` is an expression of relational algebra, then `R = 0` is a constraint that says
-      "The value of R must be empty," or equivalently "There are no tuples in the result of R."
-   2. If `R` and `S` are expressions of relational algebra, then `R \subset S` is a constraint
-      that says "Every tuple in the result of R must also be in the result of S."
-      Of course the result of `S` may contain additional tuples not produced by `R`.
+   1. Si `R` es una expresión de algebra relacional, entonces `R = 0` es una restricción que dice “El valor de R debe ser vacio,” o equivalentemente “No hay tuplas en el resultado de R."
+   2. Si `R` y `S` son expresiones de algebra relacional, entonces `R \subset S` es una restricción que dice “Cada tupla en resultado de R debe estar también en resultado de S." Por supuesto, el resultado de `S` puede contener tuplas adicionales no producidas en `R`.
 
-These ways of expressing constraints are actually equivalent in what they can express,
-but sometimes one or the other is clearer or more succinct.
-That is, the constraint `R \subset S` could just as well have been written `R - S = 0`.
-To see why, notice that if every tuple in `R` is also in `S`, then surely `R - S` is empty.
-Conversely, if `R - S` contains no tuples, then every tuple in `R` must be in `S`
-(or else it would be in `R - S`).
+Estas formas para expresar restricción son de hecho equivalentes en lo que pueden expresar, pero algunas veces uno de los dos es más clara o más sucinta. Es decir, la restricción `R \subset S` pudo también ser escrito `R - S = 0`. Para ver por qué, observe que si cada tupla en `R` está también en `S`, entonces seguramente `R - S` es vacío. A la inversa, si `R - S` no contiene tuplas, entonces cada tupla en `R` debe estar en `S` (o de lo que sería `R - S`).
 
-On the other hand, a constraint of the first form, `R = 0`, could just as well have been written
-`R \subset 0`.
-Technically, `0` is not an expression of relational algebra, but since there are expressions
-that evaluate to `0`, such as `R - R`, there is no harm in using `0` as a relational-algebra
-expression.
-Note that these equivalences hold even if `R` and `S` are bags, provided we make the conventional
-interpretation of `R \subset S`: each tuple **t** appears in `S` at least as many times as it
-appears in `R`.
+Por otra parte, una restricción de la primera forma, `R = 0`, también pudo haber sido escrita como `R \subset 0`. Técnicamente, `0` no es una expresión de algebra relacional, pero ya que hay expresiones que evalúan a `0`, tal como `R - R`, no hay nada malo en usar `0` como una expresión de algebra relacional. Tenga en cuenta que estas equivalencias sostienen se sostienen incluso si `R` y `S` son bolsas, dado que hacemos la interpretación convencional de `R \subset S`: cada tupla `t` aparece en `S` al menos tantas veces como aparece en `R`.
 
 
-Exercises
+Ejercicios
 **********
 
 Ejercicio 1
@@ -317,30 +252,19 @@ Las relaciones base que forman la base de datos de un video club son las siguien
 
 * LISTA_ESPERA(**codsocio,codpeli**,fecha)
 
-SOCIO: almacena los datos de cada uno de los socios del video club: código del
-socio, nombre, dirección y teléfono.
+SOCIO: almacena los datos de cada uno de los socios del video club: código del socio, nombre, dirección y teléfono.
 
-PELÍCULA: almacena información sobre cada una de las películas de las cuales tiene
-copias el vídeo club: código de la película, título y género (terror, comedia, etc.).
+PELÍCULA: almacena información sobre cada una de las películas de las cuales tiene copias el vídeo club: código de la película, título y género (terror, comedia, etc.).
 
-CINTA: almacena información referente a las copias que hay de cada película
-(copias distintas de una misma película tendrán distinto código de cinta).
+CINTA: almacena información referente a las copias que hay de cada película (copias distintas de una misma película tendrán distinto código de cinta).
 
-PRÉSTAMO: almacena información de los préstamos que se han realizado. Cada préstamo
-es de una cinta a un socio en una fecha. Si el préstamo aún no ha finalizado,
-pres_dev tiene el valor 'prestada'; si no su valor es 'devuelta'.
+PRÉSTAMO: almacena información de los préstamos que se han realizado. Cada préstamo es de una cinta a un socio en una fecha. Si el préstamo aún no ha finalizado, pres_dev tiene el valor 'prestada'; si no su valor es 'devuelta'.
 
-LISTA_ESPERA: almacena información sobre los socios que esperan a que haya copias
-disponibles de películas, para tomarlas prestadas. Se guarda también la fecha en
-que comenzó la espera para mantener el orden. Es importante tener en cuenta que
-cuando el socio consigue la película esperada, éste desaparece de la lista de espera.
+LISTA_ESPERA: almacena información sobre los socios que esperan a que haya copias disponibles de películas, para tomarlas prestadas. Se guarda también la fecha en que comenzó la espera para mantener el orden. Es importante tener en cuenta que cuando el socio consigue la película esperada, éste desaparece de la lista de espera.
 
-En las relaciones anteriores, son claves primarias los atributos y grupos de
-atributos que aparecen en negrita. Las claves ajenas se muestran en los siguientes
-diagramas referenciales:
+En las relaciones anteriores, son claves primarias los atributos y grupos de atributos que aparecen en negrita. Las claves ajenas se muestran en los siguientes diagramas referenciales:
 
-Resolver las siguientes consultas mediante el álgebra relacional (recuerde que en
-la lectura 3 también se dieron algunos operadores de álgebra relacional):
+Resolver las siguientes consultas mediante el álgebra relacional (recuerde que en la lectura 3 también se dieron algunos operadores de álgebra relacional):
 
 1.1. Seleccionar todos los socios que se llaman: "Charles".
 
@@ -371,8 +295,7 @@ la lectura 3 también se dieron algunos operadores de álgebra relacional):
 .. math::
     \pi_{nombre}(SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)
 
-1.5. Obtener los nombres de los socios que tienen actualmente prestada una película
-que ya tuvieron prestada con anterioridad.
+1.5. Obtener los nombres de los socios que tienen actualmente prestada una película que ya tuvieron prestada con anterioridad.
 
 **Respuesta**
 
@@ -389,16 +312,14 @@ que ya tuvieron prestada con anterioridad.
 
 (todas las películas) menos (las películas que han sido prestadas alguna vez)
 
-1.7. Obtener los nombres de los socios que han tomado prestada la película
-“WALL*E” alguna  vez o que están esperando para tomarla prestada.
+1.7. Obtener los nombres de los socios que han tomado prestada la película “WALL*E” alguna  vez o que están esperando para tomarla prestada.
 
 **Respuesta**
 
 .. math::
     \pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cup \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )
 
-1.8. Obtener los nombres de los socios que han tomado prestada la película
-“WALL*E” alguna vez y que además están en su lista de espera.
+1.8. Obtener los nombres de los socios que han tomado prestada la película “WALL*E” alguna vez y que además están en su lista de espera.
 
 **Respuesta**
 
@@ -408,19 +329,20 @@ que ya tuvieron prestada con anterioridad.
 Ejercicio 2
 ^^^^^^^^^^^^
 
- Considere la siguiente base de datos:
+Considere la base de datos con el siguiente esquema:
 
-   1. Person ( name, age, gender ) : name is a key
-   2. Frequents ( name, pizzeria ) : (name, pizzeria) is a key
-   3. Eats ( name, pizza ) : (name, pizza) is a key
-   4. Serves ( pizzeria, pizza, price ): (pizzeria, pizza) is a key
+ 1. Persona (nombre, edad, genero); nombre es la clave.
+ 2. Frecuenta (nombre, pizzeria): (nombre, pizzeria) es la clave.
+ 3. Come (nombre, pizza): (nombre, pizza) es la clave.
+ 4. Sirve (pizzería, pizza, precio): (pizzería, pizza) es la clave.
 
-Write relational algebra expressions for the following nine queries. (Warning: some of the later queries are a bit challenging.)
+Escribir las expresiones de álgebra relacional para las siguientes nueve consultas. (Precaución: algunas de las siguientes consultas son un poco desafiantes).
 
-   * Find all pizzerias frequented by at least one person under the age of 18.
-   * Find all pizzerias that serve at least one pizza that Amy eats for less than $10.00.
-   * Find all pizzerias that are frequented by only females or only males.
-   * For each person, find all pizzas the person eats that are not served by any pizzeria the person frequents. Return all such person (name) / pizza pairs.
-   * Find the names of all people who frequent only pizzerias serving at least one pizza they eat.
-   * Find the names of all people who frequent every pizzeria serving at least one pizza they eat.
-   * Find the pizzeria serving the cheapest pepperoni pizza. In the case of ties, return all of the cheapest-pepperoni pizzerias.
+ * Encuentre todas las pizzerías frecuentadas por al menos una persona menor de 18 años.
+ * Encuentre los nombres de todas las mujeres que comen pizza ya sea con champiñones o salchichón (o ambas).
+ * Encuentre los nombres de todas las mujeres que comen pizzas con los dos ingredientes, champiñones y salchichón. 
+ * Encuentre todas las pizzerías que sirven al menos una pizza que Amy come por menos de 10 dólares. 
+ * Encuentre todas las pizzerías que son frecuentadas por solo mujeres o solo hombres. 
+ * Para cada persona, encuentre todas las pizzas que la persona come, que no son servidas por ninguna pizzería que la persona frecuenta. Devuelve toda dicha persona (nombre)/ pizza pares.
+ * Encuentre los nombres de todas las personas que frecuentan solo pizzerías que sirven al menos una pizza que ellos comen.
+ * Encuentre la pizzería que sirve la pizza más barata de salchichón. En el caso de empate, vuelve todas las pizzerías que venden las pizzas de salchichón más baratas. 
