@@ -36,8 +36,8 @@ database schemas.
 
 Examples::
 
-     'Create table ...'
-     'Drop table ... '
+     Create table ...
+     Drop table ... 
 
 **Description of commands**
 
@@ -114,9 +114,9 @@ Other Commands
 
 indexes, constraints, views, triggers, transactions, authorization, ...
 
-----------------
+
 Ejemplo práctico
-----------------
+~~~~~~~~~~~~~~~~
 
 .. index:: ejemplo practico
 
@@ -230,8 +230,23 @@ En las bases de datos relacionales, se le llama clave primaria a un campo o a un
 combinación de campos que identifica de forma única a cada fila de una tabla. Por lo
 que no pueden existir dos filas en una tabla que tengan la misma clave primaria.
 
+Y las claves foráneas tienen por objetivo establecer una conexión con la clave primaria que referencian de otra tabla, creandose una relación entre las dos tablas.
+
 ----------------
 Ejemplo Práctico
 ----------------
 
+Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está definido como serial que automáticamente irá ingresando los valores 1, 2,3 a cada registro.::
+
+ postgres=# CREATE TABLE profesores(ID_profesor serial, nombre VARCHAR(30), apellido VARCHAR(30), PRIMARY KEY(ID_profesor)); 
+ NOTICE:  CREATE TABLE creará una secuencia implícita «profesores_id_profesor_seq» para la columna serial «profesores.id_profesor»
+ NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «profesores_pkey» para la tabla «profesores»
+ CREATE TABLE
+
+Ahora vamos a crear la tabla de cursos en que ID_curso será la clave primaria de esta tabla y ID_profesor será la clave foránea, que se encargará de realizar una conexión entre estas dos tablas.::
+
+ postgres=# CREATE TABLE cursos(ID_curso serial, titulo VARCHAR(30), ID_profesor INTEGER, PRIMARY KEY(ID_curso), FOREIGN KEY(ID_profesor) REFERENCES profesores(ID_profesor));
+ NOTICE:  CREATE TABLE creará una secuencia implícita «cursos_id_curso_seq» para la columna serial «cursos.id_curso»
+ NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «cursos_pkey» para la tabla «cursos»
+ CREATE TABLE
 
