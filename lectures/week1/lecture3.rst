@@ -474,6 +474,7 @@ Ejemplo 1
 
 Con las tablas dadas realice el NaturalJoin de R y S:
 
+.. math::
  \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\
 
  \begin{array}{|c|c|c|c|}
