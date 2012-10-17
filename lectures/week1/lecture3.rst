@@ -263,7 +263,7 @@ el atributo de S.
 Cabe mencionar que:
 
 .. math::
-    \mbox{R} \times \mbox{S} \textdoublebarslash  \mbox{S} \times \mbox{R}
+    \mbox{R} \times \mbox{S} \neq  \mbox{S} \times \mbox{R}
 
 
 Ejemplo 1
@@ -299,6 +299,7 @@ Ejemplo 1
 
 Con las tablas dadas realice el Cross-product de R con S:
 
+.. math::
  \textbf{R} \times \textbf{S} \\
 
    \begin{array}{|c|c|c|c|c|}
@@ -321,6 +322,7 @@ Con las tablas dadas realice el Cross-product de R con S:
 
 Con las tablas dadas realice el Cross-product de S con R:
 
+.. math::
  \textbf{S} \times \textbf{R} \\
 
  \begin{array}{|c|c|c|c|c|}
