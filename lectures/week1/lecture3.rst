@@ -27,7 +27,7 @@ tupla de R toma el valor Verdad o Falso.
 * Cada condición simple o cláusula C tiene el formato:
 
 .. math::
-    \mbox{<Atributo> <Comparador> <Atributo|Constante del Dominio>} \\
+    \mbox{<Atributo> <Comparador> <Atributo o Constante del Dominio>} \\
 
         \mbox{Donde:} \\
 
@@ -53,18 +53,20 @@ Para representar SELECT en álgebra relacional se utiliza la letra griega sigma:
     \sigma_{c} \hspace{0.2cm} \mbox{R}
 
 Se aplica la condición C a cada tupla de R. Si la condición es Verdad (true),
-dicha tupla pertenecerá al resultado y si es Falsa (false), dicha tupla no será seleccionada. El esquema de la relación resultante es el mismo esquema R, se muestran los atributos en el mismo orden que se usan en la tabla R.
+dicha tupla pertenecerá al resultado y si es Falsa (false), dicha tupla no será seleccionada. 
+El esquema de la relación resultante es el mismo esquema R, se muestran los
+atributos en el mismo orden que se usan en la tabla R.
 
 Ejemplo 1
 ^^^^^^^^^
 
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Tabla Ingenieros} \\
 
    \begin{array}{|c|c|c|c|}
     \hline
-    \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)}\\
+    \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años_trabajados(AT)}\\
     \hline
     123 & \mbox{Leon} & 39 & 15 \\
     \hline
@@ -89,10 +91,11 @@ Así quedaría la tabla:
 
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Tabla Ingenieros} \\
+
    \begin{array}{|c|c|c|c|}
     \hline
-    \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)}\\
+    \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años_trabajados(AT)}\\
     \hline
     123 & \mbox{Leon} & 39 & 15 \\
     \hline
@@ -117,11 +120,11 @@ Así finalmente quedaría la tabla:
 
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Tabla Ingenieros} \\
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)} \\
+  \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años_trabajados(AT)} \\
   \hline
   123 & \mbox{Leon} & 39 & 15 \\
   \hline
@@ -152,11 +155,11 @@ Ejemplo 1
 ^^^^^^^^^
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Tabla Ingenieros} \\ 
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)} \\
+  \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años_trabajados(AT)} \\
   \hline
   123 & \mbox{Leon} & 39 & 15 \\
   \hline
@@ -179,7 +182,7 @@ La tabla finalmente queda como:
 
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Tabla Ingenieros}  \\ 
 
  \begin{array}{|c|c|}
   \hline
@@ -209,7 +212,7 @@ Finalmente la tabla queda de la siguiente manera:
 
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Tabla Ingenieros} \\
 
  \begin{array}{|c|c|}
   \hline
@@ -248,16 +251,22 @@ terminología:
     \mbox{R} \times \mbox{S}
 
 Por convención para la sentencia anterior, los componentes de R preceden a los
-componentes de S en el orden de atributos para el resultado, creando así una nueva relación con todas las combinaciones posibles de tuplas de R y S.
-El número de tuplas de la nueva relación resultante es la multiplicación de la cantidad de tuplas de R por la cantidad de tuplas que tenga S (producto de ambos).
-Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüedad de un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para el atributo de S.
+componentes de S en el orden de atributos para el resultado, creando así una nueva
+relación con todas las combinaciones posibles de tuplas de R y S.
+El número de tuplas de la nueva relación resultante es la multiplicación de la cantidad 
+de tuplas de R por la cantidad de tuplas que tenga S (producto de ambos).
+Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres 
+para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüedad de
+un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para 
+el atributo de S.
 
 Ejemplo 1
 ^^^^^^^^^
 
 .. math::
 
- \textbf{R}
+ \textbf{R} \\
+
  \begin{array}{|c|c|c|}
   \hline
   \textbf{A} & \textbf{B} & \textbf{D} \\
@@ -268,7 +277,8 @@ Ejemplo 1
   \hline
  \end{array}
 
- \textbf{S}
+ \textbf{S} \\
+
  \begin{array}{|c|c|}
   \hline
   \textbf{A} & \textbf{C} \\
@@ -281,7 +291,7 @@ Ejemplo 1
   \hline
  \end{array}
 
- \textbf{R} \times \textbf{S}
+ \textbf{R} \times \textbf{S} \\
 
    \begin{array}{|c|c|c|c|c|}
     \hline
@@ -301,7 +311,7 @@ Ejemplo 1
     \hline
   \end{array}
 
- \textbf{S} \times \textbf{R}
+ \textbf{S} \times \textbf{R} \\
 
  \begin{array}{|c|c|c|c|c|}
   \hline
@@ -328,7 +338,7 @@ Dada las siguientes tablas:
 
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Tabla Ingenieros} \\
 
  \begin{array}{|c|c|c|}
   \hline
@@ -342,11 +352,11 @@ Dada las siguientes tablas:
   \hline
  \end{array}
 
- \textbf{Tabla Proyectos}
+ \textbf{Tabla Proyectos} \\
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{Proyecto} & \textbf{Duración} \\
+  \textbf{Proyecto} & \textbf{Duracion} \\
   \hline
   \mbox{ACU0034} & 300 \\
   \hline
@@ -364,11 +374,11 @@ Escriba la tabla resultante al realizar la siguiente operación:
 
 .. math::
 
- \textbf{Ingenieros x Proyectos}
+ \textbf{Ingenieros x Proyectos} \\
 
  \begin{array}{|c|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{D#} & \textbf{Proyecto} & \textbf{Duración} \\
+  \textbf{ID} & \textbf{Nombre} & \textbf{D#} & \textbf{Proyecto} & \textbf{Duracion} \\
   \hline
   123 & \mbox{Leon} & 39 & \mbox{ACU0034} & 300 \\
   \hline
@@ -414,7 +424,8 @@ Ejemplo 1
 
 .. math::
 
- \textbf{R}
+ \textbf{R}  \\
+
  \begin{array}{|c|c|c|}
   \hline
   \textbf{A} & \textbf{B} & \textbf{C} \\
@@ -425,7 +436,7 @@ Ejemplo 1
   \hline
  \end{array}
 
- \textbf{S}
+ \textbf{S} \\
 
  \begin{array}{|c|c|}
   \hline
@@ -439,7 +450,7 @@ Ejemplo 1
   \hline
  \end{array}
 
- \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S}
+ \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\
 
  \begin{array}{|c|c|c|c|}
   \hline
@@ -458,7 +469,7 @@ Realizar NATURALJOIN a las siguientes tablas:
 
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Tabla Ingenieros} \\
 
  \begin{array}{|c|c|c|}
   \hline
@@ -474,7 +485,7 @@ Realizar NATURALJOIN a las siguientes tablas:
   \hline
  \end{array}
 
- \textbf{Tabla Proyectos}
+ \textbf{Tabla Proyectos} \\
 
  \begin{array}{|c|c|}
   \hline
@@ -490,7 +501,7 @@ Realizar NATURALJOIN a las siguientes tablas:
 
 .. math::
 
- \textbf{Ingenieros} \rhd \hspace{-0.1cm} \lhd \textbf{Proyectos}
+ \textbf{Ingenieros} \rhd \hspace{-0.1cm} \lhd \textbf{Proyectos} \\
 
  \begin{array}{|c|c|c|c|}
   \hline
@@ -542,7 +553,7 @@ Ejemplo 1
 
 .. math::
 
- \textbf{R}
+ \textbf{R} \\
 
  \begin{array}{|c|c|c|c|}
   \hline
@@ -556,7 +567,7 @@ Ejemplo 1
   \hline
  \end{array}
 
- \textbf{S}
+ \textbf{S} \\
 
  \begin{array}{|c|c|c|}
   \hline
@@ -579,7 +590,7 @@ Ejemplo 1
 
 .. math::
 
- \textbf{S}
+ \textbf{S} \\
 
  \begin{array}{|c|c|c|c|c|c|c|}
   \hline
