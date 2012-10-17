@@ -616,7 +616,7 @@ Ejemplo 1
 Escriba la tabla resultante al realizar la siguiente operación:
 
 .. math::
-   R \rhd \hspace{-0.1cm} \lhd_(A >= E) S 
+   R \rhd \hspace{-0.1cm} \lhd_{(A >= E)} S 
 
 **Respuesta**
 
