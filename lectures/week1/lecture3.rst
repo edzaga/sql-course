@@ -260,6 +260,12 @@ para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüe
 un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para 
 el atributo de S.
 
+Cabe mencionar que:
+
+.. math::
+    \mbox{R} \times \mbox{S} \textdoublebarslash  \mbox{S} \times \mbox{R}
+
+
 Ejemplo 1
 ^^^^^^^^^
 
@@ -291,6 +297,8 @@ Ejemplo 1
   \hline
  \end{array}
 
+Con las tablas dadas realice el Cross-product de R con S:
+
  \textbf{R} \times \textbf{S} \\
 
    \begin{array}{|c|c|c|c|c|}
@@ -311,6 +319,8 @@ Ejemplo 1
     \hline
   \end{array}
 
+Con las tablas dadas realice el Cross-product de S con R:
+
  \textbf{S} \times \textbf{R} \\
 
  \begin{array}{|c|c|c|c|c|}
@@ -330,6 +340,9 @@ Ejemplo 1
   3 & 4 & 4 & 5 & 6 \\
   \hline
  \end{array}
+
+Como se mencionó anteriormente, y como se aprecia en el ejemplo "Cross-product" de S con R 
+es distinto a "Cross-product de R con S"
 
 Ejemplo 2
 ^^^^^^^^^
@@ -374,7 +387,7 @@ Escriba la tabla resultante al realizar la siguiente operación:
 
 .. math::
 
- \textbf{Ingenieros x Proyectos} \\
+ \textbf{Ingenieros} \times \textbf{Proyectos} \\
 
  \begin{array}{|c|c|c|c|c|}
   \hline
@@ -397,7 +410,14 @@ Escriba la tabla resultante al realizar la siguiente operación:
 NATURALJOIN
 ************
 
-Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando sólo las tuplas que coinciden de alguna manera. NATURALJOIN une sólo los pares de tuplas de R y S que sean comunes. Más precisamente una tupla r de R y una tupla s de S se emparejan correctamente si y sólo si r y s coinciden en cada uno de los valores de los atributos comunes, el resultado de la vinculación es una tupla, llamada “joined tuple”. Entonces, al realizar NATURALJOIN se obtiene una relación con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones que tengan el mismo valor en los atributos comunes.
+Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando 
+sólo las tuplas que coinciden de alguna manera. NATURALJOIN une sólo los pares de 
+tuplas de R y S que sean comunes. Más precisamente una tupla r de R y una tupla s de S 
+se emparejan correctamente si y sólo si r y s coinciden en cada uno de los valores
+de los atributos comunes, el resultado de la vinculación es una tupla, llamada 
+“joined tuple”. Entonces, al realizar NATURALJOIN se obtiene una relación con los 
+atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones 
+que tengan el mismo valor en los atributos comunes.
 
 **Notación en Álgebra Relacional**
 
@@ -408,7 +428,8 @@ Para denotar NATURALJOIN se utiliza la siguiente simbología:
 
 **Equivalencia con operadores básicos**
 
-NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos, la equivalencia es la siguiente:
+NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos, la equivalencia 
+es la siguiente:
 
 .. math::
    R \rhd \hspace{-0.1cm} \lhd S=  \pi \hspace{0.2cm} _{R.A_1,...,R.A_n,  S.A_1,...,S.A_n} (\sigma_{R.A_1=S.A_1 \wedge ... \wedge R.A_n=S.A_n  }\hspace{0.3cm} (R \times S ))
@@ -416,7 +437,8 @@ NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos, la e
 **Método**
 
    1. Se realiza el producto cartesiano `R x S`
-   2. Se seleccionan aquellas filas del producto cartesiano para las que los atributos comunes tengan el mismo valor.
+   2. Se seleccionan aquellas filas del producto cartesiano para las que los atributos 
+    comunes tengan el mismo valor.
    3. Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos comunes.
 
 Ejemplo 1
@@ -449,6 +471,8 @@ Ejemplo 1
   3 & 4 \\
   \hline
  \end{array}
+
+Con las tablas dadas realice el NaturalJoin de R y S:
 
  \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\
 
@@ -520,12 +544,17 @@ Realizar NATURALJOIN a las siguientes tablas:
 THETAJOIN
 **********
 
-Define una relación que contiene las tuplas que satisfacen el predicado C en el producto cartesiano de `R x S`.
-Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación específica. La condición C es de la forma `R.ai` <operador_de_comparación> `S.bi`, esta condición es del mismo tipo que se utiliza SELECT. El predicado no tiene por que definirse sobre atributos comunes. El término “join” suele referirse a THETAJOIN.
+Define una relación que contiene las tuplas que satisfacen el predicado C en el 
+producto cartesiano de `R x S`.
+Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación
+específica. La condición C es de la forma `R.ai` <operador_de_comparación> `S.bi`, 
+esta condición es del mismo tipo que se utiliza SELECT. El predicado no tiene por que 
+definirse sobre atributos comunes. El término “join” suele referirse a THETAJOIN.
 
 **Notación en Álgebra Relacional**
 
-La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN, la diferencia radica en que THETAJOIN lleva el predicado C:
+La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN, la
+diferencia radica en que THETAJOIN lleva el predicado C:
 
 .. math::
     \mbox{R} \rhd \hspace{-0.1cm} \lhd_C \mbox{S} \\
@@ -538,7 +567,8 @@ La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN, 
 
 **Equivalencia con operadores básicos**
 
-Al igual NATURALJOIN, THETAJOIN puede ser escrito en función de los operadores vistos anteriormente:
+Al igual NATURALJOIN, THETAJOIN puede ser escrito en función de los operadores vistos 
+anteriormente:
 
 .. math::
    R \rhd \hspace{-0.1cm} \lhd_C S= \sigma_{F} (R \times S)
@@ -583,6 +613,8 @@ Ejemplo 1
   \hline
  \end{array}
 
+Escriba la tabla resultante al realizar la siguiente operación:
+
 .. math::
    R \rhd \hspace{-0.1cm} \lhd_(A >= E) S 
 
@@ -614,6 +646,8 @@ Con el esquema conceptual siguiente, hallar los nombres de los directores de cad
 Dpto (NumDpto, Nombre, NIFDirector, Fecha_inicio)
 
 Empleado (NIF, Nombre, Direccion, Salario, Dpto, NIFSupervisor)
+
+**Respuesta**
 
 .. math::
     \pi_{(Dpto.Nombre,Empleado.Nombre)} (Dpto \rhd \hspace{-0.1cm} \lhd_{NIFDirector=NIF} \mbox{Empleado})
