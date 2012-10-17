@@ -22,25 +22,27 @@ de una tabla según un cierto criterio C. C es una expresión condicional, simil
 a las declaraciones del tipo “if”, es “booleana” esto quiere decir que para cada
 tupla de R toma el valor Verdad o Falso.
 
-• Valores de atributos con NULL no cumplirán ninguna condición.
+* Valores de atributos con NULL no cumplirán ninguna condición.
 
-• Cada condición simple o cláusula C tiene el formato:
+* Cada condición simple o cláusula C tiene el formato:
 
 .. math::
-    \mbox{<Atributo> <Comparador> <Atributo|Cte.del Dominio>} \\
+    \mbox{<Atributo> <Comparador> <Atributo|Constante del Dominio>} \\
 
         \mbox{Donde:} \\
 
     \mbox{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}\\
 
-• Las cláusulas C pueden conectarse con los operadores lógicos:
+* Las cláusulas C pueden conectarse con los operadores lógicos:
 
-**NOT**: El operador NOT denota una salida verdadera si la entrada es falsa, y una salida falsa si la entrada es verdadera.
+  * **NOT**: El operador NOT denota una salida verdadera si la entrada es falsa, 
+    y una salida falsa si la entrada es verdadera.
 
-**AND**: El operador AND denota una salida verdadera si y sólo si sus entradas son verdaderas.
+  * **AND**: El operador AND denota una salida verdadera si y sólo si sus entradas 
+   son verdaderas.
 
-**OR**: El operador OR denota una salida verdadera si hay alguna de las entradas
-(o ambas) verdaderas.
+  * **OR**: El operador OR denota una salida verdadera si hay alguna de las entradas
+    (o ambas) verdaderas.
 
 **Notación en Álgebra Relacional**
 
