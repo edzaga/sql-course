@@ -35,12 +35,10 @@ tupla de R toma el valor Verdad o Falso.
 
 * Las cláusulas C pueden conectarse con los operadores lógicos:
 
-  * **NOT**: El operador NOT denota una salida verdadera si la entrada es falsa, 
+  * **NOT**: El operador NOT denota una salida verdadera si la entrada es falsa,
     y una salida falsa si la entrada es verdadera.
-
-  * **AND**: El operador AND denota una salida verdadera si y sólo si sus entradas 
-   son verdaderas.
-
+  * **AND**: El operador AND denota una salida verdadera si y sólo si sus entradas
+    son verdaderas.
   * **OR**: El operador OR denota una salida verdadera si hay alguna de las entradas
     (o ambas) verdaderas.
 
@@ -53,7 +51,7 @@ Para representar SELECT en álgebra relacional se utiliza la letra griega sigma:
     \sigma_{c} \hspace{0.2cm} \mbox{R}
 
 Se aplica la condición C a cada tupla de R. Si la condición es Verdad (true),
-dicha tupla pertenecerá al resultado y si es Falsa (false), dicha tupla no será seleccionada. 
+dicha tupla pertenecerá al resultado y si es Falsa (false), dicha tupla no será seleccionada.
 El esquema de la relación resultante es el mismo esquema R, se muestran los
 atributos en el mismo orden que se usan en la tabla R.
 
@@ -155,7 +153,7 @@ Ejemplo 1
 ^^^^^^^^^
 .. math::
 
- \textbf{Tabla Ingenieros} \\ 
+ \textbf{Tabla Ingenieros} \\
 
  \begin{array}{|c|c|c|c|}
   \hline
@@ -182,7 +180,7 @@ La tabla finalmente queda como:
 
 .. math::
 
- \textbf{Tabla Ingenieros}  \\ 
+ \textbf{Tabla Ingenieros}  \\
 
  \begin{array}{|c|c|}
   \hline
@@ -253,11 +251,11 @@ terminología:
 Por convención para la sentencia anterior, los componentes de R preceden a los
 componentes de S en el orden de atributos para el resultado, creando así una nueva
 relación con todas las combinaciones posibles de tuplas de R y S.
-El número de tuplas de la nueva relación resultante es la multiplicación de la cantidad 
+El número de tuplas de la nueva relación resultante es la multiplicación de la cantidad
 de tuplas de R por la cantidad de tuplas que tenga S (producto de ambos).
-Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres 
+Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres
 para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüedad de
-un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para 
+un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para
 el atributo de S.
 
 Cabe mencionar que:
@@ -343,7 +341,7 @@ Con las tablas dadas realice el Cross-product de S con R:
   \hline
  \end{array}
 
-Como se mencionó anteriormente, y como se aprecia en el ejemplo "Cross-product" de S con R 
+Como se mencionó anteriormente, y como se aprecia en el ejemplo "Cross-product" de S con R
 es distinto a "Cross-product de R con S"
 
 Ejemplo 2
@@ -412,13 +410,13 @@ Escriba la tabla resultante al realizar la siguiente operación:
 NATURALJOIN
 ************
 
-Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando 
-sólo las tuplas que coinciden de alguna manera. NATURALJOIN une sólo los pares de 
-tuplas de R y S que sean comunes. Más precisamente una tupla r de R y una tupla s de S 
+Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando
+sólo las tuplas que coinciden de alguna manera. NATURALJOIN une sólo los pares de
+tuplas de R y S que sean comunes. Más precisamente una tupla r de R y una tupla s de S
 se emparejan correctamente si y sólo si r y s coinciden en cada uno de los valores
-de los atributos comunes, el resultado de la vinculación es una tupla, llamada 
-“joined tuple”. Entonces, al realizar NATURALJOIN se obtiene una relación con los 
-atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones 
+de los atributos comunes, el resultado de la vinculación es una tupla, llamada
+“joined tuple”. Entonces, al realizar NATURALJOIN se obtiene una relación con los
+atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones
 que tengan el mismo valor en los atributos comunes.
 
 **Notación en Álgebra Relacional**
@@ -430,7 +428,7 @@ Para denotar NATURALJOIN se utiliza la siguiente simbología:
 
 **Equivalencia con operadores básicos**
 
-NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos, la equivalencia 
+NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos, la equivalencia
 es la siguiente:
 
 .. math::
@@ -438,10 +436,10 @@ es la siguiente:
 
 **Método**
 
-   1. Se realiza el producto cartesiano `R x S`
-   2. Se seleccionan aquellas filas del producto cartesiano para las que los atributos 
-    comunes tengan el mismo valor.
-   3. Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos comunes.
+    1. Se realiza el producto cartesiano `R x S`
+    2. Se seleccionan aquellas filas del producto cartesiano para las que los atributos
+       comunes tengan el mismo valor.
+    3. Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos comunes.
 
 Ejemplo 1
 ^^^^^^^^^
@@ -547,11 +545,11 @@ Realizar NATURALJOIN a las siguientes tablas:
 THETAJOIN
 **********
 
-Define una relación que contiene las tuplas que satisfacen el predicado C en el 
+Define una relación que contiene las tuplas que satisfacen el predicado C en el
 producto cartesiano de `R x S`.
 Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación
-específica. La condición C es de la forma `R.ai` <operador_de_comparación> `S.bi`, 
-esta condición es del mismo tipo que se utiliza SELECT. El predicado no tiene por que 
+específica. La condición C es de la forma `R.ai` <operador_de_comparación> `S.bi`,
+esta condición es del mismo tipo que se utiliza SELECT. El predicado no tiene por que
 definirse sobre atributos comunes. El término “join” suele referirse a THETAJOIN.
 
 **Notación en Álgebra Relacional**
@@ -570,7 +568,7 @@ diferencia radica en que THETAJOIN lleva el predicado C:
 
 **Equivalencia con operadores básicos**
 
-Al igual NATURALJOIN, THETAJOIN puede ser escrito en función de los operadores vistos 
+Al igual NATURALJOIN, THETAJOIN puede ser escrito en función de los operadores vistos
 anteriormente:
 
 .. math::
