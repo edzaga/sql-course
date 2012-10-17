@@ -34,10 +34,10 @@ Data definition language or data description language (DDL) is a syntax similar
 to a computer programming language for defining data structures, especially
 database schemas.
 
-Examples::
-
-     Create table ...
-     Drop table ... 
+Examples
+.. code-block:: sql
+     CREATE TABLE ...
+     DROP TABLE ...
 
 **Description of commands**
 
@@ -62,7 +62,8 @@ DML son las siglas de Data Manipulation Language y se refiere a los comandos que
 permiten a un usuario manipular los datos en un repositorio, es decir, añadir,
 consultar, borrar o actualizar.
 
-Examples of DML::
+Examples of DML
+.. code-block:: sql
 
    `SELECT`
    `INSERT`
@@ -119,6 +120,10 @@ Ejemplo práctico
 ~~~~~~~~~~~~~~~~
 
 .. index:: ejemplo practico
+
+.. CMA: No todos tiene SO que usan apt-get, deben explicar también con 'yum' y tambien
+..      instalándolo a mano. (Ojo que muchos tienen MAC, así que si encuentran
+..      algún material, sería muy útil)
 
 Instalamos por consola Postgresql ingresando el siguiente comando::
 
@@ -238,7 +243,7 @@ Ejemplo Práctico
 
 Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está definido como serial que automáticamente irá ingresando los valores 1, 2,3 a cada registro.::
 
- postgres=# CREATE TABLE profesores(ID_profesor serial, nombre VARCHAR(30), apellido VARCHAR(30), PRIMARY KEY(ID_profesor)); 
+ postgres=# CREATE TABLE profesores(ID_profesor serial, nombre VARCHAR(30), apellido VARCHAR(30), PRIMARY KEY(ID_profesor));
  NOTICE:  CREATE TABLE creará una secuencia implícita «profesores_id_profesor_seq» para la columna serial «profesores.id_profesor»
  NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «profesores_pkey» para la tabla «profesores»
  CREATE TABLE

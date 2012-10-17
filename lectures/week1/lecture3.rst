@@ -15,6 +15,8 @@ Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 SELECT
 ******
 
+.. CMA: Que es una tupla?
+
 Este operador se aplica a una relación R produciendo una nueva relación con un
 subconjunto de tuplas de R. Las tuplas de la relación resultante son las que
 satisfacen una condición C sobre algún atributo de R. Es decir selecciona **filas**
@@ -26,12 +28,13 @@ tupla de R toma el valor Verdad o Falso.
 
 * Cada condición simple o cláusula C tiene el formato:
 
-.. math::
-    \mbox{<Atributo> <Comparador> <Atributo o Constante del Dominio>} \\
+  .. math::
+    \text{<Atributo> <Comparador> <Atributo o Constante del Dominio>}
 
-        \mbox{Donde:} \\
+  donde:
 
-    \mbox{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}\\
+  .. math::
+    \text{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}
 
 * Las cláusulas C pueden conectarse con los operadores lógicos:
 
@@ -44,13 +47,10 @@ tupla de R toma el valor Verdad o Falso.
 
 **Notación en Álgebra Relacional**
 
-Para representar SELECT en álgebra relacional se utiliza la letra griega sigma:
-
-.. math::
-
-    \sigma_{c} \hspace{0.2cm} \mbox{R}
-
-Se aplica la condición C a cada tupla de R. Si la condición es Verdad (true),
+Para representar SELECT en álgebra relacional se utiliza la letra griega sigma
+:math:`\sigma`. Por lo tanto, si utilizamos la notación
+:math:`\sigma_{c} \ \boldsymbol{R}` queremos decir que se aplica la condición
+**C** a cada tupla de **R**. Si la condición es Verdad (true),
 dicha tupla pertenecerá al resultado y si es Falsa (false), dicha tupla no será seleccionada.
 El esquema de la relación resultante es el mismo esquema R, se muestran los
 atributos en el mismo orden que se usan en la tabla R.
@@ -112,7 +112,7 @@ y que lleven menos de 16 años trabajando:
 **Respuesta**
 
 .. math::
-    \sigma_{edad >30 \wedge AT <16}  \hspace{0.3cm}  \mbox{Ingenieros}
+    \sigma_{(edad >30 AND AT <16)}  \ \text{Ingenieros}
 
 Así finalmente quedaría la tabla:
 
@@ -204,7 +204,7 @@ Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
 **Respuesta**
 
 .. math::
-       \pi \hspace{0.2cm} _{(\mbox{ID,Nombre})} (\sigma_{edad>30} \hspace{0.3cm} \mbox{Ingenieros})
+       \pi \hspace{0.2cm} _{(\text{ID,Nombre})} (\sigma_{edad>30} \hspace{0.3cm} \text{Ingenieros})
 
 Finalmente la tabla queda de la siguiente manera:
 

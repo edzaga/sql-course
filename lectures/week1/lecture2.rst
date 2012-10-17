@@ -129,9 +129,11 @@ siguientes tablas
 Consultar por el "ID de los alumnos con promedio de notas mayor o igual a 55 en el
 ramo de Programación":
 
+.. CMA: No se entiende lo del Algebra relacional, por favor profundicen y hagan
+..      un par de ejemplos con images o algo más didactico.
+
 Utilizando Álgebra Relacional:
 
-.. CMA: QUE ES ESTO?????? No puedo entender que significa esta productora :/
 
 .. math::
 
