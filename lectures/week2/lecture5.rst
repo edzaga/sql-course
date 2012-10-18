@@ -5,7 +5,7 @@ Lecture 5 - Introduction
    :language: sql
    :class: highlight
 
-SQL (Structured Query Language) es un tipo de lenguaje vinculado con la gestión de
+`SQL (Structured Query Language)`_ es un tipo de lenguaje vinculado con la gestión de
 bases de datos de carácter relacional que permite la especificación de distintas
 clases de operaciones entre éstas. Gracias a la utilización del álgebra y de
 cálculos relacionales, el lenguaje SQL brinda la posibilidad de realizar consultas
@@ -14,15 +14,14 @@ que ayuden a recuperar información de las bases de datos de manera sencilla.
 Characteristics
 ~~~~~~~~~~~~~~~~
 
-.. index:: Características
+.. index:: Features
 
 Algunas de las características de este lenguaje son:
 
- * "SQL" or "sequel"
- * Supported by all major commercial database systems
- * Standardized - many new features over time
- * Interactive via GUI or prompt, or embedded in programs
- * Declarative, based on relational algebra
+ * Supported by all major commercial database systems.
+ * Standardized - many new features over time.
+ * Interactive via GUI or prompt, or embedded in programs.
+ * Declarative, based on relational algebra.
 
 Data Definition Languaje (DDL)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30,60 +29,85 @@ Data Definition Languaje (DDL)
 .. index:: Data Definition Languaje (DDL)
 
 
-Data definition language or data description language (DDL) is a syntax similar
+`DDL (Data Definition Language)`_ is a syntax similar
 to a computer programming language for defining data structures, especially
 database schemas.
 
-Examples
+Examples:
+
 .. code-block:: sql
-     CREATE TABLE ...
-     DROP TABLE ...
+
+   CREATE TABLE table_name;
+   DROP TABLE table_name;
+   ALTER TABLE table_name ADD id INTEGER;
 
 **Description of commands**
 
-**Create** - To make a new database, table, index, or stored query. A CREATE
-statement in SQL creates an object inside of a relational database management system
-(RDBMS). The types of objects that can be created depends on which RDBMS is being
-used, but most support the creation of tables, indexes, users, synonyms and
-databases. Some systems (such as PostgreSQL) allow CREATE, and other DDL commands,
-inside of a transaction and thus they may be rolled back.
+ * :sql:`CREATE`:
 
-**Drop** - To destroy an existing database, table, index, or view.
-A DROP statement in SQL removes an object from a relational database management
-system (RDBMS). The types of objects that can be dropped depends on which RDBMS is
-being used, but most support the dropping of tables, users, and databases. Some
-systems (such as PostgreSQL) allow DROP and other DDL commands to occur inside of
-a transaction and thus be rolled back.
+  * To make a new database, table, index, or stored query.
+  * A :sql:`CREATE` statement in SQL creates an object inside of a relational
+    database management system (`RDBMS`_).
+  * The types of objects that can be created depends on which RDBMS is being
+    used, but most support the creation of tables, indexes, users, synonyms and
+    databases.
+  * Some systems (such as PostgreSQL) allow :sql:`CREATE`, and other DDL commands,
+    inside of a transaction and thus they may be rolled back.
+
+ * :sql:`DROP`:
+
+  * To destroy an existing database, table, index, or view.
+  * A :sql:`DROP` statement in SQL removes an object from a relational database
+    management system (RDBMS).
+  * The types of objects that can be dropped depends on which RDBMS is being used,
+    but most support the dropping of tables, users, and databases.
+  * Some systems (such as PostgreSQL) allow DROP and other DDL commands to occur
+    inside of a transaction and thus be rolled back.
+
+ * :sql:`ALTER`:
+
+  * ...
+  * ...
 
 Data Manipulation Languaje (DML)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-DML son las siglas de Data Manipulation Language y se refiere a los comandos que
+`DML (Data Manipulation Language)`_ se refiere a los comandos que
 permiten a un usuario manipular los datos en un repositorio, es decir, añadir,
 consultar, borrar o actualizar.
 
+
+.. CMA: Escribir ejemplos de verdad por cada comando.
+
 Examples of DML
+
 .. code-block:: sql
 
-   `SELECT`
-   `INSERT`
-   `DELETE`
-   `UPDATE`
+   SELECT
+   INSERT
+   DELETE
+   UPDATE
 
 **Description of commands**
 
 
-**SELECT** -  returns a result set of records from one or more tables.
-A SELECT statement retrieves zero or more rows from one or more database tables or
-database views. In most applications, SELECT is the most commonly used Data
-Manipulation Language (DML) command. As SQL is a declarative programming language,
-SELECT queries specify a result set, but do not specify how to calculate it. The
-database translates the query into a "query plan" which may vary between executions,
-database versions and database software. This functionality is called the "query
-optimizer" as it is responsible for finding the best possible execution plan for
-the query, within applicable constraints.
+ * :sql:`SELECT`
+
+  * Returns a result set of records from one or more tables.
+  * A :sql:`SELECT` statement retrieves zero or more rows from one or more
+    database tables or database views.
+  * In most applications, :sql:`SELECT` is the most commonly used DML command.
+  * As SQL is a declarative programming language, :sql:`SELECT` queries specify
+    a result set, but do not specify how to calculate it.
+  * The database translates the query into a "query plan" which may vary between
+    executions, database versions and database software.
+  * This functionality is called the "query optimizer" as it is responsible for
+    finding the best possible execution plan for the query, within applicable
+    constraints.
 
 The Basic SELECT Statement
+
+.. CMA: LaTeX no funciona dentro de código SQL
 
 .. code-block:: sql
 
@@ -113,6 +137,9 @@ Comandos SQL:
 Other Commands
 ~~~~~~~~~~~~~~
 
+.. CMA: Como sólo los quieres nombrar, te recomiendo que escribas un comando,
+..      una definición de una línea y un ejemplo pequeño.
+
 indexes, constraints, views, triggers, transactions, authorization, ...
 
 
@@ -125,26 +152,65 @@ Ejemplo práctico
 ..      instalándolo a mano. (Ojo que muchos tienen MAC, así que si encuentran
 ..      algún material, sería muy útil)
 
-Instalamos por consola Postgresql ingresando el siguiente comando::
+.. CMA: La instalación no debe ser parte del ejemplo, mejor ponerlo en una cajita
 
- sudo apt-get install postgresql postgresql-client postgresql-contrib libpq-dev
+.. note::
 
-Luego para ingresar al entorno de psql escribimos en consola::
+   To perform this excercise, you must use the Virtual Machine of the course
+   or install **Postgresql** in your computer.
 
- sudo su postgres -c psql
+   If you have a Linux system, you can download the source from ...
+   Another possibility is to use the package manager of your OS
 
-Para crear una base de datos en este caso la llamaremos example::
+   * For Debian/Ubuntu users you can perform the following command as a root::
 
- postgres=# create database example;
- CREATE DATABASE
+      sudo apt-get install postgresql postgresql-client postgresql-contrib libpq-dev
 
-Para ingresar a la base de datos example::
+   * For Red Hat/Scientific Linux/Fedora/CentOS users::
+
+      yum install ....
+
+   If you are a Windows user, you can download it from ... and installing it ...
+   For MAC users please use .... or refer to the following guide...
+
+   After the installation process, you need to enter into the **psql environment**::
+
+        postgres -c psql
+
+   as a super user (root).
+
+Primero que todo debemos *crear* una base de datos
+para comenzar nuestros ejercicios.
+La llamaremos **example**:
+
+.. CMA: Aqui tienes dos opciones para que se vea mejor, o usar el code-block
+..      para resaltar el código SQL o usar testcase para dejar el negrita
+..      lo que el usuario debe ingresar, tu decides.
+..      OJO: La idea es que apliques esta decisión a todos los códigos que muestras.
+
+.. CMA: También debes definir un formato especial cuando te refieras a:
+..      * El nombre del proceso a ejecutar (crear, editar, agregar, etc...)
+..      * Nombres de elementos de la base de datos (db, tablas, atributos, etc)
+..      *
+
+.. code-block:: sql
+
+   postgres=# create database example;
+   CREATE DATABASE
+
+.. testcase::
+
+   postgres=# `create database example;`
+   CREATE DATABASE
+
+Luego de haber creado nuestra base de datos, necesitamos *ingresar*
+para comenzar a realizar distintas operaciones::
 
  postgres=# \c example
  psql (8.4.14)
  Ahora está conectado a la base de datos «example».
 
-Ahora comenzamos a crear una tabla llamada cliente con las variables id que se
+Ahora comenzamos a *crear una tabla* llamada **cliente** con las variables id que se
 define como serial en que al ir agregando datos se autoincrementará automaticamente
 en la base de datos example::
 
@@ -172,7 +238,7 @@ Seleccionar todos los datos de la tabla cliente::
 
  example=# SELECT * FROM cliente;
  id | nombre | apellido | edad |       direccion       |    pais
- ----+--------+----------+------+-----------------------+------------
+ ---+--------+----------+------+-----------------------+------------
   1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
   2 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
   3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
@@ -193,7 +259,7 @@ Verificamos que se haya borrado::
 
  example=# SELECT * FROM cliente;
  id | nombre | apellido | edad |       direccion       |    pais
- ----+--------+----------+------+-----------------------+------------
+ ---+--------+----------+------+-----------------------+------------
   1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
   3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
   4 | Sergio | Honores  |   35 | 1256 San Luis         | Chile
@@ -208,8 +274,8 @@ Si se desea actualizar la dirección del cliente Sergio::
 Verificamos que se haya actualizado la información::
 
  example=# SELECT * FROM cliente;
-  id | nombre | apellido | edad |       direccion       |    pais
- ----+--------+----------+------+-----------------------+------------
+ id | nombre | apellido | edad |       direccion       |    pais
+ ---+--------+----------+------+-----------------------+------------
   1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
   3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
   5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
@@ -231,11 +297,12 @@ Verificamos que se haya eliminado la tabla cliente::
 Clave Primaria y Foránea
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-En las bases de datos relacionales, se le llama clave primaria a un campo o a una
+En las bases de datos relacionales, se le llama **clave primaria** a un campo o a una
 combinación de campos que identifica de forma única a cada fila de una tabla. Por lo
 que no pueden existir dos filas en una tabla que tengan la misma clave primaria.
 
-Y las claves foráneas tienen por objetivo establecer una conexión con la clave primaria que referencian de otra tabla, creandose una relación entre las dos tablas.
+Y las **claves foráneas** tienen por objetivo establecer una conexión con la clave
+primaria que referencian de otra tabla, creandose una relación entre las dos tablas.
 
 ----------------
 Ejemplo Práctico
@@ -255,3 +322,11 @@ Ahora vamos a crear la tabla de cursos en que ID_curso será la clave primaria d
  NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «cursos_pkey» para la tabla «cursos»
  CREATE TABLE
 
+.. CMA: Y nada mas? :( quizás podrías idear un par de ejemplos más para ver
+        la importancia de las foreign y primary keys, o quizás planead un ejercicio.
+
+
+.. _`SQL (Structured Query Language)`: http://en.wikipedia.org/wiki/SQL
+.. _`DDL (Data Definition Language)`: http://en.wikipedia.org/wiki/Data_Definition_Language
+.. _`RDBMS`: http://en.wikipedia.org/wiki/Relational_database#Relational_database_management_systems
+.. _`DML (Data Manipulation Language)`: http://en.wikipedia.org/wiki/Data_manipulation_language
