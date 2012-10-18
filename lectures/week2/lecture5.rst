@@ -168,7 +168,7 @@ Ejemplo práctico
 
    * For Red Hat/Scientific Linux/Fedora/CentOS users::
 
-      yum install ....
+      yum install postgresql
 
    If you are a Windows user, you can download it from ... and installing it ...
    For MAC users please use .... or refer to the following guide...
@@ -198,32 +198,35 @@ La llamaremos **example**:
    postgres=# create database example;
    CREATE DATABASE
 
+Luego de haber creado nuestra base de datos, necesitamos *ingresar*
+para comenzar a realizar distintas operaciones:
+
 .. testcase::
 
-   postgres=# `create database example;`
-   CREATE DATABASE
-
-Luego de haber creado nuestra base de datos, necesitamos *ingresar*
-para comenzar a realizar distintas operaciones::
-
- postgres=# \c example
+ postgres=# `\c example`
  psql (8.4.14)
  Ahora está conectado a la base de datos «example».
 
 Ahora comenzamos a *crear una tabla* llamada **cliente** con las variables id que se
 define como serial en que al ir agregando datos se autoincrementará automaticamente
-en la base de datos example::
+en la base de datos example
+
+.. code-block:: sql
 
  example=# CREATE TABLE cliente (id SERIAL, nombre VARCHAR(50), apellido VARCHAR(50), edad INTEGER, direccion VARCHAR(50), pais VARCHAR(25));
  NOTICE:  CREATE TABLE creará una secuencia implícita «cliente_id_seq» para la columna serial «cliente.id»
  CREATE TABLE
 
-Para ingresar datos a la tabla se realiza de la siguiente manera::
+Para ingresar datos a la tabla se realiza de la siguiente manera
+
+.. code-block:: sql
 
  example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('John', 'Smith', 35, '7635 N La Cholla Blvd', 'EEUU');
  INSERT 0 1
 
-Agregar más datos a la tabla clientes::
+Agregar más datos a la tabla clientes
+
+.. code-block:: sql
 
  example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('John', 'Smith', 35, '7635 N La Cholla Blvd', 'EEUU');
  INSERT 0 1
@@ -234,7 +237,9 @@ Agregar más datos a la tabla clientes::
  example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('Ana', 'Caprile', 25, '3456 Matta', 'Chile');
  INSERT 0 1
 
-Seleccionar todos los datos de la tabla cliente::
+Seleccionar todos los datos de la tabla cliente
+
+.. code-block:: sql
 
  example=# SELECT * FROM cliente;
  id | nombre | apellido | edad |       direccion       |    pais
@@ -250,12 +255,16 @@ Seleccionar todos los datos de la tabla cliente::
  El asterisco (*) que está entre el :sql:`SELECT` y el :sql:`FROM` significa que se seleccionan todas las columnas de la tabla.
 
 Como cometimos el error de ingresar en la segunda fila datos repetidos podemos
-eliminarla de esta manera::
+eliminarla de esta manera
+
+.. code-block:: sql
 
  example=# DELETE FROM cliente WHERE id=2;
  DELETE 1
 
-Verificamos que se haya borrado::
+Verificamos que se haya borrado
+
+.. code-block:: sql
 
  example=# SELECT * FROM cliente;
  id | nombre | apellido | edad |       direccion       |    pais
@@ -266,12 +275,16 @@ Verificamos que se haya borrado::
   5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
  (4 filas)
 
-Si se desea actualizar la dirección del cliente Sergio::
+Si se desea actualizar la dirección del cliente Sergio
+
+.. code-block:: sql
 
  example=# UPDATE cliente SET direccion='1459 Patricio Lynch' WHERE id=4;
  UPDATE 1
 
-Verificamos que se haya actualizado la información::
+Verificamos que se haya actualizado la información
+
+.. code-block:: sql
 
  example=# SELECT * FROM cliente;
  id | nombre | apellido | edad |       direccion       |    pais
@@ -282,12 +295,16 @@ Verificamos que se haya actualizado la información::
   4 | Sergio | Honores  |   35 | 1459 Patricio Lynch   | Chile
  (4 filas)
 
-Si queremos borrar toda la tabla::
+Si queremos borrar toda la tabla
+
+.. code-block:: sql
 
  example=# DROP TABLE cliente;
  DROP TABLE
 
-Verificamos que se haya eliminado la tabla cliente::
+Verificamos que se haya eliminado la tabla cliente
+
+.. code-block:: sql
 
  example=# SELECT * FROM cliente;
  ERROR:  no existe la relación «cliente»
@@ -308,14 +325,18 @@ primaria que referencian de otra tabla, creandose una relación entre las dos ta
 Ejemplo Práctico
 ----------------
 
-Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está definido como serial que automáticamente irá ingresando los valores 1, 2,3 a cada registro.::
+Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está definido como serial que automáticamente irá ingresando los valores 1, 2,3 a cada registro.
+
+.. code-block:: sql
 
  postgres=# CREATE TABLE profesores(ID_profesor serial, nombre VARCHAR(30), apellido VARCHAR(30), PRIMARY KEY(ID_profesor));
  NOTICE:  CREATE TABLE creará una secuencia implícita «profesores_id_profesor_seq» para la columna serial «profesores.id_profesor»
  NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «profesores_pkey» para la tabla «profesores»
  CREATE TABLE
 
-Ahora vamos a crear la tabla de cursos en que ID_curso será la clave primaria de esta tabla y ID_profesor será la clave foránea, que se encargará de realizar una conexión entre estas dos tablas.::
+Ahora vamos a crear la tabla de cursos en que ID_curso será la clave primaria de esta tabla y ID_profesor será la clave foránea, que se encargará de realizar una conexión entre estas dos tablas.
+
+.. code-block:: sql
 
  postgres=# CREATE TABLE cursos(ID_curso serial, titulo VARCHAR(30), ID_profesor INTEGER, PRIMARY KEY(ID_curso), FOREIGN KEY(ID_profesor) REFERENCES profesores(ID_profesor));
  NOTICE:  CREATE TABLE creará una secuencia implícita «cursos_id_curso_seq» para la columna serial «cursos.id_curso»
