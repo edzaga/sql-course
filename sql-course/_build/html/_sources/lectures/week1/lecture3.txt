@@ -1,6 +1,49 @@
 Lectura 3 - Álgebra Relacional: Select, Project, Join
 -------------------------------------------------------
 
+Conceptos básicos de álgebra relacional
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: basics of relational algebra
+
+Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo, en el álgebra de la aritmética, los operandos atómicos son variable como `r`, y constantes como 15. 
+Los operadores son los usuales en la aritmética:
+
+  * Suma
+  * Resta
+  * Multiplicación
+  * División.
+
+Cualquier álgebra nos permite construir expresiones mediante la aplicación de operadores a operandos atómicos y/o otras expresiones del álgebra. En general, los paréntesis son necesarios para agrupar operadores y sus operandos. Por ejemplo, en aritmética tenemos expresiones tales como `(x + y) * z` ó `((x + 7)/(y - 3)) + x`.
+
+El Álgebra Relacional es otro ejemplo del álgebra. Sus operandos atómicos son: 
+
+   1. Variables que representan relaciones.
+   2. Constantes que son relaciones finitas.
+
+Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus resultados de expresiones son conjuntos. Los operadores del álgebra relacional tradicional se divide en cuatro grandes categorías: 
+
+  a. Los conjuntos habituales de operaciones –unión, intersección, y diferencia- se aplica a las relaciones. 
+  b. Las operaciones que eliminan parte de una relación: “selección” elimina algunas filas (tuplas), y “proyección” elimina algunas columnas.
+  c. Las operaciones que combinan las tuplas de dos relaciones, como el “producto cartesiano,” que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de operadores “unión”, los cuales forman parejas de tuplas de dos relaciones selectivamente.
+  d. Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que cambia el esquema de relación, es decir, lo nombres de los atributos y/o los nombres de la relación misma.
+
+Debemos por lo general referirnos a las expresiones del álgebra relacional como consultas. 
+A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones del algebra relacional, se debería familiarizar con las operaciones de grupo `(a)`; y por lo tanto reconocer:
+
+.. math::
+   R \cup S \\
+
+como un ejemplo de una expresión de álgebra relacional. Donde `R` y `S` son operandos atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas. 
+Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones nombradas `R` y `S`.
+
+Las tres operaciones más comunes en conjuntos son unión, intersección, y diferencia, que serán vistos en la lectura 4. 
+Las cuales se definen como los siguientes conjuntos arbitrarios `R` y `S`:
+
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
+
 El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan
 sobre las relaciones (tablas) para obtener un resultado, el cual es otra relación.
 
@@ -12,8 +55,8 @@ Operaciones relacionales:
 
 Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 
-SELECT
-******
+SELECCIÓN (SELECT)
+******************
 
 .. CMA: Que es una tupla?
 

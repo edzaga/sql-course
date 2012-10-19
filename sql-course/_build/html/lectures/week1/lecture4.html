@@ -57,18 +57,17 @@
   <h3><a href="../../index.html">Contenidos</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Lectura 4 - Álgebra Relacional: Set operators, renaming, notation</a><ul>
-<li><a class="reference internal" href="#conceptos-basicos-de-algebra-relacional">Conceptos básicos de álgebra relacional</a></li>
 <li><a class="reference internal" href="#operaciones-de-conjunto">Operaciones de conjunto:</a><ul>
 <li><a class="reference internal" href="#union">UNIÓN</a><ul>
-<li><a class="reference internal" href="#ejemplo-1">Ejemplo 1</a></li>
+<li><a class="reference internal" href="#ejemplo">Ejemplo</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#diferencia">DIFERENCIA</a><ul>
-<li><a class="reference internal" href="#ejemplo-2">Ejemplo 2</a></li>
+<li><a class="reference internal" href="#id1">Ejemplo</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#interseccion">INTERSECCIÓN</a><ul>
-<li><a class="reference internal" href="#ejemplo-3">Ejemplo 3</a></li>
+<li><a class="reference internal" href="#id2">Ejemplo</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#operaciones-dependientes-y-independientes">OPERACIONES DEPENDIENTES Y INDEPENDIENTES</a></li>
@@ -104,7 +103,7 @@
       <input type="hidden" name="area" value="default" />
     </form>
     <p class="searchtip" style="font-size: 90%">
-    Introduzca los términos de búsqueda o un módulo, clase o nombre de función.
+    Enter search terms or a module, class or function name.
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
@@ -118,114 +117,89 @@
             
   <div class="section" id="lectura-4-algebra-relacional-set-operators-renaming-notation">
 <h1>Lectura 4 - Álgebra Relacional: Set operators, renaming, notation<a class="headerlink" href="#lectura-4-algebra-relacional-set-operators-renaming-notation" title="Enlazar permanentemente con este título">¶</a></h1>
-<div class="section" id="conceptos-basicos-de-algebra-relacional">
-<h2>Conceptos básicos de álgebra relacional<a class="headerlink" href="#conceptos-basicos-de-algebra-relacional" title="Enlazar permanentemente con este título">¶</a></h2>
-<p id="index-0">Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo, en el álgebra de la aritmética, los operandos atómicos son variable como <span class="math">\(r\)</span>, y constantes como 15.
-Los operadores son los usuales en la aritmética:</p>
-<blockquote>
-<div><ul class="simple">
-<li>Suma</li>
-<li>Resta</li>
-<li>Multiplicación</li>
-<li>División.</li>
-</ul>
-</div></blockquote>
-<p>Cualquier álgebra nos permite construir expresiones mediante la aplicación de operadores a operandos atómicos y/o otras expresiones del álgebra. En general, los paréntesis son necesarios para agrupar operadores y sus operandos. Por ejemplo, en aritmética tenemos expresiones tales como <span class="math">\((x + y) * z\)</span> ó <span class="math">\(((x + 7)/(y - 3)) + x\)</span>.</p>
-<p>El Álgebra Relacional es otro ejemplo del álgebra. Sus operandos atómicos son:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>Variables que representan relaciones.</li>
-<li>Constantes que son relaciones finitas.</li>
-</ol>
-</div></blockquote>
-<p>Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus resultados de expresiones son conjuntos. Los operadores del álgebra relacional tradicional se divide en cuatro grandes categorías:</p>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li>Los conjuntos habituales de operaciones –unión, intersección, y diferencia- se aplica a las relaciones.</li>
-<li>Las operaciones que eliminan parte de una relación: “selección” elimina algunas filas (tuplas), y “proyección” elimina algunas columnas.</li>
-<li>Las operaciones que combinan las tuplas de dos relaciones, como el “producto cartesiano,” que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de operadores “unión”, los cuales forman parejas de tuplas de dos relaciones selectivamente.</li>
-<li>Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que cambia el esquema de relación, es decir, lo nombres de los atributos y/o los nombres de la relación misma.</li>
-</ol>
-</div></blockquote>
-<p>Debemos por lo general referirnos a las expresiones del álgebra relacional como consultas.
-A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones del algebra relacional, se debería familiarizar con las operaciones de grupo <span class="math">\((a)\)</span>; y por lo tanto reconocer <span class="math">\((R U S)\)</span> como un ejemplo de una expresión de álgebra relacional.
-<span class="math">\(R\)</span> y <span class="math">\(S\)</span> son operandos atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas.
-Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones nombradas <span class="math">\(R\)</span> y <span class="math">\(S\)</span>.</p>
-<p>Las tres operaciones más comunes en conjuntos son unión, intersección, y diferencia.
-Las cuales se definen como los siguientes conjuntos arbitrarios <span class="math">\(R\)</span> y <span class="math">\(S\)</span>:</p>
-</div>
 <div class="section" id="operaciones-de-conjunto">
 <h2>Operaciones de conjunto:<a class="headerlink" href="#operaciones-de-conjunto" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="union">
-<span id="index-1"></span><h3>UNIÓN<a class="headerlink" href="#union" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos A y B es el conjunto que contiene todos los elementos de A y de B.</p>
+<span id="index-0"></span><h3>UNIÓN<a class="headerlink" href="#union" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos <span class="math">\(A\)</span> y <span class="math">\(B\)</span> es el conjunto que contiene todos los elementos de <span class="math">\(A\)</span> y de <span class="math">\(B\)</span>.</p>
+<div class="math">
+\[\begin{split}A \cup B = B \cup A\\\end{split}\]</div>
+<img alt="../../_images/union.png" src="../../_images/union.png" />
 <p>De manera análoga la unión de dos relaciones <span class="math">\(R\)</span> y <span class="math">\(S\)</span>, es otra relación que contiene las tuplas que están en <span class="math">\(R\)</span>, o en <span class="math">\(S\)</span>, o en ambas, eliminándose las tuplas duplicadas. <span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (<span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).</p>
 <p><strong>Notación en álgebra relacional</strong></p>
 <div class="math">
 \[\begin{split}R \cup S \\\end{split}\]</div>
 <div class="math">
-\[\begin{split}\textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado} \\\end{split}\]</div>
-<div class="section" id="ejemplo-1">
-<h4>Ejemplo 1<a class="headerlink" href="#ejemplo-1" title="Enlazar permanentemente con este título">¶</a></h4>
+\[\begin{split}\textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado.} \\\end{split}\]</div>
+<p>Se puede decir entonces que el operador <strong>UNIÓN</strong> es conmutativo. Cabe recordar que una operación es conmutativa cuando el resultado de la operación es el mismo, cualquiera que sea el orden de los elementos con los que se opera.</p>
+<div class="section" id="ejemplo">
+<h4>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h4>
 <p>Dadas las siguientes relaciones:</p>
-<p><strong>Tabla Ingenieros</strong></p>
 <div class="math">
-\[\begin{split}\begin{array}{|c|c|c|}
-     \hline
-      \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
-     \hline
-     123 &amp; \mbox{Leon}   &amp; 39\\
-     \hline
-     234 &amp; \mbox{Tomas}  &amp; 34\\
-     \hline
-     345 &amp; \mbox{Jose}   &amp; 45\\
-     \hline
-     143 &amp; \mbox{Josefa} &amp; 25\\
-     \hline
-\end{array}\end{split}\]</div>
-<p><strong>Tabla Jefes</strong></p>
+\[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}  \begin{array}{|c|c|c|}
+       \hline
+        \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
+       \hline
+       123 &amp; \mbox{Leon}   &amp; 39\\
+       \hline
+       234 &amp; \mbox{Tomas}  &amp; 34\\
+       \hline
+       345 &amp; \mbox{Jose}   &amp; 45\\
+       \hline
+       143 &amp; \mbox{Josefa} &amp; 25\\
+       \hline
+  \end{array}\end{split}\]</div>
 <div class="math">
-\[\begin{split}\begin{array}{|c|c|c|}
-  \hline
-   \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
-  \hline
-  123 &amp; \mbox{Leon}   &amp; 39\\
-  \hline
-  235 &amp; \mbox{Maria}   &amp; 29\\
-  \hline
-\end{array}\end{split}\]</div>
-<p>Aplicar el operador Unión:</p>
-<p>Ingenieros <tt class="docutils literal"><span class="pre">U</span></tt> Jefes</p>
+\[\begin{split}\textbf{Tabla Jefes} \\\end{split}\]\[\begin{split}     \begin{array}{|c|c|c|}
+       \hline
+        \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
+       \hline
+       123 &amp; \mbox{Leon}   &amp; 39\\
+       \hline
+       235 &amp; \mbox{Maria}   &amp; 29\\
+       \hline
+     \end{array}\end{split}\]</div>
+<p>Aplicar el operador <strong>UNIÓN</strong>:</p>
 <div class="math">
-\[\begin{split}\begin{array}{|c|c|c|}
-     \hline
-      \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
-     \hline
-     123 &amp; \mbox{Leon}   &amp; 39\\
-     \hline
-     234 &amp; \mbox{Tomas}  &amp; 34\\
-     \hline
-     345 &amp; \mbox{Jose}   &amp; 45\\
-     \hline
-     143 &amp; \mbox{Josefa} &amp; 25\\
-     \hline
-     235 &amp; \mbox{Maria} &amp; 29\\
-     \hline
-\end{array}\end{split}\]</div>
-<p>Como se mencionó anteriormente realizar la operación Jefes <tt class="docutils literal"><span class="pre">U</span></tt> Ingenieros daría como resultado la misma tabla anterior.</p>
+\[\begin{split}\textbf{Tabla Ingenieros} \cup  \textbf{Jefes}  \\\end{split}\]\[\begin{split}  \begin{array}{|c|c|c|}
+       \hline
+        \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
+       \hline
+       123 &amp; \mbox{Leon}   &amp; 39\\
+       \hline
+       234 &amp; \mbox{Tomas}  &amp; 34\\
+       \hline
+       345 &amp; \mbox{Jose}   &amp; 45\\
+       \hline
+       143 &amp; \mbox{Josefa} &amp; 25\\
+       \hline
+       235 &amp; \mbox{Maria} &amp; 29\\
+       \hline
+  \end{array}\end{split}\]</div>
+<p>Como se mencionó anteriormente realizar la operación:</p>
+<div class="math">
+\[\textrm{Jefes} \cup \textrm{Ingenieros}\]</div>
+<p>Daría como resultado la misma tabla anterior, debido a la propiedad de conmutatividad.</p>
 </div>
 </div>
 <div class="section" id="diferencia">
 <h3>DIFERENCIA<a class="headerlink" href="#diferencia" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos A y B es el conjunto que contiene todos los elementos de A que no pertenecen a B.
-De la misma forma la diferencia de dos relaciones <span class="math">\(R\)</span> y <span class="math">\(S\)</span>, es otra relación que contiene las tuplas que están en la relación <span class="math">\(R\)</span>, pero no están en <span class="math">\(S\)</span>.
+<p>Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos <span class="math">\(A\)</span> y <span class="math">\(B\)</span> es el conjunto que contiene todos los elementos de <span class="math">\(A\)</span> que no pertenecen a <span class="math">\(B\)</span>.</p>
+<p>A-B</p>
+<img alt="../../_images/a-b.png" src="../../_images/a-b.png" />
+<p>B-A</p>
+<img alt="../../_images/b-a.png" src="../../_images/b-a.png" />
+<p>Como se aprecia en las imágenes la operación <strong>DIFERENCIA</strong>, en conjuntos, no es conmutativa, al igual que la resta o sustracción, operador aprendido en aritmética básica. Es decir, si se cambia el orden de los conjuntos a los  que se aplica la operación <strong>DIFERENCIA</strong>, se obtendrán resultados distintos. Por lo tanto:</p>
+<div class="math">
+\[\mbox{A} \times \mbox{B} \neq  \mbox{B} \times \mbox{A}\]</div>
+<p>De la misma forma la diferencia de dos relaciones <span class="math">\(R\)</span> y <span class="math">\(S\)</span>, es otra relación que contiene las tuplas que están en la relación <span class="math">\(R\)</span>, pero no están en <span class="math">\(S\)</span>.
 <span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben ser unión-compatible.</p>
 <p><strong>Notación en álgebra relacional</strong></p>
 <div class="math">
 \[R - S\]</div>
 <p>Es importante resaltar que <span class="math">\(R - S\)</span> es diferente a <span class="math">\(S - R\)</span>.</p>
-<div class="section" id="ejemplo-2">
-<h4>Ejemplo 2<a class="headerlink" href="#ejemplo-2" title="Enlazar permanentemente con este título">¶</a></h4>
+<div class="section" id="id1">
+<h4>Ejemplo<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h4>
 <p>Empleando las mismas tablas dadas en el ejemplo anterior, realice Ingenieros
 <tt class="docutils literal"><span class="pre">-</span></tt> Jefes y Jefes <tt class="docutils literal"><span class="pre">-</span></tt> Ingenieros:</p>
 <p>Ingenieros <tt class="docutils literal"><span class="pre">-</span></tt> Jefes</p>
@@ -255,7 +229,11 @@ De la misma forma la diferencia de dos relaciones <span class="math">\(R\)</span
 </div>
 <div class="section" id="interseccion">
 <h3>INTERSECCIÓN<a class="headerlink" href="#interseccion" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>En  álgebra de conjuntos la intersección de dos conjuntos A y B es el conjunto que contiene todos los elementos comunes de A y B. De forma homóloga en álgebra relacional INTERSECTION define una relación que contiene las tuplas que están tanto en la relación <span class="math">\(R\)</span> como en <span class="math">\(S\)</span>. <span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben ser unión-compatible.</p>
+<p>En  álgebra de conjuntos la intersección de dos conjuntos <span class="math">\(A\)</span> y <span class="math">\(B\)</span> es el conjunto que contiene todos los elementos comunes de <span class="math">\(A\)</span> y <span class="math">\(B\)</span>.</p>
+<div class="math">
+\[A \cap B\]</div>
+<img alt="../../_images/inter.png" src="../../_images/inter.png" />
+<p>De forma homóloga en álgebra relacional INTERSECTION define una relación que contiene las tuplas que están tanto en la relación <span class="math">\(R\)</span> como en <span class="math">\(S\)</span>. <span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben ser unión-compatible.</p>
 <p><strong>Notación en algebra relacional</strong></p>
 <div class="math">
 \[R \cap S\]</div>
@@ -264,8 +242,8 @@ De la misma forma la diferencia de dos relaciones <span class="math">\(R\)</span
 <p><strong>Equivalencia con operadores anteriores</strong></p>
 <div class="math">
 \[R \cap S= R-(R-S)\]</div>
-<div class="section" id="ejemplo-3">
-<h4>Ejemplo 3<a class="headerlink" href="#ejemplo-3" title="Enlazar permanentemente con este título">¶</a></h4>
+<div class="section" id="id2">
+<h4>Ejemplo<a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h4>
 <p>Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de la tabla de Ingenieros con la de Jefes:</p>
 <div class="math">
 \[Ingenieros \cap Jefes\]\[\begin{split}  \begin{array}{|c|c|c|}
@@ -277,7 +255,7 @@ De la misma forma la diferencia de dos relaciones <span class="math">\(R\)</span
   \end{array}\end{split}\]</div>
 <div class="admonition important">
 <p class="first admonition-title">Importante</p>
-<p>Cuando aplicamos estas operaciones a relaciones, necesitamos poner algunas condiciones R y S:</p>
+<p>Cuando aplicamos estas operaciones a relaciones, necesitamos poner algunas condiciones <span class="math">\(R\)</span> y <span class="math">\(S\)</span>:</p>
 <blockquote class="last">
 <div><ul class="simple">
 <li><span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben tener esquemas con conjuntos de atributos idénticos, y de tipos (dominios) para cada atributo deben ser las mismas en <span class="math">\(R\)</span> y <span class="math">\(S\)</span>.</li>
@@ -290,14 +268,14 @@ De la misma forma la diferencia de dos relaciones <span class="math">\(R\)</span
 <div class="section" id="operaciones-dependientes-y-independientes">
 <h3>OPERACIONES DEPENDIENTES Y INDEPENDIENTES<a class="headerlink" href="#operaciones-dependientes-y-independientes" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Algunas de las operaciones que hemos descrito en las lecturas 3 y 4, pueden ser expresadas en términos de operadores de algebra relacional.
-Por ejemplo, la intersección puede ser expresada en términos de conjuntos de diferencia: R &lt;INTERSECCCIÓN&gt; S = R - (R - S). Es decir, si R y S son dos relaciones con el mismo esquema, la intersección de R y S puede ser resuelta restando primero S de R para formar una relación T que consiste en todas aquellas tuplas en R pero no en S. Cuando restamos T de R, dejamos solo esas tuplas de R que están también en S.</p>
+Por ejemplo, la intersección puede ser expresada en términos de conjuntos de diferencia: R &lt;INTERSECCCIÓN&gt; S = R - (R - S). Es decir, si <span class="math">\(R\)</span> y <span class="math">\(S\)</span> son dos relaciones con el mismo esquema, la intersección de <span class="math">\(R\)</span> y <span class="math">\(S\)</span> puede ser resuelta restando primero <span class="math">\(S\)</span> de <span class="math">\(R\)</span> para formar una relación <span class="math">\(T\)</span> que consiste en todas aquellas tuplas en <span class="math">\(R\)</span> pero no en <span class="math">\(S\)</span>. Cuando restamos <span class="math">\(T\)</span> de <span class="math">\(R\)</span>, dejamos solo esas tuplas de <span class="math">\(R\)</span> que están también en <span class="math">\(S\)</span>.</p>
 </div>
 <div class="section" id="algebra-relacional-como-idioma-restrictor">
 <h3>ÁLGEBRA RELACIONAL COMO IDIOMA RESTRICTOR<a class="headerlink" href="#algebra-relacional-como-idioma-restrictor" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Hay dos maneras en las cuales podemos usar expresiones de algebra relacional para expresar restricción:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Si <span class="math">\(R\)</span> es una expresión de algebra relacional, entonces <span class="math">\(R = 0\)</span> es una restricción que dice “El valor de R debe ser vacio,” o equivalentemente “No hay tuplas en el resultado de R.&#8221;</li>
+<li>Si <span class="math">\(R\)</span> es una expresión de algebra relacional, entonces <span class="math">\(R = 0\)</span> es una restricción que dice “El valor de R debe ser vacio,” o equivalentemente “No hay tuplas en el resultado de <span class="math">\(R\)</span>.&#8221;</li>
 <li>Si <span class="math">\(R\)</span> y <span class="math">\(S\)</span> son expresiones de algebra relacional, entonces <span class="math">\(R \subset S\)</span> es una restricción que dice “Cada tupla en resultado de R debe estar también en resultado de S.&#8221; Por supuesto, el resultado de <span class="math">\(S\)</span> puede contener tuplas adicionales no producidas en <span class="math">\(R\)</span>.</li>
 </ol>
 </div></blockquote>
