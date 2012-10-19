@@ -124,8 +124,15 @@ Cuidado con los duplicados!!
 
 Si el lector se fija en la situación descrita, los nombres de algunos atributos de diferentes relaciones y/o tablas  se repiten, lo cual
 podría plantear la interrogante ¿a que tabla se refiere el atributo en cuestión?. Para resolver este pequeño gran problema, se precede al
-nombre del atributo con el nombre de la tabla y un punto, es decir, "algo_asi.". Concretamente en el ejemplo anterior, el alcance de nombres
-lo protagonizan sID de la tabla Student y sID de la tabla Apply. La diferencia se realiza a través de
+nombre del atributo con el nombre de la tabla y un punto, es decir, 
+
+
+.. code-block:: sql
+        
+        "algo_asi."
+
+Concretamente en el ejemplo anterior, el alcance de nombres lo protagonizan sID de la tabla Student y sID de la tabla Apply. 
+La diferencia se realiza a través de
 
 .. code-block:: sql
 
@@ -133,22 +140,34 @@ lo protagonizan sID de la tabla Student y sID de la tabla Apply. La diferencia s
         Apply.sID ó A.sID
 
 
-En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan
-dos instancias de una tabla. En el siguiente ejemplo, se buscan
-todos los pares de estudiantes con el mismo GPA::
+En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo, 
+se buscan todos los pares de estudiantes con el mismo GPA
+
+.. code-block:: sql
 
         SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
         FROM Student S1, Student S2
-        WHERE S1.GPA = S2.GPA
+        WHERE S1.GPA = S2.GPA;
 
-Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla),
-el resultado contendrá uno o varios duplicados; por ejemplo, consideremos
-4 estudantes::
+Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrá uno o varios duplicados; por ejemplo, 
+consideremos 3 estudantes
 
-        sName   sID     GPA
-        Amy     123     4.0
-        Doris   456     4.0
-        Edward  567     4.1
+.. math::
+
+ \begin{array}{|c|c|c|}
+  \hline
+  \textbf{sName} & \textbf{sID} & \textbf{GPA} \\
+  \hline
+  Amy         & 123      &  4.0   \\
+  Doris       & 456      &  4.0  \\
+  Edward      & 567      &  4.1  \\ 
+  \hline  
+ \end{array}
+
+.. sName   sID     GPA
+   Amy     123     4.0
+   Doris   456     4.0
+   Edward  567     4.1
 
 Los pares de estudiantes serán::
 
@@ -159,7 +178,9 @@ pero también::
          Amy    -       Amy
          Doris  -       Doris
 
-lo cual se puede evitar modificando la cosulta::
+lo cual se puede evitar modificando la cosulta
+
+.. code-block:: sql
 
         SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
         FROM Student S1, Student S2
