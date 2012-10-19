@@ -19,32 +19,12 @@ la cual es posible replicar mediante
 
 .. code-block:: sql
    
-    CREATE TABLE College
-        (
-     id int auto_increment primary key, 
-     cName varchar(20), 
-     state varchar(30),
-     enrollment varchar(40)
-    );
+ CREATE TABLE College(id serial, cName VARCHAR(25), state VARCHAR(25), enrollment VARCHAR(40));
 
-    CREATE TABLE Student
-        (
-     sID int auto_increment primary key, 
-     sName varchar(20), 
-     GPA integer,
-     sizeHS varchar(40)
-    );
+ CREATE TABLE Student(sID serial, sName VARCHAR(20), GPA INTEGER, sizeHS VARCHAR(40));
 
-   CREATE TABLE Apply
-        (
-     sID int auto_increment primary key, 
-     cName varchar(20), 
-     major varchar(30),
-     decision varchar(40)
-    );
+ CREATE TABLE Apply(sID serial, cName VARCHAR(20), major VARCHAR(30), decision VARCHAR(40));
 
-
-.. joao: agregar el contexto del ejercicio y los INSERT INTO con valores utiles
 
 Ahora consideremos la siguente consulta
 
@@ -95,28 +75,9 @@ El lector puede utilizar los  siguientes valores y realizar modificaciones.
 
 .. code-block:: sql
 
-        INSERT INTO College
-        (cName, state, enrollment)
-        VALUES
-        ('Stanford', 'stanford', 'lalalla'),
-        ('Berkeley', 'miami', 'mayor'),
-        'MIT', 'masachusets', 'minor');
-
-
-        INSERT INTO Student
-        (sName, GPA, sizeHS)
-        VALUES
-        ('lala', 30, 'hjkljk'),
-        ('lolo', 60, 'asads'),
-        ('lele', 40, 'qweqwe');
-
-
-        INSERT INTO Apply
-        (cName, major, decision)E        VALUES
-        ('Stanford', 'phd', 'zxczcx'),
-        ('Berkeley', 'pregrado', 'sdfsd'),
-        ('MIT', 'ingenieria', 'rtert');
-
+ INSERT INTO College(cName, state, enrollment) VALUES('Stanford', 'stanford', 'mayor');
+ INSERT INTO College(cName, state, enrollment) VALUES('Berkeley', 'miami', 'mayor');
+ INSERT INTO College(cName, state, enrollment) VALUES('MIT', 'masachusets', 'minor');
 
 ============================
 Cuidado con los duplicados!!
@@ -133,11 +94,11 @@ Es decir, se antepone el nombre de la tabla o su respectiva variable definida en
 
 En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan
 dos instancias de una tabla. En el siguiente ejemplo, se buscan
-todos los pares de estudiantes con el mismo GPA::
+todos los pares de estudiantes con el mismo GPA
 
-        SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
-        FROM Student S1, Student S2
-        WHERE S1.GPA = S2.GPA
+.. code-block:: sql
+
+   SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA FROM Student S1, Student S2 WHERE S1.GPA = S2.GPA
 
 Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla),
 el resultado contendrá uno o varios duplicados; por ejemplo, consideremos
@@ -157,11 +118,11 @@ pero también::
          Amy    -       Amy
          Doris  -       Doris
 
-lo cual se puede evitar modificando la cosulta::
+lo cual se puede evitar modificando la cosulta
 
-        SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
-        FROM Student S1, Student S2
-        WHERE S1.GPA = S2.GPA and S1.sID <> S2.sID
+.. code-block:: sql
+
+   SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA FROM Student S1, Student S2 WHERE S1.GPA = S2.GPA and S1.sID <> S2.sID
 
 es decir, que el id del estudiante S1 sea diferente al id del estudiante S2.
 
@@ -198,11 +159,11 @@ Es necesario que estas tengan el mismo número de columnas, y que
         03      Svendson, Stephen
         04      Scott, Stephen
 
-El resultado de la consulta::
+El resultado de la consulta
 
-        SELECT E_Name FROM Employees_Norway
-        UNION
-        SELECT E_Name FROM Employees_USA
+.. code-block:: sql
+
+   SELECT E_Name FROM Employees_Norway UNION SELECT E_Name FROM Employees_USA
 
 
 es::
@@ -218,9 +179,11 @@ es::
 
 
 Ojo, existen dos empleados con el mismo nombre en ambas tablas. Sin embargo en la
-salida sólo se nombra uno. Para evitar esto, se utliza "UNION ALL"::
+salida sólo se nombra uno. Para evitar esto, se utliza "UNION ALL"
 
-        SELECT E_Name as name FROM Employees_Norway
+.. code-block:: sql
+
+   SELECT E_Name as name FROM Employees_Norway
         UNION ALL
         SELECT E_Name as name FROM Employees_USA
 
