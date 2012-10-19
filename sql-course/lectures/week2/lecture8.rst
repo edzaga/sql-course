@@ -122,14 +122,16 @@ El lector puede utilizar los  siguientes valores y realizar modificaciones.
 Cuidado con los duplicados!!
 ============================
 
-Si el lector se fija en el esquema, hay ciertos atributos cuyos nombres se repiten
-en las diferentes tablas. Tal es el caso de
-**cName y sID**. En las consultas se aprecia que la diferencia se realiza a través de::
+Si el lector se fija en la situación descrita, los nombres de algunos atributos de diferentes relaciones y/o tablas  se repiten, lo cual
+podría plantear la interrogante ¿a que tabla se refiere el atributo en cuestión?. Para resolver este pequeño gran problema, se precede al
+nombre del atributo con el nombre de la tabla y un punto, es decir, "algo_asi.". Concretamente en el ejemplo anterior, el alcance de nombres
+lo protagonizan sID de la tabla Student y sID de la tabla Apply. La diferencia se realiza a través de
+
+.. code-block:: sql
 
         Student.sID ó S.sID
         Apply.sID ó A.sID
 
-Es decir, se antepone el nombre de la tabla o su respectiva variable definida en el FROM.
 
 En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan
 dos instancias de una tabla. En el siguiente ejemplo, se buscan
