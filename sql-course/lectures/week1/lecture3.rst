@@ -6,7 +6,9 @@ Conceptos básicos de álgebra relacional
 
 .. index:: basics of relational algebra
 
-Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo, en el álgebra de la aritmética, los operandos atómicos son variable como `r`, y constantes como 15. 
+Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo, 
+en el álgebra de la aritmética, los operandos atómicos son variable como `r`, 
+y constantes como 15. 
 Los operadores son los usuales en la aritmética:
 
   * Suma
@@ -14,38 +16,52 @@ Los operadores son los usuales en la aritmética:
   * Multiplicación
   * División.
 
-Cualquier álgebra nos permite construir expresiones mediante la aplicación de operadores a operandos atómicos y/o otras expresiones del álgebra. En general, los paréntesis son necesarios para agrupar operadores y sus operandos. Por ejemplo, en aritmética tenemos expresiones tales como `(x + y) * z` ó `((x + 7)/(y - 3)) + x`.
+Cualquier álgebra nos permite construir expresiones mediante la aplicación de 
+operadores a operandos atómicos y/o otras expresiones del álgebra. En general, 
+los paréntesis son necesarios para agrupar operadores y sus operandos. Por ejemplo,
+en aritmética tenemos expresiones tales como `(x + y) * z` ó `((x + 7)/(y - 3)) + x`.
 
 El Álgebra Relacional es otro ejemplo del álgebra. Sus operandos atómicos son: 
 
    1. Variables que representan relaciones.
    2. Constantes que son relaciones finitas.
 
-Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus resultados de expresiones son conjuntos. Los operadores del álgebra relacional tradicional se divide en cuatro grandes categorías: 
+Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus resultados 
+de expresiones son conjuntos. Los operadores del álgebra relacional tradicional se divide 
+en cuatro grandes categorías: 
 
-  a. Los conjuntos habituales de operaciones –unión, intersección, y diferencia- se aplica a las relaciones. 
-  b. Las operaciones que eliminan parte de una relación: “selección” elimina algunas filas (tuplas), y “proyección” elimina algunas columnas.
-  c. Las operaciones que combinan las tuplas de dos relaciones, como el “producto cartesiano,” que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de operadores “unión”, los cuales forman parejas de tuplas de dos relaciones selectivamente.
-  d. Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que cambia el esquema de relación, es decir, lo nombres de los atributos y/o los nombres de la relación misma.
+  a. Los conjuntos habituales de operaciones *unión, intersección, y diferencia* 
+  se aplica a las relaciones. 
+  b. Las operaciones que eliminan parte de una relación: “selección” elimina 
+  algunas filas (tuplas), y “proyección” elimina algunas columnas.
+  c. Las operaciones que combinan las tuplas de dos relaciones, como el “producto cartesiano,” 
+  que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de 
+  operadores “unión”, los cuales forman parejas de tuplas de dos relaciones selectivamente.
+  d. Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que 
+  cambia el esquema de relación, es decir, lo nombres de los atributos y/o los 
+  nombres de la relación misma.
 
 Debemos por lo general referirnos a las expresiones del álgebra relacional como consultas. 
-A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones del algebra relacional, se debería familiarizar con las operaciones de grupo `(a)`; y por lo tanto reconocer:
+A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones 
+del algebra relacional, se debería familiarizar con las operaciones de grupo `(a)`; 
+y por lo tanto reconocer:
 
 .. math::
    R \cup S \\
 
-como un ejemplo de una expresión de álgebra relacional. Donde `R` y `S` son operandos atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas. 
-Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones nombradas `R` y `S`.
+como un ejemplo de una expresión de álgebra relacional. Donde `R` y `S` son operandos 
+atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas. 
+Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones 
+nombradas `R` y `S`.
 
-Las tres operaciones más comunes en conjuntos son unión, intersección, y diferencia, que serán vistos en la lectura 4. 
-Las cuales se definen como los siguientes conjuntos arbitrarios `R` y `S`:
+Las tres operaciones más comunes en conjuntos son unión, intersección, y diferencia, 
+que serán vistas en la lectura 4. 
 
 .. role:: sql(code)
    :language: sql
    :class: highlight
 
-El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan
-sobre las relaciones (tablas) para obtener un resultado, el cual es otra relación.
+.. CMA: El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan sobre las relaciones (tablas) para obtener un resultado, el cual es otra relación.
 
 
 Operaciones relacionales:
@@ -58,12 +74,14 @@ Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 SELECCIÓN (SELECT)
 ******************
 
-Este operador se aplica a una relación R produciendo una nueva relación con un
-subconjunto de tuplas de R. Las tuplas de la relación resultante son las que
-satisfacen una condición C sobre algún atributo de R. Es decir selecciona **filas**
-de una tabla según un cierto criterio C. C es una expresión condicional, similar
+.. CMA: Que es una tupla?
+
+Este operador se aplica a una relación `R` produciendo una nueva relación con un
+subconjunto de tuplas de `R`. Las tuplas de la relación resultante son las que
+satisfacen una condición `C` sobre algún atributo de `R`. Es decir selecciona **filas (tuplas)**
+de una tabla según un cierto criterio `C`. El criterio `C` es una expresión condicional, similar
 a las declaraciones del tipo “if”, es “booleana” esto quiere decir que para cada
-tupla de R toma el valor Verdad o Falso.
+tupla de `R` toma el valor Verdad(true) o Falso(false).
 
 * Valores de atributos con NULL no cumplirán ninguna condición.
 
@@ -72,29 +90,61 @@ tupla de R toma el valor Verdad o Falso.
   .. math::
     \text{<Atributo> <Comparador> <Atributo o Constante del Dominio>}
 
-  donde:
+donde:
+El campo `Comparador` es uno de los **operadores lógicos** que se muestran a contnuación:
 
-  .. math::
-    \text{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}
+	  .. math::
+	    \text{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}
 
-* Las cláusulas C pueden conectarse con los operadores lógicos:
+	* `=` : símbolo de igual que.
+
+	* `\neq`: significa no igual a, en algunos libros este símbolo esta representado por ``!=``.
+        
+        * `\geq`: mayor que o igual a.
+
+        * `>`: mayor que.
+ 
+        * `<`: menor que.
+
+	* `\leq`: menor que o igual a. 
+
+Los **operadores lógicos** que se utilizan, también llamados operadores relacionales, nos proporcionan 
+un resultado a partir de que se cumpla o no una cierta condición. Son símbolos que se usan para comparar
+dos valores. Si el resultado de la comparación es correcto la expresión considerada es verdadera, en caso 
+contrario es falsa. Por ejemplo, 11>4 (once mayor que cuatro) es verdadera, se representa por el valor true
+del tipo básico boolean, en cambio, 11<4 (once menor que cuatro) es falsa se representa por el valor false. 
+
+
+Las cláusulas `C` pueden conectarse con otros operadores lógicos, que al igual que los anteriores que se usaban
+como comparador (entre atributos o atributo y constante), arrojan booleano (true o false) de resultado:
 
   * **NOT**: El operador NOT denota una salida verdadera si la entrada es falsa,
-    y una salida falsa si la entrada es verdadera.
+    y una salida falsa si la entrada es verdadera. Su notación en algebra es: 
+
+	.. math::
+		¬ \text{C1}
+
   * **AND**: El operador AND denota una salida verdadera si y sólo si sus entradas
-    son verdaderas.
+    son verdaderas. Si C1 se cumple y C2 también se cumple, la salida seré verdadera.
+    La notación en algebra de un AND es:  
+	.. math::
+		\text{C1} \wedge \text{C2}
+    
   * **OR**: El operador OR denota una salida verdadera si hay alguna de las entradas
-    (o ambas) verdaderas.
+    (o ambas) verdaderas. Si C1 y/o C2 es o son verdaderas, la expresión será verdadera.
+    La notación en algebra de un OR es: 
+	.. math:: 
+		\text{C1} \vee \text{C2}
 
 **Notación en Álgebra Relacional**
 
 Para representar SELECT en álgebra relacional se utiliza la letra griega sigma
 :math:`\sigma`. Por lo tanto, si utilizamos la notación
 :math:`\sigma_{c} \ \boldsymbol{R}` queremos decir que se aplica la condición
-**C** a cada tupla de **R**. Si la condición es Verdad (true),
+`C` a cada tupla de `R`. Si la condición es Verdad (true),
 dicha tupla pertenecerá al resultado y si es Falsa (false), dicha tupla no será seleccionada.
-El esquema de la relación resultante es el mismo esquema R, se muestran los
-atributos en el mismo orden que se usan en la tabla R.
+El esquema de la relación resultante es el mismo esquema `R`, se muestran los
+atributos en el mismo orden que se usan en la tabla `R`.
 
 Ejemplo 1
 ^^^^^^^^^
@@ -105,7 +155,7 @@ Ejemplo 1
 
    \begin{array}{|c|c|c|c|}
     \hline
-    \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años_trabajados(AT)}\\
+    \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados(AT)}\\
     \hline
     123 & \text{Leon} & 39 & 15 \\
     \hline
@@ -125,8 +175,12 @@ mayor a 30 años:
 .. math::
      \sigma_{\text{edad>30}} \hspace{0.2cm} \text{Ingenieros}
 
+.. image:: ../../../sql-course/src/select2.png
 
-Así quedaría la tabla:
+En la imagen se ve que selecciona solo las filas que cumplen con la condición que se pedía 
+(tener una edad mayor a 30 años), la tupla de "Josefa" queda fuera de la selección por no 
+cumplir la condición (pues 25 < 30).
+De esta forma la tabla queda:
 
 .. math::
 
@@ -134,7 +188,7 @@ Así quedaría la tabla:
 
    \begin{array}{|c|c|c|c|}
     \hline
-    \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años_trabajados(AT)}\\
+    \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados(AT)}\\
     \hline
     123 & \text{Leon} & 39 & 15 \\
     \hline
@@ -153,7 +207,15 @@ y que lleven menos de 16 años trabajando:
 **Respuesta**
 
 .. math::
-    \sigma_{(\text{edad > 30 AND AT < 16})}  \ \text{Ingenieros}
+    \sigma_{(\text{edad} >30 \wedge AT <16)}  \ \text{Ingenieros}
+
+.. image:: ../../../sql-course/src/select3.png
+
+Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. 
+Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla 
+de "Josefa" queda fuera de la selección. Luego de las tuplas que quedan se evalúa la 
+segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no 
+tengan x en alguna de las condiciones. 
 
 Así finalmente quedaría la tabla:
 
@@ -163,7 +225,7 @@ Así finalmente quedaría la tabla:
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años_trabajados(AT)} \\
+  \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados(AT)} \\
   \hline
   123 & \text{Leon} & 39 & 15 \\
   \hline
@@ -198,7 +260,7 @@ Ejemplo 1
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años_trabajados(AT)} \\
+  \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados(AT)} \\
   \hline
   123 & \text{Leon} & 39 & 15 \\
   \hline
@@ -210,12 +272,12 @@ Ejemplo 1
   \hline
  \end{array}
 
-Escoger columnas de ID y nombre de la tabla de ingenieros:
+Escoger columnas de id y nombre de la tabla de ingenieros:
 
 **Respuesta**
 
 .. math::
-           \pi \hspace{0.2cm}_{(\text{ID,Nombre})} \hspace{0.3cm} \text{Ingenieros}
+           \pi \hspace{0.2cm}_{(\text{id,nombre})} \hspace{0.3cm} \text{Ingenieros}
 
 La tabla finalmente queda como:
 
@@ -225,7 +287,7 @@ La tabla finalmente queda como:
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} \\
+  \textbf{id} & \textbf{nombre} \\
   \hline
   123 & \text{Leon} \\
   \hline
@@ -240,14 +302,17 @@ La tabla finalmente queda como:
 Ejemplo 2
 ^^^^^^^^^
 
-Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
+Seleccionar id y nombre de los Ingenieros que tienen más de 30 años.
 
 **Respuesta**
 
 .. math::
-       \pi \hspace{0.2cm} _{(\text{ID,Nombre})} (\sigma_{\text{edad>30}} \hspace{0.3cm} \text{Ingenieros})
+       \pi \hspace{0.2cm} _{(\text{id,nombre})} (\sigma_{\text{edad>30}} \hspace{0.3cm} \text{Ingenieros})
 
-Finalmente la tabla queda de la siguiente manera:
+
+Se aprecia que las tuplas que no cumplan con la condición de selección quedan fuera del resultado, 
+luego se realiza un PROJECT sobre las filas del resultado, separando solo las columnas que
+contienen los atributos id y nombre. Finalmente la tabla queda de la siguiente manera:
 
 .. math::
 
@@ -255,7 +320,7 @@ Finalmente la tabla queda de la siguiente manera:
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} \\
+  \textbf{id} & \textbf{nombre} \\
   \hline
   123 & \text{Leon} \\
   \hline
@@ -299,7 +364,7 @@ para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüe
 un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para
 el atributo de S.
 
-Cabe mencionar que:
+Cabe mencionar solo por notación que:
 
 .. math::
     \text{R} \times \text{S} \neq  \text{S} \times \text{R}
@@ -307,80 +372,16 @@ Cabe mencionar que:
 
 Ejemplo 1
 ^^^^^^^^^
+.. image:: ../../../sql-course/src/CROSS-PRODUCT1.png
 
-.. math::
-
- \textbf{R} \\
-
- \begin{array}{|c|c|c|}
-  \hline
-  \textbf{A} & \textbf{B} & \textbf{D} \\
-  \hline
-  1 & 2 & 3 \\
-  \hline
-  4 & 5 & 6 \\
-  \hline
- \end{array}
-
- \textbf{S} \\
-
- \begin{array}{|c|c|}
-  \hline
-  \textbf{A} & \textbf{C} \\
-  \hline
-  7 & 5 \\
-  \hline
-  9 & 2 \\
-  \hline
-  3 & 4 \\
-  \hline
- \end{array}
 
 Con las tablas dadas realice el Cross-product de R con S:
 
-.. math::
- \textbf{R} \times \textbf{S} \\
-
-   \begin{array}{|c|c|c|c|c|}
-    \hline
-    \textbf{R.A} & \textbf{B} & \textbf{D} & \textbf{S.A} & \textbf{C} \\
-    \hline
-     1 & 2 & 3 & 7 & 5 \\
-    \hline
-     1 & 2 & 3 & 9 & 2 \\
-    \hline
-     1 & 2 & 3 & 3 & 4 \\
-    \hline
-     4 & 5 & 6 & 7 & 5 \\
-    \hline
-     4 & 5 & 6 & 3 & 4 \\
-    \hline
-     4 & 5 & 6 & 9 & 2 \\
-    \hline
-  \end{array}
+.. image:: ../../../sql-course/src/CROSS-PRODUCT2.png
 
 Con las tablas dadas realice el Cross-product de S con R:
 
-.. math::
- \textbf{S} \times \textbf{R} \\
-
- \begin{array}{|c|c|c|c|c|}
-  \hline
-  \textbf{S.A} & \textbf{C} & \textbf{R.A} & \textbf{B} & \textbf{D} \\
-  \hline
-  7 & 5 & 1 & 2 & 3 \\
-  \hline
-  7 & 5 & 4 & 5 & 6 \\
-  \hline
-  9 & 2 & 1 & 2 & 3 \\
-  \hline
-  9 & 2 & 4 & 5 & 6 \\
-  \hline
-  3 & 4 & 1 & 2 & 3 \\
-  \hline
-  3 & 4 & 4 & 5 & 6 \\
-  \hline
- \end{array}
+.. image:: ../../../sql-course/src/CROSS-PRODUCT3.png
 
 Como se mencionó anteriormente, y como se aprecia en el ejemplo "Cross-product" de S con R
 es distinto a "Cross-product de R con S"
@@ -396,7 +397,7 @@ Dada las siguientes tablas:
 
  \begin{array}{|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{D#} \\
+  \textbf{id} & \textbf{nombre} & \textbf{d#} \\
   \hline
   123 & \text{Leon} & 39 \\
   \hline
@@ -410,7 +411,7 @@ Dada las siguientes tablas:
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{Proyecto} & \textbf{Duracion} \\
+  \textbf{proyecto} & \textbf{duracion} \\
   \hline
   \text{ACU0034} & 300 \\
   \hline
@@ -432,7 +433,7 @@ Escriba la tabla resultante al realizar la siguiente operación:
 
  \begin{array}{|c|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{D#} & \textbf{Proyecto} & \textbf{Duracion} \\
+  \textbf{id} & \textbf{nombre} & \textbf{d#} & \textbf{proyecto} & \textbf{duracion} \\
   \hline
   123 & \text{Leon} & 39 & \text{ACU0034} & 300 \\
   \hline
@@ -491,7 +492,7 @@ Ejemplo 1
 
  \begin{array}{|c|c|c|}
   \hline
-  \textbf{A} & \textbf{B} & \textbf{C} \\
+  \textbf{a} & \textbf{b} & \textbf{c} \\
   \hline
   1 & 2 & 3 \\
   \hline
@@ -503,7 +504,7 @@ Ejemplo 1
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{C} & \textbf{D} \\
+  \textbf{c} & \textbf{d} \\
   \hline
   7 & 5 \\
   \hline
@@ -515,12 +516,15 @@ Ejemplo 1
 
 Con las tablas dadas realice el NaturalJoin de R y S:
 
+.. image:: ../../../sql-course/src/NATURALJOIN.png
+    :align: center
+
 .. math::
  \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} \\
+  \textbf{a} & \textbf{b} & \textbf{c} & \textbf{d} \\
   \hline
   1 & 2 & 3 & 4 \\
   \hline
@@ -539,7 +543,7 @@ Realizar NATURALJOIN a las siguientes tablas:
 
  \begin{array}{|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{D#} \\
+  \textbf{id} & \textbf{nombre} & \textbf{d#} \\
   \hline
   123 & \text{Leon} & 39 \\
   \hline
@@ -555,7 +559,7 @@ Realizar NATURALJOIN a las siguientes tablas:
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{D#} & \textbf{Proyecto}\\
+  \textbf{d#} & \textbf{proyecto}\\
   \hline
   39 & \text{ACU0034} \\
   \hline
@@ -571,7 +575,7 @@ Realizar NATURALJOIN a las siguientes tablas:
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{D#} & \textbf{Proyecto} \\
+  \textbf{id} & \textbf{nombre} & \textbf{d#} & \textbf{proyecto} \\
   \hline
   123 & \text{Leon} & 39 & \text{ACU0034} \\
   \hline
@@ -629,7 +633,7 @@ Ejemplo 1
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} \\
+  \textbf{a} & \textbf{b} & \textbf{c} & \textbf{d} \\
   \hline
   1 & 3 & 5 & 7 \\
   \hline
@@ -643,7 +647,7 @@ Ejemplo 1
 
  \begin{array}{|c|c|c|}
   \hline
-  \textbf{A} & \textbf{C} & \textbf{E} \\
+  \textbf{a} & \textbf{c} & \textbf{e} \\
   \hline
   1 & 5 & 2 \\
   \hline
@@ -662,13 +666,21 @@ Escriba la tabla resultante al realizar la siguiente operación:
 
 **Respuesta**
 
+.. image:: ../../../sql-course/src/THETAJOIN1.png
+    :align: center
+
+.. image:: ../../../sql-course/src/THETAJOIN2.png
+    :align: center
+
+.. image:: ../../../sql-course/src/THETAJOIN3.png
+    :align: center
 .. math::
 
  \textbf{S} \\
 
  \begin{array}{|c|c|c|c|c|c|c|}
   \hline
-  \textbf{R.A} & \textbf{B} & \textbf{R.C} & \textbf{D} & \textbf{S.A} & \textbf{S.C} & \textbf{E} \\
+  \textbf{R.a} & \textbf{b} & \textbf{R.c} & \textbf{d} & \textbf{S.a} & \textbf{S.c} & \textbf{e} \\
   \hline
   3 & 2 & 9 & 1 & 1 & 5 & 2 \\
   \hline
@@ -685,14 +697,18 @@ Ejemplo 2
 
 Con el esquema conceptual siguiente, hallar los nombres de los directores de cada departamento:
 
-Dpto (NumDpto, Nombre, NIFDirector, Fecha_inicio)
+Dpto (numDpto, nombre, nIFDirector, fechaInicio)
 
-Empleado (NIF, Nombre, Direccion, Salario, Dpto, NIFSupervisor)
+Empleado (nIF, nombre, direccion, salario, dpto, nIFSupervisor)
 
 **Respuesta**
 
 .. math::
+<<<<<<< HEAD
+    \pi_{(dpto.nombre,empleado.nombre)} (dpto \rhd \hspace{-0.1cm} \lhd_{nIFDirector=NIF} \mbox{empleado})
+=======
     \pi_{(\text{Dpto.Nombre,Empleado.Nombre})} (\text{Dpto} \rhd \hspace{-0.1cm} \lhd_{\text{NIFDirector=NIF}} \text{Empleado})
+>>>>>>> 2186a9706809593eeb35b75276e9bbb1dc621c30
 
 • Tuplas con Null en los “Atributos de la Reunión”, no se incluyen en el resultado.
 

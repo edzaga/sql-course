@@ -10,9 +10,7 @@ UNIÓN
 *****
 
 En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos `A` y `B` es el conjunto que contiene todos los elementos de `A` y de `B`.
-
-.. math::
-    A \cup B = B \cup A\\
+El símbolo `\cup` es el utilizado para representar **UNIÓN**, `A \cup B = B \cup A`, Se puede decir entonces que el operador **UNIÓN** es conmutativo. Cabe recordar que una operación es conmutativa cuando el resultado de la operación es el mismo, cualquiera que sea el orden de los elementos con los que se opera.  
 
 .. image:: ../../../sql-course/src/union.png
    :align: center
@@ -25,11 +23,7 @@ De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que 
 
     R \cup S \\
 
-.. math::
-
-    \text{ Si se realiza } R \cup S \text{ es lo mismo que }  S \cup R \text{ , es decir se obtiene el mismo resultado.} \\
-
-Se puede decir entonces que el operador **UNIÓN** es conmutativo. Cabe recordar que una operación es conmutativa cuando el resultado de la operación es el mismo, cualquiera que sea el orden de los elementos con los que se opera.
+Si se realiza `R \cup S` es lo mismo que  `S \cup R` , es decir se obtiene el mismo resultado. Esto debido a la propiedad de conmutatividad derivada de la álgebra de conjuntos.
 
 
 Ejemplo 
@@ -100,12 +94,13 @@ DIFERENCIA
 
 Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos `A` y `B` es el conjunto que contiene todos los elementos de `A` que no pertenecen a `B`.
 
-A-B
+.. math:: A-B
 
 .. image:: ../../../sql-course/src/a-b.png
    :align: center
 
-B-A
+.. math::
+	B-A
 
 .. image:: ../../../sql-course/src/b-a.png
    :align: center
