@@ -317,10 +317,15 @@ se aprecia que la salida contiene los nombres de ambos empleados.
 Intersección
 ============
 
-Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT.
-La diferencia consiste en que UNION actua como un OR, e INTERSECT
-lo hace como AND. Es decir que INTERSECT devuelve los valores repetidos.
-Consideremos el sigueinte esquema::
+Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT. La diferencia consiste en que UNION actua como un OR, e INTERSECT
+lo hace como AND.
+
+.. note::
+   En la lectura 7, se explican las tablas de verdad de OR, AND y NOT
+
+Cabe destacar que INTERSECT devuelve los valores repetidos. Consideremos el sigueinte esquema
+
+.. code-block:: sql
 
         Table Store_Information
         store_name      Sales   Date
@@ -337,41 +342,97 @@ Consideremos el sigueinte esquema::
         Jan-12-1999     $750
 
 
-Al realizar la consulta::
+Al realizar la consulta 
+
+.. code-block:: sql
 
         SELECT Date FROM Store_Information
         INTERSECT
-        SELECT Date FROM Internet_Sales
+        SELECT Date FROM Internet_Sales;
 
-Su resultado esperado es::
+Su resultado esperado es
+
+.. code-block:: sql
 
         Date
         Jan-07-1999
 
+.. note::
 
-Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
+        Sólo se intesectan las columnas del mismo tipo de datos, ojo con eso.
+
+Los pasos necesarios para la creación de esta situación son:
+
+.. code-block:: sql
+
+    CREATE TABLE Store_Information
+        (
+     id int auto_increment primary key, 
+     store_name varchar(20), 
+     Sales integer,
+     Date date
+    );
+
+        
+
+    CREATE TABLE Internet_Sales
+        (
+     id int auto_increment primary key, 
+     Date date,
+     Sales integer
+    );
+
+
+y los pasos necesarios para llenar estas tablas son:
+
+.. code-block:: sql
+
+        INSERT INTO Store_Information
+        (store_name, Sales, Date)
+        VALUES
+        ('Los Angeles', 1500, '1999-01-05'),
+        ('San Diego', 250, '1999-01-07'),
+        ('Los Angeles', 300, '1999-01-08');
+        
+
+        INSERT INTO Internet_Sales
+        (Date, Sales)
+        VALUES
+        ('1999-01-07', 250),
+        ('1999-01-10', 535),
+        ('1999-01-11', 320),
+        ('1999-01-12', 750);
+
+
+
+Duda: agrgar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
 pero que puede escribirse como otra consulta (agregarla)
 
 =========
 Excepción
 =========
 
-Similar a los operadores anteriores, su estructura se compone de dos o mas
-sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
+Similar a los operadores anteriores, su estructura se compone de dos o más sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
 en el álgebra relacional.
 
-Utilizando el esquema del ejemplo anterior, y realizando la siguiente consulta::
+Utilizando la situación ya descrita en el ejemplo anterior, y realizando la siguiente consulta
+
+.. code-block:: sql
 
         SELECT Date FROM Store_Information
         EXCEPT
-        SELECT Date FROM Internet_Sales
+        SELECT Date FROM Internet_Sales;
 
-Su resultado esperado es::
+Su resultado esperado es
+
+.. code-block:: sql
 
         Date
         Jan-10-1999
         Jan-11-1999
         Jan-12-1999
+
+es decir los resultados no repetidos en ambas columnas.
 
 Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
 pero que puede escribirse como otra consulta (agregarla)
