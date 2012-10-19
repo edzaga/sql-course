@@ -243,9 +243,6 @@ a través de multiples campos. En este caso todos los campos estarían ordenados
 forma ascendente (ASC).
 
 
-Ejercicios
-************
-(quedan pendientes por ahora)
 
 
 
