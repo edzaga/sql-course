@@ -15,6 +15,7 @@ En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas qu
     A \cup B = B \cup A\\
 
 .. image:: ../../../sql-course/src/union.png
+   :align: center
 
 De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas. `R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).
 
@@ -102,10 +103,12 @@ Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conju
 A-B
 
 .. image:: ../../../sql-course/src/a-b.png
+   :align: center
 
 B-A
 
 .. image:: ../../../sql-course/src/b-a.png
+   :align: center
 
 Como se aprecia en las imágenes la operación **DIFERENCIA**, en conjuntos, no es conmutativa, al igual que la resta o sustracción, operador aprendido en aritmética básica. Es decir, si se cambia el orden de los conjuntos a los  que se aplica la operación **DIFERENCIA**, se obtendrán resultados distintos. Por lo tanto:
 
@@ -170,6 +173,7 @@ En  álgebra de conjuntos la intersección de dos conjuntos `A` y `B` es el conj
     A \cap B
 
 .. image:: ../../../sql-course/src/inter.png
+   :align: center
 
 De forma homóloga en álgebra relacional INTERSECTION define una relación que contiene las tuplas que están tanto en la relación `R` como en `S`. `R` y `S` deben ser unión-compatible.
 
