@@ -176,6 +176,7 @@ mayor a 30 años:
      \sigma_{\text{edad>30}} \hspace{0.2cm} \text{Ingenieros}
 
 .. image:: ../../../sql-course/src/select2.png
+   :align: center
 
 En la imagen se ve que selecciona solo las filas que cumplen con la condición que se pedía 
 (tener una edad mayor a 30 años), la tupla de "Josefa" queda fuera de la selección por no 
@@ -210,6 +211,7 @@ y que lleven menos de 16 años trabajando:
     \sigma_{(\text{edad} >30 \wedge AT <16)}  \ \text{Ingenieros}
 
 .. image:: ../../../sql-course/src/select3.png
+      :align: center
 
 Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. 
 Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla 
@@ -308,8 +310,7 @@ Seleccionar id y nombre de los Ingenieros que tienen más de 30 años.
 
 .. math::
        \pi \hspace{0.2cm} _{(\text{id,nombre})} (\sigma_{\text{edad>30}} \hspace{0.3cm} \text{Ingenieros})
-
-
+       
 Se aprecia que las tuplas que no cumplan con la condición de selección quedan fuera del resultado, 
 luego se realiza un PROJECT sobre las filas del resultado, separando solo las columnas que
 contienen los atributos id y nombre. Finalmente la tabla queda de la siguiente manera:
@@ -338,12 +339,12 @@ En teoría de conjuntos, el producto cartesiano de dos conjuntos es una operaci�
 que resulta en otro conjunto cuyos elementos son todos los pares ordenados que
 pueden formarse tomando el primer elemento del par del primer conjunto,
 y el segundo elemento del segundo conjunto. En el Álgebra Relacional se mantiene
-esta idea con la diferencia que R y S son relaciones, entonces los miembros de R
-y S son tuplas, que generalmente consisten de más de un componente,
-cuyo resultado de la vinculación de una tupla de R con una tupla de S es una tupla
+esta idea con la diferencia que `R` y `S` son relaciones, entonces los miembros de `R`
+y `S` son tuplas, que generalmente consisten de más de un componente,
+cuyo resultado de la vinculación de una tupla de `R` con una tupla de `S` es una tupla
 más larga, con un componente para cada uno de los componentes de las tuplas
 constituyentes. Es decir Cross-product define una relación que es la concatenación
-de cada una de las filas de la relación R con cada una de las filas de la relación S.
+de cada una de las filas de la relación `R` con cada una de las filas de la relación `S`.
 
 
 **Notación en Álgebra Relacional**
@@ -354,17 +355,17 @@ terminología:
 .. math::
     \text{R} \times \text{S}
 
-Por convención para la sentencia anterior, los componentes de R preceden a los
-componentes de S en el orden de atributos para el resultado, creando así una nueva
-relación con todas las combinaciones posibles de tuplas de R y S.
+Por convención para la sentencia anterior, los componentes de `R` preceden a los
+componentes de `S` en el orden de atributos para el resultado, creando así una nueva
+relación con todas las combinaciones posibles de tuplas de `R` y `S`.
 El número de tuplas de la nueva relación resultante es la multiplicación de la cantidad
-de tuplas de R por la cantidad de tuplas que tenga S (producto de ambos).
-Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos nombres
+de tuplas de `R` por la cantidad de tuplas que tenga `S` (producto de ambos).
+Si `R` y `S` tienen algunos atributos en común, entonces se debe inventar nuevos nombres
 para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüedad de
-un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para
-el atributo de S.
+un atributo `a`, que se encuentra en `R` y `S`, se usa `R.a` para el atributo de `R` y `S.a` para
+el atributo de `S`.
 
-Cabe mencionar solo por notación que:
+Cabe mencionar que por notación que:
 
 .. math::
     \text{R} \times \text{S} \neq  \text{S} \times \text{R}
@@ -373,18 +374,19 @@ Cabe mencionar solo por notación que:
 Ejemplo 1
 ^^^^^^^^^
 .. image:: ../../../sql-course/src/CROSS-PRODUCT1.png
+   :align: center
 
-
-Con las tablas dadas realice el Cross-product de R con S:
+Con las tablas dadas realice el Cross-product de `R` con `S`:
 
 .. image:: ../../../sql-course/src/CROSS-PRODUCT2.png
+   :align: center
 
-Con las tablas dadas realice el Cross-product de S con R:
+Con azul se resaltan las tuplas que provienen de `R` que preseden y se mezclan con las de `S` resaltadas en verde.
+
+Con las tablas dadas realice el Cross-product de `S` con `R`:
 
 .. image:: ../../../sql-course/src/CROSS-PRODUCT3.png
-
-Como se mencionó anteriormente, y como se aprecia en el ejemplo "Cross-product" de S con R
-es distinto a "Cross-product de R con S"
+   :align: center
 
 Ejemplo 2
 ^^^^^^^^^
@@ -514,10 +516,12 @@ Ejemplo 1
   \hline
  \end{array}
 
-Con las tablas dadas realice el NaturalJoin de R y S:
+Con las tablas dadas realice el NaturalJoin de `R` y `S`:
 
 .. image:: ../../../sql-course/src/NATURALJOIN.png
     :align: center
+
+El atributo que tienen en común `R` y `S` es el atributo `C`, entonces las tuplas se unen donde `C` tiene el mismo valor en `R` y `S`
 
 .. math::
  \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\
@@ -669,11 +673,22 @@ Escriba la tabla resultante al realizar la siguiente operación:
 .. image:: ../../../sql-course/src/THETAJOIN1.png
     :align: center
 
+Se compara el atributo `A` de la primera fila de `R` con cada uno de los valores del atributo 
+`E` de la tabla `S`. En este caso ninguna de las comparaciones devuelve el valor verdadero (true). 
+
 .. image:: ../../../sql-course/src/THETAJOIN2.png
     :align: center
 
+Luego se compara el atributo `A` de la segunda fila de `R` con cada uno de los valores del atributo 
+`E` de la tabla `S`. En este caso 2 comparaciones devuelven el valor verdadero (true), por lo que en 
+la relación de resultado quedará la segunda fila de `R` mezclada con la primera y tercera fila de `S`. 
+
 .. image:: ../../../sql-course/src/THETAJOIN3.png
     :align: center
+
+De igual forma ahora se compara el valor de `A` de la tercera tupla de `R`, nuevamente 2 tuplas de `S` 
+cumplen con la condición.
+
 .. math::
 
  \textbf{S} \\
@@ -704,11 +719,7 @@ Empleado (nIF, nombre, direccion, salario, dpto, nIFSupervisor)
 **Respuesta**
 
 .. math::
-<<<<<<< HEAD
-    \pi_{(dpto.nombre,empleado.nombre)} (dpto \rhd \hspace{-0.1cm} \lhd_{nIFDirector=NIF} \mbox{empleado})
-=======
-    \pi_{(\text{Dpto.Nombre,Empleado.Nombre})} (\text{Dpto} \rhd \hspace{-0.1cm} \lhd_{\text{NIFDirector=NIF}} \text{Empleado})
->>>>>>> 2186a9706809593eeb35b75276e9bbb1dc621c30
+    \pi_{(\text{dpto.nombre,empleado.nombre})} (\text{dpto} \rhd \hspace{-0.1cm} \lhd_{\text{nIFDirector=NIF}} \text{empleado})
 
 • Tuplas con Null en los “Atributos de la Reunión”, no se incluyen en el resultado.
 
