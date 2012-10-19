@@ -64,12 +64,39 @@ es posible realizarla como
 
 En cualquier caso la salida será la misma.
 
-Para poder probar esto, el lector puede utilizar los  siguientes valores y realizar modificaciones
+Como se aprecia, es posible asignar valores variables a las relaciones "R" y utilizar dichas variables tanto en la lista "L" como en la 
+condición "C". El lector se preguntará cuál es la utilidad de esto, más allá de escribir menos (dependiendo del nombre de la variable
+utilizada); y la respuesta corresponde a los casos en que se deben comparar múltiples instancias de la misma relación, como se verá a más 
+adelante en esta misma lectura.
+
+.. note::
+   El por qué de la nomenclatura "L", "R" y "C" y su significado están explicados en la lectura 7
+
+
+Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde más a variable en la consulta).
+La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
+
+
+Se invita al lector alplicado a realizar pruebas, se dejan las siguientes lineas de código a su disposición, con el fin de
+probar que efectivamente si se realizan las consultas mencionadas arriba, el resultado es el mismo. Cabe destacar que 
+
+.. code-block:: sql
+
+        INSERT INTO "R"
+        (Columna1, Columna2,..., ColumnaN)
+        VALUES
+        (Valor Columna1Fila1, Valor Columna2Fila1,..., Valor ColumnaNFila1),
+        (Valor Columna2Fila1, Valor Columna2Fila2,..., Valor ColumnaNFila2),
+        ...
+        (Valor Columna1FilaN, Valor Columna2FilaN,..., Valor ColumnaNFilaN),
+
+corresponde a la sentencia para ingresar datos a una tabla en particular, conociendo su estructura y tipos de datos.
+El lector puede utilizar los  siguientes valores y realizar modificaciones.
 
 .. code-block:: sql
 
         INSERT INTO College
-        cName, state, enrollment)
+        (cName, state, enrollment)
         VALUES
         ('Stanford', 'stanford', 'lalalla'),
         ('Berkeley', 'miami', 'mayor'),
@@ -77,7 +104,7 @@ Para poder probar esto, el lector puede utilizar los  siguientes valores y reali
 
 
         INSERT INTO Student
-        sName, GPA, sizeHS)
+        (sName, GPA, sizeHS)
         VALUES
         ('lala', 30, 'hjkljk'),
         ('lolo', 60, 'asads'),
@@ -85,16 +112,11 @@ Para poder probar esto, el lector puede utilizar los  siguientes valores y reali
 
 
         INSERT INTO Apply
-        (cName, major, decision)
-        VALUES
+        (cName, major, decision)E        VALUES
         ('Stanford', 'phd', 'zxczcx'),
         ('Berkeley', 'pregrado', 'sdfsd'),
         ('MIT', 'ingenieria', 'rtert');
 
-
-
-Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde más a variable en la consulta).
-La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
 
 ============================
 Cuidado con los duplicados!!
