@@ -122,52 +122,31 @@ El lector puede utilizar los  siguientes valores y realizar modificaciones.
 Cuidado con los duplicados!!
 ============================
 
-Si el lector se fija en la situación descrita, los nombres de algunos atributos de diferentes relaciones y/o tablas  se repiten, lo cual
-podría plantear la interrogante ¿a que tabla se refiere el atributo en cuestión?. Para resolver este pequeño gran problema, se precede al
-nombre del atributo con el nombre de la tabla y un punto, es decir, 
-
-
-.. code-block:: sql
-        
-        "algo_asi."
-
-Concretamente en el ejemplo anterior, el alcance de nombres lo protagonizan sID de la tabla Student y sID de la tabla Apply. 
-La diferencia se realiza a través de
-
-.. code-block:: sql
+Si el lector se fija en el esquema, hay ciertos atributos cuyos nombres se repiten
+en las diferentes tablas. Tal es el caso de
+**cName y sID**. En las consultas se aprecia que la diferencia se realiza a través de::
 
         Student.sID ó S.sID
         Apply.sID ó A.sID
 
+Es decir, se antepone el nombre de la tabla o su respectiva variable definida en el FROM.
 
-En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo, 
-se buscan todos los pares de estudiantes con el mismo GPA
-
-.. code-block:: sql
+En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan
+dos instancias de una tabla. En el siguiente ejemplo, se buscan
+todos los pares de estudiantes con el mismo GPA::
 
         SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
         FROM Student S1, Student S2
-        WHERE S1.GPA = S2.GPA;
+        WHERE S1.GPA = S2.GPA
 
-Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrá uno o varios duplicados; por ejemplo, 
-consideremos 3 estudantes
+Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla),
+el resultado contendrá uno o varios duplicados; por ejemplo, consideremos
+4 estudantes::
 
-.. math::
-
- \begin{array}{|c|c|c|}
-  \hline
-  \textbf{sName} & \textbf{sID} & \textbf{GPA} \\
-  \hline
-  Amy         & 123      &  4.0   \\
-  Doris       & 456      &  4.0  \\
-  Edward      & 567      &  4.1  \\ 
-  \hline  
- \end{array}
-
-.. sName   sID     GPA
-   Amy     123     4.0
-   Doris   456     4.0
-   Edward  567     4.1
+        sName   sID     GPA
+        Amy     123     4.0
+        Doris   456     4.0
+        Edward  567     4.1
 
 Los pares de estudiantes serán::
 
@@ -178,9 +157,7 @@ pero también::
          Amy    -       Amy
          Doris  -       Doris
 
-lo cual se puede evitar modificando la cosulta
-
-.. code-block:: sql
+lo cual se puede evitar modificando la cosulta::
 
         SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
         FROM Student S1, Student S2
@@ -203,10 +180,9 @@ Los Set Operators son 3:
 Unión
 =====
 
-El operador "UNION", permite combinar el resultado de dos o más sentencias SELECT. Es necesario que estas tengan el mismo número de columnas, 
-y que, además tengan los mismos tipos de datos, por ejemplo:
-
-.. code-block:: sql
+El operador "UNION", permite combinar el resultado de dos o más sentencias SELECT.
+Es necesario que estas tengan el mismo número de columnas, y que
+éstas tengan los mismos tipos de datos, por ejemplo::
 
      Employees_Norway":
         E_ID    E_Name
@@ -222,56 +198,14 @@ y que, además tengan los mismos tipos de datos, por ejemplo:
         03      Svendson, Stephen
         04      Scott, Stephen
 
-Que se puede crear mediante la creación de las tablas
-
-.. code-block:: sql
-
-    CREATE TABLE Employees_Norway
-        (
-     E_ID int auto_increment primary key, 
-     E_Name varchar(50)
-    );
-
-    CREATE TABLE Employees_USA
-        (
-     E_ID int auto_increment primary key, 
-     E_Name varchar(50) 
-    );
-
-
-
-y el relleno con los datos mostrados en el ejemplo
-
-.. code-block:: sql
-
-        INSERT INTO Employees_Norway
-        (E_Name)
-        VALUES
-        ('Hansen, Ola'),
-        ('Svendson, Tove'),
-        ('Svendson, Stephen'),
-        ('Pettersen, Kari');
-        
-        INSERT INTO Employees_USA
-        (E_Name)
-        VALUES
-        ('Turner, Sally'),
-        ('Kent, Clark'),
-        ('Svendson, Stephen'),
-        ('Scott, Stephen');
-
-El resultado de la consulta
-
-.. code-block:: sql
+El resultado de la consulta::
 
         SELECT E_Name FROM Employees_Norway
         UNION
-        SELECT E_Name FROM Employees_USA;
+        SELECT E_Name FROM Employees_USA
 
 
-es
-
-.. code-block:: sql
+es::
 
         E_Name
         Hansen, Ola
@@ -284,19 +218,15 @@ es
 
 
 Ojo, existen dos empleados con el mismo nombre en ambas tablas. Sin embargo en la
-salida sólo se nombra uno. Para evitar esto, se utliza "UNION ALL"
-
-.. code-block:: sql
+salida sólo se nombra uno. Para evitar esto, se utliza "UNION ALL"::
 
         SELECT E_Name as name FROM Employees_Norway
         UNION ALL
-        SELECT E_Name as name FROM Employees_USA;
+        SELECT E_Name as name FROM Employees_USA
 
-Utilizando "as" es posible cambiar el nombre de la columna resultado
+Utilizando "as" es posible cambiar el nombre de la columna resultado::
 
-.. code-block:: sql
-
-        NAME
+        name
         Hansen, Ola
         Svendson, Tove
         Svendson, Stephen
@@ -306,11 +236,6 @@ Utilizando "as" es posible cambiar el nombre de la columna resultado
         Svendson, Stephen
         Scott, Stephen
 
-se aprecia que la salida contiene los nombres de ambos empleados.
-
-.. note::
-   En el ejemplo anterior, se utilizaba "as name" en ambos SELECT. Como hecho curioso, si se utilizan diferentes nombres junto al "as"
-   como por ejemplo, "as name" y "as lala", queda como nombre de la tabla UNION el primero en ser declarado.
 
 
 ============
