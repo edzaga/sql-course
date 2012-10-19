@@ -59,6 +59,7 @@ propiedades. Por ejemplo: la entidad alumnos, tendrá los atributos nombre,
 #pasaporte, nacionalidad, fecha de nacimiento, etc.
 
 .. image::../../../sql-course/src/entidad.jpg
+
 .. image:: ../../../sql-course/src/atributo.jpg
 
 Los atributos también reciben el nombre de *columnas* en la terminología de BD.
