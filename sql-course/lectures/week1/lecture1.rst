@@ -59,11 +59,6 @@ Estas entidades están compuestas por varios *atributos*, que vienen a ser sus
 propiedades. Por ejemplo: la entidad alumnos, tendrá los atributos nombre,
 #pasaporte, nacionalidad, fecha de nacimiento, etc.
 
-<<<<<<< HEAD
-=======
-.. image::../../../sql-course/src/entidad.jpg
-
->>>>>>> 5d1ad910072b3509d15a95d65ab63db0dc67b84c
 .. image:: ../../../sql-course/src/atributo.jpg
    :align: center
 
