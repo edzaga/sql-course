@@ -50,6 +50,11 @@ UNIÓN
 
 En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos A y B es el conjunto que contiene todos los elementos de A y de B.
 
+.. math::
+    A \cup B = B \cup A\\
+
+.. image:: ../../../sql-course/src/union.png
+
 De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas. `R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).
 
 **Notación en álgebra relacional**
@@ -60,16 +65,16 @@ De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que 
 
 .. math::
 
-    \textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado} \\
+    \textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado.} \\
+
+Se puede decir entonces que el operador `UNIÓN` es conmutativo. Cabe recordar que una operación es conmutativa cuando el resultado de la operación es el mismo, cualquiera que sea el orden de los elementos con los que se opera.
 
 Ejemplo 1
 ^^^^^^^^^
 Dadas las siguientes relaciones:
 
-
-**Tabla Ingenieros**
-
 .. math::
+ \textbf{Tabla Ingenieros} \\
 
    \begin{array}{|c|c|c|}
         \hline
@@ -85,9 +90,9 @@ Dadas las siguientes relaciones:
         \hline
    \end{array}
 
-**Tabla Jefes**
-
 .. math::
+ \textbf{Tabla Jefes} \\
+
       \begin{array}{|c|c|c|}
         \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
@@ -98,12 +103,11 @@ Dadas las siguientes relaciones:
         \hline
       \end{array}
 
-Aplicar el operador Unión:
-
-Ingenieros ``U`` Jefes
-
+Aplicar el operador `UNIÓN`:
 
 .. math::
+
+ \textbf{Tabla Ingenieros} \cup  \textbf{Jefes}  \\
 
    \begin{array}{|c|c|c|}
         \hline
@@ -121,12 +125,32 @@ Ingenieros ``U`` Jefes
         \hline
    \end{array}
 
-Como se mencionó anteriormente realizar la operación Jefes ``U`` Ingenieros daría como resultado la misma tabla anterior.
+Como se mencionó anteriormente realizar la operación: 
+
+.. math::
+	\textrm{Jefes} \cup \textrm{Ingenieros}
+
+Daría como resultado la misma tabla anterior, debido a la propiedad de conmutatividad.
 
 DIFERENCIA
 **********
 
 Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos A y B es el conjunto que contiene todos los elementos de A que no pertenecen a B.
+
+A-B
+
+.. image:: ../../../sql-course/src/a-b.png
+
+B-A
+
+.. image:: ../../../sql-course/src/b-a.png
+
+Como se aprecia en las imágenes la operación `DIFERENCIA`, en conjuntos, no es conmutativa, al igual que la resta o sustracción, operador aprendido en aritmética básica. Es decir, si se cambia el orden de los conjuntos a los  que se aplica la operación `DIFERENCIA`, se obtendrán resultados distintos. Por lo tanto:
+
+.. math::
+    \mbox{A} \times \mbox{B} \neq  \mbox{B} \times \mbox{A}    
+
+
 De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en la relación `R`, pero no están en `S`.
 `R` y `S` deben ser unión-compatible.
 
