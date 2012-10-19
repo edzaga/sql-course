@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 8 - Table variable and set operators &mdash; Curso ALMA SQL</title>
+    
+    <link rel="stylesheet" href="../../_static/sqlcourse.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Curso ALMA SQL" href="../../index.html" />
+    <link rel="up" title="Second week" href="index.html" />
+    <link rel="next" title="Assignment 2" href="assignment2.html" />
+    <link rel="prev" title="Lecture 7 - Basic SELECT Statement" href="lecture7.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="assignment2.html" title="Assignment 2"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="lecture7.html" title="Lecture 7 - Basic SELECT Statement"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Second week</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 8 - Table variable and set operators</a><ul>
+<li><a class="reference internal" href="#table-variables">Table Variables</a><ul>
+<li><a class="reference internal" href="#cuidado-con-los-duplicados">Cuidado con los duplicados!!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#set-operators">Set Operators</a><ul>
+<li><a class="reference internal" href="#union">Unión</a></li>
+<li><a class="reference internal" href="#interseccion">Intersección</a></li>
+<li><a class="reference internal" href="#excepcion">Excepción</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="lecture7.html"
+                        title="Capítulo anterior">Lecture 7 - Basic SELECT Statement</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="assignment2.html"
+                        title="Próximo capítulo">Assignment 2</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week2/lecture8.txt"
+           rel="nofollow">Enseñar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un módulo, clase o nombre de función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-8-table-variable-and-set-operators">
+<h1>Lecture 8 - Table variable and set operators<a class="headerlink" href="#lecture-8-table-variable-and-set-operators" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="table-variables">
+<h2>Table Variables<a class="headerlink" href="#table-variables" title="Enlazar permanentemente con este título">¶</a></h2>
+<p id="index-0">Consideremos el siguiente schema:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">College</span> <span class="p">(</span><span class="n">cName</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">enrollment</span><span class="p">)</span>
+<span class="n">Student</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">,</span> <span class="n">sizeHS</span><span class="p">)</span>
+<span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ahora consideremos la siguente consulta:</p>
+<div class="highlight-python"><pre>SELECT Student.sID, sName, Apply.cName, GPA
+FROM Student, Apply
+WHERE Apply.sID = Student.sID</pre>
+</div>
+<p>es posible realizarla como:</p>
+<div class="highlight-python"><pre>SELECT S.sID, sName, A.cName, GPA
+FROM Student S, Apply A
+WHERE A.sID = S.sID</pre>
+</div>
+<p>Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde más a variable en la consulta).
+La variable en la consulta se define en el &#8220;FROM&#8221; de la consulta &#8220;SELECT-FROM-WHERE&#8221;</p>
+<div class="section" id="cuidado-con-los-duplicados">
+<h3>Cuidado con los duplicados!!<a class="headerlink" href="#cuidado-con-los-duplicados" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Si el lector se fija en el esquema, hay ciertos atributos cuyos nombres se repiten
+en las diferentes tablas. Tal es el caso de
+<strong>cName y sID</strong>. En las consultas se aprecia que la diferencia se realiza a través de:</p>
+<div class="highlight-python"><pre>Student.sID ó S.sID
+Apply.sID ó A.sID</pre>
+</div>
+<p>Es decir, se antepone el nombre de la tabla o su respectiva variable definida en el FROM.</p>
+<p>En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan
+dos instancias de una tabla. En el siguiente ejemplo, se buscan
+todos los pares de estudiantes con el mismo GPA:</p>
+<div class="highlight-python"><pre>SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
+FROM Student S1, Student S2
+WHERE S1.GPA = S2.GPA</pre>
+</div>
+<p>Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla),
+el resultado contendrá uno o varios duplicados; por ejemplo, consideremos
+4 estudantes:</p>
+<div class="highlight-python"><pre>sName   sID     GPA
+Amy     123     4.0
+Doris   456     4.0
+Edward  567     4.1</pre>
+</div>
+<p>Los pares de estudiantes serán:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Amy</span>    <span class="o">-</span>       <span class="n">Doris</span>
+</pre></div>
+</div>
+<p>pero también:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Amy</span>    <span class="o">-</span>       <span class="n">Amy</span>
+<span class="n">Doris</span>  <span class="o">-</span>       <span class="n">Doris</span>
+</pre></div>
+</div>
+<p>lo cual se puede evitar modificando la cosulta:</p>
+<div class="highlight-python"><pre>SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
+FROM Student S1, Student S2
+WHERE S1.GPA = S2.GPA and S1.sID &lt;&gt; S2.sID</pre>
+</div>
+<p>es decir, que el id del estudiante S1 sea diferente al id del estudiante S2.</p>
+</div>
+</div>
+<div class="section" id="set-operators">
+<h2>Set Operators<a class="headerlink" href="#set-operators" title="Enlazar permanentemente con este título">¶</a></h2>
+<p id="index-1">Los Set Operators son 3:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Unión</li>
+<li>Intersección</li>
+<li>Excepción</li>
+</ul>
+</div></blockquote>
+<div class="section" id="union">
+<h3>Unión<a class="headerlink" href="#union" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El operador &#8220;UNION&#8221;, permite combinar el resultado de dos o más sentencias SELECT.
+Es necesario que estas tengan el mismo número de columnas, y que
+éstas tengan los mismos tipos de datos, por ejemplo:</p>
+<div class="highlight-python"><pre>Employees_Norway":
+   E_ID    E_Name
+   01      Hansen, Ola
+   02      Svendson, Tove
+   03      Svendson, Stephen
+   04      Pettersen, Kari
+
+   "Employees_USA":
+   E_ID    E_Name
+   01      Turner, Sally
+   02      Kent, Clark
+   03      Svendson, Stephen
+   04      Scott, Stephen</pre>
+</div>
+<p>El resultado de la consulta:</p>
+<div class="highlight-python"><pre>SELECT E_Name FROM Employees_Norway
+UNION
+SELECT E_Name FROM Employees_USA</pre>
+</div>
+<p>es:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">E_Name</span>
+<span class="n">Hansen</span><span class="p">,</span> <span class="n">Ola</span>
+<span class="n">Svendson</span><span class="p">,</span> <span class="n">Tove</span>
+<span class="n">Svendson</span><span class="p">,</span> <span class="n">Stephen</span>
+<span class="n">Pettersen</span><span class="p">,</span> <span class="n">Kari</span>
+<span class="n">Turner</span><span class="p">,</span> <span class="n">Sally</span>
+<span class="n">Kent</span><span class="p">,</span> <span class="n">Clark</span>
+<span class="n">Scott</span><span class="p">,</span> <span class="n">Stephen</span>
+</pre></div>
+</div>
+<p>Ojo, existen dos empleados con el mismo nombre en ambas tablas. Sin embargo en la
+salida sólo se nombra uno. Para evitar esto, se utliza &#8220;UNION ALL&#8221;:</p>
+<div class="highlight-python"><pre>SELECT E_Name as name FROM Employees_Norway
+UNION ALL
+SELECT E_Name as name FROM Employees_USA</pre>
+</div>
+<p>Utilizando &#8220;as&#8221; es posible cambiar el nombre de la columna resultado:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">name</span>
+<span class="n">Hansen</span><span class="p">,</span> <span class="n">Ola</span>
+<span class="n">Svendson</span><span class="p">,</span> <span class="n">Tove</span>
+<span class="n">Svendson</span><span class="p">,</span> <span class="n">Stephen</span>
+<span class="n">Pettersen</span><span class="p">,</span> <span class="n">Kari</span>
+<span class="n">Turner</span><span class="p">,</span> <span class="n">Sally</span>
+<span class="n">Kent</span><span class="p">,</span> <span class="n">Clark</span>
+<span class="n">Svendson</span><span class="p">,</span> <span class="n">Stephen</span>
+<span class="n">Scott</span><span class="p">,</span> <span class="n">Stephen</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interseccion">
+<h3>Intersección<a class="headerlink" href="#interseccion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT.
+La diferencia consiste en que UNION actua como un OR, e INTERSECT
+lo hace como AND. Es decir que INTERSECT devuelve los valores repetidos.
+Consideremos el sigueinte esquema:</p>
+<div class="highlight-python"><pre>Table Store_Information
+store_name      Sales   Date
+Los Angeles     $1500   Jan-05-1999
+San Diego       $250    Jan-07-1999
+Los Angeles     $300    Jan-08-1999
+Boston  $700    Jan-08-1999
+
+Table Internet_Sales
+Date    Sales
+Jan-07-1999     $250
+Jan-10-1999     $535
+Jan-11-1999     $320
+Jan-12-1999     $750</pre>
+</div>
+<p>Al realizar la consulta:</p>
+<div class="highlight-python"><pre>SELECT Date FROM Store_Information
+INTERSECT
+SELECT Date FROM Internet_Sales</pre>
+</div>
+<p>Su resultado esperado es:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Date</span>
+<span class="n">Jan</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">1999</span>
+</pre></div>
+</div>
+<p>Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
+pero que puede escribirse como otra consulta (agregarla)</p>
+</div>
+<div class="section" id="excepcion">
+<h3>Excepción<a class="headerlink" href="#excepcion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Similar a los operadores anteriores, su estructura se compone de dos o mas
+sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
+en el álgebra relacional.</p>
+<p>Utilizando el esquema del ejemplo anterior, y realizando la siguiente consulta:</p>
+<div class="highlight-python"><pre>SELECT Date FROM Store_Information
+EXCEPT
+SELECT Date FROM Internet_Sales</pre>
+</div>
+<p>Su resultado esperado es:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Date</span>
+<span class="n">Jan</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">1999</span>
+<span class="n">Jan</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">1999</span>
+<span class="n">Jan</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">1999</span>
+</pre></div>
+</div>
+<p>Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
+pero que puede escribirse como otra consulta (agregarla)</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="assignment2.html" title="Assignment 2"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="lecture7.html" title="Lecture 7 - Basic SELECT Statement"
+             >anterior</a> |</li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li>
+          <li><a href="index.html" >Second week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

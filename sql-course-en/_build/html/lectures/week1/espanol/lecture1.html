@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 1 - Relational Databases, “The relational model” &mdash; ALMA SQL Course</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ALMA SQL Course" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../../index.html">SQL Course</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 1 - Relational Databases, &#8220;The relational model&#8221;</a><ul>
+<li><a class="reference internal" href="#que-son-las-bases-de-datos-bd">¿Qué son las Bases de Datos (BD)?</a><ul>
+<li><a class="reference internal" href="#el-sistema-gestor-de-base-de-datos-sgbd">El Sistema Gestor de Base de Datos (SGBD)</a></li>
+<li><a class="reference internal" href="#el-modelo-entidad-relacion-e-r">El modelo Entidad-Relación (E-R)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#base-de-datos-relacionales">Base de datos Relacionales</a><ul>
+<li><a class="reference internal" href="#ejemplo">Ejemplo:</a></li>
+<li><a class="reference internal" href="#ejemplo-en-sql">Ejemplo en SQL</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#motores-de-bases-de-datos-relacionales">Motores de bases de datos Relacionales</a><ul>
+<li><a class="reference internal" href="#postgresql">PostGreSQL</a></li>
+<li><a class="reference internal" href="#mysql">MySQL</a></li>
+<li><a class="reference internal" href="#eleccion">Elección</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../../_sources/lectures/week1/espanol/lecture1.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-1-relational-databases-the-relational-model">
+<h1>Lecture 1 - Relational Databases, &#8220;The relational model&#8221;<a class="headerlink" href="#lecture-1-relational-databases-the-relational-model" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="que-son-las-bases-de-datos-bd">
+<h2>¿Qué son las Bases de Datos (BD)?<a class="headerlink" href="#que-son-las-bases-de-datos-bd" title="Permalink to this headline">¶</a></h2>
+<p id="index-0">Una BD es un conjunto de datos  interrelacionados almacenados en
+conjunto, sin redundancias innecesarias,de forma independiente de los programas
+que acceden a ellos.</p>
+<div class="section" id="el-sistema-gestor-de-base-de-datos-sgbd">
+<h3>El Sistema Gestor de Base de Datos (SGBD)<a class="headerlink" href="#el-sistema-gestor-de-base-de-datos-sgbd" title="Permalink to this headline">¶</a></h3>
+<p>Un Sistema Gestor de Base de Datos SGBD es un conjunto de programas que permiten crear y mantener
+una Base de datos, asegurando su integridad, confidencialidad y seguridad. Por tanto debe permitir:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Definir una base de datos: especificar tipos, estructuras y restricciones de datos..</li>
+<li>Construir la base de datos: guardar los datos en algún medio controlado por el mismo SGBD</li>
+<li>Manipular la base de datos: realizar consultas, actualizarla, generar informes.</li>
+</ul>
+</div></blockquote>
+<p>Algunas de las características deseables en un Sistema Gestor de base de datos SGBD son:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Control de la redundancia: La redundancia de datos tiene varios efectos negativos (duplicar el trabajo al actualizar, deperdicia espacio en disco, puede provocar inconsistencia de datos) aunque a veces es deseable por cuestiones de rendimiento.</li>
+<li>Restricción de los accesos no autorizados: cada usuario ha de tener unos permisos de acceso y autorización.</li>
+<li>Cumplimiento de las restricciones de integridad: el SGBD ha de ofrecer recursos para definir y garantizar el cumplimiento de las restricciones de integridad.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="el-modelo-entidad-relacion-e-r">
+<h3>El modelo Entidad-Relación (E-R)<a class="headerlink" href="#el-modelo-entidad-relacion-e-r" title="Permalink to this headline">¶</a></h3>
+<p>Cuando se utiliza una BD para gestionar información, se está plasmando una parte del mundo
+real en una serie de tablas, registros y campos; creándose un modelo parcial de la realidad. Antes de
+crear físicamente estas tablas en la BD se debe realizar un modelo de datos.</p>
+<p>El modelo de datos más extendido es el denominado <em>E-R</em> En el modelo E-R se parte de
+una situación real a partir de la cual se definen entidades y relaciones entre dichas entidades:</p>
+<p><strong>Entidades</strong></p>
+<p>Los objetos que aparecen en la vida real, corresponden a una <em>entidad</em>. Por ejemplo: alumnos, empleados,
+aviones, coches, alojamientos, etc.
+Una entidad da lugar a una <em>tabla</em> en la BD.</p>
+<p><strong>Agregar una imagen de una entidad</strong>
+.. image:</p>
+<p>Estas entidades están compuestas por varios <em>atributos</em>, que vienen a ser sus propiedades. Por ejemplo:
+la entidad alumnos, tendrá los atributos nombre, R.U.N, nacionalidad, fecha de nacimiento, etc.
+Los atributos también reciben el nombre de <em>columnas</em> en la terminología de BD
+De entre los atributos habrá uno o un conjunto de ellos que no se repite; a este atributo o conjunto de
+atributos se le llama clave de la entidad, en el caso de los alumnos, sería el R.U.N. En toda entidad
+siempre hay al menos  una clave que en el peor de los casos estará formada por todos los atributos de la
+tabla. Ya que pueden haber varias claves y necesitamos elegir una, lo haremos atendiendo a estas normas:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Que sea única.</li>
+<li>Que se tenga pleno conocimiento de ella.- ¿Por qué en las empresas se asigna a cada cliente un número de cliente?.</li>
+<li>Que sea mínima, ya que será muy utilizada por el gestor de base de datos.</li>
+</ul>
+</div></blockquote>
+<p>Cada entidad tendrá un número ilimitado de <em>elementos</em>. Por ejemplo: un elemento de la entidad alumnos
+será un alumno en sí; así el alumno Pepe será un elemento, José será otro.
+Cada uno de esos elementos también recibe el nombre de <em>fila</em> en la terminología de BD</p>
+<p><em>Combinando estos tres conceptos tenemos una estructura del tipo tabla, la base de las BD.</em></p>
+<p><strong>Relaciones</strong></p>
+<p>Las entidades no están aisladas sino que están relacionadas entre sí. Estas relaciones no existen en el
+mundo real que estamos modelando, pero son necesarias para reflejar las interacciones existentes entre
+entidades. Las relaciones pueden ser de tres tipos:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Relaciones 1 - 1: Las entidades que intervienen en la relación se asocian una a una (Ej: la entidad HOMBRE, la entidad MUJER y entre ellos la relación MATRIMONIO). <strong>(agregar la foto)</strong></li>
+<li>Relaciones 1 - N: Una ocurrencia de una entidad está asociada con muchas (n) de otra (Ej: la entidad EMPERSA, la entidad TRABAJADOR y entre ellos la relación TRABAJAR-EN). <strong>(agregar la foto)</strong></li>
+<li>Relaciones M - N: Cada ocurrencia, en cualquiera de las dos entidades de la relación, puede estar asociada con muchas (n) de la otra y viceversa (Ej: la entidad ALUMNO, la entidad EMPRESA y entre ellos la relación MATRÍCULA). <strong>(agregar la foto)</strong></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="base-de-datos-relacionales">
+<h2>Base de datos Relacionales<a class="headerlink" href="#base-de-datos-relacionales" title="Permalink to this headline">¶</a></h2>
+<p id="index-1">Permiten establecer interconexiones (relaciones) entre los datos (que están guardados en tablas),
+y a través de dichas conexiones relacionar los datos de ambas tablas.</p>
+<p><strong>Ventajas:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Sistemas de bases de datos utilizada por las empresas comerciales más importantes.</li>
+<li>Modelo simple.</li>
+<li>Consultas a través de lenguajes de alto nivel.</li>
+<li>Implementación eficiente</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt><strong>Características</strong></dt>
+<dd><ul class="first last simple">
+<li>Se compone de varias tablas o relaciones.</li>
+<li>No existen dos o más tablas con el mismo nombre.</li>
+<li>Una tabla es un conjunto de registros (filas o columnas).</li>
+<li>La relación entre una tabla padre y un hijo se lleva a cabo por medio de claves primarias
+y foráneas.</li>
+<li>Las claves primarias representan la clave principal de un registro dentro de una tabla y éstas deben
+cumplir con la integridad de los datos.</li>
+<li>Las claves foráneas se colocan en la tabla hija, contienen el mismo valor que la clave
+primaria del registro padre; por medio de éstas se hacen las relaciones.</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="ejemplo">
+<h3>Ejemplo:<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
+<p><strong>Tabla Estudiante</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="43%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Nombre</th>
+<th class="head">Nota</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>123</td>
+<td>Juan</td>
+<td>3.9</td>
+</tr>
+<tr class="row-odd"><td>234</td>
+<td>Ana</td>
+<td>3.4</td>
+</tr>
+<tr class="row-even"><td>345</td>
+<td>José</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tabla Colegio</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="29%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Ciudad</th>
+<th class="head">Total alumnos</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Princess</td>
+<td>Santiago</td>
+<td>15.000</td>
+</tr>
+<tr class="row-odd"><td>Saint Louis</td>
+<td>Valparaiso</td>
+<td>16.000</td>
+</tr>
+<tr class="row-even"><td>Idop</td>
+<td>Concepcion</td>
+<td>20.000</td>
+</tr>
+</tbody>
+</table>
+<p>La tabla Estudiante posee 3 atributos (ID, Nombre, Nota) y 3 registros (o filas), en el tercer
+registro se aprecia que José no posee nota por lo que se agrega el valor &#8220;unknown&#8221; o &#8220;undefined&#8221;
+que se define como NULL.
+Esta tabla posee un atributo cuyo valor es único en cada tupla que es atributo ID y se le llama
+llave.</p>
+<p>La tabla Colegio posee 3 atributos (Name, Ciudad, Total alumnos) y 3 registros (o filas).
+Esta tabla posee un conjunto de atributos cuyos valores son únicos combinados que son name y
+Ciudad y se le llama llave compuesta.</p>
+</div>
+<div class="section" id="ejemplo-en-sql">
+<h3>Ejemplo en SQL<a class="headerlink" href="#ejemplo-en-sql" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="index-2"></span><p>La creación de relaciones (tablas) en SQL</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">student</span><span class="p">(</span><span class="n">ID</span> <span class="nb">int</span><span class="p">,</span> <span class="n">name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">grade</span> <span class="nb">int</span><span class="p">);</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">school</span><span class="p">(</span><span class="n">name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">city</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">total_students</span> <span class="nb">int</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="motores-de-bases-de-datos-relacionales">
+<h2>Motores de bases de datos Relacionales<a class="headerlink" href="#motores-de-bases-de-datos-relacionales" title="Permalink to this headline">¶</a></h2>
+<p id="index-3">Hoy en día existen muchas empresas y sitios web que necesitan mantener de forma
+eficiente un gran volumen de datos. Muchos de ellos optan por soluciones comerciales
+(Oracle Database o IBM DB2 entre otras ), aunque muchas otras confían en el software
+libre optando por una solución como PostGreSQL o MySQL.</p>
+<p>Es muy común la pregunta, entre las personas que se adentran por primera vez en el mundo
+de las bases de datos libres, ¿Qué motor de bases de datos debo usar? ¿MySQL o PostGreSQL?.
+A continuación se verán algunos detalles de ambos motores.</p>
+<div class="section" id="postgresql">
+<h3>PostGreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h3>
+<p>PostGreSQL es un sistema de gestión de bases de datos objeto-relacional basado
+en el proyecto POSTGRES, de la universidad de Berkeley. El director de este proyecto es
+el profesor Michael Stonebraker, y fue patrocinado por Defense Advanced Research Projects
+Agency (DARPA), el Army Research Office (ARO), el National Science Foundation (NSF), y ESL, Inc.</p>
+<p><strong>Un poco de historia</strong></p>
+<p>PostGreSQL fue derivado del proyecto Postgres. A sus espaldas, este proyecto lleva más de
+una década de desarrollo, siendo hoy en día, el sistema libre más avanzado con diferencia,
+soportando la gran mayoría de las transacciones SQL, control concurrente, teniendo a su
+disposición varios &#8220;language bindings&#8221; como por ejemplo C, C++, Java, Python, PHP y muchos más.</p>
+<p>La implementación de Postgres DBMS comenzó en 1986, y no hubo una versión operativa hasta 1987.
+La versión 1.0 fue liberada en Junio de 1989 a unos pocos usuarios, tras la cual se liberó la
+versión 2.0 en Junio de 1990 debido a unas críticas sobre el sistema de reglas, que obligó a
+su reimplementación. La versión 3.0 apareció en el año 1991.</p>
+<p>En 1994, Andrew Yu y Jolly Chen añadieron un intérprete de SQL a este gestor. Postgres95, como
+así se llamó fue liberado a Internet como un proyecto libre (OpenSource). Estaba escrito totalmente
+en C, y la primera versión fue un 25% más pequeña que Postgres, y entre un 30 y un 50% más rápida.
+A parte de la corrección de algunos bugs, se mejoró el motor interno, se añadió un nuevo programa
+monitor, y se compiló usando la utilidad GNU Make y el compilador gcc.</p>
+<p>En 1996, los desarrolladores decidieron cambiar el nombre a al SGDB, y lo llamaron PostGreSQL
+para reflejar la relación entre Postgres y las versiones recientes de SQL.</p>
+<p><strong>Características</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Implementación del estándar SQL92/SQL99.</li>
+<li>Licencia BSD.</li>
+<li>Por su arquitectura de diseño, escala muy bien al aumentar el numero de CPUs y la cantidad de RAM.</li>
+<li>Soporta transacciones y desde la version 7.0, claves ajenas (con comprobaciones de integridad referencial).</li>
+<li>Tiene mejor soporte para triggers y procedimientos en el servidor.</li>
+<li>Incorpora una estructura de datos array.</li>
+<li>Incluye herencia entre tablas (aunque no entre objetos, ya que no existen), por lo que a este gestor de bases de datos se le incluye entre los gestores objeto-relacionales.</li>
+<li>Implementa el uso de rollback&#8217;s, subconsultas y transacciones, haciendo su funcionamiento mucho más eficaz.</li>
+<li>Se pueden realizar varias opreraciones al mismo tiempo sobre la misma tabla sin necesidad de bloquearla.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="mysql">
+<h3>MySQL<a class="headerlink" href="#mysql" title="Permalink to this headline">¶</a></h3>
+<p>MySQL es un sistema de gestión de bases de datos relacional, licenciado bajo la GPL de la GNU.
+Su diseño multihilo le permite soportar una gran carga de forma muy eficiente. MySQL fue creada
+por la empresa sueca MySQL AB, que mantiene el copyright del código fuente del servidor SQL, así
+como también de la marca.</p>
+<p>Aunque MySQL es software libre, MySQL AB distribuye una versión comercial de MySQL, que no se
+diferencia de la versión libre más que en el soporte técnico que se ofrece, y la posibilidad
+de integrar este gestor en un software propietario, ya que de no ser así, se vulneraría la licencia GPL.</p>
+<p><strong>Un poco de historia</strong></p>
+<p>MySQL surgió como un intento de conectar el gestor mSQL a las tablas propias de MySQL AB, usando
+sus propias rutinas a bajo nivel. Tras unas primeras pruebas, vieron que mSQL no era lo bastante
+flexible para lo que necesitaban, por lo que tuvieron que desarrollar nuevas funciones. Esto
+resultó en una interfaz SQL a su base de datos, con una interfaz totalmente compatible a mSQL.</p>
+<p>No se sabe con certeza de donde proviene su nombre. Por un lado dicen que sus librerías han llevado
+el prefijo <em>&#8216;my&#8217;</em>  durante los diez últimos años. Por otro lado, la hija de uno de los desarrolladores
+se llama My. No saben cuál de estas dos causas (aunque bien podrían tratarse de la misma), han dado
+lugar al nombre de este conocido gestor de bases de datos.</p>
+<p><strong>Características</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Lo mejor de MySQL es su velocidad a la hora de realizar las operaciones, lo que le hace uno de los gestores que ofrecen mayor rendimiento.</li>
+<li>Consume muy pocos recursos ya sea de CPU como asi tambien de memoria.</li>
+<li>Licencia GPL y tambien posee una licencia comercial para aquellas empresas que deseen incluirlo en sus aplicaciones privativas.</li>
+<li>Dispone de API&#8217;s en gran cantidad de lenguajes (C, C++, Java, PHP, etc).</li>
+<li>Soporta hasta 64 índices por tabla, una mejora notable con repecto a la version 4.1.2.</li>
+<li>Mejor integracion con PHP.</li>
+<li>Permite la gestión de diferentes usuarios, como también los permisos asignados a cada uno de ellos.</li>
+<li>Tiene soporte para transacciones y ademas posee una caracteristica unica de MySQL que es poder agrupar transacciones.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="eleccion">
+<h3>Elección<a class="headerlink" href="#eleccion" title="Permalink to this headline">¶</a></h3>
+<p>Es indispensable tener en cuenta para qué se necesitará. En múltiples foros, se asocia a PostGreSQL a
+estabilidad, bases de datos de gran tamaño y de alta concurrencia. Por otra parte, se asocia MySQL a bases
+de datos de menor tamaño, pero de mayor velocidad de respuesta ante una consulta.</p>
+<p>Cada uno de estos gestores poseen características que los convierten en una gran opción en su
+respectivo campo al momento de elegir ya que fueron concebidos para una determinada implementación.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../../../index.html">SQL Course</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

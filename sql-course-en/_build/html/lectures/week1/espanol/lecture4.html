@@ -1,0 +1,430 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 4 - Relation algebra: Set operators, renaming, notation &mdash; ALMA SQL Course</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ALMA SQL Course" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../../index.html">SQL Course</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 4 - Relation algebra: Set operators, renaming, notation</a><ul>
+<li><a class="reference internal" href="#operaciones-de-conjunto">Operaciones de conjunto:</a><ul>
+<li><a class="reference internal" href="#union">UNION</a><ul>
+<li><a class="reference internal" href="#ejemplo-ingenieros-u-jefes">Ejemplo Ingenieros <tt class="docutils literal"><span class="pre">U</span></tt> Jefes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#difference">DIFFERENCE</a><ul>
+<li><a class="reference internal" href="#ejemplo-ingenieros-jefes">Ejemplo Ingenieros <tt class="docutils literal"><span class="pre">-</span></tt> Jefes</a></li>
+<li><a class="reference internal" href="#ejemplo-jefes-ingenieros">Ejemplo Jefes <tt class="docutils literal"><span class="pre">-</span></tt> Ingenieros</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#intersection">INTERSECTION</a><ul>
+<li><a class="reference internal" href="#ejemplo-ingenieros-intersect-jefes">Ejemplo Ingenieros <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">INTERSECT</span></span></tt> Jefes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dependent-and-independent-operations">DEPENDENT AND INDEPENDENT OPERATIONS</a></li>
+<li><a class="reference internal" href="#relational-algebra-as-a-constraint-languaje">RELATIONAL ALGEBRA AS A CONSTRAINT LANGUAJE</a></li>
+<li><a class="reference internal" href="#exercises-1">Exercises </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../../_sources/lectures/week1/espanol/lecture4.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-4-relation-algebra-set-operators-renaming-notation">
+<h1>Lecture 4 - Relation algebra: Set operators, renaming, notation<a class="headerlink" href="#lecture-4-relation-algebra-set-operators-renaming-notation" title="Permalink to this headline">¶</a></h1>
+<p>The three most common operations on sets are union, intersection;
+and difference. Which are defined as follows arbitrary sets <span class="math">\(R\)</span> and <span class="math">\(S\)</span>:</p>
+<div class="section" id="operaciones-de-conjunto">
+<h2>Operaciones de conjunto:<a class="headerlink" href="#operaciones-de-conjunto" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="union">
+<span id="index-0"></span><h3>UNION<a class="headerlink" href="#union" title="Permalink to this headline">¶</a></h3>
+<p>La unión de dos relaciones <span class="math">\(R\)</span> y <span class="math">\(S\)</span>, es otra relación que contiene las tuplas que están en <span class="math">\(R\)</span>,
+o en <span class="math">\(S\)</span>, o en ambas, eliminándose las tuplas duplicadas.
+<span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo
+(<span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben tener esquemas idénticos. El orden de las columnas debe ser el mismo).</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>Tabla Ingenieros</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="43%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><p class="first last">ID</p>
+</th>
+<th class="head"><p class="first last">Nombre</p>
+</th>
+<th class="head"><p class="first last">Edad</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last">123</p>
+</td>
+<td><p class="first last">León</p>
+</td>
+<td><p class="first last">39</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last">234</p>
+</td>
+<td><p class="first last">Tomás</p>
+</td>
+<td><p class="first last">34</p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last">345</p>
+</td>
+<td><p class="first last">José</p>
+</td>
+<td><p class="first last">45</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last">143</p>
+</td>
+<td><p class="first last">Josefa</p>
+</td>
+<td><p class="first last">25</p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first"><strong>Tabla Jefes</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="43%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><p class="first last">ID</p>
+</th>
+<th class="head"><p class="first last">Nombre</p>
+</th>
+<th class="head"><p class="first last">Edad</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last">123</p>
+</td>
+<td><p class="first last">León</p>
+</td>
+<td><p class="first last">39</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last">235</p>
+</td>
+<td><p class="first last">María</p>
+</td>
+<td><p class="first last">29</p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div></blockquote>
+<div class="section" id="ejemplo-ingenieros-u-jefes">
+<h4>Ejemplo Ingenieros <tt class="docutils literal"><span class="pre">U</span></tt> Jefes<a class="headerlink" href="#ejemplo-ingenieros-u-jefes" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="43%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Nombre</th>
+<th class="head">Edad</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>123</td>
+<td>León</td>
+<td>39</td>
+</tr>
+<tr class="row-odd"><td>234</td>
+<td>Tomás</td>
+<td>34</td>
+</tr>
+<tr class="row-even"><td>345</td>
+<td>José</td>
+<td>45</td>
+</tr>
+<tr class="row-odd"><td>143</td>
+<td>Josefa</td>
+<td>25</td>
+</tr>
+<tr class="row-even"><td>235</td>
+<td>María</td>
+<td>29</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="difference">
+<h3>DIFFERENCE<a class="headerlink" href="#difference" title="Permalink to this headline">¶</a></h3>
+<p>La diferencia de dos relaciones <span class="math">\(R\)</span> y <span class="math">\(S\)</span>, es otra relación que contiene las tuplas que están
+en la relación <span class="math">\(R\)</span>, pero no están en <span class="math">\(S\)</span>.
+<span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben ser unión-compatible. Es importante resaltar que <span class="math">\(R - S\)</span> es diferente a <span class="math">\(S - R\)</span>.</p>
+<div class="section" id="ejemplo-ingenieros-jefes">
+<h4>Ejemplo Ingenieros <tt class="docutils literal"><span class="pre">-</span></tt> Jefes<a class="headerlink" href="#ejemplo-ingenieros-jefes" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="43%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Nombre</th>
+<th class="head">Edad</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>234</td>
+<td>Tomás</td>
+<td>34</td>
+</tr>
+<tr class="row-odd"><td>345</td>
+<td>José</td>
+<td>45</td>
+</tr>
+<tr class="row-even"><td>143</td>
+<td>Josefa</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ejemplo-jefes-ingenieros">
+<h4>Ejemplo Jefes <tt class="docutils literal"><span class="pre">-</span></tt> Ingenieros<a class="headerlink" href="#ejemplo-jefes-ingenieros" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="43%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Nombre</th>
+<th class="head">Edad</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>235</td>
+<td>María</td>
+<td>29</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="intersection">
+<h3>INTERSECTION<a class="headerlink" href="#intersection" title="Permalink to this headline">¶</a></h3>
+<p>Define una relación que contiene el conjunto de todas las filas que están tanto en la relación
+<span class="math">\(R\)</span> como en <span class="math">\(S\)</span>. <span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben ser unión-compatible.
+Utilizando las mismas tablas del ejemplo anterior:</p>
+<p><strong>Equivalencia con operadores anteriores</strong></p>
+<div class="math">
+\[R \cap S= R-(R-S)\]</div>
+<div class="section" id="ejemplo-ingenieros-intersect-jefes">
+<h4>Ejemplo Ingenieros <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">INTERSECT</span></span></tt> Jefes<a class="headerlink" href="#ejemplo-ingenieros-intersect-jefes" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="43%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Nombre</th>
+<th class="head">Edad</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>123</td>
+<td>León</td>
+<td>39</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>When we apply these operations to relations, we need to put some conditions on R and S:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><span class="math">\(R\)</span> and <span class="math">\(S\)</span> must have schemas with identical sets of attributes, and the types
+(domains) for each attribute must be the same in <span class="math">\(R\)</span> and <span class="math">\(S\)</span>.</li>
+<li>Before compute the set-theoretic union, intersection, or difference of sets of tuples,
+the columns of <span class="math">\(R\)</span> and <span class="math">\(S\)</span> must be ordered so that the order of attributes is the
+same for both relations.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="dependent-and-independent-operations">
+<h3>DEPENDENT AND INDEPENDENT OPERATIONS<a class="headerlink" href="#dependent-and-independent-operations" title="Permalink to this headline">¶</a></h3>
+<p>Some of the operations that we have described in the lectures 3 and 4, can be expressed in
+terms of other relational-algebra operations. For example, intersection can be expressed in terms
+of set difference: R &lt;INTERSECTION&gt; S = R - (R - S). That is, if R and S are any two relations with the
+same schema, the intersection of R and S can be computed by first subtracting S from R to form a
+relation T consisting of all those tuples in R but not S. We then subtract T from R, leaving only those
+tuples of R that are also in S.</p>
+</div>
+<div class="section" id="relational-algebra-as-a-constraint-languaje">
+<h3>RELATIONAL ALGEBRA AS A CONSTRAINT LANGUAJE<a class="headerlink" href="#relational-algebra-as-a-constraint-languaje" title="Permalink to this headline">¶</a></h3>
+<p>There are two ways in which we can use expressions of relational algebra to express constraints:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>If <span class="math">\(R\)</span> is an expression of relational algebra, then <span class="math">\(R = 0\)</span> is a constraint that says
+&#8220;The value of R must be empty,&#8221; or equivalently &#8220;There are no tuples in the result of R.&#8221;</li>
+<li>If <span class="math">\(R\)</span> and <span class="math">\(S\)</span> are expressions of relational algebra, then <span class="math">\(R \subset S\)</span> is a constraint
+that says &#8220;Every tuple in the result of R must also be in the result of S.&#8221;
+Of course the result of <span class="math">\(S\)</span> may contain additional tuples not produced by <span class="math">\(R\)</span>.</li>
+</ol>
+</div></blockquote>
+<p>These ways of expressing constraints are actually equivalent in what they can express,
+but sometimes one or the other is clearer or more succinct.
+That is, the constraint <span class="math">\(R \subset S\)</span> could just as well have been written <span class="math">\(R - S = 0\)</span>.
+To see why, notice that if every tuple in <span class="math">\(R\)</span> is also in <span class="math">\(S\)</span>, then surely <span class="math">\(R - S\)</span> is empty.
+Conversely, if <span class="math">\(R - S\)</span> contains no tuples, then every tuple in <span class="math">\(R\)</span> must be in <span class="math">\(S\)</span>
+(or else it would be in <span class="math">\(R - S\)</span>).</p>
+<p>On the other hand, a constraint of the first form, <span class="math">\(R = 0\)</span>, could just as well have been written
+<span class="math">\(R \subset 0\)</span>.
+Technically, <span class="math">\(0\)</span> is not an expression of relational algebra, but since there are expressions
+that evaluate to <span class="math">\(0\)</span>, such as <span class="math">\(R - R\)</span>, there is no harm in using <span class="math">\(0\)</span> as a relational-algebra
+expression.
+Note that these equivalences hold even if <span class="math">\(R\)</span> and <span class="math">\(S\)</span> are bags, provided we make the conventional
+interpretation of <span class="math">\(R \subset S\)</span>: each tuple <strong>t</strong> appears in <span class="math">\(S\)</span> at least as many times as it
+appears in <span class="math">\(R\)</span>.</p>
+</div>
+<div class="section" id="exercises-1">
+<h3>Exercises <a class="footnote-reference" href="#id2" id="id1">[1]</a><a class="headerlink" href="#exercises-1" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Consider a database with the following schema:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Person ( name, age, gender ) : name is a key</li>
+<li>Frequents ( name, pizzeria ) : (name, pizzeria) is a key</li>
+<li>Eats ( name, pizza ) : (name, pizza) is a key</li>
+<li>Serves ( pizzeria, pizza, price ): (pizzeria, pizza) is a key</li>
+</ol>
+</div></blockquote>
+</div></blockquote>
+<p>Write relational algebra expressions for the following nine queries. (Warning: some of the later queries are a bit challenging.)</p>
+<blockquote>
+<div><ul class="simple">
+<li>Find all pizzerias frequented by at least one person under the age of 18.</li>
+<li>Find the names of all females who eat either mushroom or pepperoni pizza (or both).</li>
+<li>Find the names of all females who eat both mushroom and pepperoni pizza.</li>
+<li>Find all pizzerias that serve at least one pizza that Amy eats for less than $10.00.</li>
+<li>Find all pizzerias that are frequented by only females or only males.</li>
+<li>For each person, find all pizzas the person eats that are not served by any pizzeria the person frequents. Return all such person (name) / pizza pairs.</li>
+<li>Find the names of all people who frequent only pizzerias serving at least one pizza they eat.</li>
+<li>Find the names of all people who frequent every pizzeria serving at least one pizza they eat.</li>
+<li>Find the pizzeria serving the cheapest pepperoni pizza. In the case of ties, return all of the cheapest-pepperoni pizzerias.</li>
+</ul>
+</div></blockquote>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.db-class.org/course/resources/index?page=opt-rel-algebra">http://www.db-class.org/course/resources/index?page=opt-rel-algebra</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../../../index.html">SQL Course</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

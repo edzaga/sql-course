@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 7 - Basic SELECT Statement &mdash; ALMA SQL Course</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ALMA SQL Course" href="../../index.html" />
+    <link rel="up" title="Second week" href="index.html" />
+    <link rel="next" title="Lecture 8 - Table variable and set operators" href="lecture8.html" />
+    <link rel="prev" title="Lecture 6 - Data Types" href="lecture6.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lecture8.html" title="Lecture 8 - Table variable and set operators"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lecture6.html" title="Lecture 6 - Data Types"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Second week</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 7 - Basic SELECT Statement</a><ul>
+<li><a class="reference internal" href="#desde-el-algebra-relacional">Desde el álgebra relacional</a></li>
+<li><a class="reference internal" href="#select-from-where">SELECT-FROM-WHERE</a></li>
+<li><a class="reference internal" href="#resultados-repetidos">Resultados Repetidos</a></li>
+<li><a class="reference internal" href="#select-by-order">SELECT-BY-ORDER</a><ul>
+<li><a class="reference internal" href="#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture6.html"
+                        title="previous chapter">Lecture 6 - Data Types</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lecture8.html"
+                        title="next chapter">Lecture 8 - Table variable and set operators</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week2/lecture7.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-7-basic-select-statement">
+<h1>Lecture 7 - Basic SELECT Statement<a class="headerlink" href="#lecture-7-basic-select-statement" title="Permalink to this headline">¶</a></h1>
+<p>Perhaps the simplest form of query in SQL asks for those tuples of some one relation
+that satisfy a condition. Such a query is analogous to a selection in relational
+algebra. This simple query, like almost all SQL queries, uses the three keywords,
+SELECT, FROM, and WHERE that characterize SQL.</p>
+<div class="section" id="desde-el-algebra-relacional">
+<h2>Desde el álgebra relacional<a class="headerlink" href="#desde-el-algebra-relacional" title="Permalink to this headline">¶</a></h2>
+<p id="index-0">The selection operator of relational algebra, and several others, make use of the
+WHERE SQL clause. The expressions that may follow WHERE
+include conditional expressions like those found in common languages such as C or Java</p>
+<dl class="docutils">
+<dt>We may build expressions by comparing values using the six common comparison operators:</dt>
+<dd><ul class="first last simple">
+<li>=    &#8220;igual a&#8221;</li>
+<li>&lt;&gt;   &#8220;distinto a&#8221; o &#8220;no igual a&#8221;</li>
+<li>&lt;    &#8220;menor que&#8221;</li>
+<li>&gt;    &#8220;mayor que&#8221;</li>
+<li>&lt;=   &#8220;menor o igual a&#8221;</li>
+<li>&gt;=   &#8220;mayor o igual a&#8221;</li>
+</ul>
+</dd>
+</dl>
+<p>These operators have the same meanings as in C, but &lt;&gt; is the SQL symbol for &#8220;not
+equal to&#8221;; it corresponds to != in C and also SQL uses = for &#8220;equal&#8221; as opposed to
+== on C.</p>
+<p>The values that may be compared include constants and attributes of the relations
+mentioned after FROM. We may also apply the usual arithmetic operators, +, * , and
+so on, to numeric values before we compare them. We may apply the concatenation
+operator || to strings; for example &#8216;foo&#8217; || &#8216;bar&#8217; has value &#8216;foobar&#8217;.</p>
+<dl class="docutils">
+<dt>Algunos ejemplos de comparasión::</dt>
+<dd>studioName = &#8216;Ubisoft&#8217;
+mesesVidaUtil &lt;&gt; 5
+otros...</dd>
+</dl>
+</div>
+<div class="section" id="select-from-where">
+<h2>SELECT-FROM-WHERE<a class="headerlink" href="#select-from-where" title="Permalink to this headline">¶</a></h2>
+<p id="index-1">Trabajemos bajo el siguiente ejemplo</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Juegos</span>
+<span class="k">WHERE</span> <span class="n">StudioName</span> <span class="o">=</span> <span class="s1">&#39;Ubisoft&#39;</span> <span class="k">AND</span> <span class="k">year</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This query exhibits the typical select-from-where form of most SQL queries. The FROM
+clause gives the relation or relations to which the query refers to
+(1x1 in our example). The query is about the relation Juegos.</p>
+<p>In the example, the attribute studioName of the relation Juegos is tested for
+equality against the constant &#8216;Ubisoft&#8217;. This constant is string-valued: strings in
+SQL are denoted by surrounding them with single quotes. Numeric constants, integers
+and reals, are also allowed, and SQL uses the common notations for reals such
+as -12.34 or 1.23E45.</p>
+<p>El siguiente ejemplo combina dos relaciones a la hora de realizar la consulta</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Juegos</span><span class="p">,</span> <span class="n">Tipo</span>
+<span class="k">WHERE</span> <span class="n">Juegos</span><span class="p">.</span><span class="n">StudioName</span> <span class="o">=</span> <span class="s1">&#39;Infinity Ward&#39;</span> <span class="k">AND</span> <span class="n">Tipo</span><span class="p">.</span><span class="n">Genero</span><span class="o">=</span><span class="s1">&#39;FPS&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>El resultado de esta consulta es el listado de los Juegos cuyo StudioName sea
+igual a &#8216;Infinity Ward&#8217; y cuyo Tipo.genero sea igual a &#8216;FPS&#8217;</p>
+<p>The result of a comparison is a boolean value: either TRUE or FALSE. Boolean
+values may be combined by the logical operators AND, OR, and NOT.
+with their espected meanings.</p>
+</div>
+<div class="section" id="resultados-repetidos">
+<h2>Resultados Repetidos<a class="headerlink" href="#resultados-repetidos" title="Permalink to this headline">¶</a></h2>
+<p>Al realizar una consulta SELECT, no hay omisión de resultados repetidos, este
+&#8220;problema&#8221; se soluciona agregando DISTINCT a la consulta. Por
+ejemplo, si en una base de datos hipotética &lt;agregar ejemplo&gt;</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="k">FROM</span> <span class="k">WHERE</span>
+<span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="k">FROM</span> <span class="k">WHERE</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>SQL es case insensitive, es decir que no distingue entre mayúsculas y
+minúsculas. Por ejemplo, FROM (palabra reservada) es equivalente a from,
+inclusive a From. Los nombres de los atributos, relaciones, etc. son,
+también, case insensitive.</p>
+<p class="last">El único caso en que se distingue entre mayúsculas y minúsculas es al
+momento de encerrar un string entre &#8216; &#8216;. Por ejemplo &#8216;FROM&#8217; es diferente
+a &#8216;from&#8217;; por supuesto ambas son diferentes de FROM.</p>
+</div>
+<p>The simple SQL queries that we have seen so far all have the form</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="ss">&quot;L&quot;</span>
+<span class="k">FROM</span> <span class="ss">&quot;R&quot;</span>
+<span class="k">WHERE</span> <span class="ss">&quot;C&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>in which L is a list of espressions, R is a relation, and C is a condition. The
+meaning of any such expression is the same as that of the relational algebra
+espression</p>
+<div class="math">
+\[\pi_{L} (\theta_{C} (R))\]</div>
+<p>That is, we start with the relation in the FROM clause, apply to each tuple whatever
+condition is indicated in the WHEHE clause, and then project onto the list of
+attributes and/or expressions in the SELECT clause.</p>
+</div>
+<div class="section" id="select-by-order">
+<h2>SELECT-BY-ORDER<a class="headerlink" href="#select-by-order" title="Permalink to this headline">¶</a></h2>
+<p id="index-2">Hasta este momento, podemos obtener datos de una tabla utilizando los comandos
+SELECT y WHERE. Sin embargo, muchas veces es necesario enumerar el resultado en
+un orden particular. Esto podría ser en orden ascendente, en orden descendente,
+o podría basarse en valores numéricos o de texto. En tales casos, podemos utilizar
+la palabra clave ORDER BY para lograr esto.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="ss">&quot;a&quot;</span>
+<span class="k">FROM</span> <span class="ss">&quot;b&quot;</span>
+<span class="k">WHERE</span> <span class="ss">&quot;c&quot;</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="ss">&quot;a&quot;</span> <span class="p">[</span><span class="k">ASC</span><span class="p">,</span> <span class="k">DESC</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>donde:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8220;a&#8221; corresponde al nombre de la columna.</li>
+<li>&#8220;b&#8221; corresponde al nombre de la tabla.</li>
+<li>&#8220;c&#8221; corresponde a la condición de la selección.</li>
+<li>ASC corresponde a un orden ascendente (corresponde a la opción por defecto)</li>
+<li>DESC corresponde a uno descendente.</li>
+</ul>
+</div></blockquote>
+<p>Su sintaxis corresponde a  ORDER BY y luego una lista de Campos que definirán los
+campos a ordenar:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">campo1</span><span class="p">,</span> <span class="n">campo2</span><span class="p">,</span> <span class="n">campo3</span><span class="p">,</span> <span class="n">campo4</span> <span class="k">FROM</span> <span class="n">Clientes</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">campo_ordenar_primero</span><span class="p">,</span> <span class="n">campo_ordenar_segundo</span><span class="p">...</span>
+</pre></div>
+</div>
+<p>Como se puede apreciar, con la sentencia ORDER BY se pueden ordenar las consultas
+a través de multiples campos. En este caso todos los campos estarían ordenados de
+forma ascendente (ASC).</p>
+<div class="section" id="ejercicios">
+<h3>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this headline">¶</a></h3>
+<p>...</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lecture8.html" title="Lecture 8 - Table variable and set operators"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lecture6.html" title="Lecture 6 - Data Types"
+             >previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" >Second week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

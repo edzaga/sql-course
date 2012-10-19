@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Assignment 7 &mdash; Curso ALMA SQL</title>
+    
+    <link rel="stylesheet" href="../../_static/sqlcourse.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Curso ALMA SQL" href="../../index.html" />
+    <link rel="up" title="Seventh week" href="index.html" />
+    <link rel="next" title="Eighth week" href="../week8/index.html" />
+    <link rel="prev" title="Lecture 28 - Views: View and automatic modifications" href="lecture28.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="../week8/index.html" title="Eighth week"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="lecture28.html" title="Lecture 28 - Views: View and automatic modifications"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Seventh week</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Assignment 7</a><ul>
+<li><a class="reference internal" href="#minesweeper">Minesweeper</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="lecture28.html"
+                        title="Capítulo anterior">Lecture 28 - Views: View and automatic modifications</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="../week8/index.html"
+                        title="Próximo capítulo">Eighth week</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week7/assignment7.txt"
+           rel="nofollow">Enseñar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un módulo, clase o nombre de función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="assignment-7">
+<h1>Assignment 7<a class="headerlink" href="#assignment-7" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="minesweeper">
+<h2>Minesweeper<a class="headerlink" href="#minesweeper" title="Enlazar permanentemente con este título">¶</a></h2>
+<blockquote>
+<div><p>The minesweeper game is based on a rectangular grid which represents a minefield.
+Some elements of the grid has a mine, and other do not.
+The game is to discover all the boxes which does not has mines.</p>
+<p>In a program, we can represent a minefield as an array in which the boxes with
+mines are marked with the <strong>-1</strong> value,
+and the rest of them with the 0 value:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">minefield</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+<span class="go">                       [-1,  0,  0,  0, -1,  0,  0,  0],</span>
+<span class="go">                       [ 0,  0,  0,  0, -1,  0,  0, -1],</span>
+<span class="go">                       [ 0,  0, -1,  0,  0,  0,  0,  0],</span>
+<span class="go">                       [ 0,  0,  0,  0,  0,  0, -1,  0],</span>
+<span class="go">                       [ 0, -1,  0,  0, -1,  0,  0,  0],</span>
+<span class="go">                       [ 0,  0, -1,  0,  0,  0,  0,  0],</span>
+<span class="go">                       [ 0,  0,  0,  0,  0,  0,  0,  0]])</span>
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p class="first">Write a function called <tt class="docutils literal"><span class="pre">create_minefield(pattern,</span> <span class="pre">n)</span></tt>,
+<tt class="docutils literal"><span class="pre">pattern</span></tt> is a <tt class="docutils literal"><span class="pre">(rows,</span> <span class="pre">columns)</span></tt> tuple,
+which return a new random minefield with the given pattern
+with <tt class="docutils literal"><span class="pre">n</span></tt> mines.</p>
+<p>Perform the following steps:</p>
+<ol class="loweralpha simple">
+<li>Build a vector of <tt class="docutils literal"><span class="pre">rows</span> <span class="pre">*</span> <span class="pre">columns</span></tt> size
+which has <tt class="docutils literal"><span class="pre">n</span></tt> times the -1 value, and the rest of them, only zeros.</li>
+<li>Import the <tt class="docutils literal"><span class="pre">shuffle</span></tt> function from the <tt class="docutils literal"><span class="pre">numpy.random</span></tt> module.
+This function disorder (or «shuffle») the array elements.</li>
+<li>Shuffle the vector elements that you created.</li>
+<li>Change the vector pattern.</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">create_minefield</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">array([[-1,  0,  0,  0],</span>
+<span class="go">       [ 0,  0,  0,  0],</span>
+<span class="go">       [ 0, -1, -1,  0],</span>
+<span class="go">       [ 0, -1, -1,  0]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">create_minefield</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">array([[ 0,  0, -1,  0],</span>
+<span class="go">       [ 0,  0,  0, -1],</span>
+<span class="go">       [-1,  0,  0,  0],</span>
+<span class="go">       [ 0,  0, -1, -1]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">create_minefield</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">array([[ 0,  0,  0, -1],</span>
+<span class="go">       [ 0,  0, -1, -1],</span>
+<span class="go">       [-1,  0,  0,  0],</span>
+<span class="go">       [ 0,  0, -1,  0]])</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">When a box without a mine is discover, it appears a number,
+which indicates the amount of mines which are present in their
+eight neighboring boxes.</p>
+<p>Write a function called <tt class="docutils literal"><span class="pre">discover(minefield)</span></tt>
+which modify the minefield putting en each zero box
+the amount of neighboring boxes with mines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">create_minefield</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span>
+<span class="go">array([[ 0,  0, -1, -1],</span>
+<span class="go">       [ 0,  0, -1,  0],</span>
+<span class="go">       [ 0,  0,  0, -1],</span>
+<span class="go">       [ 0,  0,  0, -1]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">discover</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span>
+<span class="go">array([[ 0,  2, -1, -1],</span>
+<span class="go">       [ 0,  2, -1,  4],</span>
+<span class="go">       [ 0,  1,  3, -1],</span>
+<span class="go">       [ 0,  0,  2, -1]])</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">With this two function, you are now able to play minesweeper,
+so, write a function called <tt class="docutils literal"><span class="pre">play_minesweeper(level)</span></tt> which provide
+the possibility of play this game, turn by turn.</p>
+<p>To develop this function you must have in mind the following points:</p>
+<ul class="simple">
+<li>The <tt class="docutils literal"><span class="pre">level</span></tt> parameter is an integer between 1 and 3.</li>
+<li>Inside the function, you need to define the <tt class="docutils literal"><span class="pre">level</span></tt> as a tuple,
+with information <tt class="docutils literal"><span class="pre">(rows,</span> <span class="pre">columns,</span> <span class="pre">mines</span> <span class="pre">number)</span></tt>.</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><em>Level 1:</em> <tt class="docutils literal"><span class="pre">(5,5,6)</span></tt></li>
+<li><em>Level 2:</em> <tt class="docutils literal"><span class="pre">(7,7,12)</span></tt></li>
+<li><em>Level 3:</em> <tt class="docutils literal"><span class="pre">(10,10,30)</span></tt></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p class="first">The game behavior is a loop, which verify each turn if the game
+is over (<strong>win</strong> or <strong>lose</strong>), in both cases, you need to display a message to the user.</p>
+</li>
+<li><p class="first">You must represent the undiscovered field with <strong>#</strong> symbols, for example
+a 5 x 5 field.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># # # # #</span>
+<span class="c"># # # # #</span>
+<span class="c"># # # # #</span>
+<span class="c"># # # # #</span>
+<span class="c"># # # # #</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>The user must enter a box <tt class="docutils literal"><span class="pre">(x,y)</span></tt> each turn, to undiscovered it.</li>
+</ul>
+<blockquote>
+<div><ul>
+<li><p class="first">If the box is a mine, the game is over.</p>
+</li>
+<li><p class="first">If the box is not a mine, you change the <strong>#</strong> symbol by corresponding field number,
+for example, if we have this initial field:</p>
+<div class="highlight-python"><pre>1  -1  1
+2   2  1
+-1  1  0</pre>
+</div>
+<p>We need to show it, like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># # #</span>
+<span class="c"># # #</span>
+<span class="c"># # #</span>
+</pre></div>
+</div>
+<p>The positions are:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>So, the first choice of the user, can be, for example: <tt class="docutils literal"><span class="pre">(2,1)</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># # #</span>
+<span class="c"># # 1</span>
+<span class="c"># # #</span>
+</pre></div>
+</div>
+<p>The next choice, can be, for example: <tt class="docutils literal"><span class="pre">(0,1)</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># # #</span>
+<span class="mi">2</span> <span class="c"># 1</span>
+<span class="c"># # #</span>
+</pre></div>
+</div>
+<p>An the third choice, can be, for example: <tt class="docutils literal"><span class="pre">(0,0)</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#  # #</span>
+<span class="mi">2</span>  <span class="c"># 1</span>
+<span class="o">-</span><span class="mi">1</span> <span class="c"># #</span>
+</pre></div>
+</div>
+<p>So, the game is over!</p>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="../week8/index.html" title="Eighth week"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="lecture28.html" title="Lecture 28 - Views: View and automatic modifications"
+             >anterior</a> |</li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li>
+          <li><a href="index.html" >Seventh week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

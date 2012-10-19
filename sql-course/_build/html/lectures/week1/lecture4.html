@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lectura 4 - Álgebra Relacional: Set operators, renaming, notation &mdash; Curso ALMA SQL</title>
+    
+    <link rel="stylesheet" href="../../_static/sqlcourse.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Curso ALMA SQL" href="../../index.html" />
+    <link rel="up" title="Primera Semana" href="index.html" />
+    <link rel="next" title="Tarea 1" href="assignment1.html" />
+    <link rel="prev" title="Lectura 3 - Álgebra Relacional: Select, Project, Join" href="lecture3.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="assignment1.html" title="Tarea 1"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="lecture3.html" title="Lectura 3 - Álgebra Relacional: Select, Project, Join"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Primera Semana</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lectura 4 - Álgebra Relacional: Set operators, renaming, notation</a><ul>
+<li><a class="reference internal" href="#conceptos-basicos-de-algebra-relacional">Conceptos básicos de álgebra relacional</a></li>
+<li><a class="reference internal" href="#operaciones-de-conjunto">Operaciones de conjunto:</a><ul>
+<li><a class="reference internal" href="#union">UNIÓN</a><ul>
+<li><a class="reference internal" href="#ejemplo-1">Ejemplo 1</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#diferencia">DIFERENCIA</a><ul>
+<li><a class="reference internal" href="#ejemplo-2">Ejemplo 2</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#interseccion">INTERSECCIÓN</a><ul>
+<li><a class="reference internal" href="#ejemplo-3">Ejemplo 3</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#operaciones-dependientes-y-independientes">OPERACIONES DEPENDIENTES Y INDEPENDIENTES</a></li>
+<li><a class="reference internal" href="#algebra-relacional-como-idioma-restrictor">ÁLGEBRA RELACIONAL COMO IDIOMA RESTRICTOR</a></li>
+<li><a class="reference internal" href="#ejercicios-propuestos">EJERCICIOS PROPUESTOS</a><ul>
+<li><a class="reference internal" href="#ejercicio-1">Ejercicio 1</a></li>
+<li><a class="reference internal" href="#ejercicio-2">Ejercicio 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="lecture3.html"
+                        title="Capítulo anterior">Lectura 3 - Álgebra Relacional: Select, Project, Join</a></p>
+  <h4>Próximo tema</h4>
+  <p class="topless"><a href="assignment1.html"
+                        title="Próximo capítulo">Tarea 1</a></p>
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week1/lecture4.txt"
+           rel="nofollow">Enseñar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un módulo, clase o nombre de función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lectura-4-algebra-relacional-set-operators-renaming-notation">
+<h1>Lectura 4 - Álgebra Relacional: Set operators, renaming, notation<a class="headerlink" href="#lectura-4-algebra-relacional-set-operators-renaming-notation" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="conceptos-basicos-de-algebra-relacional">
+<h2>Conceptos básicos de álgebra relacional<a class="headerlink" href="#conceptos-basicos-de-algebra-relacional" title="Enlazar permanentemente con este título">¶</a></h2>
+<p id="index-0">Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo, en el álgebra de la aritmética, los operandos atómicos son variable como <span class="math">\(r\)</span>, y constantes como 15.
+Los operadores son los usuales en la aritmética:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Suma</li>
+<li>Resta</li>
+<li>Multiplicación</li>
+<li>División.</li>
+</ul>
+</div></blockquote>
+<p>Cualquier álgebra nos permite construir expresiones mediante la aplicación de operadores a operandos atómicos y/o otras expresiones del álgebra. En general, los paréntesis son necesarios para agrupar operadores y sus operandos. Por ejemplo, en aritmética tenemos expresiones tales como <span class="math">\((x + y) * z\)</span> ó <span class="math">\(((x + 7)/(y - 3)) + x\)</span>.</p>
+<p>El Álgebra Relacional es otro ejemplo del álgebra. Sus operandos atómicos son:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Variables que representan relaciones.</li>
+<li>Constantes que son relaciones finitas.</li>
+</ol>
+</div></blockquote>
+<p>Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus resultados de expresiones son conjuntos. Los operadores del álgebra relacional tradicional se divide en cuatro grandes categorías:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Los conjuntos habituales de operaciones –unión, intersección, y diferencia- se aplica a las relaciones.</li>
+<li>Las operaciones que eliminan parte de una relación: “selección” elimina algunas filas (tuplas), y “proyección” elimina algunas columnas.</li>
+<li>Las operaciones que combinan las tuplas de dos relaciones, como el “producto cartesiano,” que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de operadores “unión”, los cuales forman parejas de tuplas de dos relaciones selectivamente.</li>
+<li>Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que cambia el esquema de relación, es decir, lo nombres de los atributos y/o los nombres de la relación misma.</li>
+</ol>
+</div></blockquote>
+<p>Debemos por lo general referirnos a las expresiones del álgebra relacional como consultas.
+A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones del algebra relacional, se debería familiarizar con las operaciones de grupo <span class="math">\((a)\)</span>; y por lo tanto reconocer <span class="math">\((R U S)\)</span> como un ejemplo de una expresión de álgebra relacional.
+<span class="math">\(R\)</span> y <span class="math">\(S\)</span> son operandos atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas.
+Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones nombradas <span class="math">\(R\)</span> y <span class="math">\(S\)</span>.</p>
+<p>Las tres operaciones más comunes en conjuntos son unión, intersección, y diferencia.
+Las cuales se definen como los siguientes conjuntos arbitrarios <span class="math">\(R\)</span> y <span class="math">\(S\)</span>:</p>
+</div>
+<div class="section" id="operaciones-de-conjunto">
+<h2>Operaciones de conjunto:<a class="headerlink" href="#operaciones-de-conjunto" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="union">
+<span id="index-1"></span><h3>UNIÓN<a class="headerlink" href="#union" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos A y B es el conjunto que contiene todos los elementos de A y de B.</p>
+<p>De manera análoga la unión de dos relaciones <span class="math">\(R\)</span> y <span class="math">\(S\)</span>, es otra relación que contiene las tuplas que están en <span class="math">\(R\)</span>, o en <span class="math">\(S\)</span>, o en ambas, eliminándose las tuplas duplicadas. <span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (<span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).</p>
+<p><strong>Notación en álgebra relacional</strong></p>
+<div class="math">
+\[\begin{split}R \cup S \\\end{split}\]</div>
+<div class="math">
+\[\begin{split}\textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado} \\\end{split}\]</div>
+<div class="section" id="ejemplo-1">
+<h4>Ejemplo 1<a class="headerlink" href="#ejemplo-1" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Dadas las siguientes relaciones:</p>
+<p><strong>Tabla Ingenieros</strong></p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+     \hline
+      \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
+     \hline
+     123 &amp; \mbox{Leon}   &amp; 39\\
+     \hline
+     234 &amp; \mbox{Tomas}  &amp; 34\\
+     \hline
+     345 &amp; \mbox{Jose}   &amp; 45\\
+     \hline
+     143 &amp; \mbox{Josefa} &amp; 25\\
+     \hline
+\end{array}\end{split}\]</div>
+<p><strong>Tabla Jefes</strong></p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+  \hline
+   \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
+  \hline
+  123 &amp; \mbox{Leon}   &amp; 39\\
+  \hline
+  235 &amp; \mbox{Maria}   &amp; 29\\
+  \hline
+\end{array}\end{split}\]</div>
+<p>Aplicar el operador Unión:</p>
+<p>Ingenieros <tt class="docutils literal"><span class="pre">U</span></tt> Jefes</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+     \hline
+      \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
+     \hline
+     123 &amp; \mbox{Leon}   &amp; 39\\
+     \hline
+     234 &amp; \mbox{Tomas}  &amp; 34\\
+     \hline
+     345 &amp; \mbox{Jose}   &amp; 45\\
+     \hline
+     143 &amp; \mbox{Josefa} &amp; 25\\
+     \hline
+     235 &amp; \mbox{Maria} &amp; 29\\
+     \hline
+\end{array}\end{split}\]</div>
+<p>Como se mencionó anteriormente realizar la operación Jefes <tt class="docutils literal"><span class="pre">U</span></tt> Ingenieros daría como resultado la misma tabla anterior.</p>
+</div>
+</div>
+<div class="section" id="diferencia">
+<h3>DIFERENCIA<a class="headerlink" href="#diferencia" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos A y B es el conjunto que contiene todos los elementos de A que no pertenecen a B.
+De la misma forma la diferencia de dos relaciones <span class="math">\(R\)</span> y <span class="math">\(S\)</span>, es otra relación que contiene las tuplas que están en la relación <span class="math">\(R\)</span>, pero no están en <span class="math">\(S\)</span>.
+<span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben ser unión-compatible.</p>
+<p><strong>Notación en álgebra relacional</strong></p>
+<div class="math">
+\[R - S\]</div>
+<p>Es importante resaltar que <span class="math">\(R - S\)</span> es diferente a <span class="math">\(S - R\)</span>.</p>
+<div class="section" id="ejemplo-2">
+<h4>Ejemplo 2<a class="headerlink" href="#ejemplo-2" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Empleando las mismas tablas dadas en el ejemplo anterior, realice Ingenieros
+<tt class="docutils literal"><span class="pre">-</span></tt> Jefes y Jefes <tt class="docutils literal"><span class="pre">-</span></tt> Ingenieros:</p>
+<p>Ingenieros <tt class="docutils literal"><span class="pre">-</span></tt> Jefes</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+     \hline
+      \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
+     \hline
+     234 &amp; \mbox{Tomas}  &amp; 34\\
+     \hline
+     345 &amp; \mbox{Jose}   &amp; 45\\
+     \hline
+     143 &amp; \mbox{Josefa} &amp; 25\\
+     \hline
+\end{array}\end{split}\]</div>
+<p>Jefes <tt class="docutils literal"><span class="pre">-</span></tt> Ingenieros</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+     \hline
+     \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
+     \hline
+     235 &amp; \mbox{Maria} &amp; 29\\
+     \hline
+\end{array}\end{split}\]</div>
+<p>Como se puede apreciar, ambas operaciones dieron como resultado distintas relaciones, tal como se había mencionado anteriormente.</p>
+</div>
+</div>
+<div class="section" id="interseccion">
+<h3>INTERSECCIÓN<a class="headerlink" href="#interseccion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En  álgebra de conjuntos la intersección de dos conjuntos A y B es el conjunto que contiene todos los elementos comunes de A y B. De forma homóloga en álgebra relacional INTERSECTION define una relación que contiene las tuplas que están tanto en la relación <span class="math">\(R\)</span> como en <span class="math">\(S\)</span>. <span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben ser unión-compatible.</p>
+<p><strong>Notación en algebra relacional</strong></p>
+<div class="math">
+\[R \cap S\]</div>
+<div class="math">
+\[\begin{split}\textrm{ Si se realiza } R \cap S \textrm{ es lo mismo que }  S \cap R \textrm{ , es decir se obtiene el mismo resultado} \\\end{split}\]</div>
+<p><strong>Equivalencia con operadores anteriores</strong></p>
+<div class="math">
+\[R \cap S= R-(R-S)\]</div>
+<div class="section" id="ejemplo-3">
+<h4>Ejemplo 3<a class="headerlink" href="#ejemplo-3" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de la tabla de Ingenieros con la de Jefes:</p>
+<div class="math">
+\[Ingenieros \cap Jefes\]\[\begin{split}  \begin{array}{|c|c|c|}
+    \hline
+     \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad}\\
+    \hline
+    123 &amp; \mbox{Leon}   &amp; 39\\
+    \hline
+  \end{array}\end{split}\]</div>
+<div class="admonition important">
+<p class="first admonition-title">Importante</p>
+<p>Cuando aplicamos estas operaciones a relaciones, necesitamos poner algunas condiciones R y S:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben tener esquemas con conjuntos de atributos idénticos, y de tipos (dominios) para cada atributo deben ser las mismas en <span class="math">\(R\)</span> y <span class="math">\(S\)</span>.</li>
+<li>Antes de computar el conjunto-teórico unión, intersección, o diferencia de conjuntos de tuplas, las columnas de <span class="math">\(R\)</span> y <span class="math">\(S\)</span> deben ser ordenadas para que el orden de los atributos sean los mismos para ambas relaciones.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="operaciones-dependientes-y-independientes">
+<h3>OPERACIONES DEPENDIENTES Y INDEPENDIENTES<a class="headerlink" href="#operaciones-dependientes-y-independientes" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Algunas de las operaciones que hemos descrito en las lecturas 3 y 4, pueden ser expresadas en términos de operadores de algebra relacional.
+Por ejemplo, la intersección puede ser expresada en términos de conjuntos de diferencia: R &lt;INTERSECCCIÓN&gt; S = R - (R - S). Es decir, si R y S son dos relaciones con el mismo esquema, la intersección de R y S puede ser resuelta restando primero S de R para formar una relación T que consiste en todas aquellas tuplas en R pero no en S. Cuando restamos T de R, dejamos solo esas tuplas de R que están también en S.</p>
+</div>
+<div class="section" id="algebra-relacional-como-idioma-restrictor">
+<h3>ÁLGEBRA RELACIONAL COMO IDIOMA RESTRICTOR<a class="headerlink" href="#algebra-relacional-como-idioma-restrictor" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Hay dos maneras en las cuales podemos usar expresiones de algebra relacional para expresar restricción:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Si <span class="math">\(R\)</span> es una expresión de algebra relacional, entonces <span class="math">\(R = 0\)</span> es una restricción que dice “El valor de R debe ser vacio,” o equivalentemente “No hay tuplas en el resultado de R.&#8221;</li>
+<li>Si <span class="math">\(R\)</span> y <span class="math">\(S\)</span> son expresiones de algebra relacional, entonces <span class="math">\(R \subset S\)</span> es una restricción que dice “Cada tupla en resultado de R debe estar también en resultado de S.&#8221; Por supuesto, el resultado de <span class="math">\(S\)</span> puede contener tuplas adicionales no producidas en <span class="math">\(R\)</span>.</li>
+</ol>
+</div></blockquote>
+<p>Estas formas para expresar restricción son de hecho equivalentes en lo que pueden expresar, pero algunas veces uno de los dos es más clara o más sucinta. Es decir, la restricción <span class="math">\(R \subset S\)</span> pudo también ser escrito <span class="math">\(R - S = 0\)</span>. Para ver por qué, observe que si cada tupla en <span class="math">\(R\)</span> está también en <span class="math">\(S\)</span>, entonces seguramente <span class="math">\(R - S\)</span> es vacío. A la inversa, si <span class="math">\(R - S\)</span> no contiene tuplas, entonces cada tupla en <span class="math">\(R\)</span> debe estar en <span class="math">\(S\)</span> (o de lo que sería <span class="math">\(R - S\)</span>).</p>
+<p>Por otra parte, una restricción de la primera forma, <span class="math">\(R = 0\)</span>, también pudo haber sido escrita como <span class="math">\(R \subset 0\)</span>. Técnicamente, <span class="math">\(0\)</span> no es una expresión de algebra relacional, pero ya que hay expresiones que evalúan a <span class="math">\(0\)</span>, tal como <span class="math">\(R - R\)</span>, no hay nada malo en usar <span class="math">\(0\)</span> como una expresión de algebra relacional. Tenga en cuenta que estas equivalencias sostienen se sostienen incluso si <span class="math">\(R\)</span> y <span class="math">\(S\)</span> son bolsas, dado que hacemos la interpretación convencional de <span class="math">\(R \subset S\)</span>: cada tupla <span class="math">\(t\)</span> aparece en <span class="math">\(S\)</span> al menos tantas veces como aparece en <span class="math">\(R\)</span>.</p>
+</div>
+<div class="section" id="ejercicios-propuestos">
+<h3>EJERCICIOS PROPUESTOS<a class="headerlink" href="#ejercicios-propuestos" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="section" id="ejercicio-1">
+<h4>Ejercicio 1<a class="headerlink" href="#ejercicio-1" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Las relaciones base que forman la base de datos de un video club son las siguientes:</p>
+<ul class="simple">
+<li>SOCIO(<strong>codsocio</strong>,nombre,direccion,telefono)</li>
+<li>PELICULA(<strong>codpeli</strong>,titulo,genero)</li>
+<li>CINTA(<strong>codcinta</strong>,codpeli)</li>
+<li>PRESTAMO(<strong>codsocio,codcinta,fecha</strong>,pres_dev)</li>
+<li>LISTA_ESPERA(<strong>codsocio,codpeli</strong>,fecha)</li>
+</ul>
+<p>SOCIO: almacena los datos de cada uno de los socios del video club: código del socio, nombre, dirección y teléfono.</p>
+<p>PELÍCULA: almacena información sobre cada una de las películas de las cuales tiene copias el vídeo club: código de la película, título y género (terror, comedia, etc.).</p>
+<p>CINTA: almacena información referente a las copias que hay de cada película (copias distintas de una misma película tendrán distinto código de cinta).</p>
+<p>PRÉSTAMO: almacena información de los préstamos que se han realizado. Cada préstamo es de una cinta a un socio en una fecha. Si el préstamo aún no ha finalizado, pres_dev tiene el valor &#8216;prestada&#8217;; si no su valor es &#8216;devuelta&#8217;.</p>
+<p>LISTA_ESPERA: almacena información sobre los socios que esperan a que haya copias disponibles de películas, para tomarlas prestadas. Se guarda también la fecha en que comenzó la espera para mantener el orden. Es importante tener en cuenta que cuando el socio consigue la película esperada, éste desaparece de la lista de espera.</p>
+<p>En las relaciones anteriores, son claves primarias los atributos y grupos de atributos que aparecen en negrita. Las claves ajenas se muestran en los siguientes diagramas referenciales:</p>
+<p>Resolver las siguientes consultas mediante el álgebra relacional (recuerde que en la lectura 3 también se dieron algunos operadores de álgebra relacional):</p>
+<p>1.1. Seleccionar todos los socios que se llaman: &#8220;Charles&#8221;.</p>
+<p><strong>Respuesta</strong></p>
+<div class="math">
+\[\sigma_{nombre='Charles'} (SOCIO)\]</div>
+<p>1.2. Seleccionar el código socio de todos los socios que se llaman: &#8220;Charles&#8221;.</p>
+<p><strong>Respuesta</strong></p>
+<div class="math">
+\[\pi_{codsocio}(\sigma_{nombre='Charles'} (SOCIO))\]</div>
+<p>1.3. Seleccionar los nombres de las películas que se encuentran en lista de espera.</p>
+<p><strong>Respuesta</strong></p>
+<div class="math">
+\[\pi_{titulo}(PELICULA \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)\]</div>
+<p>1.4. Obtener los nombres de los socios que esperan películas.</p>
+<p><strong>Respuesta</strong></p>
+<div class="math">
+\[\pi_{nombre}(SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)\]</div>
+<p>1.5. Obtener los nombres de los socios que tienen actualmente prestada una película que ya tuvieron prestada con anterioridad.</p>
+<p><strong>Respuesta</strong></p>
+<div class="math">
+\[\pi_{nombre} ( \{(PRESTAMO \rhd \hspace{-0.1cm} \lhd_{ (pres\_dev='prestada')} CINTA) \cap (PRESTAMO \rhd \hspace{-0.1cm} \lhd_{(pres\_dev='devuelta')} CINTA)\} \rhd \hspace{-0.1cm}\lhd SOCIO )\]</div>
+<p>1.6. Obtener los títulos de las películas que nunca han sido prestadas.</p>
+<p><strong>Respuesta</strong></p>
+<div class="math">
+\[\pi_{titulo} \{(\pi_{codpeli} PELICULA  - \pi_{codpeli} (PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA) ) \rhd \hspace{-0.1cm} \lhd PELICULA \}\]</div>
+<p>(todas las películas) menos (las películas que han sido prestadas alguna vez)</p>
+<p>1.7. Obtener los nombres de los socios que han tomado prestada la película “WALL*E” alguna  vez o que están esperando para tomarla prestada.</p>
+<p><strong>Respuesta</strong></p>
+<div class="math">
+\[\begin{split}\pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cup \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )\end{split}\]</div>
+<p>1.8. Obtener los nombres de los socios que han tomado prestada la película “WALL*E” alguna vez y que además están en su lista de espera.</p>
+<p><strong>Respuesta</strong></p>
+<div class="math">
+\[\begin{split}\pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cap \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )\end{split}\]</div>
+</div>
+<div class="section" id="ejercicio-2">
+<h4>Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Considere la base de datos con el siguiente esquema:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Persona (nombre, edad, genero); nombre es la clave.</li>
+<li>Frecuenta (nombre, pizzeria): (nombre, pizzeria) es la clave.</li>
+<li>Come (nombre, pizza): (nombre, pizza) es la clave.</li>
+<li>Sirve (pizzería, pizza, precio): (pizzería, pizza) es la clave.</li>
+</ol>
+</div></blockquote>
+<p>Escribir las expresiones de álgebra relacional para las siguientes nueve consultas. (Precaución: algunas de las siguientes consultas son un poco desafiantes).</p>
+<blockquote>
+<div><ul class="simple">
+<li>Encuentre todas las pizzerías frecuentadas por al menos una persona menor de 18 años.</li>
+<li>Encuentre los nombres de todas las mujeres que comen pizza ya sea con champiñones o salchichón (o ambas).</li>
+<li>Encuentre los nombres de todas las mujeres que comen pizzas con los dos ingredientes, champiñones y salchichón.</li>
+<li>Encuentre todas las pizzerías que sirven al menos una pizza que Amy come por menos de 10 dólares.</li>
+<li>Encuentre todas las pizzerías que son frecuentadas por solo mujeres o solo hombres.</li>
+<li>Para cada persona, encuentre todas las pizzas que la persona come, que no son servidas por ninguna pizzería que la persona frecuenta. Devuelve toda dicha persona (nombre)/ pizza pares.</li>
+<li>Encuentre los nombres de todas las personas que frecuentan solo pizzerías que sirven al menos una pizza que ellos comen.</li>
+<li>Encuentre la pizzería que sirve la pizza más barata de salchichón. En el caso de empate, vuelve todas las pizzerías que venden las pizzas de salchichón más baratas.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="assignment1.html" title="Tarea 1"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="lecture3.html" title="Lectura 3 - Álgebra Relacional: Select, Project, Join"
+             >anterior</a> |</li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li>
+          <li><a href="index.html" >Primera Semana</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

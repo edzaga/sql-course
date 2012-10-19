@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 5 - Introduction &mdash; ALMA SQL Course</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ALMA SQL Course" href="../../index.html" />
+    <link rel="up" title="Second week" href="index.html" />
+    <link rel="next" title="Lecture 6 - Data Types" href="lecture6.html" />
+    <link rel="prev" title="Second week" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lecture6.html" title="Lecture 6 - Data Types"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Second week"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Second week</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 5 - Introduction</a><ul>
+<li><a class="reference internal" href="#characteristics">Characteristics</a></li>
+<li><a class="reference internal" href="#data-definition-languaje-ddl">Data Definition Languaje (DDL)</a></li>
+<li><a class="reference internal" href="#data-manipulation-languaje-dml">Data Manipulation Languaje (DML)</a></li>
+<li><a class="reference internal" href="#other-commands">Other Commands</a></li>
+<li><a class="reference internal" href="#ejemplo-practico">Ejemplo práctico</a></li>
+<li><a class="reference internal" href="#clave-primaria-y-foranea">Clave Primaria y Foránea</a><ul>
+<li><a class="reference internal" href="#id1">Ejemplo Práctico</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Second week</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lecture6.html"
+                        title="next chapter">Lecture 6 - Data Types</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week2/lecture5.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-5-introduction">
+<h1>Lecture 5 - Introduction<a class="headerlink" href="#lecture-5-introduction" title="Permalink to this headline">¶</a></h1>
+<p>SQL (Structured Query Language) es un tipo de lenguaje vinculado con la gestión de
+bases de datos de carácter relacional que permite la especificación de distintas
+clases de operaciones entre éstas. Gracias a la utilización del álgebra y de
+cálculos relacionales, el lenguaje SQL brinda la posibilidad de realizar consultas
+que ayuden a recuperar información de las bases de datos de manera sencilla.</p>
+<div class="section" id="characteristics">
+<h2>Characteristics<a class="headerlink" href="#characteristics" title="Permalink to this headline">¶</a></h2>
+<p id="index-0">Algunas de las características de este lenguaje son:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8220;SQL&#8221; or &#8220;sequel&#8221;</li>
+<li>Supported by all major commercial database systems</li>
+<li>Standardized - many new features over time</li>
+<li>Interactive via GUI or prompt, or embedded in programs</li>
+<li>Declarative, based on relational algebra</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="data-definition-languaje-ddl">
+<h2>Data Definition Languaje (DDL)<a class="headerlink" href="#data-definition-languaje-ddl" title="Permalink to this headline">¶</a></h2>
+<p id="index-1">Data definition language or data description language (DDL) is a syntax similar
+to a computer programming language for defining data structures, especially
+database schemas.</p>
+<p>Examples:</p>
+<div class="highlight-python"><pre>Create table ...
+Drop table ...</pre>
+</div>
+<p><strong>Description of commands</strong></p>
+<p><strong>Create</strong> - To make a new database, table, index, or stored query. A CREATE
+statement in SQL creates an object inside of a relational database management system
+(RDBMS). The types of objects that can be created depends on which RDBMS is being
+used, but most support the creation of tables, indexes, users, synonyms and
+databases. Some systems (such as PostgreSQL) allow CREATE, and other DDL commands,
+inside of a transaction and thus they may be rolled back.</p>
+<p><strong>Drop</strong> - To destroy an existing database, table, index, or view.
+A DROP statement in SQL removes an object from a relational database management
+system (RDBMS). The types of objects that can be dropped depends on which RDBMS is
+being used, but most support the dropping of tables, users, and databases. Some
+systems (such as PostgreSQL) allow DROP and other DDL commands to occur inside of
+a transaction and thus be rolled back.</p>
+</div>
+<div class="section" id="data-manipulation-languaje-dml">
+<h2>Data Manipulation Languaje (DML)<a class="headerlink" href="#data-manipulation-languaje-dml" title="Permalink to this headline">¶</a></h2>
+<p>DML son las siglas de Data Manipulation Language y se refiere a los comandos que
+permiten a un usuario manipular los datos en un repositorio, es decir, añadir,
+consultar, borrar o actualizar.</p>
+<p>Examples of DML:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="sb">`SELECT`</span>
+<span class="sb">`INSERT`</span>
+<span class="sb">`DELETE`</span>
+<span class="sb">`UPDATE`</span>
+</pre></div>
+</div>
+<p><strong>Description of commands</strong></p>
+<p><strong>SELECT</strong> -  returns a result set of records from one or more tables.
+A SELECT statement retrieves zero or more rows from one or more database tables or
+database views. In most applications, SELECT is the most commonly used Data
+Manipulation Language (DML) command. As SQL is a declarative programming language,
+SELECT queries specify a result set, but do not specify how to calculate it. The
+database translates the query into a &#8220;query plan&#8221; which may vary between executions,
+database versions and database software. This functionality is called the &#8220;query
+optimizer&#8221; as it is responsible for finding the best possible execution plan for
+the query, within applicable constraints.</p>
+<p>The Basic SELECT Statement</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="s1">&#39;A_{1},\ldots,A_{n}&#39;</span> <span class="k">FROM</span> <span class="s1">&#39;R_{1}, \ldots, R_{m}&#39;</span> <span class="k">WHERE</span> <span class="s1">&#39;condition&#39;</span>
+</pre></div>
+</div>
+<p><strong>Significado:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt> <span class="math">\(A_{1}, \ldots, A_{n}\)</span>: What to return</li>
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">FROM</span></span></tt> <span class="math">\(R_{1}, \ldots,R_{m}\)</span>: relations</li>
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">WHERE</span></span></tt> <span class="math">\(condition\)</span>: combine, filter</li>
+</ul>
+</div></blockquote>
+<p><strong>Algebra relacional:</strong></p>
+<div class="math">
+\[\pi_{A_{1},\ldots, A_{n}} (\sigma_{condition}(R_{1} \times \ldots \times R_{m}))\]</div>
+<p>Comandos SQL:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">INSERT</span></span></tt> - adds one or more records to any single table in a relational
+database.</li>
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DELETE</span></span></tt> - removes one or more records from a table. A subset may be
+defined for deletion using a condition, otherwise all records are removed.</li>
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">UPDATE</span></span></tt> - changes the data of one or more records in a table. Either all
+the rows can be updated, or a subset may be chosen using a condition.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="other-commands">
+<h2>Other Commands<a class="headerlink" href="#other-commands" title="Permalink to this headline">¶</a></h2>
+<p>indexes, constraints, views, triggers, transactions, authorization, ...</p>
+</div>
+<div class="section" id="ejemplo-practico">
+<h2>Ejemplo práctico<a class="headerlink" href="#ejemplo-practico" title="Permalink to this headline">¶</a></h2>
+<p id="index-2">Instalamos por consola Postgresql ingresando el siguiente comando:</p>
+<div class="highlight-python"><pre>sudo apt-get install postgresql postgresql-client postgresql-contrib libpq-dev</pre>
+</div>
+<p>Luego para ingresar al entorno de psql escribimos en consola:</p>
+<div class="highlight-python"><pre>sudo su postgres -c psql</pre>
+</div>
+<p>Para crear una base de datos en este caso la llamaremos example:</p>
+<div class="highlight-python"><pre>postgres=# create database example;
+CREATE DATABASE</pre>
+</div>
+<p>Para ingresar a la base de datos example:</p>
+<div class="highlight-python"><pre>postgres=# \c example
+psql (8.4.14)
+Ahora está conectado a la base de datos «example».</pre>
+</div>
+<p>Ahora comenzamos a crear una tabla llamada cliente con las variables id que se
+define como serial en que al ir agregando datos se autoincrementará automaticamente
+en la base de datos example:</p>
+<div class="highlight-python"><pre>example=# CREATE TABLE cliente (id SERIAL, nombre VARCHAR(50), apellido VARCHAR(50), edad INTEGER, direccion VARCHAR(50), pais VARCHAR(25));
+NOTICE:  CREATE TABLE creará una secuencia implícita «cliente_id_seq» para la columna serial «cliente.id»
+CREATE TABLE</pre>
+</div>
+<p>Para ingresar datos a la tabla se realiza de la siguiente manera:</p>
+<div class="highlight-python"><pre>example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('John', 'Smith', 35, '7635 N La Cholla Blvd', 'EEUU');
+INSERT 0 1</pre>
+</div>
+<p>Agregar más datos a la tabla clientes:</p>
+<div class="highlight-python"><pre>example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('John', 'Smith', 35, '7635 N La Cholla Blvd', 'EEUU');
+INSERT 0 1
+example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('Judith', 'Ford', 20, '3901 W Ina Rd', 'Inglaterra');
+INSERT 0 1
+example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('Sergio', 'Honores', 35, '1256 San Luis', 'Chile');
+INSERT 0 1
+example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('Ana', 'Caprile', 25, '3456 Matta', 'Chile');
+INSERT 0 1</pre>
+</div>
+<p>Seleccionar todos los datos de la tabla cliente:</p>
+<div class="highlight-python"><pre>example=# SELECT * FROM cliente;
+id | nombre | apellido | edad |       direccion       |    pais
+----+--------+----------+------+-----------------------+------------
+ 1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
+ 2 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
+ 3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
+ 4 | Sergio | Honores  |   35 | 1256 San Luis         | Chile
+ 5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
+(5 filas)</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">El asterisco (*) que está entre el <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt> y el <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">FROM</span></span></tt> significa que se seleccionan todas las columnas de la tabla.</p>
+</div>
+<p>Como cometimos el error de ingresar en la segunda fila datos repetidos podemos
+eliminarla de esta manera:</p>
+<div class="highlight-python"><pre>example=# DELETE FROM cliente WHERE id=2;
+DELETE 1</pre>
+</div>
+<p>Verificamos que se haya borrado:</p>
+<div class="highlight-python"><pre>example=# SELECT * FROM cliente;
+id | nombre | apellido | edad |       direccion       |    pais
+----+--------+----------+------+-----------------------+------------
+ 1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
+ 3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
+ 4 | Sergio | Honores  |   35 | 1256 San Luis         | Chile
+ 5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
+(4 filas)</pre>
+</div>
+<p>Si se desea actualizar la dirección del cliente Sergio:</p>
+<div class="highlight-python"><pre>example=# UPDATE cliente SET direccion='1459 Patricio Lynch' WHERE id=4;
+UPDATE 1</pre>
+</div>
+<p>Verificamos que se haya actualizado la información:</p>
+<div class="highlight-python"><pre>example=# SELECT * FROM cliente;
+ id | nombre | apellido | edad |       direccion       |    pais
+----+--------+----------+------+-----------------------+------------
+ 1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
+ 3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
+ 5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
+ 4 | Sergio | Honores  |   35 | 1459 Patricio Lynch   | Chile
+(4 filas)</pre>
+</div>
+<p>Si queremos borrar toda la tabla:</p>
+<div class="highlight-python"><pre>example=# DROP TABLE cliente;
+DROP TABLE</pre>
+</div>
+<p>Verificamos que se haya eliminado la tabla cliente:</p>
+<div class="highlight-python"><pre>example=# SELECT * FROM cliente;
+ERROR:  no existe la relación «cliente»
+LÍNEA 1: SELECT * FROM cliente;
+                      ^</pre>
+</div>
+</div>
+<div class="section" id="clave-primaria-y-foranea">
+<h2>Clave Primaria y Foránea<a class="headerlink" href="#clave-primaria-y-foranea" title="Permalink to this headline">¶</a></h2>
+<p>En las bases de datos relacionales, se le llama clave primaria a un campo o a una
+combinación de campos que identifica de forma única a cada fila de una tabla. Por lo
+que no pueden existir dos filas en una tabla que tengan la misma clave primaria.</p>
+<p>Y las claves foráneas tienen por objetivo establecer una conexión con la clave primaria que referencian de otra tabla, creandose una relación entre las dos tablas.</p>
+<div class="section" id="id1">
+<h3>Ejemplo Práctico<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está definido como serial que automáticamente irá ingresando los valores 1, 2,3 a cada registro.:</p>
+<div class="highlight-python"><pre>postgres=# CREATE TABLE profesores(ID_profesor serial, nombre VARCHAR(30), apellido VARCHAR(30), PRIMARY KEY(ID_profesor));
+NOTICE:  CREATE TABLE creará una secuencia implícita «profesores_id_profesor_seq» para la columna serial «profesores.id_profesor»
+NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «profesores_pkey» para la tabla «profesores»
+CREATE TABLE</pre>
+</div>
+<p>Ahora vamos a crear la tabla de cursos en que ID_curso será la clave primaria de esta tabla y ID_profesor será la clave foránea, que se encargará de realizar una conexión entre estas dos tablas.:</p>
+<div class="highlight-python"><pre>postgres=# CREATE TABLE cursos(ID_curso serial, titulo VARCHAR(30), ID_profesor INTEGER, PRIMARY KEY(ID_curso), FOREIGN KEY(ID_profesor) REFERENCES profesores(ID_profesor));
+NOTICE:  CREATE TABLE creará una secuencia implícita «cursos_id_curso_seq» para la columna serial «cursos.id_curso»
+NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «cursos_pkey» para la tabla «cursos»
+CREATE TABLE</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lecture6.html" title="Lecture 6 - Data Types"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Second week"
+             >previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" >Second week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Assignment 5 &mdash; ALMA SQL Course</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ALMA SQL Course" href="../../index.html" />
+    <link rel="up" title="Fifth week" href="index.html" />
+    <link rel="next" title="Sixth week" href="../week6/index.html" />
+    <link rel="prev" title="Lecture 20 - Unified Modeling Language: UML to relations" href="lecture20.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../week6/index.html" title="Sixth week"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lecture20.html" title="Lecture 20 - Unified Modeling Language: UML to relations"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Fifth week</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Assignment 5</a><ul>
+<li><a class="reference internal" href="#sticker-album">Sticker Album</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture20.html"
+                        title="previous chapter">Lecture 20 - Unified Modeling Language: UML to relations</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../week6/index.html"
+                        title="next chapter">Sixth week</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week5/assignment5.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="assignment-5">
+<h1>Assignment 5<a class="headerlink" href="#assignment-5" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sticker-album">
+<h2>Sticker Album<a class="headerlink" href="#sticker-album" title="Permalink to this headline">¶</a></h2>
+<p>One of the most common hobbies of the children
+is to buy an sticker album, from any interesting
+topic, like dinosaurs, football, cars, cartoon, etc,
+maybe you had one where you are a little boy!</p>
+<p>First of all, please note that you can generate random numbers,
+using the python <tt class="docutils literal"><span class="pre">random</span></tt> module, which provide several
+functions to obtain random numbers in different ways.</p>
+<p>For example, the <tt class="docutils literal"><span class="pre">randrange(n,</span> <span class="pre">m)</span></tt> function,
+return a random number between <tt class="docutils literal"><span class="pre">n</span></tt> and <tt class="docutils literal"><span class="pre">m</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randrange</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">randrange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="go">14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">randrange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">randrange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="go">14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">randrange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">randrange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="go">12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">randrange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="go">9</span>
+</pre></div>
+</div>
+<p>(Remember that the ranges include the first value but not the last one,
+so the maximum previous value will be 14).</p>
+<ol class="arabic">
+<li><p class="first">Lets think that a boy want to collect an sticker album.
+The stickers are enumerated from 1 to 640,
+and the boy can buy some sticker packets,
+which contain 5 stickers, but by error
+in some packets are only 4 stickers.</p>
+<p>Write a function called <tt class="docutils literal"><span class="pre">new_packet()</span></tt>
+which return a list with the new stickers
+and a status, which is <em>wrong</em> or <em>correct</em>
+in cases which the stickers are 4 or 5 respectively:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">new_packet</span><span class="p">()</span>
+<span class="go">([27, 31, 207, 455, 529], &#39;correct&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_packet</span><span class="p">()</span>
+<span class="go">([66, 577, 481, 171], &#39;wrong&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_packet</span><span class="p">()</span>
+<span class="go">([275, 493, 167, 25], &#39;wrong&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_packet</span><span class="p">()</span>
+<span class="go">([113, 35, 592, 560, 244], &#39;correct&#39;)</span>
+</pre></div>
+</div>
+<p><strong>Hint:</strong> Returning more than one value.</p>
+</li>
+<li><p class="first">The boy has a sticker register of all their albums,
+but in this time, he is only looking to finish the
+<strong>Python album</strong>.</p>
+<p>The register is a simple list, called <tt class="docutils literal"><span class="pre">album_stickers</span></tt>.</p>
+<p>Each day, the boy go to the store and buy some stickers
+and obviously, add them to the register.</p>
+<p>Write a function called <tt class="docutils literal"><span class="pre">add_stickers()</span></tt>,
+which receive a parameter of the number of stickers,
+which can be <em>one</em> or <em>n</em> stickers,
+because in some days, the boy buys a lot of packets
+and he want to add them all:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">album_stickers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_stickers</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">album_stickers</span>
+<span class="go">[1]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_stickers</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">156</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">album_stickers</span>
+<span class="go">[1,2,500,156]</span>
+</pre></div>
+</div>
+<p>Also, the boy can add new entire packets,
+without know the content:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">add_stickers</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="n">new_packets</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">[14,1,2,500,156,4,75,23,8,324]</span>
+</pre></div>
+</div>
+<p>Please note that the function does not return anything,
+only modify the <tt class="docutils literal"><span class="pre">album_stickers</span></tt> list.</p>
+<p><strong>Hint:</strong> Default parameter and special parameters.</p>
+</li>
+<li><p class="first">Write a function called <tt class="docutils literal"><span class="pre">missing(stickers)</span></tt>
+which return the missing sticker set to complete the album:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">album_stickers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_stickers</span><span class="p">(</span><span class="n">new_packets</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">missing</span><span class="p">(</span><span class="n">album_stickers</span><span class="p">)</span>
+<span class="go">[514, 3, 5, 7, 10, 523, 12, 525, 14, 16, 529, ...]</span>
+</pre></div>
+</div>
+<p>Please note that the boy buy 128 packets,
+that in total are the same number of the album stickers
+in approximation (because the bad packets), but because
+some stickers are more than once, or another stickers
+which does not are present in the packets is not
+enough to complete the album.</p>
+<p><strong>Hint:</strong> List comprehensions.</p>
+</li>
+<li><p class="first">Write a function called <tt class="docutils literal"><span class="pre">count_stickers(stickers)</span></tt>
+which return a dictionary associating each sticker
+to the number of times which is in the stickers list:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">album_stickers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">count_stickers</span><span class="p">(</span><span class="n">album_stickers</span><span class="p">)</span>
+<span class="go">{9: 3, 2: 1, 4: 1, 6: 2, 12: 2}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><strong>Hint:</strong> <em>sorted()</em> function.</div></blockquote>
+<ol class="arabic">
+<li><p class="first">If the boy wants to exchange stickers with a friend,
+he need to know what stickers does not have and
+what of their stickers has the friend.</p>
+<p>The friend of the boy will exchange only the repeated
+stickers.</p>
+<p>Write a function called <tt class="docutils literal"><span class="pre">needed_stickers(wanted_stickers,friend_stickers)</span></tt>
+which return the set of the stickers that can be exchanged,
+which are the intersection between the <tt class="docutils literal"><span class="pre">wanted_stickers</span></tt> (missing stickers)
+and the repeated stickers from his friend <tt class="docutils literal"><span class="pre">friend_stickers</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">album_stickers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">friend_stickers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">needed_stickers</span><span class="p">(</span><span class="n">album_stickers</span><span class="p">,</span> <span class="n">friend_stickers</span><span class="p">)</span>
+<span class="go">[7]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">needed_stickers</span><span class="p">(</span><span class="n">friend_stickers</span><span class="p">,</span> <span class="n">album_stickers</span><span class="p">)</span>
+<span class="go">[12, 6]</span>
+</pre></div>
+</div>
+<p>This means, the boy wants the sticker number 7, which
+his friend has repeated.
+Also he wants the sticker number 8, but she does not
+has it repeated, so, there is no exchange.
+His friend have repeated the stickers number 4,
+but the boy already have it, so, there is no exchange.</p>
+<p><strong>Hint:</strong> <em>filter()</em> function.</p>
+</li>
+<li><p class="first">Each packet have the possibility to contain an holographic sticker,
+which are multiples of ten.</p>
+<p>The boy want to sell to their friends the repeated stickers,
+a simple stickers cost 0.25 USD and the holographic stickers
+cost 0.50 USD.</p>
+<p>Write a function called <tt class="docutils literal"><span class="pre">sticker_cost()</span></tt>
+which first obtain the sticker cost
+and later calculate the total cost of the repeated stickers:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">album_stickers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">62</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">323</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">34</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sticker_cost</span><span class="p">(</span><span class="n">album_stickers</span><span class="p">)</span>
+<span class="go">2.25 USD</span>
+</pre></div>
+</div>
+<p><strong>Hint:</strong> <em>map()</em> and <em>reduce()</em> function.</p>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../week6/index.html" title="Sixth week"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lecture20.html" title="Lecture 20 - Unified Modeling Language: UML to relations"
+             >previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" >Fifth week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
