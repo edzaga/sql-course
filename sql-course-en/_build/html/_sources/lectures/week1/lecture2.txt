@@ -6,99 +6,100 @@ Lecture 2 - Relational Databases: Querying relational databases
    :class: highlight
 
 
-Utilizando una Base de Datos Relacional
+Using a Relational Database
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. index:: Uso de una base de datos relacional
+.. index:: Using a Relational Database
 
-Los pasos necesarios a la hora de crear una Base de Datos Relacional (BDR) son:
+The necessary steps for the creation of a relational database (DB):
 
-  * Diseñar el esquema, es decir, la estructura de las tablas y las relaciones,
-    usando un DDL (Data Definition Language).
-  * Ingresar los datos iniciales.
-  * Ejecutar operaciones de consulta y mantención usando en DML (Data Manipulation
+  * Design the scheme, in other words, the structure between relations,
+    using a DDL (Data Definition Language).
+  * Enter the initial data.
+  * Execute query and modification operations using a DML(Data Manipulation
     Language).
 
 .. note::
 
-   Existen las llamadas "Operaciones Básicas" de DML que se pueden realizar en una
-   Base de Datos Relacional:
+   There are the so-called “Basic Operations” of DML that can be performed 
+   in a Relational Database:
 
-    1. Consultar: :sql:`SELECT`
-    2. Almacenar: :sql:`INSERT`
-    3. Actualizar: :sql:`UPDATE`
-    4. Borrar: :sql:`DELETE`
+    1. Consult: :sql:`SELECT`
+    2. Store: :sql:`CREATE, INSERT`
+    3. Update: :sql:`UPDATE`
+    4. Delete: :sql:`DELETE, DROP`
 
 .. note::
 
-   Existen las llamadas "Operaciones Básicas" de DDL que se pueden realizar en una
-   Base de Datos Relacional:
+   There are the so-called “Basic Operations” of DDL that can be performed 
+   in a Relational Database:
 
-    1. Almacenar: :sql:`CREATE`
-    2. Borrar: :sql:`DROP`
+    1. Store: :sql:`CREATE`
+    2. Delete: :sql:`DROP`
 
 
-Por ahora sólo se nombran junto a sus funciones SQL relacionadas.
-A medida que el curso avance, se profundizará el contenido.
+For now, they are only named along with their related SQL functions. As the 
+course advances, the content will be deepened.
 
-Consultas en lenguajes de alto nivel
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Consultations in high level languages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. index:: consultas, lenguaje alto nivel
+.. index:: Consultations in high level languages
 
-Existen lenguajes de alto nivel que permiten realizar consultas relativamente
-simples en la BD, sin la necesidad de escribir complejos algoritmos.
+There are high level languages that allow making relatively simple queries in 
+the database, without the need to write complex algorithms.
 
-Una 'consulta a la BD', puede entenderse como una pregunta que se le realiza para
-obtener 'cierta información'. Algunos ejemplos pueden ser:
+A 'query to the database', can be understood as a question to be done to get 
+'some information'. Some examples might be:
 
-  * "Todos los estudiantes con nota mayor o igual a 55".
-  * "Todas los departamentos de Ingeniería con una cantidad mayor o igual a 1000
-    alumnos".
-  * "Los 5 primeros estudiantes con mejor promedio de notas en el ramo de Química".
+  * "All students with a grade greater than or equal to 55"
+  * "All the departments of Engineering with a quantity greater or equal to 1000 students"
+  * "The first 5 students with better GPA in the field of Chemistry"
+ 
+Independent of the language used, it should be noted that:
 
-Independiente del lenguaje que se utiliza, se debe tener en cuenta que:
-  * Algunas consultas son fáciles de formular, otras son un poco más difíciles.
-  * Algunos SGBD las ejecutan de forma eficiente, otros no.
-  * Los 2 puntos anteriores no son dependientes uno del otro, puede existir una consulta
-    fácil de formular, pero difícil de ejecutar de forma eficiente, dependiendo del DBMS.
-  * El lenguaje utilizado para ejecutar consultas puede modificar/actualizar información
-    de la BD, a esto se le llama Data Manipulation Language (DML).
+  * Some queries are easy to formulate, others are a bit more difficult.
+  * Some Data Base Management System (DBMS) are executing efficiently, others do not.
+  * The two points above are not dependent on each other, it can exist an easy 
+    query to formulate, but difficult to execute efficiently, depending on the DBMS.
+  * The language used to execute queries can modify / update information from the 
+    database; this is called Data Manipulation Language You (DML).
 
-Consultas y relaciones (tablas)
+Consultations and relations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. index:: consultas y relaciones
+.. index:: Consultations and relations
 
-Las consultas realizadas a las tablas de una BD al momento de ser ejecutadas producen,
-como resultado, tablas; las cuales pueden ser:
+The consultations carried out to the relations of a DB at the moment to be
+executed produce as a result, relations, which can be:
 
-  * Cerradas: Cuando la estructura del objeto que se obtiene de la consulta, es igual
-    a la estructura de los objetos consultados, se tiene una tabla cerrada
-  * Compuestas: Cuando la consulta se hace sobre, al menos una tabla que corresponde
-    al resultado de una consulta previa. En otras palabras, corresponde a la
-    consulta del resultado de una consulta.
+  * Closed: When the structure of the object obtained from the query, is equal
+    to the structure of objects consulted, there is a closed relationship.
+  * Compound: When the query is done, at least one relation corresponds to the 
+    result of a previous consultation. In other words, it corresponds to the 
+    query of the result of a query.
 
-Lenguajes de consultas
-~~~~~~~~~~~~~~~~~~~~~~
+
+Query languages
+~~~~~~~~~~~~~~~~~
 
 .. index:: Lenguajes de consultas
 
-Algunos de los lenguajes de consultas son
+Some query languages are:
 
-  * Álgebra Relacional: Lenguaje formal y matemático
-  * SQL: Lenguaje actual e implementado que nace del Álgebra Relacional.
+  * Relational Algebra: Formal and mathematical language.
+  * SQL: Current language and implemented that born from Relational Algebra.
 
-Si bien se profundizará sobre ambos, a medida que avance el curso, se deja la
-siguientes tablas
+Although both will be deepen as the course progresses, take a look of the following example:
+Look for the “Student’s ID with grade greater or equal to 55 in programmation”
 
 .. math::
 
- \textbf{Tabla ALUMNOS}
+ \textbf{student table}
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{ID_ramo} & \textbf{nombre_alumno} & \textbf{promedio_nota} \\
+  \textbf{ID} & \textbf{subject_ID} & \textbf{student_name} & \textbf{gpa} \\
   \hline
   1           & 1                & \mbox{Robert}          & 45 \\
   \hline
@@ -112,59 +113,60 @@ siguientes tablas
   \hline
  \end{array}
 
- \textbf{Tabla RAMOS}
+ \textbf{subjects table}
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{ID} & \textbf{nombre_ramo} \\
+  \textbf{ID} & \textbf{subject_name} \\
   \hline
-  1           & \mbox{Programacion} \\
+  1           & \mbox{Programming} \\
   \hline
-  2           & \mbox{Base de datos} \\
+  2           & \mbox{Database} \\
   \hline
-  3           & \mbox{Estructuras de datos} \\
+  3           & \mbox{Math} \\
   \hline
  \end{array}
 
-Consultar por el "ID de los alumnos con promedio de notas mayor o igual a 55 en el
-ramo de Programación":
+Consult for the "students ID with GPA greater or equal than  55 in the
+subject of Programming ":
 
-Utilizando Álgebra Relacional:
+Using Relational Algebra:
 
 .. CMA: QUE ES ESTO?????? No puedo entender que significa esta productora :/
 
 .. math::
 
-   \pi \hspace{0.2cm} _{ALUMNOS.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{RAMOS.nombre_ramo ='Programacion'} (ALUMNOS \rhd \hspace{-0.1cm} \lhd RAMOS)}
+   \pi \hspace{0.2cm} _{student.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{subjects.subject_name ='Programming'} (student \rhd \hspace{-0.1cm} \lhd subjects)}
 
-Se puede decir que:
+One could say that:
 
 .. math::
         \pi
 
-realiza un PROJECT sobre una tabla, es decir selecciona una columna. Por otro lado:
+Carried out a PROJECT on a table, that is to say select a column. On the other hand:
 
 .. math::
         \sigma
 
-selecciona una fila que cumpla con una cierta condición, en el ejemplo dado se
-seleccionan las filas que cumplen con tener nota mayor a 55 y que el nombre_ramo
-sea 'programación'.
+select a row that complies with a certain condition, in the example given rows 
+selected are the ones that have complied with having a grade higher(GPA) to 55 and 
+that subjects.name_subject is ‘Programming’
 
 .. math::
         \rhd \hspace{-0.1cm} \lhd
 
-realiza un JOIN entre dos relaciones en la lectura 3 se profundiza acerca de estos
-operadores y sus respectivos significados.
+performs a JOIN between two relations. In lecture 3 we will get deeper about these
+operators and their meanings.
 
-Utilizando SQL
+Using SQL
 
 .. code-block:: sql
 
- SELECT ALUMNOS.ID FROM ALUMNOS, RAMOS WHERE ALUMNOS.ID_ramo=RAMOS.ID AND ALUMNOS.promedio_nota>=55 AND RAMOS.nombre_ramo='Programacion';
+ SELECT student.ID FROM student, subjects WHERE student.subjec_ID=subjec.ID 
+ AND student.GPA>=55 AND subjects.subject_name ='Programming';
 
-En las próximas lecturas, se estudiará con mayor detalle tanto el álgebra relacional,
-como el lenguaje SQL.
+In the next lectures, it will be studied in greater detail both the relational algebra, 
+and the SQL language.
 
 .. To begin our study of operations on relations, we shall learn about a special
 .. algebra, called relational algebra (lectures 3 and 4), that consists of some simple but powerful ways
