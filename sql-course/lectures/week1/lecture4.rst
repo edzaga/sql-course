@@ -10,11 +10,10 @@ UNIÓN
 *****
 
 En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos `A` y `B` es el conjunto que contiene todos los elementos de `A` y de `B`.
-
-.. math::
-    A \cup B = B \cup A\\
+El símbolo `\cup` es el utilizado para representar **UNIÓN**, `A \cup B = B \cup A`, Se puede decir entonces que el operador **UNIÓN** es conmutativo. Cabe recordar que una operación es conmutativa cuando el resultado de la operación es el mismo, cualquiera que sea el orden de los elementos con los que se opera.  
 
 .. image:: ../../../sql-course/src/union.png
+   :align: center
 
 De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas. `R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).
 
@@ -24,11 +23,7 @@ De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que 
 
     R \cup S \\
 
-.. math::
-
-    \textrm{ Si se realiza } R \cup S \textrm{ es lo mismo que }  S \cup R \textrm{ , es decir se obtiene el mismo resultado.} \\
-
-Se puede decir entonces que el operador **UNIÓN** es conmutativo. Cabe recordar que una operación es conmutativa cuando el resultado de la operación es el mismo, cualquiera que sea el orden de los elementos con los que se opera.
+Si se realiza `R \cup S` es lo mismo que  `S \cup R` , es decir se obtiene el mismo resultado. Esto debido a la propiedad de conmutatividad derivada de la álgebra de conjuntos.
 
 
 Ejemplo 
@@ -42,13 +37,13 @@ Dadas las siguientes relaciones:
         \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        123 & \mbox{Leon}   & 39\\
+        123 & \text{Leon}   & 39\\
         \hline
-        234 & \mbox{Tomas}  & 34\\
+        234 & \text{Tomas}  & 34\\
         \hline
-        345 & \mbox{Jose}   & 45\\
+        345 & \text{Jose}   & 45\\
         \hline
-        143 & \mbox{Josefa} & 25\\
+        143 & \text{Josefa} & 25\\
         \hline
    \end{array}
 
@@ -59,9 +54,9 @@ Dadas las siguientes relaciones:
         \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        123 & \mbox{Leon}   & 39\\
+        123 & \text{Leon}   & 39\\
         \hline
-        235 & \mbox{Maria}   & 29\\
+        235 & \text{Maria}   & 29\\
         \hline
       \end{array}
 
@@ -75,22 +70,22 @@ Aplicar el operador **UNIÓN**:
         \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        123 & \mbox{Leon}   & 39\\
+        123 & \text{Leon}   & 39\\
         \hline
-        234 & \mbox{Tomas}  & 34\\
+        234 & \text{Tomas}  & 34\\
         \hline
-        345 & \mbox{Jose}   & 45\\
+        345 & \text{Jose}   & 45\\
         \hline
-        143 & \mbox{Josefa} & 25\\
+        143 & \text{Josefa} & 25\\
         \hline
-        235 & \mbox{Maria} & 29\\
+        235 & \text{Maria} & 29\\
         \hline
    \end{array}
 
 Como se mencionó anteriormente realizar la operación: 
 
 .. math::
-	\textrm{Jefes} \cup \textrm{Ingenieros}
+	\text{Jefes} \cup \text{Ingenieros}
 
 Daría como resultado la misma tabla anterior, debido a la propiedad de conmutatividad.
 
@@ -99,18 +94,21 @@ DIFERENCIA
 
 Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos `A` y `B` es el conjunto que contiene todos los elementos de `A` que no pertenecen a `B`.
 
-A-B
+.. math:: A-B
 
 .. image:: ../../../sql-course/src/a-b.png
+   :align: center
 
-B-A
+.. math::
+	B-A
 
 .. image:: ../../../sql-course/src/b-a.png
+   :align: center
 
 Como se aprecia en las imágenes la operación **DIFERENCIA**, en conjuntos, no es conmutativa, al igual que la resta o sustracción, operador aprendido en aritmética básica. Es decir, si se cambia el orden de los conjuntos a los  que se aplica la operación **DIFERENCIA**, se obtendrán resultados distintos. Por lo tanto:
 
 .. math::
-    \mbox{A} \times \mbox{B} \neq  \mbox{B} \times \mbox{A}    
+    \text{A} \times \text{B} \neq  \text{B} \times \text{A}    
 
 
 De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en la relación `R`, pero no están en `S`.
@@ -139,11 +137,11 @@ Ingenieros ``-`` Jefes
         \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        234 & \mbox{Tomas}  & 34\\
+        234 & \text{Tomas}  & 34\\
         \hline
-        345 & \mbox{Jose}   & 45\\
+        345 & \text{Jose}   & 45\\
         \hline
-        143 & \mbox{Josefa} & 25\\
+        143 & \text{Josefa} & 25\\
         \hline
    \end{array}
 
@@ -155,7 +153,7 @@ Jefes ``-`` Ingenieros
         \hline
         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        235 & \mbox{Maria} & 29\\
+        235 & \text{Maria} & 29\\
         \hline
    \end{array}
 
@@ -170,6 +168,7 @@ En  álgebra de conjuntos la intersección de dos conjuntos `A` y `B` es el conj
     A \cap B
 
 .. image:: ../../../sql-course/src/inter.png
+   :align: center
 
 De forma homóloga en álgebra relacional INTERSECTION define una relación que contiene las tuplas que están tanto en la relación `R` como en `S`. `R` y `S` deben ser unión-compatible.
 
@@ -179,7 +178,7 @@ De forma homóloga en álgebra relacional INTERSECTION define una relación que 
     R \cap S
 
 .. math::
-    \textrm{ Si se realiza } R \cap S \textrm{ es lo mismo que }  S \cap R \textrm{ , es decir se obtiene el mismo resultado} \\
+    \text{ Si se realiza } R \cap S \text{ es lo mismo que }  S \cap R \text{ , es decir se obtiene el mismo resultado} \\
 
 **Equivalencia con operadores anteriores**
 
@@ -198,7 +197,7 @@ Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de
         \hline
          \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
         \hline
-        123 & \mbox{Leon}   & 39\\
+        123 & \text{Leon}   & 39\\
         \hline
       \end{array}
 
@@ -265,21 +264,21 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 **Respuesta**
 
 .. math::
-    \sigma_{nombre='Charles'} (SOCIO)
+    \sigma_{\text{nombre='Charles'}} \text{(SOCIO)}
 
 1.2. Seleccionar el código socio de todos los socios que se llaman: "Charles".
 
 **Respuesta**
 
 .. math::
-    \pi_{codsocio}(\sigma_{nombre='Charles'} (SOCIO))
+    \pi_{\text{codsocio}}(\sigma_{\text{nombre='Charles'}} \text{(SOCIO))}
 
 1.3. Seleccionar los nombres de las películas que se encuentran en lista de espera.
 
 **Respuesta**
 
 .. math::
-    \pi_{titulo}(PELICULA \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)
+    \pi_{\text{titulo}}(\text{PELICULA} \rhd \hspace{-0.1cm} \lhd \text{LISTA ESPERA})
 
 
 1.4. Obtener los nombres de los socios que esperan películas.
@@ -287,14 +286,14 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 **Respuesta**
 
 .. math::
-    \pi_{nombre}(SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA)
+    \pi_{\text{nombre}}(\text{SOCIO} \rhd \hspace{-0.1cm} \lhd \text{LISTA ESPERA})
 
 1.5. Obtener los nombres de los socios que tienen actualmente prestada una película que ya tuvieron prestada con anterioridad.
 
 **Respuesta**
 
 .. math::
-    \pi_{nombre} ( \{(PRESTAMO \rhd \hspace{-0.1cm} \lhd_{ (pres\_dev='prestada')} CINTA) \cap (PRESTAMO \rhd \hspace{-0.1cm} \lhd_{(pres\_dev='devuelta')} CINTA)\} \rhd \hspace{-0.1cm}\lhd SOCIO )
+    \pi_{\text{nombre}} ( \{(\text{PRESTAMO} \rhd \hspace{-0.1cm} \lhd_{ (\text{pres_dev='prestada'})} \text{CINTA}) \cap (\text{PRESTAMO} \rhd \hspace{-0.1cm} \lhd_{(\text{pres_dev='devuelta'})} \text{CINTA})\} \rhd \hspace{-0.1cm}\lhd \text{SOCIO})
 
 
 1.6. Obtener los títulos de las películas que nunca han sido prestadas.
@@ -302,7 +301,7 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 **Respuesta**
 
 .. math::
-    \pi_{titulo} \{(\pi_{codpeli} PELICULA  - \pi_{codpeli} (PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA) ) \rhd \hspace{-0.1cm} \lhd PELICULA \}
+    \pi_{\text{titulo}} \{(\pi_{\text{codpeli}} \text{PELICULA}  - \pi_{\text{codpeli}} (\text{PRESTAMO} \rhd \hspace{-0.1cm} \lhd \text{CINTA}) ) \rhd \hspace{-0.1cm} \lhd \text{PELICULA}\}
 
 (todas las películas) menos (las películas que han sido prestadas alguna vez)
 
@@ -311,14 +310,14 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 **Respuesta**
 
 .. math::
-    \pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cup \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )
+    \pi_{\text{codsocio,nombre}}((\text{SOCIO} \rhd \hspace{-0.1cm} \lhd \text{PRESTAMO} \rhd \hspace{-0.1cm} \lhd \text{CINTA} \rhd \hspace{-0.1cm} \lhd_{\text{titulo='WALL*E'}} \text{PELICULA}) \cup \\ (\text{SOCIO} \rhd \hspace{-0.1cm} \lhd \text{LISTA_ESPERA} \rhd \hspace{-0.1cm} \lhd_{\text{titulo='WALL*E'}} \text{PELICULA}) )
 
 1.8. Obtener los nombres de los socios que han tomado prestada la película “WALL*E” alguna vez y que además están en su lista de espera.
 
 **Respuesta**
 
 .. math::
-    \pi_{codsocio,nombre}((SOCIO \rhd \hspace{-0.1cm} \lhd PRESTAMO \rhd \hspace{-0.1cm} \lhd CINTA \rhd \hspace{-0.1cm} \lhd_{titulo='WALL*E'} PELICULA) \cap \\ (SOCIO \rhd \hspace{-0.1cm} \lhd LISTA\_ESPERA \rhd \hspace{-0.1cm} \lhd_{ titulo='WALL*E'} PELICULA) )
+    \pi_{\text{codsocio,nombre}}((\text{SOCIO} \rhd \hspace{-0.1cm} \lhd \text{PRESTAMO} \rhd \hspace{-0.1cm} \lhd \text{CINTA} \rhd \hspace{-0.1cm} \lhd_{\text{titulo='WALL*E'}} \text{PELICULA}) \cap \\ (\text{SOCIO} \rhd \hspace{-0.1cm} \lhd \text{LISTA_ESPERA} \rhd \hspace{-0.1cm} \lhd_{\text{titulo='WALL*E'}} \text{PELICULA}) )
 
 Ejercicio 2
 ^^^^^^^^^^^^

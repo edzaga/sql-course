@@ -61,7 +61,10 @@
 <li><a class="reference internal" href="#operaciones-relacionales">Operaciones relacionales:</a><ul>
 <li><a class="reference internal" href="#seleccion-select">SELECCIÓN (SELECT)</a><ul>
 <li><a class="reference internal" href="#ejemplo-1">Ejemplo 1</a></li>
-<li><a class="reference internal" href="#ejemplo-2">Ejemplo 2</a></li>
+<li><a class="reference internal" href="#ejemplo-2">Ejemplo 2</a><ul>
+<li><a class="reference internal" href="#al-tener-el-operador-logico-and-se-pide-que-cumplan-dos-condiciones-simultaneamente-primero-que-la-edad-sea-mayor-de-30-anos-al-igual-que-en-el-ejemplo-anterior-la-tupla-de-josefa-queda-fuera-de-la-seleccion-luego-de-las-tuplas-que-quedan-se-evalua-la-segunda-condicion-en-la-imagen-se-aprecia-que-solo-se-seleccionan-las-filas-que-no-tengan-x-en-alguna-de-las-condiciones">Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla de &#8220;Josefa&#8221; queda fuera de la selección. Luego de las tuplas que quedan se evalúa la segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no tengan x en alguna de las condiciones.</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#project">PROJECT</a><ul>
@@ -241,20 +244,20 @@ atributos en el mismo orden que se usan en la tabla <span class="math">\(R\)</sp
    \hline
    \textbf{id} &amp; \textbf{nombre} &amp; \textbf{edad} &amp; \textbf{añosTrabajados(AT)}\\
    \hline
-   123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
+   123 &amp; \text{Leon} &amp; 39 &amp; 15 \\
    \hline
-   234 &amp; \mbox{Tomas} &amp; 34 &amp; 10 \\
+   234 &amp; \text{Tomas} &amp; 34 &amp; 10 \\
    \hline
-   345 &amp; \mbox{Jose} &amp; 45 &amp; 21 \\
+   345 &amp; \text{Jose} &amp; 45 &amp; 21 \\
    \hline
-   143 &amp; \mbox{Josefa} &amp; 25 &amp;  1 \\
+   143 &amp; \text{Josefa} &amp; 25 &amp;  1 \\
    \hline
  \end{array}\end{split}\]</div>
 <p>Seleccionar las tuplas de la tabla <strong>Ingenieros</strong> que cumplan con tener una edad
 mayor a 30 años:</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
-\[\begin{split}\sigma_{edad&gt;30} \hspace{0.2cm} \mbox{Ingenieros}\end{split}\]</div>
+\[\begin{split}\sigma_{\text{edad&gt;30}} \hspace{0.2cm} \text{Ingenieros}\end{split}\]</div>
 <img alt="../../_images/select2.png" src="../../_images/select2.png" />
 <p>En la imagen se ve que selecciona solo las filas que cumplen con la condición que se pedía
 (tener una edad mayor a 30 años), la tupla de &#8220;Josefa&#8221; queda fuera de la selección por no
@@ -265,11 +268,11 @@ De esta forma la tabla queda:</p>
    \hline
    \textbf{id} &amp; \textbf{nombre} &amp; \textbf{edad} &amp; \textbf{añosTrabajados(AT)}\\
    \hline
-   123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
+   123 &amp; \text{Leon} &amp; 39 &amp; 15 \\
    \hline
-   234 &amp; \mbox{Tomas} &amp; 34 &amp; 10 \\
+   234 &amp; \text{Tomas} &amp; 34 &amp; 10 \\
    \hline
-   345 &amp; \mbox{Jose} &amp; 45 &amp; 21 \\
+   345 &amp; \text{Jose} &amp; 45 &amp; 21 \\
    \hline
  \end{array}\end{split}\]</div>
 </div>
@@ -279,20 +282,29 @@ De esta forma la tabla queda:</p>
 y que lleven menos de 16 años trabajando:</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
-\[\begin{split}\sigma_{(edad &gt;30 \wedge AT &lt;16)}  \ \text{Ingenieros}\end{split}\]</div>
+</div>
+<dl class="docutils">
+<dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt>
+<dd>sigma_{(edad &gt;30 wedge AT &lt;16)}  text{Ingenieros}</dd>
+</dl>
 <img alt="../../_images/select3.png" src="../../_images/select3.png" />
-<p>Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla de &#8220;Josefa&#8221; queda fuera de la selección. Luego de las tuplas que quedan se evalúa la segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no tengan x en alguna de las condiciones.</p>
+<div class="section" id="al-tener-el-operador-logico-and-se-pide-que-cumplan-dos-condiciones-simultaneamente-primero-que-la-edad-sea-mayor-de-30-anos-al-igual-que-en-el-ejemplo-anterior-la-tupla-de-josefa-queda-fuera-de-la-seleccion-luego-de-las-tuplas-que-quedan-se-evalua-la-segunda-condicion-en-la-imagen-se-aprecia-que-solo-se-seleccionan-las-filas-que-no-tengan-x-en-alguna-de-las-condiciones">
+<h5>Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla de &#8220;Josefa&#8221; queda fuera de la selección. Luego de las tuplas que quedan se evalúa la segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no tengan x en alguna de las condiciones.<a class="headerlink" href="#al-tener-el-operador-logico-and-se-pide-que-cumplan-dos-condiciones-simultaneamente-primero-que-la-edad-sea-mayor-de-30-anos-al-igual-que-en-el-ejemplo-anterior-la-tupla-de-josefa-queda-fuera-de-la-seleccion-luego-de-las-tuplas-que-quedan-se-evalua-la-segunda-condicion-en-la-imagen-se-aprecia-que-solo-se-seleccionan-las-filas-que-no-tengan-x-en-alguna-de-las-condiciones" title="Enlazar permanentemente con este título">¶</a></h5>
+<blockquote>
+<div>sigma_{(text{edad &gt; 30 AND AT &lt; 16})}  text{Ingenieros}</div></blockquote>
+<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 2186a9706809593eeb35b75276e9bbb1dc621c30</p>
 <p>Así finalmente quedaría la tabla:</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
  \textbf{id} &amp; \textbf{nombre} &amp; \textbf{edad} &amp; \textbf{añosTrabajados(AT)} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
+ 123 &amp; \text{Leon} &amp; 39 &amp; 15 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 &amp; 10 \\
+ 234 &amp; \text{Tomas} &amp; 34 &amp; 10 \\
  \hline
 \end{array}\end{split}\]</div>
+</div>
 </div>
 </div>
 <div class="section" id="project">
@@ -303,7 +315,7 @@ es decir, realiza la selección de algunas de las <strong>columnas</strong> de u
 <p><strong>Notación en Álgebra Relacional</strong></p>
 <p>PROJECT en Álgebra Relacional se representa por la letra griega <strong>pi</strong>:</p>
 <div class="math">
-\[\pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \mbox{R}\]</div>
+\[\pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \text{R}\]</div>
 <p>El resultado es una relación seleccionando solo los atributos <span class="math">\(A_1,...,A_n\)</span> de la
 relación R.
 Si <span class="math">\(A_1,...,A_n\)</span> no incluye una llave (o clave), podrían producirse tuplas
@@ -315,32 +327,36 @@ repetidas en el resultado, las cuales serán eliminadas.</p>
  \hline
  \textbf{id} &amp; \textbf{nombre} &amp; \textbf{edad} &amp; \textbf{añosTrabajados(AT)} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
+ 123 &amp; \text{Leon} &amp; 39 &amp; 15 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 &amp; 10 \\
+ 234 &amp; \text{Tomas} &amp; 34 &amp; 10 \\
  \hline
- 345 &amp; \mbox{Jose} &amp; 45 &amp; 21 \\
+ 345 &amp; \text{Jose} &amp; 45 &amp; 21 \\
  \hline
- 143 &amp; \mbox{Josefa} &amp; 25 &amp; 1 \\
+ 143 &amp; \text{Josefa} &amp; 25 &amp; 1 \\
  \hline
 \end{array}\end{split}\]</div>
-<p>Escoger columnas de ID y nombre de la tabla de ingenieros:</p>
+<p>Escoger columnas de id y nombre de la tabla de ingenieros:</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
-\[\pi \hspace{0.2cm}_{(ID,Nombre)} \hspace{0.3cm} \mbox{Ingenieros}\]</div>
+</div>
+<dl class="docutils">
+<dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt>
+<dd>pi hspace{0.2cm}_{(id,nombre)} hspace{0.3cm} mbox{Ingenieros}</dd>
+</dl>
 <p>La tabla finalmente queda como:</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros}  \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
  \textbf{id} &amp; \textbf{nombre} \\
  \hline
- 123 &amp; \mbox{Leon} \\
+ 123 &amp; \text{Leon} \\
  \hline
- 234 &amp; \mbox{Tomas} \\
+ 234 &amp; \text{Tomas} \\
  \hline
- 345 &amp; \mbox{Jose} \\
+ 345 &amp; \text{Jose} \\
  \hline
- 143 &amp; \mbox{Josefa} \\
+ 143 &amp; \text{Josefa} \\
  \hline
 \end{array}\end{split}\]</div>
 </div>
@@ -349,18 +365,23 @@ repetidas en el resultado, las cuales serán eliminadas.</p>
 <p>Seleccionar id y nombre de los Ingenieros que tienen más de 30 años.</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
-\[\begin{split}\pi \hspace{0.2cm} _{(\text{ID,Nombre})} (\sigma_{edad&gt;30} \hspace{0.3cm} \text{Ingenieros})\end{split}\]</div>
+</div>
+<dl class="docutils">
+<dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt>
+<dd>pi hspace{0.2cm} _{(text{id,nombre})} (sigma_{edad&gt;30} hspace{0.3cm} text{Ingenieros})</dd>
+</dl>
+<img alt="../../_images/prosel.png" src="../../_images/prosel.png" />
 <p>Finalmente la tabla queda de la siguiente manera:</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
  \textbf{id} &amp; \textbf{nombre} \\
  \hline
- 123 &amp; \mbox{Leon} \\
+ 123 &amp; \text{Leon} \\
  \hline
- 234 &amp; \mbox{Tomas} \\
+ 234 &amp; \text{Tomas} \\
  \hline
- 345 &amp; \mbox{Jose} \\
+ 345 &amp; \text{Jose} \\
  \hline
 \end{array}\end{split}\]</div>
 </div>
@@ -381,7 +402,7 @@ de cada una de las filas de la relación R con cada una de las filas de la relac
 <p>Para representar Cross-product en Álgebra Relacional se utiliza la siguiente
 terminología:</p>
 <div class="math">
-\[\mbox{R} \times \mbox{S}\]</div>
+\[\text{R} \times \text{S}\]</div>
 <p>Por convención para la sentencia anterior, los componentes de R preceden a los
 componentes de S en el orden de atributos para el resultado, creando así una nueva
 relación con todas las combinaciones posibles de tuplas de R y S.
@@ -391,69 +412,16 @@ Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos no
 para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüedad de
 un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para
 el atributo de S.</p>
-<p>Cabe mencionar que:</p>
+<p>Cabe mencionar solo por notación que:</p>
 <div class="math">
-\[\mbox{R} \times \mbox{S} \neq  \mbox{S} \times \mbox{R}\]</div>
+\[\text{R} \times \text{S} \neq  \text{S} \times \text{R}\]</div>
 <div class="section" id="id3">
 <h4>Ejemplo 1<a class="headerlink" href="#id3" title="Enlazar permanentemente con este título">¶</a></h4>
-<div class="math">
-\[\begin{split}\textbf{R} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
- \hline
- \textbf{a} &amp; \textbf{b} &amp; \textbf{d} \\
- \hline
- 1 &amp; 2 &amp; 3 \\
- \hline
- 4 &amp; 5 &amp; 6 \\
- \hline
-\end{array}\end{split}\]\[\begin{split}\textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
- \hline
- \textbf{a} &amp; \textbf{c} \\
- \hline
- 7 &amp; 5 \\
- \hline
- 9 &amp; 2 \\
- \hline
- 3 &amp; 4 \\
- \hline
-\end{array}\end{split}\]</div>
+<img alt="../../_images/CROSS-PRODUCT1.png" src="../../_images/CROSS-PRODUCT1.png" />
 <p>Con las tablas dadas realice el Cross-product de R con S:</p>
-<div class="math">
-\[\begin{split}\textbf{R} \times \textbf{S} \\\end{split}\]\[\begin{split}  \begin{array}{|c|c|c|c|c|}
-   \hline
-   \textbf{R.a} &amp; \textbf{b} &amp; \textbf{d} &amp; \textbf{S.a} &amp; \textbf{c} \\
-   \hline
-    1 &amp; 2 &amp; 3 &amp; 7 &amp; 5 \\
-   \hline
-    1 &amp; 2 &amp; 3 &amp; 9 &amp; 2 \\
-   \hline
-    1 &amp; 2 &amp; 3 &amp; 3 &amp; 4 \\
-   \hline
-    4 &amp; 5 &amp; 6 &amp; 7 &amp; 5 \\
-   \hline
-    4 &amp; 5 &amp; 6 &amp; 3 &amp; 4 \\
-   \hline
-    4 &amp; 5 &amp; 6 &amp; 9 &amp; 2 \\
-   \hline
- \end{array}\end{split}\]</div>
+<img alt="../../_images/CROSS-PRODUCT2.png" src="../../_images/CROSS-PRODUCT2.png" />
 <p>Con las tablas dadas realice el Cross-product de S con R:</p>
-<div class="math">
-\[\begin{split}\textbf{S} \times \textbf{R} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|c|}
- \hline
- \textbf{S.a} &amp; \textbf{c} &amp; \textbf{R.a} &amp; \textbf{b} &amp; \textbf{d} \\
- \hline
- 7 &amp; 5 &amp; 1 &amp; 2 &amp; 3 \\
- \hline
- 7 &amp; 5 &amp; 4 &amp; 5 &amp; 6 \\
- \hline
- 9 &amp; 2 &amp; 1 &amp; 2 &amp; 3 \\
- \hline
- 9 &amp; 2 &amp; 4 &amp; 5 &amp; 6 \\
- \hline
- 3 &amp; 4 &amp; 1 &amp; 2 &amp; 3 \\
- \hline
- 3 &amp; 4 &amp; 4 &amp; 5 &amp; 6 \\
- \hline
-\end{array}\end{split}\]</div>
+<img alt="../../_images/CROSS-PRODUCT3.png" src="../../_images/CROSS-PRODUCT3.png" />
 <p>Como se mencionó anteriormente, y como se aprecia en el ejemplo &#8220;Cross-product&#8221; de S con R
 es distinto a &#8220;Cross-product de R con S&#8221;</p>
 </div>
@@ -465,19 +433,19 @@ es distinto a &#8220;Cross-product de R con S&#8221;</p>
  \hline
  \textbf{id} &amp; \textbf{nombre} &amp; \textbf{d#} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 \\
+ 123 &amp; \text{Leon} &amp; 39 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 \\
+ 234 &amp; \text{Tomas} &amp; 34 \\
  \hline
- 143 &amp; \mbox{Josefa} &amp; 25 \\
+ 143 &amp; \text{Josefa} &amp; 25 \\
  \hline
 \end{array}\end{split}\]\[\begin{split}\textbf{Tabla Proyectos} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
  \textbf{proyecto} &amp; \textbf{duracion} \\
  \hline
- \mbox{ACU0034} &amp; 300 \\
+ \text{ACU0034} &amp; 300 \\
  \hline
- \mbox{USM7345} &amp; 60 \\
+ \text{USM7345} &amp; 60 \\
  \hline
 \end{array}\end{split}\]</div>
 <p>Escriba la tabla resultante al realizar la siguiente operación:</p>
@@ -489,17 +457,17 @@ es distinto a &#8220;Cross-product de R con S&#8221;</p>
  \hline
  \textbf{id} &amp; \textbf{nombre} &amp; \textbf{d#} &amp; \textbf{proyecto} &amp; \textbf{duracion} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 &amp; \mbox{ACU0034} &amp; 300 \\
+ 123 &amp; \text{Leon} &amp; 39 &amp; \text{ACU0034} &amp; 300 \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 &amp; \mbox{USM7345} &amp; 60 \\
+ 123 &amp; \text{Leon} &amp; 39 &amp; \text{USM7345} &amp; 60 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 &amp; \mbox{ACU0034} &amp; 300 \\
+ 234 &amp; \text{Tomas} &amp; 34 &amp; \text{ACU0034} &amp; 300 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 &amp; \mbox{USM7345} &amp; 60 \\
+ 234 &amp; \text{Tomas} &amp; 34 &amp; \text{USM7345} &amp; 60 \\
  \hline
- 143 &amp; \mbox{Josefa} &amp; 25 &amp; \mbox{ACU0034} &amp; 300 \\
+ 143 &amp; \text{Josefa} &amp; 25 &amp; \text{ACU0034} &amp; 300 \\
  \hline
- 143 &amp; \mbox{Josefa} &amp; 25 &amp; \mbox{USM7345} &amp; 60 \\
+ 143 &amp; \text{Josefa} &amp; 25 &amp; \text{USM7345} &amp; 60 \\
  \hline
 \end{array}\end{split}\]</div>
 </div>
@@ -517,7 +485,7 @@ que tengan el mismo valor en los atributos comunes.</p>
 <p><strong>Notación en Álgebra Relacional</strong></p>
 <p>Para denotar NATURALJOIN se utiliza la siguiente simbología:</p>
 <div class="math">
-\[\mbox{R} \rhd \hspace{-0.1cm} \lhd \mbox{S}\]</div>
+\[\text{R} \rhd \hspace{-0.1cm} \lhd \text{S}\]</div>
 <p><strong>Equivalencia con operadores básicos</strong></p>
 <p>NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos, la equivalencia
 es la siguiente:</p>
@@ -555,6 +523,7 @@ comunes tengan el mismo valor.</li>
  \hline
 \end{array}\end{split}\]</div>
 <p>Con las tablas dadas realice el NaturalJoin de R y S:</p>
+<img alt="../../_images/NATURALJOIN.png" class="align-center" src="../../_images/NATURALJOIN.png" />
 <div class="math">
 \[\begin{split}\textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
@@ -574,21 +543,21 @@ comunes tengan el mismo valor.</li>
  \hline
  \textbf{id} &amp; \textbf{nombre} &amp; \textbf{d#} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 \\
+ 123 &amp; \text{Leon} &amp; 39 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34\\
+ 234 &amp; \text{Tomas} &amp; 34\\
  \hline
- 143 &amp; \mbox{Josefa} &amp; 25 \\
+ 143 &amp; \text{Josefa} &amp; 25 \\
  \hline
- 090 &amp; \mbox{Maria} &amp; 34 \\
+ 090 &amp; \text{Maria} &amp; 34 \\
  \hline
 \end{array}\end{split}\]\[\begin{split}\textbf{Tabla Proyectos} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
  \textbf{d#} &amp; \textbf{proyecto}\\
  \hline
- 39 &amp; \mbox{ACU0034} \\
+ 39 &amp; \text{ACU0034} \\
  \hline
- 34 &amp; \mbox{USM7345} \\
+ 34 &amp; \text{USM7345} \\
  \hline
 \end{array}\end{split}\]</div>
 <p><strong>Respuesta</strong></p>
@@ -597,11 +566,11 @@ comunes tengan el mismo valor.</li>
  \hline
  \textbf{id} &amp; \textbf{nombre} &amp; \textbf{d#} &amp; \textbf{proyecto} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 &amp; \mbox{ACU0034} \\
+ 123 &amp; \text{Leon} &amp; 39 &amp; \text{ACU0034} \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 &amp; \mbox{USM7345} \\
+ 234 &amp; \text{Tomas} &amp; 34 &amp; \text{USM7345} \\
  \hline
- 090 &amp; \mbox{Maria} &amp; 34 &amp; \mbox{USM7345} \\
+ 090 &amp; \text{Maria} &amp; 34 &amp; \text{USM7345} \\
  \hline
 \end{array}\end{split}\]</div>
 </div>
@@ -618,7 +587,7 @@ definirse sobre atributos comunes. El término “join” suele referirse a THET
 <p>La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN, la
 diferencia radica en que THETAJOIN lleva el predicado C:</p>
 <div class="math">
-\[\begin{split}\mbox{R} \rhd \hspace{-0.1cm} \lhd_C \mbox{S} \\\end{split}\]\[\begin{split}\mbox{C = &lt;Atributo&gt; &lt;Comparador&gt; &lt;Atributo o Constante del Dominio&gt;} \\\end{split}\]\[\begin{split}\mbox{Donde:}\\\end{split}\]\[\begin{split}\mbox{&lt;Comparador&gt;} \in {\{=,\geq,&gt;,&lt;, \neq,\leq \}}\\\end{split}\]</div>
+\[\begin{split}\text{R} \rhd \hspace{-0.1cm} \lhd_C \text{S} \\\end{split}\]\[\begin{split}\text{C = &lt;Atributo&gt; &lt;Comparador&gt; &lt;Atributo o Constante del Dominio&gt;} \\\end{split}\]\[\begin{split}\text{Donde:}\\\end{split}\]\[\begin{split}\text{&lt;Comparador&gt;} \in {\{=,\geq,&gt;,&lt;, \neq,\leq \}}\\\end{split}\]</div>
 <p><strong>Equivalencia con operadores básicos</strong></p>
 <p>Al igual NATURALJOIN, THETAJOIN puede ser escrito en función de los operadores vistos
 anteriormente:</p>
@@ -661,6 +630,9 @@ anteriormente:</p>
 <div class="math">
 \[\begin{split}R \rhd \hspace{-0.1cm} \lhd_{(A&nbsp;&gt;=&nbsp;E)} S\end{split}\]</div>
 <p><strong>Respuesta</strong></p>
+<img alt="../../_images/THETAJOIN1.png" class="align-center" src="../../_images/THETAJOIN1.png" />
+<img alt="../../_images/THETAJOIN2.png" class="align-center" src="../../_images/THETAJOIN2.png" />
+<img alt="../../_images/THETAJOIN3.png" class="align-center" src="../../_images/THETAJOIN3.png" />
 <div class="math">
 \[\begin{split}\textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|c|c|c|}
  \hline
@@ -683,7 +655,11 @@ anteriormente:</p>
 <p>Empleado (nIF, nombre, direccion, salario, dpto, nIFSupervisor)</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
-\[\pi_{(dpto.nombre,empleado.nombre)} (dpto \rhd \hspace{-0.1cm} \lhd_{nIFDirector=NIF} \mbox{empleado})\]</div>
+</div>
+<dl class="docutils">
+<dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt>
+<dd>pi_{(dpto.nombre,empleado.nombre)} (dpto rhd hspace{-0.1cm} lhd_{nIFDirector=NIF} mbox{empleado})</dd>
+</dl>
 <ul class="simple">
 <li>Tuplas con Null en los “Atributos de la Reunión”, no se incluyen en el resultado.</li>
 </ul>

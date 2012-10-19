@@ -53,13 +53,14 @@ Por ejemplo: alumnos, empleados, aviones, coches, alojamientos, etc.
 Una entidad da lugar a una *tabla* en la BD.
 
 .. image:: ../../../sql-course/src/entidad.jpg
+   :align: center
 
 Estas entidades están compuestas por varios *atributos*, que vienen a ser sus
 propiedades. Por ejemplo: la entidad alumnos, tendrá los atributos nombre,
 #pasaporte, nacionalidad, fecha de nacimiento, etc.
 
-.. image::../../../sql-course/src/entidad.jpg
 .. image:: ../../../sql-course/src/atributo.jpg
+   :align: center
 
 Los atributos también reciben el nombre de *columnas* en la terminología de BD.
 De entre los atributos habrá uno o un conjunto de ellos, que no asegura la unicidad
@@ -95,19 +96,21 @@ Las relaciones pueden ser de tres tipos:
 una (Ej: la entidad HOMBRE, la entidad MUJER y entre ellos la relación MATRIMONIO).
 
 .. image:: ../../../sql-course/src/1a1.jpg
+   :align: center
 
 *Relaciones 1 - N*: Una ocurrencia de una entidad está asociada con muchas (n) de
 otra (Ej: la entidad EMPRESA, la entidad TRABAJADOR y entre ellos la relación
 TRABAJAR-EN).
 
 .. image:: ../../../sql-course/src/1aN.jpg
+   :align: center
 
 *Relaciones M - N*: Cada ocurrencia, en cualquiera de las dos entidades de la
 relación, puede estar asociada con muchas (n) de la otra y viceversa
 (Ej: la entidad ALUMNO, la entidad ASIGNATURA y entre ellos la relación MATRÍCULA).
 
 .. image:: ../../../sql-course/src/MaN.jpg
-
+   :align: center
 
 Base de Datos Relacionales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -211,10 +214,6 @@ empleado, quien es su jefe.
 Ejemplo en SQL
 ==============
 .. index:: string, text data types, str
-
-
-.. CMA: Cambié las instrucciones, pues no eran correctas, si es que sólo querían dar un ejemplo que no funciona,
-.. pero que sirve para darse cuenta de como es la sintaxis, creo que no es la mejor forma de hacerlo dentro de un "Ejemplo SQL"
 
 La creación de relaciones (tablas) en SQL
 

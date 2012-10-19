@@ -138,13 +138,13 @@ Ejemplo 1
     \hline
     \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados(AT)}\\
     \hline
-    123 & \mbox{Leon} & 39 & 15 \\
+    123 & \text{Leon} & 39 & 15 \\
     \hline
-    234 & \mbox{Tomas} & 34 & 10 \\
+    234 & \text{Tomas} & 34 & 10 \\
     \hline
-    345 & \mbox{Jose} & 45 & 21 \\
+    345 & \text{Jose} & 45 & 21 \\
     \hline
-    143 & \mbox{Josefa} & 25 &  1 \\
+    143 & \text{Josefa} & 25 &  1 \\
     \hline
   \end{array}
 
@@ -154,7 +154,7 @@ mayor a 30 años:
 **Respuesta**
 
 .. math::
-     \sigma_{edad>30} \hspace{0.2cm} \mbox{Ingenieros}
+     \sigma_{\text{edad>30}} \hspace{0.2cm} \text{Ingenieros}
 
 .. image:: ../../../sql-course/src/select2.png
 
@@ -171,11 +171,11 @@ De esta forma la tabla queda:
     \hline
     \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados(AT)}\\
     \hline
-    123 & \mbox{Leon} & 39 & 15 \\
+    123 & \text{Leon} & 39 & 15 \\
     \hline
-    234 & \mbox{Tomas} & 34 & 10 \\
+    234 & \text{Tomas} & 34 & 10 \\
     \hline
-    345 & \mbox{Jose} & 45 & 21 \\
+    345 & \text{Jose} & 45 & 21 \\
     \hline
   \end{array}
 
@@ -188,11 +188,15 @@ y que lleven menos de 16 años trabajando:
 **Respuesta**
 
 .. math::
+<<<<<<< HEAD
     \sigma_{(edad >30 \wedge AT <16)}  \ \text{Ingenieros}
 
 .. image:: ../../../sql-course/src/select3.png
 
 Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla de "Josefa" queda fuera de la selección. Luego de las tuplas que quedan se evalúa la segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no tengan x en alguna de las condiciones. 
+=======
+    \sigma_{(\text{edad > 30 AND AT < 16})}  \ \text{Ingenieros}
+>>>>>>> 2186a9706809593eeb35b75276e9bbb1dc621c30
 
 Así finalmente quedaría la tabla:
 
@@ -204,9 +208,9 @@ Así finalmente quedaría la tabla:
   \hline
   \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados(AT)} \\
   \hline
-  123 & \mbox{Leon} & 39 & 15 \\
+  123 & \text{Leon} & 39 & 15 \\
   \hline
-  234 & \mbox{Tomas} & 34 & 10 \\
+  234 & \text{Tomas} & 34 & 10 \\
   \hline
  \end{array}
 
@@ -222,7 +226,7 @@ es decir, realiza la selección de algunas de las **columnas** de una tabla R.
 PROJECT en Álgebra Relacional se representa por la letra griega **pi**:
 
 .. math::
-       \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \mbox{R}
+       \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \text{R}
 
 El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la
 relación R.
@@ -239,13 +243,13 @@ Ejemplo 1
   \hline
   \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados(AT)} \\
   \hline
-  123 & \mbox{Leon} & 39 & 15 \\
+  123 & \text{Leon} & 39 & 15 \\
   \hline
-  234 & \mbox{Tomas} & 34 & 10 \\
+  234 & \text{Tomas} & 34 & 10 \\
   \hline
-  345 & \mbox{Jose} & 45 & 21 \\
+  345 & \text{Jose} & 45 & 21 \\
   \hline
-  143 & \mbox{Josefa} & 25 & 1 \\
+  143 & \text{Josefa} & 25 & 1 \\
   \hline
  \end{array}
 
@@ -254,7 +258,11 @@ Escoger columnas de id y nombre de la tabla de ingenieros:
 **Respuesta**
 
 .. math::
+<<<<<<< HEAD
            \pi \hspace{0.2cm}_{(id,nombre)} \hspace{0.3cm} \mbox{Ingenieros}
+=======
+           \pi \hspace{0.2cm}_{(\text{ID,Nombre})} \hspace{0.3cm} \text{Ingenieros}
+>>>>>>> 2186a9706809593eeb35b75276e9bbb1dc621c30
 
 La tabla finalmente queda como:
 
@@ -266,13 +274,13 @@ La tabla finalmente queda como:
   \hline
   \textbf{id} & \textbf{nombre} \\
   \hline
-  123 & \mbox{Leon} \\
+  123 & \text{Leon} \\
   \hline
-  234 & \mbox{Tomas} \\
+  234 & \text{Tomas} \\
   \hline
-  345 & \mbox{Jose} \\
+  345 & \text{Jose} \\
   \hline
-  143 & \mbox{Josefa} \\
+  143 & \text{Josefa} \\
   \hline
  \end{array}
 
@@ -284,9 +292,13 @@ Seleccionar id y nombre de los Ingenieros que tienen más de 30 años.
 **Respuesta**
 
 .. math::
+<<<<<<< HEAD
        \pi \hspace{0.2cm} _{(\text{id,nombre})} (\sigma_{edad>30} \hspace{0.3cm} \text{Ingenieros})
 
 .. image:: ../../../sql-course/src/prosel.png
+=======
+       \pi \hspace{0.2cm} _{(\text{ID,Nombre})} (\sigma_{\text{edad>30}} \hspace{0.3cm} \text{Ingenieros})
+>>>>>>> 2186a9706809593eeb35b75276e9bbb1dc621c30
 
 Finalmente la tabla queda de la siguiente manera:
 
@@ -298,11 +310,11 @@ Finalmente la tabla queda de la siguiente manera:
   \hline
   \textbf{id} & \textbf{nombre} \\
   \hline
-  123 & \mbox{Leon} \\
+  123 & \text{Leon} \\
   \hline
-  234 & \mbox{Tomas} \\
+  234 & \text{Tomas} \\
   \hline
-  345 & \mbox{Jose} \\
+  345 & \text{Jose} \\
   \hline
  \end{array}
 
@@ -328,7 +340,7 @@ Para representar Cross-product en Álgebra Relacional se utiliza la siguiente
 terminología:
 
 .. math::
-    \mbox{R} \times \mbox{S}
+    \text{R} \times \text{S}
 
 Por convención para la sentencia anterior, los componentes de R preceden a los
 componentes de S en el orden de atributos para el resultado, creando así una nueva
@@ -340,88 +352,24 @@ para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüe
 un atributo A, que se encuentra en R y S, se usa R.A para el atributo de R y S.A para
 el atributo de S.
 
-Cabe mencionar que:
+Cabe mencionar solo por notación que:
 
 .. math::
-    \mbox{R} \times \mbox{S} \neq  \mbox{S} \times \mbox{R}
+    \text{R} \times \text{S} \neq  \text{S} \times \text{R}
 
 
 Ejemplo 1
 ^^^^^^^^^
+.. image:: ../../../sql-course/src/CROSS-PRODUCT1.png
 
-.. math::
-
- \textbf{R} \\
-
- \begin{array}{|c|c|c|}
-  \hline
-  \textbf{a} & \textbf{b} & \textbf{d} \\
-  \hline
-  1 & 2 & 3 \\
-  \hline
-  4 & 5 & 6 \\
-  \hline
- \end{array}
-
- \textbf{S} \\
-
- \begin{array}{|c|c|}
-  \hline
-  \textbf{a} & \textbf{c} \\
-  \hline
-  7 & 5 \\
-  \hline
-  9 & 2 \\
-  \hline
-  3 & 4 \\
-  \hline
- \end{array}
 
 Con las tablas dadas realice el Cross-product de R con S:
 
-.. math::
- \textbf{R} \times \textbf{S} \\
-
-   \begin{array}{|c|c|c|c|c|}
-    \hline
-    \textbf{R.a} & \textbf{b} & \textbf{d} & \textbf{S.a} & \textbf{c} \\
-    \hline
-     1 & 2 & 3 & 7 & 5 \\
-    \hline
-     1 & 2 & 3 & 9 & 2 \\
-    \hline
-     1 & 2 & 3 & 3 & 4 \\
-    \hline
-     4 & 5 & 6 & 7 & 5 \\
-    \hline
-     4 & 5 & 6 & 3 & 4 \\
-    \hline
-     4 & 5 & 6 & 9 & 2 \\
-    \hline
-  \end{array}
+.. image:: ../../../sql-course/src/CROSS-PRODUCT2.png
 
 Con las tablas dadas realice el Cross-product de S con R:
 
-.. math::
- \textbf{S} \times \textbf{R} \\
-
- \begin{array}{|c|c|c|c|c|}
-  \hline
-  \textbf{S.a} & \textbf{c} & \textbf{R.a} & \textbf{b} & \textbf{d} \\
-  \hline
-  7 & 5 & 1 & 2 & 3 \\
-  \hline
-  7 & 5 & 4 & 5 & 6 \\
-  \hline
-  9 & 2 & 1 & 2 & 3 \\
-  \hline
-  9 & 2 & 4 & 5 & 6 \\
-  \hline
-  3 & 4 & 1 & 2 & 3 \\
-  \hline
-  3 & 4 & 4 & 5 & 6 \\
-  \hline
- \end{array}
+.. image:: ../../../sql-course/src/CROSS-PRODUCT3.png
 
 Como se mencionó anteriormente, y como se aprecia en el ejemplo "Cross-product" de S con R
 es distinto a "Cross-product de R con S"
@@ -439,11 +387,11 @@ Dada las siguientes tablas:
   \hline
   \textbf{id} & \textbf{nombre} & \textbf{d#} \\
   \hline
-  123 & \mbox{Leon} & 39 \\
+  123 & \text{Leon} & 39 \\
   \hline
-  234 & \mbox{Tomas} & 34 \\
+  234 & \text{Tomas} & 34 \\
   \hline
-  143 & \mbox{Josefa} & 25 \\
+  143 & \text{Josefa} & 25 \\
   \hline
  \end{array}
 
@@ -453,9 +401,9 @@ Dada las siguientes tablas:
   \hline
   \textbf{proyecto} & \textbf{duracion} \\
   \hline
-  \mbox{ACU0034} & 300 \\
+  \text{ACU0034} & 300 \\
   \hline
-  \mbox{USM7345} & 60 \\
+  \text{USM7345} & 60 \\
   \hline
  \end{array}
 
@@ -475,17 +423,17 @@ Escriba la tabla resultante al realizar la siguiente operación:
   \hline
   \textbf{id} & \textbf{nombre} & \textbf{d#} & \textbf{proyecto} & \textbf{duracion} \\
   \hline
-  123 & \mbox{Leon} & 39 & \mbox{ACU0034} & 300 \\
+  123 & \text{Leon} & 39 & \text{ACU0034} & 300 \\
   \hline
-  123 & \mbox{Leon} & 39 & \mbox{USM7345} & 60 \\
+  123 & \text{Leon} & 39 & \text{USM7345} & 60 \\
   \hline
-  234 & \mbox{Tomas} & 34 & \mbox{ACU0034} & 300 \\
+  234 & \text{Tomas} & 34 & \text{ACU0034} & 300 \\
   \hline
-  234 & \mbox{Tomas} & 34 & \mbox{USM7345} & 60 \\
+  234 & \text{Tomas} & 34 & \text{USM7345} & 60 \\
   \hline
-  143 & \mbox{Josefa} & 25 & \mbox{ACU0034} & 300 \\
+  143 & \text{Josefa} & 25 & \text{ACU0034} & 300 \\
   \hline
-  143 & \mbox{Josefa} & 25 & \mbox{USM7345} & 60 \\
+  143 & \text{Josefa} & 25 & \text{USM7345} & 60 \\
   \hline
  \end{array}
 
@@ -506,7 +454,7 @@ que tengan el mismo valor en los atributos comunes.
 Para denotar NATURALJOIN se utiliza la siguiente simbología:
 
 .. math::
-   \mbox{R} \rhd \hspace{-0.1cm} \lhd \mbox{S}
+   \text{R} \rhd \hspace{-0.1cm} \lhd \text{S}
 
 **Equivalencia con operadores básicos**
 
@@ -556,6 +504,9 @@ Ejemplo 1
 
 Con las tablas dadas realice el NaturalJoin de R y S:
 
+.. image:: ../../../sql-course/src/NATURALJOIN.png
+    :align: center
+
 .. math::
  \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\
 
@@ -582,13 +533,13 @@ Realizar NATURALJOIN a las siguientes tablas:
   \hline
   \textbf{id} & \textbf{nombre} & \textbf{d#} \\
   \hline
-  123 & \mbox{Leon} & 39 \\
+  123 & \text{Leon} & 39 \\
   \hline
-  234 & \mbox{Tomas} & 34\\
+  234 & \text{Tomas} & 34\\
   \hline
-  143 & \mbox{Josefa} & 25 \\
+  143 & \text{Josefa} & 25 \\
   \hline
-  090 & \mbox{Maria} & 34 \\
+  090 & \text{Maria} & 34 \\
   \hline
  \end{array}
 
@@ -598,9 +549,9 @@ Realizar NATURALJOIN a las siguientes tablas:
   \hline
   \textbf{d#} & \textbf{proyecto}\\
   \hline
-  39 & \mbox{ACU0034} \\
+  39 & \text{ACU0034} \\
   \hline
-  34 & \mbox{USM7345} \\
+  34 & \text{USM7345} \\
   \hline
  \end{array}
 
@@ -614,11 +565,11 @@ Realizar NATURALJOIN a las siguientes tablas:
   \hline
   \textbf{id} & \textbf{nombre} & \textbf{d#} & \textbf{proyecto} \\
   \hline
-  123 & \mbox{Leon} & 39 & \mbox{ACU0034} \\
+  123 & \text{Leon} & 39 & \text{ACU0034} \\
   \hline
-  234 & \mbox{Tomas} & 34 & \mbox{USM7345} \\
+  234 & \text{Tomas} & 34 & \text{USM7345} \\
   \hline
-  090 & \mbox{Maria} & 34 & \mbox{USM7345} \\
+  090 & \text{Maria} & 34 & \text{USM7345} \\
   \hline
  \end{array}
 
@@ -640,13 +591,13 @@ La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN, 
 diferencia radica en que THETAJOIN lleva el predicado C:
 
 .. math::
-    \mbox{R} \rhd \hspace{-0.1cm} \lhd_C \mbox{S} \\
+    \text{R} \rhd \hspace{-0.1cm} \lhd_C \text{S} \\
 
-    \mbox{C = <Atributo> <Comparador> <Atributo o Constante del Dominio>} \\
+    \text{C = <Atributo> <Comparador> <Atributo o Constante del Dominio>} \\
 
-    \mbox{Donde:}\\
+    \text{Donde:}\\
 
-    \mbox{<Comparador>} \in {\{=,\geq,>,<, \neq,\leq \}}\\
+    \text{<Comparador>} \in {\{=,\geq,>,<, \neq,\leq \}}\\
 
 **Equivalencia con operadores básicos**
 
@@ -703,6 +654,14 @@ Escriba la tabla resultante al realizar la siguiente operación:
 
 **Respuesta**
 
+.. image:: ../../../sql-course/src/THETAJOIN1.png
+    :align: center
+
+.. image:: ../../../sql-course/src/THETAJOIN2.png
+    :align: center
+
+.. image:: ../../../sql-course/src/THETAJOIN3.png
+    :align: center
 .. math::
 
  \textbf{S} \\
@@ -733,7 +692,11 @@ Empleado (nIF, nombre, direccion, salario, dpto, nIFSupervisor)
 **Respuesta**
 
 .. math::
+<<<<<<< HEAD
     \pi_{(dpto.nombre,empleado.nombre)} (dpto \rhd \hspace{-0.1cm} \lhd_{nIFDirector=NIF} \mbox{empleado})
+=======
+    \pi_{(\text{Dpto.Nombre,Empleado.Nombre})} (\text{Dpto} \rhd \hspace{-0.1cm} \lhd_{\text{NIFDirector=NIF}} \text{Empleado})
+>>>>>>> 2186a9706809593eeb35b75276e9bbb1dc621c30
 
 • Tuplas con Null en los “Atributos de la Reunión”, no se incluyen en el resultado.
 

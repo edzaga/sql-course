@@ -56,10 +56,10 @@
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Lecture 2 - Relational Databases: Querying relational databases</a><ul>
-<li><a class="reference internal" href="#utilizando-una-base-de-datos-relacional">Utilizando una Base de Datos Relacional</a></li>
-<li><a class="reference internal" href="#consultas-en-lenguajes-de-alto-nivel">Consultas en lenguajes de alto nivel</a></li>
-<li><a class="reference internal" href="#consultas-y-relaciones-tablas">Consultas y relaciones (tablas)</a></li>
-<li><a class="reference internal" href="#lenguajes-de-consultas">Lenguajes de consultas</a></li>
+<li><a class="reference internal" href="#using-a-relational-database">Using a Relational Database</a></li>
+<li><a class="reference internal" href="#consultations-in-high-level-languages">Consultations in high level languages</a></li>
+<li><a class="reference internal" href="#consultations-and-relations">Consultations and relations</a></li>
+<li><a class="reference internal" href="#query-languages">Query languages</a></li>
 </ul>
 </li>
 </ul>
@@ -98,101 +98,99 @@
             
   <div class="section" id="lecture-2-relational-databases-querying-relational-databases">
 <h1>Lecture 2 - Relational Databases: Querying relational databases<a class="headerlink" href="#lecture-2-relational-databases-querying-relational-databases" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="utilizando-una-base-de-datos-relacional">
-<h2>Utilizando una Base de Datos Relacional<a class="headerlink" href="#utilizando-una-base-de-datos-relacional" title="Permalink to this headline">¶</a></h2>
-<p id="index-0">Los pasos necesarios a la hora de crear una Base de Datos Relacional (BDR) son:</p>
+<div class="section" id="using-a-relational-database">
+<h2>Using a Relational Database<a class="headerlink" href="#using-a-relational-database" title="Permalink to this headline">¶</a></h2>
+<p id="index-0">The necessary steps for the creation of a relational database (DB):</p>
 <blockquote>
 <div><ul class="simple">
-<li>Diseñar el esquema, es decir, la estructura de las tablas y las relaciones,
-usando un DDL (Data Definition Language).</li>
-<li>Ingresar los datos iniciales.</li>
-<li>Ejecutar operaciones de consulta y mantención usando en DML (Data Manipulation
+<li>Design the scheme, in other words, the structure between relations,
+using a DDL (Data Definition Language).</li>
+<li>Enter the initial data.</li>
+<li>Execute query and modification operations using a DML(Data Manipulation
 Language).</li>
 </ul>
 </div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Existen las llamadas &#8220;Operaciones Básicas&#8221; de DML que se pueden realizar en una
-Base de Datos Relacional:</p>
+<p>There are the so-called “Basic Operations” of DML that can be performed
+in a Relational Database:</p>
 <blockquote class="last">
 <div><ol class="arabic simple">
-<li>Consultar: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt></li>
-<li>Almacenar: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">INSERT</span></span></tt></li>
-<li>Actualizar: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">UPDATE</span></span></tt></li>
-<li>Borrar: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DELETE</span></span></tt></li>
+<li>Consult: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt></li>
+<li>Store: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">CREATE</span></span><span class="p"><span class="pre">,</span></span> <span class="k"><span class="pre">INSERT</span></span></tt></li>
+<li>Update: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">UPDATE</span></span></tt></li>
+<li>Delete: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DELETE</span></span><span class="p"><span class="pre">,</span></span> <span class="k"><span class="pre">DROP</span></span></tt></li>
 </ol>
 </div></blockquote>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Existen las llamadas &#8220;Operaciones Básicas&#8221; de DDL que se pueden realizar en una
-Base de Datos Relacional:</p>
+<p>There are the so-called “Basic Operations” of DDL that can be performed
+in a Relational Database:</p>
 <blockquote class="last">
 <div><ol class="arabic simple">
-<li>Almacenar: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">CREATE</span></span></tt></li>
-<li>Borrar: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DROP</span></span></tt></li>
+<li>Store: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">CREATE</span></span></tt></li>
+<li>Delete: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DROP</span></span></tt></li>
 </ol>
 </div></blockquote>
 </div>
-<p>Por ahora sólo se nombran junto a sus funciones SQL relacionadas.
-A medida que el curso avance, se profundizará el contenido.</p>
+<p>For now, they are only named along with their related SQL functions. As the
+course advances, the content will be deepened.</p>
 </div>
-<div class="section" id="consultas-en-lenguajes-de-alto-nivel">
-<h2>Consultas en lenguajes de alto nivel<a class="headerlink" href="#consultas-en-lenguajes-de-alto-nivel" title="Permalink to this headline">¶</a></h2>
-<p id="index-1">Existen lenguajes de alto nivel que permiten realizar consultas relativamente
-simples en la BD, sin la necesidad de escribir complejos algoritmos.</p>
-<p>Una &#8216;consulta a la BD&#8217;, puede entenderse como una pregunta que se le realiza para
-obtener &#8216;cierta información&#8217;. Algunos ejemplos pueden ser:</p>
+<div class="section" id="consultations-in-high-level-languages">
+<h2>Consultations in high level languages<a class="headerlink" href="#consultations-in-high-level-languages" title="Permalink to this headline">¶</a></h2>
+<p id="index-1">There are high level languages that allow making relatively simple queries in
+the database, without the need to write complex algorithms.</p>
+<p>A &#8216;query to the database&#8217;, can be understood as a question to be done to get
+&#8216;some information&#8217;. Some examples might be:</p>
 <blockquote>
 <div><ul class="simple">
-<li>&#8220;Todos los estudiantes con nota mayor o igual a 55&#8221;.</li>
-<li>&#8220;Todas los departamentos de Ingeniería con una cantidad mayor o igual a 1000
-alumnos&#8221;.</li>
-<li>&#8220;Los 5 primeros estudiantes con mejor promedio de notas en el ramo de Química&#8221;.</li>
+<li>&#8220;All students with a grade greater than or equal to 55&#8221;</li>
+<li>&#8220;All the departments of Engineering with a quantity greater or equal to 1000 students&#8221;</li>
+<li>&#8220;The first 5 students with better GPA in the field of Chemistry&#8221;</li>
 </ul>
 </div></blockquote>
-<dl class="docutils">
-<dt>Independiente del lenguaje que se utiliza, se debe tener en cuenta que:</dt>
-<dd><ul class="first last simple">
-<li>Algunas consultas son fáciles de formular, otras son un poco más difíciles.</li>
-<li>Algunos SGBD las ejecutan de forma eficiente, otros no.</li>
-<li>Los 2 puntos anteriores no son dependientes uno del otro, puede existir una consulta
-fácil de formular, pero difícil de ejecutar de forma eficiente, dependiendo del DBMS.</li>
-<li>El lenguaje utilizado para ejecutar consultas puede modificar/actualizar información
-de la BD, a esto se le llama Data Manipulation Language (DML).</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="consultas-y-relaciones-tablas">
-<h2>Consultas y relaciones (tablas)<a class="headerlink" href="#consultas-y-relaciones-tablas" title="Permalink to this headline">¶</a></h2>
-<p id="index-2">Las consultas realizadas a las tablas de una BD al momento de ser ejecutadas producen,
-como resultado, tablas; las cuales pueden ser:</p>
+<p>Independent of the language used, it should be noted that:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Cerradas: Cuando la estructura del objeto que se obtiene de la consulta, es igual
-a la estructura de los objetos consultados, se tiene una tabla cerrada</li>
-<li>Compuestas: Cuando la consulta se hace sobre, al menos una tabla que corresponde
-al resultado de una consulta previa. En otras palabras, corresponde a la
-consulta del resultado de una consulta.</li>
+<li>Some queries are easy to formulate, others are a bit more difficult.</li>
+<li>Some Data Base Management System (DBMS) are executing efficiently, others do not.</li>
+<li>The two points above are not dependent on each other, it can exist an easy
+query to formulate, but difficult to execute efficiently, depending on the DBMS.</li>
+<li>The language used to execute queries can modify / update information from the
+database; this is called Data Manipulation Language You (DML).</li>
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="lenguajes-de-consultas">
-<h2>Lenguajes de consultas<a class="headerlink" href="#lenguajes-de-consultas" title="Permalink to this headline">¶</a></h2>
-<p id="index-3">Algunos de los lenguajes de consultas son</p>
+<div class="section" id="consultations-and-relations">
+<h2>Consultations and relations<a class="headerlink" href="#consultations-and-relations" title="Permalink to this headline">¶</a></h2>
+<p id="index-2">The consultations carried out to the relations of a DB at the moment to be
+executed produce as a result, relations, which can be:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Álgebra Relacional: Lenguaje formal y matemático</li>
-<li>SQL: Lenguaje actual e implementado que nace del Álgebra Relacional.</li>
+<li>Closed: When the structure of the object obtained from the query, is equal
+to the structure of objects consulted, there is a closed relationship.</li>
+<li>Compound: When the query is done, at least one relation corresponds to the
+result of a previous consultation. In other words, it corresponds to the
+query of the result of a query.</li>
 </ul>
 </div></blockquote>
-<p>Si bien se profundizará sobre ambos, a medida que avance el curso, se deja la
-siguientes tablas</p>
+</div>
+<div class="section" id="query-languages">
+<h2>Query languages<a class="headerlink" href="#query-languages" title="Permalink to this headline">¶</a></h2>
+<p id="index-3">Some query languages are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Relational Algebra: Formal and mathematical language.</li>
+<li>SQL: Current language and implemented that born from Relational Algebra.</li>
+</ul>
+</div></blockquote>
+<p>Although both will be deepen as the course progresses, take a look of the following example:
+Look for the “Student’s ID with grade greater or equal to 55 in programmation”</p>
 <div class="math">
-\[\textbf{Tabla ALUMNOS}\]\[\begin{split}\begin{array}{|c|c|c|c|}
+\[\textbf{student table}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{ID_ramo} &amp; \textbf{nombre_alumno} &amp; \textbf{promedio_nota} \\
+ \textbf{ID} &amp; \textbf{subject_ID} &amp; \textbf{student_name} &amp; \textbf{gpa} \\
  \hline
  1           &amp; 1                &amp; \mbox{Robert}          &amp; 45 \\
  \hline
@@ -204,41 +202,42 @@ siguientes tablas</p>
  \hline
  5           &amp; 3                &amp; \mbox{Mary}            &amp; 35 \\
  \hline
-\end{array}\end{split}\]\[\textbf{Tabla RAMOS}\]\[\begin{split}\begin{array}{|c|c|}
+\end{array}\end{split}\]\[\textbf{subjects table}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{nombre_ramo} \\
+ \textbf{ID} &amp; \textbf{subject_name} \\
  \hline
- 1           &amp; \mbox{Programacion} \\
+ 1           &amp; \mbox{Programming} \\
  \hline
- 2           &amp; \mbox{Base de datos} \\
+ 2           &amp; \mbox{Database} \\
  \hline
- 3           &amp; \mbox{Estructuras de datos} \\
+ 3           &amp; \mbox{Math} \\
  \hline
 \end{array}\end{split}\]</div>
-<p>Consultar por el &#8220;ID de los alumnos con promedio de notas mayor o igual a 55 en el
-ramo de Programación&#8221;:</p>
-<p>Utilizando Álgebra Relacional:</p>
+<p>Consult for the &#8220;students ID with GPA greater or equal than  55 in the
+subject of Programming &#8221;:</p>
+<p>Using Relational Algebra:</p>
 <div class="math">
-\[\pi \hspace{0.2cm} _{ALUMNOS.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{RAMOS.nombre_ramo ='Programacion'} (ALUMNOS \rhd \hspace{-0.1cm} \lhd RAMOS)}\]</div>
-<p>Se puede decir que:</p>
+\[\pi \hspace{0.2cm} _{student.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{subjects.subject_name ='Programming'} (student \rhd \hspace{-0.1cm} \lhd subjects)}\]</div>
+<p>One could say that:</p>
 <div class="math">
 \[\pi\]</div>
-<p>realiza un PROJECT sobre una tabla, es decir selecciona una columna. Por otro lado:</p>
+<p>Carried out a PROJECT on a table, that is to say select a column. On the other hand:</p>
 <div class="math">
 \[\sigma\]</div>
-<p>selecciona una fila que cumpla con una cierta condición, en el ejemplo dado se
-seleccionan las filas que cumplen con tener nota mayor a 55 y que el nombre_ramo
-sea &#8216;programación&#8217;.</p>
+<p>select a row that complies with a certain condition, in the example given rows
+selected are the ones that have complied with having a grade higher(GPA) to 55 and
+that subjects.name_subject is ‘Programming’</p>
 <div class="math">
 \[\rhd \hspace{-0.1cm} \lhd\]</div>
-<p>realiza un JOIN entre dos relaciones en la lectura 3 se profundiza acerca de estos
-operadores y sus respectivos significados.</p>
-<p>Utilizando SQL</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">ALUMNOS</span><span class="p">.</span><span class="n">ID</span> <span class="k">FROM</span> <span class="n">ALUMNOS</span><span class="p">,</span> <span class="n">RAMOS</span> <span class="k">WHERE</span> <span class="n">ALUMNOS</span><span class="p">.</span><span class="n">ID_ramo</span><span class="o">=</span><span class="n">RAMOS</span><span class="p">.</span><span class="n">ID</span> <span class="k">AND</span> <span class="n">ALUMNOS</span><span class="p">.</span><span class="n">promedio_nota</span><span class="o">&gt;=</span><span class="mi">55</span> <span class="k">AND</span> <span class="n">RAMOS</span><span class="p">.</span><span class="n">nombre_ramo</span><span class="o">=</span><span class="s1">&#39;Programacion&#39;</span><span class="p">;</span>
+<p>performs a JOIN between two relations. In lecture 3 we will get deeper about these
+operators and their meanings.</p>
+<p>Using SQL</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">student</span><span class="p">.</span><span class="n">ID</span> <span class="k">FROM</span> <span class="n">student</span><span class="p">,</span> <span class="n">subjects</span> <span class="k">WHERE</span> <span class="n">student</span><span class="p">.</span><span class="n">subjec_ID</span><span class="o">=</span><span class="n">subjec</span><span class="p">.</span><span class="n">ID</span>
+<span class="k">AND</span> <span class="n">student</span><span class="p">.</span><span class="n">GPA</span><span class="o">&gt;=</span><span class="mi">55</span> <span class="k">AND</span> <span class="n">subjects</span><span class="p">.</span><span class="n">subject_name</span> <span class="o">=</span><span class="s1">&#39;Programming&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>En las próximas lecturas, se estudiará con mayor detalle tanto el álgebra relacional,
-como el lenguaje SQL.</p>
+<p>In the next lectures, it will be studied in greater detail both the relational algebra,
+and the SQL language.</p>
 </div>
 </div>
 

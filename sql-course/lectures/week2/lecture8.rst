@@ -1,31 +1,122 @@
 Lecture 8 - Table variable and set operators
 --------------------------------------------
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
 
 Table Variables
 ~~~~~~~~~~~~~~~
 
 .. index:: Table Variables
 
-Consideremos el siguiente schema::
+Consideremos la siguiente situación ::
 
         College (cName, state, enrollment)
         Student (sID, sName, GPA, sizeHS)
         Apply (sID, cName, major, decision)
 
-Ahora consideremos la siguente consulta::
+la cual es posible replicar mediante
 
+.. code-block:: sql
+   
+    CREATE TABLE College
+        (
+     id int auto_increment primary key, 
+     cName varchar(20), 
+     state varchar(30),
+     enrollment varchar(40)
+    );
+
+    CREATE TABLE Student
+        (
+     sID int auto_increment primary key, 
+     sName varchar(20), 
+     GPA integer,
+     sizeHS varchar(40)
+    );
+
+   CREATE TABLE Apply
+        (
+     sID int auto_increment primary key, 
+     cName varchar(20), 
+     major varchar(30),
+     decision varchar(40)
+    );
+
+
+.. joao: agregar el contexto del ejercicio y los INSERT INTO con valores utiles
+
+Ahora consideremos la siguente consulta
+
+.. code-block:: sql
+        
         SELECT Student.sID, sName, Apply.cName, GPA
         FROM Student, Apply
-        WHERE Apply.sID = Student.sID
+        WHERE Apply.sID = Student.sID;
 
-es posible realizarla como::
+es posible realizarla como
+
+.. code-block:: sql
 
         SELECT S.sID, sName, A.cName, GPA
         FROM Student S, Apply A
-        WHERE A.sID = S.sID
+        WHERE A.sID = S.sID;
+
+En cualquier caso la salida será la misma.
+
+Como se aprecia, es posible asignar valores variables a las relaciones "R" y utilizar dichas variables tanto en la lista "L" como en la 
+condición "C". El lector se preguntará cuál es la utilidad de esto, más allá de escribir menos (dependiendo del nombre de la variable
+utilizada); y la respuesta corresponde a los casos en que se deben comparar múltiples instancias de la misma relación, como se verá a más 
+adelante en esta misma lectura.
+
+.. note::
+   El por qué de la nomenclatura "L", "R" y "C" y su significado están explicados en la lectura 7
+
 
 Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde más a variable en la consulta).
 La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
+
+
+Se invita al lector alplicado a realizar pruebas, se dejan las siguientes lineas de código a su disposición, con el fin de
+probar que efectivamente si se realizan las consultas mencionadas arriba, el resultado es el mismo. Cabe destacar que 
+
+.. code-block:: sql
+
+        INSERT INTO "R"
+        (Columna1, Columna2,..., ColumnaN)
+        VALUES
+        (Valor Columna1Fila1, Valor Columna2Fila1,..., Valor ColumnaNFila1),
+        (Valor Columna2Fila1, Valor Columna2Fila2,..., Valor ColumnaNFila2),
+        ...
+        (Valor Columna1FilaN, Valor Columna2FilaN,..., Valor ColumnaNFilaN),
+
+corresponde a la sentencia para ingresar datos a una tabla en particular, conociendo su estructura y tipos de datos.
+El lector puede utilizar los  siguientes valores y realizar modificaciones.
+
+.. code-block:: sql
+
+        INSERT INTO College
+        (cName, state, enrollment)
+        VALUES
+        ('Stanford', 'stanford', 'lalalla'),
+        ('Berkeley', 'miami', 'mayor'),
+        'MIT', 'masachusets', 'minor');
+
+
+        INSERT INTO Student
+        (sName, GPA, sizeHS)
+        VALUES
+        ('lala', 30, 'hjkljk'),
+        ('lolo', 60, 'asads'),
+        ('lele', 40, 'qweqwe');
+
+
+        INSERT INTO Apply
+        (cName, major, decision)E        VALUES
+        ('Stanford', 'phd', 'zxczcx'),
+        ('Berkeley', 'pregrado', 'sdfsd'),
+        ('MIT', 'ingenieria', 'rtert');
+
 
 ============================
 Cuidado con los duplicados!!
