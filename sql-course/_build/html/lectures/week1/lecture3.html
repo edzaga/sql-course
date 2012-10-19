@@ -127,7 +127,9 @@
 <h1>Lectura 3 - Álgebra Relacional: Select, Project, Join<a class="headerlink" href="#lectura-3-algebra-relacional-select-project-join" title="Enlazar permanentemente con este título">¶</a></h1>
 <div class="section" id="conceptos-basicos-de-algebra-relacional">
 <h2>Conceptos básicos de álgebra relacional<a class="headerlink" href="#conceptos-basicos-de-algebra-relacional" title="Enlazar permanentemente con este título">¶</a></h2>
-<p id="index-0">Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo, en el álgebra de la aritmética, los operandos atómicos son variable como <span class="math">\(r\)</span>, y constantes como 15.
+<p id="index-0">Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo,
+en el álgebra de la aritmética, los operandos atómicos son variable como <span class="math">\(r\)</span>,
+y constantes como 15.
 Los operadores son los usuales en la aritmética:</p>
 <blockquote>
 <div><ul class="simple">
@@ -137,7 +139,10 @@ Los operadores son los usuales en la aritmética:</p>
 <li>División.</li>
 </ul>
 </div></blockquote>
-<p>Cualquier álgebra nos permite construir expresiones mediante la aplicación de operadores a operandos atómicos y/o otras expresiones del álgebra. En general, los paréntesis son necesarios para agrupar operadores y sus operandos. Por ejemplo, en aritmética tenemos expresiones tales como <span class="math">\((x + y) * z\)</span> ó <span class="math">\(((x + 7)/(y - 3)) + x\)</span>.</p>
+<p>Cualquier álgebra nos permite construir expresiones mediante la aplicación de
+operadores a operandos atómicos y/o otras expresiones del álgebra. En general,
+los paréntesis son necesarios para agrupar operadores y sus operandos. Por ejemplo,
+en aritmética tenemos expresiones tales como <span class="math">\((x + y) * z\)</span> ó <span class="math">\(((x + 7)/(y - 3)) + x\)</span>.</p>
 <p>El Álgebra Relacional es otro ejemplo del álgebra. Sus operandos atómicos son:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -145,37 +150,44 @@ Los operadores son los usuales en la aritmética:</p>
 <li>Constantes que son relaciones finitas.</li>
 </ol>
 </div></blockquote>
-<p>Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus resultados de expresiones son conjuntos. Los operadores del álgebra relacional tradicional se divide en cuatro grandes categorías:</p>
+<p>Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus resultados
+de expresiones son conjuntos. Los operadores del álgebra relacional tradicional se divide
+en cuatro grandes categorías:</p>
 <blockquote>
-<div><ol class="loweralpha simple">
-<li>Los conjuntos habituales de operaciones –unión, intersección, y diferencia- se aplica a las relaciones.</li>
-<li>Las operaciones que eliminan parte de una relación: “selección” elimina algunas filas (tuplas), y “proyección” elimina algunas columnas.</li>
-<li>Las operaciones que combinan las tuplas de dos relaciones, como el “producto cartesiano,” que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de operadores “unión”, los cuales forman parejas de tuplas de dos relaciones selectivamente.</li>
-<li>Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que cambia el esquema de relación, es decir, lo nombres de los atributos y/o los nombres de la relación misma.</li>
-</ol>
-</div></blockquote>
+<div>a. Los conjuntos habituales de operaciones <em>unión, intersección, y diferencia</em>
+se aplica a las relaciones.
+b. Las operaciones que eliminan parte de una relación: “selección” elimina
+algunas filas (tuplas), y “proyección” elimina algunas columnas.
+c. Las operaciones que combinan las tuplas de dos relaciones, como el “producto cartesiano,”
+que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de
+operadores “unión”, los cuales forman parejas de tuplas de dos relaciones selectivamente.
+d. Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que
+cambia el esquema de relación, es decir, lo nombres de los atributos y/o los
+nombres de la relación misma.</div></blockquote>
 <p>Debemos por lo general referirnos a las expresiones del álgebra relacional como consultas.
-A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones del algebra relacional, se debería familiarizar con las operaciones de grupo <span class="math">\((a)\)</span>; y por lo tanto reconocer:</p>
+A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones
+del algebra relacional, se debería familiarizar con las operaciones de grupo <span class="math">\((a)\)</span>;
+y por lo tanto reconocer:</p>
 <div class="math">
 \[\begin{split}R \cup S \\\end{split}\]</div>
-<p>como un ejemplo de una expresión de álgebra relacional. Donde <span class="math">\(R\)</span> y <span class="math">\(S\)</span> son operandos atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas.
-Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones nombradas <span class="math">\(R\)</span> y <span class="math">\(S\)</span>.</p>
-<p>Las tres operaciones más comunes en conjuntos son unión, intersección, y diferencia, que serán vistos en la lectura 4.
-Las cuales se definen como los siguientes conjuntos arbitrarios <span class="math">\(R\)</span> y <span class="math">\(S\)</span>:</p>
-<p>El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan
-sobre las relaciones (tablas) para obtener un resultado, el cual es otra relación.</p>
+<p>como un ejemplo de una expresión de álgebra relacional. Donde <span class="math">\(R\)</span> y <span class="math">\(S\)</span> son operandos
+atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas.
+Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones
+nombradas <span class="math">\(R\)</span> y <span class="math">\(S\)</span>.</p>
+<p>Las tres operaciones más comunes en conjuntos son unión, intersección, y diferencia,
+que serán vistas en la lectura 4.</p>
 </div>
 <div class="section" id="operaciones-relacionales">
 <h2>Operaciones relacionales:<a class="headerlink" href="#operaciones-relacionales" title="Enlazar permanentemente con este título">¶</a></h2>
 <p id="index-1">Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.</p>
 <div class="section" id="seleccion-select">
 <h3>SELECCIÓN (SELECT)<a class="headerlink" href="#seleccion-select" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Este operador se aplica a una relación R produciendo una nueva relación con un
-subconjunto de tuplas de R. Las tuplas de la relación resultante son las que
-satisfacen una condición C sobre algún atributo de R. Es decir selecciona <strong>filas</strong>
-de una tabla según un cierto criterio C. C es una expresión condicional, similar
+<p>Este operador se aplica a una relación <span class="math">\(R\)</span> produciendo una nueva relación con un
+subconjunto de tuplas de <span class="math">\(R\)</span>. Las tuplas de la relación resultante son las que
+satisfacen una condición <span class="math">\(C\)</span> sobre algún atributo de <span class="math">\(R\)</span>. Es decir selecciona <strong>filas</strong>
+de una tabla según un cierto criterio <span class="math">\(C\)</span>. <span class="math">\(C\)</span> es una expresión condicional, similar
 a las declaraciones del tipo “if”, es “booleana” esto quiere decir que para cada
-tupla de R toma el valor Verdad o Falso.</p>
+tupla de <span class="math">\(R\)</span> toma el valor Verdad o Falso.</p>
 <ul>
 <li><p class="first">Valores de atributos con NULL no cumplirán ninguna condición.</p>
 </li>
@@ -187,13 +199,30 @@ tupla de R toma el valor Verdad o Falso.</p>
 \[\begin{split}\text{&lt;Comparador&gt;}  \in {\{=,\geq,&gt;,&lt;, \neq,\leq \}}\end{split}\]</div>
 </li>
 <li><p class="first">Las cláusulas C pueden conectarse con los operadores lógicos:</p>
-<ul class="simple">
-<li><strong>NOT</strong>: El operador NOT denota una salida verdadera si la entrada es falsa,
-y una salida falsa si la entrada es verdadera.</li>
-<li><strong>AND</strong>: El operador AND denota una salida verdadera si y sólo si sus entradas
-son verdaderas.</li>
-<li><strong>OR</strong>: El operador OR denota una salida verdadera si hay alguna de las entradas
-(o ambas) verdaderas.</li>
+<ul>
+<li><p class="first"><strong>NOT</strong>: El operador NOT denota una salida verdadera si la entrada es falsa,
+y una salida falsa si la entrada es verdadera. Su notación en algebra es:</p>
+<blockquote>
+<div><div class="math">
+\[¬ C1\]</div>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>AND</strong>: El operador AND denota una salida verdadera si y sólo si sus entradas
+son verdaderas. Si C1 se cumple y C2 también se cumple, la salida seré verdadera.
+La notación en algebra de un AND es:</p>
+<blockquote>
+<div><div class="math">
+\[C1 \wedge C2\]</div>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>OR</strong>: El operador OR denota una salida verdadera si hay alguna de las entradas
+(o ambas) verdaderas. Si C1 y/o C2 es o son verdaderas, la expresión será verdadera.
+La notación en algebra de un OR es:</p>
+<blockquote>
+<div><div class="math">
+\[C1 \vee C2\]</div>
+</div></blockquote>
+</li>
 </ul>
 </li>
 </ul>
@@ -201,16 +230,16 @@ son verdaderas.</li>
 <p>Para representar SELECT en álgebra relacional se utiliza la letra griega sigma
 <span class="math">\(\sigma\)</span>. Por lo tanto, si utilizamos la notación
 <span class="math">\(\sigma_{c} \ \boldsymbol{R}\)</span> queremos decir que se aplica la condición
-<strong>C</strong> a cada tupla de <strong>R</strong>. Si la condición es Verdad (true),
+<span class="math">\(C\)</span> a cada tupla de <span class="math">\(R\)</span>. Si la condición es Verdad (true),
 dicha tupla pertenecerá al resultado y si es Falsa (false), dicha tupla no será seleccionada.
-El esquema de la relación resultante es el mismo esquema R, se muestran los
-atributos en el mismo orden que se usan en la tabla R.</p>
+El esquema de la relación resultante es el mismo esquema <span class="math">\(R\)</span>, se muestran los
+atributos en el mismo orden que se usan en la tabla <span class="math">\(R\)</span>.</p>
 <div class="section" id="ejemplo-1">
 <h4>Ejemplo 1<a class="headerlink" href="#ejemplo-1" title="Enlazar permanentemente con este título">¶</a></h4>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}  \begin{array}{|c|c|c|c|}
    \hline
-   \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad} &amp; \textbf{Años_trabajados(AT)}\\
+   \textbf{id} &amp; \textbf{nombre} &amp; \textbf{edad} &amp; \textbf{añosTrabajados(AT)}\\
    \hline
    123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
    \hline
@@ -226,11 +255,15 @@ mayor a 30 años:</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
 \[\begin{split}\sigma_{edad&gt;30} \hspace{0.2cm} \mbox{Ingenieros}\end{split}\]</div>
-<p>Así quedaría la tabla:</p>
+<img alt="../../_images/select2.png" src="../../_images/select2.png" />
+<p>En la imagen se ve que selecciona solo las filas que cumplen con la condición que se pedía
+(tener una edad mayor a 30 años), la tupla de &#8220;Josefa&#8221; queda fuera de la selección por no
+cumplir la condición (pues 25 &lt; 30).
+De esta forma la tabla queda:</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}  \begin{array}{|c|c|c|c|}
    \hline
-   \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad} &amp; \textbf{Años_trabajados(AT)}\\
+   \textbf{id} &amp; \textbf{nombre} &amp; \textbf{edad} &amp; \textbf{añosTrabajados(AT)}\\
    \hline
    123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
    \hline
@@ -246,12 +279,14 @@ mayor a 30 años:</p>
 y que lleven menos de 16 años trabajando:</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
-\[\begin{split}\sigma_{(edad &gt;30 AND AT &lt;16)}  \ \text{Ingenieros}\end{split}\]</div>
+\[\begin{split}\sigma_{(edad &gt;30 \wedge AT &lt;16)}  \ \text{Ingenieros}\end{split}\]</div>
+<img alt="../../_images/select3.png" src="../../_images/select3.png" />
+<p>Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla de &#8220;Josefa&#8221; queda fuera de la selección. Luego de las tuplas que quedan se evalúa la segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no tengan x en alguna de las condiciones.</p>
 <p>Así finalmente quedaría la tabla:</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad} &amp; \textbf{Años_trabajados(AT)} \\
+ \textbf{id} &amp; \textbf{nombre} &amp; \textbf{edad} &amp; \textbf{añosTrabajados(AT)} \\
  \hline
  123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
  \hline
@@ -278,7 +313,7 @@ repetidas en el resultado, las cuales serán eliminadas.</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad} &amp; \textbf{Años_trabajados(AT)} \\
+ \textbf{id} &amp; \textbf{nombre} &amp; \textbf{edad} &amp; \textbf{añosTrabajados(AT)} \\
  \hline
  123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
  \hline
@@ -297,7 +332,7 @@ repetidas en el resultado, las cuales serán eliminadas.</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros}  \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} \\
+ \textbf{id} &amp; \textbf{nombre} \\
  \hline
  123 &amp; \mbox{Leon} \\
  \hline
@@ -311,7 +346,7 @@ repetidas en el resultado, las cuales serán eliminadas.</p>
 </div>
 <div class="section" id="id2">
 <h4>Ejemplo 2<a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.</p>
+<p>Seleccionar id y nombre de los Ingenieros que tienen más de 30 años.</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
 \[\begin{split}\pi \hspace{0.2cm} _{(\text{ID,Nombre})} (\sigma_{edad&gt;30} \hspace{0.3cm} \text{Ingenieros})\end{split}\]</div>
@@ -319,7 +354,7 @@ repetidas en el resultado, las cuales serán eliminadas.</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} \\
+ \textbf{id} &amp; \textbf{nombre} \\
  \hline
  123 &amp; \mbox{Leon} \\
  \hline
@@ -364,7 +399,7 @@ el atributo de S.</p>
 <div class="math">
 \[\begin{split}\textbf{R} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
  \hline
- \textbf{A} &amp; \textbf{B} &amp; \textbf{D} \\
+ \textbf{a} &amp; \textbf{b} &amp; \textbf{d} \\
  \hline
  1 &amp; 2 &amp; 3 \\
  \hline
@@ -372,7 +407,7 @@ el atributo de S.</p>
  \hline
 \end{array}\end{split}\]\[\begin{split}\textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{A} &amp; \textbf{C} \\
+ \textbf{a} &amp; \textbf{c} \\
  \hline
  7 &amp; 5 \\
  \hline
@@ -385,7 +420,7 @@ el atributo de S.</p>
 <div class="math">
 \[\begin{split}\textbf{R} \times \textbf{S} \\\end{split}\]\[\begin{split}  \begin{array}{|c|c|c|c|c|}
    \hline
-   \textbf{R.A} &amp; \textbf{B} &amp; \textbf{D} &amp; \textbf{S.A} &amp; \textbf{C} \\
+   \textbf{R.a} &amp; \textbf{b} &amp; \textbf{d} &amp; \textbf{S.a} &amp; \textbf{c} \\
    \hline
     1 &amp; 2 &amp; 3 &amp; 7 &amp; 5 \\
    \hline
@@ -404,7 +439,7 @@ el atributo de S.</p>
 <div class="math">
 \[\begin{split}\textbf{S} \times \textbf{R} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|c|}
  \hline
- \textbf{S.A} &amp; \textbf{C} &amp; \textbf{R.A} &amp; \textbf{B} &amp; \textbf{D} \\
+ \textbf{S.a} &amp; \textbf{c} &amp; \textbf{R.a} &amp; \textbf{b} &amp; \textbf{d} \\
  \hline
  7 &amp; 5 &amp; 1 &amp; 2 &amp; 3 \\
  \hline
@@ -428,7 +463,7 @@ es distinto a &#8220;Cross-product de R con S&#8221;</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{D#} \\
+ \textbf{id} &amp; \textbf{nombre} &amp; \textbf{d#} \\
  \hline
  123 &amp; \mbox{Leon} &amp; 39 \\
  \hline
@@ -438,7 +473,7 @@ es distinto a &#8220;Cross-product de R con S&#8221;</p>
  \hline
 \end{array}\end{split}\]\[\begin{split}\textbf{Tabla Proyectos} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{Proyecto} &amp; \textbf{Duracion} \\
+ \textbf{proyecto} &amp; \textbf{duracion} \\
  \hline
  \mbox{ACU0034} &amp; 300 \\
  \hline
@@ -452,7 +487,7 @@ es distinto a &#8220;Cross-product de R con S&#8221;</p>
 <div class="math">
 \[\begin{split}\textbf{Ingenieros} \times \textbf{Proyectos} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{D#} &amp; \textbf{Proyecto} &amp; \textbf{Duracion} \\
+ \textbf{id} &amp; \textbf{nombre} &amp; \textbf{d#} &amp; \textbf{proyecto} &amp; \textbf{duracion} \\
  \hline
  123 &amp; \mbox{Leon} &amp; 39 &amp; \mbox{ACU0034} &amp; 300 \\
  \hline
@@ -502,7 +537,7 @@ comunes tengan el mismo valor.</li>
 <div class="math">
 \[\begin{split}\textbf{R}  \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
  \hline
- \textbf{A} &amp; \textbf{B} &amp; \textbf{C} \\
+ \textbf{a} &amp; \textbf{b} &amp; \textbf{c} \\
  \hline
  1 &amp; 2 &amp; 3 \\
  \hline
@@ -510,7 +545,7 @@ comunes tengan el mismo valor.</li>
  \hline
 \end{array}\end{split}\]\[\begin{split}\textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{C} &amp; \textbf{D} \\
+ \textbf{c} &amp; \textbf{d} \\
  \hline
  7 &amp; 5 \\
  \hline
@@ -523,7 +558,7 @@ comunes tengan el mismo valor.</li>
 <div class="math">
 \[\begin{split}\textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
- \textbf{A} &amp; \textbf{B} &amp; \textbf{C} &amp; \textbf{D} \\
+ \textbf{a} &amp; \textbf{b} &amp; \textbf{c} &amp; \textbf{d} \\
  \hline
  1 &amp; 2 &amp; 3 &amp; 4 \\
  \hline
@@ -537,7 +572,7 @@ comunes tengan el mismo valor.</li>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{D#} \\
+ \textbf{id} &amp; \textbf{nombre} &amp; \textbf{d#} \\
  \hline
  123 &amp; \mbox{Leon} &amp; 39 \\
  \hline
@@ -549,7 +584,7 @@ comunes tengan el mismo valor.</li>
  \hline
 \end{array}\end{split}\]\[\begin{split}\textbf{Tabla Proyectos} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{D#} &amp; \textbf{Proyecto}\\
+ \textbf{d#} &amp; \textbf{proyecto}\\
  \hline
  39 &amp; \mbox{ACU0034} \\
  \hline
@@ -560,7 +595,7 @@ comunes tengan el mismo valor.</li>
 <div class="math">
 \[\begin{split}\textbf{Ingenieros} \rhd \hspace{-0.1cm} \lhd \textbf{Proyectos} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{D#} &amp; \textbf{Proyecto} \\
+ \textbf{id} &amp; \textbf{nombre} &amp; \textbf{d#} &amp; \textbf{proyecto} \\
  \hline
  123 &amp; \mbox{Leon} &amp; 39 &amp; \mbox{ACU0034} \\
  \hline
@@ -601,7 +636,7 @@ anteriormente:</p>
 <div class="math">
 \[\begin{split}\textbf{R} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
- \textbf{A} &amp; \textbf{B} &amp; \textbf{C} &amp; \textbf{D} \\
+ \textbf{a} &amp; \textbf{b} &amp; \textbf{c} &amp; \textbf{d} \\
  \hline
  1 &amp; 3 &amp; 5 &amp; 7 \\
  \hline
@@ -611,7 +646,7 @@ anteriormente:</p>
  \hline
 \end{array}\end{split}\]\[\begin{split}\textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
  \hline
- \textbf{A} &amp; \textbf{C} &amp; \textbf{E} \\
+ \textbf{a} &amp; \textbf{c} &amp; \textbf{e} \\
  \hline
  1 &amp; 5 &amp; 2 \\
  \hline
@@ -629,7 +664,7 @@ anteriormente:</p>
 <div class="math">
 \[\begin{split}\textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|c|c|c|}
  \hline
- \textbf{R.A} &amp; \textbf{B} &amp; \textbf{R.C} &amp; \textbf{D} &amp; \textbf{S.A} &amp; \textbf{S.C} &amp; \textbf{E} \\
+ \textbf{R.a} &amp; \textbf{b} &amp; \textbf{R.c} &amp; \textbf{d} &amp; \textbf{S.a} &amp; \textbf{S.c} &amp; \textbf{e} \\
  \hline
  3 &amp; 2 &amp; 9 &amp; 1 &amp; 1 &amp; 5 &amp; 2 \\
  \hline
@@ -644,11 +679,11 @@ anteriormente:</p>
 <div class="section" id="id8">
 <h4>Ejemplo 2<a class="headerlink" href="#id8" title="Enlazar permanentemente con este título">¶</a></h4>
 <p>Con el esquema conceptual siguiente, hallar los nombres de los directores de cada departamento:</p>
-<p>Dpto (NumDpto, Nombre, NIFDirector, Fecha_inicio)</p>
-<p>Empleado (NIF, Nombre, Direccion, Salario, Dpto, NIFSupervisor)</p>
+<p>Dpto (numDpto, nombre, nIFDirector, fechaInicio)</p>
+<p>Empleado (nIF, nombre, direccion, salario, dpto, nIFSupervisor)</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
-\[\pi_{(Dpto.Nombre,Empleado.Nombre)} (Dpto \rhd \hspace{-0.1cm} \lhd_{NIFDirector=NIF} \mbox{Empleado})\]</div>
+\[\pi_{(dpto.nombre,empleado.nombre)} (dpto \rhd \hspace{-0.1cm} \lhd_{nIFDirector=NIF} \mbox{empleado})\]</div>
 <ul class="simple">
 <li>Tuplas con Null en los “Atributos de la Reunión”, no se incluyen en el resultado.</li>
 </ul>
