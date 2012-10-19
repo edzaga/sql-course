@@ -1,7 +1,7 @@
-Second week
------------
+Segunda Semana
+--------------
 
-Lectures:
+Lecturas:
 
 .. toctree::
    :maxdepth: 3

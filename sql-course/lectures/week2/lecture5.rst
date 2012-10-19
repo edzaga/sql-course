@@ -1,5 +1,5 @@
-Lecture 5 - Introduction
------------------------------
+Lecture 5 - Introducción
+------------------------
 
 .. role:: sql(code)
    :language: sql
@@ -66,8 +66,12 @@ Examples:
 
  * :sql:`ALTER`:
 
-  * ...
-  * ...
+  * Used to modify the structure of the table, as the following cases:
+
+    * Add a column
+    * Delete a column
+    * Change the name of a column
+    * Change the data type for a column
 
 Data Manipulation Languaje (DML)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
