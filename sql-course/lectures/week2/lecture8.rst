@@ -1,22 +1,56 @@
 Lecture 8 - Table variable and set operators
 --------------------------------------------
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
 
 Table Variables
 ~~~~~~~~~~~~~~~
 
 .. index:: Table Variables
 
-Consideremos el siguiente schema::
+Consideremos la siguiente situación ::
 
         College (cName, state, enrollment)
         Student (sID, sName, GPA, sizeHS)
         Apply (sID, cName, major, decision)
 
-Ahora consideremos la siguente consulta::
+la cual es posible replicar mediante
 
+.. code-block:: sql
+   
+    CREATE TABLE College
+        (
+     id int auto_increment primary key, 
+     cName varchar(20), 
+     state varchar(30),
+     enrollment varchar(40)
+    );
+
+    CREATE TABLE Student
+        (
+     sID int auto_increment primary key, 
+     sName varchar(20), 
+     GPA integer,
+     sizeHS varchar(40)
+    );
+
+   CREATE TABLE Apply
+        (
+     sID int auto_increment primary key, 
+     cName varchar(20), 
+     major varchar(30),
+     decision varchar(40)
+    );
+
+
+Ahora consideremos la siguente consulta
+
+.. code-block:: sql
+        
         SELECT Student.sID, sName, Apply.cName, GPA
         FROM Student, Apply
-        WHERE Apply.sID = Student.sID
+        WHERE Apply.sID = Student.sID;
 
 es posible realizarla como::
 
