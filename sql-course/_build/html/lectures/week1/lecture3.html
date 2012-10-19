@@ -61,10 +61,7 @@
 <li><a class="reference internal" href="#operaciones-relacionales">Operaciones relacionales:</a><ul>
 <li><a class="reference internal" href="#seleccion-select">SELECCIÓN (SELECT)</a><ul>
 <li><a class="reference internal" href="#ejemplo-1">Ejemplo 1</a></li>
-<li><a class="reference internal" href="#ejemplo-2">Ejemplo 2</a><ul>
-<li><a class="reference internal" href="#al-tener-el-operador-logico-and-se-pide-que-cumplan-dos-condiciones-simultaneamente-primero-que-la-edad-sea-mayor-de-30-anos-al-igual-que-en-el-ejemplo-anterior-la-tupla-de-josefa-queda-fuera-de-la-seleccion-luego-de-las-tuplas-que-quedan-se-evalua-la-segunda-condicion-en-la-imagen-se-aprecia-que-solo-se-seleccionan-las-filas-que-no-tengan-x-en-alguna-de-las-condiciones">Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla de &#8220;Josefa&#8221; queda fuera de la selección. Luego de las tuplas que quedan se evalúa la segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no tengan x en alguna de las condiciones.</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#ejemplo-2">Ejemplo 2</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#project">PROJECT</a><ul>
@@ -187,27 +184,48 @@ que serán vistas en la lectura 4.</p>
 <h3>SELECCIÓN (SELECT)<a class="headerlink" href="#seleccion-select" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Este operador se aplica a una relación <span class="math">\(R\)</span> produciendo una nueva relación con un
 subconjunto de tuplas de <span class="math">\(R\)</span>. Las tuplas de la relación resultante son las que
-satisfacen una condición <span class="math">\(C\)</span> sobre algún atributo de <span class="math">\(R\)</span>. Es decir selecciona <strong>filas</strong>
-de una tabla según un cierto criterio <span class="math">\(C\)</span>. <span class="math">\(C\)</span> es una expresión condicional, similar
+satisfacen una condición <span class="math">\(C\)</span> sobre algún atributo de <span class="math">\(R\)</span>. Es decir selecciona <strong>filas (tuplas)</strong>
+de una tabla según un cierto criterio <span class="math">\(C\)</span>. El criterio <span class="math">\(C\)</span> es una expresión condicional, similar
 a las declaraciones del tipo “if”, es “booleana” esto quiere decir que para cada
-tupla de <span class="math">\(R\)</span> toma el valor Verdad o Falso.</p>
+tupla de <span class="math">\(R\)</span> toma el valor Verdad(true) o Falso(false).</p>
 <ul>
 <li><p class="first">Valores de atributos con NULL no cumplirán ninguna condición.</p>
 </li>
 <li><p class="first">Cada condición simple o cláusula C tiene el formato:</p>
 <div class="math">
 \[\begin{split}\text{&lt;Atributo&gt; &lt;Comparador&gt; &lt;Atributo o Constante del Dominio&gt;}\end{split}\]</div>
-<p>donde:</p>
-<div class="math">
-\[\begin{split}\text{&lt;Comparador&gt;}  \in {\{=,\geq,&gt;,&lt;, \neq,\leq \}}\end{split}\]</div>
 </li>
-<li><p class="first">Las cláusulas C pueden conectarse con los operadores lógicos:</p>
-<ul>
+</ul>
+<p>donde:
+El campo <span class="math">\(Comparador\)</span> es uno de los <strong>operadores lógicos</strong> que se muestran a contnuación:</p>
+<blockquote>
+<div><blockquote>
+<div><div class="math">
+\[\begin{split}\text{&lt;Comparador&gt;}  \in {\{=,\geq,&gt;,&lt;, \neq,\leq \}}\end{split}\]</div>
+</div></blockquote>
+<ul class="simple">
+<li><span class="math">\(=\)</span> : símbolo de igual que.</li>
+<li><span class="math">\(\neq\)</span>: significa no igual a, en algunos libros este símbolo esta representado por <tt class="docutils literal"><span class="pre">!=</span></tt>.</li>
+<li><span class="math">\(\geq\)</span>: mayor que o igual a.</li>
+<li><span class="math">\(&gt;\)</span>: mayor que.</li>
+<li><span class="math">\(&lt;\)</span>: menor que.</li>
+<li><span class="math">\(\leq\)</span>: menor que o igual a.</li>
+</ul>
+</div></blockquote>
+<p>Los <strong>operadores lógicos</strong> que se utilizan, también llamados operadores relacionales, nos proporcionan
+un resultado a partir de que se cumpla o no una cierta condición. Son símbolos que se usan para comparar
+dos valores. Si el resultado de la comparación es correcto la expresión considerada es verdadera, en caso
+contrario es falsa. Por ejemplo, 11&gt;4 (once mayor que cuatro) es verdadera, se representa por el valor true
+del tipo básico boolean, en cambio, 11&lt;4 (once menor que cuatro) es falsa se representa por el valor false.</p>
+<p>Las cláusulas <span class="math">\(C\)</span> pueden conectarse con otros operadores lógicos, que al igual que los anteriores que se usaban
+como comparador (entre atributos o atributo y constante), arrojan booleano (true o false) de resultado:</p>
+<blockquote>
+<div><ul>
 <li><p class="first"><strong>NOT</strong>: El operador NOT denota una salida verdadera si la entrada es falsa,
 y una salida falsa si la entrada es verdadera. Su notación en algebra es:</p>
 <blockquote>
 <div><div class="math">
-\[¬ C1\]</div>
+\[¬ \text{C1}\]</div>
 </div></blockquote>
 </li>
 <li><p class="first"><strong>AND</strong>: El operador AND denota una salida verdadera si y sólo si sus entradas
@@ -215,7 +233,7 @@ son verdaderas. Si C1 se cumple y C2 también se cumple, la salida seré verdade
 La notación en algebra de un AND es:</p>
 <blockquote>
 <div><div class="math">
-\[C1 \wedge C2\]</div>
+\[\text{C1} \wedge \text{C2}\]</div>
 </div></blockquote>
 </li>
 <li><p class="first"><strong>OR</strong>: El operador OR denota una salida verdadera si hay alguna de las entradas
@@ -223,12 +241,11 @@ La notación en algebra de un AND es:</p>
 La notación en algebra de un OR es:</p>
 <blockquote>
 <div><div class="math">
-\[C1 \vee C2\]</div>
+\[\text{C1} \vee \text{C2}\]</div>
 </div></blockquote>
 </li>
 </ul>
-</li>
-</ul>
+</div></blockquote>
 <p><strong>Notación en Álgebra Relacional</strong></p>
 <p>Para representar SELECT en álgebra relacional se utiliza la letra griega sigma
 <span class="math">\(\sigma\)</span>. Por lo tanto, si utilizamos la notación
@@ -282,17 +299,13 @@ De esta forma la tabla queda:</p>
 y que lleven menos de 16 años trabajando:</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
-</div>
-<dl class="docutils">
-<dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt>
-<dd>sigma_{(edad &gt;30 wedge AT &lt;16)}  text{Ingenieros}</dd>
-</dl>
+\[\begin{split}\sigma_{(\text{edad} &gt;30 \wedge AT &lt;16)}  \ \text{Ingenieros}\end{split}\]</div>
 <img alt="../../_images/select3.png" src="../../_images/select3.png" />
-<div class="section" id="al-tener-el-operador-logico-and-se-pide-que-cumplan-dos-condiciones-simultaneamente-primero-que-la-edad-sea-mayor-de-30-anos-al-igual-que-en-el-ejemplo-anterior-la-tupla-de-josefa-queda-fuera-de-la-seleccion-luego-de-las-tuplas-que-quedan-se-evalua-la-segunda-condicion-en-la-imagen-se-aprecia-que-solo-se-seleccionan-las-filas-que-no-tengan-x-en-alguna-de-las-condiciones">
-<h5>Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla de &#8220;Josefa&#8221; queda fuera de la selección. Luego de las tuplas que quedan se evalúa la segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no tengan x en alguna de las condiciones.<a class="headerlink" href="#al-tener-el-operador-logico-and-se-pide-que-cumplan-dos-condiciones-simultaneamente-primero-que-la-edad-sea-mayor-de-30-anos-al-igual-que-en-el-ejemplo-anterior-la-tupla-de-josefa-queda-fuera-de-la-seleccion-luego-de-las-tuplas-que-quedan-se-evalua-la-segunda-condicion-en-la-imagen-se-aprecia-que-solo-se-seleccionan-las-filas-que-no-tengan-x-en-alguna-de-las-condiciones" title="Enlazar permanentemente con este título">¶</a></h5>
-<blockquote>
-<div>sigma_{(text{edad &gt; 30 AND AT &lt; 16})}  text{Ingenieros}</div></blockquote>
-<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 2186a9706809593eeb35b75276e9bbb1dc621c30</p>
+<p>Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente.
+Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla
+de &#8220;Josefa&#8221; queda fuera de la selección. Luego de las tuplas que quedan se evalúa la
+segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no
+tengan x en alguna de las condiciones.</p>
 <p>Así finalmente quedaría la tabla:</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
@@ -304,7 +317,6 @@ y que lleven menos de 16 años trabajando:</p>
  234 &amp; \text{Tomas} &amp; 34 &amp; 10 \\
  \hline
 \end{array}\end{split}\]</div>
-</div>
 </div>
 </div>
 <div class="section" id="project">
@@ -339,11 +351,7 @@ repetidas en el resultado, las cuales serán eliminadas.</p>
 <p>Escoger columnas de id y nombre de la tabla de ingenieros:</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
-</div>
-<dl class="docutils">
-<dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt>
-<dd>pi hspace{0.2cm}_{(id,nombre)} hspace{0.3cm} mbox{Ingenieros}</dd>
-</dl>
+\[\pi \hspace{0.2cm}_{(\text{id,nombre})} \hspace{0.3cm} \text{Ingenieros}\]</div>
 <p>La tabla finalmente queda como:</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros}  \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
@@ -365,13 +373,10 @@ repetidas en el resultado, las cuales serán eliminadas.</p>
 <p>Seleccionar id y nombre de los Ingenieros que tienen más de 30 años.</p>
 <p><strong>Respuesta</strong></p>
 <div class="math">
-</div>
-<dl class="docutils">
-<dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt>
-<dd>pi hspace{0.2cm} _{(text{id,nombre})} (sigma_{edad&gt;30} hspace{0.3cm} text{Ingenieros})</dd>
-</dl>
-<img alt="../../_images/prosel.png" src="../../_images/prosel.png" />
-<p>Finalmente la tabla queda de la siguiente manera:</p>
+\[\begin{split}\pi \hspace{0.2cm} _{(\text{id,nombre})} (\sigma_{\text{edad&gt;30}} \hspace{0.3cm} \text{Ingenieros})\end{split}\]</div>
+<p>Se aprecia que las tuplas que no cumplan con la condición de selección quedan fuera del resultado,
+luego se realiza un PROJECT sobre las filas del resultado, separando solo las columnas que
+contienen los atributos id y nombre. Finalmente la tabla queda de la siguiente manera:</p>
 <div class="math">
 \[\begin{split}\textbf{Tabla Ingenieros} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline

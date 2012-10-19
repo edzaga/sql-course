@@ -78,10 +78,10 @@ SELECCIÓN (SELECT)
 
 Este operador se aplica a una relación `R` produciendo una nueva relación con un
 subconjunto de tuplas de `R`. Las tuplas de la relación resultante son las que
-satisfacen una condición `C` sobre algún atributo de `R`. Es decir selecciona **filas**
-de una tabla según un cierto criterio `C`. `C` es una expresión condicional, similar
+satisfacen una condición `C` sobre algún atributo de `R`. Es decir selecciona **filas (tuplas)**
+de una tabla según un cierto criterio `C`. El criterio `C` es una expresión condicional, similar
 a las declaraciones del tipo “if”, es “booleana” esto quiere decir que para cada
-tupla de `R` toma el valor Verdad o Falso.
+tupla de `R` toma el valor Verdad(true) o Falso(false).
 
 * Valores de atributos con NULL no cumplirán ninguna condición.
 
@@ -90,32 +90,51 @@ tupla de `R` toma el valor Verdad o Falso.
   .. math::
     \text{<Atributo> <Comparador> <Atributo o Constante del Dominio>}
 
-  donde:
+donde:
+El campo `Comparador` es uno de los **operadores lógicos** que se muestran a contnuación:
 
-  .. math::
-    \text{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}
+	  .. math::
+	    \text{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}
 
-* Las cláusulas C pueden conectarse con los operadores lógicos:
+	* `=` : símbolo de igual que.
+
+	* `\neq`: significa no igual a, en algunos libros este símbolo esta representado por ``!=``.
+        
+        * `\geq`: mayor que o igual a.
+
+        * `>`: mayor que.
+ 
+        * `<`: menor que.
+
+	* `\leq`: menor que o igual a. 
+
+Los **operadores lógicos** que se utilizan, también llamados operadores relacionales, nos proporcionan 
+un resultado a partir de que se cumpla o no una cierta condición. Son símbolos que se usan para comparar
+dos valores. Si el resultado de la comparación es correcto la expresión considerada es verdadera, en caso 
+contrario es falsa. Por ejemplo, 11>4 (once mayor que cuatro) es verdadera, se representa por el valor true
+del tipo básico boolean, en cambio, 11<4 (once menor que cuatro) es falsa se representa por el valor false. 
+
+
+Las cláusulas `C` pueden conectarse con otros operadores lógicos, que al igual que los anteriores que se usaban
+como comparador (entre atributos o atributo y constante), arrojan booleano (true o false) de resultado:
 
   * **NOT**: El operador NOT denota una salida verdadera si la entrada es falsa,
-    y una salida falsa si la entrada es verdadera. Su notación en algebra es:
+    y una salida falsa si la entrada es verdadera. Su notación en algebra es: 
 
 	.. math::
-	     ¬ C1
+		¬ \text{C1}
 
   * **AND**: El operador AND denota una salida verdadera si y sólo si sus entradas
     son verdaderas. Si C1 se cumple y C2 también se cumple, la salida seré verdadera.
-    La notación en algebra de un AND es:
-
+    La notación en algebra de un AND es:  
 	.. math::
-    		C1 \wedge C2
+		\text{C1} \wedge \text{C2}
     
   * **OR**: El operador OR denota una salida verdadera si hay alguna de las entradas
     (o ambas) verdaderas. Si C1 y/o C2 es o son verdaderas, la expresión será verdadera.
-    La notación en algebra de un OR es:
-
-	.. math::
-    		C1 \vee C2
+    La notación en algebra de un OR es: 
+	.. math:: 
+		\text{C1} \vee \text{C2}
 
 **Notación en Álgebra Relacional**
 
@@ -188,15 +207,15 @@ y que lleven menos de 16 años trabajando:
 **Respuesta**
 
 .. math::
-<<<<<<< HEAD
-    \sigma_{(edad >30 \wedge AT <16)}  \ \text{Ingenieros}
+    \sigma_{(\text{edad} >30 \wedge AT <16)}  \ \text{Ingenieros}
 
 .. image:: ../../../sql-course/src/select3.png
 
-Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla de "Josefa" queda fuera de la selección. Luego de las tuplas que quedan se evalúa la segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no tengan x en alguna de las condiciones. 
-=======
-    \sigma_{(\text{edad > 30 AND AT < 16})}  \ \text{Ingenieros}
->>>>>>> 2186a9706809593eeb35b75276e9bbb1dc621c30
+Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. 
+Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla 
+de "Josefa" queda fuera de la selección. Luego de las tuplas que quedan se evalúa la 
+segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no 
+tengan x en alguna de las condiciones. 
 
 Así finalmente quedaría la tabla:
 
@@ -258,11 +277,7 @@ Escoger columnas de id y nombre de la tabla de ingenieros:
 **Respuesta**
 
 .. math::
-<<<<<<< HEAD
-           \pi \hspace{0.2cm}_{(id,nombre)} \hspace{0.3cm} \mbox{Ingenieros}
-=======
-           \pi \hspace{0.2cm}_{(\text{ID,Nombre})} \hspace{0.3cm} \text{Ingenieros}
->>>>>>> 2186a9706809593eeb35b75276e9bbb1dc621c30
+           \pi \hspace{0.2cm}_{(\text{id,nombre})} \hspace{0.3cm} \text{Ingenieros}
 
 La tabla finalmente queda como:
 
@@ -292,15 +307,12 @@ Seleccionar id y nombre de los Ingenieros que tienen más de 30 años.
 **Respuesta**
 
 .. math::
-<<<<<<< HEAD
-       \pi \hspace{0.2cm} _{(\text{id,nombre})} (\sigma_{edad>30} \hspace{0.3cm} \text{Ingenieros})
+       \pi \hspace{0.2cm} _{(\text{id,nombre})} (\sigma_{\text{edad>30}} \hspace{0.3cm} \text{Ingenieros})
 
-.. image:: ../../../sql-course/src/prosel.png
-=======
-       \pi \hspace{0.2cm} _{(\text{ID,Nombre})} (\sigma_{\text{edad>30}} \hspace{0.3cm} \text{Ingenieros})
->>>>>>> 2186a9706809593eeb35b75276e9bbb1dc621c30
 
-Finalmente la tabla queda de la siguiente manera:
+Se aprecia que las tuplas que no cumplan con la condición de selección quedan fuera del resultado, 
+luego se realiza un PROJECT sobre las filas del resultado, separando solo las columnas que
+contienen los atributos id y nombre. Finalmente la tabla queda de la siguiente manera:
 
 .. math::
 
