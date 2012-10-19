@@ -44,6 +44,8 @@ la cual es posible replicar mediante
     );
 
 
+.. joao: agregar el contexto del ejercicio y los INSERT INTO con valores utiles
+
 Ahora consideremos la siguente consulta
 
 .. code-block:: sql
@@ -52,11 +54,44 @@ Ahora consideremos la siguente consulta
         FROM Student, Apply
         WHERE Apply.sID = Student.sID;
 
-es posible realizarla como::
+es posible realizarla como
+
+.. code-block:: sql
 
         SELECT S.sID, sName, A.cName, GPA
         FROM Student S, Apply A
-        WHERE A.sID = S.sID
+        WHERE A.sID = S.sID;
+
+En cualquier caso la salida será la misma.
+
+Para poder probar esto, el lector puede utilizar los  siguientes valores y realizar modificaciones
+
+.. code-block:: sql
+
+        INSERT INTO College
+        cName, state, enrollment)
+        VALUES
+        ('Stanford', 'stanford', 'lalalla'),
+        ('Berkeley', 'miami', 'mayor'),
+        'MIT', 'masachusets', 'minor');
+
+
+        INSERT INTO Student
+        sName, GPA, sizeHS)
+        VALUES
+        ('lala', 30, 'hjkljk'),
+        ('lolo', 60, 'asads'),
+        ('lele', 40, 'qweqwe');
+
+
+        INSERT INTO Apply
+        (cName, major, decision)
+        VALUES
+        ('Stanford', 'phd', 'zxczcx'),
+        ('Berkeley', 'pregrado', 'sdfsd'),
+        ('MIT', 'ingenieria', 'rtert');
+
+
 
 Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde más a variable en la consulta).
 La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
