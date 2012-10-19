@@ -9,7 +9,7 @@ Table Variables
 
 .. index:: Table Variables
 
-Consideremos la siguiente situaci√≥n ::
+Consideremos la siguiente situaciÛn ::
 
         College (cName, state, enrollment)
         Student (sID, sName, GPA, sizeHS)
@@ -19,12 +19,32 @@ la cual es posible replicar mediante
 
 .. code-block:: sql
    
- CREATE TABLE College(id serial, cName VARCHAR(25), state VARCHAR(25), enrollment VARCHAR(40));
+    CREATE TABLE College
+        (
+     id int auto_increment primary key, 
+     cName varchar(20), 
+     state varchar(30),
+     enrollment varchar(40)
+    );
 
- CREATE TABLE Student(sID serial, sName VARCHAR(20), GPA INTEGER, sizeHS VARCHAR(40));
+    CREATE TABLE Student
+        (
+     sID int auto_increment primary key, 
+     sName varchar(20), 
+     GPA integer,
+     sizeHS varchar(40)
+    );
 
- CREATE TABLE Apply(sID serial, cName VARCHAR(20), major VARCHAR(30), decision VARCHAR(40));
+   CREATE TABLE Apply
+        (
+     sID int auto_increment primary key, 
+     cName varchar(20), 
+     major varchar(30),
+     decision varchar(40)
+    );
 
+
+.. joao: agregar el contexto del ejercicio y los INSERT INTO con valores utiles
 
 Ahora consideremos la siguente consulta
 
@@ -42,22 +62,22 @@ es posible realizarla como
         FROM Student S, Apply A
         WHERE A.sID = S.sID;
 
-En cualquier caso la salida ser√° la misma.
+En cualquier caso la salida ser· la misma.
 
 Como se aprecia, es posible asignar valores variables a las relaciones "R" y utilizar dichas variables tanto en la lista "L" como en la 
-condici√≥n "C". El lector se preguntar√° cu√°l es la utilidad de esto, m√°s all√° de escribir menos (dependiendo del nombre de la variable
-utilizada); y la respuesta corresponde a los casos en que se deben comparar m√∫ltiples instancias de la misma relaci√≥n, como se ver√° a m√°s 
+condiciÛn "C". El lector se preguntar· cu·l es la utilidad de esto, m·s all· de escribir menos (dependiendo del nombre de la variable
+utilizada); y la respuesta corresponde a los casos en que se deben comparar m˙ltiples instancias de la misma relaciÛn, como se ver· a m·s 
 adelante en esta misma lectura.
 
 .. note::
-   El por qu√© de la nomenclatura "L", "R" y "C" y su significado est√°n explicados en la lectura 7
+   El por quÈ de la nomenclatura "L", "R" y "C" y su significado est·n explicados en la lectura 7
 
 
-Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde m√°s a variable en la consulta).
+Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde m·s a variable en la consulta).
 La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
 
 
-Se invita al lector alplicado a realizar pruebas, se dejan las siguientes lineas de c√≥digo a su disposici√≥n, con el fin de
+Se invita al lector alplicado a realizar pruebas, se dejan las siguientes lineas de cÛdigo a su disposiciÛn, con el fin de
 probar que efectivamente si se realizan las consultas mencionadas arriba, el resultado es el mismo. Cabe destacar que 
 
 .. code-block:: sql
@@ -75,45 +95,85 @@ El lector puede utilizar los  siguientes valores y realizar modificaciones.
 
 .. code-block:: sql
 
- INSERT INTO College(cName, state, enrollment) VALUES('Stanford', 'stanford', 'mayor');
- INSERT INTO College(cName, state, enrollment) VALUES('Berkeley', 'miami', 'mayor');
- INSERT INTO College(cName, state, enrollment) VALUES('MIT', 'masachusets', 'minor');
+        INSERT INTO College
+        (cName, state, enrollment)
+        VALUES
+        ('Stanford', 'stanford', 'lalalla'),
+        ('Berkeley', 'miami', 'mayor'),
+        'MIT', 'masachusets', 'minor');
+
+
+        INSERT INTO Student
+        (sName, GPA, sizeHS)
+        VALUES
+        ('lala', 30, 'hjkljk'),
+        ('lolo', 60, 'asads'),
+        ('lele', 40, 'qweqwe');
+
+
+        INSERT INTO Apply
+        (cName, major, decision)E        VALUES
+        ('Stanford', 'phd', 'zxczcx'),
+        ('Berkeley', 'pregrado', 'sdfsd'),
+        ('MIT', 'ingenieria', 'rtert');
+
 
 ============================
 Cuidado con los duplicados!!
 ============================
 
-Si el lector se fija en el esquema, hay ciertos atributos cuyos nombres se repiten
-en las diferentes tablas. Tal es el caso de
-**cName y sID**. En las consultas se aprecia que la diferencia se realiza a trav√©s de::
+Si el lector se fija en la situaciÛn descrita, los nombres de algunos atributos de diferentes relaciones y/o tablas  se repiten, lo cual
+podrÌa plantear la interrogante øa que tabla se refiere el atributo en cuestiÛn?. Para resolver este pequeÒo gran problema, se precede al
+nombre del atributo con el nombre de la tabla y un punto, es decir, 
 
-        Student.sID √≥ S.sID
-        Apply.sID √≥ A.sID
 
-Es decir, se antepone el nombre de la tabla o su respectiva variable definida en el FROM.
+.. code-block:: sql
+        
+        "algo_asi."
 
-En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan
-dos instancias de una tabla. En el siguiente ejemplo, se buscan
-todos los pares de estudiantes con el mismo GPA
+Concretamente en el ejemplo anterior, el alcance de nombres lo protagonizan sID de la tabla Student y sID de la tabla Apply. 
+La diferencia se realiza a travÈs de
 
 .. code-block:: sql
 
-   SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA FROM Student S1, Student S2 WHERE S1.GPA = S2.GPA
+        Student.sID Û S.sID
+        Apply.sID Û A.sID
 
-Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla),
-el resultado contendr√° uno o varios duplicados; por ejemplo, consideremos
-4 estudantes::
 
-        sName   sID     GPA
-        Amy     123     4.0
-        Doris   456     4.0
-        Edward  567     4.1
+En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo, 
+se buscan todos los pares de estudiantes con el mismo GPA
 
-Los pares de estudiantes ser√°n::
+.. code-block:: sql
+
+        SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
+        FROM Student S1, Student S2
+        WHERE S1.GPA = S2.GPA;
+
+Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendr· uno o varios duplicados; por ejemplo, 
+consideremos 3 estudantes
+
+.. math::
+
+ \begin{array}{|c|c|c|}
+  \hline
+  \textbf{sName} & \textbf{sID} & \textbf{GPA} \\
+  \hline
+  Amy         & 123      &  4.0   \\
+  Doris       & 456      &  4.0  \\
+  Edward      & 567      &  4.1  \\ 
+  \hline  
+ \end{array}
+
+.. sName   sID     GPA
+   Amy     123     4.0
+   Doris   456     4.0
+   Edward  567     4.1
+
+Los pares de estudiantes ser·n::
 
          Amy    -       Doris
 
-pero tambi√©n::
+pero tambiÈn::
 
          Amy    -       Amy
          Doris  -       Doris
@@ -122,7 +182,9 @@ lo cual se puede evitar modificando la cosulta
 
 .. code-block:: sql
 
-   SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA FROM Student S1, Student S2 WHERE S1.GPA = S2.GPA and S1.sID <> S2.sID
+        SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
+        FROM Student S1, Student S2
+        WHERE S1.GPA = S2.GPA and S1.sID <> S2.sID
 
 es decir, que el id del estudiante S1 sea diferente al id del estudiante S2.
 
@@ -133,17 +195,18 @@ Set Operators
 
 Los Set Operators son 3:
 
-  * Uni√≥n
-  * Intersecci√≥n
-  * Excepci√≥n
+  * UniÛn
+  * IntersecciÛn
+  * ExcepciÛn
 
 =====
-Uni√≥n
+UniÛn
 =====
 
-El operador "UNION", permite combinar el resultado de dos o m√°s sentencias SELECT.
-Es necesario que estas tengan el mismo n√∫mero de columnas, y que
-√©stas tengan los mismos tipos de datos, por ejemplo::
+El operador "UNION", permite combinar el resultado de dos o m·s sentencias SELECT. Es necesario que estas tengan el mismo n˙mero de columnas, 
+y que, adem·s tengan los mismos tipos de datos, por ejemplo:
+
+.. code-block:: sql
 
      Employees_Norway":
         E_ID    E_Name
@@ -159,14 +222,56 @@ Es necesario que estas tengan el mismo n√∫mero de columnas, y que
         03      Svendson, Stephen
         04      Scott, Stephen
 
+Que se puede crear mediante la creaciÛn de las tablas
+
+.. code-block:: sql
+
+    CREATE TABLE Employees_Norway
+        (
+     E_ID int auto_increment primary key, 
+     E_Name varchar(50)
+    );
+
+    CREATE TABLE Employees_USA
+        (
+     E_ID int auto_increment primary key, 
+     E_Name varchar(50) 
+    );
+
+
+
+y el relleno con los datos mostrados en el ejemplo
+
+.. code-block:: sql
+
+        INSERT INTO Employees_Norway
+        (E_Name)
+        VALUES
+        ('Hansen, Ola'),
+        ('Svendson, Tove'),
+        ('Svendson, Stephen'),
+        ('Pettersen, Kari');
+        
+        INSERT INTO Employees_USA
+        (E_Name)
+        VALUES
+        ('Turner, Sally'),
+        ('Kent, Clark'),
+        ('Svendson, Stephen'),
+        ('Scott, Stephen');
+
 El resultado de la consulta
 
 .. code-block:: sql
 
-   SELECT E_Name FROM Employees_Norway UNION SELECT E_Name FROM Employees_USA
+        SELECT E_Name FROM Employees_Norway
+        UNION
+        SELECT E_Name FROM Employees_USA;
 
 
-es::
+es
+
+.. code-block:: sql
 
         E_Name
         Hansen, Ola
@@ -179,17 +284,19 @@ es::
 
 
 Ojo, existen dos empleados con el mismo nombre en ambas tablas. Sin embargo en la
-salida s√≥lo se nombra uno. Para evitar esto, se utliza "UNION ALL"
+salida sÛlo se nombra uno. Para evitar esto, se utliza "UNION ALL"
 
 .. code-block:: sql
 
-   SELECT E_Name as name FROM Employees_Norway
+        SELECT E_Name as name FROM Employees_Norway
         UNION ALL
-        SELECT E_Name as name FROM Employees_USA
+        SELECT E_Name as name FROM Employees_USA;
 
-Utilizando "as" es posible cambiar el nombre de la columna resultado::
+Utilizando "as" es posible cambiar el nombre de la columna resultado
 
-        name
+.. code-block:: sql
+
+        NAME
         Hansen, Ola
         Svendson, Tove
         Svendson, Stephen
@@ -199,21 +306,26 @@ Utilizando "as" es posible cambiar el nombre de la columna resultado::
         Svendson, Stephen
         Scott, Stephen
 
-
-
-============
-Intersecci√≥n
-============
-
-Muy similar al operador UNION, INTERSECT tambi√©n opera con dos sentencias SELECT. La diferencia consiste en que UNION actua como un OR, e INTERSECT
-lo hace como AND.
+se aprecia que la salida contiene los nombres de ambos empleados.
 
 .. note::
-   En la lectura 7, se explican las tablas de verdad de OR, AND y NOT
+   En el ejemplo anterior, se utilizaba "as name" en ambos SELECT. Como hecho curioso, si se utilizan diferentes nombres junto al "as"
+   como por ejemplo, "as name" y "as lala", queda como nombre de la tabla UNION el primero en ser declarado.
 
-Cabe destacar que INTERSECT devuelve los valores repetidos. Consideremos el sigueinte esquema
 
-.. code-block:: sql
+============
+IntersecciÛn
+============
+
+Muy similar al operador UNION, INTERSECT tambiÈn opera con dos sentencias SELECT. La diferencia consiste en que UNION actua como un OR, e INTERSECT
+lo hace como AND. 
+
+.. note::
+   Las tablas de verdad de estos OR y AND se encuentran en la lectura 7.
+
+Es decir que INTERSECT devuelve los valores repetidos.
+
+Consideremos el sigueinte esquema::
 
         Table Store_Information
         store_name      Sales   Date
@@ -229,29 +341,10 @@ Cabe destacar que INTERSECT devuelve los valores repetidos. Consideremos el sigu
         Jan-11-1999     $320
         Jan-12-1999     $750
 
-
-Al realizar la consulta 
-
-.. code-block:: sql
-
-        SELECT Date FROM Store_Information
-        INTERSECT
-        SELECT Date FROM Internet_Sales;
-
-Su resultado esperado es
+Para llegar a esta situaciÛn, el lector puede crear las tablas
 
 .. code-block:: sql
 
-        Date
-        Jan-07-1999
-
-.. note::
-
-        S√≥lo se intesectan las columnas del mismo tipo de datos, ojo con eso.
-
-Los pasos necesarios para la creaci√≥n de esta situaci√≥n son:
-
-.. code-block:: sql
 
     CREATE TABLE Store_Information
         (
@@ -261,19 +354,15 @@ Los pasos necesarios para la creaci√≥n de esta situaci√≥n son:
      Date date
     );
 
-        
-
     CREATE TABLE Internet_Sales
         (
      id int auto_increment primary key, 
      Date date,
      Sales integer
     );
+y llenarlas con los siguientes datos
 
-
-y los pasos necesarios para llenar estas tablas son:
-
-.. code-block:: sql
+.. code-block:: sql 
 
         INSERT INTO Store_Information
         (store_name, Sales, Date)
@@ -281,7 +370,6 @@ y los pasos necesarios para llenar estas tablas son:
         ('Los Angeles', 1500, '1999-01-05'),
         ('San Diego', 250, '1999-01-07'),
         ('Los Angeles', 300, '1999-01-08');
-        
 
         INSERT INTO Internet_Sales
         (Date, Sales)
@@ -292,18 +380,31 @@ y los pasos necesarios para llenar estas tablas son:
         ('1999-01-12', 750);
 
 
+Al realizar la consulta
 
-Duda: agrgar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
-pero que puede escribirse como otra consulta (agregarla)
+.. code-block:: sql
+
+        SELECT Date FROM Store_Information
+        INTERSECT
+        SELECT Date FROM Internet_Sales;
+
+Su resultado esperado es::
+
+        Date
+        Jan-07-1999
+
+
+.. Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
+   pero que puede escribirse como otra consulta (agregarla)
 
 =========
-Excepci√≥n
+ExcepciÛn
 =========
 
-Similar a los operadores anteriores, su estructura se compone de dos o m√°s sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
-en el √°lgebra relacional.
+Similar a los operadores anteriores, su estructura se compone de dos o mas sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
+en el ·lgebra relacional.
 
-Utilizando la situaci√≥n ya descrita en el ejemplo anterior, y realizando la siguiente consulta
+Utilizando la misma situaciÛn del ejemplo anterior, y realizando la siguiente consulta
 
 .. code-block:: sql
 
@@ -311,17 +412,14 @@ Utilizando la situaci√≥n ya descrita en el ejemplo anterior, y realizando la sig
         EXCEPT
         SELECT Date FROM Internet_Sales;
 
-Su resultado esperado es
-
-.. code-block:: sql
+Su resultado esperado es::
 
         Date
         Jan-10-1999
         Jan-11-1999
         Jan-12-1999
 
-es decir los resultados no repetidos en ambas columnas.
+Es decir devuelve los resultados que no se repiten.
 
-Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
-pero que puede escribirse como otra consulta (agregarla)
-
+.. Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
+  pero que puede escribirse como otra consulta (agregarla)
