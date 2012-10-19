@@ -93,29 +93,31 @@ probar que efectivamente si se realizan las consultas mencionadas arriba, el res
 corresponde a la sentencia para ingresar datos a una tabla en particular, conociendo su estructura y tipos de datos.
 El lector puede utilizar los  siguientes valores y realizar modificaciones.
 
+(explicar mejor el contexto)
+
 .. code-block:: sql
 
         INSERT INTO College
         (cName, state, enrollment)
         VALUES
-        ('Stanford', 'stanford', 'lalalla'),
+        ('Stanford', 'stanford', 'mayor'),
         ('Berkeley', 'miami', 'mayor'),
-        'MIT', 'masachusets', 'minor');
+        ('MIT', 'masachusets', 'minor');
 
 
         INSERT INTO Student
         (sName, GPA, sizeHS)
         VALUES
-        ('lala', 30, 'hjkljk'),
-        ('lolo', 60, 'asads'),
-        ('lele', 40, 'qweqwe');
+        ('amy', 30, 'A'),
+        ('doris', 40, 'B'),
+        ('edward', 40, 'C');
 
 
         INSERT INTO Apply
-        (cName, major, decision)E        VALUES
-        ('Stanford', 'phd', 'zxczcx'),
-        ('Berkeley', 'pregrado', 'sdfsd'),
-        ('MIT', 'ingenieria', 'rtert');
+        (cName, major, decision)VALUES
+        ('Stanford', 'phd', 'mayor'),
+        ('Berkeley', 'pregrado', 'minor'),
+        ('MIT', 'ingenieria', 'mayor');
 
 
 ============================
