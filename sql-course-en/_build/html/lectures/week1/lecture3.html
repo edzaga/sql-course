@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Lecture 3 - Relational Algebra: Select, Project, Join &mdash; ALMA SQL Course</title>
+    <title>Lectura 3 - Álgebra Relacional: Select, Project, Join &mdash; ALMA SQL Course</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -55,31 +55,32 @@
             </a></p>
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Lecture 3 - Relational Algebra: Select, Project, Join</a><ul>
+<li><a class="reference internal" href="#">Lectura 3 - Álgebra Relacional: Select, Project, Join</a><ul>
+<li><a class="reference internal" href="#conceptos-basicos-de-algebra-relacional">Conceptos básicos de álgebra relacional</a></li>
 <li><a class="reference internal" href="#operaciones-relacionales">Operaciones relacionales:</a><ul>
 <li><a class="reference internal" href="#select">SELECT</a><ul>
-<li><a class="reference internal" href="#ejemplo-1">Ejemplo 1</a></li>
-<li><a class="reference internal" href="#ejemplo-2">Ejemplo 2</a></li>
+<li><a class="reference internal" href="#example-1">Example 1</a></li>
+<li><a class="reference internal" href="#example-2">Example 2</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#project">PROJECT</a><ul>
-<li><a class="reference internal" href="#id1">Ejemplo 1</a></li>
-<li><a class="reference internal" href="#id2">Ejemplo 2</a><ul>
-<li><a class="reference internal" href="#cross-product">Cross-product</a></li>
+<li><a class="reference internal" href="#id1">Example 1</a></li>
+<li><a class="reference internal" href="#id2">Example 2</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id3">Ejemplo 1</a></li>
-<li><a class="reference internal" href="#id4">Ejemplo 2</a></li>
+<li><a class="reference internal" href="#cross-product">CROSS-PRODUCT</a><ul>
+<li><a class="reference internal" href="#id3">Example 1</a></li>
+<li><a class="reference internal" href="#id4">Example 2</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#naturaljoin">NATURALJOIN</a><ul>
-<li><a class="reference internal" href="#id5">Ejemplo 1</a></li>
-<li><a class="reference internal" href="#id6">Ejemplo 2</a></li>
+<li><a class="reference internal" href="#id5">Example 1</a></li>
+<li><a class="reference internal" href="#id6">Example 2</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#thetajoin">THETAJOIN</a><ul>
-<li><a class="reference internal" href="#id7">Ejemplo 1</a></li>
-<li><a class="reference internal" href="#id8">Ejemplo 2</a></li>
+<li><a class="reference internal" href="#id7">Example 1</a></li>
+<li><a class="reference internal" href="#id8">Example 2</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#exercises">EXERCISES</a></li>
@@ -121,345 +122,391 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="lecture-3-relational-algebra-select-project-join">
-<h1>Lecture 3 - Relational Algebra: Select, Project, Join<a class="headerlink" href="#lecture-3-relational-algebra-select-project-join" title="Permalink to this headline">¶</a></h1>
-<p>El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan
-sobre las relaciones (tablas) para obtener un resultado, el cual es otra relación.</p>
+  <div class="section" id="lectura-3-algebra-relacional-select-project-join">
+<h1>Lectura 3 - Álgebra Relacional: Select, Project, Join<a class="headerlink" href="#lectura-3-algebra-relacional-select-project-join" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="conceptos-basicos-de-algebra-relacional">
+<h2>Conceptos básicos de álgebra relacional<a class="headerlink" href="#conceptos-basicos-de-algebra-relacional" title="Permalink to this headline">¶</a></h2>
+<p id="index-0">Basics of relational algebra</p>
+<p>Algebra, in general, consists of operators and atomic operands. For instance, in the algebra of
+arithmetic, the atomic operands are variables like r, and constants like 15. The operators are
+the usual arithmetic ones:</p>
+<ul class="simple">
+<li>Addition</li>
+<li>Subtraction</li>
+<li>Multiplication</li>
+<li>Division.</li>
+</ul>
+<p>Any algebra allows us to build expressions by applying operators to atomic operands and/or
+other expressions of the algebra. Usually, parentheses are needed to group operators and their
+operands. For instance, in arithmetic we have expressions such a <span class="math">\((x + y) * z\)</span> ó <span class="math">\(((x + 7)/(y - 3)) + x\)</span>.</p>
+<p>Relational algebra is another example of algebra. Its atomic operands are:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Variables that stand for relations</li>
+<li>Constants, which are finite relations</li>
+</ol>
+</div></blockquote>
+<p>As we mentioned, in the classical relational algebra, all operands and the results of expressions are sets.
+The operations of the traditional relational algebra fall into four broad classes:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>The usual set operations - union, intersection, and difference - applied to relations.</li>
+</ol>
+<p>2.      Operations that remove parts of a relation: “selection” eliminates some rows (tuples),
+and “projection” eliminates some columns.
+3.      Operations that combine the tuples of two relations, including “Cartesian product”,
+which pairs the tuples of two relations in all possible ways and various kinds of “join”
+operations, which selectively pair tuples from two relations.
+4.      An operation called “renaming” that does not affect the tuples of a relation, but
+changes the relation schema, i.e., the names of the attribute sand/or the name of the relation itself.</p>
+</div></blockquote>
+<p>We shall generally refer to expressions of relational algebra as queries. While we don’t yet
+have the symbols needed to show many of the expressions of relational algebra, you should be
+familiar with the operations of group <span class="math">\((a)\)</span>; and thus recognize ( <span class="math">\(R \cup S\)</span> ) as an example
+of an expression of relational algebra. <span class="math">\(R\)</span> and <span class="math">\(S\)</span> are atomic operands standing for relations,
+whose sets of tuples are unknown. This query asks for the union of whatever tuples are in the
+relations named <span class="math">\(R\)</span> and <span class="math">\(S\)</span>.
+The three most common operations on sets are <strong>union, intersection, and difference</strong>, que se verán en la lectura 4.</p>
+</div>
 <div class="section" id="operaciones-relacionales">
 <h2>Operaciones relacionales:<a class="headerlink" href="#operaciones-relacionales" title="Permalink to this headline">¶</a></h2>
-<p id="index-0">Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.</p>
+<p id="index-1">Relational operators are used to filter, cut or join tables.</p>
 <div class="section" id="select">
 <h3>SELECT<a class="headerlink" href="#select" title="Permalink to this headline">¶</a></h3>
-<p>Este operador se aplica a una relación R produciendo una nueva relación con un
-subconjunto de tuplas de R. Las tuplas de la relación resultante son las que
-satisfacen una condición C sobre algún atributo de R. Es decir selecciona <strong>filas</strong>
-de una tabla según un cierto criterio C. C es una expresión condicional, similar
-a las declaraciones del tipo “if”, es “booleana” esto quiere decir que para cada
-tupla de R toma el valor Verdad o Falso.</p>
+<p>This operator is applied to a relation <span class="math">\(R\)</span> producing a new relation with a subset of tuples of <span class="math">\(R\)</span>.
+The tuples of the resulting relation are the ones that satisfy a condition <span class="math">\(C\)</span> about some attribute
+of <span class="math">\(R\)</span>. In other words, it selects rows of a table according to a certain criterion <span class="math">\(C\)</span>. Es decir
+selecciona <strong>filas (tuplas)</strong> de una Table según un cierto criterio <span class="math">\(C\)</span>.
+<span class="math">\(C\)</span> is a conditional expression, similar to the statements of the type “if”, is “booleana” this means
+that for each tuple of <span class="math">\(R\)</span>, it takes the value of True or False.
+* Values of attributes with NULL will not meet any condition.
+* Each simple condition or clause C has the format</p>
+<blockquote>
+<div><div class="math">
+\[\begin{split}\text{&lt;Atributte&gt; &lt;Comparator&gt; &lt;Atributte or Constant&gt;}\end{split}\]</div>
+</div></blockquote>
+<p>donde:
+El campo <span class="math">\(Comparator\)</span> es uno de los <strong>operadores lógicos</strong> que se muestran a contnuación:</p>
+<blockquote>
+<div><blockquote>
+<div><div class="math">
+\[\begin{split}\text{&lt;Comparator&gt;}  \in {\{=,\geq,&gt;,&lt;, \neq,\leq \}}\end{split}\]</div>
+</div></blockquote>
 <ul class="simple">
-<li>Valores de atributos con NULL no cumplirán ninguna condición.</li>
-<li>Cada condición simple o cláusula C tiene el formato:</li>
+<li><span class="math">\(=\)</span> : equal sign.</li>
+<li><span class="math">\(\neq\)</span>: not-equal sign, en algunos libros este operador esta representado por el símbolo <tt class="docutils literal"><span class="pre">!=</span></tt>.</li>
+<li><span class="math">\(\geq\)</span>: mayor que or equal.</li>
+<li><span class="math">\(&gt;\)</span>: mayor que.</li>
+<li><span class="math">\(&lt;\)</span>: less than.</li>
+<li><span class="math">\(\leq\)</span>: less than or equal.</li>
 </ul>
-<div class="math">
-\[\begin{split}\mbox{&lt;Atributo&gt; &lt;Comparador&gt; &lt;Atributo|Cte.del Dominio&gt;} \\\end{split}\]\[\begin{split}    \mbox{Donde:} \\\end{split}\]\[\begin{split}\mbox{&lt;Comparador&gt;}  \in {\{=,\geq,&gt;,&lt;, \neq,\leq \}}\\\end{split}\]</div>
-<ul class="simple">
-<li>Las cláusulas C pueden conectarse con los operadores lógicos:</li>
+</div></blockquote>
+<p>Los <strong>operadores lógicos</strong> que se utilizan, también llamados operadores relacionales, nos proporcionan
+un resultado a partir de que se cumpla o no una cierta condición. Son símbolos que se usan para comparar
+dos valores. Si el resultado de la comparación es correcto la expresión considerada es verdadera, en caso
+contrario es falsa. Por Example, 11&gt;4 (once mayor que cuatro) es verdadera, se representa por el valor true
+del tipo básico boolean, en cambio, 11&lt;4 (once menor que cuatro) es falsa se representa por el valor false.</p>
+<blockquote>
+<div>The clauses C can be connected with the logical operators, que al igual que los anteriores que se usaban</div></blockquote>
+<p>como Comparator (entre Atributtes o Atributte y constante), arrojan booleano (true o false) de resultado:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>NOT</strong>: The NOT operator denotes a true output if the input is false, and a false exit if input is true.</li>
 </ul>
-<p><strong>NOT</strong>: El operador NOT denota una salida verdadera si la entrada es falsa, y una
-salida falsa si la entrada es verdadera.</p>
-<p><strong>AND</strong>: El operador AND denota una salida verdadera si y sólo si sus entradas son
-verdaderas.</p>
-<p><strong>OR</strong>: El operador OR denota una salida verdadera si hay alguna de las entradas
-(o ambas) verdaderas.</p>
-<p><strong>Notación en Álgebra Relacional</strong></p>
-<p>Para representar SELECT en álgebra relacional se utiliza la letra griega sigma:</p>
+<blockquote>
+<div><p>Su notación en algebra es:</p>
+<blockquote>
+<div><div class="math">
+\[¬ \text{C1}\]</div>
+</div></blockquote>
+</div></blockquote>
+<ul>
+<li><p class="first"><strong>AND</strong>:  The AND operator denotes true output, if and only if its inputs are true.
+Si C1 se cumple y C2 también se cumple, la salida seré verdadera.
+La notación en algebra de un AND es:</p>
+<blockquote>
+<div><div class="math">
+\[\text{C1} \wedge \text{C2}\]</div>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>OR</strong>:  The OR operator denotes a true output if there is any true input put (or both).</p>
+</li>
+</ul>
+<blockquote>
+<div><dl class="docutils">
+<dt>Si C1 y/o C2 es o son verdaderas, la expresión será verdadera.</dt>
+<dd><p class="first">La notación en algebra de un OR es:</p>
+<blockquote class="last">
+<div><div class="math">
+\[\text{C1} \vee \text{C2}\]</div>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</div></blockquote>
+<p><strong>Notation in Relational Algebra</strong></p>
+<p>To represent <strong>SELECT</strong> in relational algebra it is use the Greek <strong>letter sigma</strong>:
+<span class="math">\(\sigma\)</span>. Por lo tanto, si se utilizamos la notación
+<span class="math">\(\sigma_{c} \ \boldsymbol{R}\)</span> que quiere decir que se aplica la
+condition <span class="math">\(C\)</span> is applied to each tuple of <span class="math">\(R\)</span>. If the condition is true, this
+tuple will belong to the result and if it false, this tuple will not be selected.
+The scheme of the resulting relationship is the same scheme <span class="math">\(R\)</span>, shows the attributes
+in the same order as used in Table <span class="math">\(R\)</span>.</p>
+<div class="section" id="example-1">
+<h4>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h4>
 <div class="math">
-\[\sigma_{c} \hspace{0.2cm} \mbox{R}\]</div>
-<p>Se aplica la condición C a cada tupla de R. Si la condición es Verdad (true),
-dicha tupla pertenecerá al resultado
-y si es Falsa (false), dicha tupla no será seleccionada. El esquema de la relación
-resultante es el mismo esquema R, se muestran los atributos en el mismo orden que
-se usan en la tabla R.</p>
-<div class="section" id="ejemplo-1">
-<h4>Ejemplo 1<a class="headerlink" href="#ejemplo-1" title="Permalink to this headline">¶</a></h4>
-<div class="math">
-\[\textbf{Tabla Ingenieros}\]\[\begin{split}  \begin{array}{|c|c|c|c|}
+\[\begin{split}\textbf{Engineers Table} \\\end{split}\]\[\begin{split}  \begin{array}{|c|c|c|c|}
    \hline
-   \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad} &amp; \textbf{Años trabajados(AT)}\\
+   \textbf{id} &amp; \textbf{name} &amp; \textbf{age} &amp; \textbf{workingYears}\\
    \hline
-   123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
+   123 &amp; \text{Mark} &amp; 39 &amp; 15 \\
    \hline
-   234 &amp; \mbox{Tomas} &amp; 34 &amp; 10 \\
+   234 &amp; \text{Tomas} &amp; 34 &amp; 10 \\
    \hline
-   345 &amp; \mbox{Jose} &amp; 45 &amp; 21 \\
+   345 &amp; \text{Owen} &amp; 45 &amp; 21 \\
    \hline
-   143 &amp; \mbox{Josefa} &amp; 25 &amp;  1 \\
+   143 &amp; \text{Lexie} &amp; 25 &amp;  1 \\
    \hline
  \end{array}\end{split}\]</div>
-<p>Seleccionar las tuplas de la tabla <strong>Ingenieros</strong> que cumplan con tener una edad
-mayor a 30 años:</p>
-<p><strong>Respuesta</strong></p>
+<p>Select tuples from the <strong>Engineers</strong> table that comply an age greater than 30 years:</p>
+<p><strong>Answer</strong></p>
 <div class="math">
-\[\begin{split}\sigma_{edad&gt;30} \hspace{0.2cm} \mbox{Ingenieros}\end{split}\]</div>
-<p>Así quedaría la tabla:</p>
+\[\begin{split}\sigma_{\text{age&gt;30}} \hspace{0.2cm} \text{Engineers}\end{split}\]</div>
+<img alt="../../_images/select2.png" class="align-center" src="../../_images/select2.png" />
+<p>En la imagen se ve que selecciona solo las filas que cumplen con la condición que se pedía
+(tener una age mayor a 30 años), la tupla de &#8220;Lexie&#8221; queda fuera de la selección por no
+cumplir la condición (pues 25 &lt; 30).
+So the table would look like this:</p>
 <div class="math">
-\[\begin{split}\textbf{Tabla Ingenieros}
-  \begin{array}{|c|c|c|c|}
+\[\begin{split}\textbf{Engineers Table} \\\end{split}\]\[\begin{split}  \begin{array}{|c|c|c|c|}
    \hline
-   \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad} &amp; \textbf{Años trabajados(AT)}\\
+   \textbf{id} &amp; \textbf{name} &amp; \textbf{age} &amp; \textbf{workingYears}\\
    \hline
-   123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
+   123 &amp; \text{Mark} &amp; 39 &amp; 15 \\
    \hline
-   234 &amp; \mbox{Tomas} &amp; 34 &amp; 10 \\
+   234 &amp; \text{Tomas} &amp; 34 &amp; 10 \\
    \hline
-   345 &amp; \mbox{Jose} &amp; 45 &amp; 21 \\
+   345 &amp; \text{Owen} &amp; 45 &amp; 21 \\
    \hline
  \end{array}\end{split}\]</div>
 </div>
-<div class="section" id="ejemplo-2">
-<h4>Ejemplo 2<a class="headerlink" href="#ejemplo-2" title="Permalink to this headline">¶</a></h4>
-<p>Seleccionar de la tabla <strong>Ingenieros</strong> las personas que tienen más de 30 años
-y que lleven menos de 16 años trabajando:</p>
-<p><strong>Respuesta</strong></p>
+<div class="section" id="example-2">
+<h4>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h4>
+<p>Select from the <strong>Engineer</strong> table people who are over 30 years old and carrying less than 16 years working:</p>
+<p><strong>Answer</strong></p>
 <div class="math">
-\[\begin{split}\sigma_{edad &gt;30 \wedge AT &lt;16}  \hspace{0.3cm}  \mbox{Ingenieros}\end{split}\]</div>
-<p>Así finalmente quedaría la tabla:</p>
+\[\begin{split}\sigma_{(\text{age} &gt;30 \wedge  &lt;16)}  \ \text{Engineers}\end{split}\]</div>
+<img alt="../../_images/select3.png" class="align-center" src="../../_images/select3.png" />
+<p>Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente.
+Primero que la age sea mayor de 30 años, al igual que en el Example anterior, la tupla
+de &#8220;Lexie&#8221; queda fuera de la selección. Luego de las tuplas que quedan se evalúa la
+segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no
+tengan x en alguna de las condiciones.</p>
+<p>So the table would finally look like this:</p>
 <div class="math">
-\[\textbf{Tabla Ingenieros}\]\[\begin{split}\begin{array}{|c|c|c|c|}
+\[\begin{split}\textbf{Engineers Table} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad} &amp; \textbf{Años trabajados(AT)} \\
+ \textbf{id} &amp; \textbf{name} &amp; \textbf{age} &amp; \textbf{workingYears} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
+ 123 &amp; \text{Mark} &amp; 39 &amp; 15 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 &amp; 10 \\
+ 234 &amp; \text{Tomas} &amp; 34 &amp; 10 \\
  \hline
 \end{array}\end{split}\]</div>
 </div>
 </div>
 <div class="section" id="project">
 <h3>PROJECT<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h3>
-<p>El operador PROJECT se utiliza para producir una nueva relación desde R. Esta
-nueva relación contiene sólo algunos de los atributos de R,
-es decir, realiza la selección de algunas de las <strong>columnas</strong> de una tabla R.</p>
-<p><strong>Notación en Álgebra Relacional</strong></p>
-<p>PROJECT en Álgebra Relacional se representa por la letra griega <strong>pi</strong>:</p>
+<p>The <strong>PROJECT</strong> operator is used to produce a new relation from <span class="math">\(R\)</span>. This new relation
+contains only some of the attributes of <span class="math">\(R\)</span>, in other words, performs the selection
+of some of the <strong>columns</strong> of a table <span class="math">\(R\)</span>.</p>
+<p><strong>Notation in Relational Algebra</strong></p>
+<p><strong>PROJECT</strong> in Relational Algebra is represented by the Greek <strong>letter pi</strong>:</p>
 <div class="math">
-\[\pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \mbox{R}\]</div>
-<p>El resultado es una relación seleccionando solo los atributos <span class="math">\(A_1,...,A_n\)</span> de la
-relación R.
-Si <span class="math">\(A_1,...,A_n\)</span> no incluye una llave (o clave), podrían producirse tuplas
-repetidas en el resultado, las cuales serán eliminadas.</p>
+\[\pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \text{R}\]</div>
+<p>The result is a relation selecting only attributes <span class="math">\(A1,...,An\)</span> of the relation <span class="math">\(R\)</span>.
+If <span class="math">\(A1,...,An\)</span> does not include a key, it may cause repeated tuples in the result,
+which will be removed.</p>
 <div class="section" id="id1">
-<h4>Ejemplo 1<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<h4>Example 1<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <div class="math">
-\[\textbf{Tabla Ingenieros}\]\[\begin{split}\begin{array}{|c|c|c|c|}
+\[\begin{split}\textbf{Engineers Table} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{Edad} &amp; \textbf{Años trabajados(AT)} \\
+ \textbf{id} &amp; \textbf{name} &amp; \textbf{age} &amp; \textbf{workingYears} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 &amp; 15 \\
+ 123 &amp; \text{Mark} &amp; 39 &amp; 15 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 &amp; 10 \\
+ 234 &amp; \text{Tomas} &amp; 34 &amp; 10 \\
  \hline
- 345 &amp; \mbox{Jose} &amp; 45 &amp; 21 \\
+ 345 &amp; \text{Owen} &amp; 45 &amp; 21 \\
  \hline
- 143 &amp; \mbox{Josefa} &amp; 25 &amp; 1 \\
+ 143 &amp; \text{Lexie} &amp; 25 &amp; 1 \\
  \hline
 \end{array}\end{split}\]</div>
-<p>Escoger columnas de ID y nombre de la tabla de ingenieros:</p>
-<p><strong>Respuesta</strong></p>
+<p>Select columns of ID and Name of the <strong>Engineer</strong> table:</p>
+<p><strong>Answer</strong></p>
 <div class="math">
-\[\pi \hspace{0.2cm}_{(ID,Nombre)} \hspace{0.3cm} \mbox{Ingenieros}\]</div>
-<p>La tabla finalmente queda como:</p>
+\[\pi \hspace{0.2cm}_{(\text{id,name})} \hspace{0.3cm} \text{Engineers}\]</div>
+<p>So the table would finally look like this:</p>
 <div class="math">
-\[\textbf{Tabla Ingenieros}\]\[\begin{split}\begin{array}{|c|c|}
+\[\begin{split}\textbf{Engineers Table}  \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} \\
+ \textbf{id} &amp; \textbf{name} \\
  \hline
- 123 &amp; \mbox{Leon} \\
+ 123 &amp; \text{Mark} \\
  \hline
- 234 &amp; \mbox{Tomas} \\
+ 234 &amp; \text{Tomas} \\
  \hline
- 345 &amp; \mbox{Jose} \\
+ 345 &amp; \text{Owen} \\
  \hline
- 143 &amp; \mbox{Josefa} \\
+ 143 &amp; \text{Lexie} \\
  \hline
 \end{array}\end{split}\]</div>
 </div>
 <div class="section" id="id2">
-<h4>Ejemplo 2<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<p>Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.</p>
-<p><strong>Respuesta</strong></p>
+<h4>Example 2<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>Select id and name of the Engineers who have more than 30 years old.</p>
+<p><strong>Answer</strong></p>
 <div class="math">
-\[\begin{split}\pi \hspace{0.2cm} _{(\mbox{ID,Nombre})} (\sigma_{edad&gt;30} \hspace{0.3cm} \mbox{Ingenieros})\end{split}\]</div>
-<p>Finalmente la tabla queda de la siguiente manera:</p>
+\[\begin{split}\pi \hspace{0.2cm} _{(\text{id,name})} (\sigma_{\text{age&gt;30}} \hspace{0.3cm} \text{Engineers})\end{split}\]</div>
+<p>Se aprecia que las tuplas que no cumplan con la condición de selección quedan fuera del resultado,
+luego se realiza un PROJECT sobre las filas del resultado, separando solo las columnas que
+contienen los Atributtes id y name. Finally the table would look like this:</p>
 <div class="math">
-\[\textbf{Tabla Ingenieros}\]\[\begin{split}\begin{array}{|c|c|}
+\[\begin{split}\textbf{Engineers Table} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} \\
+ \textbf{id} &amp; \textbf{name} \\
  \hline
- 123 &amp; \mbox{Leon} \\
+ 123 &amp; \text{Mark} \\
  \hline
- 234 &amp; \mbox{Tomas} \\
+ 234 &amp; \text{Tomas} \\
  \hline
- 345 &amp; \mbox{Jose} \\
+ 345 &amp; \text{Owen} \\
  \hline
 \end{array}\end{split}\]</div>
+</div>
+</div>
 <div class="section" id="cross-product">
-<h5>Cross-product<a class="headerlink" href="#cross-product" title="Permalink to this headline">¶</a></h5>
-<p>En teoría de conjuntos, el producto cartesiano de dos conjuntos es una operación
-que resulta en otro conjunto cuyos elementos son todos los pares ordenados que
-pueden formarse tomando el primer elemento del par del primer conjunto,
-y el segundo elemento del segundo conjunto. En el Álgebra Relacional se mantiene
-esta idea con la diferencia que R y S son relaciones, entonces los miembros de R
-y S son tuplas, que generalmente consisten de más de un componente,
-cuyo resultado de la vinculación de una tupla de R con una tupla de S es una tupla
-más larga, con un componente para cada uno de los componentes de las tuplas
-constituyentes. Es decir Cross-product define una relación que es la concatenación
-de cada una de las filas de la relación R con cada una de las filas de la relación S.</p>
-<p><strong>Notación en Álgebra Relacional</strong></p>
-<p>Para representar Cross-product en Álgebra Relacional se utiliza la siguiente
-terminología:</p>
+<h3>CROSS-PRODUCT<a class="headerlink" href="#cross-product" title="Permalink to this headline">¶</a></h3>
+<p>In theory of sets, the <strong>CROSS-PRODUCT</strong> (or Cartesian product) of two sets is an operation that results
+in another set whose elements are all the ordered pairs that can be formed by taking
+the first element of the pair of the first set, and the second element of the second
+set. In Relational Algebra this idea is maintain except that <span class="math">\(R\)</span> and <span class="math">\(S\)</span> are relations,
+so the members of <span class="math">\(R\)</span> and <span class="math">\(S\)</span> are tuples, which generally consist of more than one component,
+which result of the link with a tuple of <span class="math">\(R\)</span> with a tuple of <span class="math">\(S\)</span> is a longer tuple, with
+one component for each of the components of the constituent tuples. That is, <strong>CROSS-PRODUCT</strong>
+defines a relation that is the concatenation of each of the rows of the relation
+<span class="math">\(R\)</span> with each of the rows in the relation <span class="math">\(S\)</span>.</p>
+<p><strong>Notation in Relational Algebra</strong></p>
+<p>To represent Cross-product in Relational Algebra, it is used the following terminology:</p>
 <div class="math">
-\[\mbox{R} \times \mbox{S}\]</div>
-<p>Por convención para la sentencia anterior, los componentes de R preceden a los
-componentes de S en el orden de atributos para el resultado, creando así una nueva
-relación con todas las combinaciones posibles de tuplas de R y S.
-El número de tuplas de la nueva relación resultante es la multiplicación de la
-cantidad de tuplas de R por la cantidad de tuplas que tenga S (producto de ambos).</p>
-<p>Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos
-nombres para al menos uno de cada par de atributos idénticos. Para eliminar la
-ambigüedad de un atributo A, que se encuentra en R y S, se usa R.A para el atributo
-de R y S.A para el atributo de S.</p>
-</div>
-</div>
+\[\text{R} \times \text{S}\]</div>
+<p>By convention for the previous statement, the components of <span class="math">\(R\)</span> precede <span class="math">\(S\)</span> components in
+the order of attributes for the result, creating a new relationship with all possible
+combinations of tuples of <span class="math">\(R\)</span> and <span class="math">\(S\)</span>. The number of tuples of the resulting new relation
+is the multiplication of the number of tuples of <span class="math">\(R\)</span> by the number of tuples that have
+<span class="math">\(S\)</span> (product of both).
+If <span class="math">\(R\)</span> and <span class="math">\(S\)</span> have some common attributes, then we must invent new names for at least one
+of each pair of identical attributes. To eliminate ambiguity of an attribute <span class="math">\(a\)</span>, which
+is in <span class="math">\(R\)</span> and <span class="math">\(S\)</span>, it is used <span class="math">\(R.a\)</span> for the attribute of <span class="math">\(R\)</span> and <span class="math">\(S.a\)</span> for the attribute of <span class="math">\(S\)</span>.</p>
+<p>Cabe mencionar que por notación que:</p>
+<div class="math">
+\[\text{R} \times \text{S} \neq  \text{S} \times \text{R}\]</div>
 <div class="section" id="id3">
-<h4>Ejemplo 1<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
-<div class="math">
-\[\begin{split}\textbf{R}
-\begin{array}{|c|c|c|}
- \hline
- \textbf{A} &amp; \textbf{B} &amp; \textbf{D} \\
- \hline
- 1 &amp; 2 &amp; 3 \\
- \hline
- 4 &amp; 5 &amp; 6 \\
- \hline
-\end{array}\end{split}\]\[\begin{split}\textbf{S}
-\begin{array}{|c|c|}
- \hline
- \textbf{A} &amp; \textbf{C} \\
- \hline
- 7 &amp; 5 \\
- \hline
- 9 &amp; 2 \\
- \hline
- 3 &amp; 4 \\
- \hline
-\end{array}\end{split}\]\[\textbf{R} \times \textbf{S}\]\[\begin{split}  \begin{array}{|c|c|c|c|c|}
-   \hline
-   \textbf{R.A} &amp; \textbf{B} &amp; \textbf{D} &amp; \textbf{S.A} &amp; \textbf{C} \\
-   \hline
-    1 &amp; 2 &amp; 3 &amp; 7 &amp; 5 \\
-   \hline
-    1 &amp; 2 &amp; 3 &amp; 9 &amp; 2 \\
-   \hline
-    1 &amp; 2 &amp; 3 &amp; 3 &amp; 4 \\
-   \hline
-    4 &amp; 5 &amp; 6 &amp; 7 &amp; 5 \\
-   \hline
-    4 &amp; 5 &amp; 6 &amp; 3 &amp; 4 \\
-   \hline
-    4 &amp; 5 &amp; 6 &amp; 9 &amp; 2 \\
-   \hline
- \end{array}\end{split}\]\[\textbf{S} \times \textbf{R}\]\[\begin{split}\begin{array}{|c|c|c|c|c|}
- \hline
- \textbf{S.A} &amp; \textbf{C} &amp; \textbf{R.A} &amp; \textbf{B} &amp; \textbf{D} \\
- \hline
- 7 &amp; 5 &amp; 1 &amp; 2 &amp; 3 \\
- \hline
- 7 &amp; 5 &amp; 4 &amp; 5 &amp; 6 \\
- \hline
- 9 &amp; 2 &amp; 1 &amp; 2 &amp; 3 \\
- \hline
- 9 &amp; 2 &amp; 4 &amp; 5 &amp; 6 \\
- \hline
- 3 &amp; 4 &amp; 1 &amp; 2 &amp; 3 \\
- \hline
- 3 &amp; 4 &amp; 4 &amp; 5 &amp; 6 \\
- \hline
-\end{array}\end{split}\]</div>
+<h4>Example 1<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<img alt="../../_images/CROSS-PRODUCT1.png" class="align-center" src="../../_images/CROSS-PRODUCT1.png" />
+<p>Con las Tables dadas realice el Cross-product de <span class="math">\(R\)</span> con <span class="math">\(S\)</span>:</p>
+<img alt="../../_images/CROSS-PRODUCT2.png" class="align-center" src="../../_images/CROSS-PRODUCT2.png" />
+<p>Con azul se resaltan las tuplas que provienen de <span class="math">\(R\)</span> que preseden y se mezclan con las de <span class="math">\(S\)</span> resaltadas en verde.</p>
+<p>Con las Tables dadas realice el Cross-product de <span class="math">\(S\)</span> con <span class="math">\(R\)</span>:</p>
+<img alt="../../_images/CROSS-PRODUCT3.png" class="align-center" src="../../_images/CROSS-PRODUCT3.png" />
 </div>
 <div class="section" id="id4">
-<h4>Ejemplo 2<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
-<p>Dada las siguientes tablas:</p>
+<h4>Example 2<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>Given the following tables:</p>
 <div class="math">
-\[\textbf{Tabla Ingenieros}\]\[\begin{split}\begin{array}{|c|c|c|}
+\[\begin{split}\textbf{Engineers Table} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{D#} \\
+ \textbf{id} &amp; \textbf{name} &amp; \textbf{d#} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 \\
+ 123 &amp; \text{Mark} &amp; 39 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 \\
+ 234 &amp; \text{Tomas} &amp; 34 \\
  \hline
- 143 &amp; \mbox{Josefa} &amp; 25 \\
+ 143 &amp; \text{Lexie} &amp; 25 \\
  \hline
-\end{array}\end{split}\]\[\textbf{Tabla Proyectos}\]\[\begin{split}\begin{array}{|c|c|}
+\end{array}\end{split}\]\[\begin{split}\textbf{Projects Table} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{Proyecto} &amp; \textbf{Duración} \\
+ \textbf{project} &amp; \textbf{duration} \\
  \hline
- \mbox{ACU0034} &amp; 300 \\
+ \text{ACU0034} &amp; 300 \\
  \hline
- \mbox{USM7345} &amp; 60 \\
+ \text{USM7345} &amp; 60 \\
  \hline
 \end{array}\end{split}\]</div>
-<p>Escriba la tabla resultante al realizar la siguiente operación:</p>
+<p>Write the resulting table to perform the following operation:</p>
 <div class="math">
-\[\textbf{Ingenieros} \times \textbf{Proyectos}\]</div>
-<p><strong>Respuesta</strong></p>
+\[\textbf{Engineers} \times \textbf{Projects}\]</div>
+<p><strong>Answer</strong></p>
 <div class="math">
-\[\textbf{Ingenieros x Proyectos}\]\[\begin{split}\begin{array}{|c|c|c|c|c|}
+\[\begin{split}\textbf{Engineers} \times \textbf{Projects} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{D#} &amp; \textbf{Proyecto} &amp; \textbf{Duración} \\
+ \textbf{id} &amp; \textbf{name} &amp; \textbf{d#} &amp; \textbf{project} &amp; \textbf{duration} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 &amp; \mbox{ACU0034} &amp; 300 \\
+ 123 &amp; \text{Mark} &amp; 39 &amp; \text{ACU0034} &amp; 300 \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 &amp; \mbox{USM7345} &amp; 60 \\
+ 123 &amp; \text{Mark} &amp; 39 &amp; \text{USM7345} &amp; 60 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 &amp; \mbox{ACU0034} &amp; 300 \\
+ 234 &amp; \text{Tomas} &amp; 34 &amp; \text{ACU0034} &amp; 300 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 &amp; \mbox{USM7345} &amp; 60 \\
+ 234 &amp; \text{Tomas} &amp; 34 &amp; \text{USM7345} &amp; 60 \\
  \hline
- 143 &amp; \mbox{Josefa} &amp; 25 &amp; \mbox{ACU0034} &amp; 300 \\
+ 143 &amp; \text{Lexie} &amp; 25 &amp; \text{ACU0034} &amp; 300 \\
  \hline
- 143 &amp; \mbox{Josefa} &amp; 25 &amp; \mbox{USM7345} &amp; 60 \\
+ 143 &amp; \text{Lexie} &amp; 25 &amp; \text{USM7345} &amp; 60 \\
  \hline
 \end{array}\end{split}\]</div>
 </div>
 </div>
 <div class="section" id="naturaljoin">
 <h3>NATURALJOIN<a class="headerlink" href="#naturaljoin" title="Permalink to this headline">¶</a></h3>
-<p>Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando
-sólo las tuplas que coinciden de alguna manera.  NATURALJOIN une sólo los pares de
-tuplas de R y S que sean comunes. Más precisamente una tupla r de R y una tupla s
-de S se emparejan correctamente si y sólo si r y s coinciden en cada uno de los
-valores de los atributos comunes, el resultado de la vinculación es una tupla,
-llamada “joined tuple”.  Entonces, al realizar NATURALJOIN se obtiene una relación
-con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas
-relaciones que tengan el mismo valor en los atributos comunes.</p>
-<p><strong>Notación en Álgebra Relacional</strong></p>
-<p>Para denotar NATURALJOIN se utiliza la siguiente simbología:</p>
+<p>This operator is used when there is the need to link relations linking only tuples
+that match somehow. <strong>NATURALJOIN</strong> joins only the pairs of tuples of <span class="math">\(R\)</span> and <span class="math">\(S\)</span> that are
+common. More precisely a tuple <span class="math">\(r\)</span> of <span class="math">\(R\)</span> and a tuple <span class="math">\(s\)</span> of <span class="math">\(S\)</span> are matched correctly if
+and only if <span class="math">\(r\)</span> and <span class="math">\(s\)</span> coincide in each of the values of the common attributes, the
+result of the linking is a tuple, called “joined tuple.” So when performing
+<strong>NATURALJOIN</strong> it is obtained a relation with the attributes of both relations that
+have the same value in the common attributes.</p>
+<p><strong>Notation in Relational Algebra</strong></p>
+<p>PFor denoting <strong>NATURALJOIN</strong> it is used the following symbols:</p>
 <div class="math">
-\[\mbox{R} \rhd \hspace{-0.1cm} \lhd \mbox{S}\]</div>
-<p><strong>Equivalencia con operadores básicos</strong></p>
-<p>NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos,
-la equivalencia es la siguiente:</p>
+\[\text{R} \rhd \hspace{-0.1cm} \lhd \text{S}\]</div>
+<p><strong>Equivalence with basic operators</strong></p>
+<p>NATURALJOIN can be written in terms of some operators already seen, the equivalence is:</p>
 <div class="math">
 \[R \rhd \hspace{-0.1cm} \lhd S=  \pi \hspace{0.2cm} _{R.A_1,...,R.A_n,  S.A_1,...,S.A_n} (\sigma_{R.A_1=S.A_1 \wedge ... \wedge R.A_n=S.A_n  }\hspace{0.3cm} (R \times S ))\]</div>
 <p><strong>Método</strong></p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Se realiza el producto cartesiano <span class="math">\(R x S\)</span></li>
-<li>Se seleccionan aquellas filas del producto cartesiano para las que los
-atributos comunes tengan el mismo valor</li>
-<li>Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos
-comunes</li>
+<li>Perform the CROSS-PRODUCT <span class="math">\(R \times S\)</span>.</li>
+<li>Select those rows of the Cartesian product for which the common attributes have the same value.</li>
+<li>Delete from the result an occurrence (column) of each of the common attributes.</li>
 </ol>
 </div></blockquote>
 <div class="section" id="id5">
-<h4>Ejemplo 1<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<h4>Example 1<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <div class="math">
-\[\begin{split}\textbf{R}
-\begin{array}{|c|c|c|}
+\[\begin{split}\textbf{R}  \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
  \hline
- \textbf{A} &amp; \textbf{B} &amp; \textbf{C} \\
+ \textbf{a} &amp; \textbf{b} &amp; \textbf{c} \\
  \hline
  1 &amp; 2 &amp; 3 \\
  \hline
  4 &amp; 5 &amp; 6 \\
  \hline
-\end{array}\end{split}\]\[\textbf{S}\]\[\begin{split}\begin{array}{|c|c|}
+\end{array}\end{split}\]\[\begin{split}\textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{C} &amp; \textbf{D} \\
+ \textbf{c} &amp; \textbf{d} \\
  \hline
  7 &amp; 5 \\
  \hline
@@ -467,9 +514,14 @@ comunes</li>
  \hline
  3 &amp; 4 \\
  \hline
-\end{array}\end{split}\]\[\textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S}\]\[\begin{split}\begin{array}{|c|c|c|c|}
+\end{array}\end{split}\]</div>
+<p>Con las Tables dadas realice el NaturalJoin de <span class="math">\(R\)</span> y <span class="math">\(S\)</span>:</p>
+<img alt="../../_images/NATURALJOIN.png" class="align-center" src="../../_images/NATURALJOIN.png" />
+<p>El Atributte que tienen en común <span class="math">\(R\)</span> y <span class="math">\(S\)</span> es el Atributte <span class="math">\(C\)</span>, entonces las tuplas se unen donde <span class="math">\(C\)</span> tiene el mismo valor en <span class="math">\(R\)</span> y <span class="math">\(S\)</span></p>
+<div class="math">
+\[\begin{split}\textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
- \textbf{A} &amp; \textbf{B} &amp; \textbf{C} &amp; \textbf{D} \\
+ \textbf{a} &amp; \textbf{b} &amp; \textbf{c} &amp; \textbf{d} \\
  \hline
  1 &amp; 2 &amp; 3 &amp; 4 \\
  \hline
@@ -478,78 +530,75 @@ comunes</li>
 \end{array}\end{split}\]</div>
 </div>
 <div class="section" id="id6">
-<h4>Ejemplo 2<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
-<p>Realizar NATURALJOIN a las siguientes tablas:</p>
+<h4>Example 2<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>Perform <strong>NATURALJOIN</strong> to the following tables:</p>
 <div class="math">
-\[\textbf{Tabla Ingenieros}\]\[\begin{split}\begin{array}{|c|c|c|}
+\[\begin{split}\textbf{Engineers Table} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{D#} \\
+ \textbf{id} &amp; \textbf{name} &amp; \textbf{d#} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 \\
+ 123 &amp; \text{Mark} &amp; 39 \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34\\
+ 234 &amp; \text{Tomas} &amp; 34\\
  \hline
- 143 &amp; \mbox{Josefa} &amp; 25 \\
+ 143 &amp; \text{Lexie} &amp; 25 \\
  \hline
- 090 &amp; \mbox{Maria} &amp; 34 \\
+ 090 &amp; \text{Maria} &amp; 34 \\
  \hline
-\end{array}\end{split}\]\[\textbf{Tabla Proyectos}\]\[\begin{split}\begin{array}{|c|c|}
+\end{array}\end{split}\]\[\begin{split}\textbf{Projects Table} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
  \hline
- \textbf{D#} &amp; \textbf{Proyecto}\\
+ \textbf{d#} &amp; \textbf{project}\\
  \hline
- 39 &amp; \mbox{ACU0034} \\
+ 39 &amp; \text{ACU0034} \\
  \hline
- 34 &amp; \mbox{USM7345} \\
+ 34 &amp; \text{USM7345} \\
  \hline
 \end{array}\end{split}\]</div>
-<p><strong>Respuesta</strong></p>
+<p><strong>Answer</strong></p>
 <div class="math">
-\[\textbf{Ingenieros} \rhd \hspace{-0.1cm} \lhd \textbf{Proyectos}\]\[\begin{split}\begin{array}{|c|c|c|c|}
+\[\begin{split}\textbf{Engineers} \rhd \hspace{-0.1cm} \lhd \textbf{Projects} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
- \textbf{ID} &amp; \textbf{Nombre} &amp; \textbf{D#} &amp; \textbf{Proyecto} \\
+ \textbf{id} &amp; \textbf{name} &amp; \textbf{d#} &amp; \textbf{project} \\
  \hline
- 123 &amp; \mbox{Leon} &amp; 39 &amp; \mbox{ACU0034} \\
+ 123 &amp; \text{Mark} &amp; 39 &amp; \text{ACU0034} \\
  \hline
- 234 &amp; \mbox{Tomas} &amp; 34 &amp; \mbox{USM7345} \\
+ 234 &amp; \text{Tomas} &amp; 34 &amp; \text{USM7345} \\
  \hline
- 090 &amp; \mbox{Maria} &amp; 34 &amp; \mbox{USM7345} \\
+ 090 &amp; \text{Maria} &amp; 34 &amp; \text{USM7345} \\
  \hline
 \end{array}\end{split}\]</div>
 </div>
 </div>
 <div class="section" id="thetajoin">
 <h3>THETAJOIN<a class="headerlink" href="#thetajoin" title="Permalink to this headline">¶</a></h3>
-<p>Define una relación que contiene las tuplas que satisfacen el predicado C en el
-producto cartesiano de <span class="math">\(R x S\)</span>.
-Conecta relaciones cuando los valores de determinadas columnas tienen una
-interrelación específica. La condición C es de la forma <span class="math">\(R.ai\)</span>
-&lt;operador_de_comparación&gt; <span class="math">\(S.bi\)</span>, esta condición es del mismo tipo que se utiliza
-SELECT.
-El predicado no tiene por que definirse sobre atributos comunes.
-El término “join” suele referirse a THETAJOIN.</p>
-<p><strong>Notación en Álgebra Relacional</strong></p>
-<p>La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN,
-la diferencia radica en que THETAJOIN lleva el predicado C:</p>
+<p>It defines a relation containing tuples that satisfy the predicate C in the
+Cartesian product(CROSS-PRODUCT) of <span class="math">\(R \times S\)</span>. It connects relations when
+the values ​​of certain columns have a specific interrelation. The condition <span class="math">\(C\)</span>
+is of the form <span class="math">\(R.ai\)</span> &lt;operator_of_comparation&gt; <span class="math">\(S.bi\)</span>, this condition is of the
+same type used SELECT. The predicate does not have to be defined on common
+attributes. The term “join” usually refers to <strong>THETHAJOIN</strong>.</p>
+<p><strong>Notation in Relational Algebra</strong></p>
+<p>The notation of the <strong>THETAJOIN</strong> is the same symbol used for NATURALJOIN; the difference
+is that <strong>THETHAJOIN</strong> carries the predicate <span class="math">\(C\)</span>:</p>
 <div class="math">
-\[\begin{split}\mbox{R} \rhd \hspace{-0.1cm} \lhd_C \mbox{S} \\\end{split}\]\[\begin{split}\mbox{C = &lt;Atributo&gt; &lt;Comparador&gt; &lt;Atributo o Constante del Dominio&gt;} \\\end{split}\]\[\begin{split}\mbox{Donde:}\\\end{split}\]\[\begin{split}\mbox{&lt;Comparador&gt;} \in {\{=,\geq,&gt;,&lt;, \neq,\leq \}}\\\end{split}\]</div>
-<p><strong>Equivalencia con operadores básicos</strong></p>
-<p>Al igual NATURALJOIN, THETAJOIN puede ser escrito en función de los operadores
-vistos anteriormente:</p>
+\[\begin{split}\text{R} \rhd \hspace{-0.1cm} \lhd_C \text{S} \\\end{split}\]\[\begin{split}\text{C = &lt;Atributte&gt; &lt;Comparator&gt; &lt;Atributte o Constant&gt;} \\\end{split}\]\[\begin{split}\text{Donde:}\\\end{split}\]\[\begin{split}\text{&lt;Comparator&gt;} \in {\{=,\geq,&gt;,&lt;, \neq,\leq \}}\\\end{split}\]</div>
+<p><strong>Equivalence with basic operators</strong></p>
+<p>As NATURALJOIN, THETAJOIN can be written in function of previously viewed operators:</p>
 <div class="math">
 \[R \rhd \hspace{-0.1cm} \lhd_C S= \sigma_{F} (R \times S)\]</div>
-<p><strong>Método</strong></p>
+<p><strong>Method</strong></p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Se&nbsp;forma&nbsp;el&nbsp;producto&nbsp;cartesiano&nbsp;<span class="math">\(R\)</span>&nbsp;x&nbsp;<span class="math">\(S\)</span>.</li>
-<li>Se&nbsp;selecciona,&nbsp;en&nbsp;el&nbsp;producto,&nbsp;solo&nbsp;la&nbsp;tupla&nbsp;que&nbsp;cumplan&nbsp;la&nbsp;condición <span class="math">\(C\)</span>.</li>
+<li>Form the CROSS-PRODUCT <span class="math">\(R \times S\)</span>.</li>
+<li>Select, in the product, only the tuple that satisfy the condition <span class="math">\(C\)</span>.</li>
 </ol>
 </div></blockquote>
 <div class="section" id="id7">
-<h4>Ejemplo 1<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<h4>Example 1<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <div class="math">
-\[\textbf{R}\]\[\begin{split}\begin{array}{|c|c|c|c|}
+\[\begin{split}\textbf{R} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|}
  \hline
- \textbf{A} &amp; \textbf{B} &amp; \textbf{C} &amp; \textbf{D} \\
+ \textbf{a} &amp; \textbf{b} &amp; \textbf{c} &amp; \textbf{d} \\
  \hline
  1 &amp; 3 &amp; 5 &amp; 7 \\
  \hline
@@ -557,9 +606,9 @@ vistos anteriormente:</p>
  \hline
  2 &amp; 3 &amp; 5 &amp; 4 \\
  \hline
-\end{array}\end{split}\]\[\textbf{S}\]\[\begin{split}\begin{array}{|c|c|c|}
+\end{array}\end{split}\]\[\begin{split}\textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
  \hline
- \textbf{A} &amp; \textbf{C} &amp; \textbf{E} \\
+ \textbf{a} &amp; \textbf{c} &amp; \textbf{e} \\
  \hline
  1 &amp; 5 &amp; 2 \\
  \hline
@@ -570,13 +619,24 @@ vistos anteriormente:</p>
  2 &amp; 3 &amp; 7 \\
  \hline
 \end{array}\end{split}\]</div>
+<p>Escriba la Table resultante al realizar la siguiente operación:</p>
 <div class="math">
-\[\begin{split}R \rhd \hspace{-0.1cm} \lhd_(A&nbsp;&gt;=&nbsp;E) S\end{split}\]</div>
-<p><strong>Respuesta</strong></p>
+\[\begin{split}R \rhd \hspace{-0.1cm} \lhd_{(A&nbsp;&gt;=&nbsp;E)} S\end{split}\]</div>
+<p><strong>Answer</strong></p>
+<img alt="../../_images/THETAJOIN1.png" class="align-center" src="../../_images/THETAJOIN1.png" />
+<p>Se compara el Atributte <span class="math">\(A\)</span> de la primera fila de <span class="math">\(R\)</span> con cada uno de los valores del Atributte
+<span class="math">\(E\)</span> de la Table <span class="math">\(S\)</span>. En este caso ninguna de las comparaciones devuelve el valor verdadero (true).</p>
+<img alt="../../_images/THETAJOIN2.png" class="align-center" src="../../_images/THETAJOIN2.png" />
+<p>Luego se compara el Atributte <span class="math">\(A\)</span> de la segunda fila de <span class="math">\(R\)</span> con cada uno de los valores del Atributte
+<span class="math">\(E\)</span> de la Table <span class="math">\(S\)</span>. En este caso 2 comparaciones devuelven el valor verdadero (true), por lo que en
+la relación de resultado quedará la segunda fila de <span class="math">\(R\)</span> mezclada con la primera y tercera fila de <span class="math">\(S\)</span>.</p>
+<img alt="../../_images/THETAJOIN3.png" class="align-center" src="../../_images/THETAJOIN3.png" />
+<p>De igual forma ahora se compara el valor de <span class="math">\(A\)</span> de la tercera tupla de <span class="math">\(R\)</span>, nuevamente 2 tuplas de <span class="math">\(S\)</span>
+cumplen con la condición.</p>
 <div class="math">
-\[\textbf{S}\]\[\begin{split}\begin{array}{|c|c|c|c|c|c|c|}
+\[\begin{split}\textbf{S} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|c|c|c|c|}
  \hline
- \textbf{R.A} &amp; \textbf{B} &amp; \textbf{R.C} &amp; \textbf{D} &amp; \textbf{S.A} &amp; \textbf{S.C} &amp; \textbf{E} \\
+ \textbf{R.a} &amp; \textbf{b} &amp; \textbf{R.c} &amp; \textbf{d} &amp; \textbf{S.a} &amp; \textbf{S.c} &amp; \textbf{e} \\
  \hline
  3 &amp; 2 &amp; 9 &amp; 1 &amp; 1 &amp; 5 &amp; 2 \\
  \hline
@@ -589,37 +649,32 @@ vistos anteriormente:</p>
 \end{array}\end{split}\]</div>
 </div>
 <div class="section" id="id8">
-<h4>Ejemplo 2<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
-<p>Con el esquema conceptual siguiente, hallar los nombres de los directores de
-cada departamento:</p>
-<p>Dpto (NumDpto, Nombre, NIFDirector, Fecha_inicio)</p>
-<p>Empleado (NIF, Nombre, Direccion, Salario, Dpto, NIFSupervisor)</p>
+<h4>Example 2<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p>With the following conceptual scheme, find the names of the directors of each department:</p>
+<p>Department (numDpto, name, nIFDirector,  dateStart)</p>
+<p>Employee (nIF, name, address, salary, dpto, nIFSupervisor)</p>
+<p><strong>Answer</strong></p>
 <div class="math">
-\[\pi_{(Dpto.Nombre,Empleado.Nombre)} (Dpto \rhd \hspace{-0.1cm} \lhd_{NIFDirector=NIF} \mbox{Empleado})\]</div>
+\[\pi_{(\text{Department.name,Employee.name})} (\text{Department} \rhd \hspace{-0.1cm} \lhd_{\text{nIFDirector=nIF}} \text{Employee})\]</div>
 <ul class="simple">
-<li>Tuplas con Null en los “Atributos de la Reunión”, no se incluyen en el resultado.</li>
+<li>Tuples with Null in the &#8220;Attributes of the Meeting&#8221;, are not included in the result.</li>
 </ul>
 </div>
 </div>
 <div class="section" id="exercises">
 <h3>EXERCISES<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
-<p>Considere la siguiente base de datos:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>Person ( name, age, gender ) : name is a key</li>
-<li>Frequents ( name, pizzeria ) : (name, pizzeria) is a key</li>
-<li>Eats ( name, pizza ) : (name, pizza) is a key</li>
-<li>Serves ( pizzeria, pizza, price ): (pizzeria, pizza) is a key</li>
+<p>Consider the following databases:</p>
+<ol class="arabic simple">
+<li>Person ( name, age, gender ) : name is a key.</li>
+<li>Frequents ( name, pizzeria ) : (name, pizzeria) is a key.</li>
+<li>Eats ( name, pizza ) : (name, pizza) is a key.</li>
+<li>Serves ( pizzeria, pizza, price ): (pizzeria, pizza) is a key.</li>
 </ol>
-</div></blockquote>
 <p>Write relational algebra expressions for the following five queries.</p>
-<blockquote>
-<div><ul class="simple">
-<li>Seleccionar a las personas que comen pizzas con extra queso.</li>
-<li>Seleccionar a las personas que comen pizzas con extra queso y frecuentan la
-pizzería X.</li>
+<ul class="simple">
+<li>Select those people who eat pizzas with extra cheese.</li>
+<li>Select those people who eat pizzas with extra cheese and frequent the pizzeria X.</li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 </div>
