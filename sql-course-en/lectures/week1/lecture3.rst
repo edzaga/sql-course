@@ -1,12 +1,10 @@
 Lectura 3 - Álgebra Relacional: Select, Project, Join
 -------------------------------------------------------
 
-Conceptos básicos de álgebra relacional
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Basics of relational algebra
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. index:: basics of relational algebra
-
-Basics of relational algebra
 
 Algebra, in general, consists of operators and atomic operands. For instance, in the algebra of 
 arithmetic, the atomic operands are variables like r, and constants like 15. The operators are 
@@ -52,8 +50,8 @@ The three most common operations on sets are **union, intersection, and differen
 .. CMA: El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan sobre las relaciones (Tables) para obtener un resultado, el cual es otra relación.
 
 
-Operaciones relacionales:
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Relational operators
+~~~~~~~~~~~~~~~~~~~~
 
 .. index:: relational operators
 
@@ -104,21 +102,21 @@ del tipo básico boolean, en cambio, 11<4 (once menor que cuatro) es falsa se re
 como Comparator (entre Atributtes o Atributte y constante), arrojan booleano (true o false) de resultado:
 
   * **NOT**: The NOT operator denotes a true output if the input is false, and a false exit if input is true. 
-   Su notación en algebra es: 
+   Notation in Relational Algebra: 
 
 	.. math::
 		¬ \text{C1}
 
   * **AND**:  The AND operator denotes true output, if and only if its inputs are true. 
     Si C1 se cumple y C2 también se cumple, la salida seré verdadera.
-    La notación en algebra de un AND es:
+    Notation in Relational Algebra:
   
 	.. math::
 		\text{C1} \wedge \text{C2}
     
   * **OR**:  The OR operator denotes a true output if there is any true input put (or both).
    Si C1 y/o C2 es o son verdaderas, la expresión será verdadera.
-    La notación en algebra de un OR es: 
+    Notation in Relational Algebra: 
 
 	.. math:: 
 		\text{C1} \vee \text{C2}
@@ -294,7 +292,10 @@ Select id and name of the Engineers who have more than 30 years old.
 
 .. math::
        \pi \hspace{0.2cm} _{(\text{id,name})} (\sigma_{\text{age>30}} \hspace{0.3cm} \text{Engineers})
-       
+
+.. image:: ../../../sql-course/src/prosel.png
+   :align: center
+
 Se aprecia que las tuplas que no cumplan con la condición de selección quedan fuera del resultado, 
 luego se realiza un PROJECT sobre las filas del resultado, separando solo las columnas que
 contienen los Atributtes id y name. Finally the table would look like this:
