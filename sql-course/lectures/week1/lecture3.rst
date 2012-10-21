@@ -125,7 +125,7 @@ como comparador (entre atributos o atributo y constante), arrojan booleano (true
 		¬ \text{C1}
 
   * **AND**: El operador AND denota una salida verdadera si y sólo si sus entradas
-    son verdaderas. Si C1 se cumple y C2 también se cumple, la salida seré verdadera.
+    son verdaderas. Si C1 se cumple y C2 también se cumple, la salida será verdadera.
     La notación en algebra de un AND es:  
 	.. math::
 		\text{C1} \wedge \text{C2}
@@ -155,7 +155,7 @@ Ejemplo 1
 
    \begin{array}{|c|c|c|c|}
     \hline
-    \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados(AT)}\\
+    \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados}\\
     \hline
     123 & \text{Leon} & 39 & 15 \\
     \hline
@@ -189,7 +189,7 @@ De esta forma la tabla queda:
 
    \begin{array}{|c|c|c|c|}
     \hline
-    \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados(AT)}\\
+    \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados}\\
     \hline
     123 & \text{Leon} & 39 & 15 \\
     \hline
@@ -311,6 +311,9 @@ Seleccionar id y nombre de los Ingenieros que tienen más de 30 años.
 .. math::
        \pi \hspace{0.2cm} _{(\text{id,nombre})} (\sigma_{\text{edad>30}} \hspace{0.3cm} \text{Ingenieros})
        
+.. image:: ../../../sql-course/src/prosel.png
+   :align: center
+
 Se aprecia que las tuplas que no cumplan con la condición de selección quedan fuera del resultado, 
 luego se realiza un PROJECT sobre las filas del resultado, separando solo las columnas que
 contienen los atributos id y nombre. Finalmente la tabla queda de la siguiente manera:

@@ -9,13 +9,24 @@ Operaciones de conjunto:
 UNIÓN
 *****
 
-En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección de objetos considerada como un objeto en sí. La unión de dos conjuntos `A` y `B` es el conjunto que contiene todos los elementos de `A` y de `B`.
-El símbolo `\cup` es el utilizado para representar **UNIÓN**, `A \cup B = B \cup A`, Se puede decir entonces que el operador **UNIÓN** es conmutativo. Cabe recordar que una operación es conmutativa cuando el resultado de la operación es el mismo, cualquiera que sea el orden de los elementos con los que se opera.  
+En matemáticas, se denomina álgebra de conjuntos a las operaciones básicas que pueden 
+realizarse con conjuntos, como la unión, intersección, etc. Un conjunto es una colección 
+de objetos considerada como un objeto en sí. La unión de dos conjuntos `A` y `B` es el 
+conjunto que contiene todos los elementos de `A` y de `B`.
+El símbolo `\cup` es el utilizado para representar **UNIÓN**.
+
+El operador **UNIÓN** es conmutativo es decir  `A \cup B = B \cup A`. Cabe recordar que una
+operación es conmutativa cuando el resultado de la operación es el mismo, cualquiera que sea 
+el orden de los elementos con los que se opera.  
 
 .. image:: ../../../sql-course/src/union.png
    :align: center
 
-De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas. `R` y `S` deben ser unión-compatible, es decir, definidas sobre el mismo conjunto de atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las mismas columnas y su orden debe ser el mismo).
+De manera análoga, la unión de dos relaciones `R` y `S`, es otra relación que contiene 
+las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas. 
+`R` y `S` deben ser **unión-compatible**, es decir, definidas sobre el mismo conjunto de 
+atributo (`R` y `S` deben tener esquemas idénticos. Deben poseer las mismas columnas 
+y su orden debe ser el mismo).
 
 **Notación en álgebra relacional**
 
@@ -23,7 +34,8 @@ De manera análoga la unión de dos relaciones `R` y `S`, es otra relación que 
 
     R \cup S \\
 
-Si se realiza `R \cup S` es lo mismo que  `S \cup R` , es decir se obtiene el mismo resultado. Esto debido a la propiedad de conmutatividad derivada de la álgebra de conjuntos.
+Si se realiza `R \cup S` es lo mismo que  `S \cup R` , es decir se obtiene el mismo 
+resultado. Esto debido a la propiedad de conmutatividad derivada de la álgebra de conjuntos.
 
 
 Ejemplo 
@@ -35,7 +47,7 @@ Dadas las siguientes relaciones:
 
    \begin{array}{|c|c|c|}
         \hline
-         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+         \textbf{id} & \textbf{nombre} & \textbf{edad}\\
         \hline
         123 & \text{Leon}   & 39\\
         \hline
@@ -52,7 +64,7 @@ Dadas las siguientes relaciones:
 
       \begin{array}{|c|c|c|}
         \hline
-         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+         \textbf{id} & \textbf{nombre} & \textbf{edad}\\
         \hline
         123 & \text{Leon}   & 39\\
         \hline
@@ -68,7 +80,7 @@ Aplicar el operador **UNIÓN**:
 
    \begin{array}{|c|c|c|}
         \hline
-         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+         \textbf{id} & \textbf{nombre} & \textbf{edad}\\
         \hline
         123 & \text{Leon}   & 39\\
         \hline
@@ -82,17 +94,14 @@ Aplicar el operador **UNIÓN**:
         \hline
    \end{array}
 
-Como se mencionó anteriormente realizar la operación: 
-
-.. math::
-	\text{Jefes} \cup \text{Ingenieros}
-
-Daría como resultado la misma tabla anterior, debido a la propiedad de conmutatividad.
+Como se mencionó anteriormente, realizar la operación `Jefes \cup Ingenieros` 
+daría como resultado la misma tabla anterior, debido a la propiedad de conmutatividad.
 
 DIFERENCIA
 **********
 
-Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos `A` y `B` es el conjunto que contiene todos los elementos de `A` que no pertenecen a `B`.
+Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos 
+`A` y `B` es el conjunto que contiene todos los elementos de `A` que no pertenecen a `B`.
 
 .. math:: A-B
 
@@ -105,14 +114,18 @@ Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conju
 .. image:: ../../../sql-course/src/b-a.png
    :align: center
 
-Como se aprecia en las imágenes la operación **DIFERENCIA**, en conjuntos, no es conmutativa, al igual que la resta o sustracción, operador aprendido en aritmética básica. Es decir, si se cambia el orden de los conjuntos a los  que se aplica la operación **DIFERENCIA**, se obtendrán resultados distintos. Por lo tanto:
+Como se aprecia en las imágenes la operación **DIFERENCIA**, en conjuntos, no es 
+conmutativa, al igual que la resta o sustracción, operador aprendido en aritmética 
+básica. Es decir, si se cambia el orden de los conjuntos a los  que se aplica la
+operación **DIFERENCIA**, se obtendrán resultados distintos. Por lo tanto:
 
 .. math::
-    \text{A} \times \text{B} \neq  \text{B} \times \text{A}    
+    \text{A} - \text{B} \neq  \text{B} - \text{A}    
 
 
-De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación que contiene las tuplas que están en la relación `R`, pero no están en `S`.
-`R` y `S` deben ser unión-compatible.
+De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación 
+que contiene las tuplas que están en la relación `R`, pero no están en `S`.
+`R` y `S` deben ser unión-compatible (deben tener esquemas idénticos).
 
 **Notación en álgebra relacional**
 
@@ -126,16 +139,15 @@ Es importante resaltar que `R - S` es diferente a `S - R`.
 Ejemplo 
 ^^^^^^^^
 
-Empleando las mismas tablas dadas en el ejemplo anterior, realice Ingenieros
-``-`` Jefes y Jefes ``-`` Ingenieros:
-
-Ingenieros ``-`` Jefes
+Empleando las mismas tablas dadas en el ejemplo anterior, realice `Ingenieros - Jefes` 
+y `Jefes - Ingenieros`:
 
 .. math::
+   \textbf{Ingenieros - Jefes} \\
 
    \begin{array}{|c|c|c|}
         \hline
-         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+         \textbf{id} & \textbf{nombre} & \textbf{edad}\\
         \hline
         234 & \text{Tomas}  & 34\\
         \hline
@@ -145,24 +157,27 @@ Ingenieros ``-`` Jefes
         \hline
    \end{array}
 
-Jefes ``-`` Ingenieros
-
 .. math::
+   \textbf{Jefes - Ingenieros} \\
 
    \begin{array}{|c|c|c|}
         \hline
-        \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+        \textbf{id} & \textbf{nombre} & \textbf{edad}\\
         \hline
         235 & \text{Maria} & 29\\
         \hline
    \end{array}
 
-Como se puede apreciar, ambas operaciones dieron como resultado distintas relaciones, tal como se había mencionado anteriormente.
+Como se puede apreciar, ambas operaciones dieron como resultado distintas relaciones, 
+tal como se había mencionado anteriormente.
 
 INTERSECCIÓN
 ************
 
-En  álgebra de conjuntos la intersección de dos conjuntos `A` y `B` es el conjunto que contiene todos los elementos comunes de `A` y `B`. 
+En  álgebra de conjuntos la **INTERSECCIÓN** de dos conjuntos `A` y `B` es el conjunto
+que contiene todos los elementos comunes de `A` y `B`. El símbolo `\cap` representa 
+la **INTERSECCIÓN** de dos conjuntos. Al igual que el operador **UNIÓN**, **INTERSECCIÓN** 
+es conmutativo, entonces se cumple que `A \cap B = B \cap A` .
 
 .. math::
     A \cap B
@@ -170,15 +185,17 @@ En  álgebra de conjuntos la intersección de dos conjuntos `A` y `B` es el conj
 .. image:: ../../../sql-course/src/inter.png
    :align: center
 
-De forma homóloga en álgebra relacional INTERSECTION define una relación que contiene las tuplas que están tanto en la relación `R` como en `S`. `R` y `S` deben ser unión-compatible.
+De forma homóloga en álgebra relacional, **INTERSECCIÓN** define una relación que contiene 
+las tuplas que están tanto en la relación `R` como en `S`. `R` y `S` deben ser unión-compatible 
+(mismos atributos y mismo orden).
 
 **Notación en algebra relacional**
 
 .. math::
     R \cap S
 
-.. math::
-    \text{ Si se realiza } R \cap S \text{ es lo mismo que }  S \cap R \text{ , es decir se obtiene el mismo resultado} \\
+Si se realiza `R \cap S` es lo mismo que `S \cap R`, es decir se obtiene el mismo resultado, 
+se puede decir que **INTERSECCIÓN** es conmutativa.
 
 **Equivalencia con operadores anteriores**
 
@@ -188,14 +205,15 @@ De forma homóloga en álgebra relacional INTERSECTION define una relación que 
 Ejemplo 
 ^^^^^^^^
 
-Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de la tabla de Ingenieros con la de Jefes:
+Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de la tabla de 
+Ingenieros con la de Jefes:
 
 .. math::
     Ingenieros \cap Jefes
 
       \begin{array}{|c|c|c|}
         \hline
-         \textbf{ID} & \textbf{Nombre} & \textbf{Edad}\\
+         \textbf{id} & \textbf{nombre} & \textbf{edad}\\
         \hline
         123 & \text{Leon}   & 39\\
         \hline
@@ -203,16 +221,22 @@ Utilizando las mismas tablas del ejemplo anterior, encontrar la intersección de
 
 .. important::
 
-   Cuando aplicamos estas operaciones a relaciones, necesitamos poner algunas condiciones `R` y `S`:
+   Para aplicar estas operaciones a relaciones, necesitamos que `R` y `S` sean unión-compatible:
 
       * `R` y `S` deben tener esquemas con conjuntos de atributos idénticos, y de tipos (dominios) para cada atributo deben ser las mismas en `R` y `S`.
       * Antes de computar el conjunto-teórico unión, intersección, o diferencia de conjuntos de tuplas, las columnas de `R` y `S` deben ser ordenadas para que el orden de los atributos sean los mismos para ambas relaciones.
 
+
 OPERACIONES DEPENDIENTES Y INDEPENDIENTES
 *****************************************
 
-Algunas de las operaciones que hemos descrito en las lecturas 3 y 4, pueden ser expresadas en términos de operadores de algebra relacional. 
-Por ejemplo, la intersección puede ser expresada en términos de conjuntos de diferencia: R <INTERSECCCIÓN> S = R - (R - S). Es decir, si `R` y `S` son dos relaciones con el mismo esquema, la intersección de `R` y `S` puede ser resuelta restando primero `S` de `R` para formar una relación `T` que consiste en todas aquellas tuplas en `R` pero no en `S`. Cuando restamos `T` de `R`, dejamos solo esas tuplas de `R` que están también en `S`.
+Algunas de las operaciones que se han descrito en las lecturas 3 y 4, pueden ser expresadas 
+en términos de operadores de algebra relacional. 
+Por ejemplo, la intersección puede ser expresada en términos de conjuntos de diferencia: 
+R <INTERSECCCIÓN> S = R - (R - S). Es decir, si `R` y `S` son dos relaciones con el mismo esquema, 
+la intersección de `R` y `S` puede ser resuelta restando primero `S` de `R` para formar una relación
+`T` que consiste en todas aquellas tuplas en `R` pero no en `S`. Cuando se resta `T` de `R`,
+dejamos solo esas tuplas de `R` que están también en `S`.
 
 
 ÁLGEBRA RELACIONAL COMO IDIOMA RESTRICTOR
@@ -220,12 +244,25 @@ Por ejemplo, la intersección puede ser expresada en términos de conjuntos de d
 
 Hay dos maneras en las cuales podemos usar expresiones de algebra relacional para expresar restricción:
 
-   1. Si `R` es una expresión de algebra relacional, entonces `R = 0` es una restricción que dice “El valor de R debe ser vacio,” o equivalentemente “No hay tuplas en el resultado de `R`."
-   2. Si `R` y `S` son expresiones de algebra relacional, entonces `R \subset S` es una restricción que dice “Cada tupla en resultado de R debe estar también en resultado de S." Por supuesto, el resultado de `S` puede contener tuplas adicionales no producidas en `R`.
+   1. Si `R` es una expresión de algebra relacional, entonces `R = 0` es una restricción que dice 
+   “El valor de `R` debe ser vacio,” o equivalentemente “No hay tuplas en el resultado de `R`."
 
-Estas formas para expresar restricción son de hecho equivalentes en lo que pueden expresar, pero algunas veces uno de los dos es más clara o más sucinta. Es decir, la restricción `R \subset S` pudo también ser escrito `R - S = 0`. Para ver por qué, observe que si cada tupla en `R` está también en `S`, entonces seguramente `R - S` es vacío. A la inversa, si `R - S` no contiene tuplas, entonces cada tupla en `R` debe estar en `S` (o de lo que sería `R - S`).
+   2. Si `R` y `S` son expresiones de algebra relacional, entonces `R \subset S` es una restricción 
+   que dice “Cada tupla en resultado de `R` debe estar también en resultado de `S`." Por supuesto, el 
+   resultado de `S` puede contener tuplas adicionales no producidas en `R`.
 
-Por otra parte, una restricción de la primera forma, `R = 0`, también pudo haber sido escrita como `R \subset 0`. Técnicamente, `0` no es una expresión de algebra relacional, pero ya que hay expresiones que evalúan a `0`, tal como `R - R`, no hay nada malo en usar `0` como una expresión de algebra relacional. Tenga en cuenta que estas equivalencias sostienen se sostienen incluso si `R` y `S` son bolsas, dado que hacemos la interpretación convencional de `R \subset S`: cada tupla `t` aparece en `S` al menos tantas veces como aparece en `R`.
+Estas formas para expresar restricción son de hecho equivalentes en lo que pueden expresar, pero algunas 
+veces uno de los dos es más clara o más sucinta. Es decir, la restricción `R \subset S` pudo también ser 
+escrito `R - S = 0`. Para ver por qué, observe que si cada tupla en `R` está también en `S`, entonces 
+seguramente `R - S` es vacío. A la inversa, si `R - S` no contiene tuplas, entonces cada tupla en `R` 
+debe estar en `S` (o de lo que sería `R - S`).
+
+Por otra parte, una restricción de la primera forma, `R = 0`, también pudo haber sido escrita como 
+`R \subset 0`. Técnicamente, `0` no es una expresión de algebra relacional, pero ya que hay expresiones 
+que evalúan a `0`, tal como `R - R`, no hay nada malo en usar `0` como una expresión de algebra relacional. 
+Tenga en cuenta que estas equivalencias sostienen se sostienen incluso si `R` y `S` son bolsas, dado que
+hacemos la interpretación convencional de `R \subset S`: cada tupla `t` aparece en `S` al menos tantas 
+veces como aparece en `R`.
 
 
 EJERCICIOS PROPUESTOS

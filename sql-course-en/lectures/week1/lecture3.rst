@@ -1,446 +1,479 @@
-Lecture 3 - Relational Algebra: Select, Project, Join
+Lectura 3 - Álgebra Relacional: Select, Project, Join
 -------------------------------------------------------
 
-El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan
-sobre las relaciones (tablas) para obtener un resultado, el cual es otra relación.
+Basics of relational algebra
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: basics of relational algebra
+
+Algebra, in general, consists of operators and atomic operands. For instance, in the algebra of 
+arithmetic, the atomic operands are variables like r, and constants like 15. The operators are 
+the usual arithmetic ones:
+
+* Addition
+* Subtraction
+* Multiplication
+* Division.
+
+Any algebra allows us to build expressions by applying operators to atomic operands and/or 
+other expressions of the algebra. Usually, parentheses are needed to group operators and their 
+operands. For instance, in arithmetic we have expressions such a `(x + y) * z` ó `((x + 7)/(y - 3)) + x`.
+
+Relational algebra is another example of algebra. Its atomic operands are:
+
+	1.  Variables that stand for relations
+	2.  Constants, which are finite relations
+
+As we mentioned, in the classical relational algebra, all operands and the results of expressions are sets. 
+The operations of the traditional relational algebra fall into four broad classes:
+	1.  	The usual set operations - union, intersection, and difference - applied to relations.
+	2.  	Operations that remove parts of a relation: “selection” eliminates some rows (tuples), 
+	and “projection” eliminates some columns.
+	3.  	Operations that combine the tuples of two relations, including “Cartesian product”, 
+	which pairs the tuples of two relations in all possible ways and various kinds of “join” 
+	operations, which selectively pair tuples from two relations.
+	4.  	An operation called “renaming” that does not affect the tuples of a relation, but 
+	changes the relation schema, i.e., the names of the attribute sand/or the name of the relation itself.
+
+We shall generally refer to expressions of relational algebra as queries. While we don’t yet
+have the symbols needed to show many of the expressions of relational algebra, you should be
+familiar with the operations of group `(a)`; and thus recognize ( `R \cup S` ) as an example 
+of an expression of relational algebra. `R` and `S` are atomic operands standing for relations,
+whose sets of tuples are unknown. This query asks for the union of whatever tuples are in the
+relations named `R` and `S`.
+The three most common operations on sets are **union, intersection, and difference**, que se verán en la lectura 4.  
+
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
+
+.. CMA: El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan sobre las relaciones (Tables) para obtener un resultado, el cual es otra relación.
 
 
-Operaciones relacionales:
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Relational operators
+~~~~~~~~~~~~~~~~~~~~
 
 .. index:: relational operators
 
-Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
+Relational operators are used to filter, cut or join tables.
 
 SELECT
-********
+*******
 
-Este operador se aplica a una relación R produciendo una nueva relación con un
-subconjunto de tuplas de R. Las tuplas de la relación resultante son las que
-satisfacen una condición C sobre algún atributo de R. Es decir selecciona **filas**
-de una tabla según un cierto criterio C. C es una expresión condicional, similar
-a las declaraciones del tipo “if”, es “booleana” esto quiere decir que para cada
-tupla de R toma el valor Verdad o Falso.
+.. CMA: Que es una tupla?
 
-• Valores de atributos con NULL no cumplirán ninguna condición.
+This operator is applied to a relation `R` producing a new relation with a subset of tuples of `R`. 
+The tuples of the resulting relation are the ones that satisfy a condition `C` about some attribute
+of `R`. In other words, it selects rows of a table according to a certain criterion `C`. Es decir 
+selecciona **filas (tuplas)** de una Table según un cierto criterio `C`. 
+`C` is a conditional expression, similar to the statements of the type “if”, is “booleana” this means 
+that for each tuple of `R`, it takes the value of True or False.
+* Values of attributes with NULL will not meet any condition.
+* Each simple condition or clause C has the format
 
-• Cada condición simple o cláusula C tiene el formato:
+  .. math::
+    \text{<Atributte> <Comparator> <Atributte or Constant>}
 
-.. math::
-    \mbox{<Atributo> <Comparador> <Atributo|Cte.del Dominio>} \\
+donde:
+El campo `Comparator` es uno de los **operadores lógicos** que se muestran a contnuación:
 
-        \mbox{Donde:} \\
+	  .. math::
+	    \text{<Comparator>}  \in {\{=,\geq,>,<, \neq,\leq \}}
 
-    \mbox{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}\\
+	* `=` : equal sign.
 
-• Las cláusulas C pueden conectarse con los operadores lógicos:
+	* `\neq`: not-equal sign, en algunos libros este operador esta representado por el símbolo ``!=``.
+        
+        * `\geq`: mayor que or equal.
 
-**NOT**: El operador NOT denota una salida verdadera si la entrada es falsa, y una
-salida falsa si la entrada es verdadera.
+        * `>`: mayor que.
+ 
+        * `<`: less than.
 
-**AND**: El operador AND denota una salida verdadera si y sólo si sus entradas son
-verdaderas.
+	* `\leq`: less than or equal. 
 
-**OR**: El operador OR denota una salida verdadera si hay alguna de las entradas
-(o ambas) verdaderas.
+Los **operadores lógicos** que se utilizan, también llamados operadores relacionales, nos proporcionan 
+un resultado a partir de que se cumpla o no una cierta condición. Son símbolos que se usan para comparar
+dos valores. Si el resultado de la comparación es correcto la expresión considerada es verdadera, en caso 
+contrario es falsa. Por Example, 11>4 (once mayor que cuatro) es verdadera, se representa por el valor true
+del tipo básico boolean, en cambio, 11<4 (once menor que cuatro) es falsa se representa por el valor false. 
 
-**Notación en Álgebra Relacional**
+ The clauses C can be connected with the logical operators, que al igual que los anteriores que se usaban
+como Comparator (entre Atributtes o Atributte y constante), arrojan booleano (true o false) de resultado:
 
-Para representar SELECT en álgebra relacional se utiliza la letra griega sigma:
+  * **NOT**: The NOT operator denotes a true output if the input is false, and a false exit if input is true. 
+   Notation in Relational Algebra: 
 
-.. CMA: Que significa esta relación matemática?
+	.. math::
+		¬ \text{C1}
 
-.. math::
+  * **AND**:  The AND operator denotes true output, if and only if its inputs are true. 
+    Si C1 se cumple y C2 también se cumple, la salida seré verdadera.
+    Notation in Relational Algebra:
+  
+	.. math::
+		\text{C1} \wedge \text{C2}
+    
+  * **OR**:  The OR operator denotes a true output if there is any true input put (or both).
+   Si C1 y/o C2 es o son verdaderas, la expresión será verdadera.
+    Notation in Relational Algebra: 
 
-    \sigma_{c} \hspace{0.2cm} \mbox{R}
+	.. math:: 
+		\text{C1} \vee \text{C2}
 
-Se aplica la condición C a cada tupla de R. Si la condición es Verdad (true),
-dicha tupla pertenecerá al resultado
-y si es Falsa (false), dicha tupla no será seleccionada. El esquema de la relación
-resultante es el mismo esquema R, se muestran los atributos en el mismo orden que
-se usan en la tabla R.
+**Notation in Relational Algebra**
 
-Ejemplo 1
+To represent **SELECT** in relational algebra it is use the Greek **letter sigma**:
+:math:`\sigma`. Por lo tanto, si se utilizamos la notación
+:math:`\sigma_{c} \ \boldsymbol{R}` que quiere decir que se aplica la 
+condition `C` is applied to each tuple of `R`. If the condition is true, this 
+tuple will belong to the result and if it false, this tuple will not be selected. 
+The scheme of the resulting relationship is the same scheme `R`, shows the attributes
+in the same order as used in Table `R`. 
+
+Example 1
 ^^^^^^^^^
 
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Engineers Table} \\
 
    \begin{array}{|c|c|c|c|}
     \hline
-    \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)}\\
+    \textbf{id} & \textbf{name} & \textbf{age} & \textbf{workingYears}\\
     \hline
-    123 & \mbox{Leon} & 39 & 15 \\
+    123 & \text{Mark} & 39 & 15 \\
     \hline
-    234 & \mbox{Tomas} & 34 & 10 \\
+    234 & \text{Tomas} & 34 & 10 \\
     \hline
-    345 & \mbox{Jose} & 45 & 21 \\
+    345 & \text{Owen} & 45 & 21 \\
     \hline
-    143 & \mbox{Josefa} & 25 &  1 \\
+    143 & \text{Lexie} & 25 &  1 \\
     \hline
   \end{array}
 
-Seleccionar las tuplas de la tabla **Ingenieros** que cumplan con tener una edad
-mayor a 30 años:
+Select tuples from the **Engineers** table that comply an age greater than 30 years:
 
-**Respuesta**
-
-.. math::
-     \sigma_{edad>30} \hspace{0.2cm} \mbox{Ingenieros}
-
-
-Así quedaría la tabla:
+**Answer**
 
 .. math::
+     \sigma_{\text{age>30}} \hspace{0.2cm} \text{Engineers}
 
- \textbf{Tabla Ingenieros}
+.. image:: ../../../sql-course/src/select2.png
+   :align: center
+
+En la imagen se ve que selecciona solo las filas que cumplen con la condición que se pedía 
+(tener una age mayor a 30 años), la tupla de "Lexie" queda fuera de la selección por no 
+cumplir la condición (pues 25 < 30).
+So the table would look like this:
+
+.. math::
+
+ \textbf{Engineers Table} \\
+
    \begin{array}{|c|c|c|c|}
     \hline
-    \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)}\\
+    \textbf{id} & \textbf{name} & \textbf{age} & \textbf{workingYears}\\
     \hline
-    123 & \mbox{Leon} & 39 & 15 \\
+    123 & \text{Mark} & 39 & 15 \\
     \hline
-    234 & \mbox{Tomas} & 34 & 10 \\
+    234 & \text{Tomas} & 34 & 10 \\
     \hline
-    345 & \mbox{Jose} & 45 & 21 \\
+    345 & \text{Owen} & 45 & 21 \\
     \hline
   \end{array}
 
-Ejemplo 2
+Example 2
 ^^^^^^^^^
 
-Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años
-y que lleven menos de 16 años trabajando:
+Select from the **Engineer** table people who are over 30 years old and carrying less than 16 years working:
 
-**Respuesta**
-
-.. math::
-    \sigma_{edad >30 \wedge AT <16}  \hspace{0.3cm}  \mbox{Ingenieros}
-
-Así finalmente quedaría la tabla:
+**Answer**
 
 .. math::
+    \sigma_{(\text{age} >30 \wedge  <16)}  \ \text{Engineers}
 
- \textbf{Tabla Ingenieros}
+.. image:: ../../../sql-course/src/select3.png
+      :align: center
+
+Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. 
+Primero que la age sea mayor de 30 años, al igual que en el Example anterior, la tupla 
+de "Lexie" queda fuera de la selección. Luego de las tuplas que quedan se evalúa la 
+segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no 
+tengan x en alguna de las condiciones. 
+
+So the table would finally look like this:
+
+.. math::
+
+ \textbf{Engineers Table} \\
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)} \\
+  \textbf{id} & \textbf{name} & \textbf{age} & \textbf{workingYears} \\
   \hline
-  123 & \mbox{Leon} & 39 & 15 \\
+  123 & \text{Mark} & 39 & 15 \\
   \hline
-  234 & \mbox{Tomas} & 34 & 10 \\
+  234 & \text{Tomas} & 34 & 10 \\
   \hline
  \end{array}
 
 PROJECT
-********
+*******
 
-El operador PROJECT se utiliza para producir una nueva relación desde R. Esta
-nueva relación contiene sólo algunos de los atributos de R,
-es decir, realiza la selección de algunas de las **columnas** de una tabla R.
+The **PROJECT** operator is used to produce a new relation from `R`. This new relation 
+contains only some of the attributes of `R`, in other words, performs the selection 
+of some of the **columns** of a table `R`.
 
-**Notación en Álgebra Relacional**
+**Notation in Relational Algebra**
 
-PROJECT en Álgebra Relacional se representa por la letra griega **pi**:
+**PROJECT** in Relational Algebra is represented by the Greek **letter pi**:
 
 .. math::
-       \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \mbox{R}
+       \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \text{R}
 
-El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la
-relación R.
-Si `A_1,...,A_n` no incluye una llave (o clave), podrían producirse tuplas
-repetidas en el resultado, las cuales serán eliminadas.
+The result is a relation selecting only attributes `A1,...,An` of the relation `R`. 
+If `A1,...,An` does not include a key, it may cause repeated tuples in the result, 
+which will be removed.
 
-Ejemplo 1
+Example 1
 ^^^^^^^^^
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Engineers Table} \\
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{Edad} & \textbf{Años trabajados(AT)} \\
+  \textbf{id} & \textbf{name} & \textbf{age} & \textbf{workingYears} \\
   \hline
-  123 & \mbox{Leon} & 39 & 15 \\
+  123 & \text{Mark} & 39 & 15 \\
   \hline
-  234 & \mbox{Tomas} & 34 & 10 \\
+  234 & \text{Tomas} & 34 & 10 \\
   \hline
-  345 & \mbox{Jose} & 45 & 21 \\
+  345 & \text{Owen} & 45 & 21 \\
   \hline
-  143 & \mbox{Josefa} & 25 & 1 \\
+  143 & \text{Lexie} & 25 & 1 \\
   \hline
  \end{array}
 
-Escoger columnas de ID y nombre de la tabla de ingenieros:
+Select columns of ID and Name of the **Engineer** table:
 
-**Respuesta**
-
-.. math::
-           \pi \hspace{0.2cm}_{(ID,Nombre)} \hspace{0.3cm} \mbox{Ingenieros}
-
-La tabla finalmente queda como:
+**Answer**
 
 .. math::
+           \pi \hspace{0.2cm}_{(\text{id,name})} \hspace{0.3cm} \text{Engineers}
 
- \textbf{Tabla Ingenieros}
+So the table would finally look like this:
+
+.. math::
+
+ \textbf{Engineers Table}  \\
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} \\
+  \textbf{id} & \textbf{name} \\
   \hline
-  123 & \mbox{Leon} \\
+  123 & \text{Mark} \\
   \hline
-  234 & \mbox{Tomas} \\
+  234 & \text{Tomas} \\
   \hline
-  345 & \mbox{Jose} \\
+  345 & \text{Owen} \\
   \hline
-  143 & \mbox{Josefa} \\
+  143 & \text{Lexie} \\
   \hline
  \end{array}
 
-Ejemplo 2
+Example 2
 ^^^^^^^^^
 
-Seleccionar ID y nombre de los Ingenieros que tienen más de 30 años.
+Select id and name of the Engineers who have more than 30 years old.
 
-**Respuesta**
-
-.. math::
-       \pi \hspace{0.2cm} _{(\mbox{ID,Nombre})} (\sigma_{edad>30} \hspace{0.3cm} \mbox{Ingenieros})
-
-Finalmente la tabla queda de la siguiente manera:
+**Answer**
 
 .. math::
+       \pi \hspace{0.2cm} _{(\text{id,name})} (\sigma_{\text{age>30}} \hspace{0.3cm} \text{Engineers})
 
- \textbf{Tabla Ingenieros}
+.. image:: ../../../sql-course/src/prosel.png
+   :align: center
+
+Se aprecia que las tuplas que no cumplan con la condición de selección quedan fuera del resultado, 
+luego se realiza un PROJECT sobre las filas del resultado, separando solo las columnas que
+contienen los Atributtes id y name. Finally the table would look like this:
+
+.. math::
+
+ \textbf{Engineers Table} \\
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} \\
+  \textbf{id} & \textbf{name} \\
   \hline
-  123 & \mbox{Leon} \\
+  123 & \text{Mark} \\
   \hline
-  234 & \mbox{Tomas} \\
+  234 & \text{Tomas} \\
   \hline
-  345 & \mbox{Jose} \\
+  345 & \text{Owen} \\
   \hline
  \end{array}
 
-=============
-Cross-product
-=============
 
-En teoría de conjuntos, el producto cartesiano de dos conjuntos es una operación
-que resulta en otro conjunto cuyos elementos son todos los pares ordenados que
-pueden formarse tomando el primer elemento del par del primer conjunto,
-y el segundo elemento del segundo conjunto. En el Álgebra Relacional se mantiene
-esta idea con la diferencia que R y S son relaciones, entonces los miembros de R
-y S son tuplas, que generalmente consisten de más de un componente,
-cuyo resultado de la vinculación de una tupla de R con una tupla de S es una tupla
-más larga, con un componente para cada uno de los componentes de las tuplas
-constituyentes. Es decir Cross-product define una relación que es la concatenación
-de cada una de las filas de la relación R con cada una de las filas de la relación S.
+CROSS-PRODUCT
+*************
 
+In theory of sets, the **CROSS-PRODUCT** (or Cartesian product) of two sets is an operation that results 
+in another set whose elements are all the ordered pairs that can be formed by taking
+the first element of the pair of the first set, and the second element of the second
+set. In Relational Algebra this idea is maintain except that `R` and `S` are relations,
+so the members of `R` and `S` are tuples, which generally consist of more than one component,
+which result of the link with a tuple of `R` with a tuple of `S` is a longer tuple, with
+one component for each of the components of the constituent tuples. That is, **CROSS-PRODUCT**
+defines a relation that is the concatenation of each of the rows of the relation 
+`R` with each of the rows in the relation `S`.
 
-**Notación en Álgebra Relacional**
+**Notation in Relational Algebra**
 
-Para representar Cross-product en Álgebra Relacional se utiliza la siguiente
-terminología:
+To represent Cross-product in Relational Algebra, it is used the following terminology:
 
 .. math::
-    \mbox{R} \times \mbox{S}
+    \text{R} \times \text{S}
 
-Por convención para la sentencia anterior, los componentes de R preceden a los
-componentes de S en el orden de atributos para el resultado, creando así una nueva
-relación con todas las combinaciones posibles de tuplas de R y S.
-El número de tuplas de la nueva relación resultante es la multiplicación de la
-cantidad de tuplas de R por la cantidad de tuplas que tenga S (producto de ambos).
+By convention for the previous statement, the components of `R` precede `S` components in 
+the order of attributes for the result, creating a new relationship with all possible 
+combinations of tuples of `R` and `S`. The number of tuples of the resulting new relation 
+is the multiplication of the number of tuples of `R` by the number of tuples that have 
+`S` (product of both).
+If `R` and `S` have some common attributes, then we must invent new names for at least one 
+of each pair of identical attributes. To eliminate ambiguity of an attribute `a`, which 
+is in `R` and `S`, it is used `R.a` for the attribute of `R` and `S.a` for the attribute of `S`.
 
-Si R y S tienen algunos atributos en común, entonces se debe inventar nuevos
-nombres para al menos uno de cada par de atributos idénticos. Para eliminar la
-ambigüedad de un atributo A, que se encuentra en R y S, se usa R.A para el atributo
-de R y S.A para el atributo de S.
 
-Ejemplo 1
+Cabe mencionar que por notación que:
+
+.. math::
+    \text{R} \times \text{S} \neq  \text{S} \times \text{R}
+
+
+Example 1
+^^^^^^^^^
+.. image:: ../../../sql-course/src/CROSS-PRODUCT1.png
+   :align: center
+
+Con las Tables dadas realice el Cross-product de `R` con `S`:
+
+.. image:: ../../../sql-course/src/CROSS-PRODUCT2.png
+   :align: center
+
+Con azul se resaltan las tuplas que provienen de `R` que preseden y se mezclan con las de `S` resaltadas en verde.
+
+Con las Tables dadas realice el Cross-product de `S` con `R`:
+
+.. image:: ../../../sql-course/src/CROSS-PRODUCT3.png
+   :align: center
+
+Example 2
 ^^^^^^^^^
 
-.. math::
-
- \textbf{R}
- \begin{array}{|c|c|c|}
-  \hline
-  \textbf{A} & \textbf{B} & \textbf{D} \\
-  \hline
-  1 & 2 & 3 \\
-  \hline
-  4 & 5 & 6 \\
-  \hline
- \end{array}
-
- \textbf{S}
- \begin{array}{|c|c|}
-  \hline
-  \textbf{A} & \textbf{C} \\
-  \hline
-  7 & 5 \\
-  \hline
-  9 & 2 \\
-  \hline
-  3 & 4 \\
-  \hline
- \end{array}
-
- \textbf{R} \times \textbf{S}
-
-   \begin{array}{|c|c|c|c|c|}
-    \hline
-    \textbf{R.A} & \textbf{B} & \textbf{D} & \textbf{S.A} & \textbf{C} \\
-    \hline
-     1 & 2 & 3 & 7 & 5 \\
-    \hline
-     1 & 2 & 3 & 9 & 2 \\
-    \hline
-     1 & 2 & 3 & 3 & 4 \\
-    \hline
-     4 & 5 & 6 & 7 & 5 \\
-    \hline
-     4 & 5 & 6 & 3 & 4 \\
-    \hline
-     4 & 5 & 6 & 9 & 2 \\
-    \hline
-  \end{array}
-
- \textbf{S} \times \textbf{R}
-
- \begin{array}{|c|c|c|c|c|}
-  \hline
-  \textbf{S.A} & \textbf{C} & \textbf{R.A} & \textbf{B} & \textbf{D} \\
-  \hline
-  7 & 5 & 1 & 2 & 3 \\
-  \hline
-  7 & 5 & 4 & 5 & 6 \\
-  \hline
-  9 & 2 & 1 & 2 & 3 \\
-  \hline
-  9 & 2 & 4 & 5 & 6 \\
-  \hline
-  3 & 4 & 1 & 2 & 3 \\
-  \hline
-  3 & 4 & 4 & 5 & 6 \\
-  \hline
- \end{array}
-
-Ejemplo 2
-^^^^^^^^^
-
-Dada las siguientes tablas:
+Given the following tables:
 
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Engineers Table} \\
 
  \begin{array}{|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{D#} \\
+  \textbf{id} & \textbf{name} & \textbf{d#} \\
   \hline
-  123 & \mbox{Leon} & 39 \\
+  123 & \text{Mark} & 39 \\
   \hline
-  234 & \mbox{Tomas} & 34 \\
+  234 & \text{Tomas} & 34 \\
   \hline
-  143 & \mbox{Josefa} & 25 \\
+  143 & \text{Lexie} & 25 \\
   \hline
  \end{array}
 
- \textbf{Tabla Proyectos}
+ \textbf{Projects Table} \\
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{Proyecto} & \textbf{Duración} \\
+  \textbf{project} & \textbf{duration} \\
   \hline
-  \mbox{ACU0034} & 300 \\
+  \text{ACU0034} & 300 \\
   \hline
-  \mbox{USM7345} & 60 \\
+  \text{USM7345} & 60 \\
   \hline
  \end{array}
 
-Escriba la tabla resultante al realizar la siguiente operación:
+Write the resulting table to perform the following operation:
+
+.. math::
+    \textbf{Engineers} \times \textbf{Projects}
+
+**Answer**
 
 .. math::
 
-    \textbf{Ingenieros} \times \textbf{Proyectos}
-
-**Respuesta**
-
-.. math::
-
- \textbf{Ingenieros x Proyectos}
+ \textbf{Engineers} \times \textbf{Projects} \\
 
  \begin{array}{|c|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{D#} & \textbf{Proyecto} & \textbf{Duración} \\
+  \textbf{id} & \textbf{name} & \textbf{d#} & \textbf{project} & \textbf{duration} \\
   \hline
-  123 & \mbox{Leon} & 39 & \mbox{ACU0034} & 300 \\
+  123 & \text{Mark} & 39 & \text{ACU0034} & 300 \\
   \hline
-  123 & \mbox{Leon} & 39 & \mbox{USM7345} & 60 \\
+  123 & \text{Mark} & 39 & \text{USM7345} & 60 \\
   \hline
-  234 & \mbox{Tomas} & 34 & \mbox{ACU0034} & 300 \\
+  234 & \text{Tomas} & 34 & \text{ACU0034} & 300 \\
   \hline
-  234 & \mbox{Tomas} & 34 & \mbox{USM7345} & 60 \\
+  234 & \text{Tomas} & 34 & \text{USM7345} & 60 \\
   \hline
-  143 & \mbox{Josefa} & 25 & \mbox{ACU0034} & 300 \\
+  143 & \text{Lexie} & 25 & \text{ACU0034} & 300 \\
   \hline
-  143 & \mbox{Josefa} & 25 & \mbox{USM7345} & 60 \\
+  143 & \text{Lexie} & 25 & \text{USM7345} & 60 \\
   \hline
  \end{array}
 
 NATURALJOIN
 ************
 
-Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando
-sólo las tuplas que coinciden de alguna manera.  NATURALJOIN une sólo los pares de
-tuplas de R y S que sean comunes. Más precisamente una tupla r de R y una tupla s
-de S se emparejan correctamente si y sólo si r y s coinciden en cada uno de los
-valores de los atributos comunes, el resultado de la vinculación es una tupla,
-llamada “joined tuple”.  Entonces, al realizar NATURALJOIN se obtiene una relación
-con los atributos de ambas relaciones y se obtiene combinando las tuplas de ambas
-relaciones que tengan el mismo valor en los atributos comunes.
+This operator is used when there is the need to link relations linking only tuples 
+that match somehow. **NATURALJOIN** joins only the pairs of tuples of `R` and `S` that are 
+common. More precisely a tuple `r` of `R` and a tuple `s` of `S` are matched correctly if 
+and only if `r` and `s` coincide in each of the values of the common attributes, the 
+result of the linking is a tuple, called “joined tuple.” So when performing 
+**NATURALJOIN** it is obtained a relation with the attributes of both relations that 
+have the same value in the common attributes.
 
-**Notación en Álgebra Relacional**
+**Notation in Relational Algebra**
 
-Para denotar NATURALJOIN se utiliza la siguiente simbología:
+PFor denoting **NATURALJOIN** it is used the following symbols:
 
-.. CMA: Que es esto????? simbologia
 .. math::
-   \mbox{R} \rhd \hspace{-0.1cm} \lhd \mbox{S}
+   \text{R} \rhd \hspace{-0.1cm} \lhd \text{S}
 
-**Equivalencia con operadores básicos**
+**Equivalence with basic operators**
 
-NATURALJOIN puede ser escrito en términos de algunos operadores ya vistos,
-la equivalencia es la siguiente:
+NATURALJOIN can be written in terms of some operators already seen, the equivalence is:
 
-.. CMA: Que es esto????? operadores que fueron explicados anteriormente y son equivalentes
 .. math::
    R \rhd \hspace{-0.1cm} \lhd S=  \pi \hspace{0.2cm} _{R.A_1,...,R.A_n,  S.A_1,...,S.A_n} (\sigma_{R.A_1=S.A_1 \wedge ... \wedge R.A_n=S.A_n  }\hspace{0.3cm} (R \times S ))
 
 **Método**
 
-   1. Se realiza el producto cartesiano `R x S`
-   2. Se seleccionan aquellas filas del producto cartesiano para las que los
-      atributos comunes tengan el mismo valor
-   3. Se elimina del resultado una ocurrencia (columna) de cada uno de los atributos
-      comunes
+    1. Perform the CROSS-PRODUCT `R \times S`.
+    2. Select those rows of the Cartesian product for which the common attributes have the same value.
+    3. Delete from the result an occurrence (column) of each of the common attributes.
 
-Ejemplo 1
+
+Example 1
 ^^^^^^^^^
 
 .. math::
 
- \textbf{R}
+ \textbf{R}  \\
+
  \begin{array}{|c|c|c|}
   \hline
-  \textbf{A} & \textbf{B} & \textbf{C} \\
+  \textbf{a} & \textbf{b} & \textbf{c} \\
   \hline
   1 & 2 & 3 \\
   \hline
@@ -448,11 +481,11 @@ Ejemplo 1
   \hline
  \end{array}
 
- \textbf{S}
+ \textbf{S} \\
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{C} & \textbf{D} \\
+  \textbf{c} & \textbf{d} \\
   \hline
   7 & 5 \\
   \hline
@@ -462,11 +495,19 @@ Ejemplo 1
   \hline
  \end{array}
 
- \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S}
+Con las Tables dadas realice el NaturalJoin de `R` y `S`:
+
+.. image:: ../../../sql-course/src/NATURALJOIN.png
+    :align: center
+
+El Atributte que tienen en común `R` y `S` es el Atributte `C`, entonces las tuplas se unen donde `C` tiene el mismo valor en `R` y `S`
+
+.. math::
+ \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} \\
+  \textbf{a} & \textbf{b} & \textbf{c} & \textbf{d} \\
   \hline
   1 & 2 & 3 & 4 \\
   \hline
@@ -474,56 +515,56 @@ Ejemplo 1
   \hline
  \end{array}
 
-Ejemplo 2
+Example 2
 ^^^^^^^^^
 
-Realizar NATURALJOIN a las siguientes tablas:
+Perform **NATURALJOIN** to the following tables:
 
 .. math::
 
- \textbf{Tabla Ingenieros}
+ \textbf{Engineers Table} \\
 
  \begin{array}{|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{D#} \\
+  \textbf{id} & \textbf{name} & \textbf{d#} \\
   \hline
-  123 & \mbox{Leon} & 39 \\
+  123 & \text{Mark} & 39 \\
   \hline
-  234 & \mbox{Tomas} & 34\\
+  234 & \text{Tomas} & 34\\
   \hline
-  143 & \mbox{Josefa} & 25 \\
+  143 & \text{Lexie} & 25 \\
   \hline
-  090 & \mbox{Maria} & 34 \\
+  090 & \text{Maria} & 34 \\
   \hline
  \end{array}
 
- \textbf{Tabla Proyectos}
+ \textbf{Projects Table} \\
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{D#} & \textbf{Proyecto}\\
+  \textbf{d#} & \textbf{project}\\
   \hline
-  39 & \mbox{ACU0034} \\
+  39 & \text{ACU0034} \\
   \hline
-  34 & \mbox{USM7345} \\
+  34 & \text{USM7345} \\
   \hline
  \end{array}
 
-**Respuesta**
+**Answer**
 
 .. math::
 
- \textbf{Ingenieros} \rhd \hspace{-0.1cm} \lhd \textbf{Proyectos}
+ \textbf{Engineers} \rhd \hspace{-0.1cm} \lhd \textbf{Projects} \\
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{Nombre} & \textbf{D#} & \textbf{Proyecto} \\
+  \textbf{id} & \textbf{name} & \textbf{d#} & \textbf{project} \\
   \hline
-  123 & \mbox{Leon} & 39 & \mbox{ACU0034} \\
+  123 & \text{Mark} & 39 & \text{ACU0034} \\
   \hline
-  234 & \mbox{Tomas} & 34 & \mbox{USM7345} \\
+  234 & \text{Tomas} & 34 & \text{USM7345} \\
   \hline
-  090 & \mbox{Maria} & 34 & \mbox{USM7345} \\
+  090 & \text{Maria} & 34 & \text{USM7345} \\
   \hline
  \end{array}
 
@@ -532,52 +573,51 @@ Realizar NATURALJOIN a las siguientes tablas:
 THETAJOIN
 **********
 
-Define una relación que contiene las tuplas que satisfacen el predicado C en el
-producto cartesiano de `R x S`.
-Conecta relaciones cuando los valores de determinadas columnas tienen una
-interrelación específica. La condición C es de la forma `R.ai`
-<operador_de_comparación> `S.bi`, esta condición es del mismo tipo que se utiliza
-SELECT.
-El predicado no tiene por que definirse sobre atributos comunes.
-El término “join” suele referirse a THETAJOIN.
+It defines a relation containing tuples that satisfy the predicate C in the 
+Cartesian product(CROSS-PRODUCT) of `R \times S`. It connects relations when 
+the values ​​of certain columns have a specific interrelation. The condition `C` 
+is of the form `R.ai` <operator_of_comparation> `S.bi`, this condition is of the
+same type used SELECT. The predicate does not have to be defined on common 
+attributes. The term “join” usually refers to **THETHAJOIN**.
 
-**Notación en Álgebra Relacional**
 
-La notación de THETAJOIN es el mismo símbolo que se utiliza para NATURALJOIN,
-la diferencia radica en que THETAJOIN lleva el predicado C:
+**Notation in Relational Algebra**
+
+The notation of the **THETAJOIN** is the same symbol used for NATURALJOIN; the difference 
+is that **THETHAJOIN** carries the predicate `C`:
+
 
 .. math::
-    \mbox{R} \rhd \hspace{-0.1cm} \lhd_C \mbox{S} \\
+    \text{R} \rhd \hspace{-0.1cm} \lhd_C \text{S} \\
 
-    \mbox{C = <Atributo> <Comparador> <Atributo o Constante del Dominio>} \\
+    \text{C = <Atributte> <Comparator> <Atributte o Constant>} \\
 
-    \mbox{Donde:}\\
+    \text{Donde:}\\
 
-    \mbox{<Comparador>} \in {\{=,\geq,>,<, \neq,\leq \}}\\
+    \text{<Comparator>} \in {\{=,\geq,>,<, \neq,\leq \}}\\
 
-**Equivalencia con operadores básicos**
+**Equivalence with basic operators**
 
-Al igual NATURALJOIN, THETAJOIN puede ser escrito en función de los operadores
-vistos anteriormente:
+As NATURALJOIN, THETAJOIN can be written in function of previously viewed operators:
 
 .. math::
    R \rhd \hspace{-0.1cm} \lhd_C S= \sigma_{F} (R \times S)
 
-**Método**
+**Method**
 
-   1. Se forma el producto cartesiano `R` x `S`.
-   2. Se selecciona, en el producto, solo la tupla que cumplan la condición `C`.
+   1. Form the CROSS-PRODUCT `R \times S`.
+   2. Select, in the product, only the tuple that satisfy the condition `C`.
 
-Ejemplo 1
+Example 1
 ^^^^^^^^^
 
 .. math::
 
- \textbf{R}
+ \textbf{R} \\
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} \\
+  \textbf{a} & \textbf{b} & \textbf{c} & \textbf{d} \\
   \hline
   1 & 3 & 5 & 7 \\
   \hline
@@ -587,11 +627,11 @@ Ejemplo 1
   \hline
  \end{array}
 
- \textbf{S}
+ \textbf{S} \\
 
  \begin{array}{|c|c|c|}
   \hline
-  \textbf{A} & \textbf{C} & \textbf{E} \\
+  \textbf{a} & \textbf{c} & \textbf{e} \\
   \hline
   1 & 5 & 2 \\
   \hline
@@ -603,18 +643,39 @@ Ejemplo 1
   \hline
  \end{array}
 
-.. math::
-   R \rhd \hspace{-0.1cm} \lhd_(A >= E) S 
-
-**Respuesta**
+Escriba la Table resultante al realizar la siguiente operación:
 
 .. math::
+   R \rhd \hspace{-0.1cm} \lhd_{(A >= E)} S 
 
- \textbf{S}
+**Answer**
+
+.. image:: ../../../sql-course/src/THETAJOIN1.png
+    :align: center
+
+Se compara el Atributte `A` de la primera fila de `R` con cada uno de los valores del Atributte 
+`E` de la Table `S`. En este caso ninguna de las comparaciones devuelve el valor verdadero (true). 
+
+.. image:: ../../../sql-course/src/THETAJOIN2.png
+    :align: center
+
+Luego se compara el Atributte `A` de la segunda fila de `R` con cada uno de los valores del Atributte 
+`E` de la Table `S`. En este caso 2 comparaciones devuelven el valor verdadero (true), por lo que en 
+la relación de resultado quedará la segunda fila de `R` mezclada con la primera y tercera fila de `S`. 
+
+.. image:: ../../../sql-course/src/THETAJOIN3.png
+    :align: center
+
+De igual forma ahora se compara el valor de `A` de la tercera tupla de `R`, nuevamente 2 tuplas de `S` 
+cumplen con la condición.
+
+.. math::
+
+ \textbf{S} \\
 
  \begin{array}{|c|c|c|c|c|c|c|}
   \hline
-  \textbf{R.A} & \textbf{B} & \textbf{R.C} & \textbf{D} & \textbf{S.A} & \textbf{S.C} & \textbf{E} \\
+  \textbf{R.a} & \textbf{b} & \textbf{R.c} & \textbf{d} & \textbf{S.a} & \textbf{S.c} & \textbf{e} \\
   \hline
   3 & 2 & 9 & 1 & 1 & 5 & 2 \\
   \hline
@@ -626,35 +687,39 @@ Ejemplo 1
   \hline
  \end{array}
 
-Ejemplo 2
+Example 2
 ^^^^^^^^^
 
-Con el esquema conceptual siguiente, hallar los nombres de los directores de
-cada departamento:
+With the following conceptual scheme, find the names of the directors of each department:
 
-Dpto (NumDpto, Nombre, NIFDirector, Fecha_inicio)
+Department (numDpto, name, nIFDirector,  dateStart)
 
-Empleado (NIF, Nombre, Direccion, Salario, Dpto, NIFSupervisor)
+Employee (nIF, name, address, salary, dpto, nIFSupervisor)
+
+**Answer**
 
 .. math::
-    \pi_{(Dpto.Nombre,Empleado.Nombre)} (Dpto \rhd \hspace{-0.1cm} \lhd_{NIFDirector=NIF} \mbox{Empleado})
+    \pi_{(\text{Department.name,Employee.name})} (\text{Department} \rhd \hspace{-0.1cm} \lhd_{\text{nIFDirector=nIF}} \text{Employee})
 
-• Tuplas con Null en los “Atributos de la Reunión”, no se incluyen en el resultado.
+* Tuples with Null in the "Attributes of the Meeting", are not included in the result.
+
 
 EXERCISES
-**********
+***********
 
-Considere la siguiente base de datos:
+Consider the following databases:
 
-   1. Person ( name, age, gender ) : name is a key
-   2. Frequents ( name, pizzeria ) : (name, pizzeria) is a key
-   3. Eats ( name, pizza ) : (name, pizza) is a key
-   4. Serves ( pizzeria, pizza, price ): (pizzeria, pizza) is a key
+1.  Person ( name, age, gender ) : name is a key.
+
+2.  Frequents ( name, pizzeria ) : (name, pizzeria) is a key.
+
+3.  Eats ( name, pizza ) : (name, pizza) is a key.
+
+4.  Serves ( pizzeria, pizza, price ): (pizzeria, pizza) is a key.
 
 Write relational algebra expressions for the following five queries.
 
-  * Seleccionar a las personas que comen pizzas con extra queso.
-  * Seleccionar a las personas que comen pizzas con extra queso y frecuentan la
-    pizzería X.
+*  Select those people who eat pizzas with extra cheese.
 
+*  Select those people who eat pizzas with extra cheese and frequent the pizzeria X.
 
