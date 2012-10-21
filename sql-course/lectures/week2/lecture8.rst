@@ -15,34 +15,37 @@ Consideremos la siguiente situación ::
         Student (sID, sName, GPA, sizeHS)
         Apply (sID, cName, major, decision)
 
-la cual es posible replicar mediante
+estas tablas College, Student, Apply las podemos crear de la siguiente manera:
 
 .. code-block:: sql
    
-    CREATE TABLE College
-        (
-     id int auto_increment primary key, 
-     cName varchar(20), 
-     state varchar(30),
-     enrollment varchar(40)
-    );
+    CREATE TABLE College(id serial, cName VARCHAR(20), state VARCHAR(30), enrollment VARCHAR(40), PRIMARY KEY(id));
 
-    CREATE TABLE Student
-        (
-     sID int auto_increment primary key, 
-     sName varchar(20), 
-     GPA integer,
-     sizeHS varchar(40)
-    );
+Recibiremos como respuesta lo siguiente::
 
-   CREATE TABLE Apply
-        (
-     sID int auto_increment primary key, 
-     cName varchar(20), 
-     major varchar(30),
-     decision varchar(40)
-    );
+ NOTICE:  CREATE TABLE creará una secuencia implícita «college_id_seq» para la columna serial «college.id»
+ NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «college_pkey» para la tabla «college»
+ CREATE TABLE
 
+.. code-block:: sql
+
+    CREATE TABLE Student(sID serial, sName VARCHAR(20), GPA INTEGER, sizeHS VARCHAR(40), PRIMARY kEY(sID));
+
+Recibiremos como respuesta lo siguiente::
+
+ NOTICE:  CREATE TABLE creará una secuencia implícita «student_sid_seq» para la columna serial «student.sid»
+ NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «student_pkey» para la tabla «student»
+ CREATE TABLE
+
+.. code-block:: sql
+
+   CREATE TABLE Apply(sID serial, cName VARCHAR(20), major VARCHAR(30), decision VARCHAR(40), PRIMARY kEY(sID));
+
+Recibiremos como respuesta lo siguiente::
+
+ NOTICE:  CREATE TABLE creará una secuencia implícita «apply_sid_seq» para la columna serial «apply.sid»
+ NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «apply_pkey» para la tabla «apply»
+ CREATE TABLE
 
 .. joao: agregar el contexto del ejercicio y los INSERT INTO con valores utiles
 
@@ -50,17 +53,13 @@ Ahora consideremos la siguente consulta
 
 .. code-block:: sql
         
-        SELECT Student.sID, sName, Apply.cName, GPA
-        FROM Student, Apply
-        WHERE Apply.sID = Student.sID;
+ SELECT Student.sID, sName, Apply.cName, GPA FROM Student, Apply WHERE Apply.sID = Student.sID;
 
 es posible realizarla como
 
 .. code-block:: sql
 
-        SELECT S.sID, sName, A.cName, GPA
-        FROM Student S, Apply A
-        WHERE A.sID = S.sID;
+ SELECT S.sID, sName, A.cName, GPA FROM Student S, Apply A WHERE A.sID = S.sID;
 
 En cualquier caso la salida será la misma.
 
