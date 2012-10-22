@@ -11,10 +11,10 @@ en el álgebra de la aritmética, los operandos atómicos son variable como `r`,
 y constantes como 15. 
 Los operadores son los usuales en la aritmética:
 
-  * Suma
-  * Resta
-  * Multiplicación
-  * División.
+ * Suma
+ * Resta
+ * Multiplicación
+ * División.
 
 Cualquier álgebra nos permite construir expresiones mediante la aplicación de 
 operadores a operandos atómicos y/o otras expresiones del álgebra. En general, 
@@ -23,23 +23,17 @@ en aritmética tenemos expresiones tales como `(x + y) * z` ó `((x + 7)/(y - 3)
 
 El Álgebra Relacional es otro ejemplo del álgebra. Sus operandos atómicos son: 
 
-   1. Variables que representan relaciones.
-   2. Constantes que son relaciones finitas.
+ 1. Variables que representan relaciones.
+ 2. Constantes que son relaciones finitas.
 
 Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus resultados 
 de expresiones son conjuntos. Los operadores del álgebra relacional tradicional se divide 
 en cuatro grandes categorías: 
 
-  a. Los conjuntos habituales de operaciones *unión, intersección, y diferencia* 
-  se aplica a las relaciones. 
-  b. Las operaciones que eliminan parte de una relación: “selección” elimina 
-  algunas filas (tuplas), y “proyección” elimina algunas columnas.
-  c. Las operaciones que combinan las tuplas de dos relaciones, como el “producto cartesiano,” 
-  que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de 
-  operadores “unión”, los cuales forman parejas de tuplas de dos relaciones selectivamente.
-  d. Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que 
-  cambia el esquema de relación, es decir, lo nombres de los atributos y/o los 
-  nombres de la relación misma.
+ a. Los conjuntos habituales de operaciones *unión, intersección, y diferencia* se aplica a las relaciones. 
+ b. Las operaciones que eliminan parte de una relación: “selección” elimina algunas filas (tuplas), y “proyección” elimina algunas columnas.
+ c. Las operaciones que combinan las tuplas de dos relaciones, como el “producto cartesiano”, que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de  operadores “unión”, los cuales forman parejas de tuplas de dos relaciones selectivamente.
+ d. Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que cambia el esquema de relación, es decir, lo nombres de los atributos y/o los nombres de la relación misma.
 
 Debemos por lo general referirnos a las expresiones del álgebra relacional como consultas. 
 A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones 

@@ -10,10 +10,10 @@ Algebra, in general, consists of operators and atomic operands. For instance, in
 arithmetic, the atomic operands are variables like r, and constants like 15. The operators are 
 the usual arithmetic ones:
 
-* Addition
-* Subtraction
-* Multiplication
-* Division.
+ * Addition
+ * Subtraction
+ * Multiplication
+ * Division.
 
 Any algebra allows us to build expressions by applying operators to atomic operands and/or 
 other expressions of the algebra. Usually, parentheses are needed to group operators and their 
@@ -21,19 +21,16 @@ operands. For instance, in arithmetic we have expressions such a `(x + y) * z` �
 
 Relational algebra is another example of algebra. Its atomic operands are:
 
-	1.  Variables that stand for relations
-	2.  Constants, which are finite relations
+ 1.  Variables that stand for relations
+ 2.  Constants, which are finite relations
 
 As we mentioned, in the classical relational algebra, all operands and the results of expressions are sets. 
 The operations of the traditional relational algebra fall into four broad classes:
-	1.  	The usual set operations - union, intersection, and difference - applied to relations.
-	2.  	Operations that remove parts of a relation: “selection” eliminates some rows (tuples), 
-	and “projection” eliminates some columns.
-	3.  	Operations that combine the tuples of two relations, including “Cartesian product”, 
-	which pairs the tuples of two relations in all possible ways and various kinds of “join” 
-	operations, which selectively pair tuples from two relations.
-	4.  	An operation called “renaming” that does not affect the tuples of a relation, but 
-	changes the relation schema, i.e., the names of the attribute sand/or the name of the relation itself.
+
+ 1. The usual set operations - union, intersection, and difference - applied to relations.
+ 2. Operations that remove parts of a relation: “selection” eliminates some rows (tuples), and “projection” eliminates some columns.
+ 3. Operations that combine the tuples of two relations, including “Cartesian product”, which pairs the tuples of two relations in all possible ways and various kinds of “join” operations, which selectively pair tuples from two relations.
+ 4. An operation called “renaming” that does not affect the tuples of a relation, but changes the relation schema, i.e., the names of the attribute sand/or the name of the relation itself.
 
 We shall generally refer to expressions of relational algebra as queries. While we don’t yet
 have the symbols needed to show many of the expressions of relational algebra, you should be
@@ -47,9 +44,6 @@ The three most common operations on sets are **union, intersection, and differen
    :language: sql
    :class: highlight
 
-.. CMA: El Álgebra Relacional se define como un conjunto de operaciones que se ejecutan sobre las relaciones (Tables) para obtener un resultado, el cual es otra relación.
-
-
 Relational operators
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -60,8 +54,6 @@ Relational operators are used to filter, cut or join tables.
 SELECT
 *******
 
-.. CMA: Que es una tupla?
-
 This operator is applied to a relation `R` producing a new relation with a subset of tuples of `R`. 
 The tuples of the resulting relation are the ones that satisfy a condition `C` about some attribute
 of `R`. In other words, it selects rows of a table according to a certain criterion `C`. Es decir 
@@ -71,26 +63,27 @@ that for each tuple of `R`, it takes the value of True or False.
 * Values of attributes with NULL will not meet any condition.
 * Each simple condition or clause C has the format
 
-  .. math::
-    \text{<Atributte> <Comparator> <Atributte or Constant>}
+.. math::
+
+   \text{<Atributte> <Comparator> <Atributte or Constant>}
 
 donde:
 El campo `Comparator` es uno de los **operadores lógicos** que se muestran a contnuación:
 
-	  .. math::
-	    \text{<Comparator>}  \in {\{=,\geq,>,<, \neq,\leq \}}
+.. math::
+    \text{<Comparator>}  \in {\{=,\geq,>,<, \neq,\leq \}}
 
-	* `=` : equal sign.
+* `=` : equal sign.
 
-	* `\neq`: not-equal sign, en algunos libros este operador esta representado por el símbolo ``!=``.
+* `\neq`: not-equal sign, en algunos libros este operador esta representado por el símbolo ``!=``.
         
-        * `\geq`: mayor que or equal.
+* `\geq`: mayor que or equal.
 
-        * `>`: mayor que.
+* `>`: mayor que.
  
-        * `<`: less than.
+* `<`: less than.
 
-	* `\leq`: less than or equal. 
+* `\leq`: less than or equal.
 
 Los **operadores lógicos** que se utilizan, también llamados operadores relacionales, nos proporcionan 
 un resultado a partir de que se cumpla o no una cierta condición. Son símbolos que se usan para comparar
@@ -98,27 +91,28 @@ dos valores. Si el resultado de la comparación es correcto la expresión consid
 contrario es falsa. Por Example, 11>4 (once mayor que cuatro) es verdadera, se representa por el valor true
 del tipo básico boolean, en cambio, 11<4 (once menor que cuatro) es falsa se representa por el valor false. 
 
- The clauses C can be connected with the logical operators, que al igual que los anteriores que se usaban
-como Comparator (entre Atributtes o Atributte y constante), arrojan booleano (true o false) de resultado:
+The clauses C can be connected with the logical operators, que al igual que los anteriores que se usaban como Comparator (entre Atributtes o Atributte y constante), arrojan booleano (true o false) de resultado:
 
-  * **NOT**: The NOT operator denotes a true output if the input is false, and a false exit if input is true. 
-   Notation in Relational Algebra: 
-
-	.. math::
-		¬ \text{C1}
-
-  * **AND**:  The AND operator denotes true output, if and only if its inputs are true. 
-    Si C1 se cumple y C2 también se cumple, la salida seré verdadera.
-    Notation in Relational Algebra:
-  
-	.. math::
-		\text{C1} \wedge \text{C2}
-    
-  * **OR**:  The OR operator denotes a true output if there is any true input put (or both).
-   Si C1 y/o C2 es o son verdaderas, la expresión será verdadera.
+* **NOT**: The NOT operator denotes a true output if the input is false, and a false exit if input is true. 
     Notation in Relational Algebra: 
 
-	.. math:: 
+.. math::
+		¬ \text{C1}
+
+* **AND**:  The AND operator denotes true output, if and only if its inputs are true. 
+    Si C1 se cumple y C2 también se cumple, la salida seré verdadera.
+
+    Notation in Relational Algebra:
+  
+.. math::
+		\text{C1} \wedge \text{C2}
+    
+* **OR**:  The OR operator denotes a true output if there is any true input put (or both).
+   Si C1 y/o C2 es o son verdaderas, la expresión será verdadera.
+
+   Notation in Relational Algebra: 
+
+.. math:: 
 		\text{C1} \vee \text{C2}
 
 **Notation in Relational Algebra**

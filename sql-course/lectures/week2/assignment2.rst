@@ -1,19 +1,19 @@
-Tarea2
-============
+Tarea 2
+=======
 
--------------------
+-------------
 Base de datos
--------------------
+-------------
 
 Se tiene una página que maneja base de datos de series siguiente esquema:
 
-  * Serie: (**sID**, titulo, creador, año, audiencia, genero, temporadas)
+ * Serie: (**sID**, titulo, creador, año, audiencia, genero, temporadas)
 La tabla **Serie** posee **sID** que es un id único y es primary key de la relación, además se almacena el **titulo** de la serie, el **creador**, el **año** de estreno de la primera temporada,  la **audiencia** promedio anual, genero de la serie y finalmente el atributo **temporadas** contiene el números de temporadas emitidas hasta el 2012. 
-
-  * Evaluador: (**eID**, nombre)
+  
+ * Evaluador: (**eID**, nombre)
 El evaluador es quien califica la serie, la relación **Evaluador** tiene un atributo **eID** (id único) que es primary key y tiene otro atributo **nombre** que almacena el nombre del evaluador. 
 
-  * Calificacion: (eID,sID,nota,fecha) 
+ * Calificacion: (eID,sID,nota,fecha)
 Luego que el evaluador califica una serie se guarda en la tabla **Calificacion** que tiene dos claves foráneas **eID** que es el id del evaluador y **sID** que es el id de algunas de las series almacenadas.  También contiene la **nota** puesta por el evaluador y la **fecha** que calificó dicha serie.
 
 .. math::
@@ -24,23 +24,23 @@ Luego que el evaluador califica una serie se guarda en la tabla **Calificacion**
         \hline
 	\textbf{sID} & \textbf{titulo} & \textbf{creador} & \textbf{año} & \textbf{audiencia} & \textbf{genero}& \textbf{temporadas} \\	
 	\hline
-	101 &	The Big Bang Theory & Bill Prady & 2007 & 4599 &	comedia	& 6 \\
+	101 & \text{The Big Bang Theory} & \text{Bill Prady} & 2007 & 4599 & \text{Comedia} & 6 \\
 	\hline
-	102	& Grey’s Anatomy & Shonda Rhimes & 2005 & 4035 & drama	& 9 \\
+	102 & \text{Grey’s Anatomy} & \text{Shonda Rhimes} & 2005 & 4035 & \text{Drama} & 9 \\
 	\hline
-	103	& Dexter &	James Manos	& 2006 &	5024	& crimen &	7 \\
+	103 & \text{Dexter} & \text{James Manos} & 2006 & 5024	& \text{Crimen} & 7 \\
 	\hline
-	104	& Bones &	Hart Hanson & 2005 &	3061	& crimen &	8 \\
+	104 & \text{Bones} & \text{Hart Hanson} & 2005 & 3061 & \text{Crimen} &	8 \\
 	\hline
-	105	& Glee &	Ryan Murphy & 2009 &	3967	& musical &	4 \\
+	105 & \text{Glee} & \text{Ryan Murphy} & 2009 &	3967 & \text{Musical} &	4 \\
 	\hline
-	106	& The Walking Dead &	Frank Darabont  & 2010 &	3478 &	horror	& 3 \\
+	106 & \text{The Walking Dead} &	\text{Frank Darabont}  & 2010 &	3478 &	\text{Horror} & 3 \\
 	\hline
-	107	& Lost	& Jeffrey Lieber & 2004 &	4932	& fantasia	& 6 \\
+	107 & \text{Lost} & \text{Jeffrey Lieber} & 2004 & 4932	& \text{Fantasia} & 6 \\
 	\hline
-	108	& Spartacus &	Steven S. DeKnight  & 2010	& 3851 &	accion	& 2 \\
+	108 & \text{Spartacus} & \text{Steven S. DeKnight} & 2010 & 3851 &	\text{Accion} & 2 \\
 	\hline
-	109	& The Simpsons& Matt Groening & 1989 & 5582	& comedia	& 25 \\
+	109 & \text{The Simpsons} & \text{Matt Groening} & 1989 & 5582	& \text{Comedia} & 25 \\
 	\hline
 	 \end{array}
 
@@ -52,21 +52,21 @@ Luego que el evaluador califica una serie se guarda en la tabla **Calificacion**
 	\hline
 	\textbf{eID} & \textbf{nombre}  \\
 	\hline
-	201	& Nancy Cartwright \\
+	201	& \text{Nancy Cartwright} \\
 	\hline
-	202	& Harry Shearer \\
+	202	& \text{Harry Shearer} \\
 	\hline
-	203	& Frank Welker \\
+	203	& \text{Frank Welker} \\
 	\hline
-	204	& Jon Lovitz \\
+	204	& \text{Jon Lovitz} \\
 	\hline
-	205	& Charles Napier \\
+	205	& \text{Charles Napier} \\
 	\hline
-	206	& Glenn Close \\
+	206	& \text{Glenn Close} \\
 	\hline
-	207	& Stacy Keach \\
+	207	& \text{Stacy Keach} \\
 	\hline
-	208	& David Crosby \\
+	208	& \text{David Crosby} \\
 	\hline
 	\end{array}
 
@@ -127,9 +127,9 @@ Resultado esperado de la consulta:
 	\hline
 	\textbf{titulo}  \\
 	\hline
-	The Big Bang Theory \\
+	\text{The Big Bang Theory} \\
 	\hline
-	 The Simpsons\\
+	\text{The Simpsons} \\
 	\hline
 	\end{array}
 

@@ -49,14 +49,14 @@ For example: students, employees, airplanes, cars, accommodation, etc.
 An entity results in a table in the DB.
 
 .. image:: ../../../sql-course/src/entidad.jpg
+   :align: center
 
 These entities are composed of several attributes, which come to be their properties. 
 For example: student’s entity shall have the attributes name, Social Security Number, 
 nationality, date of birth, etc.
 
-
-.. image::../../../sql-course/src/entidad.jpg
 .. image:: ../../../sql-course/src/atributo.jpg
+   :align: center
 
 The attributes are also called columns in the terminology of DB. 
 Among the attributes will be one or a set of them that is not repeated; 
@@ -91,6 +91,7 @@ associated one on one. (e.g. the entity MAN, the entity WOMAN and
 between then the relationship MARRIAGE).
 
 .. image:: ../../../sql-course/src/1a1.jpg
+   :align: center
 
 *Relations 1-N*:  an occurrence of an entity it is associated with many (n) 
 from another (e.g. the entity COMPANY, the entity EMPLOYEE and the relationship 
@@ -98,13 +99,14 @@ between them WORK-IN).
 
 
 .. image:: ../../../sql-course/src/1aN.jpg
+   :align: center
 
 *Relations M-N*: Every occurrence, in any of the two entities in the relation, 
 can be associated with many (n) of the other and vice versa (e.g. the entity 
 STUDENT, the entity COMPANY and the relationship between them REGISTRATION).
 
 .. image:: ../../../sql-course/src/MaN.jpg
-
+   :align: center
 
 Relational Database
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -205,10 +207,6 @@ empleado, quien es su jefe.
 Ejemplo en SQL
 ==============
 .. index:: string, text data types, str
-
-
-.. CMA: Cambié las instrucciones, pues no eran correctas, si es que sólo querían dar un ejemplo que no funciona,
-.. pero que sirve para darse cuenta de como es la sintaxis, creo que no es la mejor forma de hacerlo dentro de un "Ejemplo SQL"
 
 La creación de relaciones (tablas) en SQL
 
