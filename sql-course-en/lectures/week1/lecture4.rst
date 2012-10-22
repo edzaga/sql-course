@@ -12,11 +12,10 @@ UNION
 In math, algebra of sets is called to the basic operations that can be performed on sets, 
 such as union, intersection, etc. A set is a collection of objects considered as an object
 in itself. The **UNION** of two sets `A` and `B` is the set that contains all the elements 
-of `A` and `B`. El símbolo `\cup` es el utilizado para representar **UNIÓN**.
-El operador **UNIÓN** es conmutativo es decir  `A \cup B = B \cup A`. Cabe recordar que una
-operación es conmutativa cuando el resultado de la operación es el mismo, cualquiera que sea 
-el orden de los elementos con los que se opera.  
-
+of `A` and `B`. The symbol`\cup` is used to represent **UNION**.The operator **UNION*** is 
+commutative, that is `A \cup B = B \cup A`. Remember that an operation is commutative when
+the result of the operation is the same, whatever the order of the elements with which it operates.
+ 
 .. image:: ../../../sql-course/src/union.png
    :align: center
 
@@ -32,7 +31,7 @@ identical schemas. Should have the same columns and their order must be the same
     R \cup S \\
 
 If you perform `R \cup S` is the same as `S \cup R` , that is the same result is obtained.
-Esto debido a la propiage de conmutatividad derivada de la álgebra de conjuntos.
+This is due to the property of commutativity derived from the algebra of sets. 
 
 
 Example 
@@ -112,17 +111,17 @@ is the set that contains all the elements of `A` that do not belong to `B`.
 .. image:: ../../../sql-course/src/b-a.png
    :align: center
 
-Como se aprecia en las imágenes la operación **DIFERENCIA**, en conjuntos, no es 
-conmutativa, al igual que la resta o sustracción, operador aprendido en aritmética 
-básica. Es decir, si se cambia el orden de los conjuntos a los  que se aplica la
-operación **DIFERENCIA**, se obtendrán resultados distintos. Por lo tanto:
+As it is shown in the images, the operation **DIFFERENCE**, in sets, is not commutative, 
+just as in subtraction, operator already learned in basic arithmetic. That is, if you
+change the order of sets to which **DIFFERENCE** operation is applied, you will get 
+different results. Therefore:
 
 .. math::
     \text{A} - \text{B} \neq  \text{B} - \text{A}    
 
 In the same way, the difference of two relations `R` and `S` is other relation 
 that contains the tuples that are in the relation `R` but not in `S`. `R` and `S` 
-must be **union-compatible**(deben tener esquemas idénticos).
+must be **union-compatible** (they must have identical schemes).
 
 **Notation in relational algebra**
 
@@ -172,9 +171,9 @@ INTERSECTION
 ************
 
 In algebra of sets the **INTERSECTION** of two sets `A` and `B` is the set that contains 
-all the common elements of `A` and `B`. El símbolo `\cap` representa la **INTERSECCIÓN** 
-de dos conjuntos. Al igual que el operador **UNIÓN**, **INTERSECCIÓN** es conmutativo,
-entonces se cumple que `A \cap B = B \cap A` .
+all the common elements of `A` and `B`. The symbol `\cap` represent the **INTERSECTION** 
+of two sets. As operator **UNION, INTERSECTION** is commutative, so is fulfilled that
+`A \cap B = B \cap A` .
 
 .. math::
     A \cap B
@@ -183,8 +182,8 @@ entonces se cumple que `A \cap B = B \cap A` .
    :align: center
 
 In a homologous way, in relational algebra **INTERSECTION** is defined as a relation that 
-contains tuples that are in both relation `R` and `S`. `R` and `S` must be union-compatible.
-(mismos atributos y mismo orden).
+contains tuples that are in both relation `R` and `S`. `R` and `S` must be **union-compatible**.
+(same attributes and same order).
 
 **Notation in relational algebra**
 
@@ -192,7 +191,7 @@ contains tuples that are in both relation `R` and `S`. `R` and `S` must be union
     R \cap S
 
 If it is perform `R \cap S` is the same as `S \cap R`, which means that obtains the same result, 
-se puede decir que **INTERSECCIÓN** es conmutativa.
+so it can be said that **INTERSECTION** is commutative.
 
 **Equivalence with previous operators**
 

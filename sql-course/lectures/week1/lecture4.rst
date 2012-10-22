@@ -125,7 +125,7 @@ operación **DIFERENCIA**, se obtendrán resultados distintos. Por lo tanto:
 
 De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación 
 que contiene las tuplas que están en la relación `R`, pero no están en `S`.
-`R` y `S` deben ser unión-compatible (deben tener esquemas idénticos).
+`R` y `S` deben ser **unión-compatible** (deben tener esquemas idénticos).
 
 **Notación en álgebra relacional**
 
