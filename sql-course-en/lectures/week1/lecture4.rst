@@ -1,4 +1,4 @@
-Lectura 4 - Álgebra Relacional: Set operators, renaming, notation
+Lecture 4 - Relational Algebra: Set operators, renaming, notation
 ===================================================================
 
 Set operations:

@@ -1,4 +1,4 @@
-Lectura 3 - Álgebra Relacional: Select, Project, Join
+Lecture 3 - Relational Algebra: Select, Project, Join
 -------------------------------------------------------
 
 Basics of relational algebra
