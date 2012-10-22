@@ -157,16 +157,38 @@ Ejemplo práctico
 
    * For Red Hat/Scientific Linux/Fedora/CentOS users::
 
-      yum install postgresql
+      yum -y install postgresql postgresql-libs postgresql-contrib postgresql-server postgresql-docs
 
    If you are a Windows user, you can download it from ... and installing it ...
    For MAC users please use .... or refer to the following guide...
 
-   After the installation process, you need to enter into the **psql environment**::
+   After the installation process, you need to enter into the **psql environment**
 
-        postgres -c psql
+   * For Debian/Ubuntu users you can perform the following command as a root::
 
-   as a super user (root).
+      sudo su postgres -c psql
+
+   * For Red Hat/Scientific Linux/Fedora/CentOS users
+
+    * Start the service. I should say OK if everything is correct
+
+      **service postgresql start**
+
+    * We change the user's password Postgres
+
+      **passwd postgres**
+
+    * Now start Postgres (enter password from above)
+
+      **su postgres**
+
+    * We started the service
+
+      **/etc/init.d/postgresql start**
+
+    * You should see a prompt "bash-4.1 $", now we enter Postgres
+
+      **psql**
 
 Primero que todo debemos *crear* una base de datos
 para comenzar nuestros ejercicios.
