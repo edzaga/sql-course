@@ -19,7 +19,7 @@ estas tablas College, Student, Apply las podemos crear de la siguiente manera:
 
 .. code-block:: sql
    
-    CREATE TABLE College(id serial, cName VARCHAR(20), state VARCHAR(30), enrollment VARCHAR(40), PRIMARY KEY(id));
+ postgres=# CREATE TABLE College(id serial, cName VARCHAR(20), state VARCHAR(30), enrollment VARCHAR(40), PRIMARY KEY(id));
 
 Recibiremos como respuesta lo siguiente::
 
@@ -29,7 +29,7 @@ Recibiremos como respuesta lo siguiente::
 
 .. code-block:: sql
 
-    CREATE TABLE Student(sID serial, sName VARCHAR(20), GPA INTEGER, sizeHS VARCHAR(40), PRIMARY kEY(sID));
+  postgres=# CREATE TABLE Student(sID serial, sName VARCHAR(20), GPA INTEGER, sizeHS VARCHAR(40), PRIMARY kEY(sID));
 
 Recibiremos como respuesta lo siguiente::
 
@@ -39,7 +39,7 @@ Recibiremos como respuesta lo siguiente::
 
 .. code-block:: sql
 
-   CREATE TABLE Apply(sID serial, cName VARCHAR(20), major VARCHAR(30), decision VARCHAR(40), PRIMARY kEY(sID));
+ postgres=# CREATE TABLE Apply(sID serial, cName VARCHAR(20), major VARCHAR(30), decision VARCHAR(40), PRIMARY kEY(sID));
 
 Recibiremos como respuesta lo siguiente::
 
@@ -79,7 +79,7 @@ Ahora se realizará el ingreso de los datos a las tablas:
  postgres=# INSERT INTO Apply(cName, major, decision) VALUES('Berkeley', 'pregrado', 'minor');
  INSERT 0 1
 
- INSERT INTO Apply(cName, major, decision) VALUES('MIT', 'ingenieria', 'mayor');
+ postgres=# INSERT INTO Apply(cName, major, decision) VALUES('MIT', 'ingenieria', 'mayor');
  INSERT 0 1
 
 Ahora realizaremos la siguente consulta de selección de tabla:
