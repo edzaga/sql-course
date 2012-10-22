@@ -64,8 +64,8 @@ SELECT
 
 This operator is applied to a relation `R` producing a new relation with a subset of tuples of `R`. 
 The tuples of the resulting relation are the ones that satisfy a condition `C` about some attribute
-of `R`. In other words, it selects rows of a table according to a certain criterion `C`. Es decir 
-selecciona **filas (tuplas)** de una Table según un cierto criterio `C`. 
+of `R`. In other words, it selects rows of a table according to a certain criterion `C`. That is, 
+select **rows (tuples)** from a table according to a certain criterion `C`.
 `C` is a conditional expression, similar to the statements of the type “if”, is “booleana” this means 
 that for each tuple of `R`, it takes the value of True or False.
 * Values of attributes with NULL will not meet any condition.
@@ -74,32 +74,32 @@ that for each tuple of `R`, it takes the value of True or False.
   .. math::
     \text{<Atributte> <Comparator> <Atributte or Constant>}
 
-donde:
-El campo `Comparator` es uno de los **operadores lógicos** que se muestran a contnuación:
+where: `Comparator` field is one of the **logical operator** which are shown below:
 
 	  .. math::
 	    \text{<Comparator>}  \in {\{=,\geq,>,<, \neq,\leq \}}
 
 	* `=` : equal sign.
 
-	* `\neq`: not-equal sign, en algunos libros este operador esta representado por el símbolo ``!=``.
+	* `\neq`: not-equal sign, in some books this operator is represented by the symbol ``!=``.
         
-        * `\geq`: mayor que or equal.
+        * `\geq`: greater than or equal.
 
-        * `>`: mayor que.
+        * `>`: greater than.
  
         * `<`: less than.
 
 	* `\leq`: less than or equal. 
 
-Los **operadores lógicos** que se utilizan, también llamados operadores relacionales, nos proporcionan 
-un resultado a partir de que se cumpla o no una cierta condición. Son símbolos que se usan para comparar
-dos valores. Si el resultado de la comparación es correcto la expresión considerada es verdadera, en caso 
-contrario es falsa. Por Example, 11>4 (once mayor que cuatro) es verdadera, se representa por el valor true
-del tipo básico boolean, en cambio, 11<4 (once menor que cuatro) es falsa se representa por el valor false. 
+**Logical operators** that are used, also called relational operators, provide us a result from 
+the fulfillment or not fulfillment of a certain condition. They are symbols used to compare two 
+values. If the result of the comparison is correct, the considered expression is true; in the 
+contrary case, is false. For example, 11>4 (eleven greater than four) is true, it is represented 
+by the value “true” of the basic type boolean. On the other hand, 11<4 (eleven less than four) 
+is false and it is represented by the value “false.”
 
- The clauses C can be connected with the logical operators, que al igual que los anteriores que se usaban
-como Comparator (entre Atributtes o Atributte y constante), arrojan booleano (true o false) de resultado:
+The clauses `C` can be connected with the logical operators, which like the previous ones that 
+were used as Comparator (between attributes or constrant attribute), thrown bololean (true or false) result:
 
   * **NOT**: The NOT operator denotes a true output if the input is false, and a false exit if input is true. 
    Notation in Relational Algebra: 
@@ -108,14 +108,14 @@ como Comparator (entre Atributtes o Atributte y constante), arrojan booleano (tr
 		¬ \text{C1}
 
   * **AND**:  The AND operator denotes true output, if and only if its inputs are true. 
-    Si C1 se cumple y C2 también se cumple, la salida seré verdadera.
+     If C1 is fulfilled and C2 is fulfilled, the output will be true.
     Notation in Relational Algebra:
   
 	.. math::
 		\text{C1} \wedge \text{C2}
     
   * **OR**:  The OR operator denotes a true output if there is any true input put (or both).
-   Si C1 y/o C2 es o son verdaderas, la expresión será verdadera.
+   If C1 and/or C2 is/are true, the expression will be true.
     Notation in Relational Algebra: 
 
 	.. math:: 
@@ -162,9 +162,10 @@ Select tuples from the **Engineers** table that comply an age greater than 30 ye
 .. image:: ../../../sql-course/src/select2.png
    :align: center
 
-En la imagen se ve que selecciona solo las filas que cumplen con la condición que se pedía 
-(tener una age mayor a 30 años), la tupla de "Lexie" queda fuera de la selección por no 
-cumplir la condición (pues 25 < 30).
+In the image you can see that are selected only the rows that comply with the condition that
+was requested (to be greater than 30 years), the tuple of “Lexie” is left outside of the selection 
+for not fulfill the condition (as 25 < 30). 
+
 So the table would look like this:
 
 .. math::
@@ -196,11 +197,11 @@ Select from the **Engineer** table people who are over 30 years old and carrying
 .. image:: ../../../sql-course/src/select3.png
       :align: center
 
-Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. 
-Primero que la age sea mayor de 30 años, al igual que en el Example anterior, la tupla 
-de "Lexie" queda fuera de la selección. Luego de las tuplas que quedan se evalúa la 
-segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no 
-tengan x en alguna de las condiciones. 
+By having the logical operator AND is required to meet two conditions simultaneously. 
+First that the age is greater than 30 years, like in the previous example, the tuple 
+of “Lexie” is left out of the selection. Then from the remaining tuples, the second 
+condition is evaluated. In the image it is shown that only are selected the rows that 
+do not have the **X** in any of the conditions. 
 
 So the table would finally look like this:
 
@@ -296,9 +297,9 @@ Select id and name of the Engineers who have more than 30 years old.
 .. image:: ../../../sql-course/src/prosel.png
    :align: center
 
-Se aprecia que las tuplas que no cumplan con la condición de selección quedan fuera del resultado, 
-luego se realiza un PROJECT sobre las filas del resultado, separando solo las columnas que
-contienen los Atributtes id y name. Finally the table would look like this:
+It is appreciated that the tuples that do not meet the condition of selection are left out of the 
+result, then it is performed a **PROJECT** on the rows of the result, separating only the columns that 
+contain the id and name attributes. Finally the table would look like this:
 
 .. math::
 
@@ -347,7 +348,7 @@ of each pair of identical attributes. To eliminate ambiguity of an attribute `a`
 is in `R` and `S`, it is used `R.a` for the attribute of `R` and `S.a` for the attribute of `S`.
 
 
-Cabe mencionar que por notación que:
+Noteworthy that by notation: 
 
 .. math::
     \text{R} \times \text{S} \neq  \text{S} \times \text{R}
@@ -358,14 +359,15 @@ Example 1
 .. image:: ../../../sql-course/src/CROSS-PRODUCT1.png
    :align: center
 
-Con las Tables dadas realice el Cross-product de `R` con `S`:
+With the given tables make the Cross-product of `R` with `S`:
 
 .. image:: ../../../sql-course/src/CROSS-PRODUCT2.png
    :align: center
 
-Con azul se resaltan las tuplas que provienen de `R` que preceden y se mezclan con las de `S` resaltadas en verde.
+With blue are highlighted the tuples which come from `R` that are
+preceded and mixed with the ones of `S` highlighted in green. 
 
-Con las Tables dadas realice el Cross-product de `S` con `R`:
+With the given tables make a Cross-product of `S` with `R`:
 
 .. image:: ../../../sql-course/src/CROSS-PRODUCT3.png
    :align: center
@@ -445,7 +447,7 @@ have the same value in the common attributes.
 
 **Notation in Relational Algebra**
 
-PFor denoting **NATURALJOIN** it is used the following symbols:
+For denoting **NATURALJOIN** it is used the following symbols:
 
 .. math::
    \text{R} \rhd \hspace{-0.1cm} \lhd \text{S}
@@ -495,12 +497,13 @@ Example 1
   \hline
  \end{array}
 
-Con las Tables dadas realice el NaturalJoin de `R` y `S`:
+With the tables given make a NaturalJoin of `R` and `S`:
 
 .. image:: ../../../sql-course/src/NATURALJOIN.png
     :align: center
 
-El Atributte que tienen en común `R` y `S` es el Atributte `C`, entonces las tuplas se unen donde `C` tiene el mismo valor en `R` y `S`
+The attribute that has in common `R` and `S` is the attribute `C`, so the 
+tuples are join where `C` has the same value in `R` and `S`.
 
 .. math::
  \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\
@@ -643,7 +646,7 @@ Example 1
   \hline
  \end{array}
 
-Escriba la Table resultante al realizar la siguiente operación:
+Write the resultant table as you do the following operation:
 
 .. math::
    R \rhd \hspace{-0.1cm} \lhd_{(A >= E)} S 
@@ -653,21 +656,20 @@ Escriba la Table resultante al realizar la siguiente operación:
 .. image:: ../../../sql-course/src/THETAJOIN1.png
     :align: center
 
-Se compara el Atributte `A` de la primera fila de `R` con cada uno de los valores del Atributte 
-`E` de la Table `S`. En este caso ninguna de las comparaciones devuelve el valor verdadero (true). 
+It is compared the attribute `A` of the first row of `R` with each of the values of attribute `E` 
+of the `S` table. In this case, none of the comparisons returns the true value (true).
 
 .. image:: ../../../sql-course/src/THETAJOIN2.png
     :align: center
-
-Luego se compara el Atributte `A` de la segunda fila de `R` con cada uno de los valores del Atributte 
-`E` de la Table `S`. En este caso 2 comparaciones devuelven el valor verdadero (true), por lo que en 
-la relación de resultado quedará la segunda fila de `R` mezclada con la primera y tercera fila de `S`. 
+Then it is compared the attribute `A` in the second row of `R` with each of the values of the 
+attribute `E` of the table S. In this case, 2 comparisons return the true value (true), so that 
+in the relation of resultant will be the second row of `R` mixed with the first and third row of `S`.
 
 .. image:: ../../../sql-course/src/THETAJOIN3.png
     :align: center
 
-De igual forma ahora se compara el valor de `A` de la tercera tupla de `R`, nuevamente 2 tuplas de `S` 
-cumplen con la condición.
+In the same way, now it is compared the value of `A` of the third tuple of `R`. 
+Once again, 2 tuples of `S` comply with the condition. 
 
 .. math::
 
