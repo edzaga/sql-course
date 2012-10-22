@@ -363,7 +363,7 @@ Con las Tables dadas realice el Cross-product de `R` con `S`:
 .. image:: ../../../sql-course/src/CROSS-PRODUCT2.png
    :align: center
 
-Con azul se resaltan las tuplas que provienen de `R` que preseden y se mezclan con las de `S` resaltadas en verde.
+Con azul se resaltan las tuplas que provienen de `R` que preceden y se mezclan con las de `S` resaltadas en verde.
 
 Con las Tables dadas realice el Cross-product de `S` con `R`:
 

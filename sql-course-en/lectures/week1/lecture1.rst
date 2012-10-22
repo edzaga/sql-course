@@ -93,7 +93,7 @@ between then the relationship MARRIAGE).
 .. image:: ../../../sql-course/src/1a1.jpg
 
 *Relations 1-N*:  an occurrence of an entity it is associated with many (n) 
-from another (e.g. the entity COMPANY, the entity EMPLOYEE and the relationship 
+from another (e.g. the entity COMPANY, the entity Employees and the relationship 
 between them WORK-IN).
 
 
@@ -135,19 +135,19 @@ stored in tables), and through those connections relate the data of both tables.
 Example:
 ========
 
-Se tiene una base de datos que contiene dos relaciones: una denominada EMPLEADOS,
-que almacena datos de los empleados de una empresa, y otra con el nombre DESPACHOS,
-que almacena los datos de los despachos que tiene la empresa. Los empleados que
-trabajan para una empresa pueden estar vinculados con los despachos de la empresa,
-porque a cada empleado se le asigna un despacho concreto para trabajar.
+There is a database which contains two relations: one called Employees,which
+stores data of employees from a company, and one with the name Dispatches, which 
+stores the data of the dispatches that the company has. Employees who work for a
+company can be linked with the dispatches of the company, since each employee is 
+assigned a concrete dispatch to work. 
 
 .. math::
 
- \textbf{Tabla DESPACHOS}
+ \textbf{Dispatches Table}
 
    \begin{array}{|c|c|c|}
         \hline
-         \textbf{edificio} & \textbf{numero} & \textbf{superficie}\\
+         \textbf{building} & \textbf{number} & \textbf{surface}\\
         \hline
         \mbox{Princess} & 120  & 10\\
         \hline
@@ -161,19 +161,18 @@ porque a cada empleado se le asigna un despacho concreto para trabajar.
         \hline
    \end{array}
 
-La tabla DESPACHOS posee 3 atributos (*edificio*, *número*, superficie) y 5
-registros (o filas).
-Esta tabla posee un conjunto de atributos cuyos valores combinados dan la
-unicidad a cada fila. Se trata de los atributos edificio y número; se les llama
-clave primaria compuesta.
+The Dispatches table has 3 attributes (*building*, *number*, surface) and 5 records
+(or rows, or tuples). This table has a set of attributes whose combined values 
+give the uniqueness to each row. It is about the attributes building and number; 
+these are called compound primary key.  
 
 .. math::
 
- \textbf{Tabla EMPLEADOS}
+ \textbf{Employees Table}
 
    \begin{array}{|c|c|c|c|c|c|}
         \hline
-        \textbf{DNI} & \textbf{nombre} & \textbf{apellido} & \textbf{DNIjefe} & \textbf{edificiodesp} & \textbf{numerodesp}\\
+        \textbf{DNI} & \textbf{name} & \textbf{lastname} & \textbf{DNIchief} & \textbf{buildingdisp} & \textbf{numberdisp}\\
         \hline
         40.444.255   & \mbox{Alex}     & \mbox{Karev}      & 40.783.150       & \mbox{Princess}       & 120\\
         \hline
@@ -186,24 +185,22 @@ clave primaria compuesta.
    \end{array}
 
 
-La tabla EMPLEADOS posee 6 atributos (*DNI*, nombre, apellido, DNIjefe,
-edificiodesp, númerodesp) y 4 registros (o filas), en el segundo registro se
-aprecia que George no posee despacho asignado por lo que se agrega el valor
-"unknown" o "undefined" que se define como NULL.
-Esta tabla posee un atributo cuyo valor es único en cada tupla que es atributo
-DNI y se le llama clave primaria.
+The Employees table has 6 attributes (*DNI*, name, lastname, DNIchief, buildingdisp, numberdisp) 
+and 4 records (or rows), in the second record it can be seen that George has not a dispatch 
+assigned, so it is added the value “unknown” or “undefined” which is defined as NULL. This 
+table has an attribute whose value is unique in each tuple that is DNI attribute and it is 
+called primary key. 
 
-En la relación de esquema EMPLEADOS, la clave foránea formada por los
-atributos {edificiodesp, númerodesp} referencia la clave primaria de la relación
-DESPACHOS. De este modo, se cumple que todos los valores que no son nulos de los
-atributos edificiodesp y númerodesp son valores que existen para los atributos
-edificio y número de DESPACHOS. Esta clave foránea indica, para cada empleado,
-el despacho donde trabaja. Además, el atributo DNIjefe es otra clave foránea que
-referencia la clave primaria de la misma relación EMPLEADOS, e indica, para cada
-empleado, quien es su jefe.
+In the relation of Employees schema, the foreign key formed by the attributes {buildingdisp, numberdisp}
+refers to the primary key of the relation Dispatches.  In this way, it is fulfilled that all the 
+values that are not null from the buildingdisp and numberdisp attributes are values which exists 
+for the building and number attributes of Dispatches. This foreign key indicates, for each employee, 
+the dispatch where he works. In addition, the attribute DNchief is another foreign jey that refers 
+to the primary key of the same Employees relation, and indicates, for each employee, who is his chief. 
 
-Ejemplo en SQL
-==============
+
+SQL example
+============
 .. index:: string, text data types, str
 
 
@@ -214,8 +211,8 @@ La creación de relaciones (tablas) en SQL
 
 .. code-block:: sql
 
- CREATE TABLE DESPACHOS(edificio VARCHAR(50), numero INTEGER, superficie INTEGER, PRIMARY KEY(edificio,numero));
- CREATE TABLE EMPLEADOS(DNI VARCHAR(50), nombre VARCHAR(50), apellido VARCHAR(50), DNIjefe VARCHAR(50), edificiodesp VARCHAR(50), numerodesp INTEGER, PRIMARY KEY(DNI), FOREIGN KEY(edificiodesp,numerodesp) REFERENCES DESPACHOS(edificio,numero));
+ CREATE TABLE Dispatches(building VARCHAR(50), number INTEGER, surface INTEGER, PRIMARY KEY(building,number));
+ CREATE TABLE Employees(DNI VARCHAR(50), name VARCHAR(50), lastname VARCHAR(50), DNIchief VARCHAR(50), buildingdisp VARCHAR(50), numberdisp INTEGER, PRIMARY KEY(DNI), FOREIGN KEY(buildingdisp,numberdisp) REFERENCES Dispatches(building,number));
 
 Engines of Relational Databases
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
