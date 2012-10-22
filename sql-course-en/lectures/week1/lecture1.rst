@@ -2,7 +2,7 @@ Lecture 1 - Relational Databases: "The relational model"
 --------------------------------------------------------
 
 What is Databases (DB)?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 .. index:: What is Databases (DB)?
 
@@ -11,7 +11,7 @@ independently of the programs that access them.
 
 
 Database Management System (DBMS)
-=========================================
+=================================
 
 The Database Management System (DBMS) is a set of programs that let create and maintain a database, 
 ensuring its integrity, confidentiality, and security. Therefore, it should allow:
@@ -31,7 +31,7 @@ Some of the desirable features of a Database Management System (DBMS) are:
     and ensure compliance of the integrity restrictions.
 
 The Entity-relationship model (E-R)
-================================
+===================================
 
 When using a DB to manage information, you are capturing a part of the real world in a 
 series of tables, records, and fields. As a result, it creates a partial model of reality. 
@@ -109,7 +109,7 @@ STUDENT, the entity COMPANY and the relationship between them REGISTRATION).
    :align: center
 
 Relational Database
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 .. index:: Base de datos Relacionales
 

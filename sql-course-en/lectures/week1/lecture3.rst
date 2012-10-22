@@ -60,8 +60,9 @@ of `R`. In other words, it selects rows of a table according to a certain criter
 select **rows (tuples)** from a table according to a certain criterion `C`.
 `C` is a conditional expression, similar to the statements of the type “if”, is “booleana” this means 
 that for each tuple of `R`, it takes the value of True or False.
-* Values of attributes with NULL will not meet any condition.
-* Each simple condition or clause C has the format
+
+ * Values of attributes with NULL will not meet any condition.
+ * Each simple condition or clause C has the format
 
 .. math::
 

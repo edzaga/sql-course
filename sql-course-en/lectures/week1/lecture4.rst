@@ -219,12 +219,8 @@ table with the one of `Chiefs`:
 
    When we apply these operations to relations, we need to put some conditions on `R` and `S`:
 
-	* `R` and `S` must have schemas with identical sets of attributes, and the types (domains)
-	 for each attribute must be the same in `R` and `S`.
-
-	* Before compute the set-theoretic union, intersection, or difference of sets of tuples, 
-	the columns of `R` and `S` must be ordered so that the order of attributes is the same for 
-	both relations.
+	* `R` and `S` must have schemas with identical sets of attributes, and the types (domains) for each attribute must be the same in `R` and `S`.
+	* Before compute the set-theoretic union, intersection, or difference of sets of tuples, the columns of `R` and `S` must be ordered so that the order of attributes is the same for both relations.
 
 
 DEPENDENT AND INDEPENDENT OPERATIONS
