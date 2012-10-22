@@ -9,7 +9,7 @@ Table Variables
 
 .. index:: Table Variables
 
-Consideremos la siguiente situación ::
+Consideremos la siguiente situaciÃ³n ::
 
         College (cName, state, enrollment)
         Student (sID, sName, GPA, sizeHS)
@@ -23,8 +23,8 @@ estas tablas College, Student, Apply las podemos crear de la siguiente manera:
 
 Recibiremos como respuesta lo siguiente::
 
- NOTICE:  CREATE TABLE creará una secuencia implícita «college_id_seq» para la columna serial «college.id»
- NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «college_pkey» para la tabla «college»
+ NOTICE:  CREATE TABLE crearÃ¡ una secuencia implÃ­cita Â«college_id_seqÂ» para la columna serial Â«college.idÂ»
+ NOTICE:  CREATE TABLE / PRIMARY KEY crearÃ¡ el Ã­ndice implÃ­cito Â«college_pkeyÂ» para la tabla Â«collegeÂ»
  CREATE TABLE
 
 .. code-block:: sql
@@ -33,8 +33,8 @@ Recibiremos como respuesta lo siguiente::
 
 Recibiremos como respuesta lo siguiente::
 
- NOTICE:  CREATE TABLE creará una secuencia implícita «student_sid_seq» para la columna serial «student.sid»
- NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «student_pkey» para la tabla «student»
+ NOTICE:  CREATE TABLE crearÃ¡ una secuencia implÃ­cita Â«student_sid_seqÂ» para la columna serial Â«student.sidÂ»
+ NOTICE:  CREATE TABLE / PRIMARY KEY crearÃ¡ el Ã­ndice implÃ­cito Â«student_pkeyÂ» para la tabla Â«studentÂ»
  CREATE TABLE
 
 .. code-block:: sql
@@ -43,45 +43,90 @@ Recibiremos como respuesta lo siguiente::
 
 Recibiremos como respuesta lo siguiente::
 
- NOTICE:  CREATE TABLE creará una secuencia implícita «apply_sid_seq» para la columna serial «apply.sid»
- NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «apply_pkey» para la tabla «apply»
+ NOTICE:  CREATE TABLE crearÃ¡ una secuencia implÃ­cita Â«apply_sid_seqÂ» para la columna serial Â«apply.sidÂ»
+ NOTICE:  CREATE TABLE / PRIMARY KEY crearÃ¡ el Ã­ndice implÃ­cito Â«apply_pkeyÂ» para la tabla Â«applyÂ»
  CREATE TABLE
 
-.. joao: agregar el contexto del ejercicio y los INSERT INTO con valores utiles
-
-Ahora consideremos la siguente consulta
-
-.. code-block:: sql
-        
- SELECT Student.sID, sName, Apply.cName, GPA FROM Student, Apply WHERE Apply.sID = Student.sID;
-
-es posible realizarla como
+Ahora se realizarÃ¡ el ingreso de los datos a las tablas:
 
 .. code-block:: sql
 
- SELECT S.sID, sName, A.cName, GPA FROM Student S, Apply A WHERE A.sID = S.sID;
+ postgres=# INSERT INTO College(cName, state, enrollment) VALUES('Stanford', 'stanford', 'mayor');
+ INSERT 0 1
 
-En cualquier caso la salida será la misma.
+ postgres=# INSERT INTO College(cName, state, enrollment) VALUES('Berkeley', 'miami', 'mayor');
+ INSERT 0 1
+
+ postgres=# INSERT INTO College(cName, state, enrollment) VALUES('MIT', 'masachusets', 'minor');
+ INSERT 0 1
+
+.. code-block:: sql
+
+ postgres=# INSERT INTO Student(sName, GPA, sizeHS) VALUES('amy', 30, 'A');
+ INSERT 0 1
+
+ postgres=# INSERT INTO Student(sName, GPA, sizeHS) VALUES('doris', 40, 'B');
+ INSERT 0 1
+
+ postgres=# INSERT INTO Student(sName, GPA, sizeHS) VALUES('edward', 40, 'C');
+ INSERT 0 1
+
+.. code-block:: sql
+
+ postgres=# INSERT INTO Apply(cName, major, decision) VALUES('Stanford', 'phd', 'mayor');
+ INSERT 0 1
+
+ postgres=# INSERT INTO Apply(cName, major, decision) VALUES('Berkeley', 'pregrado', 'minor');
+ INSERT 0 1
+
+ INSERT INTO Apply(cName, major, decision) VALUES('MIT', 'ingenieria', 'mayor');
+ INSERT 0 1
+
+Ahora realizaremos la siguente consulta de selecciÃ³n de tabla:
+
+.. code-block:: sql
+ 
+ postgres=# SELECT Student.sID, sName, Apply.cName, GPA FROM Student, Apply WHERE Apply.sID = Student.sID;
+  sid | sname  |  cname   | gpa 
+ -----+--------+----------+-----
+   1 | amy    | Stanford |  30
+   2 | doris  | Berkeley |  40
+   3 | edward | MIT      |  40
+ (3 filas)
+
+tambiÃ©n es posible realizarla como
+
+.. code-block:: sql
+
+ postgres=# SELECT S.sID, sName, A.cName, GPA FROM Student S, Apply A WHERE A.sID = S.sID;
+  sid | sname  |  cname   | gpa 
+ -----+--------+----------+-----
+   1 | amy    | Stanford |  30
+   2 | doris  | Berkeley |  40
+   3 | edward | MIT      |  40
+ (3 filas)
+
+.. CMA: no entiendo esto...
 
 Como se aprecia, es posible asignar valores variables a las relaciones "R" y utilizar dichas variables tanto en la lista "L" como en la 
-condición "C". El lector se preguntará cuál es la utilidad de esto, más allá de escribir menos (dependiendo del nombre de la variable
-utilizada); y la respuesta corresponde a los casos en que se deben comparar múltiples instancias de la misma relación, como se verá a más 
+condiciÃ³n "C". El lector se preguntarÃ¡ cuÃ¡l es la utilidad de esto, mÃ¡s allÃ¡ de escribir menos (dependiendo del nombre de la variable
+utilizada); y la respuesta corresponde a los casos en que se deben comparar mÃºltiples instancias de la misma relaciÃ³n, como se verÃ¡ a mÃ¡s 
 adelante en esta misma lectura.
 
 .. note::
-   El por qué de la nomenclatura "L", "R" y "C" y su significado están explicados en la lectura 7
+   El por quÃ© de la nomenclatura "L", "R" y "C" y su significado estÃ¡n explicados en la lectura 7
 
 
-Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde más a variable en la consulta).
+Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde mÃ¡s a variable en la consulta).
 La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
 
 
-Se invita al lector alplicado a realizar pruebas, se dejan las siguientes lineas de código a su disposición, con el fin de
-probar que efectivamente si se realizan las consultas mencionadas arriba, el resultado es el mismo. Cabe destacar que 
+.. CMA: Se invita al lector alplicado a realizar pruebas, se dejan las siguientes lineas de cÃ³digo a su disposiciÃ³n, con el fin de
+.. CMA:probar que efectivamente si se realizan las consultas mencionadas arriba, el resultado es el mismo. Cabe destacar que 
 
-.. code-block:: sql
+.. CMA:.. code-block:: sql
 
-        INSERT INTO "R"
+.. CMA:        INSERT INTO "R"
         (Columna1, Columna2,..., ColumnaN)
         VALUES
         (Valor Columna1Fila1, Valor Columna2Fila1,..., Valor ColumnaNFila1),
@@ -89,14 +134,14 @@ probar que efectivamente si se realizan las consultas mencionadas arriba, el res
         ...
         (Valor Columna1FilaN, Valor Columna2FilaN,..., Valor ColumnaNFilaN),
 
-corresponde a la sentencia para ingresar datos a una tabla en particular, conociendo su estructura y tipos de datos.
-El lector puede utilizar los  siguientes valores y realizar modificaciones.
+.. CMA:corresponde a la sentencia para ingresar datos a una tabla en particular, conociendo su estructura y tipos de datos.
+.. CMA El lector puede utilizar los  siguientes valores y realizar modificaciones.
 
-(explicar mejor el contexto)
+.. CMA: (explicar mejor el contexto)
 
-.. code-block:: sql
+.. CMA:.. code-block:: sql
 
-        INSERT INTO College
+.. CMA:        INSERT INTO College
         (cName, state, enrollment)
         VALUES
         ('Stanford', 'stanford', 'mayor'),
@@ -104,7 +149,7 @@ El lector puede utilizar los  siguientes valores y realizar modificaciones.
         ('MIT', 'masachusets', 'minor');
 
 
-        INSERT INTO Student
+.. CMA:        INSERT INTO Student
         (sName, GPA, sizeHS)
         VALUES
         ('amy', 30, 'A'),
@@ -112,7 +157,7 @@ El lector puede utilizar los  siguientes valores y realizar modificaciones.
         ('edward', 40, 'C');
 
 
-        INSERT INTO Apply
+.. CMA:        INSERT INTO Apply
         (cName, major, decision)VALUES
         ('Stanford', 'phd', 'mayor'),
         ('Berkeley', 'pregrado', 'minor'),
@@ -123,8 +168,8 @@ El lector puede utilizar los  siguientes valores y realizar modificaciones.
 Cuidado con los duplicados!!
 ============================
 
-Si el lector se fija en la situación descrita, los nombres de algunos atributos de diferentes relaciones y/o tablas  se repiten, lo cual
-podría plantear la interrogante ¿a que tabla se refiere el atributo en cuestión?. Para resolver este pequeño gran problema, se precede al
+Si el lector se fija en la situaciÃ³n descrita, los nombres de algunos atributos de diferentes relaciones y/o tablas  se repiten, lo cual
+podrÃ­a plantear la interrogante Â¿a que tabla se refiere el atributo en cuestiÃ³n?. Para resolver este pequeÃ±o gran problema, se precede al
 nombre del atributo con el nombre de la tabla y un punto, es decir, 
 
 
@@ -133,12 +178,12 @@ nombre del atributo con el nombre de la tabla y un punto, es decir,
         "algo_asi."
 
 Concretamente en el ejemplo anterior, el alcance de nombres lo protagonizan sID de la tabla Student y sID de la tabla Apply. 
-La diferencia se realiza a través de
+La diferencia se realiza a travÃ©s de
 
 .. code-block:: sql
 
-        Student.sID ó S.sID
-        Apply.sID ó A.sID
+        Student.sID Ã³ S.sID
+        Apply.sID Ã³ A.sID
 
 
 En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo, 
@@ -150,7 +195,7 @@ se buscan todos los pares de estudiantes con el mismo GPA
         FROM Student S1, Student S2
         WHERE S1.GPA = S2.GPA;
 
-Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrá uno o varios duplicados; por ejemplo, 
+Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrÃ¡ uno o varios duplicados; por ejemplo, 
 consideremos 3 estudantes
 
 .. math::
@@ -170,11 +215,11 @@ consideremos 3 estudantes
    Doris   456     4.0
    Edward  567     4.1
 
-Los pares de estudiantes serán::
+Los pares de estudiantes serÃ¡n::
 
          Amy    -       Doris
 
-pero también::
+pero tambiÃ©n::
 
          Amy    -       Amy
          Doris  -       Doris
@@ -196,16 +241,16 @@ Set Operators
 
 Los Set Operators son 3:
 
-  * Unión
-  * Intersección
-  * Excepción
+  * UniÃ³n
+  * IntersecciÃ³n
+  * ExcepciÃ³n
 
 =====
-Unión
+UniÃ³n
 =====
 
-El operador "UNION", permite combinar el resultado de dos o más sentencias SELECT. Es necesario que estas tengan el mismo número de columnas, 
-y que, además tengan los mismos tipos de datos, por ejemplo:
+El operador "UNION", permite combinar el resultado de dos o mÃ¡s sentencias SELECT. Es necesario que estas tengan el mismo nÃºmero de columnas, 
+y que, ademÃ¡s tengan los mismos tipos de datos, por ejemplo:
 
 .. code-block:: sql
 
@@ -223,7 +268,7 @@ y que, además tengan los mismos tipos de datos, por ejemplo:
         03      Svendson, Stephen
         04      Scott, Stephen
 
-Que se puede crear mediante la creación de las tablas
+Que se puede crear mediante la creaciÃ³n de las tablas
 
 .. code-block:: sql
 
@@ -285,7 +330,7 @@ es
 
 
 Ojo, existen dos empleados con el mismo nombre en ambas tablas. Sin embargo en la
-salida sólo se nombra uno. Para evitar esto, se utliza "UNION ALL"
+salida sÃ³lo se nombra uno. Para evitar esto, se utliza "UNION ALL"
 
 .. code-block:: sql
 
@@ -315,10 +360,10 @@ se aprecia que la salida contiene los nombres de ambos empleados.
 
 
 ============
-Intersección
+IntersecciÃ³n
 ============
 
-Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT. La diferencia consiste en que UNION actua como un OR, e INTERSECT
+Muy similar al operador UNION, INTERSECT tambiÃ©n opera con dos sentencias SELECT. La diferencia consiste en que UNION actua como un OR, e INTERSECT
 lo hace como AND. 
 
 .. note::
@@ -342,7 +387,7 @@ Consideremos el sigueinte esquema::
         Jan-11-1999     $320
         Jan-12-1999     $750
 
-Para llegar a esta situación, el lector puede crear las tablas
+Para llegar a esta situaciÃ³n, el lector puede crear las tablas
 
 .. code-block:: sql
 
@@ -361,6 +406,7 @@ Para llegar a esta situación, el lector puede crear las tablas
      Date date,
      Sales integer
     );
+
 y llenarlas con los siguientes datos
 
 .. code-block:: sql 
@@ -399,13 +445,13 @@ Su resultado esperado es::
    pero que puede escribirse como otra consulta (agregarla)
 
 =========
-Excepción
+ExcepciÃ³n
 =========
 
 Similar a los operadores anteriores, su estructura se compone de dos o mas sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
-en el álgebra relacional.
+en el Ã¡lgebra relacional.
 
-Utilizando la misma situación del ejemplo anterior, y realizando la siguiente consulta
+Utilizando la misma situaciÃ³n del ejemplo anterior, y realizando la siguiente consulta
 
 .. code-block:: sql
 

@@ -118,22 +118,24 @@ del tipo básico boolean, en cambio, 11<4 (once menor que cuatro) es falsa se re
 Las cláusulas `C` pueden conectarse con otros operadores lógicos, que al igual que los anteriores que se usaban
 como comparador (entre atributos o atributo y constante), arrojan booleano (true o false) de resultado:
 
-  * **NOT**: El operador NOT denota una salida verdadera si la entrada es falsa,
+* **NOT**: El operador NOT denota una salida verdadera si la entrada es falsa,
     y una salida falsa si la entrada es verdadera. Su notación en algebra es: 
 
-	.. math::
+.. math::
 		¬ \text{C1}
 
-  * **AND**: El operador AND denota una salida verdadera si y sólo si sus entradas
+* **AND**: El operador AND denota una salida verdadera si y sólo si sus entradas
     son verdaderas. Si C1 se cumple y C2 también se cumple, la salida será verdadera.
     La notación en algebra de un AND es:  
-	.. math::
+
+.. math::
 		\text{C1} \wedge \text{C2}
     
-  * **OR**: El operador OR denota una salida verdadera si hay alguna de las entradas
+* **OR**: El operador OR denota una salida verdadera si hay alguna de las entradas
     (o ambas) verdaderas. Si C1 y/o C2 es o son verdaderas, la expresión será verdadera.
     La notación en algebra de un OR es: 
-	.. math:: 
+
+.. math:: 
 		\text{C1} \vee \text{C2}
 
 **Notación en Álgebra Relacional**
