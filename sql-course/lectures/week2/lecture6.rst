@@ -15,7 +15,7 @@ create table, tenemos que especificar el tipo de dato de cada columna.[1]_
 
 2. **Cadenas de bits de longitud fija o variable:** Estas cadenas son análogas a las cadenas de caracteres fijos y variables de longitud, pero sus valores son cadenas de bits en lugar de caracteres. El tipo *BIT(n)* denota cadenas de bits de longitud n.
 
-3. **Tipo de dato booleanos:** *BOOL* denota un atributo cuyo valor es lógico. Los valores posibles de este tipo de atributo es TRUE, FALSE, y UNKNOWN.
+3. **Tipo de dato booleanos:** *BOOL* denota un atributo cuyo valor es lógico. Los valores posibles de este tipo de atributo son TRUE, FALSE, y UNKNOWN.
 
 4. **Tipo de dato entero:** *INTEGER* denota típicos valores enteros. El tipo *SMALLINT* también denota números enteros, pero el número de bits permitidos puede ser menor.
 
@@ -42,7 +42,7 @@ Ejemplo práctico
 
 A continuación se mostrarán ejemplos realizados con PostgreSQL de los tipos de datos nombrados anteriormente.
 
-* Este ejemplo trata del juego adivina quien y se realizan preguntas como: tu personaje tiene gafas, es rubio, es alto. La tabla queda de la siguiente manera utilizando los valores booleanos para crear las tablas:
+* Este ejemplo trata del juego adivina quién donde se realizan preguntas como: tu personaje tiene gafas, es rubio, es alto. La tabla queda de la siguiente manera utilizando los valores booleanos para crear las tablas:
 
 .. code-block:: sql
 
@@ -69,14 +69,14 @@ Retornando lo siguiente PostgreSQL::
  NOTICE:  CREATE TABLE creará una secuencia implícita «persona_id_seq» para la columna serial «persona.id»
  CREATE TABLE
 
-Ahora *ingresamos* un dato
+Ahora *ingresamos* los datos de una persona:
 
 .. code-block:: sql
 
  postgres=# INSERT INTO persona(nombre,apellido,genero,fecha_nac) VALUES('Paul','Anderson','M','1983-02-12');
  INSERT 0 1
 
-Finalmente *seleccionamos* la tabla para ver los datos que se ingresaron
+Finalmente *seleccionamos* la tabla para ver los datos que se ingresaron:
 
 .. code-block:: sql
 
@@ -86,7 +86,7 @@ Finalmente *seleccionamos* la tabla para ver los datos que se ingresaron
   1 | Paul   | Anderson | M      | 1983-02-12
  (1 fila)
 
-* Supongamos que en el siguiente ejemplo un alumno esta registrando las notas de sus ramos de la universidad en una tabla llamada **notas**, ingresando el nombre del ramo como *VARCHAR* de un largo de 30 carácteres, nota_1 y nota_2 del tipo *INTEGER* y finalmente su promedio de notas que es del tipo *FLOAT*.
+* Supongamos que en el siguiente ejemplo un alumno está registrando las notas de sus ramos de la universidad en una tabla llamada **notas**, ingresando el nombre del ramo como *VARCHAR* de un largo de 30 carácteres, nota_1 y nota_2 del tipo *INTEGER* y finalmente su promedio de notas que es del tipo *FLOAT*.
 
 .. code-block:: sql
 
