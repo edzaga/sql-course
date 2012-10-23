@@ -6,7 +6,7 @@ Modelo Entidad Relación
 -----------------------
 
 ^^^^^^^^^^^
-Question 1:
+Pregunta 1:
 ^^^^^^^^^^^
 
 Hacer un modelo E-R entidad relación:
@@ -16,15 +16,15 @@ Hacer un modelo E-R entidad relación:
   2. Queremos hacer una base de datos con los discos que tenemos en casa. Un disco puede tener un cantante o grupo, o varios. Además un disco tiene una discográfica. Vamos a complicar un poco el ejemplo anterior: ahora hemos de tener en cuenta que un disco está compuesto por canciones. Éstas pueden estar escritas por la misma persona que las canta, pero a menudo se trata de personas diferentes.
 
 
---------------------------
-Questions of alternatives:
---------------------------
+---------------------------------
+Preguntas de selección múltiple:
+---------------------------------
 
 ^^^^^^^^^^^
-Question 1:
+Pregunta 1:
 ^^^^^^^^^^^
 
-Suppose relation R(A,B,C) has the following tuples
+Supone que la relación R (A, B, C) tiene las siguientes tuplas:
 
 .. math::
 
@@ -44,7 +44,7 @@ Suppose relation R(A,B,C) has the following tuples
   \hline
  \end{array}
 
-and relation S(A,B,C) has the following tuples:
+y relación S (A, B, C) tienen las siguientes tuplas:
 
 .. math::
 
@@ -62,7 +62,7 @@ and relation S(A,B,C) has the following tuples:
   \hline
  \end{array}
 
-Compute the intersection of the relations R and S. Which of the following tuples is in the result?
+Computa la intersección de la relación R y S ¿Cuál de las siguientes tuplas está en el resultado?
 
 a) (4,5,6)
 b) (1,2,6)
@@ -70,10 +70,10 @@ c) (4,2,3)
 d) (2,4,3)
 
 ^^^^^^^^^^^
-Question 2:
+Pregunta 2:
 ^^^^^^^^^^^
 
-Suppose relation R(A,B,C) has the following tuples:
+Supone la relación R (A, B, C) tiene las siguientes tuplas:
 
 .. math::
 
@@ -93,7 +93,7 @@ Suppose relation R(A,B,C) has the following tuples:
   \hline
  \end{array}
 
-and relation S(A,B,C) has the following tuples:
+y relación S (A, B, C) tiene las siguientes tuplas:
 
 .. math::
 
@@ -111,7 +111,8 @@ and relation S(A,B,C) has the following tuples:
   \hline
  \end{array}
 
-Compute (R - S) union (S - R) often called the "symmetric difference" of R and S. Which of the following tuples is in the result?
+Computa (R – S) unión (S – R) muchas veces llamada la “diferencia simétrica” de R y S 
+¿Cuál de las siguientes tuplas está en el resultado?
 
 a) (2,2,3)
 b) (4,2,3)
@@ -119,10 +120,10 @@ c) (4,5,6)
 d) (4,5,3)
 
 ^^^^^^^^^^^
-Question 3:
+Pregunta 3:
 ^^^^^^^^^^^
 
-Suppose relation R(A,B,C) has the following tuples:
+Supone la relación R (A, B, C) tiene las siguientes tuplas:
 
 .. math::
 
@@ -142,7 +143,7 @@ Suppose relation R(A,B,C) has the following tuples:
   \hline
  \end{array}
 
-and relation S(A,B,C) has de following tuples:
+y la relación S (A, B, C) tiene las siguientes tuplas:
 
 .. math::
 
@@ -160,7 +161,7 @@ and relation S(A,B,C) has de following tuples:
   \hline
  \end{array}
 
-Compute the union of R and S. Which of the following tuples DOES NOT appear in the result?
+Compute la unión de R y S ¿Cuál de las siguientes tuplas NO aparece en el resultado?
 
 a) (2,5,3)
 b) (2,5,4)
@@ -168,9 +169,9 @@ c) (4,5,6)
 d) (1,5,4)
 
 ^^^^^^^^^^^
-Question 4:
+Pregunta 4:
 ^^^^^^^^^^^
-Suppose relation R(A,B) has the following tuples:
+Supone la relación R (A, B) tiene las siguientes tuplas:
 
 .. math::
 
@@ -186,7 +187,7 @@ Suppose relation R(A,B) has the following tuples:
   \hline
  \end{array}
 
-and relation S(B,C,D) has de following tuples:
+y la relación S (B, C, D) tiene las siguientes tuplas:
 
 .. math::
 
@@ -202,7 +203,8 @@ and relation S(B,C,D) has de following tuples:
   \hline
  \end{array}
 
-Compute the natural-join of R and S. Which of the following tuples is in the result? Assume each tuple has schema (A,B,C,D).
+Compute la unión natural de R y S ¿Cuál de las siguientes tuplas está en el resultado? 
+Asuma que cada tupla tiene un esquema (A, B, C, D).
 
 a) (5,6,4,6) 
 b) (1,4,6,8)
@@ -210,9 +212,10 @@ c) (5,6,7,9)
 d) (3,4,7,9)
 
 ^^^^^^^^^^^
-Question 5:
+Pregunta 5:
 ^^^^^^^^^^^
-Suppose relation R(A,B,C) has the following tuples:
+
+Supone la relación R (A, B, C) tiene las siguientes tuplas:
 
 .. math::
  
@@ -232,13 +235,13 @@ Suppose relation R(A,B,C) has the following tuples:
   \hline
  \end{array}
 
-Compute the projection
+Compute la proyección 
 
 .. math::
      
  \pi_{C,B} (R)
 
-Which of the following tuples is in the result? 
+¿Cuál de las siguientes tuplas está en el resultado? 
 
 a) (6,2)
 b) (2,5)
@@ -246,9 +249,9 @@ c) (4,2,3)
 d) (1,2)
 
 
----------------
-Query Questions
----------------
+----------------------
+Preguntas de consulta 
+----------------------
 
 A continuación se realizarán una serie de preguntas de consultas sobre la base de datos formada por las tablas de PROVEEDORES, COMPONENTES, ARTICULOS y ENVÍOS. En cada base de datos esta almacenada la siguiente información.
 
