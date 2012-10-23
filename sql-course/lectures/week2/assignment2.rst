@@ -5,20 +5,30 @@ Tarea 2
 Base de datos
 -------------
 
-Se tiene una página que maneja base de datos de series siguiente esquema:
+Se tiene una página que maneja base de datos de series de televisión con el siguiente esquema:
 
- * Serie: (**sID**, titulo, creador, año, audiencia, genero, temporadas)
-La tabla **Serie** posee **sID** que es un id único y es primary key de la relación, además se almacena el **titulo** de la serie, el **creador**, el **año** de estreno de la primera temporada,  la **audiencia** promedio anual, genero de la serie y finalmente el atributo **temporadas** contiene el números de temporadas emitidas hasta el 2012. 
+* Serie: (**sID**, titulo, creador, año, audiencia, genero, temporadas)
+	La tabla **Serie** posee **sID** que es un id único y es primary key de la relación,
+	además se almacena el **titulo** de la serie, el **creador**, el **año** de estreno 
+	de la primera temporada,  la **audiencia** promedio anual, **genero** de la serie y 
+	finalmente el atributo **temporadas** que contiene el número de temporadas emitidas 
+	hasta el 2012. 
   
- * Evaluador: (**eID**, nombre)
-El evaluador es quien califica la serie, la relación **Evaluador** tiene un atributo **eID** (id único) que es primary key y tiene otro atributo **nombre** que almacena el nombre del evaluador. 
+* Evaluador: (**eID**, nombre)
+	El evaluador es quien califica la serie, la relación **Evaluador** tiene un atributo
+	**eID** (id único) que es clave primaria (primary key) y tiene otro atributo **nombre** 
+	que almacena el nombre del evaluador. 
 
- * Calificacion: (eID,sID,nota,fecha)
-Luego que el evaluador califica una serie se guarda en la tabla **Calificacion** que tiene dos claves foráneas **eID** que es el id del evaluador y **sID** que es el id de algunas de las series almacenadas.  También contiene la **nota** puesta por el evaluador y la **fecha** que calificó dicha serie.
+* Calificacion: (**eID**,**sID**,nota,fecha)
+	Luego que el evaluador califica una serie se guarda en la tabla **Calificacion** que 
+	tiene dos claves foráneas **eID** que es el id del evaluador y **sID** que es el id de 
+	algunas de las series almacenadas. Ambas claves foraneas (juntas) conforman la clave 
+	primaria de **Calificación** También contiene la **nota** puesta por el evaluador 
+	y la **fecha** que calificó dicha serie.
 
 .. math::
 
-  \textbf{ Serie} \\
+  \textbf{Serie} \\
 
 	\begin{array}{|c|c|c|c|c|c|c|}
         \hline
@@ -112,14 +122,16 @@ Luego que el evaluador califica una serie se guarda en la tabla **Calificacion**
 ^^^^^^^^^^^
 Pregunta 1:
 ^^^^^^^^^^^
-Cree las 3 tablas necesarias para la base de datos dada, con sus respectivos atributos. Elija el tipo de datos que más se acomode para cada atributo según los valores dados.
+Crear las 3 tablas de la base de datos dada, con sus respectivos atributos.
+Elija el tipo de datos que más se acomode para cada atributo según los valores dados.
 Inserte los datos dados en las tablas que se mostraron anteriormente.
 
 
 ^^^^^^^^^^^
 Pregunta 2:
 ^^^^^^^^^^^
-Realizace la consulta en sql que encuentre los títulos de todas las series que sean del género de comedia.
+Realice la consulta en SQL que encuentre los títulos de todas las series que sean del 
+género de comedia.
 Resultado esperado de la consulta:
 
 .. math::
@@ -137,7 +149,7 @@ Resultado esperado de la consulta:
 ^^^^^^^^^^^
 Pregunta 3:
 ^^^^^^^^^^^
-Buscar los títulos y audiencias de las series y ordenarlas en de forma decreciente. 
+Buscar los títulos y audiencias de las series y ordenarlas en de forma descendente. 
 
 
 ^^^^^^^^^^^
@@ -148,18 +160,17 @@ Buscar los títulos de las series con nota mayor a 7.
 ^^^^^^^^^^^
 Pregunta 5:
 ^^^^^^^^^^^
-Buscar todos los años (sin que se repitan) que tienen una serie que recibió una calificación de 5 ó 6, y clasificarlos en orden decreciente. 
+Buscar todos los años de estreno(sin que se repitan) que tiene una serie que recibió una calificación de 5 ó 6, y clasificarlos en orden descendentes. 
 
 ^^^^^^^^^^^
 Pregunta 6:
 ^^^^^^^^^^^
-Encuentra los títulos de todas las series que no tienen calificaciones, es decir que no se encuentran en la tabla Clasificacion.
-
+Encontrar los títulos de todas las series que no tienen calificaciones, es decir que no se encuentran en la tabla Clasificacion.
 
 ^^^^^^^^^^^
 Pregunta 7:
 ^^^^^^^^^^^
-Algunos evaluadores olvidaron poner una fecha con su clasificación. Se pide encontrar los nombres de todos los encuestados que tienen calificaciones con un valor NULL para la fecha.
+Algunos evaluadores olvidaron poner una fecha con su clasificación. Se pide encontrar los nombres de todos los encuestados que tienen calificaciones con un valor NULL en la fecha.
 
 ^^^^^^^^^^^
 Pregunta 8:
@@ -174,5 +185,5 @@ Los evaluadores no están dispuestos a volver a evaluar una serie que tenga meno
 ^^^^^^^^^^^^
 Pregunta 10:
 ^^^^^^^^^^^^
-El evaluador de eID=204 se equivocó al ingresar la nota de la serie con sID=101, por lo que quiere cambiar la calificación de 9 a 8. Realice la sentencia necesaria para cumplir con el ajuste requerida. 
+El evaluador de eID=204 se equivocó al ingresar la nota de la serie con sID=101, por lo que quiere cambiar la calificación de 9 a 8. Realizar la sentencia necesaria para cumplir con el ajuste requerido. 
 
