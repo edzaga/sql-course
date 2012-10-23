@@ -7,9 +7,9 @@ Lecture 5 - Introducción
 
 `SQL (Structured Query Language)`_ es un tipo de lenguaje vinculado con la gestión de
 bases de datos de carácter relacional que permite la especificación de distintas
-clases de operaciones entre éstas. Gracias a la utilización del álgebra y de
-cálculos relacionales, el lenguaje SQL brinda la posibilidad de realizar consultas
-que ayuden a recuperar información de las bases de datos de manera sencilla.
+clases de operaciones. Gracias a la utilización del álgebra y de cálculo relacional,
+el lenguaje SQL brinda la posibilidad de realizar consultas que ayuden a recuperar 
+información de las bases de datos de manera sencilla.
 
 Characteristics
 ~~~~~~~~~~~~~~~~
@@ -23,15 +23,14 @@ Algunas de las características de este lenguaje son:
  * Interactive via GUI or prompt, or embedded in programs.
  * Declarative, based on relational algebra.
 
-Data Definition Languaje (DDL)
+Data Definition Language (DDL)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. index:: Data Definition Languaje (DDL)
 
 
-`DDL (Data Definition Language)`_ is a syntax similar
-to a computer programming language for defining data structures, especially
-database schemas.
+`DDL (Data Definition Language)`_ es un lenguaje que permite definir la base de datos 
+(su estructura o "schemas"), tiene una sintaxis similar a los lenguajes de programación.
 
 Examples:
 
@@ -76,9 +75,9 @@ Examples:
 Data Manipulation Languaje (DML)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`DML (Data Manipulation Language)`_ se refiere a los comandos que
-permiten a un usuario manipular los datos en un repositorio, es decir, añadir,
-consultar, borrar o actualizar.
+`DML (Data Manipulation Language)`_ se refiere a los comandos que permiten a un 
+usuario manipular los datos de las tablas, es decir, consultar tablas, añadir filas,
+borrar filas y actualizar columnas.
 
 
 .. CMA: Escribir ejemplos de verdad por cada comando.
@@ -122,6 +121,8 @@ The Basic SELECT Statement
    * :sql:`SELECT` `A_{1}, \ldots, A_{n}`: What to return
    * :sql:`FROM` `R_{1}, \ldots,R_{m}`: relations
    * :sql:`WHERE` `condition`: combine, filter
+
+.. CMA: profececi: ¿que busca? lista de columnas, ¿desde donde se busca? lista de tablas, que qede mas claro
 
 **Algebra relacional:**
 
@@ -225,7 +226,7 @@ para comenzar a realizar distintas operaciones:
 
 Ahora comenzamos a *crear una tabla* llamada **cliente** con las variables id que se
 define como serial en que al ir agregando datos se autoincrementará automaticamente
-en la base de datos example
+en la base de datos example:
 
 .. code-block:: sql
 
@@ -236,7 +237,7 @@ Y recibiremos el siguiente mensaje::
  NOTICE:  CREATE TABLE creará una secuencia implícita «cliente_id_seq» para la columna serial «cliente.id»
  CREATE TABLE
 
-Para *agregar* datos a la tabla **cliente** se realiza de la siguiente manera
+Para *agregar* datos a la tabla **cliente** se realiza de la siguiente manera:
 
 .. code-block:: sql
 
@@ -340,13 +341,14 @@ combinación de campos que identifica de forma única a cada fila de una tabla. 
 que no pueden existir dos filas en una tabla que tengan la misma clave primaria.
 
 Y las **claves foráneas** tienen por objetivo establecer una conexión con la clave
-primaria que referencian de otra tabla, creandose una relación entre las dos tablas.
+primaria que referencian de otra tabla, creandose una asociación entre las dos tablas.
 
 ----------------
 Ejemplo Práctico
 ----------------
 
-Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está definido como serial que automáticamente irá ingresando los valores 1, 2,3 a cada registro.
+Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está 
+definido como serial que automáticamente irá ingresando los valores 1, 2,3 a cada registro.
 
 .. code-block:: sql
 
@@ -358,7 +360,9 @@ Recibiremos el siguiente mensaje::
  NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «profesores_pkey» para la tabla «profesores»
  CREATE TABLE
 
-Ahora vamos a crear la tabla de cursos en que ID_curso será la clave primaria de esta tabla y ID_profesor será la clave foránea, que se encargará de realizar una conexión entre estas dos tablas.
+Ahora vamos a crear la tabla de cursos en que ID_curso será la clave primaria de esta 
+tabla y ID_profesor será la clave foránea, que se encargará de realizar una conexión 
+entre estas dos tablas.
 
 .. code-block:: sql
 
@@ -373,6 +377,7 @@ Recibiremos el siguiente mensaje::
 .. CMA: Y nada mas? :( quizás podrías idear un par de ejemplos más para ver
         la importancia de las foreign y primary keys, o quizás planead un ejercicio.
 
+.. CMA: profececi: poner ejemplo también de foreing key ideal si muestran tabla con los datos, valores para que se vea la asociación
 
 .. _`SQL (Structured Query Language)`: http://en.wikipedia.org/wiki/SQL
 .. _`DDL (Data Definition Language)`: http://en.wikipedia.org/wiki/Data_Definition_Language
