@@ -1,4 +1,4 @@
-Lecture 8 - Table variable and set operators
+Lecture 8 - Table variables and set operators
 --------------------------------------------
 .. role:: sql(code)
    :language: sql
@@ -9,13 +9,13 @@ Table Variables
 
 .. index:: Table Variables
 
-Consideremos la siguiente situación ::
+Consideremos las siguientes tablas::
 
         College (cName, state, enrollment)
         Student (sID, sName, GPA, sizeHS)
         Apply (sID, cName, major, decision)
 
-estas tablas College, Student, Apply las podemos crear de la siguiente manera:
+las cuales son creadas mediante:
 
 .. code-block:: sql
    
@@ -108,7 +108,7 @@ también es posible realizarla como
 
 .. CMA: no entiendo esto...
 
-Como se aprecia, es posible asignar valores variables a las relaciones "R" y utilizar dichas variables tanto en la lista "L" como en la 
+Como se aprecia, es posible asignar variables a las relaciones "R" y utilizar dichas variables tanto en la lista "L" como en la 
 condición "C". El lector se preguntará cuál es la utilidad de esto, más allá de escribir menos (dependiendo del nombre de la variable
 utilizada); y la respuesta corresponde a los casos en que se deben comparar múltiples instancias de la misma relación, como se verá a más 
 adelante en esta misma lectura.
