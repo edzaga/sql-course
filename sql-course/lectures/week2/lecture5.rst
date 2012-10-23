@@ -171,24 +171,29 @@ Ejemplo práctico
    * For Red Hat/Scientific Linux/Fedora/CentOS users
 
     * Start the service. I should say OK if everything is correct
+      ::
 
-      **service postgresql start**
+        service postgresql start
 
     * We change the user's password Postgres
+      ::
 
-      **passwd postgres**
+        passwd postgres
 
     * Now start Postgres (enter password from above)
+      ::
 
-      **su postgres**
+        su postgres
 
     * We started the service
+      ::
 
-      **/etc/init.d/postgresql start**
+        /etc/init.d/postgresql start
 
     * You should see a prompt "bash-4.1 $", now we enter Postgres
+      ::
 
-      **psql**
+        psql
 
 Primero que todo debemos *crear* una base de datos
 para comenzar nuestros ejercicios.
@@ -225,7 +230,7 @@ en la base de datos example
 .. code-block:: sql
 
  example=# CREATE TABLE cliente (id SERIAL, nombre VARCHAR(50), apellido VARCHAR(50), edad INTEGER, direccion VARCHAR(50), pais VARCHAR(25));
- 
+
 Y recibiremos el siguiente mensaje::
 
  NOTICE:  CREATE TABLE creará una secuencia implícita «cliente_id_seq» para la columna serial «cliente.id»
