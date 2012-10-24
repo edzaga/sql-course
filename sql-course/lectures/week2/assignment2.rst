@@ -1,25 +1,29 @@
 Tarea 2
 =======
 
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
+
 -------------
 Base de datos
 -------------
 
 Se tiene una página que maneja base de datos de series de televisión con el siguiente esquema:
 
-* Serie: (**sID**, titulo, creador, año, audiencia, genero, temporadas)
+* Serie: (**sID**, titulo, creador, año, audiencia, genero, temp, final)
 	La tabla **Serie** posee **sID** que es un id único y es primary key de la relación,
-	además se almacena el **titulo** de la serie, el **creador**, el **año** de estreno 
-	de la primera temporada,  la **audiencia** promedio anual, **genero** de la serie y 
-	finalmente el atributo **temporadas** que contiene el número de temporadas emitidas 
-	hasta el 2012. 
+	además se almacena el **titulo** de la serie, el **creador**, **año** es el año de estreno 
+	de la primera temporada, la **audiencia** promedio anual, **genero** de la serie y 
+	finalmente el atributo **temp** que contiene el número de temporadas emitidas hasta 
+	el 2012, **final** es un atributo que dice si la serie se sigue emitiendo o terminó. 
   
 * Evaluador: (**eID**, nombre)
 	El evaluador es quien califica la serie, la relación **Evaluador** tiene un atributo
 	**eID** (id único) que es clave primaria (primary key) y tiene otro atributo **nombre** 
 	que almacena el nombre del evaluador. 
 
-* Calificacion: (**eID**,**sID**,nota,fecha)
+* Calificacion: (**eID**, **sID** ,nota,fecha)
 	Luego que el evaluador califica una serie se guarda en la tabla **Calificacion** que 
 	tiene dos claves foráneas **eID** que es el id del evaluador y **sID** que es el id de 
 	algunas de las series almacenadas. Ambas claves foraneas (juntas) conforman la clave 
@@ -30,27 +34,27 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 
   \textbf{Serie} \\
 
-	\begin{array}{|c|c|c|c|c|c|c|}
+	\begin{array}{|c|c|c|c|c|c|c|c|}
         \hline
-	\textbf{sID} & \textbf{titulo} & \textbf{creador} & \textbf{año} & \textbf{audiencia} & \textbf{genero}& \textbf{temporadas} \\	
+	\textbf{sID} & \textbf{titulo} & \textbf{creador} & \textbf{año} & \textbf{audiencia} & \textbf{genero}& \textbf{temp}& \textbf{final} \\	
 	\hline
-	101 & \text{The Big Bang Theory} & \text{Bill Prady} & 2007 & 4599 & \text{Comedia} & 6 \\
+	1 & \text{The Big Bang Theory} & \text{Bill Prady} & 2007 & 45.99 & \text{comedia} & 6 & false\\
 	\hline
-	102 & \text{Grey’s Anatomy} & \text{Shonda Rhimes} & 2005 & 4035 & \text{Drama} & 9 \\
+	2 & \text{Grey’s Anatomy} & \text{Shonda Rhimes} & 2005 & 40.35 & \text{drama} & 9 & false \\
 	\hline
-	103 & \text{Dexter} & \text{James Manos} & 2006 & 5024	& \text{Crimen} & 7 \\
+	3 & \text{Dexter} & \text{James Manos} & 2006 & 50.24	& \text{crimen} & 7 & false\\
 	\hline
-	104 & \text{Bones} & \text{Hart Hanson} & 2005 & 3061 & \text{Crimen} &	8 \\
+	4 & \text{Bones} & \text{Hart Hanson} & 2005 & 30.61 & \text{crimen} &	8 & false \\
 	\hline
-	105 & \text{Glee} & \text{Ryan Murphy} & 2009 &	3967 & \text{Musical} &	4 \\
+	5 & \text{Glee} & \text{Ryan Murphy} & 2009 &	39.67 & \text{musical} &	4 & false\\
 	\hline
-	106 & \text{The Walking Dead} &	\text{Frank Darabont}  & 2010 &	3478 &	\text{Horror} & 3 \\
+	6 & \text{The Walking Dead} &	\text{Frank Darabont}  & 2010 &	34.78 &	\text{horror} & 3 & false \\
 	\hline
-	107 & \text{Lost} & \text{Jeffrey Lieber} & 2004 & 4932	& \text{Fantasia} & 6 \\
+	7 & \text{Lost} & \text{Jeffrey Lieber} & 2004 & 49.32	& \text{fantasia} & 6 & true \\
 	\hline
-	108 & \text{Spartacus} & \text{Steven S. DeKnight} & 2010 & 3851 &	\text{Accion} & 2 \\
+	8 & \text{Spartacus} & \text{Steven S. DeKnight} & 2010 & 38.51 &	\text{accion} & 2 & false \\
 	\hline
-	109 & \text{The Simpsons} & \text{Matt Groening} & 1989 & 5582	& \text{Comedia} & 25 \\
+	9 & \text{The Simpsons} & \text{Matt Groening} & 1989 & 55.82	& \text{comedia} & 25 & false\\
 	\hline
 	 \end{array}
 
@@ -62,21 +66,23 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 	\hline
 	\textbf{eID} & \textbf{nombre}  \\
 	\hline
-	201	& \text{Nancy Cartwright} \\
+	1	& \text{Nancy Cartwright} \\
 	\hline
-	202	& \text{Harry Shearer} \\
+	2	& \text{Harry Shearer} \\
 	\hline
-	203	& \text{Frank Welker} \\
+	3	& \text{Frank Welker} \\
 	\hline
-	204	& \text{Jon Lovitz} \\
+	4	& \text{Jon Lovitz} \\
 	\hline
-	205	& \text{Charles Napier} \\
+	5	& \text{Charles Napier} \\
 	\hline
-	206	& \text{Glenn Close} \\
+	6	& \text{Glenn Sloan} \\
 	\hline
-	207	& \text{Stacy Keach} \\
+	7	& \text{Stacy Keach} \\
 	\hline
-	208	& \text{David Crosby} \\
+	8	& \text{David Crosby} \\
+	\hline
+	9	& \text{Keley Jones} \\
 	\hline
 	\end{array}
 
@@ -88,33 +94,35 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 	\hline
 	\textbf{eID} & \textbf{sID} & \textbf{nota} & \textbf{fecha}  \\
 	\hline			
-	201 &	101&	8	&2012-01-22 \\
+	1 &	6&	5	&2012-06-08 \\	
+	\hline			
+	1 &	4&	6	&2011-04-13 \\	
+	\hline			
+	1 &	1&	8	&2012-01-22 \\
 	\hline
-	201	&101	&9	&2012-01-27 \\
+	2	&6&	7	&2012-02-23 \\
 	\hline
-	202	&106&	7	&<null> \\
+	3	&3&	8&	2011-11-20\\
 	\hline
-	203	&103&	8&	2011-11-20\\
+	3	&8&	4	&2011-11-12\\
 	\hline
-	203	&108&	4	&2011-11-12\\
+	4	&1&	9&	2012-01-09\\
 	\hline
-	203	&108&	6	&2012-04-30\\
+	5	&3	&8	&2012-09-27\\
 	\hline
-	204	&101&	9&	2012-01-09\\
+	5&	4&	8&	2012-07-22\\
 	\hline
-	205	&103	&8	&2012-09-27\\
+	5	&8&	4	&2012-03-17\\
 	\hline
-	205&	104&	8&	2012-07-22\\
+	6	&7&	7	&2012-07-15 \\
 	\hline
-	205	&108&	4	&<null>\\
+	6	&6&	5	&2012-05-19 \\
 	\hline
-	206	&107&	7	&2012-07-15 \\
+	7	&7&	5	&2011-09-20\\
 	\hline
-	206	&106&	5	&2012-05-19 \\
+	7	&2&	6	&2011-12-08\\
 	\hline
-	207	&107&	5	&2011-09-20\\
-	\hline
-	208	&104&	9&	2011-10-02\\
+	8	&4&	9&	2011-10-02\\
 	\hline
 	\end{array}
 
@@ -122,68 +130,141 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 ^^^^^^^^^^^
 Pregunta 1:
 ^^^^^^^^^^^
-Crear las 3 tablas de la base de datos dada, con sus respectivos atributos.
+* Cree, una base de datos de nombre tarea2. 
+* Crear las 3 tablas de la base de datos dada, con sus respectivos atributos.
 Elija el tipo de datos que más se acomode para cada atributo según los valores dados.
-Inserte los datos dados en las tablas que se mostraron anteriormente.
-
 
 ^^^^^^^^^^^
 Pregunta 2:
 ^^^^^^^^^^^
-Realice la consulta en SQL que encuentre los títulos de todas las series que sean del 
-género de comedia.
-Resultado esperado de la consulta:
-
-.. math::
-	\begin{array}{|c|}
-	\hline
-	\textbf{titulo}  \\
-	\hline
-	\text{The Big Bang Theory} \\
-	\hline
-	\text{The Simpsons} \\
-	\hline
-	\end{array}
+Inserte los datos dados en las tablas que se mostraron anteriormente.
 
 
 ^^^^^^^^^^^
 Pregunta 3:
 ^^^^^^^^^^^
-Buscar los títulos y audiencias de las series y ordenarlas en de forma descendente. 
+Realice la consulta en SQL que encuentre los títulos de todas las series que sean del 
+género de comedia.
+
+Resultado esperado de la consulta:
+
+.. code-block:: sql
+
+ titulo        
+ ---------------------
+  The Big Bang Theory
+  The Simpsons
+
 
 
 ^^^^^^^^^^^
 Pregunta 4:
 ^^^^^^^^^^^
-Buscar los títulos de las series con nota mayor a 7.
+Buscar los títulos y audiencias de las series y ordenarlas en de forma descendente.
+
+Resultado esperado de la consulta:
+
+.. code-block:: sql
+ 
+        titulo        | audiencia 
+ ---------------------+-----------
+  The Simpsons        |     55.82
+  Dexter              |     50.24
+  Lost                |     49.32
+  The Big Bang Theory |     45.99
+  Greys Anatomy       |     40.35
+  Glee                |     39.67
+  Spartacus           |     38.51
+  The Walking Dead    |     34.78
+  Bones               |     30.61
+
 
 ^^^^^^^^^^^
 Pregunta 5:
 ^^^^^^^^^^^
-Buscar todos los años de estreno(sin que se repitan) que tiene una serie que recibió una calificación de 5 ó 6, y clasificarlos en orden descendentes. 
+Buscar los títulos (sin que se repitan)  de las series con nota mayor a 7.
+
+Resultado esperado de la consulta:
+
+.. code-block:: sql
+
+       titulo        
+ ---------------------
+  Lost
+  Dexter
+  The Walking Dead
+  The Big Bang Theory
+  Bones
+
+
 
 ^^^^^^^^^^^
 Pregunta 6:
 ^^^^^^^^^^^
-Encontrar los títulos de todas las series que no tienen calificaciones, es decir que no se encuentran en la tabla Clasificacion.
+Buscar todos los años de estreno(sin que se repitan) que tiene una serie que recibió una calificación de 5 ó 6, y clasificarlos en orden descendentes. 
+
+Resultado esperado de la consulta:
+
+.. code-block:: sql
+
+ año  
+ ------
+  2004
+  2005
+  2010
 
 ^^^^^^^^^^^
 Pregunta 7:
 ^^^^^^^^^^^
-Algunos evaluadores olvidaron poner una fecha con su clasificación. Se pide encontrar los nombres de todos los encuestados que tienen calificaciones con un valor NULL en la fecha.
+Buscar el nombre de los evaluadores(sin que se repitan), que calificaron alguna serie que tenga más de 7 temporadas o haya finalizado.
+
+Resultado esperado de la consulta:
+
+.. code-block:: sql
+
+  nombre      
+ ------------------
+  Glenn Sloan
+  Charles Napier
+  Stacy Keach
+  Nancy Cartwright
+  David Crosby
+
 
 ^^^^^^^^^^^
 Pregunta 8:
 ^^^^^^^^^^^
 Escriba una consulta para devolver: nombre del evaluador, título de la serie, la nota, y la fecha de clasificación. Ordenar los datos, en primer lugar por el nombre del evaluador, y luego por título de la serie, y por último por la nota.
 
+Resultado esperado de la consulta:
+
+.. code-block:: sql
+
+       nombre      |       titulo        | nota |   fecha    
+ ------------------+---------------------+------+------------
+  Charles Napier   | Bones               |    8 | 2012-07-22
+  Charles Napier   | Dexter              |    8 | 2012-09-27
+  Charles Napier   | Spartacus           |    4 | 2012-01-27
+  David Crosby     | Bones               |    9 | 2011-10-02
+  Frank Welker     | Dexter              |    8 | 2011-11-20
+  Frank Welker     | Spartacus           |    4 | 2011-11-12
+  Glenn Sloan      | Lost                |    7 | 2012-07-15
+  Glenn Sloan      | The Walking Dead    |    5 | 2012-05-19
+  Harry Shearer    | The Walking Dead    |    7 | 2012-02-23
+  Jon Lovitz       | The Big Bang Theory |    9 | 2012-01-09
+  Nancy Cartwright | Bones               |    6 | 2011-04-13
+  Nancy Cartwright | The Big Bang Theory |    8 | 2012-01-22
+  Nancy Cartwright | The Walking Dead    |    5 | 2012-06-08
+  Stacy Keach      | Greys Anatomy       |    6 | 2011-12-08
+  Stacy Keach      | Lost                |    5 | 2011-09-20
+
+
 ^^^^^^^^^^^
 Pregunta 9:
 ^^^^^^^^^^^
-Los evaluadores no están dispuestos a volver a evaluar una serie que tenga menos de 4000 de audiencia. Por lo que se le pide que elimine de la tabla `serie` todas aquellas que no cumplan con esta condición. 
+El evaluador de eID=4 se equivocó al ingresar la nota de la serie con sID=1, por lo que quiere cambiar la calificación tiene de 9 a 8. Realizar la sentencia necesaria para cumplir con el ajuste requerido. 
 
-^^^^^^^^^^^^
-Pregunta 10:
-^^^^^^^^^^^^
-El evaluador de eID=204 se equivocó al ingresar la nota de la serie con sID=101, por lo que quiere cambiar la calificación de 9 a 8. Realizar la sentencia necesaria para cumplir con el ajuste requerido. 
+
+
+
 
