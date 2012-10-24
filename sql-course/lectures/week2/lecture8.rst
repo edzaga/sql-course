@@ -21,7 +21,7 @@ las cuales son creadas mediante:
    
  postgres=# CREATE TABLE College(id serial, cName VARCHAR(20), state VARCHAR(30), enrollment VARCHAR(40), PRIMARY KEY(id));
 
-Recibiremos como respuesta lo siguiente::
+cuya salida es::
 
  NOTICE:  CREATE TABLE creará una secuencia implícita «college_id_seq» para la columna serial «college.id»
  NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «college_pkey» para la tabla «college»
@@ -31,7 +31,7 @@ Recibiremos como respuesta lo siguiente::
 
   postgres=# CREATE TABLE Student(sID serial, sName VARCHAR(20), GPA INTEGER, sizeHS VARCHAR(40), PRIMARY kEY(sID));
 
-Recibiremos como respuesta lo siguiente::
+Su salida es::
 
  NOTICE:  CREATE TABLE creará una secuencia implícita «student_sid_seq» para la columna serial «student.sid»
  NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «student_pkey» para la tabla «student»
@@ -110,15 +110,15 @@ también es posible realizarla como
 
 Como se aprecia, es posible asignar variables a las relaciones "R" y utilizar dichas variables tanto en la lista "L" como en la 
 condición "C". El lector se preguntará cuál es la utilidad de esto, más allá de escribir menos (dependiendo del nombre de la variable
-utilizada); y la respuesta corresponde a los casos en que se deben comparar múltiples instancias de la misma relación, como se verá a más 
-adelante en esta misma lectura.
+utilizada); y la respuesta corresponde a los casos en que se deben comparar múltiples instancias de la misma relación.
 
 .. note::
    El por qué de la nomenclatura "L", "R" y "C" y su significado están explicados en la lectura 7
 
-
-Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde más a variable en la consulta).
-La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
+Así son las variables que se pueden asignar a las tablas. Estas variables en una consulta, se definen en el "FROM"  del 
+"SELECT-FROM-WHERE".
+.. Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde más a variable en la consulta).
+ La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
 
 
 .. CMA: Se invita al lector alplicado a realizar pruebas, se dejan las siguientes lineas de código a su disposición, con el fin de
@@ -127,7 +127,13 @@ La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WH
 .. CMA:.. code-block:: sql
 
 .. CMA:        INSERT INTO "R"
-        (Columna1, Columna2,..., ColumnaN)
+        (Columna1,    (cName, state, enrollment)
+        VALUES
+        ('Stanford', 'stanford', 'mayor'),
+        ('Berkeley', 'miami', 'mayor'),
+        ('MIT', 'masachusets', 'minor');
+
+.. Columna2,..., ColumnaN)
         VALUES
         (Valor Columna1Fila1, Valor Columna2Fila1,..., Valor ColumnaNFila1),
         (Valor Columna2Fila1, Valor Columna2Fila2,..., Valor ColumnaNFila2),
@@ -182,8 +188,8 @@ La diferencia se realiza a través de
 
 .. code-block:: sql
 
-        Student.sID ó S.sID
-        Apply.sID ó A.sID
+        Student.sID o S.sID
+        Apply.sID o  A.sID
 
 
 En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo, 
