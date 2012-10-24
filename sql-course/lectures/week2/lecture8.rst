@@ -94,7 +94,7 @@ Ahora realizaremos la siguente consulta de selección de tabla:
    3 | edward | MIT      |  40
  (3 filas)
 
-también es posible realizarla como
+también es posible realizarla como:
 
 .. code-block:: sql
 
@@ -176,7 +176,7 @@ Cuidado con los duplicados!!
 
 Si el lector se fija en la situación descrita, los nombres de algunos atributos de diferentes relaciones y/o tablas  se repiten, lo cual
 podría plantear la interrogante ¿a que tabla se refiere el atributo en cuestión?. Para resolver este pequeño gran problema, se precede al
-nombre del atributo con el nombre de la tabla y un punto, es decir, 
+nombre del atributo con el nombre de la tabla y un punto, es decir:
 
 
 .. code-block:: sql
@@ -184,7 +184,7 @@ nombre del atributo con el nombre de la tabla y un punto, es decir,
         "algo_asi."
 
 Concretamente en el ejemplo anterior, el alcance de nombres lo protagonizan sID de la tabla Student y sID de la tabla Apply. 
-La diferencia se realiza a través de
+La diferencia se realiza a través de:
 
 .. code-block:: sql
 
@@ -193,7 +193,7 @@ La diferencia se realiza a través de
 
 
 En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo, 
-se buscan todos los pares de estudiantes con el mismo GPA
+se buscan todos los pares de estudiantes con el mismo GPA:
 
 .. code-block:: sql
 
@@ -202,7 +202,7 @@ se buscan todos los pares de estudiantes con el mismo GPA
         WHERE S1.GPA = S2.GPA;
 
 Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrá uno o varios duplicados; por ejemplo, 
-consideremos 3 estudantes
+consideremos 3 estudantes:
 
 .. math::
 
@@ -268,63 +268,52 @@ Unión
 =====
 
 El operador "UNION", permite combinar el resultado de dos o más sentencias SELECT. Es necesario que estas tengan el mismo número de columnas, 
-y que, además tengan los mismos tipos de datos, por ejemplo:
+y que, además tengan los mismos tipos de datos, por ejemplo, si se tienen las siguientes tablas:
 
 .. code-block:: sql
 
-     Employees_Norway":
+     Employees_Norway:
         E_ID    E_Name
-        01      Hansen, Ola
-        02      Svendson, Tove
-        03      Svendson, Stephen
-        04      Pettersen, Kari
+        1      Hansen, Ola
+        2      Svendson, Tove
+        3      Svendson, Stephen
+        4      Pettersen, Kari
 
-        "Employees_USA":
+        Employees_USA:
         E_ID    E_Name
-        01      Turner, Sally
-        02      Kent, Clark
-        03      Svendson, Stephen
-        04      Scott, Stephen
+        1      Turner, Sally
+        2      Kent, Clark
+        3      Svendson, Stephen
+        4      Scott, Stephen
 
-Que se puede crear mediante la creación de las tablas
-
-.. code-block:: sql
-
-    CREATE TABLE Employees_Norway
-        (
-     E_ID int auto_increment primary key, 
-     E_Name varchar(50)
-    );
-
-    CREATE TABLE Employees_USA
-        (
-     E_ID int auto_increment primary key, 
-     E_Name varchar(50) 
-    );
-
-
-
-y el relleno con los datos mostrados en el ejemplo
+Que se pueden crear mediante el comando CREATE TABLE:
 
 .. code-block:: sql
 
-        INSERT INTO Employees_Norway
-        (E_Name)
+    CREATE TABLE Employees_Norway (E_ID serial, E_Name varchar(50), PRIMARY KEY(E_ID));
+
+    CREATE TABLE Employees_USA ( E_ID serial, E_Name varchar(50), PRIMARY KEY(E_ID));
+    
+
+y pobladas  con los datos mostrados a continuación:
+
+.. code-block:: sql
+
+        INSERT INTO Employees_Norway (E_Name)
         VALUES
         ('Hansen, Ola'),
         ('Svendson, Tove'),
         ('Svendson, Stephen'),
         ('Pettersen, Kari');
         
-        INSERT INTO Employees_USA
-        (E_Name)
+        INSERT INTO Employees_USA (E_Name)
         VALUES
         ('Turner, Sally'),
         ('Kent, Clark'),
         ('Svendson, Stephen'),
         ('Scott, Stephen');
 
-El resultado de la consulta
+El resultado de la siguiente consulta que incluye el operador UNION:
 
 .. code-block:: sql
 
@@ -333,22 +322,23 @@ El resultado de la consulta
         SELECT E_Name FROM Employees_USA;
 
 
-es
+es:
 
 .. code-block:: sql
 
-        E_Name
-        Hansen, Ola
+        e_name
+      --------------
+        Turner, Sally       
         Svendson, Tove
         Svendson, Stephen
         Pettersen, Kari
-        Turner, Sally
+        Hansen, Ola
         Kent, Clark
         Scott, Stephen
 
 
-Ojo, existen dos empleados con el mismo nombre en ambas tablas. Sin embargo en la
-salida sólo se nombra uno. Para evitar esto, se utliza "UNION ALL"
+Ojo, hay que tener en cuenta que existe en ambas tablas un empleado con el mismo nombre "Svendson, Stephen". Sin embargo en la
+salida sólo se nombra uno. Si se desea que aparezcan "UNION ALL":
 
 .. code-block:: sql
 
@@ -356,11 +346,12 @@ salida sólo se nombra uno. Para evitar esto, se utliza "UNION ALL"
         UNION ALL
         SELECT E_Name as name FROM Employees_USA;
 
-Utilizando "as" es posible cambiar el nombre de la columna resultado
+Utilizando "as" es posible cambiar el nombre de la columna donde quedará resultado:
 
 .. code-block:: sql
 
-        NAME
+        name
+      ---------------
         Hansen, Ola
         Svendson, Tove
         Svendson, Stephen
@@ -370,10 +361,10 @@ Utilizando "as" es posible cambiar el nombre de la columna resultado
         Svendson, Stephen
         Scott, Stephen
 
-se aprecia que la salida contiene los nombres de ambos empleados.
+se aprecia que la salida contiene los nombres de los empleados duplicados:
 
 .. note::
-   En el ejemplo anterior, se utilizaba "as name" en ambos SELECT. Como hecho curioso, si se utilizan diferentes nombres junto al "as"
+   En el ejemplo anterior, se utiliza "as name" en ambos SELECT. Como hecho curioso, si se utilizan diferentes nombres junto al "as"
    como por ejemplo, "as name" y "as lala", queda como nombre de la tabla UNION el primero en ser declarado.
 
 
