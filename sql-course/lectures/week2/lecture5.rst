@@ -79,9 +79,6 @@ Data Manipulation Languaje (DML)
 usuario manipular los datos de las tablas, es decir, consultar tablas, añadir filas,
 borrar filas y actualizar columnas.
 
-
-.. CMA: Escribir ejemplos de verdad por cada comando.
-
 Examples of DML
 
 .. code-block:: sql
@@ -122,7 +119,7 @@ The Basic SELECT Statement
    * :sql:`FROM` `R_{1}, \ldots,R_{m}`: relations
    * :sql:`WHERE` `condition`: combine, filter
 
-.. CMA: profececi: ¿que busca? lista de columnas, ¿desde donde se busca? lista de tablas, que qede mas claro
+Lo que busca esta consulta es mostrar las columnas `A_{1}, \ldots, A_{n}` de las tablas o relaciones `R_{1}, \ldots,R_{m}`, siguiendo alguna condición. 
 
 **Algebra relacional:**
 
@@ -200,16 +197,6 @@ Primero que todo debemos *crear* una base de datos
 para comenzar nuestros ejercicios.
 La llamaremos **example**:
 
-.. CMA: Aqui tienes dos opciones para que se vea mejor, o usar el code-block
-..      para resaltar el código SQL o usar testcase para dejar el negrita
-..      lo que el usuario debe ingresar, tu decides.
-..      OJO: La idea es que apliques esta decisión a todos los códigos que muestras.
-
-.. CMA: También debes definir un formato especial cuando te refieras a:
-..      * El nombre del proceso a ejecutar (crear, editar, agregar, etc...)
-..      * Nombres de elementos de la base de datos (db, tablas, atributos, etc)
-..      *
-
 .. code-block:: sql
 
    postgres=# create database example;
@@ -272,7 +259,13 @@ Para *agregar* datos a la tabla **cliente** se realiza de la siguiente manera:
  (5 filas)
 
 .. note::
- El asterisco (*) que está entre el :sql:`SELECT` y el :sql:`FROM` significa que se seleccionan todas las columnas de la tabla.
+ El asterisco (*) que está entre el :sql:`SELECT` y el :sql:`FROM` significa que se seleccionan todas las columnas de la tabla. 
+
+Si deseamos seleccionar la columna nombre con apellido la consulta deberia ser
+
+.. code-block::
+
+ SELECT nombre, apellido FROM cliente;
 
 Como cometimos el error de *agregar* en la segunda fila datos repetidos, pero se puede *eliminar* de la siguiente manera
 
@@ -348,7 +341,7 @@ Ejemplo Práctico
 ----------------
 
 Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está 
-definido como serial que automáticamente irá ingresando los valores 1, 2,3 a cada registro.
+definido como serial que automáticamente irá ingresando los valores 1, 2, 3 a cada registro.
 
 .. code-block:: sql
 
@@ -374,10 +367,94 @@ Recibiremos el siguiente mensaje::
  NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «cursos_pkey» para la tabla «cursos»
  CREATE TABLE
 
-.. CMA: Y nada mas? :( quizás podrías idear un par de ejemplos más para ver
-        la importancia de las foreign y primary keys, o quizás planead un ejercicio.
+Se *insertarán* algunos datos para poder realizar una *selección* y poder visualizar el funcionamiento de la clave primaria y foránea
 
-.. CMA: profececi: poner ejemplo también de foreing key ideal si muestran tabla con los datos, valores para que se vea la asociación
+.. code-block:: sql
+
+ postgres=# INSERT INTO profesores(nombre, apellido) VALUES('Alfred','JOHNSON');
+ INSERT 0 1
+ postgres=# INSERT INTO profesores(nombre, apellido) VALUES('Alisson','DAVIS');
+ INSERT 0 1
+ postgres=# INSERT INTO profesores(nombre, apellido) VALUES('Bob','MILLER');
+ INSERT 0 1
+ postgres=# INSERT INTO profesores(nombre, apellido) VALUES('Betty','WILSON');
+ INSERT 0 1
+ postgres=# INSERT INTO profesores(nombre, apellido) VALUES('Christin','JONES');
+ INSERT 0 1
+ postgres=# INSERT INTO profesores(nombre, apellido) VALUES('Edison','SMITH');
+ INSERT 0 1
+
+Quedando la tabla de la siguiente manera si seleccionamos todas las columnas.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM profesores;
+  id_profesor |  nombre  | apellido 
+ -------------+----------+----------
+            1 | Alfred   | JOHNSON
+            2 | Alisson  | DAVIS
+            3 | Bob      | MILLER
+            4 | Betty    | WILSON
+            5 | Christin | JONES
+            6 | Edison   | SMITH
+ (6 filas)
+
+.. note::
+
+ Como se puede ver en la tabla de **profesores**, el "id_profesor" que lo definimos como tipo de dato serial se autoincremento automáticamente sin necesidad de ingresarlo nosotros, además se definió como una clave primaria. 
+ 
+Ahora insertamos los datos de la tabla **cursos**.
+
+.. code-block:: sql
+
+ postgres=# INSERT INTO cursos(titulo, ID_profesor) VALUES('Base de datos',2);
+ INSERT 0 1
+ postgres=# INSERT INTO cursos(titulo, ID_profesor) VALUES('Estructura de datos',5);
+ INSERT 0 1
+ postgres=# INSERT INTO cursos(titulo, ID_profesor) VALUES('Arquitectura de computadores',1);
+ INSERT 0 1
+ postgres=# INSERT INTO cursos(titulo, ID_profesor) VALUES('Recuperacion de informacion',3);
+ INSERT 0 1
+ postgres=# INSERT INTO cursos(titulo, ID_profesor) VALUES('Teoria de sistemas',4);
+ INSERT 0 1
+ postgres=# INSERT INTO cursos(titulo, ID_profesor) VALUES('Sistemas de informacion',6);
+ INSERT 0 1
+
+Quedando la tabla de siguiente manera.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM cursos;
+  id_curso |            titulo            | id_profesor 
+ ----------+------------------------------+-------------
+         1 | Base de datos                |           2
+         2 | Estructura de datos          |           5
+         3 | Arquitectura de computadores |           1
+         4 | Recuperacion de informacion  |           3
+         5 | Teoria de sistemas           |           4
+         6 | Sistemas de informacion      |           6
+ (6 filas)
+
+.. note::
+
+ Un profesor puede tener asignado más de un curso, no existe restricción. 
+
+Ahora queremos tener solo una tabla con el "nombre", "apellido" del profesor y el "titulo" de la asignatura que dicta. Para esto realizamos una *selección* de la siguiente manera:
+
+.. code-block:: sql
+
+ postgres=# SELECT nombre, apellido, titulo FROM profesores, cursos WHERE profesores.id_profesor=cursos.id_profesor;
+   nombre  | apellido |            titulo            
+ ----------+----------+------------------------------
+  Alisson  | DAVIS    | Base de datos
+  Christin | JONES    | Estructura de datos
+  Alfred   | JOHNSON  | Arquitectura de computadores
+  Bob      | MILLER   | Recuperacion de informacion
+  Betty    | WILSON   | Teoria de sistemas
+  Edison   | SMITH    | Sistemas de informacion
+ (6 filas)
+
+Aquí es donde tiene la importancia la clave primaria y foránea, puesto que en la condición podemos realizar una igualdad entre los "id_profesor" de la tabla **profesores** y **cursos**.
 
 .. _`SQL (Structured Query Language)`: http://en.wikipedia.org/wiki/SQL
 .. _`DDL (Data Definition Language)`: http://en.wikipedia.org/wiki/Data_Definition_Language
