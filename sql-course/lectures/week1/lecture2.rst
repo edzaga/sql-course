@@ -52,10 +52,10 @@ simples en la BD, sin la necesidad de escribir complejos algoritmos.
 Una 'consulta a la BD', puede entenderse como una pregunta que se le realiza para
 obtener 'cierta información'. Algunos ejemplos pueden ser:
 
-  * "Todos los estudiantes con nota mayor o igual a 55".
-  * "Todas los departamentos de Ingeniería con una cantidad mayor o igual a 1000
-    alumnos".
-  * "Los 5 primeros estudiantes con mejor promedio de notas en el ramo de Química".
+  * *"Todos los estudiantes con nota mayor o igual a 55".*
+  * *"Todas los departamentos de Ingeniería con una cantidad mayor o igual a 1000
+    alumnos".*
+  * *"Los 5 primeros estudiantes con mejor promedio de notas en el ramo de Química".*
 
 Independiente del lenguaje que se utiliza, se debe tener en cuenta que:
   * Algunas consultas son fáciles de formular, otras son un poco más difíciles.
@@ -126,40 +126,28 @@ siguientes tablas
   \hline
  \end{array}
 
-Consultar por el "ID de los alumnos con promedio de notas mayor o igual a 55 en el
-ramo de Programación":
-
-.. CMA: No se entiende lo del Algebra relacional, por favor profundicen y hagan
-..      un par de ejemplos con images o algo más didactico.
+Consultar por el ``ID`` de los alumnos con promedio de notas mayor o igual a 55 en el
+ramo de *Programación*:
 
 Utilizando Álgebra Relacional:
 
 
 .. math::
 
-   \pi \hspace{0.2cm} _{ALUMNOS.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{RAMOS.nombre_ramo ='Programacion'} (ALUMNOS \rhd \hspace{-0.1cm} \lhd RAMOS)}
+   \pi \hspace{0.2cm} _{ALUMNOS.ID} \hspace{0.2cm} \sigma_{\geq\ 55\ AND\ \text{RAMOS.nombre_ramo ='Programacion'} (ALUMNOS\ \rhd \hspace{-0.1cm}\ \lhd RAMOS)}
 
 Se puede decir que:
 
-.. math::
-        \pi
+ * :math:`\pi`, realiza un ``PROJECT`` sobre una tabla, es decir selecciona
+   una columna. Por otro lado:
+ * :math:`\sigma`, selecciona una fila que cumpla con una cierta condición,
+   en el ejemplo dado se seleccionan las filas que cumplen con tener nota mayor
+   a *55* y que el nombre_ramo sea *programación*.
+ * :math:`\rhd \hspace{-0.1cm} \lhd`, realiza un JOIN entre dos relaciones en la
+   _`lectura 3` se profundiza acerca de estos operadores y sus respectivos
+   significados.
 
-realiza un PROJECT sobre una tabla, es decir selecciona una columna. Por otro lado:
-
-.. math::
-        \sigma
-
-selecciona una fila que cumpla con una cierta condición, en el ejemplo dado se
-seleccionan las filas que cumplen con tener nota mayor a 55 y que el nombre_ramo
-sea 'programación'.
-
-.. math::
-        \rhd \hspace{-0.1cm} \lhd
-
-realiza un JOIN entre dos relaciones en la lectura 3 se profundiza acerca de estos
-operadores y sus respectivos significados.
-
-Utilizando SQL
+Utilizando SQL:
 
 .. code-block:: sql
 
@@ -172,3 +160,5 @@ como el lenguaje SQL.
 .. algebra, called relational algebra (lectures 3 and 4), that consists of some simple but powerful ways
 .. to construct new relations from given relations. When the given relations are
 .. stored data, then the constructed relations can be answers to queries about this data.
+
+.. _`Lecture 3`: lecture3.html

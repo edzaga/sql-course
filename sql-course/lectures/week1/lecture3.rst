@@ -6,50 +6,51 @@ Conceptos básicos de álgebra relacional
 
 .. index:: basics of relational algebra
 
-Algebra, en general, consiste de operadores y operandos atómicos. Por ejemplo, 
-en el álgebra de la aritmética, los operandos atómicos son variable como `r`, 
-y constantes como 15. 
+Algebra, en general, consiste de operadores y operandos atómicos, por ejemplo,
+en el álgebra de la aritmética, los operandos atómicos son variable como `r`,
+y constantes como 15.
 Los operadores son los usuales en la aritmética:
 
- * Suma
- * Resta
- * Multiplicación
+ * Suma,
+ * Resta,
+ * Multiplicación,
  * División.
 
-Cualquier álgebra nos permite construir expresiones mediante la aplicación de 
-operadores a operandos atómicos y/o otras expresiones del álgebra. En general, 
-los paréntesis son necesarios para agrupar operadores y sus operandos. Por ejemplo,
+Cualquier álgebra nos permite construir expresiones mediante la aplicación de
+operadores a operandos atómicos y/o otras expresiones del álgebra.
+En general, los paréntesis son necesarios para agrupar operadores y sus operandos,
+por ejemplo,
 en aritmética tenemos expresiones tales como `(x + y) * z` ó `((x + 7)/(y - 3)) + x`.
 
-El Álgebra Relacional es otro ejemplo del álgebra. Sus operandos atómicos son: 
+El Álgebra Relacional es otro ejemplo del álgebra. Sus operandos atómicos son:
 
  1. Variables que representan relaciones.
  2. Constantes que son relaciones finitas.
 
-Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus resultados 
-de expresiones son conjuntos. Los operadores del álgebra relacional tradicional se divide 
-en cuatro grandes categorías: 
+Como mencionamos, en el álgebra relacional clásica, todos los operandos y sus resultados
+de expresiones son conjuntos. Los operadores del álgebra relacional tradicional se divide
+en cuatro grandes categorías:
 
- a. Los conjuntos habituales de operaciones *unión, intersección, y diferencia* se aplica a las relaciones. 
+ a. Los conjuntos habituales de operaciones *unión, intersección, y diferencia* se aplica a las relaciones.
  b. Las operaciones que eliminan parte de una relación: “selección” elimina algunas filas (tuplas), y “proyección” elimina algunas columnas.
  c. Las operaciones que combinan las tuplas de dos relaciones, como el “producto cartesiano”, que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de  operadores “unión”, los cuales forman parejas de tuplas de dos relaciones selectivamente.
  d. Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que cambia el esquema de relación, es decir, lo nombres de los atributos y/o los nombres de la relación misma.
 
-Debemos por lo general referirnos a las expresiones del álgebra relacional como consultas. 
-A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones 
-del algebra relacional, se debería familiarizar con las operaciones de grupo `(a)`; 
+Debemos por lo general referirnos a las expresiones del álgebra relacional como consultas.
+A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones
+del algebra relacional, se debería familiarizar con las operaciones de grupo `(a)`;
 y por lo tanto reconocer:
 
 .. math::
    R \cup S \\
 
-como un ejemplo de una expresión de álgebra relacional. Donde `R` y `S` son operandos 
-atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas. 
-Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones 
+como un ejemplo de una expresión de álgebra relacional. Donde `R` y `S` son operandos
+atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas.
+Esta consulta pregunta por la unión de cualquiera tuplas que están en las relaciones
 nombradas `R` y `S`.
 
-Las tres operaciones más comunes en conjuntos son unión, intersección, y diferencia, 
-que serán vistas en la lectura 4. 
+Las tres operaciones más comunes en conjuntos son unión, intersección, y diferencia,
+que serán vistas en la lectura 4.
 
 .. role:: sql(code)
    :language: sql
@@ -80,57 +81,35 @@ tupla de `R` toma el valor Verdad(true) o Falso(false).
 * Valores de atributos con NULL no cumplirán ninguna condición.
 
 * Cada condición simple o cláusula C tiene el formato:
+  ``<Atributo> <Comparador> <Atributo o Constante del Dominio>}``.
+  donde, el campo **Comparador** es uno de los *operadores lógicos*, los cuales
+  pueden ser :math:`{\{=,\geq,>,<, \neq,\leq \}`.
 
-  .. math::
-    \text{<Atributo> <Comparador> <Atributo o Constante del Dominio>}
+   * `=` : símbolo de igual que.
+   * `\neq`: significa no igual a, en algunos libros este símbolo esta representado por ``!=``.
+   * `\geq`: mayor que o igual a.
+   * `>`: mayor que.
+   * `<`: menor que.
+   * `\leq`: menor que o igual a.
 
-donde:
-El campo `Comparador` es uno de los **operadores lógicos** que se muestran a contnuación:
-
-	  .. math::
-	    \text{<Comparador>}  \in {\{=,\geq,>,<, \neq,\leq \}}
-
-	* `=` : símbolo de igual que.
-
-	* `\neq`: significa no igual a, en algunos libros este símbolo esta representado por ``!=``.
-        
-        * `\geq`: mayor que o igual a.
-
-        * `>`: mayor que.
- 
-        * `<`: menor que.
-
-	* `\leq`: menor que o igual a. 
-
-Los **operadores lógicos** que se utilizan, también llamados operadores relacionales, nos proporcionan 
+Los **operadores lógicos** que se utilizan, también llamados operadores relacionales, nos proporcionan
 un resultado a partir de que se cumpla o no una cierta condición. Son símbolos que se usan para comparar
-dos valores. Si el resultado de la comparación es correcto la expresión considerada es verdadera, en caso 
+dos valores. Si el resultado de la comparación es correcto la expresión considerada es verdadera, en caso
 contrario es falsa. Por ejemplo, 11>4 (once mayor que cuatro) es verdadera, se representa por el valor true
-del tipo básico boolean, en cambio, 11<4 (once menor que cuatro) es falsa se representa por el valor false. 
+del tipo básico boolean, en cambio, 11<4 (once menor que cuatro) es falsa se representa por el valor false.
 
 
 Las cláusulas `C` pueden conectarse con otros operadores lógicos, que al igual que los anteriores que se usaban
 como comparador (entre atributos o atributo y constante), arrojan booleano (true o false) de resultado:
 
-* **NOT**: El operador NOT denota una salida verdadera si la entrada es falsa,
-    y una salida falsa si la entrada es verdadera. Su notación en algebra es: 
-
-.. math::
-		¬ \text{C1}
-
-* **AND**: El operador AND denota una salida verdadera si y sólo si sus entradas
-    son verdaderas. Si C1 se cumple y C2 también se cumple, la salida será verdadera.
-    La notación en algebra de un AND es:  
-
-.. math::
-		\text{C1} \wedge \text{C2}
-    
-* **OR**: El operador OR denota una salida verdadera si hay alguna de las entradas
-    (o ambas) verdaderas. Si C1 y/o C2 es o son verdaderas, la expresión será verdadera.
-    La notación en algebra de un OR es: 
-
-.. math:: 
-		\text{C1} \vee \text{C2}
+ * **NOT**: El operador NOT denota una salida verdadera si la entrada es falsa,
+   y una salida falsa si la entrada es verdadera. Su notación en algebra es: `¬C1`.
+ * **AND**: El operador AND denota una salida verdadera si y sólo si sus entradas
+   son verdaderas. Si `C1` se cumple y `C2` también se cumple, la salida será verdadera.
+   La notación en algebra de un AND es: `C1\ \wedge \ C2`.
+ * **OR**: El operador OR denota una salida verdadera si hay alguna de las entradas
+   (o ambas) verdaderas. Si `C1` y/o `C2` es o son verdaderas, la expresión será verdadera.
+   La notación en algebra de un OR es: `C1\ \vee \ C2`.
 
 **Notación en Álgebra Relacional**
 
@@ -174,8 +153,8 @@ mayor a 30 años:
 .. image:: ../../../sql-course/src/select2.png
    :align: center
 
-En la imagen se ve que selecciona solo las filas que cumplen con la condición que se pedía 
-(tener una edad mayor a 30 años), la tupla de "Josefa" queda fuera de la selección por no 
+En la imagen se ve que selecciona solo las filas que cumplen con la condición que se pedía
+(tener una edad mayor a 30 años), la tupla de "Josefa" queda fuera de la selección por no
 cumplir la condición (pues 25 < 30).
 De esta forma la tabla queda:
 
@@ -209,11 +188,11 @@ y que lleven menos de 16 años trabajando:
 .. image:: ../../../sql-course/src/select3.png
       :align: center
 
-Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente. 
-Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla 
-de "Josefa" queda fuera de la selección. Luego de las tuplas que quedan se evalúa la 
-segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no 
-tengan x en alguna de las condiciones. 
+Al tener el operador lógico AND se pide que cumplan dos condiciones simultáneamente.
+Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla
+de "Josefa" queda fuera de la selección. Luego de las tuplas que quedan se evalúa la
+segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no
+tengan x en alguna de las condiciones.
 
 Así finalmente quedaría la tabla:
 
@@ -306,11 +285,11 @@ Seleccionar id y nombre de los Ingenieros que tienen más de 30 años.
 
 .. math::
        \pi \hspace{0.2cm} _{(\text{id,nombre})} (\sigma_{\text{edad>30}} \hspace{0.3cm} \text{Ingenieros})
-       
+
 .. image:: ../../../sql-course/src/prosel.png
    :align: center
 
-Se aprecia que las tuplas que no cumplan con la condición de selección quedan fuera del resultado, 
+Se aprecia que las tuplas que no cumplan con la condición de selección quedan fuera del resultado,
 luego se realiza un PROJECT sobre las filas del resultado, separando solo las columnas que
 contienen los atributos id y nombre. Finalmente la tabla queda de la siguiente manera:
 
@@ -364,10 +343,7 @@ para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüe
 un atributo `a`, que se encuentra en `R` y `S`, se usa `R.a` para el atributo de `R` y `S.a` para
 el atributo de `S`.
 
-Cabe mencionar que por notación que:
-
-.. math::
-    \text{R} \times \text{S} \neq  \text{S} \times \text{R}
+Cabe mencionar que por notación que: `text{R} \times \text{S} \neq  \text{S} \times \text{R}`.
 
 
 Ejemplo 1
@@ -464,10 +440,7 @@ que tengan el mismo valor en los atributos comunes.
 
 **Notación en Álgebra Relacional**
 
-Para denotar NATURALJOIN se utiliza la siguiente simbología:
-
-.. math::
-   \text{R} \rhd \hspace{-0.1cm} \lhd \text{S}
+Para denotar NATURALJOIN se utiliza la siguiente simbología: `\text{R} \rhd \hspace{-0.1cm} \lhd \text{S}`.
 
 **Equivalencia con operadores básicos**
 
@@ -672,20 +645,20 @@ Escriba la tabla resultante al realizar la siguiente operación:
 .. image:: ../../../sql-course/src/THETAJOIN1.png
     :align: center
 
-Se compara el atributo `A` de la primera fila de `R` con cada uno de los valores del atributo 
-`E` de la tabla `S`. En este caso ninguna de las comparaciones devuelve el valor verdadero (true). 
+Se compara el atributo `A` de la primera fila de `R` con cada uno de los valores del atributo
+`E` de la tabla `S`. En este caso ninguna de las comparaciones devuelve el valor verdadero (true).
 
 .. image:: ../../../sql-course/src/THETAJOIN2.png
     :align: center
 
-Luego se compara el atributo `A` de la segunda fila de `R` con cada uno de los valores del atributo 
-`E` de la tabla `S`. En este caso 2 comparaciones devuelven el valor verdadero (true), por lo que en 
-la relación de resultado quedará la segunda fila de `R` mezclada con la primera y tercera fila de `S`. 
+Luego se compara el atributo `A` de la segunda fila de `R` con cada uno de los valores del atributo
+`E` de la tabla `S`. En este caso 2 comparaciones devuelven el valor verdadero (true), por lo que en
+la relación de resultado quedará la segunda fila de `R` mezclada con la primera y tercera fila de `S`.
 
 .. image:: ../../../sql-course/src/THETAJOIN3.png
     :align: center
 
-De igual forma ahora se compara el valor de `A` de la tercera tupla de `R`, nuevamente 2 tuplas de `S` 
+De igual forma ahora se compara el valor de `A` de la tercera tupla de `R`, nuevamente 2 tuplas de `S`
 cumplen con la condición.
 
 .. math::
