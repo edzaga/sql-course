@@ -372,23 +372,22 @@ se aprecia que la salida contiene los nombres de los empleados duplicados:
 Intersección
 ============
 
-Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT. La diferencia consiste en que UNION actua como un OR, e INTERSECT
-lo hace como AND. 
+Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT. La diferencia consiste en que UNION actúa como un OR, 
+e INTERSECT lo hace como AND. 
 
 .. note::
    Las tablas de verdad de estos OR y AND se encuentran en la lectura 7.
 
 Es decir que INTERSECT devuelve los valores repetidos.
 
-Consideremos el sigueinte esquema::
+Utilizando el ejemplo de los empleados, y ejecutando la consulta:
 
-        Table Store_Information
+..         Table Store_Information
         store_name      Sales   Date
         Los Angeles     $1500   Jan-05-1999
         San Diego       $250    Jan-07-1999
         Los Angeles     $300    Jan-08-1999
         Boston  $700    Jan-08-1999
-
         Table Internet_Sales
         Date    Sales
         Jan-07-1999     $250
@@ -396,11 +395,8 @@ Consideremos el sigueinte esquema::
         Jan-11-1999     $320
         Jan-12-1999     $750
 
-Para llegar a esta situación, el lector puede crear las tablas
-
-.. code-block:: sql
-
-
+.. Para llegar a esta situación, el lector puede crear las tablas
+ code-block:: sql
     CREATE TABLE Store_Information
         (
      id int auto_increment primary key, 
@@ -408,25 +404,20 @@ Para llegar a esta situación, el lector puede crear las tablas
      Sales integer,
      Date date
     );
-
     CREATE TABLE Internet_Sales
         (
      id int auto_increment primary key, 
      Date date,
      Sales integer
     );
-
-y llenarlas con los siguientes datos
-
-.. code-block:: sql 
-
+.. y llenarlas con los siguientes datos
+ ..code-block:: sql 
         INSERT INTO Store_Information
         (store_name, Sales, Date)
         VALUES
         ('Los Angeles', 1500, '1999-01-05'),
         ('San Diego', 250, '1999-01-07'),
         ('Los Angeles', 300, '1999-01-08');
-
         INSERT INTO Internet_Sales
         (Date, Sales)
         VALUES
@@ -435,20 +426,20 @@ y llenarlas con los siguientes datos
         ('1999-01-11', 320),
         ('1999-01-12', 750);
 
-
-Al realizar la consulta
+.. Al realizar la consulta
 
 .. code-block:: sql
 
-        SELECT Date FROM Store_Information
+        SELECT E_Name as name FROM Employees_Norway
         INTERSECT
-        SELECT Date FROM Internet_Sales;
+        SELECT E_Name as name FROM Employees_USA;
 
-Su resultado esperado es::
 
-        Date
-        Jan-07-1999
+su salida es::
 
+        e_name
+        ----------
+        Svendson, Stephen
 
 .. Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
    pero que puede escribirse como otra consulta (agregarla)
@@ -460,22 +451,44 @@ Excepción
 Similar a los operadores anteriores, su estructura se compone de dos o mas sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
 en el álgebra relacional.
 
-Utilizando la misma situación del ejemplo anterior, y realizando la siguiente consulta
+Utilizando las mismas tablas de los empleados, y realizando la siguiente consulta:
 
 .. code-block:: sql
-
-        SELECT Date FROM Store_Information
+        
+        SELECT E_Name as name FROM Employees_Norway
         EXCEPT
-        SELECT Date FROM Internet_Sales;
+        SELECT E_Name as name FROM Employees_USA;
 
-Su resultado esperado es::
+Su salida es::
 
-        Date
-        Jan-10-1999
-        Jan-11-1999
-        Jan-12-1999
+        e-name
+        -----------
+        Pettersen, Kari
+        Svedson, Tove
+        Hansen, Ola
 
-Es decir devuelve los resultados que no se repiten.
+Es decir, devuelve los resultados no repetidos en ambas tablas.
+
+Ojo, a diferencia de los operadores anteriores, la salida de este no es conmutativa, pues si se ejecuta la consulta de forma inversa,
+es decir:
+
+.. code-block:: sql
+        
+        SELECT E_Name as name FROM Employees_USA
+        EXCEPT
+        SELECT E_Name as name FROM Employees_Norway;
+
+su salida será:
+
+.. code-block:: sql
+        e-name
+        ------------
+        Turner, Sally
+        Kent, Clark
+        Scott, Stephen
+
+
+.. Es decir devuelve los resultados que no se repiten.
 
 .. Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
   pero que puede escribirse como otra consulta (agregarla)
