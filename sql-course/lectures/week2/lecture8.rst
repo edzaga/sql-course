@@ -208,11 +208,11 @@ consideremos 3 estudantes
 
  \begin{array}{|c|c|c|}
   \hline
-  \textbf{sName} & \textbf{sID} & \textbf{GPA} \\
+  \textbf{sID} & \textbf{sName} & \textbf{GPA} \\
   \hline
-  Amy         & 123      &  4.0   \\
-  Doris       & 456      &  4.0  \\
-  Edward      & 567      &  4.1  \\ 
+  1         & amy      &  30   \\
+  2         & doris      &  40  \\
+  3         & edward     &  40  \\ 
   \hline  
  \end{array}
 
@@ -223,12 +223,18 @@ consideremos 3 estudantes
 
 Los pares de estudiantes serán::
 
-         Amy    -       Doris
+         doris    -       edward
 
-pero también::
+pero la salida muestra::
 
-         Amy    -       Amy
-         Doris  -       Doris
+        sid | sname  | gpa | sid | sname  | gpa
+        ----+--------+-----+-----+--------+-----
+        1   | amy    |  30 |   1 | amy    | 30   
+        2   | doris  |  40 |   2 | doris  | 40  
+        2   | doris  |  40 |   2 | doris  | 40 
+        3   | edward |  40 |   3 | edward | 40
+        3   | edward |  30 |   3 | edward | 40  
+ 
 
 lo cual se puede evitar modificando la cosulta
 
@@ -236,16 +242,22 @@ lo cual se puede evitar modificando la cosulta
 
         SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
         FROM Student S1, Student S2
-        WHERE S1.GPA = S2.GPA and S1.sID <> S2.sID
+        WHERE S1.GPA = S2.GPA and S1.sID <> S2.sID;
 
-es decir, que el id del estudiante S1 sea diferente al id del estudiante S2.
+es decir, que el id del estudiante S1 sea diferente al id del estudiante S2; en cuyo caso la salida de la consulta es::
+
+        sid | sname  | gpa | sid | sname  | gpa
+        ----+--------+-----+-----+--------+-----
+        2   | doris  |  40 |   2 | doris  | 40 
+        3   | edward |  40 |   3 | edward | 40
+
 
 Set Operators
 ~~~~~~~~~~~~~~~
 
 .. index:: Set Operators
 
-Los Set Operators son 3:
+Los Operadores de conjunto son 3:
 
   * Unión
   * Intersección
