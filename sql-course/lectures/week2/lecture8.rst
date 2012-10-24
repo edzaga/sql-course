@@ -39,7 +39,7 @@ Su salida es::
 
 .. code-block:: sql
 
- postgres=# CREATE TABLE Apply(sID serial, cName VARCHAR(20), major VARCHAR(30), decision VARCHAR(40), PRIMARY kEY(sID));
+ postgres=# CREATE TABLE Apply(sID serial, cName VARCHAR(20), major VARCHAR(30), decision VARCHAR(40), PRIMARY kEY(sID, cName));
 
 Recibiremos como respuesta lo siguiente::
 
@@ -92,7 +92,6 @@ Ahora realizaremos la siguente consulta de selección de tabla:
    1 | amy    | Stanford |  30
    2 | doris  | Berkeley |  40
    3 | edward | MIT      |  40
- (3 filas)
 
 también es posible realizarla como:
 
@@ -104,7 +103,6 @@ también es posible realizarla como:
    1 | amy    | Stanford |  30
    2 | doris  | Berkeley |  40
    3 | edward | MIT      |  40
- (3 filas)
 
 .. CMA: no entiendo esto...
 
