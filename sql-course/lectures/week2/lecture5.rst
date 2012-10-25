@@ -8,11 +8,11 @@ Lecture 5 - Introducción
 `SQL (Structured Query Language)`_ es un tipo de lenguaje vinculado con la gestión de
 bases de datos de carácter relacional que permite la especificación de distintas
 clases de operaciones. Gracias a la utilización del álgebra y de cálculo relacional,
-el lenguaje SQL brinda la posibilidad de realizar consultas que ayuden a recuperar 
+el lenguaje SQL brinda la posibilidad de realizar consultas que ayuden a recuperar
 información de las bases de datos de manera sencilla.
 
-Characteristics
-~~~~~~~~~~~~~~~~
+Features
+~~~~~~~~~~
 
 .. index:: Features
 
@@ -29,7 +29,7 @@ Data Definition Language (DDL)
 .. index:: Data Definition Languaje (DDL)
 
 
-`DDL (Data Definition Language)`_ es un lenguaje que permite definir la base de datos 
+`DDL (Data Definition Language)`_ es un lenguaje que permite definir la base de datos
 (su estructura o "schemas"), tiene una sintaxis similar a los lenguajes de programación.
 
 Examples:
@@ -75,7 +75,7 @@ Examples:
 Data Manipulation Languaje (DML)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`DML (Data Manipulation Language)`_ se refiere a los comandos que permiten a un 
+`DML (Data Manipulation Language)`_ se refiere a los comandos que permiten a un
 usuario manipular los datos de las tablas, es decir, consultar tablas, añadir filas,
 borrar filas y actualizar columnas.
 
@@ -119,7 +119,7 @@ The Basic SELECT Statement
    * :sql:`FROM` `R_{1}, \ldots,R_{m}`: relations
    * :sql:`WHERE` `condition`: combine, filter
 
-Lo que busca esta consulta es mostrar las columnas `A_{1}, \ldots, A_{n}` de las tablas o relaciones `R_{1}, \ldots,R_{m}`, siguiendo alguna condición. 
+Lo que busca esta consulta es mostrar las columnas `A_{1}, \ldots, A_{n}` de las tablas o relaciones `R_{1}, \ldots,R_{m}`, siguiendo alguna condición.
 
 **Algebra relacional:**
 
@@ -259,20 +259,20 @@ Para *agregar* datos a la tabla **cliente** se realiza de la siguiente manera:
  (5 filas)
 
 .. note::
- El asterisco (*) que está entre el :sql:`SELECT` y el :sql:`FROM` significa que se seleccionan todas las columnas de la tabla. 
+ El asterisco (*) que está entre el :sql:`SELECT` y el :sql:`FROM` significa que se seleccionan todas las columnas de la tabla.
 
 Si deseamos seleccionar la columna nombre con apellido la consulta deberia ser
 
-.. code-block::
+.. code-block:: sql
 
- SELECT nombre, apellido FROM cliente;
+   SELECT nombre, apellido FROM cliente;
 
 Como cometimos el error de *agregar* en la segunda fila datos repetidos, pero se puede *eliminar* de la siguiente manera
 
 .. code-block:: sql
 
- example=# DELETE FROM cliente WHERE id=2;
- DELETE 1
+   example=# DELETE FROM cliente WHERE id=2;
+   DELETE 1
 
 Verificamos que se haya *eliminado*
 
@@ -340,7 +340,7 @@ primaria que referencian de otra tabla, creandose una asociación entre las dos 
 Ejemplo Práctico
 ----------------
 
-Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está 
+Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está
 definido como serial que automáticamente irá ingresando los valores 1, 2, 3 a cada registro.
 
 .. code-block:: sql
@@ -353,8 +353,8 @@ Recibiremos el siguiente mensaje::
  NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «profesores_pkey» para la tabla «profesores»
  CREATE TABLE
 
-Ahora vamos a crear la tabla de cursos en que ID_curso será la clave primaria de esta 
-tabla y ID_profesor será la clave foránea, que se encargará de realizar una conexión 
+Ahora vamos a crear la tabla de cursos en que ID_curso será la clave primaria de esta
+tabla y ID_profesor será la clave foránea, que se encargará de realizar una conexión
 entre estas dos tablas.
 
 .. code-block:: sql
@@ -389,7 +389,7 @@ Quedando la tabla de la siguiente manera si seleccionamos todas las columnas.
 .. code-block:: sql
 
  postgres=# SELECT * FROM profesores;
-  id_profesor |  nombre  | apellido 
+  id_profesor |  nombre  | apellido
  -------------+----------+----------
             1 | Alfred   | JOHNSON
             2 | Alisson  | DAVIS
@@ -401,8 +401,8 @@ Quedando la tabla de la siguiente manera si seleccionamos todas las columnas.
 
 .. note::
 
- Como se puede ver en la tabla de **profesores**, el "id_profesor" que lo definimos como tipo de dato serial se autoincremento automáticamente sin necesidad de ingresarlo nosotros, además se definió como una clave primaria. 
- 
+ Como se puede ver en la tabla de **profesores**, el "id_profesor" que lo definimos como tipo de dato serial se autoincremento automáticamente sin necesidad de ingresarlo nosotros, además se definió como una clave primaria.
+
 Ahora insertamos los datos de la tabla **cursos**.
 
 .. code-block:: sql
@@ -425,7 +425,7 @@ Quedando la tabla de siguiente manera.
 .. code-block:: sql
 
  postgres=# SELECT * FROM cursos;
-  id_curso |            titulo            | id_profesor 
+  id_curso |            titulo            | id_profesor
  ----------+------------------------------+-------------
          1 | Base de datos                |           2
          2 | Estructura de datos          |           5
@@ -437,14 +437,14 @@ Quedando la tabla de siguiente manera.
 
 .. note::
 
- Un profesor puede tener asignado más de un curso, no existe restricción. 
+ Un profesor puede tener asignado más de un curso, no existe restricción.
 
 Ahora queremos tener solo una tabla con el "nombre", "apellido" del profesor y el "titulo" de la asignatura que dicta. Para esto realizamos una *selección* de la siguiente manera:
 
 .. code-block:: sql
 
  postgres=# SELECT nombre, apellido, titulo FROM profesores, cursos WHERE profesores.id_profesor=cursos.id_profesor;
-   nombre  | apellido |            titulo            
+   nombre  | apellido |            titulo
  ----------+----------+------------------------------
   Alisson  | DAVIS    | Base de datos
   Christin | JONES    | Estructura de datos

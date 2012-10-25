@@ -1,5 +1,5 @@
 Lecture 8 - Table variables and set operators
---------------------------------------------
+------------------------------------------------
 .. role:: sql(code)
    :language: sql
    :class: highlight
@@ -18,7 +18,7 @@ Consideremos las siguientes tablas::
 las cuales son creadas mediante:
 
 .. code-block:: sql
-   
+
  postgres=# CREATE TABLE College(id serial, cName VARCHAR(20), state VARCHAR(30), enrollment VARCHAR(40), PRIMARY KEY(id));
 
 cuya salida es::
@@ -85,9 +85,9 @@ Ahora se realizará el ingreso de los datos a las tablas:
 Ahora realizaremos la siguente consulta de selección de tabla:
 
 .. code-block:: sql
- 
+
  postgres=# SELECT Student.sID, sName, Apply.cName, GPA FROM Student, Apply WHERE Apply.sID = Student.sID;
-  sid | sname  |  cname   | gpa 
+  sid | sname  |  cname   | gpa
  -----+--------+----------+-----
    1 | amy    | Stanford |  30
    2 | doris  | Berkeley |  40
@@ -98,7 +98,7 @@ también es posible realizarla como:
 .. code-block:: sql
 
  postgres=# SELECT S.sID, sName, A.cName, GPA FROM Student S, Apply A WHERE A.sID = S.sID;
-  sid | sname  |  cname   | gpa 
+  sid | sname  |  cname   | gpa
  -----+--------+----------+-----
    1 | amy    | Stanford |  30
    2 | doris  | Berkeley |  40
@@ -106,21 +106,21 @@ también es posible realizarla como:
 
 .. CMA: no entiendo esto...
 
-Como se aprecia, es posible asignar variables a las relaciones "R" y utilizar dichas variables tanto en la lista "L" como en la 
+Como se aprecia, es posible asignar variables a las relaciones "R" y utilizar dichas variables tanto en la lista "L" como en la
 condición "C". El lector se preguntará cuál es la utilidad de esto, más allá de escribir menos (dependiendo del nombre de la variable
 utilizada); y la respuesta corresponde a los casos en que se deben comparar múltiples instancias de la misma relación.
 
 .. note::
    El por qué de la nomenclatura "L", "R" y "C" y su significado están explicados en la lectura 7
 
-Así son las variables que se pueden asignar a las tablas. Estas variables en una consulta, se definen en el "FROM"  del 
+Así son las variables que se pueden asignar a las tablas. Estas variables en una consulta, se definen en el "FROM"  del
 "SELECT-FROM-WHERE".
 .. Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde más a variable en la consulta).
- La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
+.. La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
 
 
 .. CMA: Se invita al lector alplicado a realizar pruebas, se dejan las siguientes lineas de código a su disposición, con el fin de
-.. CMA:probar que efectivamente si se realizan las consultas mencionadas arriba, el resultado es el mismo. Cabe destacar que 
+.. CMA:probar que efectivamente si se realizan las consultas mencionadas arriba, el resultado es el mismo. Cabe destacar que
 
 .. CMA:.. code-block:: sql
 
@@ -178,10 +178,10 @@ nombre del atributo con el nombre de la tabla y un punto, es decir:
 
 
 .. code-block:: sql
-        
+
         "algo_asi."
 
-Concretamente en el ejemplo anterior, el alcance de nombres lo protagonizan sID de la tabla Student y sID de la tabla Apply. 
+Concretamente en el ejemplo anterior, el alcance de nombres lo protagonizan sID de la tabla Student y sID de la tabla Apply.
 La diferencia se realiza a través de:
 
 .. code-block:: sql
@@ -190,7 +190,7 @@ La diferencia se realiza a través de:
         Apply.sID o  A.sID
 
 
-En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo, 
+En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo,
 se buscan todos los pares de estudiantes con el mismo GPA:
 
 .. code-block:: sql
@@ -199,7 +199,7 @@ se buscan todos los pares de estudiantes con el mismo GPA:
         FROM Student S1, Student S2
         WHERE S1.GPA = S2.GPA;
 
-Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrá uno o varios duplicados; por ejemplo, 
+Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrá uno o varios duplicados; por ejemplo,
 consideremos 3 estudantes:
 
 .. math::
@@ -210,8 +210,8 @@ consideremos 3 estudantes:
   \hline
   1         & amy      &  30   \\
   2         & doris      &  40  \\
-  3         & edward     &  40  \\ 
-  \hline  
+  3         & edward     &  40  \\
+  \hline
  \end{array}
 
 .. sName   sID     GPA
@@ -227,12 +227,12 @@ pero la salida muestra::
 
         sid | sname  | gpa | sid | sname  | gpa
         ----+--------+-----+-----+--------+-----
-        1   | amy    |  30 |   1 | amy    | 30   
-        2   | doris  |  40 |   2 | doris  | 40  
-        2   | doris  |  40 |   2 | doris  | 40 
+        1   | amy    |  30 |   1 | amy    | 30
+        2   | doris  |  40 |   2 | doris  | 40
+        2   | doris  |  40 |   2 | doris  | 40
         3   | edward |  40 |   3 | edward | 40
-        3   | edward |  30 |   3 | edward | 40  
- 
+        3   | edward |  30 |   3 | edward | 40
+
 
 lo cual se puede evitar modificando la cosulta
 
@@ -246,7 +246,7 @@ es decir, que el id del estudiante S1 sea diferente al id del estudiante S2; en 
 
         sid | sname  | gpa | sid | sname  | gpa
         ----+--------+-----+-----+--------+-----
-        2   | doris  |  40 |   2 | doris  | 40 
+        2   | doris  |  40 |   2 | doris  | 40
         3   | edward |  40 |   3 | edward | 40
 
 
@@ -265,7 +265,7 @@ Los Operadores de conjunto son 3:
 Unión
 =====
 
-El operador "UNION", permite combinar el resultado de dos o más sentencias SELECT. Es necesario que estas tengan el mismo número de columnas, 
+El operador "UNION", permite combinar el resultado de dos o más sentencias SELECT. Es necesario que estas tengan el mismo número de columnas,
 y que, además tengan los mismos tipos de datos, por ejemplo, si se tienen las siguientes tablas:
 
 .. code-block:: sql
@@ -291,7 +291,7 @@ Que se pueden crear mediante el comando CREATE TABLE:
     CREATE TABLE Employees_Norway (E_ID serial, E_Name varchar(50), PRIMARY KEY(E_ID));
 
     CREATE TABLE Employees_USA ( E_ID serial, E_Name varchar(50), PRIMARY KEY(E_ID));
-    
+
 
 y pobladas  con los datos mostrados a continuación:
 
@@ -303,7 +303,7 @@ y pobladas  con los datos mostrados a continuación:
         ('Svendson, Tove'),
         ('Svendson, Stephen'),
         ('Pettersen, Kari');
-        
+
         INSERT INTO Employees_USA (E_Name)
         VALUES
         ('Turner, Sally'),
@@ -326,7 +326,7 @@ es:
 
         e_name
       --------------
-        Turner, Sally       
+        Turner, Sally
         Svendson, Tove
         Svendson, Stephen
         Pettersen, Kari
@@ -370,8 +370,8 @@ se aprecia que la salida contiene los nombres de los empleados duplicados:
 Intersección
 ============
 
-Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT. La diferencia consiste en que UNION actúa como un OR, 
-e INTERSECT lo hace como AND. 
+Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT. La diferencia consiste en que UNION actúa como un OR,
+e INTERSECT lo hace como AND.
 
 .. note::
    Las tablas de verdad de estos OR y AND se encuentran en la lectura 7.
@@ -397,19 +397,19 @@ Utilizando el ejemplo de los empleados, y ejecutando la consulta:
  code-block:: sql
     CREATE TABLE Store_Information
         (
-     id int auto_increment primary key, 
-     store_name varchar(20), 
+     id int auto_increment primary key,
+     store_name varchar(20),
      Sales integer,
      Date date
     );
     CREATE TABLE Internet_Sales
         (
-     id int auto_increment primary key, 
+     id int auto_increment primary key,
      Date date,
      Sales integer
     );
 .. y llenarlas con los siguientes datos
- ..code-block:: sql 
+ ..code-block:: sql
         INSERT INTO Store_Information
         (store_name, Sales, Date)
         VALUES
@@ -452,7 +452,7 @@ en el álgebra relacional.
 Utilizando las mismas tablas de los empleados, y realizando la siguiente consulta:
 
 .. code-block:: sql
-        
+
         SELECT E_Name as name FROM Employees_Norway
         EXCEPT
         SELECT E_Name as name FROM Employees_USA;
@@ -471,7 +471,7 @@ Ojo, a diferencia de los operadores anteriores, la salida de este no es conmutat
 es decir:
 
 .. code-block:: sql
-        
+
         SELECT E_Name as name FROM Employees_USA
         EXCEPT
         SELECT E_Name as name FROM Employees_Norway;
@@ -479,11 +479,12 @@ es decir:
 su salida será:
 
 .. code-block:: sql
-        e-name
-        ------------
-        Turner, Sally
-        Kent, Clark
-        Scott, Stephen
+
+   e-name
+   ------------
+   Turner, Sally
+   Kent, Clark
+   Scott, Stephen
 
 
 .. Es decir devuelve los resultados que no se repiten.

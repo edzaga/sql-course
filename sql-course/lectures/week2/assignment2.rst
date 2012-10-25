@@ -13,21 +13,21 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 
 * Serie: (**sID**, titulo, creador, año, audiencia, genero, temp, final)
 	La tabla **Serie** posee **sID** que es un id único y es primary key de la relación,
-	además se almacena el **titulo** de la serie, el **creador**, **año** es el año de estreno 
-	de la primera temporada, la **audiencia** promedio anual, **genero** de la serie y 
-	finalmente el atributo **temp** que contiene el número de temporadas emitidas hasta 
-	el 2012, **final** es un atributo que dice si la serie se sigue emitiendo o terminó. 
-  
+	además se almacena el **titulo** de la serie, el **creador**, **año** es el año de estreno
+	de la primera temporada, la **audiencia** promedio anual, **genero** de la serie y
+	finalmente el atributo **temp** que contiene el número de temporadas emitidas hasta
+	el 2012, **final** es un atributo que dice si la serie se sigue emitiendo o terminó.
+
 * Evaluador: (**eID**, nombre)
 	El evaluador es quien califica la serie, la relación **Evaluador** tiene un atributo
-	**eID** (id único) que es clave primaria (primary key) y tiene otro atributo **nombre** 
-	que almacena el nombre del evaluador. 
+	**eID** (id único) que es clave primaria (primary key) y tiene otro atributo **nombre**
+	que almacena el nombre del evaluador.
 
 * Calificacion: (**eID**, **sID** ,nota,fecha)
-	Luego que el evaluador califica una serie se guarda en la tabla **Calificacion** que 
-	tiene dos claves foráneas **eID** que es el id del evaluador y **sID** que es el id de 
-	algunas de las series almacenadas. Ambas claves foraneas (juntas) conforman la clave 
-	primaria de **Calificación** También contiene la **nota** puesta por el evaluador 
+	Luego que el evaluador califica una serie se guarda en la tabla **Calificacion** que
+	tiene dos claves foráneas **eID** que es el id del evaluador y **sID** que es el id de
+	algunas de las series almacenadas. Ambas claves foraneas (juntas) conforman la clave
+	primaria de **Calificación** También contiene la **nota** puesta por el evaluador
 	y la **fecha** que calificó dicha serie.
 
 .. math::
@@ -36,7 +36,7 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 
 	\begin{array}{|c|c|c|c|c|c|c|c|}
         \hline
-	\textbf{sID} & \textbf{titulo} & \textbf{creador} & \textbf{año} & \textbf{audiencia} & \textbf{genero}& \textbf{temp}& \textbf{final} \\	
+	\textbf{sID} & \textbf{titulo} & \textbf{creador} & \textbf{año} & \textbf{audiencia} & \textbf{genero}& \textbf{temp}& \textbf{final} \\
 	\hline
 	1 & \text{The Big Bang Theory} & \text{Bill Prady} & 2007 & 45.99 & \text{comedia} & 6 & false\\
 	\hline
@@ -89,15 +89,15 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 .. math::
 
 	\textbf{Calificacion} \\
-	 
+
 	\begin{array}{|c|c|}
 	\hline
 	\textbf{eID} & \textbf{sID} & \textbf{nota} & \textbf{fecha}  \\
-	\hline			
-	1 &	6&	5	&2012-06-08 \\	
-	\hline			
-	1 &	4&	6	&2011-04-13 \\	
-	\hline			
+	\hline
+	1 &	6&	5	&2012-06-08 \\
+	\hline
+	1 &	4&	6	&2011-04-13 \\
+	\hline
 	1 &	1&	8	&2012-01-22 \\
 	\hline
 	2	&6&	7	&2012-02-23 \\
@@ -127,56 +127,55 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 	\end{array}
 
 
-^^^^^^^^^^^
 Pregunta 1:
 ^^^^^^^^^^^
-* Cree, una base de datos de nombre tarea2. 
+
+* Cree, una base de datos de nombre tarea2.
 * Crear las 3 tablas de la base de datos dada, con sus respectivos atributos.
+
 Elija el tipo de datos que más se acomode para cada atributo según los valores dados.
 
-^^^^^^^^^^^
 Pregunta 2:
 ^^^^^^^^^^^
+
 Inserte los datos dados en las tablas que se mostraron anteriormente.
 
 
-^^^^^^^^^^^
 Pregunta 3:
 ^^^^^^^^^^^
-Realice la consulta en SQL que encuentre los títulos de todas las series que sean del 
+
+Realice la consulta en SQL que encuentre los títulos de todas las series que sean del
 género de comedia.
 
 Resultado esperado de la consulta:
 
 .. code-block:: sql
 
- titulo        
+ titulo
  ---------------------
   The Big Bang Theory
   The Simpsons
 
-
-
-^^^^^^^^^^^
 Pregunta 4:
 ^^^^^^^^^^^
+
 Buscar los títulos y audiencias de las series y ordenarlas en de forma descendente.
 
 Resultado esperado de la consulta:
 
 .. code-block:: sql
- 
-        titulo        | audiencia 
- ---------------------+-----------
-  The Simpsons        |     55.82
-  Dexter              |     50.24
-  Lost                |     49.32
-  The Big Bang Theory |     45.99
-  Greys Anatomy       |     40.35
-  Glee                |     39.67
-  Spartacus           |     38.51
-  The Walking Dead    |     34.78
-  Bones               |     30.61
+
+          titulo        | audiencia
+   ---------------------+-----------
+    The Simpsons        |     55.82
+    Dexter              |     50.24
+    Lost                |     49.32
+    The Big Bang Theory |     45.99
+    Greys Anatomy       |     40.35
+    Glee                |     39.67
+    Spartacus           |     38.51
+    The Walking Dead    |     34.78
+    Bones               |     30.61
 
 
 ^^^^^^^^^^^
@@ -188,7 +187,7 @@ Resultado esperado de la consulta:
 
 .. code-block:: sql
 
-       titulo        
+       titulo
  ---------------------
   Lost
   Dexter
@@ -201,13 +200,13 @@ Resultado esperado de la consulta:
 ^^^^^^^^^^^
 Pregunta 6:
 ^^^^^^^^^^^
-Buscar todos los años de estreno(sin que se repitan) que tiene una serie que recibió una calificación de 5 ó 6, y clasificarlos en orden descendentes. 
+Buscar todos los años de estreno(sin que se repitan) que tiene una serie que recibió una calificación de 5 ó 6, y clasificarlos en orden descendentes.
 
 Resultado esperado de la consulta:
 
 .. code-block:: sql
 
- año  
+ año
  ------
   2004
   2005
@@ -222,7 +221,7 @@ Resultado esperado de la consulta:
 
 .. code-block:: sql
 
-  nombre      
+  nombre
  ------------------
   Glenn Sloan
   Charles Napier
@@ -240,7 +239,7 @@ Resultado esperado de la consulta:
 
 .. code-block:: sql
 
-       nombre      |       titulo        | nota |   fecha    
+       nombre      |       titulo        | nota |   fecha
  ------------------+---------------------+------+------------
   Charles Napier   | Bones               |    8 | 2012-07-22
   Charles Napier   | Dexter              |    8 | 2012-09-27
@@ -262,7 +261,7 @@ Resultado esperado de la consulta:
 ^^^^^^^^^^^
 Pregunta 9:
 ^^^^^^^^^^^
-El evaluador de eID=4 se equivocó al ingresar la nota de la serie con sID=1, por lo que quiere cambiar la calificación tiene de 9 a 8. Realizar la sentencia necesaria para cumplir con el ajuste requerido. 
+El evaluador de eID=4 se equivocó al ingresar la nota de la serie con sID=1, por lo que quiere cambiar la calificación tiene de 9 a 8. Realizar la sentencia necesaria para cumplir con el ajuste requerido.
 
 
 
