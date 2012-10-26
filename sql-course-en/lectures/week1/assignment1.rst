@@ -1,23 +1,30 @@
 Assignment 1
 ============
 
------------------------
-Modelo Entidad Relación
------------------------
+--------------------------
+Entity Relationship Model
+--------------------------
 
 ^^^^^^^^^^^
 Question 1:
 ^^^^^^^^^^^
 
-Hacer un modelo E-R entidad relación:
+Make an entity relationship model (E-R): 
 
-  1. Tenemos una universidad, en la que hay varios cursos. Cada curso está dirigido por un profesor, el cual puede dirigir varios cursos. Los cursos son subveniados, por lo que sólo se permite que un alumno se matricule de un curso. supongamos que un curso está compuesto por varias asignaturas. Cada una de ellas tiene un número de créditos. Los alumnos se matriculan de las asignaturas que quieren. Por último el alumno recibe una nota para cada asignatura, al final del curso.
+  1. We have a university in which there are several courses and special workshops. 
+  Each workshop is directed by a teacher who can direct several workshops. Special 
+  workshops demand many resources, so that only allows that each student enrolls to 
+  one workshop of this type. On the other hand, a course consists of several subjects. 
+  Each of them has a number of credits. Students can enroll to the subjects they want. 
+  Finally, the student receives a grade for each subject, at the end of the course.
 
-  2. Queremos hacer una base de datos con los discos que tenemos en casa. Un disco puede tener un cantante o grupo, o varios. Además un disco tiene una discográfica. Vamos a complicar un poco el ejemplo anterior: ahora hemos de tener en cuenta que un disco está compuesto por canciones. Éstas pueden estar escritas por la misma persona que las canta, pero a menudo se trata de personas diferentes.
-
+  2. We want to make a database with discs that we have at home. A disc can have a singer 
+  or a group, or more. Also a disc has a record. We are going to complicate the example the 
+  previous example: now we must keep in mind that a disc is composed of songs. These can be 
+  written by the same person who sings, but often they are different people.
 
 --------------------------
-Questions of alternatives:
+Multiple-choice questions 
 --------------------------
 
 ^^^^^^^^^^^
@@ -111,7 +118,8 @@ and relation S(A,B,C) has the following tuples:
   \hline
  \end{array}
 
-Compute (R - S) union (S - R) often called the "symmetric difference" of R and S. Which of the following tuples is in the result?
+Compute (R - S) union (S - R) often called the "symmetric difference" of R and S. 
+Which of the following tuples is in the result?
 
 a) (2,2,3)
 b) (4,2,3)
@@ -202,7 +210,8 @@ and relation S(B,C,D) has de following tuples:
   \hline
  \end{array}
 
-Compute the natural-join of R and S. Which of the following tuples is in the result? Assume each tuple has schema (A,B,C,D).
+Compute the natural-join of R and S. Which of the following tuples is in the result? 
+Assume each tuple has schema (A,B,C,D).
 
 a) (5,6,4,6) 
 b) (1,4,6,8)
@@ -250,15 +259,17 @@ d) (1,2)
 Query Questions
 ---------------
 
-A continuación se realizarán una serie de preguntas de consultas sobre la base de datos formada por las tablas de PROVEEDORES, COMPONENTES, ARTICULOS y ENVÍOS. En cada base de datos esta almacenada la siguiente información.
+Next, it will be carried out a series of query questions on the databases formed by 
+the SUPPLIERS, Components, SUPPLIES and SHIPPING tables. In each database is stored 
+the following information:
 
 .. math::
 
- \textbf{PROVEEDORES}
+ \textbf{Suppliers}
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{P#} & \textbf{PNOMBRE} & \textbf{CATEGORIA} & \textbf{CIUDAD} \\
+  \textbf{P#} & \textbf{pname} & \textbf{category} & \textbf{city} \\
   \hline
   P1 & Sergio & 20 & Valparaíso \\
   \hline
@@ -272,11 +283,11 @@ A continuación se realizarán una serie de preguntas de consultas sobre la base
   \hline
  \end{array}
 
- \textbf{COMPONENTES}
+ \textbf{Components}
 
  \begin{array}{|c|c|c|c|c|}
   \hline
-  \textbf{C#} & \textbf{CNOMBRE} & \textbf{COLOR} & \textbf{PESO} & \textbf{CIUDAD} \\
+  \textbf{C#} & \textbf{cname} & \textbf{color} & \textbf{weight} & \textbf{city} \\
   \hline
   C1 & X3A & Rojo & 12 & Valparaíso \\
   \hline
@@ -292,33 +303,33 @@ A continuación se realizarán una serie de preguntas de consultas sobre la base
   \hline
  \end{array}
 
- \textbf{ARTICULOS}
-
+ \textbf{Supplies}
+     
  \begin{array}{|c|c|c|}
   \hline
-  \textbf{T#} & \textbf{TNOMBRE} & \textbf{CIUDAD} \\
+  \textbf{T#} & \textbf{tname} & \textbf{city} \\
   \hline
-  T1 & Clasificadora & Iquique \\
+  T1 & Clasifficator & Iquique \\
   \hline
-  T2 & Perforadora & Rancagua \\
+  T2 & Drill & Rancagua \\
   \hline
-  T3 & Lectora & Santiago \\
+  T3 & Reader & Santiago \\
   \hline
-  T4 & Consola & Santiago \\
+  T4 & Console & Santiago \\
   \hline
-  T5 & Mezcladora & Valparaíso \\
+  T5 & Mixer & Valparaíso \\
   \hline
   T6 & Terminal & Arica \\
   \hline
-  T7 & Cinta & Valparaíso \\
+  T7 &  Tape & Valparaíso \\
   \hline
  \end{array}
 
- \textbf{ENVIOS}
+ \textbf{Shipping}
 
   \begin{array}{|c|c|c|c|} 
    \hline 
-   \textbf{P#} & \textbf{C#} & \textbf{T#} & \textbf{CANTIDAD} \\
+   \textbf{P#} & \textbf{C#} & \textbf{T#} & \textbf{quantity} \\
    \hline
    P1 & C1 & T1 & 200 \\
    \hline
@@ -370,21 +381,22 @@ A continuación se realizarán una serie de preguntas de consultas sobre la base
    \hline
  \end{array}
 
-**PROVEEDORES:** Datos de los proveedores de componentes para la fabricación de articulos y su ciudad de residencia.
+**Suppliers:** data from the suppliers of components for the manufacture of supplies and their city of residence.
 
-**COMPONENTES:** Información de las piezas utilizadas en la fabricación de diferentes artículos, indicando el lugar de fabricación del componente.
+**Components:** information of the pieces used in the manufacture of different supplies, indicating the place of manufacture of the component.
 
-**ARTICULOS:** Articulos que se fabrican y lugar del montaje.
+**Supplies:** supplies that are manufacture and place of assembly.
 
-**ENVIO:** Suministros realizados por los diferentes proveedores de determinadas cantidades de componentes asignadas para la elaboración del artículo correspondiente.
+**Shipping:** supplies made by different providers of specific quantities of assigned components for the elaboration of the corresponding article.
 
 ^^^^^^^^^^
-Preguntas:
+Questions:
 ^^^^^^^^^^
 
-1) Seleccionar todos los detalles de los articulos que se montan en la ciudad Santiago.
-2) Obtener todos los valores de P# para los proveedores que abastecen el articulo T1.
-3) Obtener la lista de pares de atributos (COLOR,CIUDAD) de la tabla componentes eliminando los pares duplicados.
-4) Seleccionar los valores de P# para los proveedores que suministran para el articulo T1 el componente C1
-5) Obtener para los valores de P# para los proveedores que suministren los articulos T1 y T2.
-	   
+1. Select all the details of the supplies that are assembled in the city Santiago.
+2. Get all the values of P# for the suppliers that supply the item T1.
+3. Get the lists of the pair of attributes (color, city) of the components table removing the duplicated pairs.
+4. Select the values of P# for the suppliers who provide for the item T1, the component C1.
+5. Get the values of P# for the suppliers who provide the items T1 and T2.
+
+   
