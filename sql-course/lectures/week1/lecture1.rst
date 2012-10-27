@@ -7,7 +7,7 @@ Lectura 1 - Bases de datos relacionales: "El modelo relacional"
 .. index:: ¿Qué son las Bases de datos?
 
 Una BD es un conjunto de datos  interrelacionados, almacenados sin redundancias
-innecesarias,de forma independiente de los programas que acceden a ellos.
+innecesarias, de forma independiente de los programas que acceden a ellos.
 
 El Sistema Gestor de Base de Datos (SGBD)
 =========================================
@@ -15,21 +15,21 @@ El Sistema Gestor de Base de Datos (SGBD)
 Un SGBD es un conjunto de programas que permiten crear y mantener una BD,
 asegurando su integridad, confidencialidad y seguridad. Por tanto debe permitir:
 
-  * Definir una base de datos: especificar tipos, estructuras y restricciones de
+  * **Definir una base de datos:** especificar tipos, estructuras y restricciones de
     datos.
-  * Construir la base de datos: guardar los datos en algún medio controlado por
+  * **Construir la base de datos:** guardar los datos en algún medio controlado por
     el mismo SGBD.
-  * Manipular la base de datos: realizar consultas, actualizarla, generar informes.
+  * **Manipular la base de datos:** realizar consultas, actualizarla, generar informes.
 
 Algunas de las características deseables en un SGBD son:
 
-  * Control de la redundancia: la redundancia de datos tiene varios efectos
+  * **Control de la redundancia:** la redundancia de datos tiene varios efectos
     negativos (duplica el trabajo al actualizar, desperdicia espacio en disco,
     puede provocar inconsistencia de datos) aunque a veces es deseable por
     cuestiones de rendimiento.
-  * Restricción de los accesos no autorizados: cada usuario ha de tener unos
+  * **Restricción de los accesos no autorizados:** cada usuario ha de tener unos
     permisos de acceso y autorización para realizar operaciones sobre la BD.
-  * Cumplimiento de las restricciones de integridad: el SGBD ha de ofrecer
+  * **Cumplimiento de las restricciones de integridad:** el SGBD ha de ofrecer
     recursos para definir y garantizar el cumplimiento de las restricciones
     de integridad.
 
@@ -42,31 +42,31 @@ parte del mundo real en una serie de tablas, registros y campos; creándose un
 modelo parcial de la realidad. Antes de crear físicamente estas tablas en la
 BD se debe realizar un modelo de datos.
 
-El modelo de datos más utilizado es denominado *E-R*.
+El modelo de datos más utilizado es denominado **Entidad-Relación (E-R)**.
 En el modelo E-R se representa una situación real a través de entidades y
 relaciones entre dichas entidades:
 
 **Entidades**
 
-Los objetos que aparecen en la vida real, corresponden a una *entidad*.
+Los objetos que aparecen en la vida real, corresponden a una **entidad**.
 Por ejemplo: alumnos, empleados, aviones, coches, alojamientos, etc.
-Una entidad da lugar a una *tabla* en la BD.
+Una entidad da lugar a una **tabla** en la BD.
 
 .. image:: ../../../sql-course/src/entidad.jpg
    :align: center
 
-Estas entidades están compuestas por varios *atributos*, que vienen a ser sus
-propiedades. Por ejemplo: la entidad alumnos, tendrá los atributos nombre,
-#pasaporte, nacionalidad, fecha de nacimiento, etc.
+Estas entidades están compuestas por varios **atributos**, que vienen a ser sus
+propiedades. Por ejemplo: la entidad Alumnos, tendrá los atributos *nombre*,
+*#pasaporte*, *nacionalidad*, *fecha de nacimiento*, etc.
 
 .. image:: ../../../sql-course/src/atributo.jpg
    :align: center
 
-Los atributos también reciben el nombre de *columnas* en la terminología de BD.
+Los atributos también reciben el nombre de **columnas** en la terminología de BD.
 De entre los atributos habrá uno o un conjunto de ellos, que no asegura la unicidad
 de una fila; a este atributo o conjunto de atributos se le llama clave de la
 entidad, en el caso de los alumnos, sería el #pasaporte.
-En toda entidad siempre hay al menos  una clave que en el peor de los casos estará
+En toda entidad siempre hay al menos una clave que en el peor de los casos estará
 formada por todos los atributos de la tabla. Ya que pueden haber varias claves
 y necesitamos elegir una, lo haremos atendiendo a estas normas:
 
@@ -76,15 +76,22 @@ y necesitamos elegir una, lo haremos atendiendo a estas normas:
   * Que sea pequeña, ya que será muy utilizada por el SGBD.
 
 
-Cada entidad tendrá un número ilimitado de *elementos*. Por ejemplo: un elemento
+Cada entidad tendrá un número ilimitado de **elementos**. Por ejemplo: un elemento
 de la entidad alumnos será un alumno en sí; así el alumno Juan será un elemento,
 José será otro. Cada uno de esos elementos también recibe el nombre de
-*fila o tuplas* en la terminología de BD.
+**fila o tuplas** en la terminología de BD.
 
 
-*Combinando estos tres conceptos tenemos una estructura del tipo tabla, elemento
-esencial en una BD relacional.*
+Combinando estos tres conceptos tenemos una estructura del tipo tabla, elemento
+esencial en una BD relacional.
 
+.. note::
+
+	En los textos se utilizan ciertos sinónimos:
+
+	 * Para referirse a una **fila** se puede usar el término **tupla** o **registro**.
+
+	 * Para referirse a una **columna** se puede usar el término **campo** o **atributo**.
 
 **Relaciones**
 
@@ -135,24 +142,25 @@ de atributos comunes entre ellas llamadas claves primarias y foráneas.
   * Una tabla es un conjunto de registros (filas y columnas).
   * La relación entre una tabla padre y un hijo se lleva a cabo por medio de
     claves primarias y foráneas.
-  * Las claves primarias representan la clave principal de un registro dentro de
+  * Las **claves primarias** representan la clave principal de un registro dentro de
     una tabla y éstas deben cumplir con la integridad de los datos.
-  * Las claves foráneas se colocan en la tabla hija, contienen el mismo valor
+  * Las **claves foráneas** se colocan en la tabla hija, contienen el mismo valor
     que la clave primaria del registro padre; por medio de éstas se implementan
     las relaciones.
 
-Ejemplo:
-========
 
-Se tiene una base de datos que contiene dos relaciones: una denominada EMPLEADOS,
-que almacena datos de los empleados de una empresa, y otra con el nombre DESPACHOS,
+Ejemplo:
+^^^^^^^^^
+
+Se tiene una base de datos que contiene dos relaciones: una denominada `Empleados`,
+que almacena datos de los empleados de una empresa, y otra con el nombre `Despachos`,
 que almacena los datos de los despachos que tiene la empresa. Los empleados que
 trabajan para una empresa pueden estar vinculados con los despachos de la empresa,
 porque a cada empleado se le asigna un despacho concreto para trabajar.
 
 .. math::
 
- \textbf{Tabla DESPACHOS}
+ \textbf{Tabla Despachos}
 
    \begin{array}{|c|c|c|}
         \hline
@@ -170,15 +178,15 @@ porque a cada empleado se le asigna un despacho concreto para trabajar.
         \hline
    \end{array}
 
-La tabla DESPACHOS posee 3 atributos (*edificio*, *número*, superficie) y 5
+La tabla `Despachos` posee 3 atributos `(\underline{edificio, numero}, superficie)` y 5
 registros (o filas).
 Esta tabla posee un conjunto de atributos cuyos valores combinados dan la
-unicidad a cada fila. Se trata de los atributos edificio y número; se les llama
+unicidad a cada fila. Se trata de los atributos *edificio* y *numero*; se les llama
 clave primaria compuesta.
 
 .. math::
 
- \textbf{Tabla EMPLEADOS}
+ \textbf{Tabla Empleados}
 
    \begin{array}{|c|c|c|c|c|c|}
         \hline
@@ -195,32 +203,32 @@ clave primaria compuesta.
    \end{array}
 
 
-La tabla EMPLEADOS posee 6 atributos (*DNI*, nombre, apellido, DNIjefe,
-edificiodesp, númerodesp) y 4 registros (o filas), en el segundo registro se
+La tabla `Empleados` posee 6 atributos `(\underline{DNI}, nombre, apellido, DNIjefe,
+edificiodesp, numerodesp)` y 4 registros (o filas), en el segundo registro se
 aprecia que George no posee despacho asignado por lo que se agrega el valor
 "unknown" o "undefined" que se define como NULL.
 Esta tabla posee un atributo cuyo valor es único en cada tupla que es atributo
-DNI y se le llama clave primaria.
+*DNI* y se le llama clave primaria.
 
-En la relación de esquema EMPLEADOS, la clave foránea formada por los
-atributos {edificiodesp, númerodesp} referencia la clave primaria de la relación
-DESPACHOS. De este modo, se cumple que todos los valores que no son nulos de los
-atributos edificiodesp y númerodesp son valores que existen para los atributos
-edificio y número de DESPACHOS. Esta clave foránea indica, para cada empleado,
-el despacho donde trabaja. Además, el atributo DNIjefe es otra clave foránea que
-referencia la clave primaria de la misma relación EMPLEADOS, e indica, para cada
+En `Empleados`, existe una clave foránea formada por los
+atributos *edificiodesp* y *numerodesp* que referencia la clave primaria de
+`Despachos`. De este modo, se cumple que todos los valores que no son nulos de los
+atributos *edificiodesp* y *numerodesp* son valores que existen para los atributos
+*edificio* y *numero* de `Despachos`. Esta clave foránea indica, para cada empleado,
+el despacho donde trabaja. Además, el atributo *DNIjefe* es otra clave foránea que
+referencia la clave primaria de la misma tabla `Empleados`, e indica, para cada
 empleado, quien es su jefe.
 
 Ejemplo en SQL
-==============
+^^^^^^^^^^^^^^^
 .. index:: string, text data types, str
 
 La creación de relaciones (tablas) en SQL
 
 .. code-block:: sql
 
- CREATE TABLE DESPACHOS(edificio VARCHAR(50), numero INTEGER, superficie INTEGER, PRIMARY KEY(edificio,numero));
- CREATE TABLE EMPLEADOS(DNI VARCHAR(50), nombre VARCHAR(50), apellido VARCHAR(50), DNIjefe VARCHAR(50), edificiodesp VARCHAR(50), numerodesp INTEGER, PRIMARY KEY(DNI), FOREIGN KEY(edificiodesp,numerodesp) REFERENCES DESPACHOS(edificio,numero));
+ CREATE TABLE Despachos(edificio VARCHAR(50), numero INTEGER, superficie INTEGER, PRIMARY KEY(edificio,numero));
+ CREATE TABLE Empleados(DNI VARCHAR(50), nombre VARCHAR(50), apellido VARCHAR(50), DNIjefe VARCHAR(50), edificiodesp VARCHAR(50), numerodesp INTEGER, PRIMARY KEY(DNI), FOREIGN KEY(edificiodesp,numerodesp) REFERENCES Despachos(edificio,numero));
 
 Motores de Bases de Datos Relacionales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
