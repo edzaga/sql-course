@@ -561,7 +561,6 @@ Realizar ``NaturalJoin`` a las siguientes tablas:
  \end{array}
 
 
-
 ThetaJoin
 **********
 
@@ -679,26 +678,26 @@ Ejemplo 2
 
 Con el esquema conceptual siguiente, hallar los nombres de los directores de cada departamento:
 
-`Dpto (\underline{numDpto},nombre, nIFDirector, fechaInicio)`
+`\text{Dpto} (\underline{\text{numDpto}} \text{, nombre, nIFDirector, fechaInicio})`
 
-`Empleado (\underline{nIF}, nombre, direccion, salario, dpto, nIFSupervisor)`
+`\text{Empleado} (\underline{\text{nIF}} \text{, nombre, direccion, salario, dpto, nIFSupervisor})`
 
 **Respuesta**
 
 .. math::
-    \pi_{(\text{Dpto.nombre,empleado.nombre})} (\text{Dpto} \rhd \hspace{-0.1cm} \lhd_{\text{nIFDirector=NIF}} \text{empleado})
+    \pi_{(\text{Dpto.nombre,empleado.nombre})} (\text{Dpto} \rhd \hspace{-0.1cm} \lhd_{\text{nIFDirector=NIF}} \text{Empleado})
 
 * Tuplas con "Null" en los “Atributos de la Reunión”, no se incluyen en el resultado.
 
-EJERCICIO PROPUESTO
-*******************
+Ejercicio propuesto
+^^^^^^^^^^^^^^^^^^^^
 
 Considere la siguiente base de datos:
 
-   1. `Persona(\underline{nombre}, edad, genero)` : nombre es la clave.
-   2. `Frecuenta(\underline{nombre, pizzeria})` : (nombre, pizzeria) es la clave.
-   3. `Come(\underline{nombre, pizza})` : (name, pizza) es la clave.
-   4. `Sirve(\underline{pizzeria, pizza}, precio)`: (pizzeria, pizza) es la clave.
+   1. `\text{Persona}(\underline{\text{nombre}} \text{, edad, genero})` : nombre es la clave.
+   2. `\text{Frecuenta}(\underline{\text{nombre, pizzeria}})` : (nombre, pizzeria) es la clave.
+   3. `\text{Come}(\underline{\text{nombre, pizza}})` : (name, pizza) es la clave.
+   4. `\text{Sirve}(\underline{\text{pizzeria, pizza}}\text{, precio})`: (pizzeria, pizza) es la clave.
 
 Escribir expresiones en álgebra relacional para las siguientes dos preguntas:
 

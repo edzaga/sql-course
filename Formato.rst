@@ -15,9 +15,20 @@ Subtítulo sección
 Ejemplo o ejercicio
 ^^^^^^^^^^^^^^^^^^^ 
 
+en lectura 3 y 4 tuve que usar
+
+titulo sección
+------------------------
+
+para Subtítulo sección como ThetaJoin
+**************************************
+
+el otro se veía más chico....
+
+
 Según el libro guía:
 
-`Tabla(\underline{primaryKey},atributo, otroAtributo)`
+`\text{Tabla}(\underline{\text{primaryKey}},\text{atributo,otroAtributo})`
 
 * El nombre de la tabla va la primer letra con mayúscula, el resto con minúscula, los atributos con minúscula,salvo que sean dos palabras entonces la segunda va con mayúscula. la clave primaria va subrayada, lo puse en modo matemático todo para subrayar la PK. 
 Para hablar de una `Tabla` y de un *atributo* 
