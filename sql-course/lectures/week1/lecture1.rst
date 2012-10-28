@@ -137,6 +137,7 @@ de atributos comunes entre ellas llamadas claves primarias y foráneas.
   * Implementación eficiente.
 
 **Características**
+
   * Se compone de varias tablas o relaciones.
   * No existen dos o más tablas con el mismo nombre.
   * Una tabla es un conjunto de registros (filas y columnas).
@@ -149,8 +150,7 @@ de atributos comunes entre ellas llamadas claves primarias y foráneas.
     las relaciones.
 
 
-Ejemplo:
-^^^^^^^^^
+**Ejemplo** 
 
 Se tiene una base de datos que contiene dos tablas: una denominada `Empleados`,
 que almacena datos de los empleados de una empresa, y otra con el nombre `Despachos`,
@@ -219,8 +219,9 @@ el despacho donde trabaja. Además, el atributo *DNIjefe* es otra clave foránea
 referencia la clave primaria de la misma tabla `Empleados`, e indica, para cada
 empleado, quien es su jefe.
 
-Ejemplo en SQL
-^^^^^^^^^^^^^^^
+
+**Ejemplo en SQL**
+
 .. index:: string, text data types, str
 
 La creación de relaciones (tablas) en SQL

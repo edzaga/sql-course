@@ -74,7 +74,7 @@ Las consultas realizadas a las tablas de una BD al momento de ser ejecutadas pro
 como resultado, tablas; las cuales pueden ser:
 
   * Cerradas: Cuando la estructura del objeto que se obtiene de la consulta, es igual
-    a la estructura de los objetos consultados, se tiene una tabla cerrada
+    a la estructura de los objetos consultados, se tiene una tabla cerrada.
   * Compuestas: Cuando la consulta se hace sobre, al menos una tabla que corresponde
     al resultado de una consulta previa. En otras palabras, corresponde a la
     consulta del resultado de una consulta.
@@ -90,15 +90,15 @@ Algunos de los lenguajes de consultas son
   * SQL: Lenguaje actual e implementado que nace del Álgebra Relacional.
 
 Si bien se profundizará sobre ambos, a medida que avance el curso, se deja la
-siguientes tablas
+siguientes tablas:
 
 .. math::
 
- \textbf{Tabla ALUMNOS}
+ \textbf{Tabla Alumnos}
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{ID_ramo} & \textbf{nombre_alumno} & \textbf{promedio_nota} \\
+  \textbf{id} & \textbf{idRamo} & \textbf{nombreAlumno} & \textbf{promedioNota} \\
   \hline
   1           & 1                & \mbox{Robert}          & 45 \\
   \hline
@@ -112,11 +112,11 @@ siguientes tablas
   \hline
  \end{array}
 
- \textbf{Tabla RAMOS}
+ \textbf{Tabla Ramos}
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{ID} & \textbf{nombre_ramo} \\
+  \textbf{id} & \textbf{nombreRamo} \\
   \hline
   1           & \mbox{Programacion} \\
   \hline
@@ -126,15 +126,15 @@ siguientes tablas
   \hline
  \end{array}
 
-Consultar por el ``ID`` de los alumnos con promedio de notas mayor o igual a 55 en el
-ramo de *Programación*:
+Consultar por el *id* de los alumnos con promedio de notas mayor o igual a 55 en el
+ramo de "Programación":
 
 Utilizando Álgebra Relacional:
-
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
 
 .. math::
 
-   \pi \hspace{0.2cm} _{ALUMNOS.ID} \hspace{0.2cm} \sigma_{\geq\ 55\ AND\ \text{RAMOS.nombre_ramo ='Programacion'} (ALUMNOS\ \rhd \hspace{-0.1cm}\ \lhd RAMOS)}
+   \pi \hspace{0.2cm} _{Alumnos.id} \hspace{0.2cm} \sigma_{\geq\ 55\ AND\ \text{Ramos.nombreRamo ='Programacion'} (Alumnos\ \rhd \hspace{-0.1cm}\ \lhd Ramos)}
 
 Se puede decir que:
 
@@ -142,16 +142,17 @@ Se puede decir que:
    una columna. Por otro lado:
  * :math:`\sigma`, selecciona una fila que cumpla con una cierta condición,
    en el ejemplo dado se seleccionan las filas que cumplen con tener nota mayor
-   a *55* y que el nombre_ramo sea *programación*.
+   a *55* y que el nombreRamo sea *programación*.
  * :math:`\rhd \hspace{-0.1cm} \lhd`, realiza un JOIN entre dos relaciones en la
    _`lectura 3` se profundiza acerca de estos operadores y sus respectivos
    significados.
 
 Utilizando SQL:
+^^^^^^^^^^^^^^^
 
 .. code-block:: sql
 
- SELECT ALUMNOS.ID FROM ALUMNOS, RAMOS WHERE ALUMNOS.ID_ramo=RAMOS.ID AND ALUMNOS.promedio_nota>=55 AND RAMOS.nombre_ramo='Programacion';
+ SELECT ALUMNOS.ID FROM ALUMNOS, Ramos WHERE ALUMNOS.ID_ramo=Ramos.ID AND ALUMNOS.promedio_nota>=55 AND Ramos.nombreRamo='Programacion';
 
 En las próximas lecturas, se estudiará con mayor detalle tanto el álgebra relacional,
 como el lenguaje SQL.

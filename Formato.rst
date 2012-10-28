@@ -28,4 +28,12 @@ para resaltar algún **cocepto**
 
 ``inline`` no me gusta este no se para que puede servir si es que lo han usado ..
 
+:math:`{\{=,\geq,>,<, \neq,\leq \}`.
 
+.. note::
+	para insertar una nota
+
+raya horizontal:
+
+ Ejemplo 
+^^^^^^^^^
