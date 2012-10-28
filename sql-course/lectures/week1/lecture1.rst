@@ -64,8 +64,8 @@ propiedades. Por ejemplo: la entidad Alumnos, tendrá los atributos *nombre*,
 
 Los atributos también reciben el nombre de **columnas** en la terminología de BD.
 De entre los atributos habrá uno o un conjunto de ellos, que no asegura la unicidad
-de una fila; a este atributo o conjunto de atributos se le llama clave de la
-entidad, en el caso de los alumnos, sería el #pasaporte.
+de una fila; a este atributo o conjunto de atributos se le llama **clave de la
+entidad**, en el caso de los alumnos, sería el #pasaporte.
 En toda entidad siempre hay al menos una clave que en el peor de los casos estará
 formada por todos los atributos de la tabla. Ya que pueden haber varias claves
 y necesitamos elegir una, lo haremos atendiendo a estas normas:
@@ -76,7 +76,7 @@ y necesitamos elegir una, lo haremos atendiendo a estas normas:
   * Que sea pequeña, ya que será muy utilizada por el SGBD.
 
 
-Cada entidad tendrá un número ilimitado de **elementos**. Por ejemplo: un elemento
+Cada entidad tendrá un número ilimitado de elementos. Por ejemplo: un elemento
 de la entidad alumnos será un alumno en sí; así el alumno Juan será un elemento,
 José será otro. Cada uno de esos elementos también recibe el nombre de
 **fila o tuplas** en la terminología de BD.
@@ -152,8 +152,8 @@ de atributos comunes entre ellas llamadas claves primarias y foráneas.
 
 **Ejemplo** 
 
-Se tiene una base de datos que contiene dos tablas: una denominada `Empleados`,
-que almacena datos de los empleados de una empresa, y otra con el nombre `Despachos`,
+Se tiene una base de datos que contiene dos tablas: una denominada `\text{Empleados}`,
+que almacena datos de los empleados de una empresa, y otra con el nombre `\text{Despachos}`,
 que almacena los datos de los despachos que tiene la empresa. Los empleados que
 trabajan para una empresa pueden estar vinculados con los despachos de la empresa,
 porque a cada empleado se le asigna un despacho concreto para trabajar.
@@ -178,7 +178,7 @@ porque a cada empleado se le asigna un despacho concreto para trabajar.
         \hline
    \end{array}
 
-La tabla `Despachos` posee 3 atributos `(\underline{edificio, numero}, superficie)` y 5
+La tabla `\text{Despachos}` posee 3 atributos `(\underline{\text{edificio, numero}},\text{superficie)}` y 5
 registros (o filas).
 Esta tabla posee un conjunto de atributos cuyos valores combinados dan la
 unicidad a cada fila. Se trata de los atributos *edificio* y *numero*; se les llama
@@ -203,21 +203,18 @@ clave primaria compuesta.
    \end{array}
 
 
-La tabla `Empleados` posee 6 atributos `(\underline{DNI}, nombre, apellido, DNIjefe,
-edificiodesp, numerodesp)` y 4 registros (o filas), en el segundo registro se
-aprecia que George no posee despacho asignado por lo que se agrega el valor
-"unknown" o "undefined" que se define como NULL.
-Esta tabla posee un atributo cuyo valor es único en cada tupla que es atributo
+La tabla `\text{Empleados}` posee 6 atributos `(\underline{\text{DNI}}, \text{nombre, apellido, DNIjefe,
+edificiodesp, numerodesp})` y 4 registros (o filas), en el segundo registro se aprecia que George
+no posee despacho asignado por lo que se agrega el valor "unknown" o "undefined" que se 
+define como NULL. Esta tabla posee un atributo cuyo valor es único en cada tupla que es atributo
 *DNI* y se le llama clave primaria.
 
-En `Empleados`, existe una clave foránea formada por los
-atributos *edificiodesp* y *numerodesp* que referencia la clave primaria de
-`Despachos`. De este modo, se cumple que todos los valores que no son nulos de los
-atributos *edificiodesp* y *numerodesp* son valores que existen para los atributos
-*edificio* y *numero* de `Despachos`. Esta clave foránea indica, para cada empleado,
-el despacho donde trabaja. Además, el atributo *DNIjefe* es otra clave foránea que
-referencia la clave primaria de la misma tabla `Empleados`, e indica, para cada
-empleado, quien es su jefe.
+En `\text{Empleados}`, existe una clave foránea formada por los atributos *edificiodesp* y *numerodesp* 
+que referencia la clave primaria de `\text{Despachos}`. De este modo, se cumple que todos los valores 
+que no son nulos de los atributos *edificiodesp* y *numerodesp* son valores que existen para los 
+atributos *edificio* y *numero* de `Despachos`. Esta clave foránea indica, para cada empleado,
+el despacho donde trabaja. Además, el atributo *DNIjefe* es otra clave foránea que referencia 
+la clave primaria de la misma tabla `\text{Empleados}`, e indica, para cada empleado, quien es su jefe.
 
 
 **Ejemplo en SQL**

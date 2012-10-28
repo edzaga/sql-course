@@ -31,7 +31,7 @@ Según el libro guía:
 `\text{Tabla}(\underline{\text{primaryKey}},\text{atributo,otroAtributo})`
 
 * El nombre de la tabla va la primer letra con mayúscula, el resto con minúscula, los atributos con minúscula,salvo que sean dos palabras entonces la segunda va con mayúscula. la clave primaria va subrayada, lo puse en modo matemático todo para subrayar la PK. 
-Para hablar de una `Tabla` y de un *atributo* 
+Para hablar de una `\text{Tabla}` y de un *atributo* 
 
 * Bueno los comandos SQL ya saben :sql:`COMANDOS SQL`, 
 

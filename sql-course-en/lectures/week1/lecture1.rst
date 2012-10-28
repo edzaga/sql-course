@@ -16,18 +16,18 @@ Database Management System (DBMS)
 The Database Management System (DBMS) is a set of programs that let create and maintain a database, 
 ensuring its integrity, confidentiality, and security. Therefore, it should allow:
 
-  * To define a database: specify types, structures, and restrictions of data.
-  * To build the database: save data in a/some controlled environment by the same DBMS.
-  * To manipulate the database: querying, updating, and reporting.
+  * **To define a database**: specify types, structures, and restrictions of data.
+  * **To build the database**: save data in a/some controlled environment by the same DBMS.
+  * **To manipulate the database**: querying, updating, and reporting.
 
 Some of the desirable features of a Database Management System (DBMS) are:
 
-  * Control of redundancy: Data redundancy has several negative effects 
+  * **Control of redundancy**: Data redundancy has several negative effects 
     (duplicating work when upgrading, wasting disk space can cause data inconsistency) 
     although sometimes it is desirable for performance reasons.
-  * Restriction of unauthorized access: each user has to have some access
+  * **Restriction of unauthorized access**: each user has to have some access
     and authorization permissions.
-  * Compliance of integrity restriction: the DBMS has to offer resources to define 
+  * **Compliance of integrity restriction**: the DBMS has to offer resources to define 
     and ensure compliance of the integrity restrictions.
 
 The Entity-relationship model (E-R)
@@ -37,31 +37,31 @@ When using a DB to manage information, you are capturing a part of the real worl
 series of tables, records, and fields. As a result, it creates a partial model of reality. 
 Before physically create these tables in the DB, it should be performed a data model.
 
-The most extensive data model is the so called *E-R*. 
+The most extensive data model is the so called **Entity-relationship (E-R)**. 
 In the E-R model the starting point is a real situation from which are defined entities 
 and relationships among those entities.
 
 
 **Entities**
 
-The objects that appear in real life correspond to an entity. 
+The objects that appear in real life correspond to an **entity**. 
 For example: students, employees, airplanes, cars, accommodation, etc. 
 An entity results in a table in the DB.
 
 .. image:: ../../../sql-course/src/entidad.jpg
    :align: center
 
-These entities are composed of several attributes, which come to be their properties. 
-For example: student’s entity shall have the attributes name, Social Security Number, 
-nationality, date of birth, etc.
+These entities are composed of several **attributes**, which come to be their properties. 
+For example: Student’s entity shall have the attributes *name, #socialSecurity, 
+nationality, date of birth*, etc.
 
 .. image:: ../../../sql-course/src/atributo.jpg
    :align: center
 
-The attributes are also called columns in the terminology of DB. 
+The attributes are also called **columns** in the terminology of DB. 
 Among the attributes will be one or a set of them that is not repeated; 
-this attribute or set of attributes is called the primary key. In the case of the students,
-it would be the Social Security Number. In any entity there is always at least one key 
+this attribute or set of attributes is called the **primary key**. In the case of the students,
+it would be the #socialSecurity. In any entity there is always at least one key 
 that in the worst case will be formed by all of the attributes of the table. Since there 
 may be several keys and we need to pick one, we will take into account these rules:
 
@@ -70,12 +70,20 @@ may be several keys and we need to pick one, we will take into account these rul
   * It is minimal, as it will be often used by the database manager.
 
 
-Each entity will have an unlimited number of *elements*. For example, 
+Each entity will have an unlimited number of elements. For example, 
 an element of the students’ entity will be a student itself. 
 So the student Pepe will be an element, Jose will be another one. 
-Each one of these elements is also called *row or tuple*  in the terminology of DB.
+Each one of these elements is also called **row or tuple**  in the terminology of DB.
 
-*Combining these three concepts we have a table structure type, the base of the DB.*
+Combining these three concepts we have a table structure type, the base of the DB.
+
+.. note::
+
+     In related books some synonyms are used:
+
+      * To refer to a **row** can also be used the words **tuple** or **record**.
+
+      * To refer to a **column** can also be used the words **field** or **attribute**.
 
 
 **Relations**
@@ -128,17 +136,16 @@ stored in tables), and through those connections relate the data of both tables.
   * A table is a set of records (rows or columns).
   * The relationship between parent and child table is carried out by using 
     primary and foreign keys.
-  * The primary keys represent the primary/principal key of a record within 
+  * The **primary keys** represent the primary/principal key of a record within 
     a table and they must fulfill with the integrity of the data.
-  * The foreign keys are placed in the child table, they contain the same
+  * The **foreign keys** are placed in the child table, they contain the same
     value as the primary key of the parent record; you can make relationships through them.
 
 
-Example:
-========
+**Example:**
 
-There is a database which contains two relations: one called Employees,which
-stores data of employees from a company, and one with the name Dispatches, which 
+There is a database which contains two relations: one called `\text{Employees}`,which
+stores data of employees from a company, and one with the name `\text{Dispatches}`, which 
 stores the data of the dispatches that the company has. Employees who work for a
 company can be linked with the dispatches of the company, since each employee is 
 assigned a concrete dispatch to work. 
@@ -163,9 +170,9 @@ assigned a concrete dispatch to work.
         \hline
    \end{array}
 
-The Dispatches table has 3 attributes (*building*, *number*, surface) and 5 records
+The `\text{Dispatches}` table has 3 attributes (`\underline{\text{building, number}}, \text{surface}`) and 5 records
 (or rows, or tuples). This table has a set of attributes whose combined values 
-give the uniqueness to each row. It is about the attributes building and number; 
+give the uniqueness to each row. It is about the attributes *building* and *number*; 
 these are called compound primary key.  
 
 .. math::
@@ -187,25 +194,24 @@ these are called compound primary key.
    \end{array}
 
 
-The Employees table has 6 attributes (*DNI*, name, lastname, DNIchief, buildingdisp, numberdisp) 
+The `\text{Employees}` table has 6 attributes `(\underline{\text{DNI}}, \text{name, lastname, DNIchief, buildingdisp, numberdisp})`
 and 4 records (or rows), in the second record it can be seen that George has not a dispatch 
 assigned, so it is added the value “unknown” or “undefined” which is defined as NULL. This 
-table has an attribute whose value is unique in each tuple that is DNI attribute and it is 
+table has an attribute whose value is unique in each tuple that is *DNI* attribute and it is 
 called primary key. 
 
-In the relation of Employees schema, the foreign key formed by the attributes {buildingdisp, numberdisp}
-refers to the primary key of the relation Dispatches.  In this way, it is fulfilled that all the 
-values that are not null from the buildingdisp and numberdisp attributes are values which exists 
-for the building and number attributes of Dispatches. This foreign key indicates, for each employee, 
-the dispatch where he works. In addition, the attribute DNchief is another foreign jey that refers 
-to the primary key of the same Employees relation, and indicates, for each employee, who is his chief. 
+In the `\text{Employees}` schema, the foreign key formed by the attributes *buildingdisp* and *numberdisp*
+refers to the primary key of the table `\text{Dispatches}`.  In this way, it is fulfilled that all the 
+values that are not null from the *buildingdisp* and *numberdisp* attributes are values which exists 
+for the *building* and *number* attributes of `\text{Dispatches}`. This foreign key indicates, for each employee, 
+the dispatch where he works. In addition, the attribute *DNchief* is another foreign key that refers 
+to the primary key of the same `\text{Employees}`, and indicates, for each employee, who is his chief. 
 
+**SQL example**
 
-SQL example
-============
 .. index:: string, text data types, str
 
-La creación de relaciones (tablas) en SQL
+The creation of relations (tables) in SQL
 
 .. code-block:: sql
 
