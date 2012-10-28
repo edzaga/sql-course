@@ -152,7 +152,7 @@ de atributos comunes entre ellas llamadas claves primarias y foráneas.
 Ejemplo:
 ^^^^^^^^^
 
-Se tiene una base de datos que contiene dos relaciones: una denominada `Empleados`,
+Se tiene una base de datos que contiene dos tablas: una denominada `Empleados`,
 que almacena datos de los empleados de una empresa, y otra con el nombre `Despachos`,
 que almacena los datos de los despachos que tiene la empresa. Los empleados que
 trabajan para una empresa pueden estar vinculados con los despachos de la empresa,
