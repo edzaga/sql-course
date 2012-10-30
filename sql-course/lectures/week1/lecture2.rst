@@ -144,7 +144,7 @@ Se puede decir que:
    en el ejemplo dado se seleccionan las filas que cumplen con tener nota mayor
    a *55* y que el nombreRamo sea *programación*.
  * :math:`\rhd \hspace{-0.1cm} \lhd`, realiza un JOIN entre dos relaciones en la
-   _`lectura 3` se profundiza acerca de estos operadores y sus respectivos
+   `lectura 3`_ se profundiza acerca de estos operadores y sus respectivos
    significados.
 
 Utilizando SQL:
@@ -163,4 +163,4 @@ como el lenguaje SQL.
 .. to construct new relations from given relations. When the given relations are
 .. stored data, then the constructed relations can be answers to queries about this data.
 
-.. _`Lecture 3`: lecture3.html
+.. _`lectura 3`: lecture3.html

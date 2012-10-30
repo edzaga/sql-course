@@ -143,7 +143,7 @@ One could say that:
 
  * :math:`\sigma` select a row that complies with a certain condition, in the example given rows selected are the ones that have complied with having a grade higher(GPA) to 55 and that Subjects.name_subject is ‘Programming’
 
- * :math:`\rhd \hspace{-0.1cm} \lhd` performs a JOIN between two relations. In _`lecture 3` we will get deeper about these operators and their meanings.
+ * :math:`\rhd \hspace{-0.1cm} \lhd` performs a JOIN between two relations. In `lecture 3`_ we will get deeper about these operators and their meanings.
 
 Using SQL:
 ^^^^^^^^^^^

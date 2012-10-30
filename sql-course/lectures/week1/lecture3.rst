@@ -4,7 +4,7 @@ Lectura 3 - Álgebra Relacional: Select, Project, Join
 Conceptos básicos de álgebra relacional
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. index:: basics of relational algebra
+.. index:: Conceptos básicos de álgebra relacional
 
 Algebra, en general, consiste de operadores y operandos atómicos, por ejemplo,
 en el álgebra de la aritmética, los operandos atómicos son variable como `r`,
@@ -36,17 +36,17 @@ de expresiones son conjuntos. Los operadores del álgebra relacional tradicional
 en cuatro grandes categorías:
 
  a. Los conjuntos habituales de operaciones ``unión``, ``intersección``, y ``diferencia`` se aplica a las relaciones.
- b. Las operaciones que eliminan parte de una relación: ``selección`` elimina algunas **filas** (tuplas), y ``proyección`` elimina algunas **columnas**.
+ b. Las operaciones que eliminan parte de una relación: ``selección`` elimina algunas **filas (o tuplas)**, y ``proyección`` elimina algunas **columnas**.
  c. Las operaciones que combinan las tuplas de dos relaciones, como el ``producto cartesiano``, que empareja las tuplas de dos relaciones en todas las maneras posibles y varios tipos de  operadores ``unión``, los cuales forman parejas de tuplas de dos relaciones selectivamente.
  d. Una operación llama “renombrar” que no afecta las tuplas de una relación, pero que cambia el esquema de relación, es decir, lo nombres de los atributos y/o los nombres de la relación misma.
 
 Debemos por lo general referirnos a las expresiones del álgebra relacional como consultas.
 A pesar de que aún no tengan los símbolos necesarios para mostrar muchas de las expresiones
 del algebra relacional, se debería familiarizar con las operaciones de **grupo (a)**;
-y por lo tanto reconocer: `R \cup S` como un ejemplo de una expresión de álgebra relacional.
-Donde `R` y `S` son operandos atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas.
+y por lo tanto reconocer: `\text{R} \cup \text{S}` como un ejemplo de una expresión de álgebra relacional.
+Donde `\text{R}` y `\text{S}` son operandos atómicos para relaciones, cuyos conjuntos de tuplas son desconocidas.
 Esta consulta pregunta por la ``unión`` de cualquiera tuplas que están en las relaciones
-nombradas `R` y `S`.
+nombradas `\text{R}` y `\text{S}`.
 
 Las tres operaciones más comunes en conjuntos son ``unión``, ``intersección``, y ``diferencia``,
 que serán vistas en la lectura 4.
@@ -63,12 +63,14 @@ que serán vistas en la lectura 4.
 Operaciones relacionales:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. index:: relational operators
+.. index:: Operaciones relacionales:
 
 Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 
 Selección(Select)
 ******************
+
+.. index:: Selección(Select) en Álgebra Relacional 
 
 Este operador se aplica a una relación `R` produciendo una nueva relación con un
 subconjunto de tuplas de `R`. Las tuplas de la relación resultante son las que
@@ -212,6 +214,8 @@ Así finalmente quedaría la tabla:
 Proyección (Project)
 ********************
 
+.. index:: Proyección (Project) en álgebra relacional
+
 El operador ``Proyección`` se utiliza para producir una nueva relación desde `R`. Esta
 nueva relación contiene sólo algunos de los atributos de `R`,
 es decir, realiza la selección de algunas de las **columnas** de una tabla `R`.
@@ -311,6 +315,8 @@ contienen los atributos id y nombre. Finalmente la tabla queda de la siguiente m
 
 Producto cartesiano (Cross-Product)
 ************************************
+
+.. index:: Producto cartesiano en álgebra relacional
 
 En teoría de conjuntos, el ``producto cartesiano`` de dos conjuntos es una operación
 que resulta en otro conjunto cuyos elementos son todos los pares ordenados que
@@ -427,6 +433,8 @@ Escriba la tabla resultante al realizar la siguiente operación:
 
 NaturalJoin
 ************
+
+.. index:: NaturalJoin en álgebra relacional
 
 Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando
 sólo las tuplas que coinciden de alguna manera. ``NaturalJoin`` une sólo los pares de
@@ -563,6 +571,8 @@ Realizar ``NaturalJoin`` a las siguientes tablas:
 
 ThetaJoin
 **********
+
+.. index:: ThetaJoin en álgebra relacional
 
 Define una relación que contiene las tuplas que satisfacen el predicado C en el
 ``producto cartesiano`` de `\text{R} \times \text{S}`.

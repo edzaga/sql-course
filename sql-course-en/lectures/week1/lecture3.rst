@@ -4,7 +4,7 @@ Lecture 3 - Relational Algebra: Select, Project, Join
 Basics of relational algebra
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. index:: basics of relational algebra
+.. index:: Basics of relational algebra
 
 Algebra, in general, consists of operators and atomic operands. For instance, in the algebra of 
 arithmetic, the atomic operands are variables like r, and constants like 15. The operators are 
@@ -27,18 +27,18 @@ Relational algebra is another example of algebra. Its atomic operands are:
 As we mentioned, in the classical relational algebra, all operands and the results of expressions are sets. 
 The operations of the traditional relational algebra fall into four broad classes:
 
- 1. The usual set operations - union, intersection, and difference - applied to relations.
- 2. Operations that remove parts of a relation: “selection” eliminates some rows (tuples), and “projection” eliminates some columns.
- 3. Operations that combine the tuples of two relations, including “Cartesian product”, which pairs the tuples of two relations in all possible ways and various kinds of “join” operations, which selectively pair tuples from two relations.
+ 1. The usual set operations - ``union``, ``intersection``, and ``difference`` - applied to relations.
+ 2. Operations that remove parts of a relation: ``selection`` eliminates some **rows (tuples)**, and ``projection`` eliminates some **columns**.
+ 3. Operations that combine the tuples of two relations, including ``Cartesian product``, which pairs the tuples of two relations in all possible ways and various kinds of ``join`` operations, which selectively pair tuples from two relations.
  4. An operation called “renaming” that does not affect the tuples of a relation, but changes the relation schema, i.e., the names of the attribute sand/or the name of the relation itself.
 
 We shall generally refer to expressions of relational algebra as queries. While we don’t yet
 have the symbols needed to show many of the expressions of relational algebra, you should be
-familiar with the operations of group `(a)`; and thus recognize ( `R \cup S` ) as an example 
+familiar with the operations of **group (a)**; and thus recognize ( `\text{R} \cup \text{S}` ) as an example 
 of an expression of relational algebra. `R` and `S` are atomic operands standing for relations,
 whose sets of tuples are unknown. This query asks for the union of whatever tuples are in the
 relations named `R` and `S`.
-The three most common operations on sets are **union, intersection, and difference**, que se verán en la lectura 4.  
+The three most common operations on sets are ``union``, ``intersection``, and ``difference``, que se verán en la lectura 4.  
 
 .. role:: sql(code)
    :language: sql
@@ -47,12 +47,13 @@ The three most common operations on sets are **union, intersection, and differen
 Relational operators
 ~~~~~~~~~~~~~~~~~~~~
 
-.. index:: relational operators
+.. index:: Relational operators
 
 Relational operators are used to filter, cut or join tables.
 
 SELECT
 *******
+.. index:: SELECT in relational algebra
 
 This operator is applied to a relation `R` producing a new relation with a subset of tuples of `R`. 
 The tuples of the resulting relation are the ones that satisfy a condition `C` about some attribute
@@ -216,10 +217,12 @@ So the table would finally look like this:
   \hline
  \end{array}
 
-PROJECT
+Project
 *******
 
-The **PROJECT** operator is used to produce a new relation from `R`. This new relation 
+.. index:: Project in relational algebra
+
+The **Project** operator is used to produce a new relation from `R`. This new relation 
 contains only some of the attributes of `R`, in other words, performs the selection 
 of some of the **columns** of a table `R`.
 
@@ -315,10 +318,12 @@ contain the id and name attributes. Finally the table would look like this:
  \end{array}
 
 
-CROSS-PRODUCT
+Cross-Product
 *************
 
-In theory of sets, the **CROSS-PRODUCT** (or Cartesian product) of two sets is an operation that results 
+.. index:: Cross-Product in Relational Algebra
+
+In theory of sets, the **Cross-Product** (or Cartesian product) of two sets is an operation that results 
 in another set whose elements are all the ordered pairs that can be formed by taking
 the first element of the pair of the first set, and the second element of the second
 set. In Relational Algebra this idea is maintain except that `R` and `S` are relations,
@@ -433,6 +438,8 @@ Write the resulting table to perform the following operation:
 
 NATURALJOIN
 ************
+
+.. index:: NaturalJoin in relational algebra
 
 This operator is used when there is the need to link relations linking only tuples 
 that match somehow. **NATURALJOIN** joins only the pairs of tuples of `R` and `S` that are 
@@ -572,6 +579,8 @@ Perform **NATURALJOIN** to the following tables:
 
 THETAJOIN
 **********
+
+.. index:: ThetaJoin in relational algebra
 
 It defines a relation containing tuples that satisfy the predicate C in the 
 Cartesian product(CROSS-PRODUCT) of `R \times S`. It connects relations when 
