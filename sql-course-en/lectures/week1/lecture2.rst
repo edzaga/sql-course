@@ -63,7 +63,7 @@ Independent of the language used, it should be noted that:
   * The two points above are not dependent on each other, it can exist an easy 
     query to formulate, but difficult to execute efficiently, depending on the DBMS.
   * The language used to execute queries can modify / update information from the 
-    database; this is called Data Manipulation Language You (DML).
+    database; this is called Data Manipulation Language(DML).
 
 Consultations and relations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -83,7 +83,7 @@ executed produce as a result, relations, which can be:
 Query languages
 ~~~~~~~~~~~~~~~~~
 
-.. index:: Lenguajes de consultas
+.. index:: Query languages
 
 Some query languages are:
 
@@ -95,11 +95,11 @@ Look for the “Student’s ID with grade greater or equal to 55 in programmatio
 
 .. math::
 
- \textbf{student table}
+ \textbf{Student table}
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{ID} & \textbf{subject_ID} & \textbf{student_name} & \textbf{gpa} \\
+  \textbf{ID} & \textbf{subjectID} & \textbf{studentName} & \textbf{gpa} \\
   \hline
   1           & 1                & \mbox{Robert}          & 45 \\
   \hline
@@ -113,11 +113,11 @@ Look for the “Student’s ID with grade greater or equal to 55 in programmatio
   \hline
  \end{array}
 
- \textbf{subjects table}
+ \textbf{Subjects table}
 
  \begin{array}{|c|c|}
   \hline
-  \textbf{ID} & \textbf{subject_name} \\
+  \textbf{ID} & \textbf{subjectName} \\
   \hline
   1           & \mbox{Programming} \\
   \hline
@@ -131,39 +131,27 @@ Consult for the "students ID with GPA greater or equal than  55 in the
 subject of Programming ":
 
 Using Relational Algebra:
-
-.. CMA: QUE ES ESTO?????? No puedo entender que significa esta productora :/
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. math::
 
-   \pi \hspace{0.2cm} _{student.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{subjects.subject_name ='Programming'} (student \rhd \hspace{-0.1cm} \lhd subjects)}
+   \pi \hspace{0.2cm} _{Student.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{Subjects.subjectName ='Programming'} (Student \rhd \hspace{-0.1cm} \lhd Subjects)}
 
 One could say that:
 
-.. math::
-        \pi
+ * :math:`\pi` Carried out a ``PROJECT`` on a table, that is to say select a column. On the other hand:
 
-Carried out a PROJECT on a table, that is to say select a column. On the other hand:
+ * :math:`\sigma` select a row that complies with a certain condition, in the example given rows selected are the ones that have complied with having a grade higher(GPA) to 55 and that Subjects.name_subject is ‘Programming’
 
-.. math::
-        \sigma
+ * :math:`\rhd \hspace{-0.1cm} \lhd` performs a JOIN between two relations. In _`lecture 3` we will get deeper about these operators and their meanings.
 
-select a row that complies with a certain condition, in the example given rows 
-selected are the ones that have complied with having a grade higher(GPA) to 55 and 
-that subjects.name_subject is ‘Programming’
-
-.. math::
-        \rhd \hspace{-0.1cm} \lhd
-
-performs a JOIN between two relations. In lecture 3 we will get deeper about these
-operators and their meanings.
-
-Using SQL
+Using SQL:
+^^^^^^^^^^^
 
 .. code-block:: sql
 
- SELECT student.ID FROM student, subjects WHERE student.subjec_ID=subjec.ID 
- AND student.GPA>=55 AND subjects.subject_name ='Programming';
+ SELECT Student.ID FROM Student, Subjects WHERE Student.subjec_ID=subjec.ID 
+ AND Student.GPA>=55 AND Subjects.subjectName ='Programming';
 
 In the next lectures, it will be studied in greater detail both the relational algebra, 
 and the SQL language.
@@ -172,3 +160,5 @@ and the SQL language.
 .. algebra, called relational algebra (lectures 3 and 4), that consists of some simple but powerful ways
 .. to construct new relations from given relations. When the given relations are
 .. stored data, then the constructed relations can be answers to queries about this data.
+
+.. _`lecture 3`: lecture3.html

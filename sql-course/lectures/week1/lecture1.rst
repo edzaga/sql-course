@@ -12,6 +12,8 @@ innecesarias, de forma independiente de los programas que acceden a ellos.
 El Sistema Gestor de Base de Datos (SGBD)
 =========================================
 
+.. index:: El Sistema Gestor de Base de Datos (SGBD)
+
 Un SGBD es un conjunto de programas que permiten crear y mantener una BD,
 asegurando su integridad, confidencialidad y seguridad. Por tanto debe permitir:
 
@@ -37,6 +39,8 @@ Algunas de las características deseables en un SGBD son:
 El modelo Entidad-Relación (E-R)
 ================================
 
+.. index:: El modelo Entidad-Relación (E-R)
+
 Cuando se utiliza una BD para gestionar información, se está plasmando una
 parte del mundo real en una serie de tablas, registros y campos; creándose un
 modelo parcial de la realidad. Antes de crear físicamente estas tablas en la
@@ -47,6 +51,8 @@ En el modelo E-R se representa una situación real a través de entidades y
 relaciones entre dichas entidades:
 
 **Entidades**
+
+.. index:: Entidades
 
 Los objetos que aparecen en la vida real, corresponden a una **entidad**.
 Por ejemplo: alumnos, empleados, aviones, coches, alojamientos, etc.
@@ -94,6 +100,8 @@ esencial en una BD relacional.
 	 * Para referirse a una **columna** se puede usar el término **campo** o **atributo**.
 
 **Relaciones**
+
+.. index:: Relaciones
 
 Las entidades no están aisladas sino que están relacionadas entre sí. Estas
 relaciones reflejan las interacciones lógicas existentes entre entidades.
@@ -219,14 +227,14 @@ la clave primaria de la misma tabla `\text{Empleados}`, e indica, para cada empl
 
 **Ejemplo en SQL**
 
-.. index:: string, text data types, str
-
 La creación de relaciones (tablas) en SQL
 
 .. code-block:: sql
 
  CREATE TABLE Despachos(edificio VARCHAR(50), numero INTEGER, superficie INTEGER, PRIMARY KEY(edificio,numero));
- CREATE TABLE Empleados(DNI VARCHAR(50), nombre VARCHAR(50), apellido VARCHAR(50), DNIjefe VARCHAR(50), edificiodesp VARCHAR(50), numerodesp INTEGER, PRIMARY KEY(DNI), FOREIGN KEY(edificiodesp,numerodesp) REFERENCES Despachos(edificio,numero));
+ CREATE TABLE Empleados(DNI VARCHAR(50), nombre VARCHAR(50), apellido VARCHAR(50), DNIjefe VARCHAR(50), 
+ edificiodesp VARCHAR(50), numerodesp INTEGER, PRIMARY KEY(DNI), FOREIGN KEY(edificiodesp,numerodesp) 
+ REFERENCES Despachos(edificio,numero));
 
 Motores de Bases de Datos Relacionales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -247,6 +255,8 @@ A continuación se verán algunos detalles de ambos motores.
 
 PostGreSQL
 ==========
+
+.. index:: PostGreSQL
 
 PostGreSQL es un sistema de gestión de bases de datos objeto-relacional basado en
 el proyecto POSTGRES, de la Universidad de Berkeley. El director de este proyecto es
@@ -299,6 +309,8 @@ PostGreSQL para reflejar la relación entre Postgres y las versiones recientes d
 
 MySQL
 =====
+
+.. index:: MySQL
 
 MySQL es un sistema de gestión de bases de datos relacional, licenciado bajo GPL
 de la GNU.

@@ -152,7 +152,8 @@ Utilizando SQL:
 
 .. code-block:: sql
 
- SELECT ALUMNOS.ID FROM ALUMNOS, Ramos WHERE ALUMNOS.ID_ramo=Ramos.ID AND ALUMNOS.promedio_nota>=55 AND Ramos.nombreRamo='Programacion';
+ SELECT ALUMNOS.ID FROM ALUMNOS, Ramos WHERE ALUMNOS.ID_ramo=Ramos.ID 
+ AND ALUMNOS.promedio_nota>=55 AND Ramos.nombreRamo='Programacion';
 
 En las próximas lecturas, se estudiará con mayor detalle tanto el álgebra relacional,
 como el lenguaje SQL.

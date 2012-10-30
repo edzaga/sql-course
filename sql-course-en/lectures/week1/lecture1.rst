@@ -13,6 +13,8 @@ independently of the programs that access them.
 Database Management System (DBMS)
 =================================
 
+.. index:: Database Management System (DBMS)
+
 The Database Management System (DBMS) is a set of programs that let create and maintain a database, 
 ensuring its integrity, confidentiality, and security. Therefore, it should allow:
 
@@ -33,6 +35,8 @@ Some of the desirable features of a Database Management System (DBMS) are:
 The Entity-relationship model (E-R)
 ===================================
 
+.. index:: The Entity-relationship model (E-R)
+
 When using a DB to manage information, you are capturing a part of the real world in a 
 series of tables, records, and fields. As a result, it creates a partial model of reality. 
 Before physically create these tables in the DB, it should be performed a data model.
@@ -43,6 +47,8 @@ and relationships among those entities.
 
 
 **Entities**
+
+.. index:: Entities
 
 The objects that appear in real life correspond to an **entity**. 
 For example: students, employees, airplanes, cars, accommodation, etc. 
@@ -88,6 +94,8 @@ Combining these three concepts we have a table structure type, the base of the D
 
 **Relations**
 
+.. index:: Relations
+
 The entities are not isolated but are related. These relations do not 
 exist in the real world that we are modeling, but they are necessary
 to reflect the existing interactions between entities. The relations
@@ -119,7 +127,7 @@ STUDENT, the entity COMPANY and the relationship between them REGISTRATION).
 Relational Database
 ~~~~~~~~~~~~~~~~~~~
 
-.. index:: Base de datos Relacionales
+.. index:: Relational Database
 
 It allows to establish interconnections (relations) between the data (which is
 stored in tables), and through those connections relate the data of both tables.
@@ -209,14 +217,14 @@ to the primary key of the same `\text{Employees}`, and indicates, for each emplo
 
 **SQL example**
 
-.. index:: string, text data types, str
-
 The creation of relations (tables) in SQL
 
 .. code-block:: sql
 
  CREATE TABLE Dispatches(building VARCHAR(50), number INTEGER, surface INTEGER, PRIMARY KEY(building,number));
- CREATE TABLE Employees(DNI VARCHAR(50), name VARCHAR(50), lastname VARCHAR(50), DNIchief VARCHAR(50), buildingdisp VARCHAR(50), numberdisp INTEGER, PRIMARY KEY(DNI), FOREIGN KEY(buildingdisp,numberdisp) REFERENCES Dispatches(building,number));
+ CREATE TABLE Employees(DNI VARCHAR(50), name VARCHAR(50), lastname VARCHAR(50), DNIchief VARCHAR(50), 
+ buildingdisp VARCHAR(50), numberdisp INTEGER, PRIMARY KEY(DNI), FOREIGN KEY(buildingdisp,numberdisp) 
+ REFERENCES Dispatches(building,number));
 
 Engines of Relational Databases
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -235,6 +243,8 @@ it will be seen some details of both engines.
 
 PostGreSQL
 ==========
+
+.. index:: PostGreSQL
 
 PostGreSQL is a object-relational database management system based on the POSTGRES 
 project, of the University of Berkeley. The director of this project is Professor 
@@ -279,6 +289,8 @@ order to reflect the relationship between PostGres and recent versions of SQL.
 
 MySQL
 =====
+
+.. index:: MySQL
 
 MySQL is database management system of relational data, licensed under the GPL of the GNU.
 Its multithreaded design allows it to support a large load in a very efficient way. MySQL 
