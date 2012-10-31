@@ -24,6 +24,10 @@ Relational algebra is another example of algebra. Its atomic operands are:
  1.  Variables that stand for relations
  2.  Constants, which are finite relations
 
+.. note::
+	
+	In some books of relational algebra or SQL, a relation is considered a synonym of a table.
+
 As we mentioned, in the classical relational algebra, all operands and the results of expressions are sets. 
 The operations of the traditional relational algebra fall into four broad classes:
 
@@ -35,9 +39,9 @@ The operations of the traditional relational algebra fall into four broad classe
 We shall generally refer to expressions of relational algebra as queries. While we don’t yet
 have the symbols needed to show many of the expressions of relational algebra, you should be
 familiar with the operations of **group (a)**; and thus recognize ( `\text{R} \cup \text{S}` ) as an example 
-of an expression of relational algebra. `R` and `S` are atomic operands standing for relations,
+of an expression of relational algebra. `\text{R}` and `\text{S}` are atomic operands standing for relations,
 whose sets of tuples are unknown. This query asks for the union of whatever tuples are in the
-relations named `R` and `S`.
+relations named `\text{R}` and `\text{S}`.
 The three most common operations on sets are ``union``, ``intersection``, and ``difference``, que se verán en la lectura 4.  
 
 .. role:: sql(code)
@@ -55,37 +59,25 @@ SELECT
 *******
 .. index:: SELECT in relational algebra
 
-This operator is applied to a relation `R` producing a new relation with a subset of tuples of `R`. 
+This operator is applied to a relation `\text{R}` producing a new relation with a subset of tuples of `\text{R}`. 
 The tuples of the resulting relation are the ones that satisfy a condition `C` about some attribute
-of `R`. In other words, it selects rows of a table according to a certain criterion `C`. That is, 
+of `\text{R}`. In other words, it selects rows of a table according to a certain criterion `C`. That is, 
 select **rows (tuples)** from a table according to a certain criterion `C`.
 `C` is a conditional expression, similar to the statements of the type “if”, is “booleana” this means 
-that for each tuple of `R`, it takes the value of True or False.
+that for each tuple of `\text{R}`, it takes the value of True or False.
 
- * Values of attributes with NULL will not meet any condition.
- * Each simple condition or clause C has the format
+* Values of attributes with NULL will not meet any condition.
+* Each simple condition or clause `C` has the format:
+  ``<Atributte> <Comparator> <Atributte or Constant>``
+  where: ``Comparator`` field is one of the **logical operator** which are shown below:
+  ``<Comparator>``  `\in {\{=,\geq,>,<, \neq,\leq \}}`
 
-.. math::
-
-   \text{<Atributte> <Comparator> <Atributte or Constant>}
-
-where: `Comparator` field is one of the **logical operator** which are shown below:
-
-.. math::
-    \text{<Comparator>}  \in {\{=,\geq,>,<, \neq,\leq \}}
-
-* `=` : equal sign.
-
-
-* `\neq`: not-equal sign, in some books this operator is represented by the symbol ``!=``.
-        
-* `\geq`: greater than or equal.
-
-* `>`: greater than.
- 
-* `<`: less than.
-
-* `\leq`: less than or equal.
+ * `=` : equal sign.
+ * `\neq`: not-equal sign, in some books this operator is represented by the symbol ``!=``.
+ * `\geq`: greater than or equal.
+ * `>`: greater than.
+ * `<`: less than.
+ * `\leq`: less than or equal.
 
 **Logical operators** that are used, also called relational operators, provide us a result from 
 the fulfillment or not fulfillment of a certain condition. They are symbols used to compare two 
@@ -97,37 +89,25 @@ is false and it is represented by the value “false.”
 The clauses `C` can be connected with the logical operators, which like the previous ones that 
 were used as Comparator (between attributes or constrant attribute), thrown bololean (true or false) result:
 
-* **NOT**: The NOT operator denotes a true output if the input is false, and a false exit if input is true. 
-    Notation in Relational Algebra: 
+* **NOT**: The ``NOT`` operator denotes a true output if the input is false, and a false exit if input is true. 
+  Notation in Relational Algebra: `¬ \text{C}_1`
 
-.. math::
-		¬ \text{C1}
-
-* **AND**:  The AND operator denotes true output, if and only if its inputs are true. 
-    If C1 is fulfilled and C2 is fulfilled, the output will be true.
+* **AND**: The ``AND`` operator denotes true output, if and only if its inputs are true. 
+  If `\text{C}_1` is fulfilled and `\text{C}_2` is fulfilled, the output will be true.
+  Notation in Relational Algebra: `\text{C}_1 \wedge \text{C}_2`
     
-    Notation in Relational Algebra:
-  
-.. math::
-		\text{C1} \wedge \text{C2}
-    
-* **OR**:  The OR operator denotes a true output if there is any true input put (or both).
-   If C1 and/or C2 is/are true, the expression will be true.
-
-   Notation in Relational Algebra: 
-
-.. math:: 
-		\text{C1} \vee \text{C2}
+* **OR**: The ``OR`` operator denotes a true output if there is any true input put (or both).
+  If `\text{C}_1` and/or `\text{C}_2` is/are true, the expression will be true. Notation in 
+  Relational Algebra: `\text{C}_1 \vee \text{C}_2`
 
 **Notation in Relational Algebra**
 
-To represent **SELECT** in relational algebra it is use the Greek **letter sigma**:
-:math:`\sigma`. Por lo tanto, si se utilizamos la notación
-:math:`\sigma_{c} \ \boldsymbol{R}` que quiere decir que se aplica la 
-condition `C` is applied to each tuple of `R`. If the condition is true, this 
+To represent ``Select`` in relational algebra it is use the Greek letter sigma:
+:math:`\sigma`. So if :math:`\sigma_{c} \ \boldsymbol{R}` is used, means that the
+condition `C` is applied to each tuple of `\text{R}`. If the condition is true, this 
 tuple will belong to the result and if it false, this tuple will not be selected. 
-The scheme of the resulting relationship is the same scheme `R`, shows the attributes
-in the same order as used in Table `R`. 
+The scheme of the resulting relationship is the same scheme `\text{R}`, shows the attributes
+in the same order as used in Table `\text{R}`. 
 
 Example 1
 ^^^^^^^^^
@@ -150,7 +130,7 @@ Example 1
     \hline
   \end{array}
 
-Select tuples from the **Engineers** table that comply an age greater than 30 years:
+Select tuples from the `\text{Engineers}` table that comply an age greater than 30 years:
 
 **Answer**
 
@@ -185,7 +165,7 @@ So the table would look like this:
 Example 2
 ^^^^^^^^^
 
-Select from the **Engineer** table people who are over 30 years old and carrying less than 16 years working:
+Select from the `\text{Engineer}` table people who are over 30 years old and carrying less than 16 years working:
 
 **Answer**
 
@@ -195,11 +175,11 @@ Select from the **Engineer** table people who are over 30 years old and carrying
 .. image:: ../../../sql-course/src/select3.png
       :align: center
 
-By having the logical operator AND is required to meet two conditions simultaneously. 
+By having the logical operator ``AND`` is required to meet two conditions simultaneously. 
 First that the age is greater than 30 years, like in the previous example, the tuple 
 of “Lexie” is left out of the selection. Then from the remaining tuples, the second 
 condition is evaluated. In the image it is shown that only are selected the rows that 
-do not have the **X** in any of the conditions. 
+do not have the ``X`` in any of the conditions. 
 
 So the table would finally look like this:
 
@@ -222,13 +202,13 @@ Project
 
 .. index:: Project in relational algebra
 
-The **Project** operator is used to produce a new relation from `R`. This new relation 
-contains only some of the attributes of `R`, in other words, performs the selection 
-of some of the **columns** of a table `R`.
+The ``Project`` operator is used to produce a new relation from `\text{R}`. This new relation 
+contains only some of the attributes of `\text{R}`, in other words, performs the selection 
+of some of the **columns** of a table `\text{R}`.
 
 **Notation in Relational Algebra**
 
-**PROJECT** in Relational Algebra is represented by the Greek **letter pi**:
+``Project`` in Relational Algebra is represented by the Greek **letter pi**:
 
 .. math::
        \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \text{R}
@@ -257,7 +237,7 @@ Example 1
   \hline
  \end{array}
 
-Select columns of ID and Name of the **Engineer** table:
+Select columns of ID and Name of the `\text{Engineer}` table:
 
 **Answer**
 
@@ -287,7 +267,7 @@ So the table would finally look like this:
 Example 2
 ^^^^^^^^^
 
-Select id and name of the Engineers who have more than 30 years old.
+Select id and name of the `\text{Engineers}` who have more than 30 years old.
 
 **Answer**
 
@@ -298,7 +278,7 @@ Select id and name of the Engineers who have more than 30 years old.
    :align: center
 
 It is appreciated that the tuples that do not meet the condition of selection are left out of the 
-result, then it is performed a **PROJECT** on the rows of the result, separating only the columns that 
+result, then it is performed a ``PROJECT`` on the rows of the result, separating only the columns that 
 contain the id and name attributes. Finally the table would look like this:
 
 .. math::
@@ -323,31 +303,31 @@ Cross-Product
 
 .. index:: Cross-Product in Relational Algebra
 
-In theory of sets, the **Cross-Product** (or Cartesian product) of two sets is an operation that results 
+In theory of sets, the ``Cross-Product`` (or Cartesian product) of two sets is an operation that results 
 in another set whose elements are all the ordered pairs that can be formed by taking
 the first element of the pair of the first set, and the second element of the second
-set. In Relational Algebra this idea is maintain except that `R` and `S` are relations,
-so the members of `R` and `S` are tuples, which generally consist of more than one component,
-which result of the link with a tuple of `R` with a tuple of `S` is a longer tuple, with
-one component for each of the components of the constituent tuples. That is, **CROSS-PRODUCT**
+set. In Relational Algebra this idea is maintain except that `\text{R}` and `\text{S}` are relations,
+so the members of `\text{R}` and `\text{S}` are tuples, which generally consist of more than one component,
+which result of the link with a tuple of `\text{R}` with a tuple of `\text{S}` is a longer tuple, with
+one component for each of the components of the constituent tuples. That is, ``Cross-Product``
 defines a relation that is the concatenation of each of the rows of the relation 
-`R` with each of the rows in the relation `S`.
+`\text{R}` with each of the rows in the relation `\text{S}`.
 
 **Notation in Relational Algebra**
 
-To represent Cross-product in Relational Algebra, it is used the following terminology:
+To represent ``Cross-product`` in Relational Algebra, it is used the following terminology:
 
 .. math::
     \text{R} \times \text{S}
 
-By convention for the previous statement, the components of `R` precede `S` components in 
+By convention for the previous statement, the components of `\text{R}` precede `\text{S}` components in 
 the order of attributes for the result, creating a new relationship with all possible 
-combinations of tuples of `R` and `S`. The number of tuples of the resulting new relation 
-is the multiplication of the number of tuples of `R` by the number of tuples that have 
-`S` (product of both).
-If `R` and `S` have some common attributes, then we must invent new names for at least one 
-of each pair of identical attributes. To eliminate ambiguity of an attribute `a`, which 
-is in `R` and `S`, it is used `R.a` for the attribute of `R` and `S.a` for the attribute of `S`.
+combinations of tuples of `\text{R}` and `\text{S}`. The number of tuples of the resulting new relation 
+is the multiplication of the number of tuples of `\text{R}` by the number of tuples that have 
+`\text{S}` (product of both).
+If `\text{R}` and `\text{S}` have some common attributes, then we must invent new names for at least one 
+of each pair of identical attributes. To eliminate ambiguity of an attribute *a*, which 
+is in `\text{R}` and `\text{S}`, it is used `R.a` for the attribute of `\text{R}` and `S.a` for the attribute of `\text{S}`.
 
 
 Noteworthy that by notation: 
@@ -361,15 +341,15 @@ Example 1
 .. image:: ../../../sql-course/src/CROSS-PRODUCT1.png
    :align: center
 
-With the given tables make the Cross-product of `R` with `S`:
+With the given tables make the ``Cross-product`` of `\text{R}` with `\text{S}`:
 
 .. image:: ../../../sql-course/src/CROSS-PRODUCT2.png
    :align: center
 
-With blue are highlighted the tuples which come from `R` that are
-preceded and mixed with the ones of `S` highlighted in green. 
+With blue are highlighted the tuples which come from `\text{R}` that are
+preceded and mixed with the ones of `\text{S}` highlighted in green. 
 
-With the given tables make a Cross-product of `S` with `R`:
+With the given tables make a ``Cross-product`` of `\text{S}` with `\text{R}`:
 
 .. image:: ../../../sql-course/src/CROSS-PRODUCT3.png
    :align: center
@@ -436,36 +416,36 @@ Write the resulting table to perform the following operation:
   \hline
  \end{array}
 
-NATURALJOIN
+NaturalJoin
 ************
 
 .. index:: NaturalJoin in relational algebra
 
 This operator is used when there is the need to link relations linking only tuples 
-that match somehow. **NATURALJOIN** joins only the pairs of tuples of `R` and `S` that are 
+that match somehow. ``NaturalJoin`` joins only the pairs of tuples of `R` and `S` that are 
 common. More precisely a tuple `r` of `R` and a tuple `s` of `S` are matched correctly if 
 and only if `r` and `s` coincide in each of the values of the common attributes, the 
 result of the linking is a tuple, called “joined tuple.” So when performing 
-**NATURALJOIN** it is obtained a relation with the attributes of both relations that 
+``NaturalJoin`` it is obtained a relation with the attributes of both relations that 
 have the same value in the common attributes.
 
 **Notation in Relational Algebra**
 
-For denoting **NATURALJOIN** it is used the following symbols:
+For denoting ``NaturalJoin`` it is used the following symbols:
 
 .. math::
    \text{R} \rhd \hspace{-0.1cm} \lhd \text{S}
 
 **Equivalence with basic operators**
 
-NATURALJOIN can be written in terms of some operators already seen, the equivalence is:
+``NaturalJoin`` can be written in terms of some operators already seen, the equivalence is:
 
 .. math::
    R \rhd \hspace{-0.1cm} \lhd S=  \pi \hspace{0.2cm} _{R.A_1,...,R.A_n,  S.A_1,...,S.A_n} (\sigma_{R.A_1=S.A_1 \wedge ... \wedge R.A_n=S.A_n  }\hspace{0.3cm} (R \times S ))
 
-**Método**
+**Method**
 
-    1. Perform the CROSS-PRODUCT `R \times S`.
+    1. Perform the ``Cross-Product`` `\text{R} \times \text{S}`.
     2. Select those rows of the Cartesian product for which the common attributes have the same value.
     3. Delete from the result an occurrence (column) of each of the common attributes.
 
@@ -501,13 +481,13 @@ Example 1
   \hline
  \end{array}
 
-With the tables given make a NaturalJoin of `R` and `S`:
+With the tables given make a ``NaturalJoin`` of `\text{R}` and `\text{S}`:
 
 .. image:: ../../../sql-course/src/NATURALJOIN.png
     :align: center
 
-The attribute that has in common `R` and `S` is the attribute `C`, so the 
-tuples are join where `C` has the same value in `R` and `S`.
+The attribute that has in common `\text{R}` and `\text{S}` is the attribute *c*, so the 
+tuples are join where *c* has the same value in `\text{R}` and `\text{S}`.
 
 .. math::
  \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\
@@ -525,7 +505,7 @@ tuples are join where `C` has the same value in `R` and `S`.
 Example 2
 ^^^^^^^^^
 
-Perform **NATURALJOIN** to the following tables:
+Perform ``NaturalJoin`` to the following tables:
 
 .. math::
 
@@ -577,33 +557,29 @@ Perform **NATURALJOIN** to the following tables:
 
 
 
-THETAJOIN
+ThetaJoin
 **********
 
 .. index:: ThetaJoin in relational algebra
 
-It defines a relation containing tuples that satisfy the predicate C in the 
-Cartesian product(CROSS-PRODUCT) of `R \times S`. It connects relations when 
+It defines a relation containing tuples that satisfy the predicate `C` in the 
+``Cross-Product`` of `\text{R} \times \text{S}`. It connects relations when 
 the values ​​of certain columns have a specific interrelation. The condition `C` 
-is of the form `R.ai` <operator_of_comparation> `S.bi`, this condition is of the
-same type used SELECT. The predicate does not have to be defined on common 
-attributes. The term “join” usually refers to **THETHAJOIN**.
+is of the form ``R.ai <operator_of_comparation> S.bi``, this condition is of the
+same type used ``Select``. The predicate does not have to be defined on common 
+attributes. The term “join” usually refers to ``ThetaJoin``.
 
 
 **Notation in Relational Algebra**
 
-The notation of the **THETAJOIN** is the same symbol used for NATURALJOIN; the difference 
-is that **THETHAJOIN** carries the predicate `C`:
+The notation of the ``ThetaJoin`` is the same symbol used for ``NaturalJoin``; the difference 
+is that ``ThetaJoin`` carries the predicate `C`:
 
 
 .. math::
     \text{R} \rhd \hspace{-0.1cm} \lhd_C \text{S} \\
 
-    \text{C = <Atributte> <Comparator> <Atributte o Constant>} \\
-
-    \text{Donde:}\\
-
-    \text{<Comparator>} \in {\{=,\geq,>,<, \neq,\leq \}}\\
+``C = <Atributte> <Comparator> <Atributte o Constant>`` where ``<Comparator>`` `\in {\{=,\geq,>,<, \neq,\leq \}}`
 
 **Equivalence with basic operators**
 
@@ -662,20 +638,20 @@ Write the resultant table as you do the following operation:
 .. image:: ../../../sql-course/src/THETAJOIN1.png
     :align: center
 
-It is compared the attribute `A` of the first row of `R` with each of the values of attribute `E` 
-of the `S` table. In this case, none of the comparisons returns the true value (true).
+It is compared the attribute *a* of the first row of `\text{R}` with each of the values of attribute *e* 
+of the `\text{S}` table. In this case, none of the comparisons returns the true value (``true``).
 
 .. image:: ../../../sql-course/src/THETAJOIN2.png
     :align: center
-Then it is compared the attribute `A` in the second row of `R` with each of the values of the 
-attribute `E` of the table S. In this case, 2 comparisons return the true value (true), so that 
-in the relation of resultant will be the second row of `R` mixed with the first and third row of `S`.
+Then it is compared the attribute *a* in the second row of `\text{R}` with each of the values of the 
+attribute *e* of the table `\text{S}`. In this case, 2 comparisons return the true value (true), so that 
+in the relation of resultant will be the second row of `\text{R}` mixed with the first and third row of `\text{S}`.
 
 .. image:: ../../../sql-course/src/THETAJOIN3.png
     :align: center
 
-In the same way, now it is compared the value of `A` of the third tuple of `R`. 
-Once again, 2 tuples of `S` comply with the condition. 
+In the same way, now it is compared the value of *a* of the third tuple of `\text{R}`. 
+Once again, 2 tuples of `\text{S}` comply with the condition. 
 
 .. math::
 
@@ -700,9 +676,9 @@ Example 2
 
 With the following conceptual scheme, find the names of the directors of each department:
 
-Department (numDpto, name, nIFDirector,  dateStart)
+`\text{Department} (\underline{\text{numDpto}, \text{name, nIFDirector,  dateStart})`
 
-Employee (nIF, name, address, salary, dpto, nIFSupervisor)
+`\text{Employee} (\underline{\text{nIF}, `\text{name, address, salary, dpto, nIFSupervisor})`
 
 **Answer**
 
@@ -717,13 +693,13 @@ EXERCISES
 
 Consider the following databases:
 
-1.  Person ( name, age, gender ) : name is a key.
+1.  `\text{Person} ( \underline{\text{name}, \text{age, gender} ) ` : name is a key.
 
-2.  Frequents ( name, pizzeria ) : (name, pizzeria) is a key.
+2.  `\text{Frequents} ( \underline{\text{name, pizzeria} ) ` : (name, pizzeria) is a key.
 
-3.  Eats ( name, pizza ) : (name, pizza) is a key.
+3.  `\text{Eats} ( \underline{\text{name, pizza} ) ` : (name, pizza) is a key.
 
-4.  Serves ( pizzeria, pizza, price ): (pizzeria, pizza) is a key.
+4.  `\text{Serves} ( \underline{\text{pizzeria, pizza}, `\text{price} ) `: (pizzeria, pizza) is a key.
 
 Write relational algebra expressions for the following five queries.
 

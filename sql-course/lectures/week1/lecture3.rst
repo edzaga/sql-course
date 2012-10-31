@@ -72,19 +72,19 @@ Selección(Select)
 
 .. index:: Selección(Select) en Álgebra Relacional 
 
-Este operador se aplica a una relación `R` produciendo una nueva relación con un
-subconjunto de tuplas de `R`. Las tuplas de la relación resultante son las que
+Este operador se aplica a una relación `\text{R}` produciendo una nueva relación con un
+subconjunto de tuplas de `\text{R}`. Las tuplas de la relación resultante son las que
 satisfacen una condición `C` sobre algún atributo de `R`. Es decir selecciona **filas (tuplas)**
 de una tabla según un cierto criterio `C`. El criterio `C` es una expresión condicional, similar
 a las declaraciones del tipo “if”, es “booleana” esto quiere decir que para cada
-tupla de `R` toma el valor Verdad(true) o Falso(false).
+tupla de `\text{R}` toma el valor Verdad(true) o Falso(false).
 
 * Valores de atributos con "NULL" no cumplirán ninguna condición.
 
 * Cada condición simple o cláusula C tiene el formato:
   ``<Atributo> <Comparador> <Atributo o Constante del Dominio>}``.
-  donde, el campo **Comparador** es un *operador lógico*, que
-  pueden ser { `= , \geq , > , < , \neq , \leq` }.
+  donde, el campo ``Comparador`` es un **operador lógico**, que
+  pueden ser `\{= , \geq , > , < , \neq , \leq \}`.
 
    * `=` : símbolo de igual que.
    * `\neq`: significa no igual a, en algunos libros este símbolo esta representado por ``!=``.
@@ -103,24 +103,24 @@ del tipo básico boolean, en cambio, 11<4 (once menor que cuatro) es falsa se re
 Las cláusulas `C` pueden conectarse con otros operadores lógicos, que al igual que los anteriores que se usaban
 como comparador (entre atributos o atributo y constante), arrojan booleano (true o false) de resultado:
 
- * **NOT**: El operador ``NOT`` denota una salida verdadera si la entrada es falsa,
-   y una salida falsa si la entrada es verdadera. Su notación en algebra es: `¬` `C1`.
- * **AND**: El operador ``AND`` denota una salida verdadera si y sólo si sus entradas
-   son verdaderas. Si `C1` se cumple y `C2` también se cumple, la salida será verdadera.
-   La notación en algebra de un ``AND`` es: `C1\ \wedge \ C2`.
- * **OR**: El operador ``OR`` denota una salida verdadera si hay alguna de las entradas
-   (o ambas) verdaderas. Si `C1` y/o `C2` es o son verdaderas, la expresión será verdadera.
-   La notación en algebra de un ``OR`` es: `C1\ \vee \ C2`.
+* **NOT**: El operador ``NOT`` denota una salida verdadera si la entrada es falsa,
+  y una salida falsa si la entrada es verdadera. Su notación en algebra es: `¬` `\text{C}_1`.
+* **AND**: El operador ``AND`` denota una salida verdadera si y sólo si sus entradas
+  son verdaderas. Si `\text{C}_1` se cumple y `\text{C}_2` también se cumple, la salida será verdadera.
+  La notación en algebra de un ``AND`` es: `\text{C}_1\ \wedge \ \text{C}_2`.
+* **OR**: El operador ``OR`` denota una salida verdadera si hay alguna de las entradas
+  (o ambas) verdaderas. Si `\text{C}_1` y/o `\text{C}_2` es o son verdaderas, la expresión será verdadera.
+  La notación en algebra de un ``OR`` es: `\text{C}_1\ \vee \ \text{C}_2`.
 
 **Notación en Álgebra Relacional**
 
 Para representar ``Select`` en álgebra relacional se utiliza la letra griega sigma
 :math:`\sigma`. Por lo tanto, si utilizamos la notación
 :math:`\sigma_{c} \ \boldsymbol{R}` queremos decir que se aplica la condición
-`C` a cada tupla de `R`. Si la condición es Verdad (true),
-dicha tupla pertenecerá al resultado y si es Falsa (false), dicha tupla no será seleccionada.
-El esquema de la relación resultante es el mismo esquema `R`, se muestran los
-atributos en el mismo orden que se usan en la tabla `R`.
+`C` a cada tupla de `\text{R}`. Si la condición es Verdad ``true``,
+dicha tupla pertenecerá al resultado y si es Falsa ``false``, dicha tupla no será seleccionada.
+El esquema de la relación resultante es el mismo esquema `\text{R}`, se muestran los
+atributos en el mismo orden que se usan en la tabla `\text{R}`.
 
 Ejemplo 1
 ^^^^^^^^^
@@ -143,7 +143,7 @@ Ejemplo 1
     \hline
   \end{array}
 
-Seleccionar las tuplas de la tabla **Ingenieros** que cumplan con tener una edad
+Seleccionar las tuplas de la tabla `\text{Ingenieros}` que cumplan con tener una edad
 mayor a 30 años:
 
 **Respuesta**
@@ -178,7 +178,7 @@ De esta forma la tabla queda:
 Ejemplo 2
 ^^^^^^^^^
 
-Seleccionar de la tabla **Ingenieros** las personas que tienen más de 30 años
+Seleccionar de la tabla `\text{Ingenieros}` las personas que tienen más de 30 años
 y que lleven menos de 16 años trabajando:
 
 **Respuesta**
@@ -193,7 +193,7 @@ Al tener el operador lógico ``AND`` se pide que cumplan dos condiciones simult�
 Primero que la edad sea mayor de 30 años, al igual que en el ejemplo anterior, la tupla
 de "Josefa" queda fuera de la selección. Luego de las tuplas que quedan se evalúa la
 segunda condición. En la imagen se aprecia, que solo se seleccionan las filas que no
-tengan x en alguna de las condiciones.
+tengan ``X`` en alguna de las condiciones.
 
 Así finalmente quedaría la tabla:
 
@@ -216,9 +216,9 @@ Proyección (Project)
 
 .. index:: Proyección (Project) en álgebra relacional
 
-El operador ``Proyección`` se utiliza para producir una nueva relación desde `R`. Esta
-nueva relación contiene sólo algunos de los atributos de `R`,
-es decir, realiza la selección de algunas de las **columnas** de una tabla `R`.
+El operador ``Proyección`` se utiliza para producir una nueva relación desde `\text{R}`. Esta
+nueva relación contiene sólo algunos de los atributos de `\text{R}`,
+es decir, realiza la selección de algunas de las **columnas** de una tabla `\text{R}`.
 
 **Notación en Álgebra Relacional**
 
@@ -228,7 +228,7 @@ es decir, realiza la selección de algunas de las **columnas** de una tabla `R`.
        \pi \hspace{0.2cm} _{(A_1,...,A_n)} \hspace{0.3cm} \text{R}
 
 El resultado es una relación seleccionando solo los atributos `A_1,...,A_n` de la
-relación `R`.
+relación `\text{R}`.
 Si `A_1,...,A_n` no incluye una llave (o clave), podrían producirse tuplas
 repetidas en el resultado, las cuales serán eliminadas.
 
@@ -240,7 +240,7 @@ Ejemplo 1
 
  \begin{array}{|c|c|c|c|}
   \hline
-  \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados(AT)} \\
+  \textbf{id} & \textbf{nombre} & \textbf{edad} & \textbf{añosTrabajados} \\
   \hline
   123 & \text{Leon} & 39 & 15 \\
   \hline
@@ -252,7 +252,7 @@ Ejemplo 1
   \hline
  \end{array}
 
-Escoger columnas de id y nombre de la tabla de ingenieros:
+Escoger columnas de id y nombre de la tabla de `\text{Ingenieros}`:
 
 **Respuesta**
 
@@ -282,7 +282,7 @@ La tabla finalmente queda como:
 Ejemplo 2
 ^^^^^^^^^
 
-Seleccionar id y nombre de los Ingenieros que tienen más de 30 años.
+Seleccionar id y nombre de los `\text{Ingenieros}` que tienen más de 30 años.
 
 **Respuesta**
 
@@ -322,12 +322,12 @@ En teoría de conjuntos, el ``producto cartesiano`` de dos conjuntos es una oper
 que resulta en otro conjunto cuyos elementos son todos los pares ordenados que
 pueden formarse tomando el primer elemento del par del primer conjunto,
 y el segundo elemento del segundo conjunto. En el Álgebra Relacional se mantiene
-esta idea con la diferencia que `R` y `S` son relaciones, entonces los miembros de `R`
-y `S` son tuplas, que generalmente consisten de más de un componente,
-cuyo resultado de la vinculación de una tupla de `R` con una tupla de `S` es una tupla
+esta idea con la diferencia que `\text{R}` y `\text{S}` son relaciones, entonces los miembros de `\text{R}`
+y `\text{S}` son tuplas, que generalmente consisten de más de un componente,
+cuyo resultado de la vinculación de una tupla de `\text{R}` con una tupla de `\text{S}` es una tupla
 más larga, con un componente para cada uno de los componentes de las tuplas
 constituyentes. Es decir ``Cross-product`` define una relación que es la concatenación
-de cada una de las filas de la relación `R` con cada una de las filas de la relación `S`.
+de cada una de las filas de la relación `\text{R}` con cada una de las filas de la relación `\text{S}`.
 
 
 **Notación en Álgebra Relacional**
@@ -338,15 +338,15 @@ terminología:
 .. math::
     \text{R} \times \text{S}
 
-Por convención para la sentencia anterior, los componentes de `R` preceden a los
-componentes de `S` en el orden de atributos para el resultado, creando así una nueva
-relación con todas las combinaciones posibles de tuplas de `R` y `S`.
+Por convención para la sentencia anterior, los componentes de `\text{R}` preceden a los
+componentes de `\text{S}` en el orden de atributos para el resultado, creando así una nueva
+relación con todas las combinaciones posibles de tuplas de `\text{R}` y `\text{S}`.
 El número de tuplas de la nueva relación resultante es la multiplicación de la cantidad
-de tuplas de `R` por la cantidad de tuplas que tenga `S` (producto de ambos).
-Si `R` y `S` tienen algunos atributos en común, entonces se debe inventar nuevos nombres
+de tuplas de `\text{R}` por la cantidad de tuplas que tenga `\text{S}` (producto de ambos).
+Si `\text{R}` y `\text{S}` tienen algunos atributos en común, entonces se debe inventar nuevos nombres
 para al menos uno de cada par de atributos idénticos. Para eliminar la ambigüedad de
-un atributo `a`, que se encuentra en `R` y `S`, se usa `R.a` para el atributo de `R` y `S.a` para
-el atributo de `S`.
+un atributo *a*, que se encuentra en `\text{R}` y `\text{S}`, se usa `R.a` para el atributo de `\text{R}` y `S.a` para
+el atributo de `\text{S}`.
 
 Cabe mencionar que por notación que: `\text{R} \times \text{S} \neq  \text{S} \times \text{R}`
 
@@ -356,14 +356,15 @@ Ejemplo 1
 .. image:: ../../../sql-course/src/CROSS-PRODUCT1.png
    :align: center
 
-Con las tablas dadas realice el ``Cross-product`` de `R` con `S`:
+Con las tablas dadas realice el ``Cross-product`` de `\text{R}` con `\text{S}`:
 
 .. image:: ../../../sql-course/src/CROSS-PRODUCT2.png
    :align: center
 
-Con azul se resaltan las tuplas que provienen de `R` que preseden y se mezclan con las de `S` resaltadas en verde.
+Con azul se resaltan las tuplas que provienen de `\text{R}` que preseden y se mezclan 
+con las de `\text{S}` resaltadas en verde.
 
-Con las tablas dadas realice el ``Cross-product`` de `S` con `R`:
+Con las tablas dadas realice el ``Cross-product`` de `\text{S}` con `\text{R}`:
 
 .. image:: ../../../sql-course/src/CROSS-PRODUCT3.png
    :align: center
@@ -438,12 +439,12 @@ NaturalJoin
 
 Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando
 sólo las tuplas que coinciden de alguna manera. ``NaturalJoin`` une sólo los pares de
-tuplas de `R` y `S` que sean comunes. Más precisamente una tupla r de `R` y una tupla s de `S`
-se emparejan correctamente si y sólo si r y s coinciden en cada uno de los valores
-de los atributos comunes, el resultado de la vinculación es una tupla, llamada
-“joined tuple”. Entonces, al realizar ``NaturalJoin`` se obtiene una relación con los
-atributos de ambas relaciones y se obtiene combinando las tuplas de ambas relaciones
-que tengan el mismo valor en los atributos comunes.
+tuplas de `\text{R}` y `\text{S}` que sean comunes. Más precisamente una tupla r de 
+`\text{R}` y una tupla s de `\text{S}` se emparejan correctamente si y sólo si r y s 
+coinciden en cada uno de los valores de los atributos comunes, el resultado de la
+vinculación es una tupla, llamada **joined tuple**. Entonces, al realizar ``NaturalJoin`` 
+se obtiene una relación con los atributos de ambas relaciones y se obtiene combinando las 
+tuplas de ambas relaciones que tengan el mismo valor en los atributos comunes.
 
 **Notación en Álgebra Relacional**
 
@@ -495,12 +496,13 @@ Ejemplo 1
   \hline
  \end{array}
 
-Con las tablas dadas realice el ``NaturalJoin`` de `R` y `S`:
+Con las tablas dadas realice el ``NaturalJoin`` de `\text{R}` y `\text{S}`:
 
 .. image:: ../../../sql-course/src/NATURALJOIN.png
     :align: center
 
-El atributo que tienen en común `R` y `S` es el atributo *c*, entonces las tuplas se unen donde *c* tiene el mismo valor en `R` y `S`
+El atributo que tienen en común `\text{R}` y `\text{S}` es el atributo *c*, entonces
+las tuplas se unen donde *c* tiene el mismo valor en `\text{R}` y `\text{S}`
 
 .. math::
  \textbf{R} \rhd \hspace{-0.1cm} \lhd \textbf{S} \\
@@ -574,22 +576,22 @@ ThetaJoin
 
 .. index:: ThetaJoin en álgebra relacional
 
-Define una relación que contiene las tuplas que satisfacen el predicado C en el
-``producto cartesiano`` de `\text{R} \times \text{S}`.
+Define una relación que contiene las tuplas que satisfacen el predicado `C` en el
+``Cross-Product`` de `\text{R} \times \text{S}`.
 Conecta relaciones cuando los valores de determinadas columnas tienen una interrelación
-específica. La condición C es de la forma ``R.ai <operador_de_comparación> S.bi``,
-esta condición es del mismo tipo que se utiliza ``SELECT`` . El predicado no tiene por que
+específica. La condición `C` es de la forma ``R.ai <operador_de_comparación> S.bi``,
+esta condición es del mismo tipo que se utiliza ``Select`` . El predicado no tiene por que
 definirse sobre atributos comunes. El término “join” suele referirse a ``ThetaJoin``.
 
 **Notación en Álgebra Relacional**
 
 La notación de ``ThetaJoin`` es el mismo símbolo que se utiliza para ``NaturalJoin``, la
-diferencia radica en que ``ThetaJoin`` lleva el predicado C:
+diferencia radica en que ``ThetaJoin`` lleva el predicado `C`:
 
 .. math::
     \text{R} \rhd \hspace{-0.1cm} \lhd_C \text{S} \\
 
-``<Atributo> <Comparador> <Atributo o Constante del Dominio>`` Donde: ``<Comparador>`` `\in {\{=,\geq,>,<, \neq,\leq \}}`
+``C = <Atributo> <Comparador> <Atributo o Constante del Dominio>`` Donde: ``<Comparador>`` `\in {\{=,\geq,>,<, \neq,\leq \}}`
 
 **Equivalencia con operadores básicos**
 
@@ -655,9 +657,9 @@ Se compara el atributo *a* de la primera fila de `R` con cada uno de los valores
 .. image:: ../../../sql-course/src/THETAJOIN2.png
     :align: center
 
-Luego se compara el atributo *a* de la segunda fila de `R` con cada uno de los valores del atributo
-*e* de la tabla `S`. En este caso 2 comparaciones devuelven el valor verdadero (true), por lo que en
-la relación de resultado quedará la segunda fila de `R` mezclada con la primera y tercera fila de `S`.
+Luego se compara el atributo *a* de la segunda fila de `\text{R}` con cada uno de los valores del atributo
+*e* de la tabla `\text{S}`. En este caso 2 comparaciones devuelven el valor verdadero (``true``), por lo que en
+la relación de resultado quedará la segunda fila de `\text{R}` mezclada con la primera y tercera fila de `\text{S}`.
 
 .. image:: ../../../sql-course/src/THETAJOIN3.png
     :align: center
