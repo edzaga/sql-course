@@ -17,9 +17,6 @@ sentencia SELECT y que normalmente son utilizadas para filtrar una clausula WHER
 
 Una subconsulta tiene la misma sintaxis que una sentencia SELECT normal exceptuando que aparece encerrada entre paréntesis. 
 
-
-Ejemplo 1
-^^^^^^^^^  
 Como es usual, se utilizará elt ejemplo de la simple college admissions database (como se truduciría esto al español???)::
 
         College (cName, state, enrollment)
@@ -41,13 +38,16 @@ cuyas tablas son creadas mediante:
 Se utilizarán 4 establecimientos educacionales:
 
 .. code-block:: sql
+        
  INSERT INTO College (cName, state, enrollment) VALUES ('Stanford','CA',15000);
  INSERT INTO College (cName, state, enrollment) VALUES ('Berkeley','CA',36000);
  INSERT INTO College (cName, state, enrollment) VALUES ('MIT','MA',10000);
  INSERT INTO College (cName, state, enrollment) VALUES ('Harvard','MA',23000);
 
 8 estudiantes: 
+
 .. code-block:: sql
+        
  INSERT INTO Student (sName, GPA) Values ('Amy', 60);
  INSERT INTO Student (sName, GPA) Values ('Edward', 65);
  INSERT INTO Student (sName, GPA) Values ('Craig', 50);
@@ -58,8 +58,10 @@ Se utilizarán 4 establecimientos educacionales:
  INSERT INTO Student (sName, GPA) Values ('Tim', 60);
 
 
-y 21 postulaciones
+y 21 postulaciones:
+
 .. code-block:: sql
+
  INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Stanford', 'science', True);
  INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Stanford', 'engineering', False);
  INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Berkeley', 'science', True);
@@ -88,14 +90,18 @@ y 21 postulaciones
    major en apply(science, engineering, natural history, matemathic, marine biology, phsicology) 
     
 La situación que se pretende describir con estas tablas de ejemplo es la postulación de estudiantes a centros educacionales
-En concreto la postulación del estudiante *sID* a la mencion académica *major* impartida en el centro educacional *cname*,
-cuya aprobación, o *decision*, será "si o no".
+En concreto la postulación del estudiante *sID* a la mencion académica *major* impartida en el centro educacional *cName*,
+cuya aprobación, o *decision*, será "True o False".
 
+
+Ejemplo 1
+^^^^^^^^^  
 El primer ejemplo de subconsulta corresponderá al listado de IDs y Nombres de los estudiantes que han qudado seleccionados para
 estudiar ciencias en algun centro educacional.
 
 .. code-block:: sql
-   SELECT sID, sName FROM Student WHERE sID in (SELECT sID FROM Apply WHERE major = 'science');
+
+ SELECT sID, sName FROM Student WHERE sID in (SELECT sID FROM Apply WHERE major = 'science');
 
 cuya salida es::
    <agregar salida una vez llenadas las tablas>
@@ -104,9 +110,11 @@ Como se mencionó anteriormente, tanto las subconsultas como el uso de join y op
 resultados, por tanto, la consulta se puede reformular como:
 
 .. code-block:: sql
-   SELECT Student.sID, sName FROM Student, Apply WHERE Student.sID = Apply.sID AND major = 'science';
+  
+ SELECT Student.sID, sName FROM Student, Apply WHERE Student.sID = Apply.sID AND major = 'science';
 
 .. note::
+  
    Cuidado, en la consulta se debe especificar que el atributo *sID* corresponde al de la tabla **Student**, pues la tabla **Apply** 
    también cuenta con dicho atributo. Si no se toma en cuenta este detalle, es probable que la conulta termine en un error o resultados no
    deseados.
@@ -120,7 +128,8 @@ Este ejemplo corresponderá sólo al listado de Nombres de los estudiantes que h
 centro educacional.
 
 .. code-block:: sql
-   SELECT sName FROM Student WHERE sID in (SELECT sID FROM Apply WHERE major = 'Science');
+  
+  SELECT sName FROM Student WHERE sID in (SELECT sID FROM Apply WHERE major = 'Science');
 
 
 
