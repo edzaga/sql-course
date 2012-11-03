@@ -1,6 +1,5 @@
 Lecture 9 - Subqueries in WHERE clause
 --------------------------------------
-
 .. role:: sql(code)
    :language: sql
    :class: highlight
@@ -42,7 +41,7 @@ Se utilizarán 4 establecimientos educacionales:
  INSERT INTO College (cName, state, enrollment) VALUES ('Stanford','CA',15000);
  INSERT INTO College (cName, state, enrollment) VALUES ('Berkeley','CA',36000);
  INSERT INTO College (cName, state, enrollment) VALUES ('MIT','MA',10000);
- INSERT INTO College (cName, state, enrollment) VALUES ('Harvard','MA',23000);
+ INSERT INTO College (cName, state, enrollment) VALUES ('Harvard','CM',23000);
 
 8 estudiantes: 
 
@@ -235,14 +234,35 @@ Pero solo hay 4 estudiantes. Esto se debe a que en ejemplo anterior, se utilizó
 *sID* diferente, no se tomaba en cuenta como duplicado, pero en esta consulta, al solo contar con *sName*, ambas Doris se toman como 2 instancias
 de la misma y se elimina una. 
 
-La única forma de obtener el "número correcto" de duplicados es utilizando subconsultas
+La única forma de obtener el "número correcto de duplicados" es utilizando subconsultas
 
 
-Ideas::
- Explicar que es una subconsulta de tipo "where" y que la condicion puede anidar otro select
- Poner los pasos para crear el ejemplo de la lectura (create table e insert into)
- POner un pequeño ejemplo de la subconsulta
- Explicar que la subconsulta no pone valores duplicados ante consultas similares (a menos que se use un distinct)
- Explicar que se puede usar más de una subconsulta, por ejemplo SELECT A FROM B WHERE S1 AND S2; (S es subconsulta)
- POner un ejemplo
- Subconsulta exists, not exists, any
+IN AND NOT IN
+=============
+
+Ejemplo 3
+^^^^^^^^^ 
+
+EXISTS AND NOT EXISTS
+=====================
+
+Ejemplo 4
+^^^^^^^^^ 
+
+ANY
+===
+
+Ejemplo 5
+^^^^^^^^^ 
+
+
+
+
+
+
+Falta explicar y poner 1 ejeplos de c/u::
+  
+ in and not in
+ exists
+ any
+
