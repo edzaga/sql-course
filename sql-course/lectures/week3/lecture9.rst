@@ -58,12 +58,29 @@ Se utilizarán 4 establecimientos educacionales:
  INSERT INTO Student (sName, GPA) Values ('Tim', 60);
 
 
-y 20 postulaciones
+y 21 postulaciones
 .. code-block:: sql
  INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Stanford', 'science', True);
  INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Stanford', 'engineering', False);
  INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Berkeley', 'science', True);
  INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Berkeley', 'engineering', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (2, 'Berkeley', 'natural hostory', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'MIT', 'math', True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'Harvard', 'math', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'Harvard', 'science', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'Harvard', 'engineering', True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (4, 'Stanford', 'marine biology', True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (4, 'Stanford', 'natural history', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (5, 'Harvard', 'science', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (5, 'Berkeley', 'psychology', True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (5, 'MIT', 'math', True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (6, 'MIT', 'science', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'Stanford', 'psychology', True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'Stanford', 'science', True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'MIT', 'math', True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'MIT', 'science', True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'Harvard', 'science', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (8, 'MIT', 'engineering', True);
 
 
 .. queda pendiente llenar las tablas con:
@@ -78,7 +95,7 @@ El primer ejemplo de subconsulta corresponderá al listado de IDs y Nombres de l
 estudiar ciencias en algun centro educacional.
 
 .. code-block:: sql
-   SELECT sID, sName FROM Student WHERE sID in (SELECT sID FROM Apply WHERE major = 'Science');
+   SELECT sID, sName FROM Student WHERE sID in (SELECT sID FROM Apply WHERE major = 'science');
 
 cuya salida es::
    <agregar salida una vez llenadas las tablas>
@@ -87,7 +104,7 @@ Como se mencionó anteriormente, tanto las subconsultas como el uso de join y op
 resultados, por tanto, la consulta se puede reformular como:
 
 .. code-block:: sql
-   SELECT Student.sID, sName FROM Student, Apply WHERE Student.sID = Apply.sID AND major = 'Science';
+   SELECT Student.sID, sName FROM Student, Apply WHERE Student.sID = Apply.sID AND major = 'science';
 
 .. note::
    Cuidado, en la consulta se debe especificar que el atributo *sID* corresponde al de la tabla **Student**, pues la tabla **Apply** 
