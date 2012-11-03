@@ -16,7 +16,7 @@ que satisfaga (WHERE) ciertas condiciones. Por ejemplo:
    Obtener los nombres de los alumnos que hayan nacido en el mes de Noviembre
    SELECT "los nombres" FROM "alumnos" WHERE "hayan nacido en el mes de Noviembre"
 
-Cabe destacar que en este ejemplo, se infiere la existencia de una tabla de nombre "alumnos" que alberga datos personales de ciertos
+Cabe destacar que en este ejemplo, se infiere la existencia de una tabla de nombre **alumnos** que alberga datos personales de ciertos
 estudiantes.
 
 Desde el Algebra Relacional
@@ -61,57 +61,165 @@ SELECT-FROM-WHERE
 .. index:: SELECT-FROM-WHERE
 
 
-Trabajemos bajo el siguiente ejemplo, el cual consiste en consultar toda la información de la relación (o tabla) "Juegos" cuyos atributos
-"StudioName" sea 'Ubisoft' y que su atributo "year" sea igual a 2000.
+Trabajemos bajo el siguiente ejemplo, el cual consiste en *seleccionar* toda la 
+información de la relación (o tabla) **Empleados** cuyos atributos *departamento* sea 
+'Informática' y que su atributo *año_ingreso* sea mayor o igual al año  2005.
+
+Para comenzar a realizar este ejemplo, primero debemos *crear* la tabla **Empleados** 
+de la siguiente manera.
 
 .. code-block:: sql
 
-        SELECT *
-        FROM Juegos
-        WHERE StudioName = 'Ubisoft' AND year = 2000;
+ postgres=# CREATE TABLE Empleados(id_empleado serial, nombre_empleado VARCHAR(30),  departamento VARCHAR(30), año_ingreso INTEGER);
 
-Esta consulta exhibe el típico SELECT-FROM-WHERE de la mayoría de las consultas SQL. La palabra clave FROM entrega la relacion o relaciones
-de donde se obtiene la información. En este ejemplo, se utilizan dos comparaciones unidas por la condición "AND". Ojo, al utilizar
+retornando lo siguiente PostgreSQL.::
 
-.. code-block:: sql
+ NOTICE:  CREATE TABLE creará una secuencia implícita «empleados_id_empleado_seq» para la columna serial «empleados.id_empleado»
+ CREATE TABLE
 
-    SELECT *
-
-el símbolo  "*" equivale a TODOS los valores del (los) atributo(s) de la(s) relación(es) en cuestion que cumplan con la(s) condición(es).
-
-El atributo "StudioName" de la relación Juegos es probada por igualdad contra la constante 'Ubisoft'. Esta constante corresponde a una
-cadena de caracteres (se conoce como string), y en SQL se denotan  rodeando a la cadena en cuestión utilizando comillas simples.
+Ahora *insertaremos* algunos datos en la tabla **Empleados**.
 
 .. code-block:: sql
 
-        '¡Hola!, soy un string SQL!!!'
+ postgres=# INSERT INTO Empleados(nombre_empleado, departamento, año_ingreso) VALUES('Edgar', 'Administración', 2000);
+ INSERT 0 1
+ postgres=# INSERT INTO Empleados(nombre_empleado, departamento, año_ingreso) VALUES('Andrew', 'Comercial', 2009);
+ INSERT 0 1
+ postgres=# INSERT INTO Empleados(nombre_empleado, departamento, año_ingreso) VALUES('Valerie', 'Informática', 2000);
+ INSERT 0 1
+ postgres=# INSERT INTO Empleados(nombre_empleado, departamento, año_ingreso) VALUES('Karl', 'Informática', 2008);
+ INSERT 0 1
+ postgres=# INSERT INTO Empleados(nombre_empleado, departamento, año_ingreso) VALUES('Kevin', 'Finanzas', 2010);
+ INSERT 0 1
 
-SQL soporta además el uso de constantes numéricas, números enteros y números reales. SQL utiliza las notaciones comunes para
-los números reales, tales como -12.34 o 1.23E45.
-
-
-Como se mencionó anteriormente, la consulta del tipo SELECT-FROM-WHERE busca la información de una o más relaciones que cumplan con ciertas
-condiciones. Hasta ahora sólo se ha visto qué pasa si se comparan atributos de las relaciones con constantes. Pero ¿cómo se pueden comparar
-los valores almacenados de  atributos que están en varias relaciones?.
-
-El siguiente ejemplo combina dos relaciones a la hora de realizar la consulta, la que consiste en seleccionar todos los datos de las
-relaciones Juegos y Ventas que sean de la compañia 'Infity Ward' y cuyas ventas sean iguales o mayores a 100.000 unidades
+Finalmente podemos realizar la consulta que nos interesa.
 
 .. code-block:: sql
 
-        SELECT *
-        FROM Juegos, Ventas
-        WHERE Juegos.StudioName = 'Infinity Ward' AND Ventas.Unidades>= 100000;
+ postgres=# SELECT * FROM Empleados WHERE departamento='Informática' AND año_ingreso>=2005;
+  id_empleado | nombre_empleado | departamento | año_ingreso 
+ -------------+-----------------+--------------+-------------
+            4 | Karl            | Informática  |        2008
+ (1 fila)
 
-El resultado de esta consulta es el listado de los Juegos cuyo StudioName sea igual a 'Infinity Ward' y cuyas Ventas igualen o superen
-las 100000 unidades.
+.. note::
+
+ Podemos notar que la consulta retorna el registro que se cumplian las dos 
+ condiciones.
+
+Podemos realizar la siguiente consulta, encontrar en la tabla **Empleados** el registro de la(s)
+personas que sean del departamento de 'Informática' o que su año de ingreso sea mayor o igual
+al año 2005.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM Empleados WHERE departamento='Informática' OR año_ingreso>=2005;
+  id_empleado | nombre_empleado | departamento | año_ingreso 
+ -------------+-----------------+--------------+-------------
+            2 | Andrew          | Comercial    |        2009
+            3 | Valerie         | Informática  |        2000
+            4 | Karl            | Informática  |        2008
+            5 | Kevin           | Finanzas     |        2010
+ (4 filas)
+
+.. note::
+
+ Podemos observar que la consulta realizada retorna los registros que cumplen con una 
+ de las dos condiciones o cuando se cumplen las dos al mismo tiempo.
+
+Esta consulta presentó un ejemplo básico de una consulta SELECT-FROM-WHERE de la 
+mayoría de las consultas SQL. La palabra clave FROM entrega la relación o relaciones
+de donde se obtiene la información (tablas). En estos ejemplos, se utilizaron dos comparaciones 
+unidas por la condición "AND" y "OR". 
+
+El atributo *departamento* de la tabla **Empleados** es probada por igualdad contra la 
+constante 'Informática'. Esta constante corresponde a una cadena de caracteres de largo 
+variable que en SQL como se detalló en la lectura anterior se denomina como VARCHAR(n) y 
+que al momento del *ingreso* de los datos a las tablas se escribe entre comillas simples.
+
+Como se mencionó anteriormente, la consulta del tipo SELECT-FROM-WHERE busca la 
+información de una o más relaciones que cumplan con ciertas condiciones. Hasta ahora 
+sólo se ha visto qué pasa si se comparan atributos de las relaciones con constantes. 
+Pero ¿cómo se pueden comparar los valores almacenados de  atributos que están en varias relaciones?.
+
+El ejemplo anterior se podría realizar de otra manera para poder combinar dos relaciones 
+(tablas) a la hora de realizar la consulta, pero primero debemos realizar la *creación* de la 
+tabla **Empleados** y **Departamentos**.
+
+.. warning::
+ Antes de realizar la *creación* de las tablas, hay que borrar la tabla **Empleados**
+ con un :sql: DROP TABLE Empleados
+
+Para poder realizar el ejemplo debemos crear la tabla de **Departamentos**.
+
+.. code-block:: sql
+
+ postgres=# CREATE TABLE Departamentos(id_departamento serial, departamento VARCHAR(30), PRIMARY KEY(id_departamento));
+
+retornando PostgreSQL que la tabla **Departamentos** ha sido correctamente creada.::
+
+ NOTICE:  CREATE TABLE creará una secuencia implícita «departamentos_id_departamento_seq» para la columna serial «departamentos.id_departamento»
+ NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «departamentos_pkey» para la tabla «departamentos»
+ CREATE TABLE
+
+Y ahora creamos la tabla **Empleados**.
+
+.. code-block:: sql
+
+ postgres=# CREATE TABLE Empleados(id_empleados serial, nombre_empleado VARCHAR(30), id_departamento INTEGER, año_ingreso INTEGER, PRIMARY KEY(id_empleados), FOREIGN KEY(id_departamento) REFERENCES Departamentos(id_departamento));
+
+retornando PostgreSQL que la tabla **Empleados** ha sido correctamente creada.::
+
+ NOTICE:  CREATE TABLE creará una secuencia implícita «empleados_id_empleados_seq» para la columna serial «empleados.id_empleados»
+ NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «empleados_pkey» para la tabla «empleados»
+ CREATE TABLE
+
+ahora debemos *ingresar* los datos en la tabla **Departamentos** y **Empleados**.
+
+.. code-block:: sql
+ 
+ postgres=# INSERT INTO Departamentos(departamento) VALUES('Administración');
+ INSERT 0 1
+ postgres=# INSERT INTO Departamentos(departamento) VALUES('Informática');
+ INSERT 0 1
+ postgres=# INSERT INTO Departamentos(departamento) VALUES('Finanzas');
+ INSERT 0 1
+ postgres=# INSERT INTO Departamentos(departamento) VALUES('Comercial');
+ INSERT 0 1
+
+ postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, año_ingreso) VALUES('Edgar', 1, 2000);
+ INSERT 0 1
+ postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, año_ingreso) VALUES('Andrew', 4, 2009);
+ INSERT 0 1
+ postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, año_ingreso) VALUES('Valerie', 2, 2000);
+ INSERT 0 1
+ postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, año_ingreso) VALUES('Karl', 2, 2008);
+ INSERT 0 1
+ postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, año_ingreso) VALUES('Kevin', 3, 2010);
+ INSERT 0 1
+
+Ahora realizamos la siguiente consulta, encontrar en la tabla **Empleados** el registro
+de la(s) personas que sean del departamento de 'Informática' y que su año de ingreso 
+sea mayor o igual al año 2005.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento AND Empleados.año_ingreso>=2005 AND Departamentos.departamento='Informática';
+  id_empleados | nombre_empleado | id_departamento | año_ingreso | id_departamento | departamento 
+ --------------+-----------------+-----------------+-------------+-----------------+--------------
+             4 | Karl            |               2 |        2008 |               2 | Informática
+ (1 fila)
+
+.. note::
+ Es posible dar referencia a un atributo de cada tabla con **nombre_tabla.atributo**, para 
+ realizar las condiciones. 
 
 Independientemente del tipo de consulta, el resultado de una comparación es un valor booleano, es decir retorna valores TRUE o FALSE, los
 cuales se pueden combinar con sus operadores AND, OR y NOT, con sus respectivos significados.
 
 A modo de repaso, los operadores lógicos mencionados son:
 
-    * :sql:`AND`: Retorna TRUE siempre y cuando TODOS los atrbutos a comparar sean TRUE. Si hay AL MENOS UN valor FALSE, retornará FALSE.
+    * :sql:`AND`: Retorna TRUE siempre y cuando TODOS los atributos a comparar sean TRUE. Si hay AL MENOS UN valor FALSE, retornará FALSE.
             Su tabla de verdad es:
 
       .. math::
@@ -157,6 +265,15 @@ A modo de repaso, los operadores lógicos mencionados son:
         \hline
        \end{array}
 
+.. note::
+
+ SQL no distingue entre mayúsculas y minúsculas.    
+ Por ejemplo, :sql:`FROM` (palabra reservada) es equivalente a :sql:`from`,           
+ inclusive a :sql:`From`.                                                             
+ Para los nombres de atributos, relaciones, etc., también ocurre lo mismo.       
+ El único caso en que se distingue entre mayúsculas y minúsculas es al momento de     
+ encerrar un string entre *' '*. Por ejemplo *'PALABRA'* es diferente a *'palabra'*.  
+                                                                                    
 
 Resultados Repetidos
 ~~~~~~~~~~~~~~~~~~~~~
@@ -168,32 +285,44 @@ Al realizar una consulta SELECT, no hay omisión de resultados repetidos, este "
         SELECT FROM WHERE
         SELECT DISTINCT FROM WHERE
 
-
-SQL es case insensitive, es decir que no distingue entre mayúsculas y minúsculas.
-Por ejemplo, :sql:`FROM` (palabra reservada) es equivalente a :sql:`from`,
-inclusive a :sql:`From`.
-Los nombres de los atributos, relaciones, etc. son, también, case insensitive.
-El único caso en que se distingue entre mayúsculas y minúsculas es al momento de
-encerrar un string entre *' '*. Por ejemplo *'PALABRA'* es diferente a *'palabra'*.
-
-.. The simple SQL queries that we have seen so far all have the form
-.. Como ya se ha mencionado, la consulta que se está viendo en esta lectura es la más simple de SQL:
-
-.. .. code-block:: sql
-        SELECT "L"
-        FROM "R"
-        WHERE "C";
- En la cual "L" es una lista de expresiones, "R" es una relación y "C" es una condición. Cabe destacar que se utilizan comillas dobles y
- no simples, pues tanto "L" como "R" y "C" no corresponden a strings, sino que son representaciones.
- El resultado de cuaquier expresión de este estilo es el mismo que el de la siguiente expresión en álgebra relacional:
-.. .. math::
-   \pi_{L} (\theta_{C} (R))
- Eso es, se comienza con la relación expresada despues de la keyword FROM, aplicada a cada tupla cuya condición es aplicada a través de
- la keyword WHERE, y luego se proyecta en una lista de atributos y/o expresiones aplicadas mediante la keyword SELECT.
-.. joao: tengo la duda de que palabra utilizar en lugar de clause (etoy sacando informacion en ingles también
-  , por ejemplo "we start with the relation in the FROM clause"  )
+En el ejemplo anterior también es posible eliminar los resultados repetidos, puesto que
+existen muchas personas que trabajan en el mismo departamento, pero si eliminamos las 
+repeticiones solo nos retornaran los departamentos que existen.
 
 
+Primero mostraremos un resultado con una consulta con repeticiones.
+
+.. code-block:: sql
+
+ postgres=# SELECT Departamentos.departamento, Empleados.id_departamento FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento;  departamento  | id_departamento 
+ ----------------+-----------------
+  Administración |               1
+  Comercial      |               4
+  Informática    |               2
+  Informática    |               2
+  Finanzas       |               3
+ (5 filas)
+
+.. note::
+ Según los datos que se ingresaron en la tabla **Empleados** existe más de una persona
+ en el departamento de 'Informática'.
+
+Y ahora realizamos una consulta sin repeticiones.
+
+.. code-block:: sql
+
+ postgres=# SELECT DISTINCT Departamentos.departamento, Empleados.id_departamento FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento;
+   departamento  | id_departamento 
+ ----------------+-----------------
+  Administración |               1
+  Informática    |               2
+  Comercial      |               4
+  Finanzas       |               3
+ (4 filas)
+
+.. note::
+ Se puede notar que solo nos retorna los departamentos que existen.
+ 
 SELECT-BY-ORDER
 ~~~~~~~~~~~~~~~
 
@@ -212,13 +341,12 @@ valores numéricos o de texto. En tales casos, podemos utilizar la palabra clave
 
 donde:
 
-  * "L" corresponde a la lista de atributos que se requieren, por lo general se la asocia a una(s) columna(s).
+  * "L" corresponde a la lista de atributos que se requieren, por lo general se asocia a una(s) columna(s).
   * "R" corresponde al nombre de la relación, que por lo general se asocia a una tabla.
   * "C" corresponde a la condición de la selección.
   * "O" corresponde a cómo será ordenada la lista "L".
   * ASC corresponde a un orden ascendente (corresponde a la opción por defecto)
   * DESC corresponde a uno descendente.
-
 
 Estrictamente, su sintaxis corresponde a ORDER BY y luego una lista de atributos que definirán los campos a ordenar:
 
@@ -230,6 +358,48 @@ Estrictamente, su sintaxis corresponde a ORDER BY y luego una lista de atributos
 Como se puede apreciar, con la sentencia ORDER BY se pueden ordenar las consultas a través de múltiples atributos. En este caso todos los
 campos estarían ordenados de forma ascendente (ASC).
 
+Podemos utilizar los mismos ejemplos que creamos anteriormente ordenando los nombres
+de los empleados de la tabla **Empleados**.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM Empleados ORDER BY nombre_empleado;
+  id_empleados | nombre_empleado | id_departamento | año_ingreso 
+ --------------+-----------------+-----------------+-------------
+             2 | Andrew          |               4 |        2009
+             1 | Edgar           |               1 |        2000
+             4 | Karl            |               2 |        2008
+             5 | Kevin           |               3 |        2010
+             3 | Valerie         |               2 |        2000
+ (5 filas)
+
+Que es lo mismo que escribir.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM Empleados ORDER BY nombre_empleado ASC;
+  id_empleados | nombre_empleado | id_departamento | año_ingreso 
+ --------------+-----------------+-----------------+-------------
+             2 | Andrew          |               4 |        2009
+             1 | Edgar           |               1 |        2000
+             4 | Karl            |               2 |        2008
+             5 | Kevin           |               3 |        2010
+             3 | Valerie         |               2 |        2000
+ (5 filas)
+
+Y de forma descendiente sería de la siguiente manera.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM Empleados ORDER BY nombre_empleado DESC;
+  id_empleados | nombre_empleado | id_departamento | año_ingreso 
+ --------------+-----------------+-----------------+-------------
+             3 | Valerie         |               2 |        2000
+             5 | Kevin           |               3 |        2010
+             4 | Karl            |               2 |        2008
+             1 | Edgar           |               1 |        2000
+             2 | Andrew          |               4 |        2009
+ (5 filas)
 
 
 
