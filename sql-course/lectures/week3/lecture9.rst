@@ -237,34 +237,6 @@ de la misma y se elimina una.
 
 La única forma de obtener el "número correcto" de duplicados es utilizando subconsultas
 
-Según el libro guía:
-
-`\text{Tabla}(\underline{\text{primaryKey}},\text{atributo,otroAtributo})`
-
-* El nombre de la tabla va la primer letra con mayúscula, el resto con minúscula, los atributos con minúscula,salvo que sean dos palabras entonces la segunda va con mayúscula. la clave primaria va subrayada, lo puse en modo matemático todo para subrayar la PK. 
-Para hablar de una `\text{Tabla}` y de un *atributo* 
-
-* Bueno los comandosd SQL ya saben :sql:`COMANDOS SQL`, 
-
-para resaltar algún **cocepto**
-
-``inline`` no me gusta este no se para que puede servir si es que lo han usado ..
-
-:math:`{\{=,\geq,>,<, \neq,\leq \}`.
-
-.. note::
-	para insertar una nota
-
-raya horizontal:
-
-
-Subtítulo sección
-===================
-
-Ejemplo o ejercicio
-^^^^^^^^^^^^^^^^^^^ 
-
-
 
 Ideas::
  Explicar que es una subconsulta de tipo "where" y que la condicion puede anidar otro select
