@@ -44,6 +44,11 @@ Se utilizarán 4 Establecimientos educacionales, 7 estudiantes y 12 postulacione
  INSERT INTO Student (...);
  INSERT INTO Apply   (...);
 
+.. queda pendiente llenar las tablas con:
+   college (stanford, berkeley, mit, harvard)
+   students (amy, edward, craig, irene, jay, gary, doris)
+   major en apply(science, engineering, natural history, matemathic, marine biology, phsicology) 
+  
 La situación que pretende describir estas tablas de ejemplo es la postulación de estudiantes a centros educacionales
 En concreto la postulación del estudiante *sID* a la mencion académica *major* impartida en el centro educacional *cname*,
 cuya aprovación, o *decision*, será "si o no".
