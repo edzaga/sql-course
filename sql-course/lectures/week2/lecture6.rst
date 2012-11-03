@@ -166,7 +166,7 @@ datos nombrados anteriormente.
 
   .. code-block:: sql
 
-     postgres=# CREATE TABLE registro(id_registro serial, nombre VARCHAR(30), apellido VARCHAR(30), ingreso TIMESTAMP, años_trabajados SMALLINT);
+     postgres=# CREATE TABLE registro(id_registro serial, nombre VARCHAR(30), apellido VARCHAR(30), ingreso TIMESTAMP, anos_trabajados SMALLINT);
 
   Retornando lo siguiente
   ::
@@ -178,7 +178,7 @@ datos nombrados anteriormente.
 
   .. code-block:: sql
 
-     postgres=# INSERT INTO registro(nombre,apellido,ingreso,años_trabajados) VALUES('Elliott', 'ALLEN', '2012-10-23 14:05:08', 13);
+     postgres=# INSERT INTO registro(nombre,apellido,ingreso,anos_trabajados) VALUES('Elliott', 'ALLEN', '2012-10-23 14:05:08', 13);
      INSERT 0 1
 
   Ahora realizamos una *selección* de la tabla **registro** para verificar como quedaron los datos que ingresamos.
@@ -186,7 +186,7 @@ datos nombrados anteriormente.
   .. code-block:: sql
 
      postgres=# SELECT * FROM registro;
-      id_registro | nombre  | apellido |       ingreso       | años_trabajados
+      id_registro | nombre  | apellido |       ingreso       | anos_trabajados
      -------------+---------+----------+---------------------+-----------------
                 1 | Elliott | ALLEN    | 2012-10-23 14:05:08 |              13
      (1 fila)
