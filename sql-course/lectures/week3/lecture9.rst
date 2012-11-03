@@ -5,13 +5,21 @@ Lecture 9 - Subqueries in WHERE clause
    :language: sql
    :class: highlight
 
-.. Parrafo introdutorio sin titulo
-Hasta ahora se han visto las consultas del tipo SELECT-WHERE-FROM, y algunos de sus derivados, ya sea utilizando operadores
-lógicos (AND, OR, NOT) 
 
 SELECT-FROM-WHERE(SELECT)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Hasta ahora se han visto las consultas del tipo SELECT-WHERE-FROM, y algunos de sus derivados, como lo son los operadores lógicos  
+**AND, OR, NOT**, que son normalmente utilizados para filtrar resultados mediante la manupulación de una serie de condiciones.
+
+Sin embargo existe otra manera de filtrar consultas: Las **subconsultas**. Una subconsulta es una sentencia SELECT que aparece dentro de otra 
+sentencia SELECT y que normalmente son utilizadas para filtrar una clausula WHERE con el conjunto de resultados de la subconsulta.
+
+Una subconsulta tiene la misma sintaxis que una sentencia SELECT normal exceptuando que aparece encerrada entre paréntesis. 
+
+
+Ejemplo
+^^^^^^^ 
 Como es usual, se utilizará el ejemplo de la simple college admissions database (como se truduciría esto al español???)::
 
         College (cName, state, enrollment)
@@ -32,11 +40,16 @@ cuyas tablas son creadas mediante:
 Se utilizarán 4 Establecimientos educacionales, 7 estudiantes y 12 postulaciones, los cuales serán:
 
 .. code-block:: sql
- INSERT INTO
+ INSERT INTO College (...);
+ INSERT INTO Student (...);
+ INSERT INTO Apply   (...);
 
 La situación que pretende describir estas tablas de ejemplo es la postulación de estudiantes a centros educacionales
-En concreto la postulación del estudiante **sID** a la mencion académica **major** impartida en el centro educacional **cname**,
-cuya aprovación, o **decision**, será "si o no".
+En concreto la postulación del estudiante *sID* a la mencion académica *major* impartida en el centro educacional *cname*,
+cuya aprovación, o *decision*, será "si o no".
+
+
+
 
 Según el libro guía:
 
@@ -45,7 +58,7 @@ Según el libro guía:
 * El nombre de la tabla va la primer letra con mayúscula, el resto con minúscula, los atributos con minúscula,salvo que sean dos palabras entonces la segunda va con mayúscula. la clave primaria va subrayada, lo puse en modo matemático todo para subrayar la PK. 
 Para hablar de una `\text{Tabla}` y de un *atributo* 
 
-* Bueno los comandos SQL ya saben :sql:`COMANDOS SQL`, 
+* Bueno los comandosd SQL ya saben :sql:`COMANDOS SQL`, 
 
 para resaltar algún **cocepto**
 
@@ -76,27 +89,3 @@ Ideas::
  Explicar que se puede usar más de una subconsulta, por ejemplo SELECT A FROM B WHERE S1 AND S2; (S es subconsulta)
  POner un ejemplo
  Subconsulta exists, not exists, any
-
-
-
-Según el libro guía:
-
-`\text{Tabla}(\underline{\text{primaryKey}},\text{atributo,otroAtributo})`
-
-* El nombre de la tabla va la primer letra con mayúscula, el resto con minúscula, los atributos con minúscula,salvo que sean dos palabras entonces la segunda va con mayúscula. la clave primaria va subrayada, lo puse en modo matemático todo para subrayar la PK. 
-Para hablar de una `\text{Tabla}` y de un *atributo* 
-
-* Bueno los comandos SQL ya saben :sql:`COMANDOS SQL`, 
-
-para resaltar algún **cocepto**
-
-``inline`` no me gusta este no se para que puede servir si es que lo han usado ..
-
-:math:`{\{=,\geq,>,<, \neq,\leq \}`.
-
-.. note::
-	para insertar una nota
-
-raya horizontal:
-
-
