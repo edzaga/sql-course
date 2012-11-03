@@ -85,10 +85,6 @@ y 21 postulaciones:
  INSERT INTO Apply (sID, cName, major, decision) VALUES (8, 'MIT', 'engineering', True);
 
 
-.. queda pendiente llenar las tablas con:
-   
-   major en apply(science, engineering, natural history, matemathic, marine biology, phsicology) 
-    
 La situación que se pretende describir con estas tablas de ejemplo es la postulación de estudiantes a centros educacionales
 En concreto la postulación del estudiante *sID* a la mencion académica *major* impartida en el centro educacional *cName*,
 cuya aprobación, o *decision*, será "True o False".
@@ -96,15 +92,29 @@ cuya aprobación, o *decision*, será "True o False".
 
 Ejemplo 1
 ^^^^^^^^^  
-El primer ejemplo de subconsulta corresponderá al listado de IDs y Nombres de los estudiantes que han qudado seleccionados para
-estudiar ciencias en algun centro educacional.
+El primer ejemplo de subconsulta corresponderá al listado de IDs y Nombres de los estudiantes que han postulado para
+estudiar "science" en algun centro educacional.
 
 .. code-block:: sql
 
  SELECT sID, sName FROM Student WHERE sID in (SELECT sID FROM Apply WHERE major = 'science');
 
 cuya salida es::
-   <agregar salida una vez llenadas las tablas>
+   
+  sid | sname
+  ----+-------
+   6  | Gary
+   1  | Amy
+   3  | Craig
+   7  | Doris
+   5  | Doris
+
+  (5 rows)
+
+.. note::
+   
+  Notese que en el ejemplo existen dos personas distintas llamadas Doris.
+
 
 Como se mencionó anteriormente, tanto las subconsultas como el uso de join y operadores lógicos en la clausula WHERE son formas de filtrar 
 resultados, por tanto, la consulta se puede reformular como:
@@ -120,7 +130,41 @@ resultados, por tanto, la consulta se puede reformular como:
    deseados.
 
 en cuyo caso la salida será::
-   <agregar salida una vez llenadas las tablas y verificar los duplicados>
+ 
+  sid | sname
+  ----+-------
+   1  | Amy
+   1  | Amy
+   3  | Craig
+   6  | Gary
+   7  | Doris
+   7  | Doris
+   7  | Doris  
+   5  | Doris
+  
+  (8 rows)
+
+Las 3 filas "extra" se deben, a que al utilizar join y operadores lógicos, se toman en cuenta todos los resultados, por ejemplo Amy postuló en 
+dos ocasiones a science. Al utilizar la subconsulta, se eliminan estos resultados duplicados, haciendo la consulta más fiel a la realidad
+pues se pregunta por aquellos estudiantes que han postulado a "science", no cuntas veces postuló cada uno. No obstante si se agrega la
+clausula **distinct**, se obtiene la misma respuesta que al utilizar una subconsulta. Es decir que para la consulta:
+
+.. code-block:: sql
+  
+ SELECT DISTINCT Student.sID, sName FROM Student, Apply WHERE Student.sID = Apply.sID AND major = 'science';
+
+su salida será::
+           
+  sid | sname
+  ----+-------
+   6  | Gary
+   1  | Amy
+   3  | Craig
+   7  | Doris
+   5  | Doris
+
+  (5 rows)
+
 
 Ejemplo 2
 ^^^^^^^^^ 
@@ -131,8 +175,67 @@ centro educacional.
   
   SELECT sName FROM Student WHERE sID in (SELECT sID FROM Apply WHERE major = 'Science');
 
+cuya salida es::
+
+   sname
+   -------
+   Gary
+   Amy
+   Craig
+   Doris
+   Doris
+
+   (5 rows)
+
+.. note::
+  
+ Notese que ambas Doris no corresponden a un duplicado, ya que el atributo *sID* de una es 5 y de la otra es 7.
+
+Y se obtienen los mismos 5 estudiantes. De forma análoga al ejemplo anterior, se realizará el equivalente a la subconsulta utilizando join 
+y operadores lógicos:
+
+.. code-block:: sql
+  
+ SELECT sName FROM Student, Apply WHERE Student.sID = Apply.sID AND major = 'science';
+
+cuya salida es::
+ 
+  sname
+  -------
+  Amy
+  Amy
+  Craig
+  Gary
+  Doris
+  Doris
+  Doris  
+  Doris
+  
+  (8 rows)
 
 
+Por tanto, y al igual que el ejemplo anterior, se utilizará **distinct**, es decir:
+
+.. code-block:: sql
+  
+ SELECT DISTINCT sName FROM Student, Apply WHERE Student.sID = Apply.sID AND major = 'science';
+
+cuya salida es::
+ 
+  sname
+  -------
+  Amy
+  Craig
+  Doris
+  Gary
+
+  (4 rows)
+
+Pero solo hay 4 estudiantes. Esto se debe a que en ejemplo anterior, se utilizó tanto el *sID* como el *sName*, como ambas Doris cuentan con un 
+*sID* diferente, no se tomaba en cuenta como duplicado, pero en esta consulta, al solo contar con *sName*, ambas Doris se toman como 2 instancias
+de la misma y se elimina una. 
+
+La única forma de obtener el "número correcto" de duplicados es utilizando subconsultas
 
 Según el libro guía:
 
