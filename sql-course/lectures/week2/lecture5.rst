@@ -111,7 +111,7 @@ The Basic SELECT Statement
 
 .. code-block:: sql
 
- SELECT 'A_{1},\ldots,A_{n}' FROM 'R_{1}, \ldots, R_{m}' WHERE 'condition'
+ SELECT A1, ..., An FROM R1, ..., Rm WHERE condition
 
 **Significado:**
 
@@ -156,9 +156,6 @@ Ejemplo práctico
    * For Red Hat/Scientific Linux/Fedora/CentOS users::
 
       yum -y install postgresql postgresql-libs postgresql-contrib postgresql-server postgresql-docs
-
-   If you are a Windows user, you can download it from ... and installing it ...
-   For MAC users please use .... or refer to the following guide...
 
    After the installation process, you need to enter into the **psql environment**
 

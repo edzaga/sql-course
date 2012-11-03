@@ -1,5 +1,5 @@
-Lecture 7 - Basic SELECT Statement
-----------------------------------
+Lectura 7 - Sentencia SELECT Básica 
+-----------------------------------
 .. role:: sql(code)
    :language: sql
    :class: highlight
@@ -43,10 +43,6 @@ Estos valores pueden ser comparados incluyendo constantes y atributos de las rel
 En el ejemplo, correspondería al atributo del mes de nacimiento del individuo con el mes de Noviembre.
 
 
-..      Además de los 6 operadores ya mencionados, es posible  The values that may be compared include constants and attributes of the relations
-         mentioned after FROM. We may also apply the usual arithmetic operators, +, * , and so on, to numeric values before we compare them. We may
-        apply the concatenation operator || to strings; for example 'foo' || 'bar' has value 'foobar'.
-
 Algunos ejemplos de comparación:
 
 .. code-block:: sql
@@ -60,17 +56,16 @@ SELECT-FROM-WHERE
 
 .. index:: SELECT-FROM-WHERE
 
-
 Trabajemos bajo el siguiente ejemplo, el cual consiste en *seleccionar* toda la 
 información de la relación (o tabla) **Empleados** cuyos atributos *departamento* sea 
-'Informática' y que su atributo *año_ingreso* sea mayor o igual al año  2005.
+'Informatica' y que su atributo *ano_ingreso* sea mayor o igual al año  2005.
 
 Para comenzar a realizar este ejemplo, primero debemos *crear* la tabla **Empleados** 
 de la siguiente manera.
 
 .. code-block:: sql
 
- postgres=# CREATE TABLE Empleados(id_empleado serial, nombre_empleado VARCHAR(30),  departamento VARCHAR(30), año_ingreso INTEGER);
+ postgres=# CREATE TABLE Empleados(id_empleado serial, nombre_empleado VARCHAR(30),  departamento VARCHAR(30), ano_ingreso INTEGER);
 
 retornando lo siguiente PostgreSQL.::
 
@@ -81,25 +76,25 @@ Ahora *insertaremos* algunos datos en la tabla **Empleados**.
 
 .. code-block:: sql
 
- postgres=# INSERT INTO Empleados(nombre_empleado, departamento, año_ingreso) VALUES('Edgar', 'Administración', 2000);
+ postgres=# INSERT INTO Empleados(nombre_empleado, departamento, ano_ingreso) VALUES('Edgar', 'Administracion', 2000);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, departamento, año_ingreso) VALUES('Andrew', 'Comercial', 2009);
+ postgres=# INSERT INTO Empleados(nombre_empleado, departamento, ano_ingreso) VALUES('Andrew', 'Comercial', 2009);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, departamento, año_ingreso) VALUES('Valerie', 'Informática', 2000);
+ postgres=# INSERT INTO Empleados(nombre_empleado, departamento, ano_ingreso) VALUES('Valerie', 'Informatica', 2000);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, departamento, año_ingreso) VALUES('Karl', 'Informática', 2008);
+ postgres=# INSERT INTO Empleados(nombre_empleado, departamento, ano_ingreso) VALUES('Karl', 'Informatica', 2008);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, departamento, año_ingreso) VALUES('Kevin', 'Finanzas', 2010);
+ postgres=# INSERT INTO Empleados(nombre_empleado, departamento, ano_ingreso) VALUES('Kevin', 'Finanzas', 2010);
  INSERT 0 1
 
 Finalmente podemos realizar la consulta que nos interesa.
 
 .. code-block:: sql
 
- postgres=# SELECT * FROM Empleados WHERE departamento='Informática' AND año_ingreso>=2005;
-  id_empleado | nombre_empleado | departamento | año_ingreso 
+ postgres=# SELECT * FROM Empleados WHERE departamento='Informatica' AND ano_ingreso>=2005;
+  id_empleado | nombre_empleado | departamento | ano_ingreso 
  -------------+-----------------+--------------+-------------
-            4 | Karl            | Informática  |        2008
+            4 | Karl            | Informatica  |        2008
  (1 fila)
 
 .. note::
@@ -113,12 +108,12 @@ al año 2005.
 
 .. code-block:: sql
 
- postgres=# SELECT * FROM Empleados WHERE departamento='Informática' OR año_ingreso>=2005;
-  id_empleado | nombre_empleado | departamento | año_ingreso 
+ postgres=# SELECT * FROM Empleados WHERE departamento='Informatica' OR ano_ingreso>=2005;
+  id_empleado | nombre_empleado | departamento | ano_ingreso 
  -------------+-----------------+--------------+-------------
             2 | Andrew          | Comercial    |        2009
-            3 | Valerie         | Informática  |        2000
-            4 | Karl            | Informática  |        2008
+            3 | Valerie         | Informatica  |        2000
+            4 | Karl            | Informatica  |        2008
             5 | Kevin           | Finanzas     |        2010
  (4 filas)
 
@@ -147,8 +142,9 @@ El ejemplo anterior se podría realizar de otra manera para poder combinar dos r
 tabla **Empleados** y **Departamentos**.
 
 .. warning::
+
  Antes de realizar la *creación* de las tablas, hay que borrar la tabla **Empleados**
- con un :sql: DROP TABLE Empleados
+ con un :sql:`DROP TABLE Empleados`.
 
 Para poder realizar el ejemplo debemos crear la tabla de **Departamentos**.
 
@@ -166,7 +162,7 @@ Y ahora creamos la tabla **Empleados**.
 
 .. code-block:: sql
 
- postgres=# CREATE TABLE Empleados(id_empleados serial, nombre_empleado VARCHAR(30), id_departamento INTEGER, año_ingreso INTEGER, PRIMARY KEY(id_empleados), FOREIGN KEY(id_departamento) REFERENCES Departamentos(id_departamento));
+ postgres=# CREATE TABLE Empleados(id_empleados serial, nombre_empleado VARCHAR(30), id_departamento INTEGER, ano_ingreso INTEGER, PRIMARY KEY(id_empleados), FOREIGN KEY(id_departamento) REFERENCES Departamentos(id_departamento));
 
 retornando PostgreSQL que la tabla **Empleados** ha sido correctamente creada.::
 
@@ -178,39 +174,40 @@ ahora debemos *ingresar* los datos en la tabla **Departamentos** y **Empleados**
 
 .. code-block:: sql
  
- postgres=# INSERT INTO Departamentos(departamento) VALUES('Administración');
+ postgres=# INSERT INTO Departamentos(departamento) VALUES('Administracion');
  INSERT 0 1
- postgres=# INSERT INTO Departamentos(departamento) VALUES('Informática');
+ postgres=# INSERT INTO Departamentos(departamento) VALUES('Informatica');
  INSERT 0 1
  postgres=# INSERT INTO Departamentos(departamento) VALUES('Finanzas');
  INSERT 0 1
  postgres=# INSERT INTO Departamentos(departamento) VALUES('Comercial');
  INSERT 0 1
 
- postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, año_ingreso) VALUES('Edgar', 1, 2000);
+ postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, ano_ingreso) VALUES('Edgar', 1, 2000);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, año_ingreso) VALUES('Andrew', 4, 2009);
+ postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, ano_ingreso) VALUES('Andrew', 4, 2009);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, año_ingreso) VALUES('Valerie', 2, 2000);
+ postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, ano_ingreso) VALUES('Valerie', 2, 2000);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, año_ingreso) VALUES('Karl', 2, 2008);
+ postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, ano_ingreso) VALUES('Karl', 2, 2008);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, año_ingreso) VALUES('Kevin', 3, 2010);
+ postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, ano_ingreso) VALUES('Kevin', 3, 2010);
  INSERT 0 1
 
 Ahora realizamos la siguiente consulta, encontrar en la tabla **Empleados** el registro
-de la(s) personas que sean del departamento de 'Informática' y que su año de ingreso 
+de la(s) personas que sean del departamento de 'Informatica' y que su año de ingreso 
 sea mayor o igual al año 2005.
 
 .. code-block:: sql
 
- postgres=# SELECT * FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento AND Empleados.año_ingreso>=2005 AND Departamentos.departamento='Informática';
-  id_empleados | nombre_empleado | id_departamento | año_ingreso | id_departamento | departamento 
+ postgres=# SELECT * FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento AND Empleados.ano_ingreso>=2005 AND Departamentos.departamento='Informatica';
+  id_empleados | nombre_empleado | id_departamento | ano_ingreso | id_departamento | departamento 
  --------------+-----------------+-----------------+-------------+-----------------+--------------
-             4 | Karl            |               2 |        2008 |               2 | Informática
+             4 | Karl            |               2 |        2008 |               2 | Informatica
  (1 fila)
 
 .. note::
+
  Es posible dar referencia a un atributo de cada tabla con **nombre_tabla.atributo**, para 
  realizar las condiciones. 
 
@@ -228,10 +225,10 @@ A modo de repaso, los operadores lógicos mencionados son:
         \hline
         \textbf{P} & \textbf{Q} & \textbf{AND} \\
         \hline
-        True       & True       &  True   \\
-        True       & False      &  False  \\
-        False      & True       &  False  \\
-        False      & False      &  False  \\
+        \text{True}       & \text{True}       &  \text{True}   \\
+        \text{True}       & \text{False}      &  \text{False}  \\
+        \text{False}      & \text{True}       &  \text{False}  \\
+        \text{False}      & \text{False}      &  \text{False}  \\
         \hline
        \end{array}
 
@@ -244,10 +241,10 @@ A modo de repaso, los operadores lógicos mencionados son:
         \hline
         \textbf{P} & \textbf{Q} & \textbf{OR} \\
         \hline
-        True       & True       &  True  \\
-        True       & False      &  True  \\
-        False      & True       &  True  \\
-        False      & False      &  False  \\
+        \text{True}       & \text{True}       &  \text{True}  \\
+        \text{True}       & \text{False}      &  \text{True}  \\
+        \text{False}      & \text{True}       &  \text{True}  \\
+        \text{False}      & \text{False}      &  \text{False}  \\
         \hline
        \end{array}
 
@@ -260,8 +257,8 @@ A modo de repaso, los operadores lógicos mencionados son:
         \hline
         \textbf{P} & \textbf{NOT P} \\
         \hline
-        True       & False  \\
-        False      & True   \\
+        \text{True}       & \text{False}  \\
+        \text{False}      & \text{True}   \\
         \hline
        \end{array}
 
@@ -294,16 +291,17 @@ Primero mostraremos un resultado con una consulta con repeticiones.
 
 .. code-block:: sql
 
- postgres=# SELECT Departamentos.departamento, Empleados.id_departamento FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento;  departamento  | id_departamento 
+ postgres=# SELECT Departamentos.departamento, Empleados.id_departamento FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento;     departamento  | id_departamento 
  ----------------+-----------------
-  Administración |               1
+  Administracion |               1
   Comercial      |               4
-  Informática    |               2
-  Informática    |               2
+  Informatica    |               2
+  Informatica    |               2
   Finanzas       |               3
  (5 filas)
 
 .. note::
+
  Según los datos que se ingresaron en la tabla **Empleados** existe más de una persona
  en el departamento de 'Informática'.
 
@@ -314,13 +312,14 @@ Y ahora realizamos una consulta sin repeticiones.
  postgres=# SELECT DISTINCT Departamentos.departamento, Empleados.id_departamento FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento;
    departamento  | id_departamento 
  ----------------+-----------------
-  Administración |               1
-  Informática    |               2
+  Administracion |               1
+  Informatica    |               2
   Comercial      |               4
   Finanzas       |               3
  (4 filas)
 
 .. note::
+
  Se puede notar que solo nos retorna los departamentos que existen.
  
 SELECT-BY-ORDER
@@ -364,7 +363,7 @@ de los empleados de la tabla **Empleados**.
 .. code-block:: sql
 
  postgres=# SELECT * FROM Empleados ORDER BY nombre_empleado;
-  id_empleados | nombre_empleado | id_departamento | año_ingreso 
+  id_empleados | nombre_empleado | id_departamento | ano_ingreso 
  --------------+-----------------+-----------------+-------------
              2 | Andrew          |               4 |        2009
              1 | Edgar           |               1 |        2000
@@ -378,7 +377,7 @@ Que es lo mismo que escribir.
 .. code-block:: sql
 
  postgres=# SELECT * FROM Empleados ORDER BY nombre_empleado ASC;
-  id_empleados | nombre_empleado | id_departamento | año_ingreso 
+  id_empleados | nombre_empleado | id_departamento | ano_ingreso 
  --------------+-----------------+-----------------+-------------
              2 | Andrew          |               4 |        2009
              1 | Edgar           |               1 |        2000
@@ -392,7 +391,7 @@ Y de forma descendiente sería de la siguiente manera.
 .. code-block:: sql
 
  postgres=# SELECT * FROM Empleados ORDER BY nombre_empleado DESC;
-  id_empleados | nombre_empleado | id_departamento | año_ingreso 
+  id_empleados | nombre_empleado | id_departamento | ano_ingreso 
  --------------+-----------------+-----------------+-------------
              3 | Valerie         |               2 |        2000
              5 | Kevin           |               3 |        2010
@@ -401,6 +400,17 @@ Y de forma descendiente sería de la siguiente manera.
              2 | Andrew          |               4 |        2009
  (5 filas)
 
+También es posible realizarlo con números o fechas.
 
+.. code-block:: sql
 
+ postgres=# SELECT * FROM Empleados ORDER BY ano_ingreso DESC;
+  id_empleados | nombre_empleado | id_departamento | ano_ingreso 
+ --------------+-----------------+-----------------+-------------
+             5 | Kevin           |               3 |        2010
+             2 | Andrew          |               4 |        2009
+             4 | Karl            |               2 |        2008
+             1 | Edgar           |               1 |        2000
+             3 | Valerie         |               2 |        2000
+ (5 filas)
 

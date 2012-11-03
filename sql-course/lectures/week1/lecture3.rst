@@ -603,8 +603,8 @@ anteriormente:
 
 **Método**
 
-   1. Se forma el ``producto cartesiano`` `\text{R} \times \text{S}` .
-   2. Se selecciona, en el producto, solo la tupla que cumplan la condición `C`.
+ 1. Se forma el ``producto cartesiano`` `\text{R} \times \text{S}` .
+ 2. Se selecciona, en el producto, solo la tupla que cumplan la condición `C`.
 
 Ejemplo 1
 ^^^^^^^^^
