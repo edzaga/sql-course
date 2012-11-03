@@ -8,3 +8,5 @@ Ideas::
  Explicar que la subconsulta no pone valores duplicados ante consultas similares (a menos que se use un distinct)
  Explicar que se puede usar más de una subconsulta, por ejemplo SELECT A FROM B WHERE S1 AND S2; (S es subconsulta)
  POner un ejemplo
+ Subconsulta exists, not exists, any
+
