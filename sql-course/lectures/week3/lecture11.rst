@@ -46,4 +46,43 @@ Ahora *insertamos* algunos datos.
  INSERT 0 1
  postgres=# INSERT INTO Personas(nombre, apellido, direccion, ciudad) VALUES('Calvin','Dixson','CALLE WALLABY 42','San Francisco');
  INSERT 0 1 
+ postgres=# INSERT INTO Ordenes(numero_orden, persona) VALUES(226345,3);
+ INSERT 0 1
+ postgres=# INSERT INTO Ordenes(numero_orden, persona) VALUES(345478,2);
+ INSERT 0 1
+ postgres=# INSERT INTO Ordenes(numero_orden, persona) VALUES(218909,2);
+ INSERT 0 1
+ postgres=# INSERT INTO Ordenes(numero_orden, persona) VALUES(567432,5);
+ INSERT 0 1
+ postgres=# INSERT INTO Ordenes(numero_orden, persona) VALUES(675209,5);
+ INSERT 0 1
+
+Y realizamos la consulta para unir las dos tablas, de acuerdo a la condición que 
+detallemos.
+
+.. code-block:: sql
+
+ postgres=# SELECT Personas.nombre, Personas.apellido, Ordenes.numero_orden FROM Personas INNER JOIN Ordenes ON Personas.id_persona=Ordenes.persona;
+  nombre | apellido | numero_orden 
+ --------+----------+--------------
+  Bibi   | Mingus   |       226345
+  Amy    | Looper   |       345478
+  Amy    | Looper   |       218909
+  Calvin | Dixson   |       567432
+  Calvin | Dixson   |       675209
+ (5 filas)
+
+También podemos mostrar todos los atributos.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM Personas INNER JOIN Ordenes ON Personas.id_persona=Ordenes.persona;
+  id_persona | nombre | apellido |       direccion       |    ciudad     | id_orden | numero_orden | persona 
+ ------------+--------+----------+-----------------------+---------------+----------+--------------+---------
+           3 | Bibi   | Mingus   | 3901 W Ina Rd         | Los Angeles   |        1 |       226345 |       3
+           2 | Amy    | Looper   | 4525 North Oracle Rd. | Miami         |        2 |       345478 |       2
+           2 | Amy    | Looper   | 4525 North Oracle Rd. | Miami         |        3 |       218909 |       2
+           5 | Calvin | Dixson   | CALLE WALLABY 42      | San Francisco |        4 |       567432 |       5
+           5 | Calvin | Dixson   | CALLE WALLABY 42      | San Francisco |        5 |       675209 |       5
+ (5 filas)
 

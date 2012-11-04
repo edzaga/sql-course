@@ -199,8 +199,8 @@ La llamaremos **example**:
    postgres=# create database example;
    CREATE DATABASE
 
-Luego de haber creado nuestra base de datos, necesitamos *ingresar*
-para comenzar a realizar distintas operaciones:
+Luego de haber creado nuestra base de datos, necesitamos *ingresar* a ella 
+para comenzar a realizar las distintas operaciones:
 
 .. testcase::
 
