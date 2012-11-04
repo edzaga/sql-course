@@ -16,10 +16,10 @@ sentencia SELECT y que normalmente son utilizadas para filtrar una clausula WHER
 
 Una subconsulta tiene la misma sintaxis que una sentencia SELECT normal exceptuando que aparece encerrada entre paréntesis. 
 
-Como es usual, se utilizará elt ejemplo de la simple college admissions database (como se truduciría esto al español???)::
+Como es usual, se utilizará el ejemplo de la simple college admissions database (como se truduciría esto al español???)::
 
         College (cName, state, enrollment)
-        Student (sID, sName, GPA, sizeHS)
+        Student (sID, sName, GPA)
         Apply (sID, cName, major, decision)
 
 .. La idea del ejeemplo es que el estudiante "sid" postula al colegio "cname", al ramo(o mencion academica, ahi no se) "major"
