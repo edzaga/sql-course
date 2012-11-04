@@ -12,109 +12,104 @@ Table Variables
 Consideremos las siguientes tablas::
 
         College (cName, state, enrollment)
-        Student (sID, sName, GPA, sizeHS)
+        Student (sID, sName, GPA)
         Apply (sID, cName, major, decision)
 
-las cuales son creadas mediante:
+las cuales representar un sistema simple de postulación de estudiantes a establecimientos educacionales, y son creadas mediante:
 
 .. code-block:: sql
 
- postgres=# CREATE TABLE College(id serial, cName VARCHAR(20), state VARCHAR(30), enrollment VARCHAR(40), PRIMARY KEY(id));
+ CREATE TABLE College(id serial, cName VARCHAR(20), state VARCHAR(30), enrollment INTEGER, PRIMARY KEY(id));
+ CREATE TABLE Student(sID serial, sName VARCHAR(20), GPA INTEGER, PRIMARY kEY(sID));
+ CREATE TABLE Apply(sID INTEGER, cName VARCHAR(20), major VARCHAR(30), decision BOOLEAN, PRIMARY kEY(sID, cName, major));
 
+Se utilizarán 4 establecimientos educacionales:
+
+.. code-block:: sql
+        
+ INSERT INTO College (cName, state, enrollment) VALUES ('Stanford','CA',15000);
+ INSERT INTO College (cName, state, enrollment) VALUES ('Berkeley','CA',36000);
+ INSERT INTO College (cName, state, enrollment) VALUES ('MIT','MA',10000);
+ INSERT INTO College (cName, state, enrollment) VALUES ('Harvard','CM',23000);
+
+4 estudiantes: 
+
+.. code-block:: sql
+        
+ INSERT INTO Student (sName, GPA) Values ('Amy', 60);
+ INSERT INTO Student (sName, GPA) Values ('Edward', 65);
+ INSERT INTO Student (sName, GPA) Values ('Craig', 50);
+ INSERT INTO Student (sName, GPA) Values ('Irene', 49);
+
+y 6 postulaciones:
+
+.. code-block:: sql
+
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Stanford', 'science', True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Stanford', 'engineering', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (2, 'Berkeley', 'natural hostory', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'MIT', 'math', True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'Harvard', 'science', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (4, 'Stanford', 'marine biology', True);
+
+
+Ejemplo 1
+^^^^^^^^^
+En este ejemplo se busca la información del nombre e id de los  alumnos, que postulan a uno o más establecimientos educacionales con 
+determinado GPA:
+
+.. code-block:: sql
+
+  SELECT Student.sID, sName, Apply.cName, GPA FROM Student, Apply WHERE Apply.sID = Student.sID;
+  
 cuya salida es::
 
- NOTICE:  CREATE TABLE creará una secuencia implícita «college_id_seq» para la columna serial «college.id»
- NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «college_pkey» para la tabla «college»
- CREATE TABLE
-
-.. code-block:: sql
-
-  postgres=# CREATE TABLE Student(sID serial, sName VARCHAR(20), GPA INTEGER, sizeHS VARCHAR(40), PRIMARY kEY(sID));
-
-Su salida es::
-
- NOTICE:  CREATE TABLE creará una secuencia implícita «student_sid_seq» para la columna serial «student.sid»
- NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «student_pkey» para la tabla «student»
- CREATE TABLE
-
-.. code-block:: sql
-
- postgres=# CREATE TABLE Apply(sID serial, cName VARCHAR(20), major VARCHAR(30), decision VARCHAR(40), PRIMARY kEY(sID, cName));
-
-Recibiremos como respuesta lo siguiente::
-
- NOTICE:  CREATE TABLE creará una secuencia implícita «apply_sid_seq» para la columna serial «apply.sid»
- NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «apply_pkey» para la tabla «apply»
- CREATE TABLE
-
-Ahora se realizará el ingreso de los datos a las tablas:
-
-.. code-block:: sql
-
- postgres=# INSERT INTO College(cName, state, enrollment) VALUES('Stanford', 'stanford', 'mayor');
- INSERT 0 1
-
- postgres=# INSERT INTO College(cName, state, enrollment) VALUES('Berkeley', 'miami', 'mayor');
- INSERT 0 1
-
- postgres=# INSERT INTO College(cName, state, enrollment) VALUES('MIT', 'masachusets', 'minor');
- INSERT 0 1
-
-.. code-block:: sql
-
- postgres=# INSERT INTO Student(sName, GPA, sizeHS) VALUES('amy', 30, 'A');
- INSERT 0 1
-
- postgres=# INSERT INTO Student(sName, GPA, sizeHS) VALUES('doris', 40, 'B');
- INSERT 0 1
-
- postgres=# INSERT INTO Student(sName, GPA, sizeHS) VALUES('edward', 40, 'C');
- INSERT 0 1
-
-.. code-block:: sql
-
- postgres=# INSERT INTO Apply(cName, major, decision) VALUES('Stanford', 'phd', 'mayor');
- INSERT 0 1
-
- postgres=# INSERT INTO Apply(cName, major, decision) VALUES('Berkeley', 'pregrado', 'minor');
- INSERT 0 1
-
- postgres=# INSERT INTO Apply(cName, major, decision) VALUES('MIT', 'ingenieria', 'mayor');
- INSERT 0 1
-
-Ahora realizaremos la siguente consulta de selección de tabla:
-
-.. code-block:: sql
-
- postgres=# SELECT Student.sID, sName, Apply.cName, GPA FROM Student, Apply WHERE Apply.sID = Student.sID;
   sid | sname  |  cname   | gpa
- -----+--------+----------+-----
-   1 | amy    | Stanford |  30
-   2 | doris  | Berkeley |  40
-   3 | edward | MIT      |  40
+  ----+--------+----------+-----
+   1 | Amy     | Stanford |  60
+   1 | Amy     | Stanford |  60
+   2 | Edward  | Berkeley |  65
+   3 | Craig   | MIT      |  50
+   3 | Craig   | Harvard  |  50
+   4 | Irene   | Stanford |  49
+
+.. note::
+  
+   Notese que existe un supuesto duplicado en las primeras filas. Esto es debido a que Amy postuló a "science" y a "engineering" en Stanford. Esto
+   puede evitarse utilizando **SELECT DISTINCT** en lugar de **SELECT**.
 
 también es posible realizarla como:
 
 .. code-block:: sql
 
- postgres=# SELECT S.sID, sName, A.cName, GPA FROM Student S, Apply A WHERE A.sID = S.sID;
-  sid | sname  |  cname   | gpa
- -----+--------+----------+-----
-   1 | amy    | Stanford |  30
-   2 | doris  | Berkeley |  40
-   3 | edward | MIT      |  40
+ SELECT S.sID, sName, A.cName, GPA FROM Student S, Apply A WHERE A.sID = S.sID;
+
+cuya salida es::
+
+   sid | sname  |  cname   | gpa
+   ----+--------+----------+-----
+   1 | Amy     | Stanford |  60
+   1 | Amy     | Stanford |  60
+   2 | Edward  | Berkeley |  65
+   3 | Craig   | MIT      |  50
+   3 | Craig   | Harvard  |  50
+   4 | Irene   | Stanford |  49
+
+.. note::
+
+   Al igual que en la consulata anterior, es posible evitar el valor duplicado utilizando **SELECT DISTINCT** en lugar de **SELECT**.
 
 .. CMA: no entiendo esto...
 
 Como se aprecia, es posible asignar variables a las relaciones "R" y utilizar dichas variables tanto en la lista "L" como en la
-condición "C". El lector se preguntará cuál es la utilidad de esto, más allá de escribir menos (dependiendo del nombre de la variable
-utilizada); y la respuesta corresponde a los casos en que se deben comparar múltiples instancias de la misma relación.
+condición "C". ¿Cuál es la utilidad de esto?, más allá de escribir menos (dependiendo del nombre de la variable
+utilizada); en los casos en que se deben comparar múltiples instancias de la misma relación, como se verá en el ejemplo 2.
 
 .. note::
    El por qué de la nomenclatura "L", "R" y "C" y su significado están explicados en la lectura 7
 
-Así son las variables que se pueden asignar a las tablas. Estas variables en una consulta, se definen en el "FROM"  del
-"SELECT-FROM-WHERE".
+.. Así son las variables que se pueden asignar a las tablas. Estas variables en una consulta, se definen en el "FROM"  del
+ "SELECT-FROM-WHERE".
 .. Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde más a variable en la consulta).
 .. La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
 
@@ -168,20 +163,19 @@ Así son las variables que se pueden asignar a las tablas. Estas variables en un
         ('MIT', 'ingenieria', 'mayor');
 
 
-============================
+
+Ejemplo 2
+^^^^^^^^^
+
 Cuidado con los duplicados!!
-============================
 
 Si el lector se fija en la situación descrita, los nombres de algunos atributos de diferentes relaciones y/o tablas  se repiten, lo cual
 podría plantear la interrogante ¿a que tabla se refiere el atributo en cuestión?. Para resolver este pequeño gran problema, se precede al
-nombre del atributo con el nombre de la tabla y un punto, es decir:
+nombre del atributo con el nombre de la tabla y un punto, es decir::
 
+  "NombreTabla.atributo"
 
-.. code-block:: sql
-
-        "algo_asi."
-
-Concretamente en el ejemplo anterior, el alcance de nombres lo protagonizan sID de la tabla Student y sID de la tabla Apply.
+Concretamente en el ejemplo anterior, el alcance de nombres lo protagonizan *sID* de la tabla Student y *sID* de la tabla Apply.
 La diferencia se realiza a través de:
 
 .. code-block:: sql
@@ -190,7 +184,16 @@ La diferencia se realiza a través de:
         Apply.sID o  A.sID
 
 
-En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el siguiente ejemplo,
+
+Para la realización de este ejemplo, supongase que al último momento, llegan los papeles de un postulante más, por lo que el administrador
+de la base de datos deberá agregar la información necesaria, es decir:
+
+.. code-block:: sql
+
+ INSERT INTO Student (sName, GPA) Values ('Tim', 60);
+
+
+En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el este ejemplo,
 se buscan todos los pares de estudiantes con el mismo GPA:
 
 .. code-block:: sql
@@ -199,39 +202,38 @@ se buscan todos los pares de estudiantes con el mismo GPA:
         FROM Student S1, Student S2
         WHERE S1.GPA = S2.GPA;
 
-Ojo!!! Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrá uno o varios duplicados; por ejemplo,
-consideremos 3 estudantes:
 
-.. math::
+Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrá uno o varios duplicados; por ejemplo,
+consideremos a los 5 estudantes::
 
- \begin{array}{|c|c|c|}
-  \hline
-  \textbf{sID} & \textbf{sName} & \textbf{GPA} \\
-  \hline
-  1         & amy      &  30   \\
-  2         & doris      &  40  \\
-  3         & edward     &  40  \\
-  \hline
- \end{array}
 
-.. sName   sID     GPA
-   Amy     123     4.0
-   Doris   456     4.0
-   Edward  567     4.1
+   sid | sname  | gpa
+   ----+--------+----- 
+   1 | Amy      |  60
+   2 | Edward   |  65
+   3 | Craig    |  50
+   4 | Irene    |  49
+   5 | Tim      |  60
+
+.. note::
+   La tabla de arriba se obtuvo realizando la consulta :SQL: 'SELECT * FROM Student;'    
 
 Los pares de estudiantes serán::
 
-         doris    -       edward
+         Amy    -       Tim
 
 pero la salida muestra::
 
         sid | sname  | gpa | sid | sname  | gpa
         ----+--------+-----+-----+--------+-----
-        1   | amy    |  30 |   1 | amy    | 30
-        2   | doris  |  40 |   2 | doris  | 40
-        2   | doris  |  40 |   2 | doris  | 40
-        3   | edward |  40 |   3 | edward | 40
-        3   | edward |  30 |   3 | edward | 40
+        1   | Amy    |  60 |   5 | Tim    | 60
+        1   | Amy    |  60 |   1 | Amy    | 60
+        2   | Edward |  65 |   2 | Edward | 65
+        3   | Craig  |  50 |   3 | Craig  | 50
+        4   | Irene  |  49 |   4 | Irene  | 49
+        5   | Tim    |  60 |   5 | Tim    | 60
+        5   | Tim    |  60 |   5 | Amy    | 60
+
 
 
 lo cual se puede evitar modificando la cosulta
@@ -246,9 +248,9 @@ es decir, que el id del estudiante S1 sea diferente al id del estudiante S2; en 
 
         sid | sname  | gpa | sid | sname  | gpa
         ----+--------+-----+-----+--------+-----
-        2   | doris  |  40 |   2 | doris  | 40
-        3   | edward |  40 |   3 | edward | 40
-
+        1   | Amy    |  60 |   5 | Tim    | 60
+        5   | Tim    |  60 |   1 | Amy    | 60
+    
 
 Set Operators
 ~~~~~~~~~~~~~~~
@@ -261,9 +263,12 @@ Los Operadores de conjunto son 3:
   * Intersección
   * Excepción
 
-=====
+
+A continuación se explicará cada uno con un ejemplo:
+
+
 Unión
-=====
+^^^^^^
 
 El operador "UNION", permite combinar el resultado de dos o más sentencias SELECT. Es necesario que estas tengan el mismo número de columnas,
 y que, además tengan los mismos tipos de datos, por ejemplo, si se tienen las siguientes tablas:
@@ -335,7 +340,7 @@ es:
         Scott, Stephen
 
 
-Ojo, hay que tener en cuenta que existe en ambas tablas un empleado con el mismo nombre "Svendson, Stephen". Sin embargo en la
+Hay que tener en cuenta que existe en ambas tablas un empleado con el mismo nombre "Svendson, Stephen". Sin embargo en la
 salida sólo se nombra uno. Si se desea que aparezcan "UNION ALL":
 
 .. code-block:: sql
@@ -366,9 +371,8 @@ se aprecia que la salida contiene los nombres de los empleados duplicados:
    como por ejemplo, "as name" y "as lala", queda como nombre de la tabla UNION el primero en ser declarado.
 
 
-============
 Intersección
-============
+^^^^^^^^^^^^^
 
 Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT. La diferencia consiste en que UNION actúa como un OR,
 e INTERSECT lo hace como AND.
@@ -442,9 +446,8 @@ su salida es::
 .. Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
    pero que puede escribirse como otra consulta (agregarla)
 
-=========
 Excepción
-=========
+^^^^^^^^^^
 
 Similar a los operadores anteriores, su estructura se compone de dos o mas sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
 en el álgebra relacional.
@@ -467,8 +470,8 @@ Su salida es::
 
 Es decir, devuelve los resultados no repetidos en ambas tablas.
 
-Ojo, a diferencia de los operadores anteriores, la salida de este no es conmutativa, pues si se ejecuta la consulta de forma inversa,
-es decir:
+Hay que tener en cuenta que, a diferencia de los operadores anteriores, la salida de este no es conmutativa, pues si se ejecuta la 
+consulta de forma inversa,es decir:
 
 .. code-block:: sql
 
