@@ -240,19 +240,128 @@ La única forma de obtener el "número correcto de duplicados" es utilizando sub
 IN AND NOT IN
 =============
 
+IN y NOT IN permiten realizar filtros de forma más específica, necesarios para responder preguntas como la del ejemplo 3
+
 Ejemplo 3
 ^^^^^^^^^ 
+En el siguiente ejemplo se quiere saber el *sID* y el *sName* de aquellos estudiantes que postularon a science, pero no a engineering:
+
+.. code-block:: sql
+   
+  SELECT sID, sName FROM Student WHERE 
+  sID in (SELECT sID FROM Apply WHERE major = 'science') 
+  and sID not in (SELECT sID FROM Apply WHERE major = 'engineering');
+
+cuya salida corresponde precisamente a::
+  
+  sid  | sname
+  -----+-------
+   5   | Doris
+   6   | Gary
+   7   | Doris
+
+  (3 rows)
+
+.. note:: 
+
+   Es posible corroborar el resultado ejecutando :sql:´SELECT * FROM Apply;´ y verificar manualmente.
+
+La consulta realizada en este ejemplo es posible realizarla de otra manera:
+
+.. code-block:: sql
+   
+  SELECT sID, sName FROM Student WHERE 
+  sID in (SELECT sID FROM Apply WHERE major = 'science') 
+  and not sID in (SELECT sID FROM Apply WHERE major = 'engineering');
+
+cuya salida es equivalente a la anterior.
+
 
 EXISTS AND NOT EXISTS
 =====================
 
+EXISTS es una función SQL que devuelve veradero cuando una subconsulta retorna al menos una fila.
+
 Ejemplo 4
 ^^^^^^^^^ 
+En este ejemplo se busca el nommbre de todos los establecimientos educacionales que comparten estado. Si se ejecuta:
+
+.. code-block:: sql
+ 
+ SELECT cName, state FROM College;
+
+cuya salida es::
+ 
+ cname    | state  
+ ---------+-------
+ Stanford | CA
+ Berkeley | CA
+ MIT      | MA
+ Harvard  | CM
+ 
+ (4 rows)
+
+el resultado esperado debiese contener el par  **Stanford** - **Berkeley**
+
+La consulta que pretende resolver esta pregunta es:
+
+.. code-block:: sql
+ 
+ SELECT cName, state FROM College C1 WHERE exists (SELECT * FROM College C2 WHERE C2.state = C1.state);
+
+.. note::
+  
+ Lo que realiza esta consulta es verificar que por cada resultado obtenido en C1, lo compara con todos los resultados en C2.
+
+cuya salida es::
+ 
+ cname    | state  
+ ---------+-------
+ Stanford | CA
+ Berkeley | CA
+ MIT      | MA
+ Harvard  | CM
+
+ (4 rows)
+
+Esto pasa debido a que C1 y C2 pueden ser el mismo establecimiento. Por ende, es necesario dejar en claro que C1 y C2 son diferentes. 
+
+.. code-block:: sql
+ 
+ SELECT cName, state FROM College C1 WHERE exists (SELECT * FROM College C2 WHERE C2.state = C1.state and C1.cName <> C2.cName);
+
+en cuyo caso la salida corresponde a la correcta, es decir::
+ 
+ cname    | state  
+ ---------+-------
+ Stanford | CA
+ Berkeley | CA
+
+ (2 rows)
+
+
+Es posible realizar computos matemáticos (valor más alto, valor más bajo)  utilizando subconsultas:
+
+Ejemplo 5
+^^^^^^^^^ 
+Se busca el establecimiento con mayor cantidad de alumnos. 
+La consulta que se realizará corresponde a buscar todos los establecimientos donde no exista otro establecimiento que su cantidad de alumnos sea
+mayor que la primera.
+
+.. code-block:: sql
+ 
+ SELECT cName, state FROM College C1 WHERE exists (SELECT * FROM College C2 WHERE C2.enrollment > C1.enrollment);
+
+Donde el resultado corresponde a Berkeley.
+
+.. note::
+ 
+ De forma analoga es posible calcular el establecimiento con menor cantidad de alumnos, cambiando el signo matemático **>** por **<**
 
 ANY
 ===
 
-Ejemplo 5
+Ejemplo 6
 ^^^^^^^^^ 
 
 
@@ -262,7 +371,5 @@ Ejemplo 5
 
 Falta explicar y poner 1 ejeplos de c/u::
   
- in and not in
- exists
  any
 
