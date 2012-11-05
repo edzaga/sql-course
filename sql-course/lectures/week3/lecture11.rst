@@ -86,3 +86,112 @@ También podemos mostrar todos los atributos.
            5 | Calvin | Dixson   | CALLE WALLABY 42      | San Francisco |        5 |       675209 |       5
  (5 filas)
 
+.. note::
+ Se observa que se unen las dos tablas **Personas** y **Ordenes** cumpliendo la condición
+ que definimos.
+
+NATURAL JOIN
+~~~~~~~~~~~~
+
+En el caso de existir columnas con el mismo nombre en las relaciones que se combinan, 
+solo se incluirá una de ellas en el resultado de la combinación. 
+
+Se *crearán* dos tablas llamadas **Alimentos** y **Compañia**, para realizar el ejemplo
+que mostrará como funciona el **NATURAL JOIN**.
+
+.. code-block:: sql
+
+ postgres=# CREATE TABLE COMPANIA(id_compania serial, nombre_compania VARCHAR(30), ciudad VARCHAR(30), PRIMARY KEY(id_compania));
+ postgres=# CREATE TABLE ALIMENTOS(id_alimento serial, nombre_alimento VARCHAR(30), id_compania INTEGER, PRIMARY KEY(id_alimento), FOREIGN KEY(id_compania) REFERENCES COMPANIA(id_compania));
+
+*Ingresamos* datos a las tablas.
+
+.. code-block:: sql
+
+ postgres=# INSERT INTO COMPANIA(nombre_compania, ciudad) VALUES('Order All', 'Boston');
+ INSERT 0 1
+ postgres=# INSERT INTO COMPANIA(nombre_compania, ciudad) VALUES('Akas Foods', 'Delhi');
+ INSERT 0 1
+ postgres=# INSERT INTO COMPANIA(nombre_compania, ciudad) VALUES('Foodies', 'London');
+ INSERT 0 1
+ postgres=# INSERT INTO COMPANIA(nombre_compania, ciudad) VALUES('sip-n-Bite', 'New York');
+ INSERT 0 1
+ postgres=# INSERT INTO COMPANIA(nombre_compania, ciudad) VALUES('Jack Hill Ltd', 'London');
+ INSERT 0 1
+ postgres=# INSERT INTO ALIMENTOS(nombre_alimento, id_compania) VALUES('Chex Mix', 2);
+ INSERT 0 1
+ postgres=# INSERT INTO ALIMENTOS(nombre_alimento, id_compania) VALUES('Cheez-lt', 3);
+ INSERT 0 1
+ postgres=# INSERT INTO ALIMENTOS(nombre_alimento, id_compania) VALUES('BN Biscuit', 3); 
+ INSERT 0 1
+ postgres=# INSERT INTO ALIMENTOS(nombre_alimento, id_compania) VALUES('Mighty Munch',5);
+ INSERT 0 1
+ postgres=# INSERT INTO ALIMENTOS(nombre_alimento, id_compania) VALUES('Pot Rice',4);
+ INSERT 0 1
+
+Ahora podemos realizar la *consulta* del **NATURAL JOIN**.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM ALIMENTOS NATURAL JOIN COMPANIA;
+  id_compania | id_alimento | nombre_alimento | nombre_compania |  ciudad  
+ -------------+-------------+-----------------+-----------------+----------
+            2 |           1 | Chex Mix        | Akas Foods      | Delhi
+            3 |           2 | Cheez-lt        | Foodies         | London
+            3 |           3 | BN Biscuit      | Foodies         | London
+            5 |           4 | Mighty Munch    | Jack Hill Ltd   | London
+            4 |           5 | Pot Rice        | sip-n-Bite      | New York
+ (5 filas)
+
+.. note::
+ Se puede notar que al realizar el **NATURAL JOIN**, retorna una tabla con solo una
+ columna llamada **id_compania**, que estaba repetida en las dos tablas **ALIMENTOS** y 
+ **COMPANIA** y la unión de las otras columnas. 
+
+INNER JOIN USING(attrs)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Al realizar el **INNER JOIN** con la cláusula **USING(attrs)**.
+
+A continuación mostraremos el ejemplo anterior utilizando la cláusula **USING(id_compania)** 
+que es la columna que se repite en las dos tablas.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM ALIMENTOS INNER JOIN COMPANIA USING(id_compania);
+  id_compania | id_alimento | nombre_alimento | nombre_compania |  ciudad  
+ -------------+-------------+-----------------+-----------------+----------
+            2 |           1 | Chex Mix        | Akas Foods      | Delhi
+            3 |           2 | Cheez-lt        | Foodies         | London
+            3 |           3 | BN Biscuit      | Foodies         | London
+            5 |           4 | Mighty Munch    | Jack Hill Ltd   | London
+            4 |           5 | Pot Rice        | sip-n-Bite      | New York
+ (5 filas)
+
+LEFT|RIGHT|FULL OUTER JOIN
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Aquí vamos a utilizar el ejemplo de la **lectura 7** de la tabla **Empleados** y 
+**Departamentos**, puesto que aquí podemos utilizar la cláusula **WHERE**.
+
+LEFT JOIN
+=========
+
+La sentencia **LEFT JOIN** combina los valores de la primera tabla con los valores 
+de la segunda tabla. Siempre devolverá las filas de la primera tabla, incluso aunque 
+no cumplan la condición que se definió.
+
+.. code-block:: sql
+
+ SELECT * FROM tabla_1 LEFT JOIN tabla_2 WHERE tabla_1.columna = tabla_2.columna
+
+La siguiente consulta muestra un ejemplo de **LEFT JOIN** y la tabla que se retorna, 
+al utilizar la cláusula **WHERE** con las condiciones del año de ingreso a la empresa 
+de los empleados sea mayor o igual al 2005 y el departamento al que pertenezcan sea el de 
+Informatica.
+
+
+
+  
+ 
+ 
