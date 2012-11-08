@@ -22,6 +22,11 @@ Esta es la estructura que se ocupa para este tipo de JOIN.
 
  SELECT * FROM tabla_1 INNER JOIN tabla_2 ON condicion
 
+Aquí se muestra un diagrama de como funciona esta consulta.
+
+.. image:: ../../../sql-course/src/inner.png                                         
+   :align: center
+
 A continuación se mostrara un ejemplo de una tabla **Personas** y una de **Ordenes**
 de compras que realizaron.
 
@@ -171,27 +176,135 @@ que es la columna que se repite en las dos tablas.
 LEFT|RIGHT|FULL OUTER JOIN
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Aquí vamos a utilizar el ejemplo de la **lectura 7** de la tabla **Empleados** y 
-**Departamentos**, puesto que aquí podemos utilizar la cláusula **WHERE**.
+Se creará el siguiente ejemplo para realizar estas tres consultas.
 
-LEFT JOIN
-=========
-
-La sentencia **LEFT JOIN** combina los valores de la primera tabla con los valores 
-de la segunda tabla. Siempre devolverá las filas de la primera tabla, incluso aunque 
-no cumplan la condición que se definió.
+*Crearemos* las tablas **tabla_A** y **tabla_B**.
 
 .. code-block:: sql
 
- SELECT * FROM tabla_1 LEFT JOIN tabla_2 WHERE tabla_1.columna = tabla_2.columna
+ postgres=# CREATE TABLE tabla_A(id serial, nombre VARCHAR(30), PRIMARY KEY(id));
+ postgres=# CREATE TABLE tabla_B(id serial, nombre VARCHAR(30), PRIMARY KEY(id));
 
-La siguiente consulta muestra un ejemplo de **LEFT JOIN** y la tabla que se retorna, 
-al utilizar la cláusula **WHERE** con las condiciones del año de ingreso a la empresa 
-de los empleados sea mayor o igual al 2005 y el departamento al que pertenezcan sea el de 
-Informatica.
+*Ingresamos* datos a las tablas.
 
+.. code-block:: sql
 
+ postgres=# INSERT INTO tabla_A(nombre) VALUES('Pirate');
+ INSERT 0 1
+ postgres=# INSERT INTO tabla_A(nombre) VALUES('Monkey');
+ INSERT 0 1
+ postgres=# INSERT INTO tabla_A(nombre) VALUES('Ninja');
+ INSERT 0 1
+ postgres=# INSERT INTO tabla_A(nombre) VALUES('Spaghetti');
+ INSERT 0 1
+ postgres=# INSERT INTO tabla_B(nombre) VALUES('Rutabaga');
+ INSERT 0 1
+ postgres=# INSERT INTO tabla_B(nombre) VALUES('Pirate');
+ INSERT 0 1
+ postgres=# INSERT INTO tabla_B(nombre) VALUES('Darth Vader');
+ INSERT 0 1
+ postgres=# INSERT INTO tabla_B(nombre) VALUES('Ninja');
+ INSERT 0 1
 
-  
+LEFT OUTER JOIN
+===============
+
+La sentencia **LEFT OUTER JOIN** ó **LEFT JOIN** combina los valores de la primera tabla con los valores 
+de la segunda tabla que cumplan con la condición. Si no existe ninguna coincidencia, 
+el lado derecho contendrá null (o vacío).
+
+.. code-block:: sql
+
+ SELECT * FROM tabla_1 LEFT OUTER JOIN tabla_2 ON tabla_1.columna = tabla_2.columna
+
+.. image:: ../../../sql-course/src/left.png                                         
+   :align: center
+
+Ahora realizamos la consulta con el ejemplo que definimos al comienzo.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM tabla_A LEFT OUTER JOIN tabla_B ON tabla_A.nombre=tabla_B.nombre;
+  id |  nombre   | id | nombre 
+ ----+-----------+----+--------
+   1 | Pirate    |  2 | Pirate
+   2 | Monkey    |    | 
+   3 | Ninja     |  4 | Ninja
+   4 | Spaghetti |    | 
+ (4 rows)
+
+.. note::
+
+ Podemos observar que retorna todos los atributos de la **tabla_A** (izquierda) y de la
+ **tabla_B**, solo retorna los atributos que cumplen con la condición que establecimos.
+
+RIGHT OUTER JOIN
+================
  
+La sentencia **RIGHT OUTER JOIN** ó **RIGHT JOIN** combina los valores de la primera tabla con los 
+valores de la segunda tabla. Siempre devolverá las filas de la segunda tabla, incluso 
+aunque no cumplan la condición.
+
+.. code-block:: sql
+
+ SELECT * FROM tabla_1 RIGHT OUTER JOIN tabla_2 ON tabla_1.columna = tabla_2.columna 
+ 
+A continuación se muestra un diagrama de la consulta.
+
+.. image:: ../../../sql-course/src/right.png                                         
+   :align: center
+
+Ahora realizamos la siguiente consulta.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM tabla_A RIGHT OUTER JOIN tabla_B ON tabla_A.nombre=tabla_B.nombre;
+  id | nombre | id |   nombre    
+ ----+--------+----+-------------
+     |        |  1 | Rutabaga
+   1 | Pirate |  2 | Pirate
+     |        |  3 | Darth Vader
+   3 | Ninja  |  4 | Ninja
+ (4 rows)
+
+.. note::
+
+ Se observa que el retorno de la consulta son todos los atributos de **tabla_B** (derecha) 
+ y solo los atributos que cumplen con la condición que definimos de **tabla_A**.
+
+FULL OUTER JOIN
+===============
+
+La sentencia **FULL OUTER JOIN** ó **FULL JOIN** combina los valores de la primera tabla con los 
+valores de la segunda tabla. Siempre devolverá las filas de las dos tablas, aunque 
+no cumplan la condición.
+
+.. code-block:: sql
+
+ SELECT * FROM tabla_1 FULL OUTER JOIN tabla_2 ON tabla_1.columna = tabla_2.columna
+
+A continuación se muestra el diagrama de la consulta.
+
+.. image:: ../../../sql-course/src/full.png                                         
+   :align: center
+
+Ahora se realizará el ejemplo de la consulta.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM tabla_A FULL OUTER JOIN tabla_B ON tabla_A.nombre=tabla_B.nombre;
+  id |  nombre   | id |   nombre    
+ ----+-----------+----+-------------
+     |           |  3 | Darth Vader
+   2 | Monkey    |    | 
+   3 | Ninja     |  4 | Ninja
+   1 | Pirate    |  2 | Pirate
+     |           |  1 | Rutabaga
+   4 | Spaghetti |    | 
+ (6 rows)
+
+.. note::
+ 
+ Se observa que se retornan todos los atributos de **tabla_A** y **tabla_B**, aunque no
+ cumpla con la condición.
  
