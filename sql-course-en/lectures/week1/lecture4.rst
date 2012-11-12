@@ -6,31 +6,33 @@ Set operations:
 
 .. index:: Set operations
 
-UNION
+Union
 *****
 
-In math, algebra of sets is called to the basic operations that can be performed on sets, 
-such as union, intersection, etc. A set is a collection of objects considered as an object
-in itself. The **UNION** of two sets `A` and `B` is the set that contains all the elements 
-of `A` and `B`. The symbol `\cup` is used to represent **UNION**.The operator **UNION** is 
-commutative, that is `A \cup B = B \cup A`. Remember that an operation is commutative when
-the result of the operation is the same, whatever the order of the elements with which it operates.
+In math, **algebra of sets** is called to the basic operations that can be performed on sets, 
+such as union, intersection, etc. A **set** is a collection of objects considered as an object
+in itself. The ``Union`` of two sets `\text{A}` and `\text{B}` is the set that contains all the elements 
+of `\text{A}` and `\text{B}`. The symbol `\cup` is used to represent ``Union``.
+
+The operator ``Union`` is **commutative**, that is `\text{A} \cup \text{B} = \text{B} \cup \text{A}`. 
+Remember that an operation is commutative when the result of the operation is the same, 
+whatever the order of the elements with which it operates.
  
 .. image:: ../../../sql-course/src/union.png
    :align: center
 
-In an analogous manner joining two relations `R` and `S`, is another relation that contains 
-tuples that are in `R` or `S`, or both, eliminating duplicated tuples. `R` and `S` must be 
-**union-compatible**, that is, defined on the same set of attribute (`R` and `S` must have 
+In an analogous manner joining two relations `\text{R}` and `\text{S}`, is another relation that contains 
+tuples that are in `\text{R}` or `\text{S}`, or both, eliminating duplicated tuples. `\text{R}` and `\text{S}` must be 
+**union-compatible**, that is, defined on the same set of attribute (`\text{R}` and `\text{S}` must have 
 identical schemas. Should have the same columns and their order must be the same).
  
 **Notation in relational algebra**
 
 .. math::
 
-    R \cup S \\
+     \text{R} \cup  \text{S} \\
 
-If you perform `R \cup S` is the same as `S \cup R` , that is the same result is obtained.
+If you perform `\text{R} \cup \text{S}` is the same as `\text{S} \cup \text{R}` , that is the same result is obtained.
 This is due to the property of commutativity derived from the algebra of sets. 
 
 
@@ -68,7 +70,7 @@ Given the following relations:
         \hline
       \end{array}
 
-Apply the operator **UNION**:
+Apply the operator ``Union``:
 
 .. math::
 
@@ -92,44 +94,44 @@ Apply the operator **UNION**:
 
 
 As it was mentioned before, performing the `\textbf{Chiefs} \cup \textbf{Engineers}`
-operation would have as a result the same table above, debido a la propiage de conmutatividad.
+operation would have as a result the same table above.
 
-DIFFERENCE
+Difference
 **********
 
-Returning to the analogy of algebra of sets, the difference between two sets `A` and `B`
-is the set that contains all the elements of `A` that do not belong to `B`. 
+Returning to the analogy of algebra of sets, the difference between two sets `\text{A}` and `\text{B}`
+is the set that contains all the elements of `\text{A}` that do not belong to `\text{B}`. 
 
-.. math:: A-B
+.. math::  \text{A} - \text{B}
 
 .. image:: ../../../sql-course/src/a-b.png
    :align: center
 
 .. math::
-	B-A
+	 \text{B} - \text{A}
 
 .. image:: ../../../sql-course/src/b-a.png
    :align: center
 
-As it is shown in the images, the operation **DIFFERENCE**, in sets, is not commutative, 
+As it is shown in the images, the operation ``difference``, in sets, is not commutative, 
 just as in subtraction, operator already learned in basic arithmetic. That is, if you
-change the order of sets to which **DIFFERENCE** operation is applied, you will get 
+change the order of sets to which ``difference`` operation is applied, you will get 
 different results. Therefore:
 
 .. math::
     \text{A} - \text{B} \neq  \text{B} - \text{A}    
 
-In the same way, the difference of two relations `R` and `S` is other relation 
-that contains the tuples that are in the relation `R` but not in `S`. `R` and `S` 
+In the same way, the difference of two relations `\text{R}` and `\text{S}` is other relation 
+that contains the tuples that are in the relation `\text{R}` but not in `\text{S}`. `\text{R}` and `\text{S}` 
 must be **union-compatible** (they must have identical schemes).
 
 **Notation in relational algebra**
 
 .. math::
 
-    R - S
+     \text{R} - \text{S}
 
-It is important to highlight that  `R - S` is different from `S - R`.
+It is important to highlight that  `\text{R} - \text{S}` is different from `\text{S} - \text{R}`.
 
 
 Example 
@@ -167,36 +169,36 @@ and `\textbf{Chiefs - Engineers}`:
 As can be seen, both operations gave as a result different relations, as it was 
 mentioned above.
 
-INTERSECTION
+Intersection
 ************
 
-In algebra of sets the **INTERSECTION** of two sets `A` and `B` is the set that contains 
-all the common elements of `A` and `B`. The symbol `\cap` represent the **INTERSECTION** 
-of two sets. As operator **UNION, INTERSECTION** is commutative, so is fulfilled that
-`A \cap B = B \cap A` .
+In algebra of sets the ``Intersection`` of two sets `\text{A}` and `\text{B}` is the set that contains 
+all the common elements of `\text{A}` and `\text{B}`. The symbol `\cap` represent the ``Intersection`` 
+of two sets. As operator ``Union``, ``Intersection`` is commutative, so is fulfilled that
+`\text{A} \cap  \text{B} =  \text{B} \cap  \text{A}` .
 
 .. math::
-    A \cap B
+     \text{A} \cap  \text{B}
 
 .. image:: ../../../sql-course/src/inter.png
    :align: center
 
-In a homologous way, in relational algebra **INTERSECTION** is defined as a relation that 
-contains tuples that are in both relation `R` and `S`. `R` and `S` must be **union-compatible**.
+In a homologous way, in relational algebra ``Intersection`` is defined as a relation that 
+contains tuples that are in both relation `\text{R}` and `\text{S}`. `\text{R}` and `\text{S}` must be **union-compatible**.
 (same attributes and same order).
 
 **Notation in relational algebra**
 
 .. math::
-    R \cap S
+     \text{R} \cap  \text{S}
 
-If it is perform `R \cap S` is the same as `S \cap R`, which means that obtains the same result, 
-so it can be said that **INTERSECTION** is commutative.
+If it is perform `\text{R} \cap \text{S}` is the same as `\text{S} \cap \text{R}`, which means that obtains the same result, 
+so it can be said that ``Intersection`` is commutative.
 
 **Equivalence with previous operators**
 
 .. math::
-    R \cap S= R-(R-S)
+    \text{R} \cap \text{S} = \text{R} - (\text{R} - \text{S})
 
 Example 
 ^^^^^^^^
@@ -217,78 +219,78 @@ table with the one of `\textbf{Chiefs}`:
 
 .. important::
 
-   When we apply these operations to relations, we need to put some conditions on `R` and `S`:
+   When we apply these operations to relations, we need to put some conditions on `\text{R}` and `\text{S}`:
 
-	* `R` and `S` must have schemas with identical sets of attributes, and the types (domains) for each attribute must be the same in `R` and `S`.
-	* Before compute the set-theoretic union, intersection, or difference of sets of tuples, the columns of `R` and `S` must be ordered so that the order of attributes is the same for both relations.
+	* `\text{R}` and `\text{S}` must have schemas with identical sets of attributes, and the types (domains) 
+          for each attribute must be the same in `\text{R}` and `\text{S}`.
+	* Before compute the set-theoretic union, intersection, or difference of sets of tuples, 
+          the columns of `\text{R}` and `\text{S}` must be ordered so that the order of attributes is the same for both relations.
 
 
-DEPENDENT AND INDEPENDENT OPERATIONS
+Dependent and independent operations
 ************************************
 
 Some of the operations that we have described in the lectures 3 and 4, can be expressed in
 terms of other relational-algebra operations. For example, intersection can be expressed in terms
-of set difference: ``R <INTERSECTION> S = R - (R - S)``. That is, if `R` and `S` are any two relations with the
-same schema, the intersection of `R` and `S` can be computed by first subtracting `S` from `R` to form a
-relation `T` consisting of all those tuples in `R` but not `S`. We then subtract `T` from `R`, 
-leaving only those tuples of `R` that are also in `S`.
+of set difference: `\text{R} \cap \text{S} = \text{R} - (\text{R} - \text{S})`. That is, if `\text{R}` and `\text{S}` are any two relations with the
+same schema, the intersection of `\text{R}` and `\text{S}` can be computed by first subtracting `\text{S}` from `\text{R}` to form a
+relation `T` consisting of all those tuples in `\text{R}` but not `\text{S}`. We then subtract `T` from `\text{R}`, 
+leaving only those tuples of `\text{R}` that are also in `\text{S}`.
 
 
-RELATIONAL ALGEBRA AS A CONSTRAINT LANGUAGE
+Relational algebra as a constraint language
 *******************************************
 
 There are two ways in which we can use expressions of relational algebra to express constraints:
 
-   1. If `R` is an expression of relational algebra, then `R = 0` is a constraint that says
-      "The value of R must be empty," or equivalently "There are no tuples in the result of `R`."
-   2. If `R` and `S` are expressions of relational algebra, then `R \subset S` is a constraint
+   1. If `\text{R}` is an expression of relational algebra, then `\text{R} = 0` is a constraint that says
+      "The value of R must be empty," or equivalently "There are no tuples in the result of `\text{R}`."
+   2. If `\text{R}` and `\text{S}` are expressions of relational algebra, then `\text{R} \subset \text{S}` is a constraint
       that says "Every tuple in the result of R must also be in the result of S."
-      Of course the result of `S` may contain additional tuples not produced by `R`.
+      Of course the result of `\text{S}` may contain additional tuples not produced by `\text{R}`.
 
 These ways of expressing constraints are actually equivalent in what they can express,
 but sometimes one or the other is clearer or more succinct.
-That is, the constraint `R \subset S` could just as well have been written `R - S = 0`.
-To see why, notice that if every tuple in `R` is also in `S`, then surely `R - S` is empty.
-Conversely, if `R - S` contains no tuples, then every tuple in `R` must be in `S`
-(or else it would be in `R - S`).
+That is, the constraint `\text{R} \subset \text{S}` could just as well have been written `\text{R} - S = 0`.
+To see why, notice that if every tuple in `\text{R}` is also in `\text{S}`, then surely `\text{R} - \text{S}` is empty.
+Conversely, if `\text{R} - \text{S}` contains no tuples, then every tuple in `\text{R}` must be in `\text{S}`
+(or else it would be in `\text{R} - \text{S}`).
 
-On the other hand, a constraint of the first form, `R = 0`, could just as well have been written
-`R \subset 0`.
+On the other hand, a constraint of the first form, `\text{R} = 0`, could just as well have been written
+`\text{R} \subset 0`.
 Technically, `0` is not an expression of relational algebra, but since there are expressions
-that evaluate to `0`, such as `R - R`, there is no harm in using `0` as a relational-algebra
+that evaluate to `0`, such as `\text{R} - \text{R}`, there is no harm in using `0` as a relational-algebra
 expression.
-Note that these equivalences hold even if `R` and `S` are bags, provided we make the conventional
-interpretation of `R \subset S`: each tuple **t** appears in `S` at least as many times as it
-appears in `R`.
+Note that these equivalences hold even if `\text{R}` and `\text{S}` are bags, provided we make the conventional
+interpretation of `\text{R} \subset \text{S}`: each tuple **t** appears in `\text{S}` at least as many times as it
+appears in `\text{R}`.
 
 
-EXERCISES 
+Exercises 
 **********
 
 Exercise 1
 ^^^^^^^^^^^^
 The base relations that form the databases of a video club are the following:
 
-* Member(**codmember**,name,address,phone)
+* `\text{Member}(\underline{\text{codmember}}, \text{name},\text{address},\text{phone})` : 
+  stores the data of each of the members of the video club: member code, name, address, and phone.
 
-* Film(**codfilm**,title,genre)
+* `\text{Film}(\underline{\text{codfilm}}, \text{title},\text{genre})` : stores information 
+  about each of the films from which have copies the video club: code of the movie, title, 
+  and genre (horror, comedy, etc.).
 
-* Tape(**codtape**,codfilm)
+* `\text{Tape}(\underline{\text{codtape}}, \text{codfilm})` : stores information referring 
+  to the existing copies of each film (different copies of the same film will have a different tape code).
 
-* Loan(**codmember,codtape,date**,pres_dev)
+* `\text{Loan}(\underline{\text{codmember,codtape,date}}, \text{pres_dev})` : stores 
+  information of the loans that have been made. Each loan is from a tape to a member in a date. 
+  If the loan has not yet finalized, pres_dev has the value “borrowed”; otherwise its value is “returned”.
 
-* WaitingList(**codmember,codfilm**,date)
-
-
-Member: stores the data of each of the members of the video club: member code, name, address, and phone.
-
-Film: stores information about each of the films from which have copies the video club: code of the movie, title, and genre (horror, comedy, etc.).
-
-Tape: stores information referring to the existing copies of each film (different copies of the same film will have a different tape code).
-
-Loan: stores information of the loans that have been made. Each loan is from a tape to a member in a date. If the loan has not yet finalized, pres_dev has the value “borrowed”; otherwise its value is “returned”.
-
-WaitingList: stores information about the members who wait available copies of films for borrowing them. It also saves the date in which they began the wait for maintaining the order. It is important to take into account that when a member gets the desired film, it disappears from the waiting list.
+* `\text{WaitingList}(\underline{\text{codmember,codfilm}}, \text{date})` : stores information 
+  about the members who wait available copies of films for borrowing them. It also saves the date
+  in which they began the wait for maintaining the order. It is important to take into account
+  that when a member gets the desired film, it disappears from the waiting list.
 
 In previous relations, primary keys are the attributes and groups of attributes in bold. Foreign keys are shown in the following referential diagrams:
 

@@ -11,30 +11,30 @@ Unión
 
 En matemáticas, se denomina **álgebra de conjuntos** a las operaciones básicas que pueden
 realizarse con conjuntos, como la unión, intersección, etc. Un **conjunto** es una colección
-de objetos considerada como un objeto en sí. La ``Unión`` de dos conjuntos `A` y `B` es el
-conjunto que contiene todos los elementos de `A` y de `B`.
+de objetos considerada como un objeto en sí. La ``Unión`` de dos conjuntos `\text{A}` y `\text{B}` es el
+conjunto que contiene todos los elementos de `\text{A}` y de `\text{B}`.
 El símbolo `\cup` es el utilizado para representar ``Unión``.
 
-El operador ``Unión`` es **conmutativo** es decir  `A \cup B = B \cup A`. Cabe recordar que una
+El operador ``Unión`` es **conmutativo** es decir  `\text{A} \cup \text{B} = \text{B} \cup \text{A}`. Cabe recordar que una
 operación es **conmutativa** cuando el resultado de la operación es el mismo, cualquiera que sea
 el orden de los elementos con los que se opera.
 
 .. image:: ../../../sql-course/src/union.png
    :align: center
 
-De manera análoga, la ``Unión`` de dos relaciones `R` y `S`, es otra relación que contiene
-las tuplas que están en `R`, o en `S`, o en ambas, eliminándose las tuplas duplicadas.
-`R` y `S` deben ser **unión-compatible**, es decir, definidas sobre el mismo conjunto de
-atributo (`R` y `S` deben tener **esquemas idénticos**. Deben poseer las mismas columnas
+De manera análoga, la ``Unión`` de dos relaciones `\text{R}` y `\text{S}`, es otra relación que contiene
+las tuplas que están en `\text{R}`, o en `\text{S}`, o en ambas, eliminándose las tuplas duplicadas.
+`\text{R}` y `\text{S}` deben ser **unión-compatible**, es decir, definidas sobre el mismo conjunto de
+atributo (`\text{R}` y `\text{S}` deben tener **esquemas idénticos**. Deben poseer las mismas columnas
 y su orden debe ser el mismo).
 
 **Notación en álgebra relacional**
 
 .. math::
 
-    R \cup S \\
+    \text{R} \cup \text{S} \\
 
-Si se realiza `R \cup S` es lo mismo que  `S \cup R` , es decir se obtiene el mismo
+Si se realiza `\text{R} \cup \text{S}` es lo mismo que  `\text{S} \cup \text{R}` , es decir se obtiene el mismo
 resultado. Esto debido a la propiedad de conmutatividad derivada de la álgebra de conjuntos.
 
 
@@ -101,7 +101,7 @@ Diferencia
 ***********
 
 Volviendo a la analogía de álgebra de conjuntos, la diferencia entre dos conjuntos
-`A` y `B` es el conjunto que contiene todos los elementos de `A` que no pertenecen a `B`.
+`\text{A}` y `\text{B}` es el conjunto que contiene todos los elementos de `\text{A}` que no pertenecen a `\text{B}`.
 
 .. math:: A-B
 
@@ -123,9 +123,9 @@ operación ``Diferencia``, se obtendrán resultados distintos. Por lo tanto:
     \text{A} - \text{B} \neq  \text{B} - \text{A}
 
 
-De la misma forma la diferencia de dos relaciones `R` y `S`, es otra relación
-que contiene las tuplas que están en la relación `R`, pero no están en `S`.
-`R` y `S` deben ser **unión-compatible** (deben tener esquemas idénticos).
+De la misma forma la diferencia de dos relaciones `\text{R}` y `\text{S}`, es otra relación
+que contiene las tuplas que están en la relación `\text{R}`, pero no están en `\text{S}`.
+`\text{R}` y `\text{S}` deben ser **unión-compatible** (deben tener esquemas idénticos).
 
 **Notación en álgebra relacional**
 
@@ -223,8 +223,8 @@ Utilizando las mismas tablas del ejemplo anterior, encontrar la ``Intersección`
 
    Para aplicar estas operaciones a relaciones, necesitamos que `\text{R}` y `\text{S}` sean **unión-compatible**:
 
-      * `R` y `S` deben tener esquemas con conjuntos de atributos idénticos, y de tipos (dominios) para cada atributo deben ser las mismas en `R` y `S`.
-      * Antes de computar el conjunto-teórico unión, intersección, o diferencia de conjuntos de tuplas, las columnas de `R` y `S` deben ser ordenadas para que el orden de los atributos sean los mismos para ambas relaciones.
+      * `\text{R}` y `\text{S}` deben tener esquemas con conjuntos de atributos idénticos, y de tipos (dominios) para cada atributo deben ser las mismas en `\text{R}` y `\text{S}`.
+      * Antes de computar el conjunto-teórico unión, intersección, o diferencia de conjuntos de tuplas, las columnas de `\text{R}` y `\text{S}` deben ser ordenadas para que el orden de los atributos sean los mismos para ambas relaciones.
 
 
 Operaciones dependientes e independientes
@@ -367,3 +367,4 @@ Escribir las expresiones de álgebra relacional para las siguientes nueve consul
  * Para cada persona, encuentre todas las pizzas que la persona come, que no son servidas por ninguna pizzería que la persona frecuenta. Devuelve toda dicha persona (nombre)/ pizza pares.
  * Encuentre los nombres de todas las personas que frecuentan solo pizzerías que sirven al menos una pizza que ellos comen.
  * Encuentre la pizzería que sirve la pizza más barata de salchichón. En el caso de empate, vuelve todas las pizzerías que venden las pizzas de salchichón más baratas.
+
