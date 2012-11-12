@@ -8,20 +8,22 @@ Lectura 12 - Funciones de Agregación
 Funciones de Agregación
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Las funciones de agregado de SQL retorna un único valor, calculado a partir de los
-valores de una columna.
+.. CMA: Quizás agregar una línea que explique, 'Qué' es una función de agregación
+Las funciones de agregación de SQL retornan un único valor,
+calculado a partir de los valores de una columna.
 
 Algunas funciones útiles de agregado son:
 
-* ``AVG ()`` - Retorna el valor promedio
-* ``COUNT ()`` - Retorna el número de filas
-* ``MAX ()`` - Retorna el mayor valor
-* ``MIN ()`` - Retorna el menor valor
-* ``SUM ()`` - Retorna la suma
+* ``AVG()``   - Retorna el valor promedio
+* ``COUNT()`` - Retorna el número de filas
+* ``MAX()``   - Retorna el mayor valor
+* ``MIN()``   - Retorna el menor valor
+* ``SUM()``   - Retorna la suma
 
-Para mostrar el funcionamiento de las funciones de agregación, se trabajará con un
-ejemplo que se creará a continuación:
+Para mostrar el funcionamiento de dichas funciones, consideraremos
+el siguiente ejemplo:
 
+.. CMA: Los atributos no tienen un formato de texto especial?
 Se *creará* una tabla de **Ordenes**, que tendrá los atributos de id, fecha de orden,
 precio de la orden y el cliente.
 
@@ -72,9 +74,9 @@ Para calcular el precio promedio de las ordenes se realiza la siguiente consulta
  En la consulta se utilizó la palabra "AS", esto es para darle un nombre a la tabla
  de retorno en este caso se llamará "precio_promedio".
 
-También podemos calcular con :sql:`SELECT` anidados el precio de las ordenes que son
-mayores al promedio calculado con valor 1081, retornando el id, fecha de orden,
-precio_ordenes y el cliente.
+También podemos calcular con :sql:`SELECT` anidados,
+el precio de las ordenes que son mayores al promedio calculado,
+retornando el id, fecha de orden, precio_ordenes y el cliente.
 
 .. code-block:: sql
 
@@ -124,8 +126,8 @@ SQL COUNT(*)
 
  SELECT COUNT(*) FROM nombre_tabla;
 
-Se realizará la consulta COUNT(*), que retornara el número de ordenes de la tabla
-**Ordenes**.
+Se realizará la consulta ``COUNT(*)``,
+que retornara el número de ordenes de la tabla **Ordenes**.
 
 .. code-block:: sql
 
@@ -145,8 +147,9 @@ especificada.
 
  SELECT COUNT(DISTINCT nombre_columna) FROM nombre_tabla;
 
-Se realizará la consulta COUNT(DISTINCT cliente), que retornará la cantidad de *clientes*
-distintos que existen en la tabla **Ordenes**, que son "Alison, Alicia y Brad".
+Se realizará la consulta ``COUNT(DISTINCT cliente)``,
+que retornará la cantidad de *clientes*
+distintos que existen en la tabla **Ordenes**, que son *Alison*, *Alicia* y *Brad*.
 
 .. code-block:: sql
 
@@ -167,8 +170,8 @@ En SQL la sintaxis utilizada es de la siguiente manera:
 
  SELECT MAX(nombre_columna) FROM nombre_tabla;
 
-Se realizará la consulta MAX(precio_ordenes) que retornará el mayor precio de las ordenes
-en la tabla **Ordenes**.
+Se realizará la consulta ``MAX(precio_ordenes)`` que retornará el mayor precio
+de las ordenes en la tabla **Ordenes**.
 
 .. code-block:: sql
 
@@ -211,7 +214,7 @@ En SQL la sintaxis utilizada es de la siguiente manera:
 
  SELECT SUM(nombre_columna) FROM nombre_tabla;
 
-Se realizará la consulta SUM(precio_ordenes) que retornará el precio total de las
+Se realizará la consulta ``SUM(precio_ordenes)`` que retornará el precio total de las
 ordenes que se encuentran en la tabla **Ordenes**.
 
 .. code-block:: sql
@@ -225,7 +228,7 @@ ordenes que se encuentran en la tabla **Ordenes**.
 SQL GROUP BY
 ~~~~~~~~~~~~
 
-La instrucción ``GROUP BY`` se utiliza en conjunción con las funciones de agregado
+La instrucción :sql:`GROUP BY` se utiliza en conjunción con las funciones de agregado
 para agrupar el conjunto de resultados de una o más columnas.
 
 .. code-block:: sql
@@ -248,7 +251,7 @@ cliente de los precios de ordenes en la tabla **Ordenes**.
 SQL HAVING
 ~~~~~~~~~~
 
-La cláusula ``HAVING`` se utiliza en SQL, puesto que la palabra clave *WHERE* no puede
+La cláusula :sql:`HAVING` se utiliza en SQL, puesto que la palabra clave *WHERE* no puede
 utilizarse con las funciones de agregado en sus condiciones.
 
 En SQL la sintaxis que se utiliza es de la siguiente manera:
