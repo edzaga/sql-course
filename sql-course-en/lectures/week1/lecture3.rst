@@ -137,7 +137,7 @@ Select tuples from the `\text{Engineers}` table that comply an age greater than 
 .. math::
      \sigma_{\text{age>30}} \hspace{0.2cm} \text{Engineers}
 
-.. image:: ../../../sql-course/src/select2.png
+.. image:: ../../../sql-course-en/src/select2.png
    :align: center
 
 In the image you can see that are selected only the rows that comply with the condition that
@@ -172,7 +172,7 @@ Select from the `\text{Engineer}` table people who are over 30 years old and car
 .. math::
     \sigma_{(\text{age} >30 \wedge  <16)}  \ \text{Engineers}
 
-.. image:: ../../../sql-course/src/select3.png
+.. image:: ../../../sql-course-en/src/select3.png
       :align: center
 
 By having the logical operator ``AND`` is required to meet two conditions simultaneously. 
@@ -274,7 +274,7 @@ Select id and name of the `\text{Engineers}` who have more than 30 years old.
 .. math::
        \pi \hspace{0.2cm} _{(\text{id,name})} (\sigma_{\text{age>30}} \hspace{0.3cm} \text{Engineers})
 
-.. image:: ../../../sql-course/src/prosel.png
+.. image:: ../../../sql-course-en/src/prosel.png
    :align: center
 
 It is appreciated that the tuples that do not meet the condition of selection are left out of the 
