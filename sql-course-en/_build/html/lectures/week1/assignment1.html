@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Assignment 1 &mdash; ALMA SQL Course</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ALMA SQL Course" href="../../index.html" />
+    <link rel="up" title="First week" href="index.html" />
+    <link rel="prev" title="Lecture 4 - Relational Algebra: Set operators, renaming, notation" href="lecture4.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lecture4.html" title="Lecture 4 - Relational Algebra: Set operators, renaming, notation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">First week</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Assignment 1</a><ul>
+<li><a class="reference internal" href="#entity-relationship-model">Entity Relationship Model</a><ul>
+<li><a class="reference internal" href="#question-1">Question 1:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#multiple-choice-questions">Multiple-choice questions</a><ul>
+<li><a class="reference internal" href="#id1">Question 1:</a></li>
+<li><a class="reference internal" href="#question-2">Question 2:</a></li>
+<li><a class="reference internal" href="#question-3">Question 3:</a></li>
+<li><a class="reference internal" href="#question-4">Question 4:</a></li>
+<li><a class="reference internal" href="#question-5">Question 5:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#query-questions">Query Questions</a><ul>
+<li><a class="reference internal" href="#questions">Questions:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture4.html"
+                        title="previous chapter">Lecture 4 - Relational Algebra: Set operators, renaming, notation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week1/assignment1.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="assignment-1">
+<h1>Assignment 1<a class="headerlink" href="#assignment-1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="entity-relationship-model">
+<h2>Entity Relationship Model<a class="headerlink" href="#entity-relationship-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="question-1">
+<h3>Question 1:<a class="headerlink" href="#question-1" title="Permalink to this headline">¶</a></h3>
+<p>Make an entity relationship model (E-R):</p>
+<blockquote>
+<div><p>1. We have a university in which there are several courses and special workshops.
+Each workshop is directed by a teacher who can direct several workshops. Special
+workshops demand many resources, so that only allows that each student enrolls to
+one workshop of this type. On the other hand, a course consists of several subjects.
+Each of them has a number of credits. Students can enroll to the subjects they want.
+Finally, the student receives a grade for each subject, at the end of the course.</p>
+<p>2. We want to make a database with discs that we have at home. A disc can have a singer
+or a group, or more. Also a disc has a record. We are going to complicate the example the
+previous example: now we must keep in mind that a disc is composed of songs. These can be
+written by the same person who sings, but often they are different people.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="multiple-choice-questions">
+<h2>Multiple-choice questions<a class="headerlink" href="#multiple-choice-questions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Question 1:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Suppose relation R(A,B,C) has the following tuples</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+ \hline
+ \textbf{A} &amp; \textbf{B} &amp; \textbf{C} \\
+ \hline
+ 1 &amp; 2 &amp; 3 \\
+ \hline
+ 4 &amp; 2 &amp; 3 \\
+ \hline
+ 4 &amp; 5 &amp; 6 \\
+ \hline
+ 2 &amp; 5 &amp; 3 \\
+ \hline
+ 1 &amp; 2 &amp; 6 \\
+ \hline
+\end{array}\end{split}\]</div>
+<p>and relation S(A,B,C) has the following tuples:</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+ \hline
+ \textbf{A} &amp; \textbf{B} &amp; \textbf{C} \\
+ \hline
+ 2 &amp; 5 &amp; 3 \\
+ \hline
+ 2 &amp; 5 &amp; 4 \\
+ \hline
+ 4 &amp; 5 &amp; 6 \\
+ \hline
+ 1 &amp; 2 &amp; 3 \\
+ \hline
+\end{array}\end{split}\]</div>
+<p>Compute the intersection of the relations R and S. Which of the following tuples is in the result?</p>
+<ol class="loweralpha simple">
+<li>(4,5,6)</li>
+<li>(1,2,6)</li>
+<li>(4,2,3)</li>
+<li>(2,4,3)</li>
+</ol>
+</div>
+<div class="section" id="question-2">
+<h3>Question 2:<a class="headerlink" href="#question-2" title="Permalink to this headline">¶</a></h3>
+<p>Suppose relation R(A,B,C) has the following tuples:</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+ \hline
+ \textbf{A} &amp; \textbf{B} &amp; \textbf{C} \\
+ \hline
+ 1 &amp; 2 &amp; 3 \\
+ \hline
+ 4 &amp; 2 &amp; 3 \\
+ \hline
+ 4 &amp; 5 &amp; 6 \\
+ \hline
+ 2 &amp; 5 &amp; 3 \\
+ \hline
+ 1 &amp; 2 &amp; 6 \\
+ \hline
+\end{array}\end{split}\]</div>
+<p>and relation S(A,B,C) has the following tuples:</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+ \hline
+ \textbf{A} &amp; \textbf{B} &amp; \textbf{C} \\
+ \hline
+ 2 &amp; 5 &amp; 3 \\
+ \hline
+ 2 &amp; 5 &amp; 4 \\
+ \hline
+ 4 &amp; 5 &amp; 6 \\
+ \hline
+ 1 &amp; 2 &amp; 3 \\
+ \hline
+\end{array}\end{split}\]</div>
+<p>Compute (R - S) union (S - R) often called the &#8220;symmetric difference&#8221; of R and S.
+Which of the following tuples is in the result?</p>
+<ol class="loweralpha simple">
+<li>(2,2,3)</li>
+<li>(4,2,3)</li>
+<li>(4,5,6)</li>
+<li>(4,5,3)</li>
+</ol>
+</div>
+<div class="section" id="question-3">
+<h3>Question 3:<a class="headerlink" href="#question-3" title="Permalink to this headline">¶</a></h3>
+<p>Suppose relation R(A,B,C) has the following tuples:</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+ \hline
+ \textbf{A} &amp; \textbf{B} &amp; \textbf{C} \\
+ \hline
+ 1 &amp; 2 &amp; 3 \\
+ \hline
+ 4 &amp; 2 &amp; 3 \\
+ \hline
+ 4 &amp; 5 &amp; 6 \\
+ \hline
+ 2 &amp; 5 &amp; 3 \\
+ \hline
+ 1 &amp; 2 &amp; 6 \\
+ \hline
+\end{array}\end{split}\]</div>
+<p>and relation S(A,B,C) has de following tuples:</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+ \hline
+ \textbf{A} &amp; \textbf{B} &amp; \textbf{C} \\
+ \hline
+ 2 &amp; 5 &amp; 3 \\
+ \hline
+ 2 &amp; 5 &amp; 4 \\
+ \hline
+ 4 &amp; 5 &amp; 6 \\
+ \hline
+ 1 &amp; 2 &amp; 3 \\
+ \hline
+\end{array}\end{split}\]</div>
+<p>Compute the union of R and S. Which of the following tuples DOES NOT appear in the result?</p>
+<ol class="loweralpha simple">
+<li>(2,5,3)</li>
+<li>(2,5,4)</li>
+<li>(4,5,6)</li>
+<li>(1,5,4)</li>
+</ol>
+</div>
+<div class="section" id="question-4">
+<h3>Question 4:<a class="headerlink" href="#question-4" title="Permalink to this headline">¶</a></h3>
+<p>Suppose relation R(A,B) has the following tuples:</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|}
+ \hline
+ \textbf{A} &amp; \textbf{B} \\
+ \hline
+ 1 &amp; 2 \\
+ \hline
+ 3 &amp; 4 \\
+ \hline
+ 5 &amp; 6 \\
+ \hline
+\end{array}\end{split}\]</div>
+<p>and relation S(B,C,D) has de following tuples:</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+ \hline
+ \textbf{B} &amp; \textbf{C} &amp; \textbf{D} \\
+ \hline
+ 2 &amp; 4 &amp; 6 \\
+ \hline
+ 4 &amp; 6 &amp; 8 \\
+ \hline
+ 4 &amp; 7 &amp; 9 \\
+ \hline
+\end{array}\end{split}\]</div>
+<p>Compute the natural-join of R and S. Which of the following tuples is in the result?
+Assume each tuple has schema (A,B,C,D).</p>
+<ol class="loweralpha simple">
+<li>(5,6,4,6)</li>
+<li>(1,4,6,8)</li>
+<li>(5,6,7,9)</li>
+<li>(3,4,7,9)</li>
+</ol>
+</div>
+<div class="section" id="question-5">
+<h3>Question 5:<a class="headerlink" href="#question-5" title="Permalink to this headline">¶</a></h3>
+<p>Suppose relation R(A,B,C) has the following tuples:</p>
+<div class="math">
+\[\begin{split}\begin{array}{|c|c|c|}
+ \hline
+ \textbf{A} &amp; \textbf{B} &amp; \textbf{C} \\
+ \hline
+ 1 &amp; 2 &amp; 3 \\
+ \hline
+ 4 &amp; 2 &amp; 3 \\
+ \hline
+ 4 &amp; 5 &amp; 6 \\
+ \hline
+ 2 &amp; 5 &amp; 3 \\
+ \hline
+ 1 &amp; 2 &amp; 6 \\
+ \hline
+\end{array}\end{split}\]</div>
+<p>Compute the projection</p>
+<div class="math">
+\[\pi_{C,B} (R)\]</div>
+<p>Which of the following tuples is in the result?</p>
+<ol class="loweralpha simple">
+<li>(6,2)</li>
+<li>(2,5)</li>
+<li>(4,2,3)</li>
+<li>(1,2)</li>
+</ol>
+</div>
+</div>
+<div class="section" id="query-questions">
+<h2>Query Questions<a class="headerlink" href="#query-questions" title="Permalink to this headline">¶</a></h2>
+<p>Next, it will be carried out a series of query questions on the databases formed by
+the SUPPLIERS, Components, SUPPLIES and SHIPPING tables. In each database is stored
+the following information:</p>
+<div class="math">
+\[\textbf{Suppliers}\]\[\begin{split}\begin{array}{|c|c|c|c|}
+ \hline
+ \textbf{P#} &amp; \textbf{pname} &amp; \textbf{category} &amp; \textbf{city} \\
+ \hline
+ \text{P1} &amp; \text{Sergio} &amp; 20 &amp; \text{Valparaíso} \\
+ \hline
+ \text{P2} &amp; \text{Pedro} &amp; 10 &amp; \text{Iquique} \\
+ \hline
+ \text{P3} &amp; \text{Cristian} &amp; 30 &amp; \text{Valparaíso} \\
+ \hline
+ \text{P4} &amp; \text{Javiera} &amp; 20 &amp; \text{Valparaíso} \\
+ \hline
+ \text{P5} &amp; \text{Andrea} &amp; 30 &amp; \text{Santiago} \\
+ \hline
+\end{array}\end{split}\]\[\textbf{Components}\]\[\begin{split}\begin{array}{|c|c|c|c|c|}
+ \hline
+ \textbf{C#} &amp; \textbf{cname} &amp; \textbf{color} &amp; \textbf{weight} &amp; \textbf{city} \\
+ \hline
+ \text{C1} &amp; \text{X3A} &amp; \text{Rojo} &amp; 12 &amp; \text{Valparaíso} \\
+ \hline
+ \text{C2} &amp; \text{B85} &amp; \text{Verde} &amp; 17 &amp; \text{Iquique} \\
+ \hline
+ \text{C3} &amp; \text{C4B} &amp; \text{Azul} &amp; 17 &amp; \text{Rancagua} \\
+ \hline
+ \text{C4} &amp; \text{C4B} &amp; \text{Rojo} &amp; 14 &amp; \text{Valparaíso} \\
+ \hline
+ \text{C5} &amp; \text{VT8} &amp; \text{Azul} &amp; 12 &amp; \text{Iquique} \\
+ \hline
+ \text{C6} &amp; \text{C30} &amp; \text{Rojo} &amp; 19 &amp; \text{Valparaíso} \\
+ \hline
+\end{array}\end{split}\]\[\textbf{Supplies}\]\[\begin{split}\begin{array}{|c|c|c|}
+ \hline
+ \textbf{T#} &amp; \textbf{tname} &amp; \textbf{city} \\
+ \hline
+ \text{T1} &amp; \text{Clasifficator} &amp; \text{Iquique} \\
+ \hline
+ \text{T2} &amp; \text{Drill} &amp; \text{Rancagua} \\
+ \hline
+ \text{T3} &amp; \text{Reader} &amp; \text{Santiago} \\
+ \hline
+ \text{T4} &amp; \text{Console} &amp; \text{Santiago} \\
+ \hline
+ \text{T5} &amp; \text{Mixer} &amp; \text{Valparaíso} \\
+ \hline
+ \text{T6} &amp; \text{Terminal} &amp; \text{Arica} \\
+ \hline
+ \text{T7} &amp;  \text{Tape} &amp; \text{Valparaíso} \\
+ \hline
+\end{array}\end{split}\]\[\textbf{Shipping}\]\[\begin{split} \begin{array}{|c|c|c|c|}
+  \hline
+  \textbf{P#} &amp; \textbf{C#} &amp; \textbf{T#} &amp; \textbf{quantity} \\
+  \hline
+  P1 &amp; C1 &amp; T1 &amp; 200 \\
+  \hline
+  P1 &amp; C1 &amp; T4 &amp; 700 \\
+  \hline
+  P2 &amp; C3 &amp; T1 &amp; 400 \\
+  \hline
+  P2 &amp; C3 &amp; T2 &amp; 200 \\
+  \hline
+  P2 &amp; C3 &amp; T3 &amp; 200 \\
+  \hline
+  P2 &amp; C3 &amp; T4 &amp; 500 \\
+  \hline
+  P2 &amp; C3 &amp; T5 &amp; 600 \\
+  \hline
+  P2 &amp; C3 &amp; T6 &amp; 400 \\
+  \hline
+  P2 &amp; C3 &amp; T7 &amp; 800 \\
+  \hline
+  P2 &amp; C5 &amp; T2 &amp; 100 \\
+  \hline
+  P3 &amp; C3 &amp; T1 &amp; 200 \\
+  \hline
+  P3 &amp; C4 &amp; T2 &amp; 500 \\
+  \hline
+  P4 &amp; C6 &amp; T3 &amp; 300 \\
+  \hline
+  P4 &amp; C6 &amp; T7 &amp; 300 \\
+  \hline
+  P5 &amp; C2 &amp; T2 &amp; 200 \\
+  \hline
+  P5 &amp; C2 &amp; T4 &amp; 100 \\
+  \hline
+  P5 &amp; C5 &amp; T4 &amp; 500 \\
+  \hline
+  P5 &amp; C5 &amp; T7 &amp; 100 \\
+  \hline
+  P5 &amp; C6 &amp; T2 &amp; 200 \\
+  \hline
+  P5 &amp; C1 &amp; T4 &amp; 100 \\
+  \hline
+  P5 &amp; C3 &amp; T4 &amp; 200 \\
+  \hline
+  P5 &amp; C4 &amp; T4 &amp; 800 \\
+  \hline
+  P5 &amp; C5 &amp; T5 &amp; 400 \\
+  \hline
+  P5 &amp; C6 &amp; T4 &amp; 500 \\
+  \hline
+\end{array}\end{split}\]</div>
+<p><strong>Suppliers:</strong> data from the suppliers of components for the manufacture of supplies and their city of residence.</p>
+<p><strong>Components:</strong> information of the pieces used in the manufacture of different supplies, indicating the place of manufacture of the component.</p>
+<p><strong>Supplies:</strong> supplies that are manufacture and place of assembly.</p>
+<p><strong>Shipping:</strong> supplies made by different providers of specific quantities of assigned components for the elaboration of the corresponding article.</p>
+<div class="section" id="questions">
+<h3>Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Select all the details of the supplies that are assembled in the city Santiago.</li>
+<li>Get all the values of P# for the suppliers that supply the item T1.</li>
+<li>Get the lists of the pair of attributes (color, city) of the components table removing the duplicated pairs.</li>
+<li>Select the values of P# for the suppliers who provide for the item T1, the component C1.</li>
+<li>Get the values of P# for the suppliers who provide the items T1 and T2.</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lecture4.html" title="Lecture 4 - Relational Algebra: Set operators, renaming, notation"
+             >previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" >First week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

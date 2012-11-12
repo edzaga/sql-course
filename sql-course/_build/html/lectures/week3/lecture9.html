@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 9 - Subqueries in WHERE clause &mdash; Curso ALMA SQL</title>
+    
+    <link rel="stylesheet" href="../../_static/sqlcourse.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Curso ALMA SQL" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 9 - Subqueries in WHERE clause</a><ul>
+<li><a class="reference internal" href="#select-from-where-select">SELECT-FROM-WHERE(SELECT)</a><ul>
+<li><a class="reference internal" href="#ejemplo-1">Ejemplo 1</a></li>
+<li><a class="reference internal" href="#ejemplo-2">Ejemplo 2</a><ul>
+<li><a class="reference internal" href="#in-and-not-in">IN AND NOT IN</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ejemplo-3">Ejemplo 3</a><ul>
+<li><a class="reference internal" href="#exists-and-not-exists">EXISTS AND NOT EXISTS</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ejemplo-4">Ejemplo 4</a></li>
+<li><a class="reference internal" href="#ejemplo-5">Ejemplo 5</a><ul>
+<li><a class="reference internal" href="#any">ANY</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ejemplo-6">Ejemplo 6</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week3/lecture9.txt"
+           rel="nofollow">Enseñar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un módulo, clase o nombre de función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-9-subqueries-in-where-clause">
+<h1>Lecture 9 - Subqueries in WHERE clause<a class="headerlink" href="#lecture-9-subqueries-in-where-clause" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="select-from-where-select">
+<h2>SELECT-FROM-WHERE(SELECT)<a class="headerlink" href="#select-from-where-select" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hasta ahora se han visto las consultas del tipo <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt>, <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">WHERE</span></span></tt>,
+<tt class="code sql highlight docutils literal"><span class="k"><span class="pre">FROM</span></span></tt>, y algunos de sus
+derivados, como lo son el uso de <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">JOIN</span></span></tt> y operadores lógicos <strong>AND, OR, NOT</strong>, que
+son normalmente utilizados para filtrar resultados mediante la manipulación de una
+serie de condiciones.</p>
+<p>Sin embargo existe otra manera de filtrar consultas: Las <strong>subconsultas</strong>.
+Una subconsulta es una sentencia <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt> que aparece dentro de otra sentencia
+<tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt> y que normalmente son utilizadas para filtrar una clausula LALAWHERE con el
+conjunto de resultados de la subconsulta.</p>
+<p>Una subconsulta tiene la misma sintaxis que una sentencia <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt> normal
+exceptuando que aparece encerrada entre paréntesis.</p>
+<p>Como es usual, se utilizará el ejemplo de la simple base de datos
+&#8220;Admisión a la Universidad&#8221;.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">College</span> <span class="p">(</span><span class="n">cName</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">enrollment</span><span class="p">)</span>
+<span class="n">Student</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span>   <span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span>
+<span class="n">Apply</span>   <span class="p">(</span><span class="n">sID</span><span class="p">,</span>   <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>cuyas tablas son creadas mediante:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">College</span><span class="p">(</span><span class="n">id</span>  <span class="nb">serial</span><span class="p">,</span>  <span class="n">cName</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="k">state</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">enrollment</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">id</span><span class="p">));</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Student</span><span class="p">(</span><span class="n">sID</span> <span class="nb">serial</span><span class="p">,</span>  <span class="n">sName</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">GPA</span>   <span class="nb">INTEGER</span><span class="p">,</span>     <span class="k">PRIMARY</span> <span class="k">kEY</span><span class="p">(</span><span class="n">sID</span><span class="p">));</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span>   <span class="n">Apply</span><span class="p">(</span><span class="n">sID</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="n">cName</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">major</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">decision</span> <span class="nb">BOOLEAN</span><span class="p">,</span>   <span class="k">PRIMARY</span> <span class="k">kEY</span><span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Se utilizarán 4 establecimientos educacionales:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">College</span> <span class="p">(</span><span class="n">cName</span><span class="p">,</span> <span class="k">state</span><span class="p">,</span> <span class="n">enrollment</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Stanford&#39;</span><span class="p">,</span><span class="s1">&#39;CA&#39;</span><span class="p">,</span><span class="mi">15000</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">College</span> <span class="p">(</span><span class="n">cName</span><span class="p">,</span> <span class="k">state</span><span class="p">,</span> <span class="n">enrollment</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Berkeley&#39;</span><span class="p">,</span><span class="s1">&#39;CA&#39;</span><span class="p">,</span><span class="mi">36000</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">College</span> <span class="p">(</span><span class="n">cName</span><span class="p">,</span> <span class="k">state</span><span class="p">,</span> <span class="n">enrollment</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;MIT&#39;</span><span class="p">,</span>     <span class="s1">&#39;MA&#39;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">College</span> <span class="p">(</span><span class="n">cName</span><span class="p">,</span> <span class="k">state</span><span class="p">,</span> <span class="n">enrollment</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Harvard&#39;</span><span class="p">,</span> <span class="s1">&#39;CM&#39;</span><span class="p">,</span><span class="mi">23000</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>8 estudiantes:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Amy&#39;</span><span class="p">,</span>    <span class="mi">60</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Edward&#39;</span><span class="p">,</span> <span class="mi">65</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Craig&#39;</span><span class="p">,</span>  <span class="mi">50</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Irene&#39;</span><span class="p">,</span>  <span class="mi">49</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Doris&#39;</span><span class="p">,</span>  <span class="mi">45</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Gary&#39;</span><span class="p">,</span>   <span class="mi">53</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Doris&#39;</span><span class="p">,</span>  <span class="mi">70</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Tim&#39;</span><span class="p">,</span>    <span class="mi">60</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>y 21 postulaciones:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Stanford&#39;</span><span class="p">,</span> <span class="s1">&#39;science&#39;</span>        <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Stanford&#39;</span><span class="p">,</span> <span class="s1">&#39;engineering&#39;</span>    <span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Berkeley&#39;</span><span class="p">,</span> <span class="s1">&#39;science&#39;</span>        <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Berkeley&#39;</span><span class="p">,</span> <span class="s1">&#39;engineering&#39;</span>    <span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Berkeley&#39;</span><span class="p">,</span> <span class="s1">&#39;natural hostory&#39;</span><span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;MIT&#39;</span>     <span class="p">,</span> <span class="s1">&#39;math&#39;</span>           <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Harvard&#39;</span> <span class="p">,</span> <span class="s1">&#39;math&#39;</span>           <span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Harvard&#39;</span> <span class="p">,</span> <span class="s1">&#39;science&#39;</span>        <span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Harvard&#39;</span> <span class="p">,</span> <span class="s1">&#39;engineering&#39;</span>    <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Stanford&#39;</span><span class="p">,</span> <span class="s1">&#39;marine biology&#39;</span> <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Stanford&#39;</span><span class="p">,</span> <span class="s1">&#39;natural history&#39;</span><span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Harvard&#39;</span> <span class="p">,</span> <span class="s1">&#39;science&#39;</span>        <span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Berkeley&#39;</span><span class="p">,</span> <span class="s1">&#39;psychology&#39;</span>     <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;MIT&#39;</span>     <span class="p">,</span> <span class="s1">&#39;math&#39;</span>           <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;MIT&#39;</span>     <span class="p">,</span> <span class="s1">&#39;science&#39;</span>        <span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;Stanford&#39;</span><span class="p">,</span> <span class="s1">&#39;psychology&#39;</span>     <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;Stanford&#39;</span><span class="p">,</span> <span class="s1">&#39;science&#39;</span>        <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;MIT&#39;</span>     <span class="p">,</span> <span class="s1">&#39;math&#39;</span>           <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;MIT&#39;</span>     <span class="p">,</span> <span class="s1">&#39;science&#39;</span>        <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;Harvard&#39;</span> <span class="p">,</span> <span class="s1">&#39;science&#39;</span>        <span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;MIT&#39;</span>     <span class="p">,</span> <span class="s1">&#39;engineering&#39;</span>    <span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>La situación que se pretende describir con estas tablas de ejemplo es la
+postulación de estudiantes a centros educacionales.
+En concreto la postulación del estudiante <em>sID</em> a la mención académica <em>major</em>
+impartida en el centro educacional <em>cName</em>, cuya aprobación, o <em>decisión</em>,
+será &#8220;True o False&#8221;.</p>
+<div class="section" id="ejemplo-1">
+<h3>Ejemplo 1<a class="headerlink" href="#ejemplo-1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El primer ejemplo de subconsulta corresponderá al listado de <em>IDs</em> y <em>Nombres</em> de los
+estudiantes que han postulado para estudiar &#8220;science&#8221; en algún centro educacional.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">sID</span><span class="p">,</span> <span class="n">sName</span> <span class="k">FROM</span> <span class="n">Student</span> <span class="k">WHERE</span> <span class="n">sID</span> <span class="k">in</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">sID</span> <span class="k">FROM</span> <span class="n">Apply</span> <span class="k">WHERE</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">&#39;science&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>cuya salida es:</p>
+<div class="highlight-python"><pre>sid | sname
+----+-------
+ 6  | Gary
+ 1  | Amy
+ 3  | Craig
+ 7  | Doris
+ 5  | Doris
+
+(5 rows)</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">En el ejemplo existen dos personas distintas llamadas Doris.</p>
+</div>
+<p>Como se mencionó anteriormente, tanto las subconsultas como el uso de <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">JOIN</span></span></tt>
+y operadores lógicos en la clausula <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">WHERE</span></span></tt> son formas de filtrar resultados,
+por tanto, la consulta se puede reformular como:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">Student</span><span class="p">.</span><span class="n">sID</span><span class="p">,</span> <span class="n">sName</span> <span class="k">FROM</span> <span class="n">Student</span><span class="p">,</span> <span class="n">Apply</span> <span class="k">WHERE</span> <span class="n">Student</span><span class="p">.</span><span class="n">sID</span> <span class="o">=</span> <span class="n">Apply</span><span class="p">.</span><span class="n">sID</span> <span class="k">AND</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">&#39;science&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Advertencia</p>
+<p class="last">En la consulta se debe especificar que el atributo <em>sID</em> corresponde al de la
+tabla <strong>Student</strong>, pues la tabla <strong>Apply</strong> también cuenta con dicho atributo.
+Si no se toma en cuenta este detalle, es probable que la consulta termine en un
+error o resultados no deseados.</p>
+</div>
+<p>en cuyo caso la salida será:</p>
+<div class="highlight-python"><pre>sid | sname
+----+-------
+ 1  | Amy
+ 1  | Amy
+ 3  | Craig
+ 6  | Gary
+ 7  | Doris
+ 7  | Doris
+ 7  | Doris
+ 5  | Doris
+
+(8 rows)</pre>
+</div>
+<p>Las 3 filas &#8220;extra&#8221; se deben, a que al utilizar <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">join</span></span></tt> y operadores lógicos,
+se toman en cuenta todos los resultados, por ejemplo Amy postuló en dos ocasiones a
+science. Al utilizar la subconsulta, se eliminan estos resultados duplicados,
+haciendo la consulta más fiel a la realidad pues se pregunta por aquellos
+estudiantes que han postulado a &#8220;science&#8221;, no cuantas veces postuló cada uno.
+No obstante si se agrega la clausula <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DISTINCT</span></span></tt>, se obtiene la misma respuesta
+que al utilizar una subconsulta. Es decir que para la consulta:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">Student</span><span class="p">.</span><span class="n">sID</span><span class="p">,</span> <span class="n">sName</span> <span class="k">FROM</span> <span class="n">Student</span><span class="p">,</span> <span class="n">Apply</span> <span class="k">WHERE</span> <span class="n">Student</span><span class="p">.</span><span class="n">sID</span> <span class="o">=</span> <span class="n">Apply</span><span class="p">.</span><span class="n">sID</span> <span class="k">AND</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">&#39;science&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>su salida será:</p>
+<div class="highlight-python"><pre>sid | sname
+----+-------
+ 6  | Gary
+ 1  | Amy
+ 3  | Craig
+ 7  | Doris
+ 5  | Doris
+
+(5 rows)</pre>
+</div>
+</div>
+<div class="section" id="ejemplo-2">
+<h3>Ejemplo 2<a class="headerlink" href="#ejemplo-2" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Este ejemplo corresponderá sólo al listado de Nombres de los estudiantes que han
+quedado seleccionados para estudiar ciencias en algún centro educacional.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">sName</span> <span class="k">FROM</span> <span class="n">Student</span> <span class="k">WHERE</span> <span class="n">sID</span> <span class="k">in</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">sID</span> <span class="k">FROM</span> <span class="n">Apply</span> <span class="k">WHERE</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">&#39;Science&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>cuya salida es:</p>
+<div class="highlight-python"><pre>sname
+-------
+Gary
+Amy
+Craig
+Doris
+Doris
+
+(5 rows)</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Ambas Doris no corresponden a un duplicado, ya que el atributo <em>sID</em> de una es
+5 y de la otra es 7.</p>
+</div>
+<p>Y se obtienen los mismos 5 estudiantes.
+De forma análoga al ejemplo anterior, se realizará el equivalente a la subconsulta
+utilizando <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">JOIN</span></span></tt> y operadores lógicos:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">sName</span> <span class="k">FROM</span> <span class="n">Student</span><span class="p">,</span> <span class="n">Apply</span> <span class="k">WHERE</span> <span class="n">Student</span><span class="p">.</span><span class="n">sID</span> <span class="o">=</span> <span class="n">Apply</span><span class="p">.</span><span class="n">sID</span> <span class="k">AND</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">&#39;science&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>cuya salida es:</p>
+<div class="highlight-python"><pre>sname
+-------
+Amy
+Amy
+Craig
+Gary
+Doris
+Doris
+Doris
+Doris
+
+(8 rows)</pre>
+</div>
+<p>Por tanto, y al igual que el ejemplo anterior, se utilizará <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DISTINCT</span></span></tt>, es decir:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">sName</span> <span class="k">FROM</span> <span class="n">Student</span><span class="p">,</span> <span class="n">Apply</span> <span class="k">WHERE</span> <span class="n">Student</span><span class="p">.</span><span class="n">sID</span> <span class="o">=</span> <span class="n">Apply</span><span class="p">.</span><span class="n">sID</span> <span class="k">AND</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">&#39;science&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>cuya salida es:</p>
+<div class="highlight-python"><pre>sname
+-------
+Amy
+Craig
+Doris
+Gary
+
+(4 rows)</pre>
+</div>
+<p>Pero solo hay 4 estudiantes.
+Esto se debe a que en ejemplo anterior, se utilizó tanto el <em>sID</em> como el <em>sName</em>,
+como ambas Doris cuentan con un <em>sID</em> diferente, no se tomaba en cuenta como
+duplicado, pero en esta consulta, al solo contar con <em>sName</em>, ambas Doris se toman
+como 2 instancias de la misma y se elimina una.</p>
+<p>La única forma de obtener el &#8220;número correcto de duplicados&#8221; es utilizando subconsultas</p>
+<div class="section" id="in-and-not-in">
+<h4>IN AND NOT IN<a class="headerlink" href="#in-and-not-in" title="Enlazar permanentemente con este título">¶</a></h4>
+<p><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">IN</span></span></tt> y <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">NOT</span></span> <span class="k"><span class="pre">IN</span></span></tt> permiten realizar filtros de forma más específica, necesarios para
+responder preguntas como la del ejemplo 3</p>
+</div>
+</div>
+<div class="section" id="ejemplo-3">
+<h3>Ejemplo 3<a class="headerlink" href="#ejemplo-3" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En el siguiente ejemplo se quiere saber el <em>sID</em> y el <em>sName</em> de aquellos
+estudiantes que postularon a science, pero no a engineering:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">sID</span><span class="p">,</span> <span class="n">sName</span> <span class="k">FROM</span> <span class="n">Student</span> <span class="k">WHERE</span>
+<span class="n">sID</span> <span class="k">in</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">sID</span> <span class="k">FROM</span> <span class="n">Apply</span> <span class="k">WHERE</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">&#39;science&#39;</span><span class="p">)</span>
+<span class="k">and</span> <span class="n">sID</span> <span class="k">not</span> <span class="k">in</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">sID</span> <span class="k">FROM</span> <span class="n">Apply</span> <span class="k">WHERE</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">&#39;engineering&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>cuya salida corresponde precisamente a:</p>
+<div class="highlight-python"><pre>sid  | sname
+-----+-------
+ 5   | Doris
+ 6   | Gary
+ 7   | Doris
+
+(3 rows)</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Es posible corroborar el resultado ejecutando :sql:´SELECT * FROM Apply;´
+y verificar manualmente.</p>
+</div>
+<p>La consulta realizada en este ejemplo es posible realizarla de otra manera:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">sID</span><span class="p">,</span> <span class="n">sName</span> <span class="k">FROM</span> <span class="n">Student</span> <span class="k">WHERE</span>
+<span class="n">sID</span> <span class="k">in</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">sID</span> <span class="k">FROM</span> <span class="n">Apply</span> <span class="k">WHERE</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">&#39;science&#39;</span><span class="p">)</span>
+<span class="k">and</span> <span class="k">not</span> <span class="n">sID</span> <span class="k">in</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">sID</span> <span class="k">FROM</span> <span class="n">Apply</span> <span class="k">WHERE</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">&#39;engineering&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>cuya salida es equivalente a la anterior.</p>
+<div class="section" id="exists-and-not-exists">
+<h4>EXISTS AND NOT EXISTS<a class="headerlink" href="#exists-and-not-exists" title="Enlazar permanentemente con este título">¶</a></h4>
+<p><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">EXISTS</span></span></tt> es una función SQL que devuelve veradero cuando una subconsulta
+retorna al menos una fila.</p>
+</div>
+</div>
+<div class="section" id="ejemplo-4">
+<h3>Ejemplo 4<a class="headerlink" href="#ejemplo-4" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En este ejemplo se busca el nombre de todos los establecimientos educacionales
+que comparten estado. Si se ejecuta:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">cName</span><span class="p">,</span> <span class="k">state</span> <span class="k">FROM</span> <span class="n">College</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>cuya salida es:</p>
+<div class="highlight-python"><pre>cname    | state
+---------+-------
+Stanford | CA
+Berkeley | CA
+MIT      | MA
+Harvard  | CM
+
+(4 rows)</pre>
+</div>
+<p>el resultado esperado debiese contener el par  <strong>Stanford</strong> - <strong>Berkeley</strong></p>
+<p>La consulta que pretende resolver esta pregunta es:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">cName</span><span class="p">,</span> <span class="k">state</span> <span class="k">FROM</span> <span class="n">College</span> <span class="n">C1</span> <span class="k">WHERE</span> <span class="k">exists</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">College</span> <span class="n">C2</span> <span class="k">WHERE</span> <span class="n">C2</span><span class="p">.</span><span class="k">state</span> <span class="o">=</span> <span class="n">C1</span><span class="p">.</span><span class="k">state</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Lo que realiza esta consulta es verificar que por cada resultado obtenido en C1,
+lo compara con todos los resultados en C2.</p>
+</div>
+<p>cuya salida es:</p>
+<div class="highlight-python"><pre>cname    | state
+---------+-------
+Stanford | CA
+Berkeley | CA
+MIT      | MA
+Harvard  | CM
+
+(4 rows)</pre>
+</div>
+<p>Esto pasa debido a que C1 y C2 pueden ser el mismo establecimiento.
+Por ende, es necesario dejar en claro que C1 y C2 son diferentes.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">cName</span><span class="p">,</span> <span class="k">state</span> <span class="k">FROM</span> <span class="n">College</span> <span class="n">C1</span> <span class="k">WHERE</span> <span class="k">exists</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">College</span> <span class="n">C2</span> <span class="k">WHERE</span> <span class="n">C2</span><span class="p">.</span><span class="k">state</span> <span class="o">=</span> <span class="n">C1</span><span class="p">.</span><span class="k">state</span> <span class="k">and</span> <span class="n">C1</span><span class="p">.</span><span class="n">cName</span> <span class="o">&lt;&gt;</span> <span class="n">C2</span><span class="p">.</span><span class="n">cName</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>en cuyo caso la salida corresponde a la correcta, es decir:</p>
+<div class="highlight-python"><pre>cname    | state
+---------+-------
+Stanford | CA
+Berkeley | CA
+
+(2 rows)</pre>
+</div>
+<p>Es posible realizar computos matemáticos (valor más alto, valor más bajo)  utilizando subconsultas:</p>
+</div>
+<div class="section" id="ejemplo-5">
+<h3>Ejemplo 5<a class="headerlink" href="#ejemplo-5" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Se busca el establecimiento con mayor cantidad de alumnos.
+La consulta que se realizará corresponde a buscar todos los establecimientos
+donde no exista otro establecimiento que su cantidad de alumnos sea mayor que la
+primera.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">cName</span><span class="p">,</span> <span class="k">state</span> <span class="k">FROM</span> <span class="n">College</span> <span class="n">C1</span> <span class="k">WHERE</span> <span class="k">exists</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">College</span> <span class="n">C2</span> <span class="k">WHERE</span> <span class="n">C2</span><span class="p">.</span><span class="n">enrollment</span> <span class="o">&gt;</span> <span class="n">C1</span><span class="p">.</span><span class="n">enrollment</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Donde el resultado corresponde a <em>Berkeley</em>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">De forma análoga es posible calcular el establecimiento con menor cantidad de
+alumnos, cambiando el signo matemático <strong>&gt;</strong> por <strong>&lt;</strong></p>
+</div>
+<div class="section" id="any">
+<h4>ANY<a class="headerlink" href="#any" title="Enlazar permanentemente con este título">¶</a></h4>
+</div>
+</div>
+<div class="section" id="ejemplo-6">
+<h3>Ejemplo 6<a class="headerlink" href="#ejemplo-6" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Falta explicar y poner 1 ejeplos de c/u:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">any</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

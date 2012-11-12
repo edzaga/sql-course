@@ -1,0 +1,516 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 5 - Introducción &mdash; Curso ALMA SQL</title>
+    
+    <link rel="stylesheet" href="../../_static/sqlcourse.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Curso ALMA SQL" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 5 - Introducción</a><ul>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#data-definition-language-ddl">Data Definition Language (DDL)</a></li>
+<li><a class="reference internal" href="#data-manipulation-languaje-dml">Data Manipulation Languaje (DML)</a></li>
+<li><a class="reference internal" href="#ejemplo-practico">Ejemplo práctico</a></li>
+<li><a class="reference internal" href="#clave-primaria-y-foranea">Clave Primaria y Foránea</a><ul>
+<li><a class="reference internal" href="#id1">Ejemplo Práctico</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week2/lecture5.txt"
+           rel="nofollow">Enseñar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un módulo, clase o nombre de función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-5-introduccion">
+<h1>Lecture 5 - Introducción<a class="headerlink" href="#lecture-5-introduccion" title="Enlazar permanentemente con este título">¶</a></h1>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/SQL">SQL (Structured Query Language)</a> es un tipo de lenguaje vinculado con la gestión de
+bases de datos de carácter relacional que permite la especificación de distintas
+clases de operaciones. Gracias a la utilización del álgebra y de cálculo relacional,
+el lenguaje SQL brinda la posibilidad de realizar consultas que ayuden a recuperar
+información de las bases de datos de manera sencilla.</p>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Enlazar permanentemente con este título">¶</a></h2>
+<p id="index-0">Algunas de las características de este lenguaje son:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Supported by all major commercial database systems.</li>
+<li>Standardized - many new features over time.</li>
+<li>Interactive via GUI or prompt, or embedded in programs.</li>
+<li>Declarative, based on relational algebra.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="data-definition-language-ddl">
+<h2>Data Definition Language (DDL)<a class="headerlink" href="#data-definition-language-ddl" title="Enlazar permanentemente con este título">¶</a></h2>
+<p id="index-1"><a class="reference external" href="http://en.wikipedia.org/wiki/Data_Definition_Language">DDL (Data Definition Language)</a> es un lenguaje que permite definir la base de datos
+(su estructura o &#8220;schemas&#8221;), tiene una sintaxis similar a los lenguajes de programación.</p>
+<p>Examples:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">table_name</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">table_name</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="k">table_name</span> <span class="k">ADD</span> <span class="n">id</span> <span class="nb">INTEGER</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Description of commands</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">CREATE</span></span></tt>:</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>To make a new database, table, index, or stored query.</li>
+<li>A <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">CREATE</span></span></tt> statement in SQL creates an object inside of a relational
+database management system (<a class="reference external" href="http://en.wikipedia.org/wiki/Relational_database#Relational_database_management_systems">RDBMS</a>).</li>
+<li>The types of objects that can be created depends on which RDBMS is being
+used, but most support the creation of tables, indexes, users, synonyms and
+databases.</li>
+<li>Some systems (such as PostgreSQL) allow <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">CREATE</span></span></tt>, and other DDL commands,
+inside of a transaction and thus they may be rolled back.</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DROP</span></span></tt>:</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>To destroy an existing database, table, index, or view.</li>
+<li>A <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DROP</span></span></tt> statement in SQL removes an object from a relational database
+management system (RDBMS).</li>
+<li>The types of objects that can be dropped depends on which RDBMS is being used,
+but most support the dropping of tables, users, and databases.</li>
+<li>Some systems (such as PostgreSQL) allow DROP and other DDL commands to occur
+inside of a transaction and thus be rolled back.</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">ALTER</span></span></tt>:</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Used to modify the structure of the table, as the following cases:<ul>
+<li>Add a column</li>
+<li>Delete a column</li>
+<li>Change the name of a column</li>
+<li>Change the data type for a column</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="data-manipulation-languaje-dml">
+<h2>Data Manipulation Languaje (DML)<a class="headerlink" href="#data-manipulation-languaje-dml" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Data_manipulation_language">DML (Data Manipulation Language)</a> se refiere a los comandos que permiten a un
+usuario manipular los datos de las tablas, es decir, consultar tablas, añadir filas,
+borrar filas y actualizar columnas.</p>
+<p>Examples of DML</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">field</span> <span class="k">FROM</span> <span class="k">table_name</span><span class="p">;</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">table_name</span><span class="p">(</span><span class="n">field1</span><span class="p">,...,</span><span class="n">fieldn</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">data1</span><span class="p">,...,</span><span class="n">datan</span><span class="p">);</span>
+<span class="k">DELETE</span> <span class="k">FROM</span> <span class="k">table_name</span> <span class="k">WHERE</span> <span class="n">condition</span><span class="p">;</span>
+<span class="k">UPDATE</span> <span class="k">table_name</span> <span class="k">SET</span> <span class="n">field</span> <span class="o">=</span> <span class="k">new</span> <span class="k">data</span> <span class="k">WHERE</span> <span class="n">condition</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Description of commands</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Returns a result set of records from one or more tables.</li>
+<li>A <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt> statement retrieves zero or more rows from one or more
+database tables or database views.</li>
+<li>In most applications, <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt> is the most commonly used DML command.</li>
+<li>As SQL is a declarative programming language, <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt> queries specify
+a result set, but do not specify how to calculate it.</li>
+<li>The database translates the query into a &#8220;query plan&#8221; which may vary between
+executions, database versions and database software.</li>
+<li>This functionality is called the &#8220;query optimizer&#8221; as it is responsible for
+finding the best possible execution plan for the query, within applicable
+constraints.</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>The Basic SELECT Statement</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">A1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">An</span> <span class="k">FROM</span> <span class="n">R1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">Rm</span> <span class="k">WHERE</span> <span class="n">condition</span>
+</pre></div>
+</div>
+<p><strong>Significado:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt> <span class="math">\(A_{1}, \ldots, A_{n}\)</span>: What to return</li>
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">FROM</span></span></tt> <span class="math">\(R_{1}, \ldots,R_{m}\)</span>: relations</li>
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">WHERE</span></span></tt> <span class="math">\(condition\)</span>: combine, filter</li>
+</ul>
+</div></blockquote>
+<p>Lo que busca esta consulta es mostrar las columnas <span class="math">\(A_{1}, \ldots, A_{n}\)</span> de las tablas o relaciones <span class="math">\(R_{1}, \ldots,R_{m}\)</span>, siguiendo alguna condición.</p>
+<p><strong>Algebra relacional:</strong></p>
+<div class="math">
+\[\pi_{A_{1},\ldots, A_{n}} (\sigma_{condition}(R_{1} \times \ldots \times R_{m}))\]</div>
+<p>Comandos SQL:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">INSERT</span></span></tt> - adds one or more records to any single table in a relational
+database.</li>
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DELETE</span></span></tt> - removes one or more records from a table. A subset may be
+defined for deletion using a condition, otherwise all records are removed.</li>
+<li><tt class="code sql highlight docutils literal"><span class="k"><span class="pre">UPDATE</span></span></tt> - changes the data of one or more records in a table. Either all
+the rows can be updated, or a subset may be chosen using a condition.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="ejemplo-practico">
+<h2>Ejemplo práctico<a class="headerlink" href="#ejemplo-practico" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="admonition note" id="index-2">
+<p class="first admonition-title">Nota</p>
+<p>To perform this excercise, you must use the Virtual Machine of the course
+or install <strong>Postgresql</strong> in your computer.</p>
+<p>If you have a Linux system, you can download the source from ...
+Another possibility is to use the package manager of your OS</p>
+<ul>
+<li><p class="first">For Debian/Ubuntu users you can perform the following command as a root:</p>
+<div class="highlight-python"><pre>sudo apt-get install postgresql postgresql-client postgresql-contrib libpq-dev</pre>
+</div>
+</li>
+<li><p class="first">For Red Hat/Scientific Linux/Fedora/CentOS users:</p>
+<div class="highlight-python"><pre>yum -y install postgresql postgresql-libs postgresql-contrib postgresql-server postgresql-docs</pre>
+</div>
+</li>
+</ul>
+<p>After the installation process, you need to enter into the <strong>psql environment</strong></p>
+<ul>
+<li><p class="first">For Debian/Ubuntu users you can perform the following command as a root:</p>
+<div class="highlight-python"><pre>sudo su postgres -c psql</pre>
+</div>
+</li>
+<li><p class="first">For Red Hat/Scientific Linux/Fedora/CentOS users</p>
+</li>
+</ul>
+<blockquote class="last">
+<div><ul>
+<li><p class="first">Start the service. I should say OK if everything is correct</p>
+<div class="highlight-python"><pre>service postgresql start</pre>
+</div>
+</li>
+<li><p class="first">We change the user&#8217;s password Postgres</p>
+<div class="highlight-python"><pre>passwd postgres</pre>
+</div>
+</li>
+<li><p class="first">Now start Postgres (enter password from above)</p>
+<div class="highlight-python"><pre>su postgres</pre>
+</div>
+</li>
+<li><p class="first">We started the service</p>
+<div class="highlight-python"><pre>/etc/init.d/postgresql start</pre>
+</div>
+</li>
+<li><p class="first">You should see a prompt &#8220;bash-4.1 $&#8221;, now we enter Postgres</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">psql</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<p>Primero que todo debemos <em>crear</em> una base de datos
+para comenzar nuestros ejercicios.
+La llamaremos <strong>example</strong>:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">create</span> <span class="k">database</span> <span class="n">example</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">DATABASE</span>
+</pre></div>
+</div>
+<p>Luego de haber creado nuestra base de datos, necesitamos <em>ingresar</em> a ella
+para comenzar a realizar las distintas operaciones:</p>
+<div class="highlight-python"><pre>postgres=# <b>\c example</b>
+psql (8.4.14)
+Ahora está conectado a la base de datos «example».</pre>
+</div>
+<p>Ahora comenzamos a <em>crear una tabla</em> llamada <strong>cliente</strong> con las variables id que se
+define como serial en que al ir agregando datos se autoincrementará automaticamente
+en la base de datos example:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">example</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">cliente</span> <span class="p">(</span><span class="n">id</span> <span class="nb">SERIAL</span><span class="p">,</span> <span class="n">nombre</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">apellido</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">edad</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="n">direccion</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">pais</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Y recibiremos el siguiente mensaje:</p>
+<div class="highlight-python"><pre>NOTICE:  CREATE TABLE creará una secuencia implícita «cliente_id_seq» para la columna serial «cliente.id»
+CREATE TABLE</pre>
+</div>
+<p>Para <em>agregar</em> datos a la tabla <strong>cliente</strong> se realiza de la siguiente manera:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">example</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">cliente</span> <span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="n">apellido</span><span class="p">,</span><span class="n">edad</span><span class="p">,</span><span class="n">direccion</span><span class="p">,</span><span class="n">pais</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Smith&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="s1">&#39;7635 N La Cholla Blvd&#39;</span><span class="p">,</span> <span class="s1">&#39;EEUU&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p><em>Agregar</em> más datos a la tabla <strong>cliente</strong></p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">example</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">cliente</span> <span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="n">apellido</span><span class="p">,</span><span class="n">edad</span><span class="p">,</span><span class="n">direccion</span><span class="p">,</span><span class="n">pais</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Smith&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="s1">&#39;7635 N La Cholla Blvd&#39;</span><span class="p">,</span> <span class="s1">&#39;EEUU&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">example</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">cliente</span> <span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="n">apellido</span><span class="p">,</span><span class="n">edad</span><span class="p">,</span><span class="n">direccion</span><span class="p">,</span><span class="n">pais</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Judith&#39;</span><span class="p">,</span> <span class="s1">&#39;Ford&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;3901 W Ina Rd&#39;</span><span class="p">,</span> <span class="s1">&#39;Inglaterra&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">example</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">cliente</span> <span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="n">apellido</span><span class="p">,</span><span class="n">edad</span><span class="p">,</span><span class="n">direccion</span><span class="p">,</span><span class="n">pais</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Sergio&#39;</span><span class="p">,</span> <span class="s1">&#39;Honores&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="s1">&#39;1256 San Luis&#39;</span><span class="p">,</span> <span class="s1">&#39;Chile&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">example</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">cliente</span> <span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="n">apellido</span><span class="p">,</span><span class="n">edad</span><span class="p">,</span><span class="n">direccion</span><span class="p">,</span><span class="n">pais</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Ana&#39;</span><span class="p">,</span> <span class="s1">&#39;Caprile&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;3456 Matta&#39;</span><span class="p">,</span> <span class="s1">&#39;Chile&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p><em>Seleccionar</em> todos los datos de la tabla <strong>cliente</strong></p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">example</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">cliente</span><span class="p">;</span>
+<span class="n">id</span> <span class="o">|</span> <span class="n">nombre</span> <span class="o">|</span> <span class="n">apellido</span> <span class="o">|</span> <span class="n">edad</span> <span class="o">|</span>       <span class="n">direccion</span>       <span class="o">|</span>    <span class="n">pais</span>
+<span class="c1">---+--------+----------+------+-----------------------+------------</span>
+ <span class="mi">1</span> <span class="o">|</span> <span class="n">John</span>   <span class="o">|</span> <span class="n">Smith</span>    <span class="o">|</span>   <span class="mi">35</span> <span class="o">|</span> <span class="mi">7635</span> <span class="n">N</span> <span class="n">La</span> <span class="n">Cholla</span> <span class="n">Blvd</span> <span class="o">|</span> <span class="n">EEUU</span>
+ <span class="mi">2</span> <span class="o">|</span> <span class="n">John</span>   <span class="o">|</span> <span class="n">Smith</span>    <span class="o">|</span>   <span class="mi">35</span> <span class="o">|</span> <span class="mi">7635</span> <span class="n">N</span> <span class="n">La</span> <span class="n">Cholla</span> <span class="n">Blvd</span> <span class="o">|</span> <span class="n">EEUU</span>
+ <span class="mi">3</span> <span class="o">|</span> <span class="n">Judith</span> <span class="o">|</span> <span class="n">Ford</span>     <span class="o">|</span>   <span class="mi">20</span> <span class="o">|</span> <span class="mi">3901</span> <span class="n">W</span> <span class="n">Ina</span> <span class="n">Rd</span>         <span class="o">|</span> <span class="n">Inglaterra</span>
+ <span class="mi">4</span> <span class="o">|</span> <span class="n">Sergio</span> <span class="o">|</span> <span class="n">Honores</span>  <span class="o">|</span>   <span class="mi">35</span> <span class="o">|</span> <span class="mi">1256</span> <span class="n">San</span> <span class="n">Luis</span>         <span class="o">|</span> <span class="n">Chile</span>
+ <span class="mi">5</span> <span class="o">|</span> <span class="n">Ana</span>    <span class="o">|</span> <span class="n">Caprile</span>  <span class="o">|</span>   <span class="mi">25</span> <span class="o">|</span> <span class="mi">3456</span> <span class="n">Matta</span>            <span class="o">|</span> <span class="n">Chile</span>
+<span class="p">(</span><span class="mi">5</span> <span class="n">filas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">El asterisco (*) que está entre el <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt> y el <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">FROM</span></span></tt> significa que se seleccionan todas las columnas de la tabla.</p>
+</div>
+<p>Si deseamos seleccionar la columna nombre con apellido la consulta deberia ser</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span> <span class="k">FROM</span> <span class="n">cliente</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Como cometimos el error de <em>agregar</em> en la segunda fila datos repetidos, pero se puede <em>eliminar</em> de la siguiente manera</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">example</span><span class="o">=#</span> <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">cliente</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+<span class="k">DELETE</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Verificamos que se haya <em>eliminado</em></p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">example</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">cliente</span><span class="p">;</span>
+<span class="n">id</span> <span class="o">|</span> <span class="n">nombre</span> <span class="o">|</span> <span class="n">apellido</span> <span class="o">|</span> <span class="n">edad</span> <span class="o">|</span>       <span class="n">direccion</span>       <span class="o">|</span>    <span class="n">pais</span>
+<span class="c1">---+--------+----------+------+-----------------------+------------</span>
+ <span class="mi">1</span> <span class="o">|</span> <span class="n">John</span>   <span class="o">|</span> <span class="n">Smith</span>    <span class="o">|</span>   <span class="mi">35</span> <span class="o">|</span> <span class="mi">7635</span> <span class="n">N</span> <span class="n">La</span> <span class="n">Cholla</span> <span class="n">Blvd</span> <span class="o">|</span> <span class="n">EEUU</span>
+ <span class="mi">3</span> <span class="o">|</span> <span class="n">Judith</span> <span class="o">|</span> <span class="n">Ford</span>     <span class="o">|</span>   <span class="mi">20</span> <span class="o">|</span> <span class="mi">3901</span> <span class="n">W</span> <span class="n">Ina</span> <span class="n">Rd</span>         <span class="o">|</span> <span class="n">Inglaterra</span>
+ <span class="mi">4</span> <span class="o">|</span> <span class="n">Sergio</span> <span class="o">|</span> <span class="n">Honores</span>  <span class="o">|</span>   <span class="mi">35</span> <span class="o">|</span> <span class="mi">1256</span> <span class="n">San</span> <span class="n">Luis</span>         <span class="o">|</span> <span class="n">Chile</span>
+ <span class="mi">5</span> <span class="o">|</span> <span class="n">Ana</span>    <span class="o">|</span> <span class="n">Caprile</span>  <span class="o">|</span>   <span class="mi">25</span> <span class="o">|</span> <span class="mi">3456</span> <span class="n">Matta</span>            <span class="o">|</span> <span class="n">Chile</span>
+<span class="p">(</span><span class="mi">4</span> <span class="n">filas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Si se desea <em>actualizar</em> la dirección del cliente Sergio de la tabla <strong>cliente</strong></p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">example</span><span class="o">=#</span> <span class="k">UPDATE</span> <span class="n">cliente</span> <span class="k">SET</span> <span class="n">direccion</span><span class="o">=</span><span class="s1">&#39;1459 Patricio Lynch&#39;</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span>
+<span class="k">UPDATE</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Se puede <em>seleccionar</em> la tabla <strong>cliente</strong> para verificar que se haya actualizado la información</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">example</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">cliente</span><span class="p">;</span>
+<span class="n">id</span> <span class="o">|</span> <span class="n">nombre</span> <span class="o">|</span> <span class="n">apellido</span> <span class="o">|</span> <span class="n">edad</span> <span class="o">|</span>       <span class="n">direccion</span>       <span class="o">|</span>    <span class="n">pais</span>
+<span class="c1">---+--------+----------+------+-----------------------+------------</span>
+ <span class="mi">1</span> <span class="o">|</span> <span class="n">John</span>   <span class="o">|</span> <span class="n">Smith</span>    <span class="o">|</span>   <span class="mi">35</span> <span class="o">|</span> <span class="mi">7635</span> <span class="n">N</span> <span class="n">La</span> <span class="n">Cholla</span> <span class="n">Blvd</span> <span class="o">|</span> <span class="n">EEUU</span>
+ <span class="mi">3</span> <span class="o">|</span> <span class="n">Judith</span> <span class="o">|</span> <span class="n">Ford</span>     <span class="o">|</span>   <span class="mi">20</span> <span class="o">|</span> <span class="mi">3901</span> <span class="n">W</span> <span class="n">Ina</span> <span class="n">Rd</span>         <span class="o">|</span> <span class="n">Inglaterra</span>
+ <span class="mi">5</span> <span class="o">|</span> <span class="n">Ana</span>    <span class="o">|</span> <span class="n">Caprile</span>  <span class="o">|</span>   <span class="mi">25</span> <span class="o">|</span> <span class="mi">3456</span> <span class="n">Matta</span>            <span class="o">|</span> <span class="n">Chile</span>
+ <span class="mi">4</span> <span class="o">|</span> <span class="n">Sergio</span> <span class="o">|</span> <span class="n">Honores</span>  <span class="o">|</span>   <span class="mi">35</span> <span class="o">|</span> <span class="mi">1459</span> <span class="n">Patricio</span> <span class="n">Lynch</span>   <span class="o">|</span> <span class="n">Chile</span>
+<span class="p">(</span><span class="mi">4</span> <span class="n">filas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Para <em>borrar</em> la tabla <strong>cliente</strong></p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">example</span><span class="o">=#</span> <span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">cliente</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span>
+</pre></div>
+</div>
+<p>Seleccionamos la tabla <strong>cliente</strong>, para verificar que se haya eliminado</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">example</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">cliente</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Recibiremos el siguiente mensaje:</p>
+<div class="highlight-python"><pre>ERROR:  no existe la relación «cliente»
+LÍNEA 1: SELECT * FROM cliente;
+                      ^</pre>
+</div>
+</div>
+<div class="section" id="clave-primaria-y-foranea">
+<h2>Clave Primaria y Foránea<a class="headerlink" href="#clave-primaria-y-foranea" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En las bases de datos relacionales, se le llama <strong>clave primaria</strong> a un campo o a una
+combinación de campos que identifica de forma única a cada fila de una tabla. Por lo
+que no pueden existir dos filas en una tabla que tengan la misma clave primaria.</p>
+<p>Y las <strong>claves foráneas</strong> tienen por objetivo establecer una conexión con la clave
+primaria que referencian de otra tabla, creandose una asociación entre las dos tablas.</p>
+<div class="section" id="id1">
+<h3>Ejemplo Práctico<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está
+definido como serial que automáticamente irá ingresando los valores 1, 2, 3 a cada registro.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">profesores</span><span class="p">(</span><span class="n">ID_profesor</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">nombre</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">apellido</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">ID_profesor</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Recibiremos el siguiente mensaje:</p>
+<div class="highlight-python"><pre>NOTICE:  CREATE TABLE creará una secuencia implícita «profesores_id_profesor_seq» para la columna serial «profesores.id_profesor»
+NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «profesores_pkey» para la tabla «profesores»
+CREATE TABLE</pre>
+</div>
+<p>Ahora vamos a crear la tabla de cursos en que ID_curso será la clave primaria de esta
+tabla y ID_profesor será la clave foránea, que se encargará de realizar una conexión
+entre estas dos tablas.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">cursos</span><span class="p">(</span><span class="n">ID_curso</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">titulo</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">ID_profesor</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">ID_curso</span><span class="p">),</span> <span class="k">FOREIGN</span> <span class="k">KEY</span><span class="p">(</span><span class="n">ID_profesor</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">profesores</span><span class="p">(</span><span class="n">ID_profesor</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Recibiremos el siguiente mensaje:</p>
+<div class="highlight-python"><pre>NOTICE:  CREATE TABLE creará una secuencia implícita «cursos_id_curso_seq» para la columna serial «cursos.id_curso»
+NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «cursos_pkey» para la tabla «cursos»
+CREATE TABLE</pre>
+</div>
+<p>Se <em>insertarán</em> algunos datos para poder realizar una <em>selección</em> y poder visualizar el funcionamiento de la clave primaria y foránea</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">profesores</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Alfred&#39;</span><span class="p">,</span><span class="s1">&#39;JOHNSON&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">profesores</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Alisson&#39;</span><span class="p">,</span><span class="s1">&#39;DAVIS&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">profesores</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="s1">&#39;MILLER&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">profesores</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Betty&#39;</span><span class="p">,</span><span class="s1">&#39;WILSON&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">profesores</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Christin&#39;</span><span class="p">,</span><span class="s1">&#39;JONES&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">profesores</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Edison&#39;</span><span class="p">,</span><span class="s1">&#39;SMITH&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Quedando la tabla de la siguiente manera si seleccionamos todas las columnas.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">profesores</span><span class="p">;</span>
+ <span class="n">id_profesor</span> <span class="o">|</span>  <span class="n">nombre</span>  <span class="o">|</span> <span class="n">apellido</span>
+<span class="c1">-------------+----------+----------</span>
+           <span class="mi">1</span> <span class="o">|</span> <span class="n">Alfred</span>   <span class="o">|</span> <span class="n">JOHNSON</span>
+           <span class="mi">2</span> <span class="o">|</span> <span class="n">Alisson</span>  <span class="o">|</span> <span class="n">DAVIS</span>
+           <span class="mi">3</span> <span class="o">|</span> <span class="n">Bob</span>      <span class="o">|</span> <span class="n">MILLER</span>
+           <span class="mi">4</span> <span class="o">|</span> <span class="n">Betty</span>    <span class="o">|</span> <span class="n">WILSON</span>
+           <span class="mi">5</span> <span class="o">|</span> <span class="n">Christin</span> <span class="o">|</span> <span class="n">JONES</span>
+           <span class="mi">6</span> <span class="o">|</span> <span class="n">Edison</span>   <span class="o">|</span> <span class="n">SMITH</span>
+<span class="p">(</span><span class="mi">6</span> <span class="n">filas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Como se puede ver en la tabla de <strong>profesores</strong>, el &#8220;id_profesor&#8221; que lo definimos como tipo de dato serial se autoincremento automáticamente sin necesidad de ingresarlo nosotros, además se definió como una clave primaria.</p>
+</div>
+<p>Ahora insertamos los datos de la tabla <strong>cursos</strong>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">cursos</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">ID_profesor</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Base de datos&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">cursos</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">ID_profesor</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Estructura de datos&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">cursos</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">ID_profesor</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Arquitectura de computadores&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">cursos</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">ID_profesor</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Recuperacion de informacion&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">cursos</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">ID_profesor</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Teoria de sistemas&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">cursos</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">ID_profesor</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Sistemas de informacion&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="mi">0</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Quedando la tabla de siguiente manera.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">cursos</span><span class="p">;</span>
+ <span class="n">id_curso</span> <span class="o">|</span>            <span class="n">titulo</span>            <span class="o">|</span> <span class="n">id_profesor</span>
+<span class="c1">----------+------------------------------+-------------</span>
+        <span class="mi">1</span> <span class="o">|</span> <span class="n">Base</span> <span class="n">de</span> <span class="n">datos</span>                <span class="o">|</span>           <span class="mi">2</span>
+        <span class="mi">2</span> <span class="o">|</span> <span class="n">Estructura</span> <span class="n">de</span> <span class="n">datos</span>          <span class="o">|</span>           <span class="mi">5</span>
+        <span class="mi">3</span> <span class="o">|</span> <span class="n">Arquitectura</span> <span class="n">de</span> <span class="n">computadores</span> <span class="o">|</span>           <span class="mi">1</span>
+        <span class="mi">4</span> <span class="o">|</span> <span class="n">Recuperacion</span> <span class="n">de</span> <span class="n">informacion</span>  <span class="o">|</span>           <span class="mi">3</span>
+        <span class="mi">5</span> <span class="o">|</span> <span class="n">Teoria</span> <span class="n">de</span> <span class="n">sistemas</span>           <span class="o">|</span>           <span class="mi">4</span>
+        <span class="mi">6</span> <span class="o">|</span> <span class="n">Sistemas</span> <span class="n">de</span> <span class="n">informacion</span>      <span class="o">|</span>           <span class="mi">6</span>
+<span class="p">(</span><span class="mi">6</span> <span class="n">filas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Un profesor puede tener asignado más de un curso, no existe restricción.</p>
+</div>
+<p>Ahora queremos tener solo una tabla con el &#8220;nombre&#8221;, &#8220;apellido&#8221; del profesor y el &#8220;titulo&#8221; de la asignatura que dicta. Para esto realizamos una <em>selección</em> de la siguiente manera:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">,</span> <span class="n">titulo</span> <span class="k">FROM</span> <span class="n">profesores</span><span class="p">,</span> <span class="n">cursos</span> <span class="k">WHERE</span> <span class="n">profesores</span><span class="p">.</span><span class="n">id_profesor</span><span class="o">=</span><span class="n">cursos</span><span class="p">.</span><span class="n">id_profesor</span><span class="p">;</span>
+  <span class="n">nombre</span>  <span class="o">|</span> <span class="n">apellido</span> <span class="o">|</span>            <span class="n">titulo</span>
+<span class="c1">----------+----------+------------------------------</span>
+ <span class="n">Alisson</span>  <span class="o">|</span> <span class="n">DAVIS</span>    <span class="o">|</span> <span class="n">Base</span> <span class="n">de</span> <span class="n">datos</span>
+ <span class="n">Christin</span> <span class="o">|</span> <span class="n">JONES</span>    <span class="o">|</span> <span class="n">Estructura</span> <span class="n">de</span> <span class="n">datos</span>
+ <span class="n">Alfred</span>   <span class="o">|</span> <span class="n">JOHNSON</span>  <span class="o">|</span> <span class="n">Arquitectura</span> <span class="n">de</span> <span class="n">computadores</span>
+ <span class="n">Bob</span>      <span class="o">|</span> <span class="n">MILLER</span>   <span class="o">|</span> <span class="n">Recuperacion</span> <span class="n">de</span> <span class="n">informacion</span>
+ <span class="n">Betty</span>    <span class="o">|</span> <span class="n">WILSON</span>   <span class="o">|</span> <span class="n">Teoria</span> <span class="n">de</span> <span class="n">sistemas</span>
+ <span class="n">Edison</span>   <span class="o">|</span> <span class="n">SMITH</span>    <span class="o">|</span> <span class="n">Sistemas</span> <span class="n">de</span> <span class="n">informacion</span>
+<span class="p">(</span><span class="mi">6</span> <span class="n">filas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Aquí es donde tiene la importancia la clave primaria y foránea, puesto que en la condición podemos realizar una igualdad entre los &#8220;id_profesor&#8221; de la tabla <strong>profesores</strong> y <strong>cursos</strong>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

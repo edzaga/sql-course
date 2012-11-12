@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 1 - Relational Databases: “The relational model” &mdash; ALMA SQL Course</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ALMA SQL Course" href="../../index.html" />
+    <link rel="up" title="First week" href="index.html" />
+    <link rel="next" title="Lecture 2 - Relational Databases: Querying relational databases" href="lecture2.html" />
+    <link rel="prev" title="First week" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lecture2.html" title="Lecture 2 - Relational Databases: Querying relational databases"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="First week"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">First week</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 1 - Relational Databases: &#8220;The relational model&#8221;</a><ul>
+<li><a class="reference internal" href="#what-is-databases-db">What is Databases (DB)?</a><ul>
+<li><a class="reference internal" href="#database-management-system-dbms">Database Management System (DBMS)</a></li>
+<li><a class="reference internal" href="#the-entity-relationship-model-e-r">The Entity-relationship model (E-R)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#relational-database">Relational Database</a></li>
+<li><a class="reference internal" href="#engines-of-relational-databases">Engines of Relational Databases</a><ul>
+<li><a class="reference internal" href="#postgresql">PostGreSQL</a></li>
+<li><a class="reference internal" href="#mysql">MySQL</a></li>
+<li><a class="reference internal" href="#selection">Selection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">First week</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lecture2.html"
+                        title="next chapter">Lecture 2 - Relational Databases: Querying relational databases</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week1/lecture1.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-1-relational-databases-the-relational-model">
+<h1>Lecture 1 - Relational Databases: &#8220;The relational model&#8221;<a class="headerlink" href="#lecture-1-relational-databases-the-relational-model" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-databases-db">
+<h2>What is Databases (DB)?<a class="headerlink" href="#what-is-databases-db" title="Permalink to this headline">¶</a></h2>
+<p id="index-0">A DB is a set of interrelated data stored together, without presenting unnecessary redundancies,
+independently of the programs that access them.</p>
+<div class="section" id="database-management-system-dbms">
+<h3>Database Management System (DBMS)<a class="headerlink" href="#database-management-system-dbms" title="Permalink to this headline">¶</a></h3>
+<p id="index-1">The Database Management System (DBMS) is a set of programs that let create and maintain a database,
+ensuring its integrity, confidentiality, and security. Therefore, it should allow:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>To define a database</strong>: specify types, structures, and restrictions of data.</li>
+<li><strong>To build the database</strong>: save data in a/some controlled environment by the same DBMS.</li>
+<li><strong>To manipulate the database</strong>: querying, updating, and reporting.</li>
+</ul>
+</div></blockquote>
+<p>Some of the desirable features of a Database Management System (DBMS) are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Control of redundancy</strong>: Data redundancy has several negative effects
+(duplicating work when upgrading, wasting disk space can cause data inconsistency)
+although sometimes it is desirable for performance reasons.</li>
+<li><strong>Restriction of unauthorized access</strong>: each user has to have some access
+and authorization permissions.</li>
+<li><strong>Compliance of integrity restriction</strong>: the DBMS has to offer resources to define
+and ensure compliance of the integrity restrictions.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="the-entity-relationship-model-e-r">
+<h3>The Entity-relationship model (E-R)<a class="headerlink" href="#the-entity-relationship-model-e-r" title="Permalink to this headline">¶</a></h3>
+<p id="index-2">When using a DB to manage information, you are capturing a part of the real world in a
+series of tables, records, and fields. As a result, it creates a partial model of reality.
+Before physically create these tables in the DB, it should be performed a data model.</p>
+<p>The most extensive data model is the so called <strong>Entity-relationship (E-R)</strong>.
+In the E-R model the starting point is a real situation from which are defined entities
+and relationships among those entities.</p>
+<p><strong>Entities</strong></p>
+<p id="index-3">The objects that appear in real life correspond to an <strong>entity</strong>.
+For example: students, employees, airplanes, cars, accommodation, etc.
+An entity results in a table in the DB.</p>
+<img alt="../../_images/students.jpeg" class="align-center" src="../../_images/students.jpeg" />
+<p>These entities are composed of several <strong>attributes</strong>, which come to be their properties.
+For example: Student’s entity shall have the attributes <em>name, #socialSecurity,
+nationality, date of birth</em>, etc.</p>
+<img alt="../../_images/studentstable.jpeg" class="align-center" src="../../_images/studentstable.jpeg" />
+<p>The attributes are also called <strong>columns</strong> in the terminology of DB.
+Among the attributes will be one or a set of them that is not repeated;
+this attribute or set of attributes is called the <strong>primary key</strong>. In the case of the students,
+it would be the #socialSecurity. In any entity there is always at least one key
+that in the worst case will be formed by all of the attributes of the table. Since there
+may be several keys and we need to pick one, we will take into account these rules:</p>
+<blockquote>
+<div><ul class="simple">
+<li>It is unique.</li>
+<li>To have full knowledge of it. – Why each client is assigned a customer number in companies?</li>
+<li>It is minimal, as it will be often used by the database manager.</li>
+</ul>
+</div></blockquote>
+<p>Each entity will have an unlimited number of elements. For example,
+an element of the students’ entity will be a student itself.
+So the student Pepe will be an element, Jose will be another one.
+Each one of these elements is also called <strong>row or tuple</strong>  in the terminology of DB.</p>
+<p>Combining these three concepts we have a table structure type, the base of the DB.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In related books some synonyms are used:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>To refer to a <strong>row</strong> can also be used the words <strong>tuple</strong> or <strong>record</strong>.</li>
+<li>To refer to a <strong>column</strong> can also be used the words <strong>field</strong> or <strong>attribute</strong>.</li>
+</ul>
+</div></blockquote>
+</div>
+<p><strong>Relations</strong></p>
+<p id="index-4">The entities are not isolated but are related. These relations do not
+exist in the real world that we are modeling, but they are necessary
+to reflect the existing interactions between entities. The relations
+can be of three types:</p>
+<p><em>Relations 1-1</em>: the entities that intervene in the relation are
+associated one on one. (e.g. the entity MAN, the entity WOMAN and
+between then the relationship MARRIAGE).</p>
+<img alt="../../_images/Entity1-1.jpeg" class="align-center" src="../../_images/Entity1-1.jpeg" />
+<p><em>Relations 1-N</em>:  an occurrence of an entity it is associated with many (n)
+from another (e.g. the entity COMPANY, the entity Employees and the relationship
+between them WORK-IN).</p>
+<img alt="../../_images/Entity1-N.jpeg" class="align-center" src="../../_images/Entity1-N.jpeg" />
+<p><em>Relations M-N</em>: Every occurrence, in any of the two entities in the relation,
+can be associated with many (n) of the other and vice versa (e.g. the entity
+STUDENT, the entity COMPANY and the relationship between them REGISTRATION).</p>
+<img alt="../../_images/EntityM-N.jpeg" class="align-center" src="../../_images/EntityM-N.jpeg" />
+</div>
+</div>
+<div class="section" id="relational-database">
+<h2>Relational Database<a class="headerlink" href="#relational-database" title="Permalink to this headline">¶</a></h2>
+<p id="index-5">It allows to establish interconnections (relations) between the data (which is
+stored in tables), and through those connections relate the data of both tables.</p>
+<dl class="docutils">
+<dt><strong>Advantages:</strong></dt>
+<dd><ul class="first last simple">
+<li>Database systems used by the most important commercial companies.</li>
+<li>Simple model.</li>
+<li>Consultations through high-level languages.</li>
+<li>Efficient implementation.</li>
+</ul>
+</dd>
+<dt><strong>Characteristics</strong></dt>
+<dd><ul class="first last simple">
+<li>It consists of multiple tables or relations.</li>
+<li>There are not two or more tables with the same name.</li>
+<li>A table is a set of records (rows or columns).</li>
+<li>The relationship between parent and child table is carried out by using
+primary and foreign keys.</li>
+<li>The <strong>primary keys</strong> represent the primary/principal key of a record within
+a table and they must fulfill with the integrity of the data.</li>
+<li>The <strong>foreign keys</strong> are placed in the child table, they contain the same
+value as the primary key of the parent record; you can make relationships through them.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<p>There is a database which contains two relations: one called <span class="math">\(\text{Employees}\)</span>,which
+stores data of employees from a company, and one with the name <span class="math">\(\text{Dispatches}\)</span>, which
+stores the data of the dispatches that the company has. Employees who work for a
+company can be linked with the dispatches of the company, since each employee is
+assigned a concrete dispatch to work.</p>
+<div class="math">
+\[\textbf{Dispatches Table}\]\[\begin{split}  \begin{array}{|c|c|c|}
+       \hline
+        \textbf{building} &amp; \textbf{number} &amp; \textbf{surface}\\
+       \hline
+       \mbox{Princess} &amp; 120  &amp; 10\\
+       \hline
+       \mbox{Princess} &amp;  121 &amp; 12\\
+       \hline
+       \mbox{Princess} &amp;  122 &amp; 15\\
+       \hline
+       \mbox{Grey} &amp; 230  &amp; 20\\
+       \hline
+       \mbox{Diagonal} &amp; 110 &amp; 10\\
+       \hline
+  \end{array}\end{split}\]</div>
+<p>The <span class="math">\(\text{Dispatches}\)</span> table has 3 attributes (<span class="math">\(\underline{\text{building, number}}, \text{surface}\)</span>) and 5 records
+(or rows, or tuples). This table has a set of attributes whose combined values
+give the uniqueness to each row. It is about the attributes <em>building</em> and <em>number</em>;
+these are called compound primary key.</p>
+<div class="math">
+\[\textbf{Employees Table}\]\[\begin{split}  \begin{array}{|c|c|c|c|c|c|}
+       \hline
+       \textbf{DNI} &amp; \textbf{name} &amp; \textbf{lastname} &amp; \textbf{DNIchief} &amp; \textbf{buildingdisp} &amp; \textbf{numberdisp}\\
+       \hline
+       40.444.255   &amp; \mbox{Alex}     &amp; \mbox{Karev}      &amp; 40.783.150       &amp; \mbox{Princess}       &amp; 120\\
+       \hline
+       33.567.711   &amp; \mbox{George}   &amp; \mbox{O'Malley}   &amp; 40.444.255       &amp; \mbox{NULL}           &amp; \mbox{NULL}\\
+       \hline
+       55.898.425   &amp; \mbox{Derek}    &amp; \mbox{Shepherd}   &amp; 40.444.255       &amp; \mbox{Diagonal}       &amp; 110\\
+       \hline
+       77.232.144   &amp; \mbox{Arizona}  &amp; \mbox{Robbins}    &amp; 40.444.255       &amp; \mbox{Grey}           &amp; 230\\
+       \hline
+  \end{array}\end{split}\]</div>
+<p>The <span class="math">\(\text{Employees}\)</span> table has 6 attributes <span class="math">\((\underline{\text{DNI}}, \text{name, lastname, DNIchief, buildingdisp, numberdisp})\)</span>
+and 4 records (or rows), in the second record it can be seen that George has not a dispatch
+assigned, so it is added the value “unknown” or “undefined” which is defined as NULL. This
+table has an attribute whose value is unique in each tuple that is <em>DNI</em> attribute and it is
+called primary key.</p>
+<p>In the <span class="math">\(\text{Employees}\)</span> schema, the foreign key formed by the attributes <em>buildingdisp</em> and <em>numberdisp</em>
+refers to the primary key of the table <span class="math">\(\text{Dispatches}\)</span>.  In this way, it is fulfilled that all the
+values that are not null from the <em>buildingdisp</em> and <em>numberdisp</em> attributes are values which exists
+for the <em>building</em> and <em>number</em> attributes of <span class="math">\(\text{Dispatches}\)</span>. This foreign key indicates, for each employee,
+the dispatch where he works. In addition, the attribute <em>DNchief</em> is another foreign key that refers
+to the primary key of the same <span class="math">\(\text{Employees}\)</span>, and indicates, for each employee, who is his chief.</p>
+<p><strong>SQL example</strong></p>
+<p>The creation of relations (tables) in SQL</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Dispatches</span><span class="p">(</span><span class="n">building</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="nb">number</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="n">surface</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">building</span><span class="p">,</span><span class="nb">number</span><span class="p">));</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Employees</span><span class="p">(</span><span class="n">DNI</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">lastname</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">DNIchief</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="n">buildingdisp</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">numberdisp</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">DNI</span><span class="p">),</span> <span class="k">FOREIGN</span> <span class="k">KEY</span><span class="p">(</span><span class="n">buildingdisp</span><span class="p">,</span><span class="n">numberdisp</span><span class="p">)</span>
+<span class="k">REFERENCES</span> <span class="n">Dispatches</span><span class="p">(</span><span class="n">building</span><span class="p">,</span><span class="nb">number</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="engines-of-relational-databases">
+<h2>Engines of Relational Databases<a class="headerlink" href="#engines-of-relational-databases" title="Permalink to this headline">¶</a></h2>
+<p id="index-6">Nowadays there are many companies and websites that need to efficiently maintain a
+large volume of data. Many of them go for for business solutions (Oracle Database or
+IBM DB2, and others), while many others rely on free software opting for a solution
+like PostGreSQL or MySQL.</p>
+<p>The question is very common among people who enter for the first time in the world
+of free databases, what database engine should I use? MySQL or PostGreSQL? Next,
+it will be seen some details of both engines.</p>
+<div class="section" id="postgresql">
+<h3>PostGreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h3>
+<p id="index-7">PostGreSQL is a object-relational database management system based on the POSTGRES
+project, of the University of Berkeley. The director of this project is Professor
+Michael Stonebraker, and was sponsored by Defense Advanced Research Projects Agency (DARPA),
+the Army Research Office (ARO), the National Science Foundation (NSF), and ESL, Inc.</p>
+<p><strong>A bit of history</strong></p>
+<p>PostGreSQL was derived from the Postgres project. Behind its back, the project has
+more than a decade of development, being nowadays, the most advanced free system with
+difference, supporting the vast majority of the SQL transactions, concurrency control,
+and taking at their disposal several “language bindings” such as C, C++, java, Python,
+PHP, and many more.</p>
+<p>The implementation of Postgres DBMS started in 1986, and there was no a working version until 1987.
+Version 1.0 was released in June 1989 to a few users, after which version 2.0 was released in
+June 1990 due to criticism of the system of rules, which forced its reimplementation.
+Version 3.0 appeared in 1991.</p>
+<p>In 1994, Andrew Yu and Jolly Chen added a SQL interpreter to this manager. Postgres95,
+as it was called, was released to the Internet as a free project (OpenSource). It was
+written entirely in C, and the first version was 25% smaller than Postgres, and between
+30 and 50% faster. Besides correcting some bugs, the internal engine was improved, a new
+program monitor was added, and it was compiled by using GNU Make utility and the gcc compiler.
+In 1996, the developers decided to change the name to the DBMS, it was called PostGreSQL in
+order to reflect the relationship between PostGres and recent versions of SQL.</p>
+<p><strong>Characteristics</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Implementation of SQL92/SQL99 standard.</li>
+<li>BSD License.</li>
+<li>For its architectural of design, scale well by increasing the number of CPUs and the amount of RAM.</li>
+<li>Supports transactions and from version 7.0, foreign keys (with referential integrity checks).</li>
+<li>Has better support for triggers and procedures on the server.</li>
+<li>Incorporates an array data structure.</li>
+<li>Includes inheritance among tables (but nor between objects, since they don’t exist),
+so this database manager is included between the object-relational managers.</li>
+<li>Implements the use of rollback’s, sub-queries, and transactions, making its function more efficient.</li>
+<li>It is possible to make multiple operations simultaneously on the same table without blocking it.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="mysql">
+<h3>MySQL<a class="headerlink" href="#mysql" title="Permalink to this headline">¶</a></h3>
+<p id="index-8">MySQL is database management system of relational data, licensed under the GPL of the GNU.
+Its multithreaded design allows it to support a large load in a very efficient way. MySQL
+was created for the Swedish company MySQL AB, which holds the copyright of the source code
+of the SQL server, as well as the brand.</p>
+<p>Although MySQL is free software, MySQL AB distributes a commercial version of MySQL, which
+only differs from the free version in the technical support offered, and the possibility to
+integrate a manager in proprietary software, otherwise, the GPL license would be violated.</p>
+<p><strong>A bit of history</strong></p>
+<p>MySQL emerged as an attempt to connect the manager mSQL to the MySQL AB&#8217;s own tables,
+using their own routines at low level. After initial tests, they saw that mSQL was not
+flexible enough for what they needed, so they had to develop new features. This resulted
+in a SQL interface to their database, with a fully compatible interface to mSQL.</p>
+<p>It is not known for sure from where its name comes from. On the one hand they say that their
+libraries have carried the prefix &#8216;my&#8217; in the last ten years. On the other hand, the daughter
+of one of the developers is called My. It is unknown which of these two causes (though they
+might be treated the same) have given the name to this well known database manager.</p>
+<p><strong>Characteristics</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>The best of MySQL is the speed while it is performing the operations, which makes it one of
+the managers who offer better performance.</li>
+<li>It consumes very few resources either from CPU as well as memory.</li>
+<li>GPL license and also has a commercial license for those companies that want to include it in
+their proprietary applications.</li>
+<li>It provides the API’s in a large number of languages ​​(C, C + +, Java, PHP, etc).</li>
+<li>Supports up to 64 indexes per table, a significant improvement over version 4.1.2.</li>
+<li>Better integration with PHP.</li>
+<li>Allows management of different users, as well as the permissions assigned to each of them.</li>
+<li>Has support for transactions and also has a unique feature of MySQL which is to be able to
+group transactions.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="selection">
+<h3>Selection<a class="headerlink" href="#selection" title="Permalink to this headline">¶</a></h3>
+<p>It is essential to take into account for what will be needed. In many forums, it is associated
+to PostGreSQL to stability, databases of large size and high concurrency. Moreover, MySQL is
+associated to databases of smaller size but with higher speed of response to a query.</p>
+<p>Each of these managers has characteristics that make them a great choice in their respective
+field when choosing, as they were conceived for a particular implementation.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lecture2.html" title="Lecture 2 - Relational Databases: Querying relational databases"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="First week"
+             >previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" >First week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

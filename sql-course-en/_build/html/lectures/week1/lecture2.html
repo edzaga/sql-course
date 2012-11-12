@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 2 - Relational Databases: Querying relational databases &mdash; ALMA SQL Course</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ALMA SQL Course" href="../../index.html" />
+    <link rel="up" title="First week" href="index.html" />
+    <link rel="next" title="Lecture 3 - Relational Algebra: Select, Project, Join" href="lecture3.html" />
+    <link rel="prev" title="Lecture 1 - Relational Databases: “The relational model”" href="lecture1.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lecture3.html" title="Lecture 3 - Relational Algebra: Select, Project, Join"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lecture1.html" title="Lecture 1 - Relational Databases: “The relational model”"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">First week</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 2 - Relational Databases: Querying relational databases</a><ul>
+<li><a class="reference internal" href="#using-a-relational-database">Using a Relational Database</a></li>
+<li><a class="reference internal" href="#consultations-in-high-level-languages">Consultations in high level languages</a></li>
+<li><a class="reference internal" href="#consultations-and-relations">Consultations and relations</a></li>
+<li><a class="reference internal" href="#query-languages">Query languages</a><ul>
+<li><a class="reference internal" href="#using-relational-algebra">Using Relational Algebra:</a></li>
+<li><a class="reference internal" href="#using-sql">Using SQL:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture1.html"
+                        title="previous chapter">Lecture 1 - Relational Databases: &#8220;The relational model&#8221;</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lecture3.html"
+                        title="next chapter">Lecture 3 - Relational Algebra: Select, Project, Join</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week1/lecture2.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-2-relational-databases-querying-relational-databases">
+<h1>Lecture 2 - Relational Databases: Querying relational databases<a class="headerlink" href="#lecture-2-relational-databases-querying-relational-databases" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="using-a-relational-database">
+<h2>Using a Relational Database<a class="headerlink" href="#using-a-relational-database" title="Permalink to this headline">¶</a></h2>
+<p id="index-0">The necessary steps for the creation of a relational database (DB):</p>
+<blockquote>
+<div><ul class="simple">
+<li>Design the scheme, in other words, the structure between relations,
+using a DDL (Data Definition Language).</li>
+<li>Enter the initial data.</li>
+<li>Execute query and modification operations using a DML(Data Manipulation
+Language).</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>There are the so-called “Basic Operations” of DML that can be performed
+in a Relational Database:</p>
+<blockquote class="last">
+<div><ol class="arabic simple">
+<li>Consult: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">SELECT</span></span></tt></li>
+<li>Store: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">CREATE</span></span><span class="p"><span class="pre">,</span></span> <span class="k"><span class="pre">INSERT</span></span></tt></li>
+<li>Update: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">UPDATE</span></span></tt></li>
+<li>Delete: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DELETE</span></span><span class="p"><span class="pre">,</span></span> <span class="k"><span class="pre">DROP</span></span></tt></li>
+</ol>
+</div></blockquote>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>There are the so-called “Basic Operations” of DDL that can be performed
+in a Relational Database:</p>
+<blockquote class="last">
+<div><ol class="arabic simple">
+<li>Store: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">CREATE</span></span></tt></li>
+<li>Delete: <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">DROP</span></span></tt></li>
+</ol>
+</div></blockquote>
+</div>
+<p>For now, they are only named along with their related SQL functions. As the
+course advances, the content will be deepened.</p>
+</div>
+<div class="section" id="consultations-in-high-level-languages">
+<h2>Consultations in high level languages<a class="headerlink" href="#consultations-in-high-level-languages" title="Permalink to this headline">¶</a></h2>
+<p id="index-1">There are high level languages that allow making relatively simple queries in
+the database, without the need to write complex algorithms.</p>
+<p>A &#8216;query to the database&#8217;, can be understood as a question to be done to get
+&#8216;some information&#8217;. Some examples might be:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8220;All students with a grade greater than or equal to 55&#8221;</li>
+<li>&#8220;All the departments of Engineering with a quantity greater or equal to 1000 students&#8221;</li>
+<li>&#8220;The first 5 students with better GPA in the field of Chemistry&#8221;</li>
+</ul>
+</div></blockquote>
+<p>Independent of the language used, it should be noted that:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Some queries are easy to formulate, others are a bit more difficult.</li>
+<li>Some Data Base Management System (DBMS) are executing efficiently, others do not.</li>
+<li>The two points above are not dependent on each other, it can exist an easy
+query to formulate, but difficult to execute efficiently, depending on the DBMS.</li>
+<li>The language used to execute queries can modify / update information from the
+database; this is called Data Manipulation Language(DML).</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="consultations-and-relations">
+<h2>Consultations and relations<a class="headerlink" href="#consultations-and-relations" title="Permalink to this headline">¶</a></h2>
+<p id="index-2">The consultations carried out to the relations of a DB at the moment to be
+executed produce as a result, relations, which can be:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Closed: When the structure of the object obtained from the query, is equal
+to the structure of objects consulted, there is a closed relationship.</li>
+<li>Compound: When the query is done, at least one relation corresponds to the
+result of a previous consultation. In other words, it corresponds to the
+query of the result of a query.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="query-languages">
+<h2>Query languages<a class="headerlink" href="#query-languages" title="Permalink to this headline">¶</a></h2>
+<p id="index-3">Some query languages are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Relational Algebra: Formal and mathematical language.</li>
+<li>SQL: Current language and implemented that born from Relational Algebra.</li>
+</ul>
+</div></blockquote>
+<p>Although both will be deepen as the course progresses, take a look of the following example:
+Look for the “Student’s ID with grade greater or equal to 55 in programmation”</p>
+<div class="math">
+\[\textbf{Student table}\]\[\begin{split}\begin{array}{|c|c|c|c|}
+ \hline
+ \textbf{ID} &amp; \textbf{subjectID} &amp; \textbf{studentName} &amp; \textbf{gpa} \\
+ \hline
+ 1           &amp; 1                &amp; \mbox{Robert}          &amp; 45 \\
+ \hline
+ 2           &amp; 2                &amp; \mbox{Robert}          &amp; 70 \\
+ \hline
+ 3           &amp; 1                &amp; \mbox{Harry}           &amp; 55 \\
+ \hline
+ 4           &amp; 1                &amp; \mbox{Jane}            &amp; 60 \\
+ \hline
+ 5           &amp; 3                &amp; \mbox{Mary}            &amp; 35 \\
+ \hline
+\end{array}\end{split}\]\[\textbf{Subjects table}\]\[\begin{split}\begin{array}{|c|c|}
+ \hline
+ \textbf{ID} &amp; \textbf{subjectName} \\
+ \hline
+ 1           &amp; \mbox{Programming} \\
+ \hline
+ 2           &amp; \mbox{Database} \\
+ \hline
+ 3           &amp; \mbox{Math} \\
+ \hline
+\end{array}\end{split}\]</div>
+<p>Consult for the &#8220;students ID with GPA greater or equal than  55 in the
+subject of Programming &#8221;:</p>
+<div class="section" id="using-relational-algebra">
+<h3>Using Relational Algebra:<a class="headerlink" href="#using-relational-algebra" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[\pi \hspace{0.2cm} _{Student.ID} \hspace{0.2cm} \sigma_{\geq 55 \wedge \text{Subjects.subjectName ='Programming'} (Student \rhd \hspace{-0.1cm} \lhd Subjects)}\]</div>
+<p>One could say that:</p>
+<blockquote>
+<div><ul class="simple">
+<li><span class="math">\(\pi\)</span> Carried out a <tt class="docutils literal"><span class="pre">PROJECT</span></tt> on a table, that is to say select a column. On the other hand:</li>
+<li><span class="math">\(\sigma\)</span> select a row that complies with a certain condition, in the example given rows selected are the ones that have complied with having a grade higher(GPA) to 55 and that Subjects.name_subject is ‘Programming’</li>
+<li><span class="math">\(\rhd \hspace{-0.1cm} \lhd\)</span> performs a JOIN between two relations. In <a class="reference external" href="lecture3.html">lecture 3</a> we will get deeper about these operators and their meanings.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="using-sql">
+<h3>Using SQL:<a class="headerlink" href="#using-sql" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">Student</span><span class="p">.</span><span class="n">ID</span> <span class="k">FROM</span> <span class="n">Student</span><span class="p">,</span> <span class="n">Subjects</span> <span class="k">WHERE</span> <span class="n">Student</span><span class="p">.</span><span class="n">subjec_ID</span><span class="o">=</span><span class="n">subjec</span><span class="p">.</span><span class="n">ID</span>
+<span class="k">AND</span> <span class="n">Student</span><span class="p">.</span><span class="n">GPA</span><span class="o">&gt;=</span><span class="mi">55</span> <span class="k">AND</span> <span class="n">Subjects</span><span class="p">.</span><span class="n">subjectName</span> <span class="o">=</span><span class="s1">&#39;Programming&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In the next lectures, it will be studied in greater detail both the relational algebra,
+and the SQL language.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lecture3.html" title="Lecture 3 - Relational Algebra: Select, Project, Join"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lecture1.html" title="Lecture 1 - Relational Databases: “The relational model”"
+             >previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" >First week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

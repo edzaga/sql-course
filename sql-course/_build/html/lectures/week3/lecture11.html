@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 11 - The JOIN family of operators &mdash; Curso ALMA SQL</title>
+    
+    <link rel="stylesheet" href="../../_static/sqlcourse.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Curso ALMA SQL" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 11 - The JOIN family of operators</a><ul>
+<li><a class="reference internal" href="#inner-join">INNER JOIN</a></li>
+<li><a class="reference internal" href="#natural-join">NATURAL JOIN</a></li>
+<li><a class="reference internal" href="#inner-join-using-attrs">INNER JOIN USING(attrs)</a></li>
+<li><a class="reference internal" href="#left-right-full-outer-join">LEFT|RIGHT|FULL OUTER JOIN</a><ul>
+<li><a class="reference internal" href="#left-outer-join">LEFT OUTER JOIN</a></li>
+<li><a class="reference internal" href="#right-outer-join">RIGHT OUTER JOIN</a></li>
+<li><a class="reference internal" href="#full-outer-join">FULL OUTER JOIN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week3/lecture11.txt"
+           rel="nofollow">Enseñar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un módulo, clase o nombre de función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-11-the-join-family-of-operators">
+<h1>Lecture 11 - The JOIN family of operators<a class="headerlink" href="#lecture-11-the-join-family-of-operators" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>La sentencia SQL <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">JOIN</span></span></tt> permite consultar datos de 2 o más tablas. Dichas tablas
+estarán relacionadas entre ellas de alguna forma, a través de alguna de sus columnas.
+El propósito del <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">JOIN</span></span></tt> es unir información de diferentes tablas, para no tener que
+repetir datos entre las tablas.</p>
+<div class="section" id="inner-join">
+<h2>INNER JOIN<a class="headerlink" href="#inner-join" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La sentencia <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">INNER</span></span> <span class="k"><span class="pre">JOIN</span></span></tt> es el sentencia <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">JOIN</span></span></tt> por defecto que consiste en
+combinar cada fila de una tabla con cada fila de la otra tabla, seleccionado
+las filas que cumplan con una determinada condición.</p>
+<p>Esta es la estructura que se ocupa para este tipo de <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">JOIN</span></span></tt>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">tabla_1</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">tabla_2</span> <span class="k">ON</span> <span class="n">condicion</span>
+</pre></div>
+</div>
+<p>Aquí se muestra un diagrama de como funciona esta consulta.</p>
+<img alt="../../_images/inner.png" class="align-center" src="../../_images/inner.png" />
+<p>A continuación se mostrara un ejemplo de una tabla <strong>Personas</strong> y una de <strong>Ordenes</strong>
+de compras que realizaron.</p>
+<p>Realizamos la <em>creación</em> de las tablas <strong>Personas</strong> y <strong>Ordenes</strong>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Personas</span><span class="p">(</span><span class="n">id_persona</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">nombre</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">apellido</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">direccion</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">ciudad</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="k">PRIMARY</span> <span class="k">kEY</span><span class="p">(</span><span class="n">id_persona</span><span class="p">));</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Ordenes</span><span class="p">(</span><span class="n">id_orden</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">numero_orden</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="n">persona</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">id_orden</span><span class="p">),</span> <span class="k">FOREIGN</span> <span class="k">KEY</span><span class="p">(</span><span class="n">persona</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">Personas</span><span class="p">(</span><span class="n">id_persona</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Ahora <em>insertamos</em> algunos datos.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Personas</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">,</span> <span class="n">direccion</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Allen&#39;</span> <span class="p">,</span> <span class="s1">&#39;Doyle&#39;</span>   <span class="p">,</span> <span class="s1">&#39;772 Azores&#39;</span>           <span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Personas</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">,</span> <span class="n">direccion</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Amy&#39;</span>   <span class="p">,</span> <span class="s1">&#39;Looper&#39;</span>  <span class="p">,</span> <span class="s1">&#39;4525 North Oracle Rd.&#39;</span><span class="p">,</span> <span class="s1">&#39;Miami&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Personas</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">,</span> <span class="n">direccion</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Bibi&#39;</span>  <span class="p">,</span> <span class="s1">&#39;Mingus&#39;</span>  <span class="p">,</span> <span class="s1">&#39;3901 W Ina Rd&#39;</span>        <span class="p">,</span> <span class="s1">&#39;Los Angeles&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Personas</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">,</span> <span class="n">direccion</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Caden&#39;</span> <span class="p">,</span> <span class="s1">&#39;Anderson&#39;</span><span class="p">,</span> <span class="s1">&#39;7635 N La Cholla Blvd&#39;</span><span class="p">,</span> <span class="s1">&#39;Chicago&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Personas</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">apellido</span><span class="p">,</span> <span class="n">direccion</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Calvin&#39;</span><span class="p">,</span> <span class="s1">&#39;Dixson&#39;</span>  <span class="p">,</span> <span class="s1">&#39;CALLE WALLABY 42&#39;</span>     <span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Ordenes</span><span class="p">(</span><span class="n">numero_orden</span><span class="p">,</span> <span class="n">persona</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="mi">226345</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Ordenes</span><span class="p">(</span><span class="n">numero_orden</span><span class="p">,</span> <span class="n">persona</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="mi">345478</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Ordenes</span><span class="p">(</span><span class="n">numero_orden</span><span class="p">,</span> <span class="n">persona</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="mi">218909</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Ordenes</span><span class="p">(</span><span class="n">numero_orden</span><span class="p">,</span> <span class="n">persona</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="mi">567432</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Ordenes</span><span class="p">(</span><span class="n">numero_orden</span><span class="p">,</span> <span class="n">persona</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="mi">675209</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Y realizamos la consulta para unir las dos tablas, de acuerdo a la condición que
+detallemos.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="n">Personas</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">Personas</span><span class="p">.</span><span class="n">apellido</span><span class="p">,</span> <span class="n">Ordenes</span><span class="p">.</span><span class="n">numero_orden</span> <span class="k">FROM</span> <span class="n">Personas</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Ordenes</span> <span class="k">ON</span> <span class="n">Personas</span><span class="p">.</span><span class="n">id_persona</span><span class="o">=</span><span class="n">Ordenes</span><span class="p">.</span><span class="n">persona</span><span class="p">;</span>
+ <span class="n">nombre</span> <span class="o">|</span> <span class="n">apellido</span> <span class="o">|</span> <span class="n">numero_orden</span>
+<span class="c1">--------+----------+--------------</span>
+ <span class="n">Bibi</span>   <span class="o">|</span> <span class="n">Mingus</span>   <span class="o">|</span>       <span class="mi">226345</span>
+ <span class="n">Amy</span>    <span class="o">|</span> <span class="n">Looper</span>   <span class="o">|</span>       <span class="mi">345478</span>
+ <span class="n">Amy</span>    <span class="o">|</span> <span class="n">Looper</span>   <span class="o">|</span>       <span class="mi">218909</span>
+ <span class="n">Calvin</span> <span class="o">|</span> <span class="n">Dixson</span>   <span class="o">|</span>       <span class="mi">567432</span>
+ <span class="n">Calvin</span> <span class="o">|</span> <span class="n">Dixson</span>   <span class="o">|</span>       <span class="mi">675209</span>
+<span class="p">(</span><span class="mi">5</span> <span class="n">filas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>También podemos mostrar todos los atributos.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Personas</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Ordenes</span> <span class="k">ON</span> <span class="n">Personas</span><span class="p">.</span><span class="n">id_persona</span><span class="o">=</span><span class="n">Ordenes</span><span class="p">.</span><span class="n">persona</span><span class="p">;</span>
+ <span class="n">id_persona</span> <span class="o">|</span> <span class="n">nombre</span> <span class="o">|</span> <span class="n">apellido</span> <span class="o">|</span>       <span class="n">direccion</span>       <span class="o">|</span>    <span class="n">ciudad</span>     <span class="o">|</span> <span class="n">id_orden</span> <span class="o">|</span> <span class="n">numero_orden</span> <span class="o">|</span> <span class="n">persona</span>
+<span class="c1">------------+--------+----------+-----------------------+---------------+----------+--------------+---------</span>
+          <span class="mi">3</span> <span class="o">|</span> <span class="n">Bibi</span>   <span class="o">|</span> <span class="n">Mingus</span>   <span class="o">|</span> <span class="mi">3901</span> <span class="n">W</span> <span class="n">Ina</span> <span class="n">Rd</span>         <span class="o">|</span> <span class="n">Los</span> <span class="n">Angeles</span>   <span class="o">|</span>        <span class="mi">1</span> <span class="o">|</span>       <span class="mi">226345</span> <span class="o">|</span>       <span class="mi">3</span>
+          <span class="mi">2</span> <span class="o">|</span> <span class="n">Amy</span>    <span class="o">|</span> <span class="n">Looper</span>   <span class="o">|</span> <span class="mi">4525</span> <span class="n">North</span> <span class="n">Oracle</span> <span class="n">Rd</span><span class="p">.</span> <span class="o">|</span> <span class="n">Miami</span>         <span class="o">|</span>        <span class="mi">2</span> <span class="o">|</span>       <span class="mi">345478</span> <span class="o">|</span>       <span class="mi">2</span>
+          <span class="mi">2</span> <span class="o">|</span> <span class="n">Amy</span>    <span class="o">|</span> <span class="n">Looper</span>   <span class="o">|</span> <span class="mi">4525</span> <span class="n">North</span> <span class="n">Oracle</span> <span class="n">Rd</span><span class="p">.</span> <span class="o">|</span> <span class="n">Miami</span>         <span class="o">|</span>        <span class="mi">3</span> <span class="o">|</span>       <span class="mi">218909</span> <span class="o">|</span>       <span class="mi">2</span>
+          <span class="mi">5</span> <span class="o">|</span> <span class="n">Calvin</span> <span class="o">|</span> <span class="n">Dixson</span>   <span class="o">|</span> <span class="n">CALLE</span> <span class="n">WALLABY</span> <span class="mi">42</span>      <span class="o">|</span> <span class="n">San</span> <span class="n">Francisco</span> <span class="o">|</span>        <span class="mi">4</span> <span class="o">|</span>       <span class="mi">567432</span> <span class="o">|</span>       <span class="mi">5</span>
+          <span class="mi">5</span> <span class="o">|</span> <span class="n">Calvin</span> <span class="o">|</span> <span class="n">Dixson</span>   <span class="o">|</span> <span class="n">CALLE</span> <span class="n">WALLABY</span> <span class="mi">42</span>      <span class="o">|</span> <span class="n">San</span> <span class="n">Francisco</span> <span class="o">|</span>        <span class="mi">5</span> <span class="o">|</span>       <span class="mi">675209</span> <span class="o">|</span>       <span class="mi">5</span>
+<span class="p">(</span><span class="mi">5</span> <span class="n">filas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Se observa que se unen las dos tablas <strong>Personas</strong> y <strong>Ordenes</strong> cumpliendo la condición
+que definimos.</p>
+</div>
+</div>
+<div class="section" id="natural-join">
+<h2>NATURAL JOIN<a class="headerlink" href="#natural-join" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En el caso de existir columnas con el mismo nombre en las relaciones que se combinan,
+solo se incluirá una de ellas en el resultado de la combinación.</p>
+<p>Se <em>crearán</em> dos tablas llamadas <strong>Alimentos</strong> y <strong>Compañia</strong>, para realizar el ejemplo
+que mostrará como funciona el <strong>NATURAL JOIN</strong>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">COMPANIA</span><span class="p">(</span><span class="n">id_compania</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">nombre_compania</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">ciudad</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">id_compania</span><span class="p">));</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">ALIMENTOS</span><span class="p">(</span><span class="n">id_alimento</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">nombre_alimento</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">id_compania</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">id_alimento</span><span class="p">),</span> <span class="k">FOREIGN</span> <span class="k">KEY</span><span class="p">(</span><span class="n">id_compania</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">COMPANIA</span><span class="p">(</span><span class="n">id_compania</span><span class="p">));</span>
+</pre></div>
+</div>
+<p><em>Ingresamos</em> datos a las tablas.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">COMPANIA</span><span class="p">(</span><span class="n">nombre_compania</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Order All&#39;</span>    <span class="p">,</span> <span class="s1">&#39;Boston&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">COMPANIA</span><span class="p">(</span><span class="n">nombre_compania</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Akas Foods&#39;</span>   <span class="p">,</span> <span class="s1">&#39;Delhi&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">COMPANIA</span><span class="p">(</span><span class="n">nombre_compania</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Foodies&#39;</span>      <span class="p">,</span> <span class="s1">&#39;London&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">COMPANIA</span><span class="p">(</span><span class="n">nombre_compania</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;sip-n-Bite&#39;</span>   <span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">COMPANIA</span><span class="p">(</span><span class="n">nombre_compania</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Jack Hill Ltd&#39;</span><span class="p">,</span> <span class="s1">&#39;London&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">ALIMENTOS</span><span class="p">(</span><span class="n">nombre_alimento</span><span class="p">,</span> <span class="n">id_compania</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Chex Mix&#39;</span><span class="p">,</span>    <span class="mi">2</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">ALIMENTOS</span><span class="p">(</span><span class="n">nombre_alimento</span><span class="p">,</span> <span class="n">id_compania</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Cheez-lt&#39;</span><span class="p">,</span>    <span class="mi">3</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">ALIMENTOS</span><span class="p">(</span><span class="n">nombre_alimento</span><span class="p">,</span> <span class="n">id_compania</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;BN Biscuit&#39;</span><span class="p">,</span>  <span class="mi">3</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">ALIMENTOS</span><span class="p">(</span><span class="n">nombre_alimento</span><span class="p">,</span> <span class="n">id_compania</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Mighty Munch&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">ALIMENTOS</span><span class="p">(</span><span class="n">nombre_alimento</span><span class="p">,</span> <span class="n">id_compania</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Pot Rice&#39;</span><span class="p">,</span>    <span class="mi">4</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Ahora podemos realizar la <em>consulta</em> del <strong>NATURAL JOIN</strong>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">ALIMENTOS</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">COMPANIA</span><span class="p">;</span>
+ <span class="n">id_compania</span> <span class="o">|</span> <span class="n">id_alimento</span> <span class="o">|</span> <span class="n">nombre_alimento</span> <span class="o">|</span> <span class="n">nombre_compania</span> <span class="o">|</span>  <span class="n">ciudad</span>
+<span class="c1">-------------+-------------+-----------------+-----------------+----------</span>
+           <span class="mi">2</span> <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="n">Chex</span> <span class="n">Mix</span>        <span class="o">|</span> <span class="n">Akas</span> <span class="n">Foods</span>      <span class="o">|</span> <span class="n">Delhi</span>
+           <span class="mi">3</span> <span class="o">|</span>           <span class="mi">2</span> <span class="o">|</span> <span class="n">Cheez</span><span class="o">-</span><span class="n">lt</span>        <span class="o">|</span> <span class="n">Foodies</span>         <span class="o">|</span> <span class="n">London</span>
+           <span class="mi">3</span> <span class="o">|</span>           <span class="mi">3</span> <span class="o">|</span> <span class="n">BN</span> <span class="n">Biscuit</span>      <span class="o">|</span> <span class="n">Foodies</span>         <span class="o">|</span> <span class="n">London</span>
+           <span class="mi">5</span> <span class="o">|</span>           <span class="mi">4</span> <span class="o">|</span> <span class="n">Mighty</span> <span class="n">Munch</span>    <span class="o">|</span> <span class="n">Jack</span> <span class="n">Hill</span> <span class="n">Ltd</span>   <span class="o">|</span> <span class="n">London</span>
+           <span class="mi">4</span> <span class="o">|</span>           <span class="mi">5</span> <span class="o">|</span> <span class="n">Pot</span> <span class="n">Rice</span>        <span class="o">|</span> <span class="n">sip</span><span class="o">-</span><span class="n">n</span><span class="o">-</span><span class="n">Bite</span>      <span class="o">|</span> <span class="k">New</span> <span class="n">York</span>
+<span class="p">(</span><span class="mi">5</span> <span class="n">filas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Al realizar el <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">NATURAL</span></span> <span class="k"><span class="pre">JOIN</span></span></tt>, retorna una tabla con solo una
+columna llamada <tt class="code sql highlight docutils literal"><span class="n"><span class="pre">id_compania</span></span></tt>, que estaba repetida en las dos tablas
+<strong>ALIMENTOS</strong> y <strong>COMPANIA</strong> y la unión de las otras columnas.</p>
+</div>
+</div>
+<div class="section" id="inner-join-using-attrs">
+<h2>INNER JOIN USING(attrs)<a class="headerlink" href="#inner-join-using-attrs" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Al realizar el <strong>INNER JOIN</strong> con la cláusula <strong>USING(attrs)</strong>.</p>
+<p>A continuación mostraremos el ejemplo anterior utilizando la cláusula <strong>USING(id_compania)</strong>
+que es la columna que se repite en las dos tablas.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">ALIMENTOS</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">COMPANIA</span> <span class="k">USING</span><span class="p">(</span><span class="n">id_compania</span><span class="p">);</span>
+ <span class="n">id_compania</span> <span class="o">|</span> <span class="n">id_alimento</span> <span class="o">|</span> <span class="n">nombre_alimento</span> <span class="o">|</span> <span class="n">nombre_compania</span> <span class="o">|</span>  <span class="n">ciudad</span>
+<span class="c1">-------------+-------------+-----------------+-----------------+----------</span>
+           <span class="mi">2</span> <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="n">Chex</span> <span class="n">Mix</span>        <span class="o">|</span> <span class="n">Akas</span> <span class="n">Foods</span>      <span class="o">|</span> <span class="n">Delhi</span>
+           <span class="mi">3</span> <span class="o">|</span>           <span class="mi">2</span> <span class="o">|</span> <span class="n">Cheez</span><span class="o">-</span><span class="n">lt</span>        <span class="o">|</span> <span class="n">Foodies</span>         <span class="o">|</span> <span class="n">London</span>
+           <span class="mi">3</span> <span class="o">|</span>           <span class="mi">3</span> <span class="o">|</span> <span class="n">BN</span> <span class="n">Biscuit</span>      <span class="o">|</span> <span class="n">Foodies</span>         <span class="o">|</span> <span class="n">London</span>
+           <span class="mi">5</span> <span class="o">|</span>           <span class="mi">4</span> <span class="o">|</span> <span class="n">Mighty</span> <span class="n">Munch</span>    <span class="o">|</span> <span class="n">Jack</span> <span class="n">Hill</span> <span class="n">Ltd</span>   <span class="o">|</span> <span class="n">London</span>
+           <span class="mi">4</span> <span class="o">|</span>           <span class="mi">5</span> <span class="o">|</span> <span class="n">Pot</span> <span class="n">Rice</span>        <span class="o">|</span> <span class="n">sip</span><span class="o">-</span><span class="n">n</span><span class="o">-</span><span class="n">Bite</span>      <span class="o">|</span> <span class="k">New</span> <span class="n">York</span>
+<span class="p">(</span><span class="mi">5</span> <span class="n">filas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="left-right-full-outer-join">
+<h2>LEFT|RIGHT|FULL OUTER JOIN<a class="headerlink" href="#left-right-full-outer-join" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Se creará el siguiente ejemplo para realizar estas tres consultas.</p>
+<p><em>Crearemos</em> las tablas <strong>tabla_A</strong> y <strong>tabla_B</strong>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">tabla_A</span><span class="p">(</span><span class="n">id</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">nombre</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">id</span><span class="p">));</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">tabla_B</span><span class="p">(</span><span class="n">id</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">nombre</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">id</span><span class="p">));</span>
+</pre></div>
+</div>
+<p><em>Ingresamos</em> datos a las tablas.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">tabla_A</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Pirate&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">tabla_A</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Monkey&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">tabla_A</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Ninja&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">tabla_A</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Spaghetti&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">tabla_B</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Rutabaga&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">tabla_B</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Pirate&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">tabla_B</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Darth Vader&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">tabla_B</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Ninja&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="left-outer-join">
+<h3>LEFT OUTER JOIN<a class="headerlink" href="#left-outer-join" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La sentencia <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">LEFT</span></span> <span class="k"><span class="pre">OUTER</span></span> <span class="k"><span class="pre">JOIN</span></span></tt> ó <tt class="code sql highlight docutils literal"><span class="k"><span class="pre">LEFT</span></span> <span class="k"><span class="pre">JOIN</span></span></tt> combina los valores de la
+primera tabla con los valores de la segunda tabla que cumplan con la condición.
+Si no existe ninguna coincidencia, el lado derecho contendrá null (o vacío).</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">tabla_1</span> <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">tabla_2</span> <span class="k">ON</span> <span class="n">tabla_1</span><span class="p">.</span><span class="n">columna</span> <span class="o">=</span> <span class="n">tabla_2</span><span class="p">.</span><span class="n">columna</span>
+</pre></div>
+</div>
+<img alt="../../_images/left.png" class="align-center" src="../../_images/left.png" />
+<p>Ahora realizamos la consulta con el ejemplo que definimos al comienzo.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">tabla_A</span> <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">tabla_B</span> <span class="k">ON</span> <span class="n">tabla_A</span><span class="p">.</span><span class="n">nombre</span><span class="o">=</span><span class="n">tabla_B</span><span class="p">.</span><span class="n">nombre</span><span class="p">;</span>
+ <span class="n">id</span> <span class="o">|</span>  <span class="n">nombre</span>   <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">nombre</span>
+<span class="c1">----+-----------+----+--------</span>
+  <span class="mi">1</span> <span class="o">|</span> <span class="n">Pirate</span>    <span class="o">|</span>  <span class="mi">2</span> <span class="o">|</span> <span class="n">Pirate</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">Monkey</span>    <span class="o">|</span>    <span class="o">|</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">Ninja</span>     <span class="o">|</span>  <span class="mi">4</span> <span class="o">|</span> <span class="n">Ninja</span>
+  <span class="mi">4</span> <span class="o">|</span> <span class="n">Spaghetti</span> <span class="o">|</span>    <span class="o">|</span>
+<span class="p">(</span><span class="mi">4</span> <span class="k">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Podemos observar que retorna todos los atributos de la <strong>tabla_A</strong> (izquierda) y de la
+<strong>tabla_B</strong>, solo retorna los atributos que cumplen con la condición que establecimos.</p>
+</div>
+</div>
+<div class="section" id="right-outer-join">
+<h3>RIGHT OUTER JOIN<a class="headerlink" href="#right-outer-join" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La sentencia <strong>RIGHT OUTER JOIN</strong> ó <strong>RIGHT JOIN</strong> combina los valores de la primera tabla con los
+valores de la segunda tabla. Siempre devolverá las filas de la segunda tabla, incluso
+aunque no cumplan la condición.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">tabla_1</span> <span class="k">RIGHT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">tabla_2</span> <span class="k">ON</span> <span class="n">tabla_1</span><span class="p">.</span><span class="n">columna</span> <span class="o">=</span> <span class="n">tabla_2</span><span class="p">.</span><span class="n">columna</span>
+</pre></div>
+</div>
+<p>A continuación se muestra un diagrama de la consulta.</p>
+<img alt="../../_images/right.png" class="align-center" src="../../_images/right.png" />
+<p>Ahora realizamos la siguiente consulta.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">tabla_A</span> <span class="k">RIGHT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">tabla_B</span> <span class="k">ON</span> <span class="n">tabla_A</span><span class="p">.</span><span class="n">nombre</span><span class="o">=</span><span class="n">tabla_B</span><span class="p">.</span><span class="n">nombre</span><span class="p">;</span>
+ <span class="n">id</span> <span class="o">|</span> <span class="n">nombre</span> <span class="o">|</span> <span class="n">id</span> <span class="o">|</span>   <span class="n">nombre</span>
+<span class="c1">----+--------+----+-------------</span>
+    <span class="o">|</span>        <span class="o">|</span>  <span class="mi">1</span> <span class="o">|</span> <span class="n">Rutabaga</span>
+  <span class="mi">1</span> <span class="o">|</span> <span class="n">Pirate</span> <span class="o">|</span>  <span class="mi">2</span> <span class="o">|</span> <span class="n">Pirate</span>
+    <span class="o">|</span>        <span class="o">|</span>  <span class="mi">3</span> <span class="o">|</span> <span class="n">Darth</span> <span class="n">Vader</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">Ninja</span>  <span class="o">|</span>  <span class="mi">4</span> <span class="o">|</span> <span class="n">Ninja</span>
+<span class="p">(</span><span class="mi">4</span> <span class="k">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Se observa que el retorno de la consulta son todos los atributos de <strong>tabla_B</strong> (derecha)
+y solo los atributos que cumplen con la condición que definimos de <strong>tabla_A</strong>.</p>
+</div>
+</div>
+<div class="section" id="full-outer-join">
+<h3>FULL OUTER JOIN<a class="headerlink" href="#full-outer-join" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La sentencia <strong>FULL OUTER JOIN</strong> ó <strong>FULL JOIN</strong> combina los valores de la primera tabla con los
+valores de la segunda tabla. Siempre devolverá las filas de las dos tablas, aunque
+no cumplan la condición.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">tabla_1</span> <span class="k">FULL</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">tabla_2</span> <span class="k">ON</span> <span class="n">tabla_1</span><span class="p">.</span><span class="n">columna</span> <span class="o">=</span> <span class="n">tabla_2</span><span class="p">.</span><span class="n">columna</span>
+</pre></div>
+</div>
+<p>A continuación se muestra el diagrama de la consulta.</p>
+<img alt="../../_images/full.png" class="align-center" src="../../_images/full.png" />
+<p>Ahora se realizará el ejemplo de la consulta.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">tabla_A</span> <span class="k">FULL</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">tabla_B</span> <span class="k">ON</span> <span class="n">tabla_A</span><span class="p">.</span><span class="n">nombre</span><span class="o">=</span><span class="n">tabla_B</span><span class="p">.</span><span class="n">nombre</span><span class="p">;</span>
+ <span class="n">id</span> <span class="o">|</span>  <span class="n">nombre</span>   <span class="o">|</span> <span class="n">id</span> <span class="o">|</span>   <span class="n">nombre</span>
+<span class="c1">----+-----------+----+-------------</span>
+    <span class="o">|</span>           <span class="o">|</span>  <span class="mi">3</span> <span class="o">|</span> <span class="n">Darth</span> <span class="n">Vader</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">Monkey</span>    <span class="o">|</span>    <span class="o">|</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">Ninja</span>     <span class="o">|</span>  <span class="mi">4</span> <span class="o">|</span> <span class="n">Ninja</span>
+  <span class="mi">1</span> <span class="o">|</span> <span class="n">Pirate</span>    <span class="o">|</span>  <span class="mi">2</span> <span class="o">|</span> <span class="n">Pirate</span>
+    <span class="o">|</span>           <span class="o">|</span>  <span class="mi">1</span> <span class="o">|</span> <span class="n">Rutabaga</span>
+  <span class="mi">4</span> <span class="o">|</span> <span class="n">Spaghetti</span> <span class="o">|</span>    <span class="o">|</span>
+<span class="p">(</span><span class="mi">6</span> <span class="k">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Se observa que se retornan todos los atributos de <strong>tabla_A</strong> y <strong>tabla_B</strong>, aunque no
+cumpla con la condición.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

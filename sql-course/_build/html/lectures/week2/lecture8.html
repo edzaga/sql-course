@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 8 - Table variables and set operators &mdash; Curso ALMA SQL</title>
+    
+    <link rel="stylesheet" href="../../_static/sqlcourse.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Curso ALMA SQL" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 8 - Table variables and set operators</a><ul>
+<li><a class="reference internal" href="#table-variables">Table Variables</a><ul>
+<li><a class="reference internal" href="#ejemplo-1">Ejemplo 1</a></li>
+<li><a class="reference internal" href="#ejemplo-2">Ejemplo 2</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#set-operators">Set Operators</a><ul>
+<li><a class="reference internal" href="#union">Unión</a></li>
+<li><a class="reference internal" href="#interseccion">Intersección</a></li>
+<li><a class="reference internal" href="#excepcion">Excepción</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week2/lecture8.txt"
+           rel="nofollow">Enseñar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un módulo, clase o nombre de función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-8-table-variables-and-set-operators">
+<h1>Lecture 8 - Table variables and set operators<a class="headerlink" href="#lecture-8-table-variables-and-set-operators" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="table-variables">
+<h2>Table Variables<a class="headerlink" href="#table-variables" title="Enlazar permanentemente con este título">¶</a></h2>
+<p id="index-0">Consideremos las siguientes tablas:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">College</span> <span class="p">(</span><span class="n">cName</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">enrollment</span><span class="p">)</span>
+<span class="n">Student</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span>
+<span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>las cuales representar un sistema simple de postulación de estudiantes a establecimientos educacionales, y son creadas mediante:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">College</span><span class="p">(</span><span class="n">id</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">cName</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="k">state</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">enrollment</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">id</span><span class="p">));</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Student</span><span class="p">(</span><span class="n">sID</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">sName</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">GPA</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="k">PRIMARY</span> <span class="k">kEY</span><span class="p">(</span><span class="n">sID</span><span class="p">));</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Apply</span><span class="p">(</span><span class="n">sID</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="n">cName</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">major</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">decision</span> <span class="nb">BOOLEAN</span><span class="p">,</span> <span class="k">PRIMARY</span> <span class="k">kEY</span><span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Se utilizarán 4 establecimientos educacionales:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">College</span> <span class="p">(</span><span class="n">cName</span><span class="p">,</span> <span class="k">state</span><span class="p">,</span> <span class="n">enrollment</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Stanford&#39;</span><span class="p">,</span><span class="s1">&#39;CA&#39;</span><span class="p">,</span><span class="mi">15000</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">College</span> <span class="p">(</span><span class="n">cName</span><span class="p">,</span> <span class="k">state</span><span class="p">,</span> <span class="n">enrollment</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Berkeley&#39;</span><span class="p">,</span><span class="s1">&#39;CA&#39;</span><span class="p">,</span><span class="mi">36000</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">College</span> <span class="p">(</span><span class="n">cName</span><span class="p">,</span> <span class="k">state</span><span class="p">,</span> <span class="n">enrollment</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;MIT&#39;</span><span class="p">,</span><span class="s1">&#39;MA&#39;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">College</span> <span class="p">(</span><span class="n">cName</span><span class="p">,</span> <span class="k">state</span><span class="p">,</span> <span class="n">enrollment</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Harvard&#39;</span><span class="p">,</span><span class="s1">&#39;CM&#39;</span><span class="p">,</span><span class="mi">23000</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>4 estudiantes:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Amy&#39;</span><span class="p">,</span> <span class="mi">60</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Edward&#39;</span><span class="p">,</span> <span class="mi">65</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Craig&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Irene&#39;</span><span class="p">,</span> <span class="mi">49</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>y 6 postulaciones:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Stanford&#39;</span><span class="p">,</span> <span class="s1">&#39;science&#39;</span><span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Stanford&#39;</span><span class="p">,</span> <span class="s1">&#39;engineering&#39;</span><span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Berkeley&#39;</span><span class="p">,</span> <span class="s1">&#39;natural hostory&#39;</span><span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;MIT&#39;</span><span class="p">,</span> <span class="s1">&#39;math&#39;</span><span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Harvard&#39;</span><span class="p">,</span> <span class="s1">&#39;science&#39;</span><span class="p">,</span> <span class="k">False</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Apply</span> <span class="p">(</span><span class="n">sID</span><span class="p">,</span> <span class="n">cName</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">decision</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Stanford&#39;</span><span class="p">,</span> <span class="s1">&#39;marine biology&#39;</span><span class="p">,</span> <span class="k">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="ejemplo-1">
+<h3>Ejemplo 1<a class="headerlink" href="#ejemplo-1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En este ejemplo se busca la información del nombre e id de los  alumnos, que postulan a uno o más establecimientos educacionales con
+determinado GPA:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">Student</span><span class="p">.</span><span class="n">sID</span><span class="p">,</span> <span class="n">sName</span><span class="p">,</span> <span class="n">Apply</span><span class="p">.</span><span class="n">cName</span><span class="p">,</span> <span class="n">GPA</span> <span class="k">FROM</span> <span class="n">Student</span><span class="p">,</span> <span class="n">Apply</span> <span class="k">WHERE</span> <span class="n">Apply</span><span class="p">.</span><span class="n">sID</span> <span class="o">=</span> <span class="n">Student</span><span class="p">.</span><span class="n">sID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>cuya salida es:</p>
+<div class="highlight-python"><pre>sid | sname  |  cname   | gpa
+----+--------+----------+-----
+ 1 | Amy     | Stanford |  60
+ 1 | Amy     | Stanford |  60
+ 2 | Edward  | Berkeley |  65
+ 3 | Craig   | MIT      |  50
+ 3 | Craig   | Harvard  |  50
+ 4 | Irene   | Stanford |  49</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Notese que existe un supuesto duplicado en las primeras filas. Esto es debido a que Amy postuló a &#8220;science&#8221; y a &#8220;engineering&#8221; en Stanford. Esto
+puede evitarse utilizando <strong>SELECT DISTINCT</strong> en lugar de <strong>SELECT</strong>.</p>
+</div>
+<p>también es posible realizarla como:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">S</span><span class="p">.</span><span class="n">sID</span><span class="p">,</span> <span class="n">sName</span><span class="p">,</span> <span class="n">A</span><span class="p">.</span><span class="n">cName</span><span class="p">,</span> <span class="n">GPA</span> <span class="k">FROM</span> <span class="n">Student</span> <span class="n">S</span><span class="p">,</span> <span class="n">Apply</span> <span class="n">A</span> <span class="k">WHERE</span> <span class="n">A</span><span class="p">.</span><span class="n">sID</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">sID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>cuya salida es:</p>
+<div class="highlight-python"><pre>sid | sname  |  cname   | gpa
+----+--------+----------+-----
+1 | Amy     | Stanford |  60
+1 | Amy     | Stanford |  60
+2 | Edward  | Berkeley |  65
+3 | Craig   | MIT      |  50
+3 | Craig   | Harvard  |  50
+4 | Irene   | Stanford |  49</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Al igual que en la consulata anterior, es posible evitar el valor duplicado utilizando <strong>SELECT DISTINCT</strong> en lugar de <strong>SELECT</strong>.</p>
+</div>
+<p>Como se aprecia, es posible asignar variables a las relaciones &#8220;R&#8221; y utilizar dichas variables tanto en la lista &#8220;L&#8221; como en la
+condición &#8220;C&#8221;. ¿Cuál es la utilidad de esto?, más allá de escribir menos (dependiendo del nombre de la variable
+utilizada); en los casos en que se deben comparar múltiples instancias de la misma relación, como se verá en el ejemplo 2.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">El por qué de la nomenclatura &#8220;L&#8221;, &#8220;R&#8221; y &#8220;C&#8221; y su significado están explicados en la lectura 7</p>
+</div>
+</div>
+<div class="section" id="ejemplo-2">
+<h3>Ejemplo 2<a class="headerlink" href="#ejemplo-2" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Cuidado con los duplicados!!</p>
+<p>Si el lector se fija en la situación descrita, los nombres de algunos atributos de diferentes relaciones y/o tablas  se repiten, lo cual
+podría plantear la interrogante ¿a que tabla se refiere el atributo en cuestión?. Para resolver este pequeño gran problema, se precede al
+nombre del atributo con el nombre de la tabla y un punto, es decir:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;NombreTabla.atributo&quot;</span>
+</pre></div>
+</div>
+<p>Concretamente en el ejemplo anterior, el alcance de nombres lo protagonizan <em>sID</em> de la tabla Student y <em>sID</em> de la tabla Apply.
+La diferencia se realiza a través de:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">Student</span><span class="p">.</span><span class="n">sID</span> <span class="n">o</span> <span class="n">S</span><span class="p">.</span><span class="n">sID</span>
+<span class="n">Apply</span><span class="p">.</span><span class="n">sID</span> <span class="n">o</span>  <span class="n">A</span><span class="p">.</span><span class="n">sID</span>
+</pre></div>
+</div>
+<p>Para la realización de este ejemplo, supongase que al último momento, llegan los papeles de un postulante más, por lo que el administrador
+de la base de datos deberá agregar la información necesaria, es decir:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Student</span> <span class="p">(</span><span class="n">sName</span><span class="p">,</span> <span class="n">GPA</span><span class="p">)</span> <span class="k">Values</span> <span class="p">(</span><span class="s1">&#39;Tim&#39;</span><span class="p">,</span> <span class="mi">60</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el este ejemplo,
+se buscan todos los pares de estudiantes con el mismo GPA:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">S1</span><span class="p">.</span><span class="n">sID</span><span class="p">,</span> <span class="n">S1</span><span class="p">.</span><span class="n">sName</span><span class="p">,</span> <span class="n">S1</span><span class="p">.</span><span class="n">GPA</span><span class="p">,</span> <span class="n">S2</span><span class="p">.</span><span class="n">sID</span><span class="p">,</span> <span class="n">S2</span><span class="p">.</span><span class="n">sName</span><span class="p">,</span> <span class="n">S2</span><span class="p">.</span><span class="n">GPA</span>
+<span class="k">FROM</span> <span class="n">Student</span> <span class="n">S1</span><span class="p">,</span> <span class="n">Student</span> <span class="n">S2</span>
+<span class="k">WHERE</span> <span class="n">S1</span><span class="p">.</span><span class="n">GPA</span> <span class="o">=</span> <span class="n">S2</span><span class="p">.</span><span class="n">GPA</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrá uno o varios duplicados; por ejemplo,
+consideremos a los 5 estudantes:</p>
+<div class="highlight-python"><pre>sid | sname  | gpa
+----+--------+-----
+1 | Amy      |  60
+2 | Edward   |  65
+3 | Craig    |  50
+4 | Irene    |  49
+5 | Tim      |  60</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">La tabla de arriba se obtuvo realizando la consulta :SQL: &#8216;SELECT * FROM Student;&#8217;</p>
+</div>
+<p>Los pares de estudiantes serán:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Amy</span>    <span class="o">-</span>       <span class="n">Tim</span>
+</pre></div>
+</div>
+<p>pero la salida muestra:</p>
+<div class="highlight-python"><pre>sid | sname  | gpa | sid | sname  | gpa
+----+--------+-----+-----+--------+-----
+1   | Amy    |  60 |   5 | Tim    | 60
+1   | Amy    |  60 |   1 | Amy    | 60
+2   | Edward |  65 |   2 | Edward | 65
+3   | Craig  |  50 |   3 | Craig  | 50
+4   | Irene  |  49 |   4 | Irene  | 49
+5   | Tim    |  60 |   5 | Tim    | 60
+5   | Tim    |  60 |   5 | Amy    | 60</pre>
+</div>
+<p>lo cual se puede evitar modificando la cosulta</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">S1</span><span class="p">.</span><span class="n">sID</span><span class="p">,</span> <span class="n">S1</span><span class="p">.</span><span class="n">sName</span><span class="p">,</span> <span class="n">S1</span><span class="p">.</span><span class="n">GPA</span><span class="p">,</span> <span class="n">S2</span><span class="p">.</span><span class="n">sID</span><span class="p">,</span> <span class="n">S2</span><span class="p">.</span><span class="n">sName</span><span class="p">,</span> <span class="n">S2</span><span class="p">.</span><span class="n">GPA</span>
+<span class="k">FROM</span> <span class="n">Student</span> <span class="n">S1</span><span class="p">,</span> <span class="n">Student</span> <span class="n">S2</span>
+<span class="k">WHERE</span> <span class="n">S1</span><span class="p">.</span><span class="n">GPA</span> <span class="o">=</span> <span class="n">S2</span><span class="p">.</span><span class="n">GPA</span> <span class="k">and</span> <span class="n">S1</span><span class="p">.</span><span class="n">sID</span> <span class="o">&lt;&gt;</span> <span class="n">S2</span><span class="p">.</span><span class="n">sID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>es decir, que el id del estudiante S1 sea diferente al id del estudiante S2; en cuyo caso la salida de la consulta es:</p>
+<div class="highlight-python"><pre>sid | sname  | gpa | sid | sname  | gpa
+----+--------+-----+-----+--------+-----
+1   | Amy    |  60 |   5 | Tim    | 60
+5   | Tim    |  60 |   1 | Amy    | 60</pre>
+</div>
+</div>
+</div>
+<div class="section" id="set-operators">
+<h2>Set Operators<a class="headerlink" href="#set-operators" title="Enlazar permanentemente con este título">¶</a></h2>
+<p id="index-1">Los Operadores de conjunto son 3:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Unión</li>
+<li>Intersección</li>
+<li>Excepción</li>
+</ul>
+</div></blockquote>
+<p>A continuación se explicará cada uno con un ejemplo:</p>
+<div class="section" id="union">
+<h3>Unión<a class="headerlink" href="#union" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El operador &#8220;UNION&#8221;, permite combinar el resultado de dos o más sentencias SELECT. Es necesario que estas tengan el mismo número de columnas,
+y que, además tengan los mismos tipos de datos, por ejemplo, si se tienen las siguientes tablas:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">Employees_Norway</span><span class="p">:</span>
+   <span class="n">E_ID</span>    <span class="n">E_Name</span>
+   <span class="mi">1</span>      <span class="n">Hansen</span><span class="p">,</span> <span class="n">Ola</span>
+   <span class="mi">2</span>      <span class="n">Svendson</span><span class="p">,</span> <span class="n">Tove</span>
+   <span class="mi">3</span>      <span class="n">Svendson</span><span class="p">,</span> <span class="n">Stephen</span>
+   <span class="mi">4</span>      <span class="n">Pettersen</span><span class="p">,</span> <span class="n">Kari</span>
+
+   <span class="n">Employees_USA</span><span class="p">:</span>
+   <span class="n">E_ID</span>    <span class="n">E_Name</span>
+   <span class="mi">1</span>      <span class="n">Turner</span><span class="p">,</span> <span class="n">Sally</span>
+   <span class="mi">2</span>      <span class="n">Kent</span><span class="p">,</span> <span class="n">Clark</span>
+   <span class="mi">3</span>      <span class="n">Svendson</span><span class="p">,</span> <span class="n">Stephen</span>
+   <span class="mi">4</span>      <span class="n">Scott</span><span class="p">,</span> <span class="n">Stephen</span>
+</pre></div>
+</div>
+<p>Que se pueden crear mediante el comando CREATE TABLE:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Employees_Norway</span> <span class="p">(</span><span class="n">E_ID</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">E_Name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">E_ID</span><span class="p">));</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Employees_USA</span> <span class="p">(</span> <span class="n">E_ID</span> <span class="nb">serial</span><span class="p">,</span> <span class="n">E_Name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">E_ID</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>y pobladas  con los datos mostrados a continuación:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Employees_Norway</span> <span class="p">(</span><span class="n">E_Name</span><span class="p">)</span>
+<span class="k">VALUES</span>
+<span class="p">(</span><span class="s1">&#39;Hansen, Ola&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;Svendson, Tove&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;Svendson, Stephen&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;Pettersen, Kari&#39;</span><span class="p">);</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Employees_USA</span> <span class="p">(</span><span class="n">E_Name</span><span class="p">)</span>
+<span class="k">VALUES</span>
+<span class="p">(</span><span class="s1">&#39;Turner, Sally&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;Kent, Clark&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;Svendson, Stephen&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;Scott, Stephen&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>El resultado de la siguiente consulta que incluye el operador UNION:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">E_Name</span> <span class="k">FROM</span> <span class="n">Employees_Norway</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span> <span class="n">E_Name</span> <span class="k">FROM</span> <span class="n">Employees_USA</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>es:</p>
+<div class="highlight-sql"><div class="highlight"><pre>  <span class="n">e_name</span>
+<span class="c1">--------------</span>
+  <span class="n">Turner</span><span class="p">,</span> <span class="n">Sally</span>
+  <span class="n">Svendson</span><span class="p">,</span> <span class="n">Tove</span>
+  <span class="n">Svendson</span><span class="p">,</span> <span class="n">Stephen</span>
+  <span class="n">Pettersen</span><span class="p">,</span> <span class="n">Kari</span>
+  <span class="n">Hansen</span><span class="p">,</span> <span class="n">Ola</span>
+  <span class="n">Kent</span><span class="p">,</span> <span class="n">Clark</span>
+  <span class="n">Scott</span><span class="p">,</span> <span class="n">Stephen</span>
+</pre></div>
+</div>
+<p>Hay que tener en cuenta que existe en ambas tablas un empleado con el mismo nombre &#8220;Svendson, Stephen&#8221;. Sin embargo en la
+salida sólo se nombra uno. Si se desea que aparezcan &#8220;UNION ALL&#8221;:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">E_Name</span> <span class="k">as</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">Employees_Norway</span>
+<span class="k">UNION</span> <span class="k">ALL</span>
+<span class="k">SELECT</span> <span class="n">E_Name</span> <span class="k">as</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">Employees_USA</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Utilizando &#8220;as&#8221; es posible cambiar el nombre de la columna donde quedará resultado:</p>
+<div class="highlight-sql"><div class="highlight"><pre>  <span class="n">name</span>
+<span class="c1">---------------</span>
+  <span class="n">Hansen</span><span class="p">,</span> <span class="n">Ola</span>
+  <span class="n">Svendson</span><span class="p">,</span> <span class="n">Tove</span>
+  <span class="n">Svendson</span><span class="p">,</span> <span class="n">Stephen</span>
+  <span class="n">Pettersen</span><span class="p">,</span> <span class="n">Kari</span>
+  <span class="n">Turner</span><span class="p">,</span> <span class="n">Sally</span>
+  <span class="n">Kent</span><span class="p">,</span> <span class="n">Clark</span>
+  <span class="n">Svendson</span><span class="p">,</span> <span class="n">Stephen</span>
+  <span class="n">Scott</span><span class="p">,</span> <span class="n">Stephen</span>
+</pre></div>
+</div>
+<p>se aprecia que la salida contiene los nombres de los empleados duplicados:</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">En el ejemplo anterior, se utiliza &#8220;as name&#8221; en ambos SELECT. Como hecho curioso, si se utilizan diferentes nombres junto al &#8220;as&#8221;
+como por ejemplo, &#8220;as name&#8221; y &#8220;as lala&#8221;, queda como nombre de la tabla UNION el primero en ser declarado.</p>
+</div>
+</div>
+<div class="section" id="interseccion">
+<h3>Intersección<a class="headerlink" href="#interseccion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT. La diferencia consiste en que UNION actúa como un OR,
+e INTERSECT lo hace como AND.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Las tablas de verdad de estos OR y AND se encuentran en la lectura 7.</p>
+</div>
+<p>Es decir que INTERSECT devuelve los valores repetidos.</p>
+<p>Utilizando el ejemplo de los empleados, y ejecutando la consulta:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">E_Name</span> <span class="k">as</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">Employees_Norway</span>
+<span class="k">INTERSECT</span>
+<span class="k">SELECT</span> <span class="n">E_Name</span> <span class="k">as</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">Employees_USA</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>su salida es:</p>
+<div class="highlight-python"><pre>e_name
+----------
+Svendson, Stephen</pre>
+</div>
+</div>
+<div class="section" id="excepcion">
+<h3>Excepción<a class="headerlink" href="#excepcion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Similar a los operadores anteriores, su estructura se compone de dos o mas sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
+en el álgebra relacional.</p>
+<p>Utilizando las mismas tablas de los empleados, y realizando la siguiente consulta:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">E_Name</span> <span class="k">as</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">Employees_Norway</span>
+<span class="k">EXCEPT</span>
+<span class="k">SELECT</span> <span class="n">E_Name</span> <span class="k">as</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">Employees_USA</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Su salida es:</p>
+<div class="highlight-python"><pre>e-name
+-----------
+Pettersen, Kari
+Svedson, Tove
+Hansen, Ola</pre>
+</div>
+<p>Es decir, devuelve los resultados no repetidos en ambas tablas.</p>
+<p>Hay que tener en cuenta que, a diferencia de los operadores anteriores, la salida de este no es conmutativa, pues si se ejecuta la
+consulta de forma inversa,es decir:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">E_Name</span> <span class="k">as</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">Employees_USA</span>
+<span class="k">EXCEPT</span>
+<span class="k">SELECT</span> <span class="n">E_Name</span> <span class="k">as</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">Employees_Norway</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>su salida será:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">e</span><span class="o">-</span><span class="n">name</span>
+<span class="c1">------------</span>
+<span class="n">Turner</span><span class="p">,</span> <span class="n">Sally</span>
+<span class="n">Kent</span><span class="p">,</span> <span class="n">Clark</span>
+<span class="n">Scott</span><span class="p">,</span> <span class="n">Stephen</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

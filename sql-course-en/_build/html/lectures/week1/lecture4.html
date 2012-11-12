@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture 4 - Relational Algebra: Set operators, renaming, notation &mdash; ALMA SQL Course</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ALMA SQL Course" href="../../index.html" />
+    <link rel="up" title="First week" href="index.html" />
+    <link rel="next" title="Assignment 1" href="assignment1.html" />
+    <link rel="prev" title="Lecture 3 - Relational Algebra: Select, Project, Join" href="lecture3.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="assignment1.html" title="Assignment 1"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lecture3.html" title="Lecture 3 - Relational Algebra: Select, Project, Join"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">First week</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture 4 - Relational Algebra: Set operators, renaming, notation</a><ul>
+<li><a class="reference internal" href="#set-operations">Set operations:</a><ul>
+<li><a class="reference internal" href="#union">Union</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#difference">Difference</a><ul>
+<li><a class="reference internal" href="#id1">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#intersection">Intersection</a><ul>
+<li><a class="reference internal" href="#id2">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dependent-and-independent-operations">Dependent and independent operations</a></li>
+<li><a class="reference internal" href="#relational-algebra-as-a-constraint-language">Relational algebra as a constraint language</a></li>
+<li><a class="reference internal" href="#exercises">Exercises</a><ul>
+<li><a class="reference internal" href="#exercise-1">Exercise 1</a></li>
+<li><a class="reference internal" href="#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture3.html"
+                        title="previous chapter">Lecture 3 - Relational Algebra: Select, Project, Join</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="assignment1.html"
+                        title="next chapter">Assignment 1</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week1/lecture4.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture-4-relational-algebra-set-operators-renaming-notation">
+<h1>Lecture 4 - Relational Algebra: Set operators, renaming, notation<a class="headerlink" href="#lecture-4-relational-algebra-set-operators-renaming-notation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="set-operations">
+<h2>Set operations:<a class="headerlink" href="#set-operations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="union">
+<span id="index-0"></span><h3>Union<a class="headerlink" href="#union" title="Permalink to this headline">¶</a></h3>
+<p>In math, <strong>algebra of sets</strong> is called to the basic operations that can be performed on sets,
+such as union, intersection, etc. A <strong>set</strong> is a collection of objects considered as an object
+in itself. The <tt class="docutils literal"><span class="pre">Union</span></tt> of two sets <span class="math">\(\text{A}\)</span> and <span class="math">\(\text{B}\)</span> is the set that contains all the elements
+of <span class="math">\(\text{A}\)</span> and <span class="math">\(\text{B}\)</span>. The symbol <span class="math">\(\cup\)</span> is used to represent <tt class="docutils literal"><span class="pre">Union</span></tt>.</p>
+<p>The operator <tt class="docutils literal"><span class="pre">Union</span></tt> is <strong>commutative</strong>, that is <span class="math">\(\text{A} \cup \text{B} = \text{B} \cup \text{A}\)</span>.
+Remember that an operation is commutative when the result of the operation is the same,
+whatever the order of the elements with which it operates.</p>
+<img alt="../../_images/union.png" class="align-center" src="../../_images/union.png" />
+<p>In an analogous manner joining two relations <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span>, is another relation that contains
+tuples that are in <span class="math">\(\text{R}\)</span> or <span class="math">\(\text{S}\)</span>, or both, eliminating duplicated tuples. <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span> must be
+<strong>union-compatible</strong>, that is, defined on the same set of attribute (<span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span> must have
+identical schemas. Should have the same columns and their order must be the same).</p>
+<p><strong>Notation in relational algebra</strong></p>
+<div class="math">
+\[\begin{split}\text{R} \cup  \text{S} \\\end{split}\]</div>
+<p>If you perform <span class="math">\(\text{R} \cup \text{S}\)</span> is the same as <span class="math">\(\text{S} \cup \text{R}\)</span> , that is the same result is obtained.
+This is due to the property of commutativity derived from the algebra of sets.</p>
+<div class="section" id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<p>Given the following relations:</p>
+<div class="math">
+\[\begin{split}\textbf{Engineers Table} \\\end{split}\]\[\begin{split}  \begin{array}{|c|c|c|}
+       \hline
+        \textbf{id} &amp; \textbf{name} &amp; \textbf{age}\\
+       \hline
+       123 &amp; \text{Mark}   &amp; 39\\
+       \hline
+       234 &amp; \text{Tomas}  &amp; 34\\
+       \hline
+       345 &amp; \text{Owen}   &amp; 45\\
+       \hline
+       143 &amp; \text{Lexie} &amp; 25\\
+       \hline
+  \end{array}\end{split}\]</div>
+<div class="math">
+\[\begin{split}\textbf{Chiefs Table} \\\end{split}\]\[\begin{split}     \begin{array}{|c|c|c|}
+       \hline
+        \textbf{id} &amp; \textbf{name} &amp; \textbf{age}\\
+       \hline
+       123 &amp; \text{Mark}   &amp; 39\\
+       \hline
+       235 &amp; \text{Meredith}   &amp; 29\\
+       \hline
+     \end{array}\end{split}\]</div>
+<p>Apply the operator <tt class="docutils literal"><span class="pre">Union</span></tt>:</p>
+<div class="math">
+\[\begin{split}\textbf{Engineers Table} \cup  \textbf{Chiefs}  \\\end{split}\]\[\begin{split}  \begin{array}{|c|c|c|}
+       \hline
+        \textbf{id} &amp; \textbf{name} &amp; \textbf{age}\\
+       \hline
+       123 &amp; \text{Mark}   &amp; 39\\
+       \hline
+       234 &amp; \text{Tomas}  &amp; 34\\
+       \hline
+       345 &amp; \text{Owen}   &amp; 45\\
+       \hline
+       143 &amp; \text{Lexie} &amp; 25\\
+       \hline
+       235 &amp; \text{Meredith} &amp; 29\\
+       \hline
+  \end{array}\end{split}\]</div>
+<p>As it was mentioned before, performing the <span class="math">\(\textbf{Chiefs} \cup \textbf{Engineers}\)</span>
+operation would have as a result the same table above.</p>
+</div>
+</div>
+<div class="section" id="difference">
+<h3>Difference<a class="headerlink" href="#difference" title="Permalink to this headline">¶</a></h3>
+<p>Returning to the analogy of algebra of sets, the difference between two sets <span class="math">\(\text{A}\)</span> and <span class="math">\(\text{B}\)</span>
+is the set that contains all the elements of <span class="math">\(\text{A}\)</span> that do not belong to <span class="math">\(\text{B}\)</span>.</p>
+<div class="math">
+\[\text{A} - \text{B}\]</div>
+<img alt="../../_images/a-b.png" class="align-center" src="../../_images/a-b.png" />
+<div class="math">
+\[\text{B} - \text{A}\]</div>
+<img alt="../../_images/b-a.png" class="align-center" src="../../_images/b-a.png" />
+<p>As it is shown in the images, the operation <tt class="docutils literal"><span class="pre">difference</span></tt>, in sets, is not commutative,
+just as in subtraction, operator already learned in basic arithmetic. That is, if you
+change the order of sets to which <tt class="docutils literal"><span class="pre">difference</span></tt> operation is applied, you will get
+different results. Therefore:</p>
+<div class="math">
+\[\text{A} - \text{B} \neq  \text{B} - \text{A}\]</div>
+<p>In the same way, the difference of two relations <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span> is other relation
+that contains the tuples that are in the relation <span class="math">\(\text{R}\)</span> but not in <span class="math">\(\text{S}\)</span>. <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span>
+must be <strong>union-compatible</strong> (they must have identical schemes).</p>
+<p><strong>Notation in relational algebra</strong></p>
+<div class="math">
+\[\text{R} - \text{S}\]</div>
+<p>It is important to highlight that  <span class="math">\(\text{R} - \text{S}\)</span> is different from <span class="math">\(\text{S} - \text{R}\)</span>.</p>
+<div class="section" id="id1">
+<h4>Example<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>Using the same tables given in the previous example, perform <span class="math">\(\textbf{Engineers - Chiefs}\)</span>
+and <span class="math">\(\textbf{Chiefs - Engineers}\)</span>:</p>
+<div class="math">
+\[\begin{split}\textbf{Engineers - Chiefs} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
+     \hline
+      \textbf{id} &amp; \textbf{name} &amp; \textbf{age}\\
+     \hline
+     234 &amp; \text{Tomas}  &amp; 34\\
+     \hline
+     345 &amp; \text{Owen}   &amp; 45\\
+     \hline
+     143 &amp; \text{Lexie} &amp; 25\\
+     \hline
+\end{array}\end{split}\]</div>
+<div class="math">
+\[\begin{split}\textbf{Chiefs - Engineers} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|c|}
+     \hline
+     \textbf{id} &amp; \textbf{name} &amp; \textbf{age}\\
+     \hline
+     235 &amp; \text{Meredith} &amp; 29\\
+     \hline
+\end{array}\end{split}\]</div>
+<p>As can be seen, both operations gave as a result different relations, as it was
+mentioned above.</p>
+</div>
+</div>
+<div class="section" id="intersection">
+<h3>Intersection<a class="headerlink" href="#intersection" title="Permalink to this headline">¶</a></h3>
+<p>In algebra of sets the <tt class="docutils literal"><span class="pre">Intersection</span></tt> of two sets <span class="math">\(\text{A}\)</span> and <span class="math">\(\text{B}\)</span> is the set that contains
+all the common elements of <span class="math">\(\text{A}\)</span> and <span class="math">\(\text{B}\)</span>. The symbol <span class="math">\(\cap\)</span> represent the <tt class="docutils literal"><span class="pre">Intersection</span></tt>
+of two sets. As operator <tt class="docutils literal"><span class="pre">Union</span></tt>, <tt class="docutils literal"><span class="pre">Intersection</span></tt> is commutative, so is fulfilled that
+<span class="math">\(\text{A} \cap  \text{B} =  \text{B} \cap  \text{A}\)</span> .</p>
+<div class="math">
+\[\text{A} \cap  \text{B}\]</div>
+<img alt="../../_images/inter.png" class="align-center" src="../../_images/inter.png" />
+<p>In a homologous way, in relational algebra <tt class="docutils literal"><span class="pre">Intersection</span></tt> is defined as a relation that
+contains tuples that are in both relation <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span>. <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span> must be <strong>union-compatible</strong>.
+(same attributes and same order).</p>
+<p><strong>Notation in relational algebra</strong></p>
+<div class="math">
+\[\text{R} \cap  \text{S}\]</div>
+<p>If it is perform <span class="math">\(\text{R} \cap \text{S}\)</span> is the same as <span class="math">\(\text{S} \cap \text{R}\)</span>, which means that obtains the same result,
+so it can be said that <tt class="docutils literal"><span class="pre">Intersection</span></tt> is commutative.</p>
+<p><strong>Equivalence with previous operators</strong></p>
+<div class="math">
+\[\text{R} \cap \text{S} = \text{R} - (\text{R} - \text{S})\]</div>
+<div class="section" id="id2">
+<h4>Example<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>Using the same tables from the previous example, find the intersection of the <span class="math">\(\textbf{Engineers}\)</span>
+table with the one of <span class="math">\(\textbf{Chiefs}\)</span>:</p>
+<div class="math">
+\[\text{Engineers} \cap \text{Chiefs}\]\[\begin{split}  \begin{array}{|c|c|c|}
+    \hline
+     \textbf{id} &amp; \textbf{name} &amp; \textbf{age}\\
+    \hline
+    123 &amp; \text{Mark}   &amp; 39\\
+    \hline
+  \end{array}\end{split}\]</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>When we apply these operations to relations, we need to put some conditions on <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span>:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span> must have schemas with identical sets of attributes, and the types (domains)
+for each attribute must be the same in <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span>.</li>
+<li>Before compute the set-theoretic union, intersection, or difference of sets of tuples,
+the columns of <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span> must be ordered so that the order of attributes is the same for both relations.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="dependent-and-independent-operations">
+<h3>Dependent and independent operations<a class="headerlink" href="#dependent-and-independent-operations" title="Permalink to this headline">¶</a></h3>
+<p>Some of the operations that we have described in the lectures 3 and 4, can be expressed in
+terms of other relational-algebra operations. For example, intersection can be expressed in terms
+of set difference: <span class="math">\(\text{R} \cap \text{S} = \text{R} - (\text{R} - \text{S})\)</span>. That is, if <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span> are any two relations with the
+same schema, the intersection of <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span> can be computed by first subtracting <span class="math">\(\text{S}\)</span> from <span class="math">\(\text{R}\)</span> to form a
+relation <span class="math">\(T\)</span> consisting of all those tuples in <span class="math">\(\text{R}\)</span> but not <span class="math">\(\text{S}\)</span>. We then subtract <span class="math">\(T\)</span> from <span class="math">\(\text{R}\)</span>,
+leaving only those tuples of <span class="math">\(\text{R}\)</span> that are also in <span class="math">\(\text{S}\)</span>.</p>
+</div>
+<div class="section" id="relational-algebra-as-a-constraint-language">
+<h3>Relational algebra as a constraint language<a class="headerlink" href="#relational-algebra-as-a-constraint-language" title="Permalink to this headline">¶</a></h3>
+<p>There are two ways in which we can use expressions of relational algebra to express constraints:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>If <span class="math">\(\text{R}\)</span> is an expression of relational algebra, then <span class="math">\(\text{R} = 0\)</span> is a constraint that says
+&#8220;The value of R must be empty,&#8221; or equivalently &#8220;There are no tuples in the result of <span class="math">\(\text{R}\)</span>.&#8221;</li>
+<li>If <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span> are expressions of relational algebra, then <span class="math">\(\text{R} \subset \text{S}\)</span> is a constraint
+that says &#8220;Every tuple in the result of R must also be in the result of S.&#8221;
+Of course the result of <span class="math">\(\text{S}\)</span> may contain additional tuples not produced by <span class="math">\(\text{R}\)</span>.</li>
+</ol>
+</div></blockquote>
+<p>These ways of expressing constraints are actually equivalent in what they can express,
+but sometimes one or the other is clearer or more succinct.
+That is, the constraint <span class="math">\(\text{R} \subset \text{S}\)</span> could just as well have been written <span class="math">\(\text{R} - S = 0\)</span>.
+To see why, notice that if every tuple in <span class="math">\(\text{R}\)</span> is also in <span class="math">\(\text{S}\)</span>, then surely <span class="math">\(\text{R} - \text{S}\)</span> is empty.
+Conversely, if <span class="math">\(\text{R} - \text{S}\)</span> contains no tuples, then every tuple in <span class="math">\(\text{R}\)</span> must be in <span class="math">\(\text{S}\)</span>
+(or else it would be in <span class="math">\(\text{R} - \text{S}\)</span>).</p>
+<p>On the other hand, a constraint of the first form, <span class="math">\(\text{R} = 0\)</span>, could just as well have been written
+<span class="math">\(\text{R} \subset 0\)</span>.
+Technically, <span class="math">\(0\)</span> is not an expression of relational algebra, but since there are expressions
+that evaluate to <span class="math">\(0\)</span>, such as <span class="math">\(\text{R} - \text{R}\)</span>, there is no harm in using <span class="math">\(0\)</span> as a relational-algebra
+expression.
+Note that these equivalences hold even if <span class="math">\(\text{R}\)</span> and <span class="math">\(\text{S}\)</span> are bags, provided we make the conventional
+interpretation of <span class="math">\(\text{R} \subset \text{S}\)</span>: each tuple <strong>t</strong> appears in <span class="math">\(\text{S}\)</span> at least as many times as it
+appears in <span class="math">\(\text{R}\)</span>.</p>
+</div>
+<div class="section" id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-1">
+<h4>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h4>
+<p>The base relations that form the databases of a video club are the following:</p>
+<ul class="simple">
+<li><span class="math">\(\text{Member}(\underline{\text{codmember}}, \text{name},\text{address},\text{phone})\)</span> :
+stores the data of each of the members of the video club: member code, name, address, and phone.</li>
+<li><span class="math">\(\text{Film}(\underline{\text{codfilm}}, \text{title},\text{genre})\)</span> : stores information
+about each of the films from which have copies the video club: code of the movie, title,
+and genre (horror, comedy, etc.).</li>
+<li><span class="math">\(\text{Tape}(\underline{\text{codtape}}, \text{codfilm})\)</span> : stores information referring
+to the existing copies of each film (different copies of the same film will have a different tape code).</li>
+<li><span class="math">\(\text{Loan}(\underline{\text{codmember,codtape,date}}, \text{pres_dev})\)</span> : stores
+information of the loans that have been made. Each loan is from a tape to a member in a date.
+If the loan has not yet finalized, pres_dev has the value “borrowed”; otherwise its value is “returned”.</li>
+<li><span class="math">\(\text{WaitingList}(\underline{\text{codmember,codfilm}}, \text{date})\)</span> : stores information
+about the members who wait available copies of films for borrowing them. It also saves the date
+in which they began the wait for maintaining the order. It is important to take into account
+that when a member gets the desired film, it disappears from the waiting list.</li>
+</ul>
+<p>In previous relations, primary keys are the attributes and groups of attributes in bold. Foreign keys are shown in the following referential diagrams:</p>
+<p>Solve the following queries using relational algebra (remember that also in lecture 3 some operators of relational algebra were given):</p>
+<p>1.1 Select all the members who are called: “Charles”.</p>
+<p><strong>Answer</strong></p>
+<div class="math">
+\[\sigma_{\text{name='Charles'}} \text{(Member)}\]</div>
+<p>1.2 Select the member code of all the members who are called: “Charles.”</p>
+<p><strong>Answer</strong></p>
+<div class="math">
+\[\pi_{\text{codmember}}(\sigma_{\text{name='Charles'}} \text{(Member))}\]</div>
+<p>1.3 Select the names of films that are on the waiting list.</p>
+<p><strong>Answer</strong></p>
+<div class="math">
+\[\pi_{\text{title}}(\text{Film} \rhd \hspace{-0.1cm} \lhd \text{WaitingList})\]</div>
+<p>1.4 Get the names of the members who are waiting films.</p>
+<p><strong>Answer</strong></p>
+<div class="math">
+\[\pi_{\text{name}}(\text{Member} \rhd \hspace{-0.1cm} \lhd \text{WaitingList})\]</div>
+<p>1.5 Get the names of the members who have actually borrowed a film that had already borrowed previously.</p>
+<p><strong>Answer</strong></p>
+<div class="math">
+\[\pi_{\text{name}} ( \{(\text{Loan} \rhd \hspace{-0.1cm} \lhd_{ (\text{pres_dev='borrowed'})} \text{Tape}) \cap (\text{Loan} \rhd \hspace{-0.1cm} \lhd_{(\text{pres_dev='returned'})} \text{Tape})\} \rhd \hspace{-0.1cm}\lhd \text{Member})\]</div>
+<p>1.6. Get the titles of the movies that have never been borrowed.</p>
+<p><strong>Answer</strong></p>
+<div class="math">
+\[\pi_{\text{title}} \{(\pi_{\text{codfilm}} \text{Film}  - \pi_{\text{codfilm}} (\text{Loan} \rhd \hspace{-0.1cm} \lhd \text{Tape}) ) \rhd \hspace{-0.1cm} \lhd \text{Film}\}\]</div>
+<p>(All movies) except (the movies that have ever been borrowed)</p>
+<p>1.7. Get the names of the members who have borrowed the film “WALL*E” once or are waiting to borrow.</p>
+<p><strong>Answer</strong></p>
+<div class="math">
+\[\begin{split}\pi_{\text{codmember,name}}((\text{Member} \rhd \hspace{-0.1cm} \lhd \text{Loan} \rhd \hspace{-0.1cm} \lhd \text{Tape} \rhd \hspace{-0.1cm} \lhd_{\text{title='WALL*E'}} \text{Film}) \cup \\ (\text{Member} \rhd \hspace{-0.1cm} \lhd \text{WaitingList} \rhd \hspace{-0.1cm} \lhd_{\text{title='WALL*E'}} \text{Film}) )\end{split}\]</div>
+<p>1.8. Get the names of the members who have ever borrowed the film WALL*E and that also are on its waiting list.</p>
+<p><strong>Answer</strong></p>
+<div class="math">
+\[\begin{split}\pi_{\text{codmember,name}}((\text{Member} \rhd \hspace{-0.1cm} \lhd \text{Loan} \rhd \hspace{-0.1cm} \lhd \text{Tape} \rhd \hspace{-0.1cm} \lhd_{\text{title='WALL*E'}} \text{Film}) \cap \\ (\text{Member} \rhd \hspace{-0.1cm} \lhd \text{WaitingList} \rhd \hspace{-0.1cm} \lhd_{\text{title='WALL*E'}} \text{Film}) )\end{split}\]</div>
+</div>
+<div class="section" id="exercise-2">
+<h4>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h4>
+<p>Consider the following databases:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Person ( <span class="math">\(\underline{\text{name}}\)</span>, age, gender ) : name is a key</li>
+<li>Frequents ( <span class="math">\(\underline{\text{name}, \text{pizzeria}}\)</span> ) : (name, pizzeria) is a key</li>
+<li>Eats ( <span class="math">\(\underline{\text{name}, \text{pizza}}\)</span> ) : (name, pizza) is a key</li>
+<li>Serves ( <span class="math">\(\underline{\text{pizzeria}, \text{pizza}}\)</span>, price ): (pizzeria, pizza) is a key</li>
+</ol>
+</div></blockquote>
+<p>Write relational algebra expressions for the following nine queries. (Warning: some of the later queries are a bit challenging.)</p>
+<blockquote>
+<div><ul class="simple">
+<li>Find all pizzerias frequented by at least one person under the age of 18.</li>
+<li>Find all pizzerias that serve at least one pizza that Amy eats for less than $10.00.</li>
+<li>Find all pizzerias that are frequented by only females or only males.</li>
+<li>For each person, find all pizzas the person eats that are not served by any pizzeria the person frequents. Return all such person (name) / pizza pairs.</li>
+<li>Find the names of all people who frequent only pizzerias serving at least one pizza they eat.</li>
+<li>Find the names of all people who frequent every pizzeria serving at least one pizza they eat.</li>
+<li>Find the pizzeria serving the cheapest pepperoni pizza. In the case of ties, return all of the cheapest-pepperoni pizzerias.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="assignment1.html" title="Assignment 1"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lecture3.html" title="Lecture 3 - Relational Algebra: Select, Project, Join"
+             >previous</a> |</li>
+        <li><a href="../../index.html">SQL Course</a> &raquo;</li>
+          <li><a href="index.html" >First week</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

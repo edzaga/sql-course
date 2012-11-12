@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tarea 2 &mdash; Curso ALMA SQL</title>
+    
+    <link rel="stylesheet" href="../../_static/sqlcourse.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Curso ALMA SQL" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/alma200.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Contenidos</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tarea 2</a><ul>
+<li><a class="reference internal" href="#base-de-datos">Base de datos</a><ul>
+<li><a class="reference internal" href="#pregunta-1">Pregunta 1:</a></li>
+<li><a class="reference internal" href="#pregunta-2">Pregunta 2:</a></li>
+<li><a class="reference internal" href="#pregunta-3">Pregunta 3:</a></li>
+<li><a class="reference internal" href="#pregunta-4">Pregunta 4:</a><ul>
+<li><a class="reference internal" href="#pregunta-5">Pregunta 5:</a></li>
+<li><a class="reference internal" href="#pregunta-6">Pregunta 6:</a></li>
+<li><a class="reference internal" href="#pregunta-7">Pregunta 7:</a></li>
+<li><a class="reference internal" href="#pregunta-8">Pregunta 8:</a></li>
+<li><a class="reference internal" href="#pregunta-9">Pregunta 9:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>Esta página</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/lectures/week2/assignment2.txt"
+           rel="nofollow">Enseñar el código</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Búsqueda rápida</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir a" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Introduzca los términos de búsqueda o un módulo, clase o nombre de función.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tarea-2">
+<h1>Tarea 2<a class="headerlink" href="#tarea-2" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="base-de-datos">
+<h2>Base de datos<a class="headerlink" href="#base-de-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Se tiene una página que maneja base de datos de series de televisión con el siguiente esquema:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Serie: (<strong>sID</strong>, titulo, creador, año, audiencia, genero, temp, final)</dt>
+<dd><p class="first last">La tabla <strong>Serie</strong> posee <strong>sID</strong> que es un id único y es primary key de la relación,
+además se almacena el <strong>titulo</strong> de la serie, el <strong>creador</strong>, <strong>año</strong> es el año de estreno
+de la primera temporada, la <strong>audiencia</strong> promedio anual, <strong>genero</strong> de la serie y
+finalmente el atributo <strong>temp</strong> que contiene el número de temporadas emitidas hasta
+el 2012, <strong>final</strong> es un atributo que dice si la serie se sigue emitiendo o terminó.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Evaluador: (<strong>eID</strong>, nombre)</dt>
+<dd><p class="first last">El evaluador es quien califica la serie, la relación <strong>Evaluador</strong> tiene un atributo
+<strong>eID</strong> (id único) que es clave primaria (primary key) y tiene otro atributo <strong>nombre</strong>
+que almacena el nombre del evaluador.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Calificacion: (<strong>eID</strong>, <strong>sID</strong> ,nota,fecha)</dt>
+<dd><p class="first last">Luego que el evaluador califica una serie se guarda en la tabla <strong>Calificacion</strong> que
+tiene dos claves foráneas <strong>eID</strong> que es el id del evaluador y <strong>sID</strong> que es el id de
+algunas de las series almacenadas. Ambas claves foraneas (juntas) conforman la clave
+primaria de <strong>Calificación</strong> También contiene la <strong>nota</strong> puesta por el evaluador
+y la <strong>fecha</strong> que calificó dicha serie.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="math">
+\[\begin{split}\textbf{Serie} \\\end{split}\]\[\begin{split}      \begin{array}{|c|c|c|c|c|c|c|c|}
+      \hline
+      \textbf{sID} &amp; \textbf{titulo} &amp; \textbf{creador} &amp; \textbf{año} &amp; \textbf{audiencia} &amp; \textbf{genero}&amp; \textbf{temp}&amp; \textbf{final} \\
+      \hline
+      1 &amp; \text{The Big Bang Theory} &amp; \text{Bill Prady} &amp; 2007 &amp; 45.99 &amp; \text{comedia} &amp; 6 &amp; false\\
+      \hline
+      2 &amp; \text{Grey’s Anatomy} &amp; \text{Shonda Rhimes} &amp; 2005 &amp; 40.35 &amp; \text{drama} &amp; 9 &amp; false \\
+      \hline
+      3 &amp; \text{Dexter} &amp; \text{James Manos} &amp; 2006 &amp; 50.24   &amp; \text{crimen} &amp; 7 &amp; false\\
+      \hline
+      4 &amp; \text{Bones} &amp; \text{Hart Hanson} &amp; 2005 &amp; 30.61 &amp; \text{crimen} &amp;  8 &amp; false \\
+      \hline
+      5 &amp; \text{Glee} &amp; \text{Ryan Murphy} &amp; 2009 &amp;   39.67 &amp; \text{musical} &amp;        4 &amp; false\\
+      \hline
+      6 &amp; \text{The Walking Dead} &amp;   \text{Frank Darabont}  &amp; 2010 &amp; 34.78 &amp; \text{horror} &amp; 3 &amp; false \\
+      \hline
+      7 &amp; \text{Lost} &amp; \text{Jeffrey Lieber} &amp; 2004 &amp; 49.32  &amp; \text{fantasia} &amp; 6 &amp; true \\
+      \hline
+      8 &amp; \text{Spartacus} &amp; \text{Steven S. DeKnight} &amp; 2010 &amp; 38.51 &amp;       \text{accion} &amp; 2 &amp; false \\
+      \hline
+      9 &amp; \text{The Simpsons} &amp; \text{Matt Groening} &amp; 1989 &amp; 55.82   &amp; \text{comedia} &amp; 25 &amp; false\\
+      \hline
+       \end{array}\end{split}\]</div>
+<div class="math">
+\[\begin{split}\textbf{ Evaluador} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
+\hline
+\textbf{eID} &amp; \textbf{nombre}  \\
+\hline
+1       &amp; \text{Nancy Cartwright} \\
+\hline
+2       &amp; \text{Harry Shearer} \\
+\hline
+3       &amp; \text{Frank Welker} \\
+\hline
+4       &amp; \text{Jon Lovitz} \\
+\hline
+5       &amp; \text{Charles Napier} \\
+\hline
+6       &amp; \text{Glenn Sloan} \\
+\hline
+7       &amp; \text{Stacy Keach} \\
+\hline
+8       &amp; \text{David Crosby} \\
+\hline
+9       &amp; \text{Keley Jones} \\
+\hline
+\end{array}\end{split}\]</div>
+<div class="math">
+\[\begin{split}\textbf{Calificacion} \\\end{split}\]\[\begin{split}\begin{array}{|c|c|}
+\hline
+\textbf{eID} &amp; \textbf{sID} &amp; \textbf{nota} &amp; \textbf{fecha}  \\
+\hline
+1 &amp;     6&amp;      5       &amp;2012-06-08 \\
+\hline
+1 &amp;     4&amp;      6       &amp;2011-04-13 \\
+\hline
+1 &amp;     1&amp;      8       &amp;2012-01-22 \\
+\hline
+2       &amp;6&amp;     7       &amp;2012-02-23 \\
+\hline
+3       &amp;3&amp;     8&amp;      2011-11-20\\
+\hline
+3       &amp;8&amp;     4       &amp;2011-11-12\\
+\hline
+4       &amp;1&amp;     9&amp;      2012-01-09\\
+\hline
+5       &amp;3      &amp;8      &amp;2012-09-27\\
+\hline
+5&amp;      4&amp;      8&amp;      2012-07-22\\
+\hline
+5       &amp;8&amp;     4       &amp;2012-03-17\\
+\hline
+6       &amp;7&amp;     7       &amp;2012-07-15 \\
+\hline
+6       &amp;6&amp;     5       &amp;2012-05-19 \\
+\hline
+7       &amp;7&amp;     5       &amp;2011-09-20\\
+\hline
+7       &amp;2&amp;     6       &amp;2011-12-08\\
+\hline
+8       &amp;4&amp;     9&amp;      2011-10-02\\
+\hline
+\end{array}\end{split}\]</div>
+<div class="section" id="pregunta-1">
+<h3>Pregunta 1:<a class="headerlink" href="#pregunta-1" title="Enlazar permanentemente con este título">¶</a></h3>
+<ul class="simple">
+<li>Cree, una base de datos de nombre tarea2.</li>
+<li>Crear las 3 tablas de la base de datos dada, con sus respectivos atributos.</li>
+</ul>
+<p>Elija el tipo de datos que más se acomode para cada atributo según los valores dados.</p>
+</div>
+<div class="section" id="pregunta-2">
+<h3>Pregunta 2:<a class="headerlink" href="#pregunta-2" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Inserte los datos dados en las tablas que se mostraron anteriormente.</p>
+</div>
+<div class="section" id="pregunta-3">
+<h3>Pregunta 3:<a class="headerlink" href="#pregunta-3" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realice la consulta en SQL que encuentre los títulos de todas las series que sean del
+género de comedia.</p>
+<p>Resultado esperado de la consulta:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">titulo</span>
+<span class="c1">---------------------</span>
+ <span class="n">The</span> <span class="n">Big</span> <span class="n">Bang</span> <span class="n">Theory</span>
+ <span class="n">The</span> <span class="n">Simpsons</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pregunta-4">
+<h3>Pregunta 4:<a class="headerlink" href="#pregunta-4" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Buscar los títulos y audiencias de las series y ordenarlas en de forma descendente.</p>
+<p>Resultado esperado de la consulta:</p>
+<div class="highlight-sql"><div class="highlight"><pre>       <span class="n">titulo</span>        <span class="o">|</span> <span class="n">audiencia</span>
+<span class="c1">---------------------+-----------</span>
+ <span class="n">The</span> <span class="n">Simpsons</span>        <span class="o">|</span>     <span class="mi">55</span><span class="p">.</span><span class="mi">82</span>
+ <span class="n">Dexter</span>              <span class="o">|</span>     <span class="mi">50</span><span class="p">.</span><span class="mi">24</span>
+ <span class="n">Lost</span>                <span class="o">|</span>     <span class="mi">49</span><span class="p">.</span><span class="mi">32</span>
+ <span class="n">The</span> <span class="n">Big</span> <span class="n">Bang</span> <span class="n">Theory</span> <span class="o">|</span>     <span class="mi">45</span><span class="p">.</span><span class="mi">99</span>
+ <span class="n">Greys</span> <span class="n">Anatomy</span>       <span class="o">|</span>     <span class="mi">40</span><span class="p">.</span><span class="mi">35</span>
+ <span class="n">Glee</span>                <span class="o">|</span>     <span class="mi">39</span><span class="p">.</span><span class="mi">67</span>
+ <span class="n">Spartacus</span>           <span class="o">|</span>     <span class="mi">38</span><span class="p">.</span><span class="mi">51</span>
+ <span class="n">The</span> <span class="n">Walking</span> <span class="n">Dead</span>    <span class="o">|</span>     <span class="mi">34</span><span class="p">.</span><span class="mi">78</span>
+ <span class="n">Bones</span>               <span class="o">|</span>     <span class="mi">30</span><span class="p">.</span><span class="mi">61</span>
+</pre></div>
+</div>
+<div class="section" id="pregunta-5">
+<h4>Pregunta 5:<a class="headerlink" href="#pregunta-5" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Buscar los títulos (sin que se repitan)  de las series con nota mayor a 7.</p>
+<p>Resultado esperado de la consulta:</p>
+<div class="highlight-sql"><div class="highlight"><pre>      <span class="n">titulo</span>
+<span class="c1">---------------------</span>
+ <span class="n">Lost</span>
+ <span class="n">Dexter</span>
+ <span class="n">The</span> <span class="n">Walking</span> <span class="n">Dead</span>
+ <span class="n">The</span> <span class="n">Big</span> <span class="n">Bang</span> <span class="n">Theory</span>
+ <span class="n">Bones</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pregunta-6">
+<h4>Pregunta 6:<a class="headerlink" href="#pregunta-6" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Buscar todos los años de estreno(sin que se repitan) que tiene una serie que recibió una calificación de 5 ó 6, y clasificarlos en orden descendentes.</p>
+<p>Resultado esperado de la consulta:</p>
+<div class="highlight-sql"><pre>año
+------
+ 2004
+ 2005
+ 2010</pre>
+</div>
+</div>
+<div class="section" id="pregunta-7">
+<h4>Pregunta 7:<a class="headerlink" href="#pregunta-7" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Buscar el nombre de los evaluadores(sin que se repitan), que calificaron alguna serie que tenga más de 7 temporadas o haya finalizado.</p>
+<p>Resultado esperado de la consulta:</p>
+<div class="highlight-sql"><div class="highlight"><pre> <span class="n">nombre</span>
+<span class="c1">------------------</span>
+ <span class="n">Glenn</span> <span class="n">Sloan</span>
+ <span class="n">Charles</span> <span class="n">Napier</span>
+ <span class="n">Stacy</span> <span class="n">Keach</span>
+ <span class="n">Nancy</span> <span class="n">Cartwright</span>
+ <span class="n">David</span> <span class="n">Crosby</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pregunta-8">
+<h4>Pregunta 8:<a class="headerlink" href="#pregunta-8" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Escriba una consulta para devolver: nombre del evaluador, título de la serie, la nota, y la fecha de clasificación. Ordenar los datos, en primer lugar por el nombre del evaluador, y luego por título de la serie, y por último por la nota.</p>
+<p>Resultado esperado de la consulta:</p>
+<div class="highlight-sql"><div class="highlight"><pre>      <span class="n">nombre</span>      <span class="o">|</span>       <span class="n">titulo</span>        <span class="o">|</span> <span class="n">nota</span> <span class="o">|</span>   <span class="n">fecha</span>
+<span class="c1">------------------+---------------------+------+------------</span>
+ <span class="n">Charles</span> <span class="n">Napier</span>   <span class="o">|</span> <span class="n">Bones</span>               <span class="o">|</span>    <span class="mi">8</span> <span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">22</span>
+ <span class="n">Charles</span> <span class="n">Napier</span>   <span class="o">|</span> <span class="n">Dexter</span>              <span class="o">|</span>    <span class="mi">8</span> <span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">27</span>
+ <span class="n">Charles</span> <span class="n">Napier</span>   <span class="o">|</span> <span class="n">Spartacus</span>           <span class="o">|</span>    <span class="mi">4</span> <span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span>
+ <span class="n">David</span> <span class="n">Crosby</span>     <span class="o">|</span> <span class="n">Bones</span>               <span class="o">|</span>    <span class="mi">9</span> <span class="o">|</span> <span class="mi">2011</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">02</span>
+ <span class="n">Frank</span> <span class="n">Welker</span>     <span class="o">|</span> <span class="n">Dexter</span>              <span class="o">|</span>    <span class="mi">8</span> <span class="o">|</span> <span class="mi">2011</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">20</span>
+ <span class="n">Frank</span> <span class="n">Welker</span>     <span class="o">|</span> <span class="n">Spartacus</span>           <span class="o">|</span>    <span class="mi">4</span> <span class="o">|</span> <span class="mi">2011</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span>
+ <span class="n">Glenn</span> <span class="n">Sloan</span>      <span class="o">|</span> <span class="n">Lost</span>                <span class="o">|</span>    <span class="mi">7</span> <span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">15</span>
+ <span class="n">Glenn</span> <span class="n">Sloan</span>      <span class="o">|</span> <span class="n">The</span> <span class="n">Walking</span> <span class="n">Dead</span>    <span class="o">|</span>    <span class="mi">5</span> <span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">19</span>
+ <span class="n">Harry</span> <span class="n">Shearer</span>    <span class="o">|</span> <span class="n">The</span> <span class="n">Walking</span> <span class="n">Dead</span>    <span class="o">|</span>    <span class="mi">7</span> <span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">23</span>
+ <span class="n">Jon</span> <span class="n">Lovitz</span>       <span class="o">|</span> <span class="n">The</span> <span class="n">Big</span> <span class="n">Bang</span> <span class="n">Theory</span> <span class="o">|</span>    <span class="mi">9</span> <span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">09</span>
+ <span class="n">Nancy</span> <span class="n">Cartwright</span> <span class="o">|</span> <span class="n">Bones</span>               <span class="o">|</span>    <span class="mi">6</span> <span class="o">|</span> <span class="mi">2011</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">13</span>
+ <span class="n">Nancy</span> <span class="n">Cartwright</span> <span class="o">|</span> <span class="n">The</span> <span class="n">Big</span> <span class="n">Bang</span> <span class="n">Theory</span> <span class="o">|</span>    <span class="mi">8</span> <span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">22</span>
+ <span class="n">Nancy</span> <span class="n">Cartwright</span> <span class="o">|</span> <span class="n">The</span> <span class="n">Walking</span> <span class="n">Dead</span>    <span class="o">|</span>    <span class="mi">5</span> <span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">08</span>
+ <span class="n">Stacy</span> <span class="n">Keach</span>      <span class="o">|</span> <span class="n">Greys</span> <span class="n">Anatomy</span>       <span class="o">|</span>    <span class="mi">6</span> <span class="o">|</span> <span class="mi">2011</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span>
+ <span class="n">Stacy</span> <span class="n">Keach</span>      <span class="o">|</span> <span class="n">Lost</span>                <span class="o">|</span>    <span class="mi">5</span> <span class="o">|</span> <span class="mi">2011</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">20</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pregunta-9">
+<h4>Pregunta 9:<a class="headerlink" href="#pregunta-9" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>El evaluador de eID=4 se equivocó al ingresar la nota de la serie con sID=1, por lo que quiere cambiar la calificación tiene de 9 a 8. Realizar la sentencia necesaria para cumplir con el ajuste requerido.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../../index.html">Curso SQL</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Computer Systems Research Group (CSRG), UTFSM.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
