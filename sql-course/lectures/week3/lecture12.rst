@@ -51,7 +51,7 @@ precio de la orden y el cliente.
 Función AVG()
 =============
 
-La función ``AVG()`` retorna el valor promedio de una columna númerica.
+La función ``AVG()`` retorna el valor promedio de una columna numérica.
 
 En SQL la sintaxis es de la siguiente manera:
 
@@ -206,7 +206,7 @@ en la tabla **Ordenes**.
 Función SUM()
 =============
 
-La función ``SUM()`` retorna la suma total de una columna númerica.
+La función ``SUM()`` retorna la suma total de una columna numérica.
 
 En SQL la sintaxis utilizada es de la siguiente manera:
 
