@@ -1,20 +1,23 @@
-Lecture 12 - Aggregation functions
-----------------------------------
+Lectura 12 - Funciones de Agregación
+------------------------------------
 
 .. role:: sql(code)                                                                  
    :language: sql                                                                    
    :class: highlight 
+
+Funciones de Agregación
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Las funciones de agregado de SQL devuelve un único valor, calculado a partir de los 
 valores de una columna.
 
 Algunas funciones útiles de agregado son:
 
-* AVG () - Devuelve el valor promedio
-* COUNT () - Devuelve el número de filas
-* MAX () - Devuelve el mayor valor
-* MIN () - Devuelve el menor valor
-* SUM () - Devuelve la suma
+* ``AVG ()`` - Devuelve el valor promedio
+* ``COUNT ()`` - Devuelve el número de filas
+* ``MAX ()`` - Devuelve el mayor valor
+* ``MIN ()`` - Devuelve el menor valor
+* ``SUM ()`` - Devuelve la suma
 
 Para mostrar el funcionamiento de las funciones de agregación, se trabajará con un 
 ejemplo que se creará a continuación:
@@ -44,9 +47,9 @@ precio de la orden y el cliente.
  INSERT 0 1
 
 Función AVG()
-~~~~~~~~~~~~~
+=============
 
-La función AVG() devuelve el valor promedio de una columna númerica.
+La función ``AVG()`` devuelve el valor promedio de una columna númerica.
 
 En SQL la sintaxis es de la siguiente manera:
 
@@ -85,16 +88,195 @@ precio_ordenes y el cliente.
 
 
 Función COUNT()
-~~~~~~~~~~~~~~~
+===============
 
+La función ``COUNT()`` devuelve el número de filas según los criterios que especificaron.
 
+En SQL la sintaxis que se utiliza para realizar la consulta es:
+
+SQL COUNT(nombre_columna)
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``COUNT(nombre_columna)`` devuelve el número de valores que se encuentran en la columna 
+especificada. Los valores NULL no se cuentan.
+
+.. code-block:: sql
+
+ SELECT COUNT(nombre_columna) FROM nombre_tabla;
+
+Realizaremos la consulta COUNT(clientes) para retornar la cantidad de *cliente*
+que tengan el nombre de *Alison* existen en la tabla **Ordenes**.
+
+.. code-block:: sql
+
+ postgres=# SELECT COUNT(cliente) AS cliente_Alison FROM Ordenes WHERE cliente='Alison';
+  cliente_alison 
+ ----------------
+               3
+ (1 row)
+
+SQL COUNT(*)
+^^^^^^^^^^^^
+
+``COUNT(*)`` devuelve el número de registros de una tabla.
+
+.. code-block:: sql
+
+ SELECT COUNT(*) FROM nombre_tabla;
+
+Se realizará la consulta COUNT(*), que retornara el número de ordenes de la tabla
+**Ordenes**.
+
+.. code-block:: sql
+
+ postgres=# SELECT COUNT(*) AS numero_ordenes FROM Ordenes; 
+ numero_ordenes 
+ ----------------
+               6
+ (1 row)
+
+SQL COUNT(DISTINCT nombre_columna)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``COUNT(DISTINCT nombre_columna)`` devuelve el número de valores distintos a la columna
+especificada.
+
+.. code-block:: sql
+
+ SELECT COUNT(DISTINCT nombre_columna) FROM nombre_tabla;
+
+Se realizará la consulta COUNT(DISTINCT cliente), que retornará la cantidad de *clientes*
+distintos que existen en la tabla **Ordenes**, que son "Alison, Alicia y Brad".
+
+.. code-block:: sql
+
+ postgres=# SELECT COUNT(DISTINCT cliente) AS numero_de_clientes FROM Ordenes;
+ numero_de_clientes 
+ --------------------
+                   3
+ (1 row)
 
 Función MAX()
-~~~~~~~~~~~~~
+=============
 
+La función ``MAX()`` devuelve el máximo valor de la columna seleccionada.
+
+En SQL la sintaxis utilizada es de la siguiente manera:
+
+.. code-block:: sql
+
+ SELECT MAX(nombre_columna) FROM nombre_tabla;
+
+Se realizará la consulta MAX(precio_ordenes) que retornará el mayor precio de las ordenes
+en la tabla **Ordenes**.
+
+.. code-block:: sql
+
+ postgres=# SELECT MAX(precio_ordenes) AS mayor_precio FROM Ordenes;
+  mayor_precio 
+ --------------
+          2120
+ (1 row)
+ 
 Función MIN()
-~~~~~~~~~~~~~
+=============
+
+La función ``MIN()`` devuelve el mínimo valor de la columna seleccionada.                
+                                                                                     
+En SQL la sintaxis utilizada es de la siguiente manera:                              
+                                                                                     
+.. code-block:: sql                                                                  
+                                                                                     
+ SELECT MIN(nombre_columna) FROM nombre_tabla;                                       
+                                                                                     
+Se realizará la consulta MIN(precio_ordenes) que retornará el menor precio de las ordenes
+en la tabla **Ordenes**. 
+
+.. code-block:: sql
+
+ postgres=# SELECT MIN(precio_ordenes) AS menor_precio FROM Ordenes;
+  menor_precio 
+ --------------
+           160
+ (1 row)
 
 Función SUM()
-~~~~~~~~~~~~~
+=============
+
+La función ``SUM()`` devuelve la suma total de una columna númerica.
+
+En SQL la sintaxis utilizada es de la siguiente manera:
+
+.. code-block:: sql
+
+ SELECT SUM(nombre_columna) FROM nombre_tabla;
+
+Se realizará la consulta SUM(precio_ordenes) que retornará el precio total de las 
+ordenes que se encuentran en la tabla **Ordenes**.
+
+.. code-block:: sql
+
+ postgres=# SELECT SUM(precio_ordenes) AS precio_total FROM Ordenes;
+ precio_total 
+ --------------
+          6490
+ (1 row)
+
+SQL GROUP BY
+~~~~~~~~~~~~
+
+La instrucción ``GROUP BY`` se utiliza en conjunción con las funciones de agregado 
+para agrupar el conjunto de resultados de una o más columnas.   
+
+.. code-block:: sql
+
+ SELECT nombre_columna, funcion_de_agregacion(nombre_columna) FROM nombre_tabla WHERE condicion GROUP BY nombre_columna;
+
+La siguiente consulta utilizará la instrucción ``GROUP BY``, para realizar la suma por
+cliente de los precios de ordenes en la tabla **Ordenes**.
+
+.. code-block:: sql
+
+ postgres=# SELECT cliente, SUM(precio_ordenes) FROM Ordenes GROUP BY cliente;
+  cliente | sum  
+ ---------+------
+  Alison  | 2220
+  Brad    | 2120
+  Alicia  | 2150
+ (3 rows)
+
+SQL HAVING
+~~~~~~~~~~
+
+La cláusula ``HAVING`` se utiliza en SQL, puesto que la palabra clave *WHERE* no puede
+utilizarse con las funciones de agregado en sus condiciones.
+
+En SQL la sintaxis que se utiliza es de la siguiente manera:
+
+.. code-block:: sql
+
+ SELECT nombre_columna, funcion_de_agregacion(nombre_columna) FROM nombre_tabla WHERE condicion GROUP BY nombre_columna HAVING funcion_de_agregacion(nombre_columna) operador valor;
+
+Ahora queremos saber si alguno de los clientes tiene un precio total de ordenes mayor
+a 2130.
+
+.. code-block:: sql
+
+ postgres=# SELECT cliente, SUM(precio_ordenes) FROM Ordenes GROUP BY cliente HAVING SUM(precio_ordenes)>2130;
+  cliente | sum  
+ ---------+------
+  Alison  | 2220
+  Alicia  | 2150
+ (2 rows)
+
+Realizaremos la consulta anterior, agregando la cláusula *WHERE* con la condición que 
+el cliente se igual a "Alison".
+
+.. code-block:: sql
+
+ postgres=# SELECT cliente, SUM(precio_ordenes) FROM Ordenes WHERE cliente='Alicia' GROUP BY cliente HAVING SUM(precio_ordenes)>2130;
+  cliente | sum  
+ ---------+------
+  Alicia  | 2150
+ (1 row)
 

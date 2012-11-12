@@ -1,4 +1,4 @@
-Lecture 11 - The JOIN family of operators
+Lectura 11 - The JOIN family of operators
 -----------------------------------------
 
 .. role:: sql(code)
