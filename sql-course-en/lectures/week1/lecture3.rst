@@ -42,7 +42,7 @@ familiar with the operations of **group (a)**; and thus recognize ( `\text{R} \c
 of an expression of relational algebra. `\text{R}` and `\text{S}` are atomic operands standing for relations,
 whose sets of tuples are unknown. This query asks for the union of whatever tuples are in the
 relations named `\text{R}` and `\text{S}`.
-The three most common operations on sets are ``union``, ``intersection``, and ``difference``, que se verán en la lectura 4.  
+The three most common operations on sets are ``union``, ``intersection``, and ``difference``.  
 
 .. role:: sql(code)
    :language: sql
@@ -87,7 +87,7 @@ by the value “true” of the basic type boolean. On the other hand, 11<4 (elev
 is false and it is represented by the value “false.”
 
 The clauses `C` can be connected with the logical operators, which like the previous ones that 
-were used as Comparator (between attributes or constrant attribute), thrown bololean (true or false) result:
+were used as Comparator (between attributes or constant attribute), thrown bololean (true or false) result:
 
 * **NOT**: The ``NOT`` operator denotes a true output if the input is false, and a false exit if input is true. 
   Notation in Relational Algebra: `¬ \text{C}_1`
