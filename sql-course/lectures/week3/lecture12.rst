@@ -1,28 +1,28 @@
 Lectura 12 - Funciones de Agregación
 ------------------------------------
 
-.. role:: sql(code)                                                                  
-   :language: sql                                                                    
-   :class: highlight 
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
 
 Funciones de Agregación
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Las funciones de agregado de SQL devuelve un único valor, calculado a partir de los 
+Las funciones de agregado de SQL retorna un único valor, calculado a partir de los
 valores de una columna.
 
 Algunas funciones útiles de agregado son:
 
-* ``AVG ()`` - Devuelve el valor promedio
-* ``COUNT ()`` - Devuelve el número de filas
-* ``MAX ()`` - Devuelve el mayor valor
-* ``MIN ()`` - Devuelve el menor valor
-* ``SUM ()`` - Devuelve la suma
+* ``AVG ()`` - Retorna el valor promedio
+* ``COUNT ()`` - Retorna el número de filas
+* ``MAX ()`` - Retorna el mayor valor
+* ``MIN ()`` - Retorna el menor valor
+* ``SUM ()`` - Retorna la suma
 
-Para mostrar el funcionamiento de las funciones de agregación, se trabajará con un 
+Para mostrar el funcionamiento de las funciones de agregación, se trabajará con un
 ejemplo que se creará a continuación:
 
-Se *creará* una tabla de **Ordenes**, que tendrá los atributos de id, fecha de orden, 
+Se *creará* una tabla de **Ordenes**, que tendrá los atributos de id, fecha de orden,
 precio de la orden y el cliente.
 
 .. code-block:: sql
@@ -49,7 +49,7 @@ precio de la orden y el cliente.
 Función AVG()
 =============
 
-La función ``AVG()`` devuelve el valor promedio de una columna númerica.
+La función ``AVG()`` retorna el valor promedio de una columna númerica.
 
 En SQL la sintaxis es de la siguiente manera:
 
@@ -62,24 +62,24 @@ Para calcular el precio promedio de las ordenes se realiza la siguiente consulta
 .. code-block:: sql
 
  postgres=# SELECT AVG(precio_ordenes) AS precio_promedio FROM Ordenes;
-    precio_promedio    
+    precio_promedio
  -----------------------
   1081.6666666666666667
- (1 row)  
+ (1 row)
 
 .. note::
 
- En la consulta se utilizó la palabra "AS", esto es para darle un nombre a la tabla 
+ En la consulta se utilizó la palabra "AS", esto es para darle un nombre a la tabla
  de retorno en este caso se llamará "precio_promedio".
 
-También podemos calcular con :sql:`SELECT` anidados el precio de las ordenes que son 
-mayores al promedio calculado con valor 1081, retornando el id, fecha de orden, 
+También podemos calcular con :sql:`SELECT` anidados el precio de las ordenes que son
+mayores al promedio calculado con valor 1081, retornando el id, fecha de orden,
 precio_ordenes y el cliente.
 
 .. code-block:: sql
 
  postgres=# SELECT id, fecha_ordenes, precio_ordenes, cliente FROM Ordenes WHERE precio_ordenes > (SELECT AVG(precio_ordenes) FROM Ordenes);
-  id | fecha_ordenes | precio_ordenes | cliente 
+  id | fecha_ordenes | precio_ordenes | cliente
  ----+---------------+----------------+---------
    1 | 2010-09-23    |           1120 | Alison
    2 | 2007-02-21    |           1990 | Alicia
@@ -90,14 +90,14 @@ precio_ordenes y el cliente.
 Función COUNT()
 ===============
 
-La función ``COUNT()`` devuelve el número de filas según los criterios que especificaron.
+La función ``COUNT()`` retorna el número de filas según los criterios que especificaron.
 
 En SQL la sintaxis que se utiliza para realizar la consulta es:
 
 SQL COUNT(nombre_columna)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``COUNT(nombre_columna)`` devuelve el número de valores que se encuentran en la columna 
+``COUNT(nombre_columna)`` retorna el número de valores que se encuentran en la columna
 especificada. Los valores NULL no se cuentan.
 
 .. code-block:: sql
@@ -110,7 +110,7 @@ que tengan el nombre de *Alison* existen en la tabla **Ordenes**.
 .. code-block:: sql
 
  postgres=# SELECT COUNT(cliente) AS cliente_Alison FROM Ordenes WHERE cliente='Alison';
-  cliente_alison 
+  cliente_alison
  ----------------
                3
  (1 row)
@@ -118,7 +118,7 @@ que tengan el nombre de *Alison* existen en la tabla **Ordenes**.
 SQL COUNT(*)
 ^^^^^^^^^^^^
 
-``COUNT(*)`` devuelve el número de registros de una tabla.
+``COUNT(*)`` retorna el número de registros de una tabla.
 
 .. code-block:: sql
 
@@ -129,8 +129,8 @@ Se realizará la consulta COUNT(*), que retornara el número de ordenes de la ta
 
 .. code-block:: sql
 
- postgres=# SELECT COUNT(*) AS numero_ordenes FROM Ordenes; 
- numero_ordenes 
+ postgres=# SELECT COUNT(*) AS numero_ordenes FROM Ordenes;
+ numero_ordenes
  ----------------
                6
  (1 row)
@@ -138,7 +138,7 @@ Se realizará la consulta COUNT(*), que retornara el número de ordenes de la ta
 SQL COUNT(DISTINCT nombre_columna)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``COUNT(DISTINCT nombre_columna)`` devuelve el número de valores distintos a la columna
+``COUNT(DISTINCT nombre_columna)`` retorna el número de valores distintos a la columna
 especificada.
 
 .. code-block:: sql
@@ -151,7 +151,7 @@ distintos que existen en la tabla **Ordenes**, que son "Alison, Alicia y Brad".
 .. code-block:: sql
 
  postgres=# SELECT COUNT(DISTINCT cliente) AS numero_de_clientes FROM Ordenes;
- numero_de_clientes 
+ numero_de_clientes
  --------------------
                    3
  (1 row)
@@ -159,7 +159,7 @@ distintos que existen en la tabla **Ordenes**, que son "Alison, Alicia y Brad".
 Función MAX()
 =============
 
-La función ``MAX()`` devuelve el máximo valor de la columna seleccionada.
+La función ``MAX()`` retorna el máximo valor de la columna seleccionada.
 
 En SQL la sintaxis utilizada es de la siguiente manera:
 
@@ -173,29 +173,29 @@ en la tabla **Ordenes**.
 .. code-block:: sql
 
  postgres=# SELECT MAX(precio_ordenes) AS mayor_precio FROM Ordenes;
-  mayor_precio 
+  mayor_precio
  --------------
           2120
  (1 row)
- 
+
 Función MIN()
 =============
 
-La función ``MIN()`` devuelve el mínimo valor de la columna seleccionada.                
-                                                                                     
-En SQL la sintaxis utilizada es de la siguiente manera:                              
-                                                                                     
-.. code-block:: sql                                                                  
-                                                                                     
- SELECT MIN(nombre_columna) FROM nombre_tabla;                                       
-                                                                                     
+La función ``MIN()`` retorna el mínimo valor de la columna seleccionada.
+
+En SQL la sintaxis utilizada es de la siguiente manera:
+
+.. code-block:: sql
+
+ SELECT MIN(nombre_columna) FROM nombre_tabla;
+
 Se realizará la consulta MIN(precio_ordenes) que retornará el menor precio de las ordenes
-en la tabla **Ordenes**. 
+en la tabla **Ordenes**.
 
 .. code-block:: sql
 
  postgres=# SELECT MIN(precio_ordenes) AS menor_precio FROM Ordenes;
-  menor_precio 
+  menor_precio
  --------------
            160
  (1 row)
@@ -203,7 +203,7 @@ en la tabla **Ordenes**.
 Función SUM()
 =============
 
-La función ``SUM()`` devuelve la suma total de una columna númerica.
+La función ``SUM()`` retorna la suma total de una columna númerica.
 
 En SQL la sintaxis utilizada es de la siguiente manera:
 
@@ -211,13 +211,13 @@ En SQL la sintaxis utilizada es de la siguiente manera:
 
  SELECT SUM(nombre_columna) FROM nombre_tabla;
 
-Se realizará la consulta SUM(precio_ordenes) que retornará el precio total de las 
+Se realizará la consulta SUM(precio_ordenes) que retornará el precio total de las
 ordenes que se encuentran en la tabla **Ordenes**.
 
 .. code-block:: sql
 
  postgres=# SELECT SUM(precio_ordenes) AS precio_total FROM Ordenes;
- precio_total 
+ precio_total
  --------------
           6490
  (1 row)
@@ -225,8 +225,8 @@ ordenes que se encuentran en la tabla **Ordenes**.
 SQL GROUP BY
 ~~~~~~~~~~~~
 
-La instrucción ``GROUP BY`` se utiliza en conjunción con las funciones de agregado 
-para agrupar el conjunto de resultados de una o más columnas.   
+La instrucción ``GROUP BY`` se utiliza en conjunción con las funciones de agregado
+para agrupar el conjunto de resultados de una o más columnas.
 
 .. code-block:: sql
 
@@ -238,7 +238,7 @@ cliente de los precios de ordenes en la tabla **Ordenes**.
 .. code-block:: sql
 
  postgres=# SELECT cliente, SUM(precio_ordenes) FROM Ordenes GROUP BY cliente;
-  cliente | sum  
+  cliente | sum
  ---------+------
   Alison  | 2220
   Brad    | 2120
@@ -263,19 +263,19 @@ a 2130.
 .. code-block:: sql
 
  postgres=# SELECT cliente, SUM(precio_ordenes) FROM Ordenes GROUP BY cliente HAVING SUM(precio_ordenes)>2130;
-  cliente | sum  
+  cliente | sum
  ---------+------
   Alison  | 2220
   Alicia  | 2150
  (2 rows)
 
-Realizaremos la consulta anterior, agregando la cláusula *WHERE* con la condición que 
+Realizaremos la consulta anterior, agregando la cláusula *WHERE* con la condición que
 el cliente se igual a "Alison".
 
 .. code-block:: sql
 
  postgres=# SELECT cliente, SUM(precio_ordenes) FROM Ordenes WHERE cliente='Alicia' GROUP BY cliente HAVING SUM(precio_ordenes)>2130;
-  cliente | sum  
+  cliente | sum
  ---------+------
   Alicia  | 2150
  (1 row)
