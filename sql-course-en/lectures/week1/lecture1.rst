@@ -54,14 +54,14 @@ The objects that appear in real life correspond to an **entity**.
 For example: students, employees, airplanes, cars, accommodation, etc. 
 An entity results in a table in the DB.
 
-.. image:: ../../../sql-course/src/students.jpeg
+.. image:: ../../../sql-course-en/src/students.jpeg
    :align: center
 
 These entities are composed of several **attributes**, which come to be their properties. 
 For example: Student’s entity shall have the attributes *name, #socialSecurity, 
 nationality, date of birth*, etc.
 
-.. image:: ../../../sql-course/src/studentstable.jpeg
+.. image:: ../../../sql-course-en/src/studentstable.jpeg
    :align: center
 
 The attributes are also called **columns** in the terminology of DB. 
@@ -106,7 +106,7 @@ can be of three types:
 associated one on one. (e.g. the entity MAN, the entity WOMAN and 
 between then the relationship MARRIAGE).
 
-.. image:: ../../../sql-course/src/Entity1-1.jpeg
+.. image:: ../../../sql-course-en/src/Entity1-1.jpeg
    :align: center
 
 *Relations 1-N*:  an occurrence of an entity it is associated with many (n) 
@@ -114,14 +114,14 @@ from another (e.g. the entity COMPANY, the entity Employees and the relationship
 between them WORK-IN).
 
 
-.. image:: ../../../sql-course/src/Entity1-N.jpeg
+.. image:: ../../../sql-course-en/src/Entity1-N.jpeg
    :align: center
 
 *Relations M-N*: Every occurrence, in any of the two entities in the relation, 
 can be associated with many (n) of the other and vice versa (e.g. the entity 
 STUDENT, the entity COMPANY and the relationship between them REGISTRATION).
 
-.. image:: ../../../sql-course/src/EntityM-N.jpeg
+.. image:: ../../../sql-course-en/src/EntityM-N.jpeg
    :align: center
 
 Relational Database
