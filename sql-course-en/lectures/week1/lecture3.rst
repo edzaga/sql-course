@@ -55,7 +55,7 @@ Relational operators
 
 Relational operators are used to filter, cut or join tables.
 
-SELECT
+Select
 *******
 .. index:: SELECT in relational algebra
 
