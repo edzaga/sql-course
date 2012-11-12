@@ -271,15 +271,15 @@ the following information:
   \hline
   \textbf{P#} & \textbf{pname} & \textbf{category} & \textbf{city} \\
   \hline
-  P1 & Sergio & 20 & Valparaíso \\
+  \text{P1} & \text{Sergio} & 20 & \text{Valparaíso} \\
   \hline
-  P2 & Pedro & 10 & Iquique \\
+  \text{P2} & \text{Pedro} & 10 & \text{Iquique} \\
   \hline
-  P3 & Cristian & 30 & Valparaíso \\
+  \text{P3} & \text{Cristian} & 30 & \text{Valparaíso} \\
   \hline
-  P4 & Javiera & 20 & Valparaíso \\
+  \text{P4} & \text{Javiera} & 20 & \text{Valparaíso} \\
   \hline
-  P5 & Andrea & 30 & Santiago \\
+  \text{P5} & \text{Andrea} & 30 & \text{Santiago} \\
   \hline
  \end{array}
 
@@ -289,17 +289,17 @@ the following information:
   \hline
   \textbf{C#} & \textbf{cname} & \textbf{color} & \textbf{weight} & \textbf{city} \\
   \hline
-  C1 & X3A & Rojo & 12 & Valparaíso \\
+  \text{C1} & \text{X3A} & \text{Rojo} & 12 & \text{Valparaíso} \\
   \hline
-  C2 & B85 & Verde & 17 & Iquique \\
+  \text{C2} & \text{B85} & \text{Verde} & 17 & \text{Iquique} \\
   \hline
-  C3 & C4B & Azul & 17 & Rancagua \\
+  \text{C3} & \text{C4B} & \text{Azul} & 17 & \text{Rancagua} \\
   \hline
-  C4 & C4B & Rojo & 14 & Valparaíso \\
+  \text{C4} & \text{C4B} & \text{Rojo} & 14 & \text{Valparaíso} \\
   \hline
-  C5 & VT8 & Azul & 12 & Iquique \\
+  \text{C5} & \text{VT8} & \text{Azul} & 12 & \text{Iquique} \\
   \hline
-  C6 & C30 & Rojo & 19 & Valparaíso \\
+  \text{C6} & \text{C30} & \text{Rojo} & 19 & \text{Valparaíso} \\
   \hline
  \end{array}
 
@@ -309,19 +309,19 @@ the following information:
   \hline
   \textbf{T#} & \textbf{tname} & \textbf{city} \\
   \hline
-  T1 & Clasifficator & Iquique \\
+  \text{T1} & \text{Clasifficator} & \text{Iquique} \\
   \hline
-  T2 & Drill & Rancagua \\
+  \text{T2} & \text{Drill} & \text{Rancagua} \\
   \hline
-  T3 & Reader & Santiago \\
+  \text{T3} & \text{Reader} & \text{Santiago} \\
   \hline
-  T4 & Console & Santiago \\
+  \text{T4} & \text{Console} & \text{Santiago} \\
   \hline
-  T5 & Mixer & Valparaíso \\
+  \text{T5} & \text{Mixer} & \text{Valparaíso} \\
   \hline
-  T6 & Terminal & Arica \\
+  \text{T6} & \text{Terminal} & \text{Arica} \\
   \hline
-  T7 &  Tape & Valparaíso \\
+  \text{T7} &  \text{Tape} & \text{Valparaíso} \\
   \hline
  \end{array}
 

@@ -12,7 +12,7 @@ UNION
 In math, algebra of sets is called to the basic operations that can be performed on sets, 
 such as union, intersection, etc. A set is a collection of objects considered as an object
 in itself. The **UNION** of two sets `A` and `B` is the set that contains all the elements 
-of `A` and `B`. The symbol`\cup` is used to represent **UNION**.The operator **UNION*** is 
+of `A` and `B`. The symbol `\cup` is used to represent **UNION**.The operator **UNION** is 
 commutative, that is `A \cup B = B \cup A`. Remember that an operation is commutative when
 the result of the operation is the same, whatever the order of the elements with which it operates.
  
@@ -91,7 +91,7 @@ Apply the operator **UNION**:
    \end{array}
 
 
-As it was mentioned before, performing the `Chiefs \cup Engineers`
+As it was mentioned before, performing the `\textbf{Chiefs} \cup \textbf{Engineers}`
 operation would have as a result the same table above, debido a la propiage de conmutatividad.
 
 DIFFERENCE
@@ -135,8 +135,8 @@ It is important to highlight that  `R - S` is different from `S - R`.
 Example 
 ^^^^^^^^
 
-Using the same tables given in the previous example, perform `Engineers - Chiefs` 
-and `Chiefs - Engineers`:
+Using the same tables given in the previous example, perform `\textbf{Engineers - Chiefs}` 
+and `\textbf{Chiefs - Engineers}`:
 
 .. math::
    \textbf{Engineers - Chiefs} \\
@@ -201,11 +201,11 @@ so it can be said that **INTERSECTION** is commutative.
 Example 
 ^^^^^^^^
 
-Using the same tables from the previous example, find the intersection of the `Engineers`
-table with the one of `Chiefs`:
+Using the same tables from the previous example, find the intersection of the `\textbf{Engineers}`
+table with the one of `\textbf{Chiefs}`:
 
 .. math::
-    Engineers \cap Chiefs
+    \text{Engineers} \cap \text{Chiefs}
 
       \begin{array}{|c|c|c|}
         \hline
@@ -228,7 +228,7 @@ DEPENDENT AND INDEPENDENT OPERATIONS
 
 Some of the operations that we have described in the lectures 3 and 4, can be expressed in
 terms of other relational-algebra operations. For example, intersection can be expressed in terms
-of set difference: `R <INTERSECTION> S = R - (R - S)`. That is, if `R` and `S` are any two relations with the
+of set difference: ``R <INTERSECTION> S = R - (R - S)``. That is, if `R` and `S` are any two relations with the
 same schema, the intersection of `R` and `S` can be computed by first subtracting `S` from `R` to form a
 relation `T` consisting of all those tuples in `R` but not `S`. We then subtract `T` from `R`, 
 leaving only those tuples of `R` that are also in `S`.
@@ -360,10 +360,10 @@ Exercise 2
 
 Consider the following databases:
  
-	1.  Person ( name, age, gender ) : name is a key
-	2.  Frequents ( name, pizzeria ) : (name, pizzeria) is a key
-	3.  Eats ( name, pizza ) : (name, pizza) is a key
-	4.  Serves ( pizzeria, pizza, price ): (pizzeria, pizza) is a key
+	1.  Person ( `\underline{\text{name}}`, age, gender ) : name is a key
+	2.  Frequents ( `\underline{\text{name}, \text{pizzeria}}` ) : (name, pizzeria) is a key
+	3.  Eats ( `\underline{\text{name}, \text{pizza}}` ) : (name, pizza) is a key
+	4.  Serves ( `\underline{\text{pizzeria}, \text{pizza}}`, price ): (pizzeria, pizza) is a key
 
 Write relational algebra expressions for the following nine queries. (Warning: some of the later queries are a bit challenging.)
 

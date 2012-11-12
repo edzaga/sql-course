@@ -643,6 +643,7 @@ of the `\text{S}` table. In this case, none of the comparisons returns the true 
 
 .. image:: ../../../sql-course/src/THETAJOIN2.png
     :align: center
+
 Then it is compared the attribute *a* in the second row of `\text{R}` with each of the values of the 
 attribute *e* of the table `\text{S}`. In this case, 2 comparisons return the true value (true), so that 
 in the relation of resultant will be the second row of `\text{R}` mixed with the first and third row of `\text{S}`.
@@ -676,9 +677,9 @@ Example 2
 
 With the following conceptual scheme, find the names of the directors of each department:
 
-`\text{Department} (\underline{\text{numDpto}, \text{name, nIFDirector,  dateStart})`
+Department (`\underline{\text{numDpto}}`, name, nIFDirector,  dateStart)
 
-`\text{Employee} (\underline{\text{nIF}, `\text{name, address, salary, dpto, nIFSupervisor})`
+Employee (`\underline{\text{nIF}}`, name, address, salary, dpto, nIFSupervisor)
 
 **Answer**
 
@@ -693,13 +694,13 @@ EXERCISES
 
 Consider the following databases:
 
-1.  `\text{Person} ( \underline{\text{name}, \text{age, gender} ) ` : name is a key.
+1.  Person ( `\underline{\text{name}}`, age, gender )  : name is a key.
 
-2.  `\text{Frequents} ( \underline{\text{name, pizzeria} ) ` : (name, pizzeria) is a key.
+2.  Frequents ( `\underline{\text{name, pizzeria}}` )  : (name, pizzeria) is a key.
 
-3.  `\text{Eats} ( \underline{\text{name, pizza} ) ` : (name, pizza) is a key.
+3.  Eats ( `\underline{\text{name, pizza}}` )  : (name, pizza) is a key.
 
-4.  `\text{Serves} ( \underline{\text{pizzeria, pizza}, `\text{price} ) `: (pizzeria, pizza) is a key.
+4.  Serves ( `\underline{\text{pizzeria, pizza}}`, price ) : (pizzeria, pizza) is a key.
 
 Write relational algebra expressions for the following five queries.
 
