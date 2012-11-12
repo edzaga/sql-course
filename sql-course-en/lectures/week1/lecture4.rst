@@ -331,7 +331,7 @@ Solve the following queries using relational algebra (remember that also in lect
 **Answer**
 
 .. math::
-    \pi_{\text{name}} ( \{(\text{Loan} \rhd \hspace{-0.1cm} \lhd_{ (\text{pres_dev='prestada'})} \text{Tape}) \cap (\text{Loan} \rhd \hspace{-0.1cm} \lhd_{(\text{pres_dev='devuelta'})} \text{Tape})\} \rhd \hspace{-0.1cm}\lhd \text{Member})
+    \pi_{\text{name}} ( \{(\text{Loan} \rhd \hspace{-0.1cm} \lhd_{ (\text{pres_dev='borrowed'})} \text{Tape}) \cap (\text{Loan} \rhd \hspace{-0.1cm} \lhd_{(\text{pres_dev='returned'})} \text{Tape})\} \rhd \hspace{-0.1cm}\lhd \text{Member})
 
 
 1.6. Get the titles of the movies that have never been borrowed.
