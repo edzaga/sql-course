@@ -5,6 +5,10 @@ Lecture 9 - Subqueries in WHERE clause
    :class: highlight
 
 
+Una subconsulta es una consulta que retorna un **único** valor y que esta anidada dentro de un SELECT, INSERT. UPDATE o DELETE,
+o incluso otra subconsulta. Una subconsulta puede ser utilizada en cualquier lugar donde una expresión está permitida.
+
+
 SELECT-FROM-WHERE(SELECT)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
