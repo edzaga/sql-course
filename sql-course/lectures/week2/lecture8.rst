@@ -12,7 +12,7 @@ Table Variables
 Consideremos las siguientes tablas::
 
         College (cName, state, enrollment)
-        Student (sID, sName, GPA)
+        Student (sID, sName, Average)
         Apply (sID, cName, major, decision)
 
 las cuales representar un sistema simple de postulación de estudiantes a establecimientos educacionales, y son creadas mediante:
@@ -20,7 +20,7 @@ las cuales representar un sistema simple de postulación de estudiantes a establ
 .. code-block:: sql
 
  CREATE TABLE College(id serial, cName VARCHAR(20), state VARCHAR(30), enrollment INTEGER, PRIMARY KEY(id));
- CREATE TABLE Student(sID serial, sName VARCHAR(20), GPA INTEGER, PRIMARY kEY(sID));
+ CREATE TABLE Student(sID serial, sName VARCHAR(20), Average INTEGER, PRIMARY kEY(sID));
  CREATE TABLE Apply(sID INTEGER, cName VARCHAR(20), major VARCHAR(30), decision BOOLEAN, PRIMARY kEY(sID, cName, major));
 
 Se utilizarán 4 establecimientos educacionales:
@@ -36,10 +36,10 @@ Se utilizarán 4 establecimientos educacionales:
 
 .. code-block:: sql
         
- INSERT INTO Student (sName, GPA) Values ('Amy', 60);
- INSERT INTO Student (sName, GPA) Values ('Edward', 65);
- INSERT INTO Student (sName, GPA) Values ('Craig', 50);
- INSERT INTO Student (sName, GPA) Values ('Irene', 49);
+ INSERT INTO Student (sName, Average) Values ('Amy', 60);
+ INSERT INTO Student (sName, Average) Values ('Edward', 65);
+ INSERT INTO Student (sName, Average) Values ('Craig', 50);
+ INSERT INTO Student (sName, Average) Values ('Irene', 49);
 
 y 6 postulaciones:
 
@@ -56,15 +56,15 @@ y 6 postulaciones:
 Ejemplo 1
 ^^^^^^^^^
 En este ejemplo se busca la información del nombre e id de los  alumnos, que postulan a uno o más establecimientos educacionales con 
-determinado GPA:
+determinado Average:
 
 .. code-block:: sql
 
-  SELECT Student.sID, sName, Apply.cName, GPA FROM Student, Apply WHERE Apply.sID = Student.sID;
+  SELECT Student.sID, sName, Apply.cName, Average FROM Student, Apply WHERE Apply.sID = Student.sID;
   
 cuya salida es::
 
-  sid | sname  |  cname   | gpa
+  sid | sname  |  cname   | Average
   ----+--------+----------+-----
    1 | Amy     | Stanford |  60
    1 | Amy     | Stanford |  60
@@ -82,11 +82,11 @@ también es posible realizarla como:
 
 .. code-block:: sql
 
- SELECT S.sID, sName, A.cName, GPA FROM Student S, Apply A WHERE A.sID = S.sID;
+ SELECT S.sID, sName, A.cName, Average FROM Student S, Apply A WHERE A.sID = S.sID;
 
 cuya salida es::
 
-   sid | sname  |  cname   | gpa
+   sid | sname  |  cname   | Average
    ----+--------+----------+-----
    1 | Amy     | Stanford |  60
    1 | Amy     | Stanford |  60
@@ -149,7 +149,7 @@ utilizada); en los casos en que se deben comparar múltiples instancias de la mi
 
 
 .. CMA:        INSERT INTO Student
-        (sName, GPA, sizeHS)
+        (sName, Average, sizeHS)
         VALUES
         ('amy', 30, 'A'),
         ('doris', 40, 'B'),
@@ -190,24 +190,24 @@ de la base de datos deberá agregar la información necesaria, es decir:
 
 .. code-block:: sql
 
- INSERT INTO Student (sName, GPA) Values ('Tim', 60);
+ INSERT INTO Student (sName, Average) Values ('Tim', 60);
 
 
 En variadas ocasiones, los nombres de los atributos se repiten, dado que se comparan dos instancias de una tabla. En el este ejemplo,
-se buscan todos los pares de estudiantes con el mismo GPA:
+se buscan todos los pares de estudiantes con el mismo Average:
 
 .. code-block:: sql
 
-        SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
+        SELECT S1.sID, S1.sName, S1.Average, S2.sID, S2.sName, S2.Average
         FROM Student S1, Student S2
-        WHERE S1.GPA = S2.GPA;
+        WHERE S1.Average = S2.Average;
 
 
 Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrá uno o varios duplicados; por ejemplo,
 consideremos a los 5 estudantes::
 
 
-   sid | sname  | gpa
+   sid | sname  | Average
    ----+--------+----- 
    1 | Amy      |  60
    2 | Edward   |  65
@@ -224,7 +224,7 @@ Los pares de estudiantes serán::
 
 pero la salida muestra::
 
-        sid | sname  | gpa | sid | sname  | gpa
+        sid | sname  | Average | sid | sname  | Average
         ----+--------+-----+-----+--------+-----
         1   | Amy    |  60 |   5 | Tim    | 60
         1   | Amy    |  60 |   1 | Amy    | 60
@@ -240,13 +240,13 @@ lo cual se puede evitar modificando la cosulta
 
 .. code-block:: sql
 
-        SELECT S1.sID, S1.sName, S1.GPA, S2.sID, S2.sName, S2.GPA
+        SELECT S1.sID, S1.sName, S1.Average, S2.sID, S2.sName, S2.Average
         FROM Student S1, Student S2
-        WHERE S1.GPA = S2.GPA and S1.sID <> S2.sID;
+        WHERE S1.Average = S2.Average and S1.sID <> S2.sID;
 
 es decir, que el id del estudiante S1 sea diferente al id del estudiante S2; en cuyo caso la salida de la consulta es::
 
-        sid | sname  | gpa | sid | sname  | gpa
+        sid | sname  | Average | sid | sname  | Average
         ----+--------+-----+-----+--------+-----
         1   | Amy    |  60 |   5 | Tim    | 60
         5   | Tim    |  60 |   1 | Amy    | 60

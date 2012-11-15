@@ -31,7 +31,7 @@ Como es usual, se utilizará el ejemplo de la simple base de datos
 ::
 
     College (cName, state, enrollment)
-    Student (sID,   sName, GPA)
+    Student (sID,   sName, Average)
     Apply   (sID,   cName, major, decision)
 
 .. La idea del ejemplo es que el estudiante "sid" postula al colegio "cname", al ramo(o mencion academica, ahi no se) "major"
@@ -42,7 +42,7 @@ cuyas tablas son creadas mediante:
 .. code-block:: sql
 
  CREATE TABLE College(id  serial,  cName VARCHAR(20), state VARCHAR(30), enrollment INTEGER, PRIMARY KEY(id));
- CREATE TABLE Student(sID serial,  sName VARCHAR(20), GPA   INTEGER,     PRIMARY kEY(sID));
+ CREATE TABLE Student(sID serial,  sName VARCHAR(20), Average   INTEGER,     PRIMARY kEY(sID));
  CREATE TABLE   Apply(sID INTEGER, cName VARCHAR(20), major VARCHAR(30), decision BOOLEAN,   PRIMARY kEY(sID, cName, major));
 
 
@@ -59,14 +59,14 @@ Se utilizarán 4 establecimientos educacionales:
 
 .. code-block:: sql
 
- INSERT INTO Student (sName, GPA) Values ('Amy',    60);
- INSERT INTO Student (sName, GPA) Values ('Edward', 65);
- INSERT INTO Student (sName, GPA) Values ('Craig',  50);
- INSERT INTO Student (sName, GPA) Values ('Irene',  49);
- INSERT INTO Student (sName, GPA) Values ('Doris',  45);
- INSERT INTO Student (sName, GPA) Values ('Gary',   53);
- INSERT INTO Student (sName, GPA) Values ('Doris',  70);
- INSERT INTO Student (sName, GPA) Values ('Tim',    60);
+ INSERT INTO Student (sName, Average) Values ('Amy',    60);
+ INSERT INTO Student (sName, Average) Values ('Edward', 65);
+ INSERT INTO Student (sName, Average) Values ('Craig',  50);
+ INSERT INTO Student (sName, Average) Values ('Irene',  49);
+ INSERT INTO Student (sName, Average) Values ('Doris',  45);
+ INSERT INTO Student (sName, Average) Values ('Gary',   53);
+ INSERT INTO Student (sName, Average) Values ('Doris',  70);
+ INSERT INTO Student (sName, Average) Values ('Tim',    60);
 
 y 21 postulaciones:
 
