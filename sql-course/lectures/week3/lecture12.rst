@@ -8,9 +8,8 @@ Lectura 12 - Funciones de Agregación
 Funciones de Agregación
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CMA: Quizás agregar una línea que explique, 'Qué' es una función de agregación
-Las funciones de agregación de SQL retornan un único valor,
-calculado a partir de los valores de una columna.
+Las Funciones de Agregación realizan un cálculo sobre un conjunto de datos y regresan 
+un solo valor.
 
 Algunas funciones útiles de agregado son:
 
@@ -23,9 +22,8 @@ Algunas funciones útiles de agregado son:
 Para mostrar el funcionamiento de dichas funciones, consideraremos
 el siguiente ejemplo:
 
-.. CMA: Los atributos no tienen un formato de texto especial?
-Se *creará* una tabla de **Ordenes**, que tendrá los atributos de id, fecha de orden,
-precio de la orden y el cliente.
+Se *creará* una tabla de **Ordenes**, que tendrá los atributos de ``id``, ``fecha de orden``,
+``precio de la orden`` y el ``cliente``.
 
 .. code-block:: sql
 
@@ -59,7 +57,7 @@ En SQL la sintaxis es de la siguiente manera:
 
  SELECT AVG(nombre_columna) FROM nombre_tabla;
 
-Para calcular el precio promedio de las ordenes se realiza la siguiente consulta:
+Para calcular el ``precio promedio`` de las ordenes se realiza la siguiente consulta:
 
 .. code-block:: sql
 
@@ -76,7 +74,7 @@ Para calcular el precio promedio de las ordenes se realiza la siguiente consulta
 
 También podemos calcular con :sql:`SELECT` anidados,
 el precio de las ordenes que son mayores al promedio calculado,
-retornando el id, fecha de orden, precio_ordenes y el cliente.
+retornando el ``id``, ``fecha de orden``, ``precio_ordenes`` y el ``cliente``.
 
 .. code-block:: sql
 
@@ -235,8 +233,8 @@ para agrupar el conjunto de resultados de una o más columnas.
 
  SELECT nombre_columna, funcion_de_agregacion(nombre_columna) FROM nombre_tabla WHERE condicion GROUP BY nombre_columna;
 
-La siguiente consulta utilizará la instrucción ``GROUP BY``, para realizar la suma por
-cliente de los precios de ordenes en la tabla **Ordenes**.
+La siguiente consulta utilizará la instrucción ``GROUP BY``, para realizar la ``suma`` por
+``cliente`` de los precios de ordenes en la tabla **Ordenes**.
 
 .. code-block:: sql
 
@@ -273,7 +271,7 @@ a 2130.
  (2 rows)
 
 Realizaremos la consulta anterior, agregando la cláusula *WHERE* con la condición que
-el cliente se igual a "Alison".
+el ``cliente`` se igual a "Alison".
 
 .. code-block:: sql
 
