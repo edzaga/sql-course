@@ -46,18 +46,19 @@ Para distinguir a ambas Doris, se puede agregar el atributo sID a la consulta:
  
   SELECT sid, sname, average, average-(SELECT max(average) FROM student ) as diferencia FROM student WHERE sname ='Doris';
 
-cuya salida será::
+en cuyo caso la salida será::
 
   sid | sname | average | diferencia
   ----+-------+---------+-----------
    5  | Doris |  45     | -25
    7  | Doris |  70     |   0
 
-
+por lo que, efectivamente se distingue que persona es la que tiene el promedio 45 y cual el 70.
 .. note::
   
-   En este ejemplo se utiliza la función de SQL: MAX(atributo) ; la cual retorna el mayor valor de una columna. Si se aplica en una
-   columna de tipo string, el método de comparación corresponde al valor ASCII de la primera letra. Por otro lado la función
+   En este ejemplo se utiliza la función de SQL: MAX(atributo) ; la cual retorna el mayor 
+   valor de una columna. Si se aplica en una columna de tipo string, el método de comparación 
+   corresponde al valor ASCII de la primera letra. Por otro lado la función
    MIN(atributo), retorna el menor valor de una columna.
 
 
@@ -115,6 +116,7 @@ todos modos es recomendable agregarle un alias, pues el resultado de la subconsu
 RECAPITULACIÓN
 ~~~~~~~~~~~~~~
  
+Las subconsultas se utilizan cuando la consulta a realizar es demasiado compleja,
 Como se ha mencionado en la lectura anterior, es posible realizar tareas de inserción, actualización y eliminación de datos en las subconsultas.
 
 Ejemplo extra
@@ -134,11 +136,53 @@ cuya salida es::
   -------+---------+-----------
   Doris  |  45     | -25
   
+Supongamos que el caso de la alumna que tiene el prmedio más bajo, Doris, corresponde a un error de planilla. Se decide actualizar 
+el promedio utilizando subconsultas (considerando que es la única almuna con el menor promedio):
 
-IDEAS:: 
+.. code-block:: sql
+
+  UPDATE student SET average = 100
+  WHERE average = (SELECT min(average) FROM student);
+
+en cuyo caso, y tras realizar un :sql:´SELECT * FROM student´, la salida es::
+ 
+   sid | sname  | average  
+   ----+--------+---------
+    1  | Amy    |  60
+    2  | Edward |  65    
+    3  | Craig  |  50  
+    4  | Irene  |  49
+    6  | Gary   |  53
+    7  | Doris  |  70   
+    8  | Tim    |  60 
+    5  | Doris  |  100    
+
+Sin embargo, se descubre que Doris de id = 5, hizo trampa. Ella se metió de forma remota y sin permiso al servidor de datos donde se
+encontraban las planillas de notas, y procedió a alterar aquellas que aportaban en su promedio. Como castigo se opta por
+eliminarla del proceso de postulación. El encargado realiza la acción a través de subconsultas, considerando que Doris es la única 
+alumna con promedio 100, que corresopnde a la máxima calificación:
+
+.. code-block:: sql
+
+  DELETE FROM student where average = (SELECT max(average) FROM student);
+
+Cuya salida tras realizar el SELECT * de rigor, es::
+
+   sid | sname  | average  
+   ----+--------+---------
+    1  | Amy    |  60
+    2  | Edward |  65    
+    3  | Craig  |  50  
+    4  | Irene  |  49
+    6  | Gary   |  53
+    7  | Doris  |  70   
+    8  | Tim    |  60 
+
+
+
+
+Falta::
   
- Buscar ejemplos más claros de los que salen en la video lectura. 
- Utilizar 2 ejemplos para subconsultas en L y 2 en R. 
-
+  buscar ejemplo d subquery en from
 
 
