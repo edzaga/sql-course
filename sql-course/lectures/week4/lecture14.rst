@@ -29,8 +29,10 @@ Es decir que se insertará en la tabla "table", los valores correspondientes a l
 esta forma, es necesario que la cantidad de valores asociados a los atributos, sea igual a la cantidad de atributos de la tabla "table", 
 y que esten en el mismo orden de tipo de datos. El ejemplo 1 aclarará posibles dudas:
 
-Ejemplo 1
-^^^^^^^^^
+
+Contexto
+^^^^^^^^
+
 Utilicemos la tabla "student", que ya se ha utilizado en lecturas anteriores::
 
  Student (sID, sName, Average)
@@ -135,6 +137,12 @@ Es posible modificar o "actualzar" datos a través del comando UPDATE, cuya sint
 Es decir que se actualiza, de la tabla "table", el atributo "Attr" (el valor anterior, por el valor "Expression"), bajo una cierta 
 condición "Condition" 
 
+.. note::
+
+   Es impornate destacar que la condición puede variar, puede ser de carácter sumamente complejo,
+   una subconsulta, una setencia que involucre otras tablas. Expression también puede ser un valor
+   que involucre otras tablas, no necesariamente corresponde a un valor de comparación directo.
+
 Es necesario destacar que, si bien se puede actualizar un atributo, también se pueden aactualizar varios a la vez:
 
 .. code-block:: sql
@@ -150,6 +158,23 @@ Ejemplo 3
 
 DELETE
 ~~~~~~
+
+Es posible eliminar filas de información, que cumplan una determinada condición. Esto es especialemnte útil en el caso del ejemplo 1
+así, se evita tener que borrar toda una tabla.
+
+La sintaxis del comando DELETE es:
+
+.. code-block:: sql
+
+  DELETE FROM table WHERE Condition;
+
+Es decir que de la tabla "table", se elimina el(los) valor(es) que cumpla(n) con la condición "Condition".
+
+.. note::
+
+   Es impornate destacar que la condición puede variar, puede ser de carácter sumamente complejo,
+   una subconsulta, una setencia que involucre otras tablas.
+
 
 retomar el ejemplo 1, borrando a bety y agregandola de nuevo pero sin el 1 explicito
 
