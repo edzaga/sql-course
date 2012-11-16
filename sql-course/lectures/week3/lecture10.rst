@@ -54,7 +54,8 @@ en cuyo caso la salida será::
    7  | Doris |  70     |   0
 
 por lo que, efectivamente se distingue que persona es la que tiene el promedio 45 y cual el 70.
-.. note::
+
+.. note::   
   
    En este ejemplo se utiliza la función de SQL: MAX(atributo) ; la cual retorna el mayor 
    valor de una columna. Si se aplica en una columna de tipo string, el método de comparación 
