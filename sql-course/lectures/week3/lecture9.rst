@@ -389,12 +389,13 @@ Donde el resultado corresponde a *Berkeley*.
  De forma análoga es posible calcular el establecimiento con menor cantidad de
  alumnos, cambiando el signo matemático **>** por **<**
 
-ANY
-===
 
-Ejemplo 6
-^^^^^^^^^
-Falta explicar y poner 1 ejeplos de c/u::
-
- any
-
+.. ANY
+ ===
+ 
+ ANY y SOME son sinónimos. Chequean si alguna fila de la lista, resultado de una subconsulta, coincide con el valor especificado
+ en la condición. ANY será de utilidad para reolver el caso del ejemplo 6.
+ 
+ Ejemplo 6
+ ^^^^^^^^^
+ Se desea  saber las 

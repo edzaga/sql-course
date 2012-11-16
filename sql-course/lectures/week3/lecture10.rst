@@ -15,39 +15,92 @@ En esta lectura se verá como utilizarlas tanto en **L** como en **R**
 
 .. Agregar lo que anoté en el papel...
  
+Para los ejemplos de esta subsección, se usarán los valores utilizados en la lectura anterior (lectura 9).
 
 SELECT(SELECT)-FROM-WHERE 
 ~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
 .. parrafo introductorio que dice q se usa la tabla de alumnos de la lectura 9 para el ejemplo 
-Para los ejemplos de esta subsección, se usarán los valores utilizados en la lectura anterior (lectura 9).
 
 Ejemplo 1
 ^^^^^^^^^
 
 Se desea saber el promedio de un determinado alumno y su diferencia con el promedio más alto del grupo de alumnos. Podría conseguirse
 averiguando el promedio más alto de grupo, y luego, en otra consulta, calcular la diferencia con el del valor del promedio del alumno
-en cuestión (en esta caso Tim). Esto es posible realizarlo en una sola consulta:
+en cuestión (en este caso Doris). Esto es posible realizarlo en una sola consulta:
 
 .. code-block:: sql
  
-  SELECT sname, average, average-(SELECT max(average) FROM student ) as diferencia FROM student WHERE sname ='Tim';
+  SELECT sname, average, average-(SELECT max(average) FROM student ) as diferencia FROM student WHERE sname ='Doris';
 
 cuya salida será::
 
   sname | average | diferencia
   ------+---------+-----------
-   Tim  |  60     | -10
+  Doris |  45     | -25
+  Doris |  70     |   0
+
+Para distinguir a ambas Doris, se puede agregar el atributo sID a la consulta:
+
+.. code-block:: sql
  
+  SELECT sid, sname, average, average-(SELECT max(average) FROM student ) as diferencia FROM student WHERE sname ='Doris';
+
+cuya salida será::
+
+  sid | sname | average | diferencia
+  ----+-------+---------+-----------
+   5  | Doris |  45     | -25
+   7  | Doris |  70     |   0
+
+
 .. note::
   
    En este ejemplo se utiliza la función de SQL: MAX(atributo) ; la cual retorna el mayor valor de una columna. Si se aplica en una
    columna de tipo string, el método de comparación corresponde al valor ASCII de la primera letra. Por otro lado la función
    MIN(atributo), retorna el menor valor de una columna.
 
+
+
+
+Hay que tener la precaución de retornar un sólo valor a la hora de realizar una subconsulta dentro de un SELECT. De otra forma se retornará 
+un error, como se verá en el ejemplo 2.
+
 Ejemplo 2
 ^^^^^^^^^
 
+Supongamos que se tabaja bajo el contexto del ejemplo 1, pero sin utilizar la funcioón MAX, que retorna sólo un valor:
+
+.. code-block:: sql
+ 
+  SELECT sname, average, average-(SELECT average FROM student ) as diferencia FROM student WHERE sname ='Doris';
+
+en cuyo caso la salida correponderá al siguiente error::
+  
+   ERROR: more than one row returned by a subquery used as an expression.
+
+Ejemplo 3
+^^^^^^^^^
+
+Supongamos que se desea saber el nombre de cada alumno, su promedio,  y su diferencia respecto al promedio más bajo del curso:
+
+.. code-block:: sql
+ 
+  SELECT sname, average, average-(SELECT min(average) FROM student ) as diferencia FROM student;
+
+en cuyo caso la salida será::
+  
+   sname  | average | diferencia
+   -------+---------+-----------
+   Amy    |  60     |  15
+   Edward |  65     |  20 
+   Craig  |  50     |   5
+   Irene  |  49     |   4
+   Doris  |  45     |   0
+   Gary   |  53     |   8
+   Doris  |  70     |  25
+   Tim    |  60     |  15
+  
 
  
 SELECT-FROM(SELECT)-WHERE 
@@ -79,7 +132,7 @@ cuya salida es::
   
   sname  | average | diferencia
   -------+---------+-----------
-  Doris  |  45     | -45
+  Doris  |  45     | -25
   
 
 IDEAS:: 
