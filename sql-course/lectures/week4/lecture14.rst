@@ -176,7 +176,23 @@ Es decir que de la tabla "table", se elimina el(los) valor(es) que cumpla(n) con
    una subconsulta, una setencia que involucre otras tablas.
 
 
-retomar el ejemplo 1, borrando a bety y agregandola de nuevo pero sin el 1 explicito
+Ejemplo 4
+^^^^^^^^^
+
+Si nos situamos temporalmente al final del ejemplo 1, con el error::
+ 
+  ERROR: duplicate key value violates unique constraint "student2_pkey"
+  DETAIL: Key(sid)=(1) already exists.
+
+Al querer insertar a 'Wilma', es posible eliminar la fila correspondiente a 'Betty' y volver insertar ambas como se hizo en
+el ejemplo 2, sin la necesidad de borrar la tabla, crearla y agregar todo de nuevo:
+
+.. code-block:: sql
+
+  DELETE FROM Student2 WHERE sID = 1;
+
+Lo cual permite eliminar la fila correspondiente a 'Betty' y dejar la tabla vacia. Posteriormente es posible comenzar a llenarla de nuevo
+mediante las últimas 2 consultas del ejemplo 2.
 
 
 
