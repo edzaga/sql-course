@@ -39,11 +39,14 @@ y creemos una nueva tabla llamada Student2, con una estructura similar, pero vac
 
 .. code-block:: sql
  
- CREATE TABLE Student2(sID serial, sName VARCHAR(20), Average INTEGER);
+ CREATE TABLE Student2(sID serial, sName VARCHAR(20), Average INTEGER,  PRIMARY kEY(sID));
 
 Es decir, cuenta con 3 atributos, los cuales son sID de carácter entero y serial, lo cual significa que si no se especifica un
 valor, tomará un valor entero ; el nombre que crresponde a un string  y el promedio, es decir un número entero. 
 
+
+Ejemplo 1
+^^^^^^^^^
 Supongamos que planilla de estudiantes albergada en la tabla **Student** ya fue enviada y no se puede modificar, es por ello que
 se necesita crear una nueva planilla (otra tabla student), y agregar a los nuevos alumnos postulantes.
 
@@ -60,6 +63,25 @@ cuya salida, despues de ejecutar el :SQL:´select * student;´ de rigor es ::
     1  | Betty  |  78
 
 
+Al utilizar el atributo *sID* como serial, es posible el valor de este atributo a la hora de insertar un nuevo estudiante:
+
+.. code-block:: sql
+
+  INSERT INTO Student2 (sName, Average) VALUES ('Wilma', 81);
+
+Pero, esto resulta en el siguiente error::
+ 
+  ERROR: duplicate key value violates unique constraint "student2_pkey"
+  DETAIL: Key(sid)=(1) already exists.
+
+Esto se debe a que *sID* es clave primaria, y serial tiene su propio contador, que parte de 1 (el cual no está ligado necesariamente
+a los valores de las diversas filas que puedan existir en la tabla). Hasta este punto, sólo se pueden seguir añadiendo alumnos
+agregado de forma explicita todos y cada uno de los atributos de la tabla, sin poder prescindir en este caso de *sID* y su carcateristica
+de ser serial, pues la tupla atributo-valor (sID)=(1) está bloqueada.
+
+Resulta un tanto curioso que si se elimina la tabla, se crea de nuevo y se llenan los datos a la inversa, el error es el mismo, pero es 
+posible modificar la inserción de 'Betty' para que sea similar a la de 'Wilma'.
+
 UPDATE
 ~~~~~~
 
@@ -68,7 +90,7 @@ UPDATE
 DELETE
 ~~~~~~
 
-
+retomar el ejemplo 1, borrando a bety y agregandola de nuevo pero sin el 1 explicito
 
 
 
