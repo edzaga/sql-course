@@ -122,6 +122,13 @@ Como se ha mencionado en la lectura anterior, es posible realizar tareas de inse
 
 Ejemplo extra
 ^^^^^^^^^^^^^
+
+.. note::
+ 
+  A continuación se verán ejemplos de subconsultas en actualización y eliminación de datos. Su sintaxis y 
+  propiedades  se explicarán en la lectura 14 (semana 4). Ahora se exponen para dejar en claro que las subconsultas
+  se pueden utilizar en cualquiera de las 4 operaciones básicas.
+
 Consideremos que se quiere saber el nombre, la calificación y  del estudiante con el menor promedio, además de su diferencia con el mejor promedio.
 .. de la tabla student, al alumno con el menor promedio:
 
