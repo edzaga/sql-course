@@ -115,9 +115,37 @@ la salida es::
     1  | Betty  |  78
     2  | Wilma  |  81
 
+
+
+
+La otra forma de realizar inserciones de datos es mediante el uso de SELECT. Sin embargo, y anque esta forma no es tan directa
+como la anterior, puede ser de gran utilidad.
+
+.. agregar la idea del video
+
 UPDATE
 ~~~~~~
 
+Es posible modificar o "actualzar" datos a través del comando UPDATE, cuya sintaxis es:
+
+.. code-block:: sql
+
+  UPDATE table SET Attr = Expression  WHERE Condition;
+
+Es decir que se actualiza, de la tabla "table", el atributo "Attr" (el valor anterior, por el valor "Expression"), bajo una cierta 
+condición "Condition" 
+
+Es necesario destacar que, si bien se puede actualizar un atributo, también se pueden aactualizar varios a la vez:
+
+.. code-block:: sql
+
+  UPDATE table 
+  SET Attr1 = Expression1, Attr2 = Expression2,..., AttrN = ExpressionN  
+  WHERE Condition;
+
+
+Ejemplo 3
+^^^^^^^^^^
 
 
 DELETE
