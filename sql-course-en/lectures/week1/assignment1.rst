@@ -289,17 +289,17 @@ the following information:
   \hline
   \textbf{C#} & \textbf{cname} & \textbf{color} & \textbf{weight} & \textbf{city} \\
   \hline
-  \text{C1} & \text{X3A} & \text{Rojo} & 12 & \text{Valparaíso} \\
+  \text{C1} & \text{X3A} & \text{Red} & 12 & \text{Valparaíso} \\
   \hline
-  \text{C2} & \text{B85} & \text{Verde} & 17 & \text{Iquique} \\
+  \text{C2} & \text{B85} & \text{Green} & 17 & \text{Iquique} \\
   \hline
-  \text{C3} & \text{C4B} & \text{Azul} & 17 & \text{Rancagua} \\
+  \text{C3} & \text{C4B} & \text{Blue} & 17 & \text{Rancagua} \\
   \hline
-  \text{C4} & \text{C4B} & \text{Rojo} & 14 & \text{Valparaíso} \\
+  \text{C4} & \text{C4B} & \text{Red} & 14 & \text{Valparaíso} \\
   \hline
-  \text{C5} & \text{VT8} & \text{Azul} & 12 & \text{Iquique} \\
+  \text{C5} & \text{VT8} & \text{Blue} & 12 & \text{Iquique} \\
   \hline
-  \text{C6} & \text{C30} & \text{Rojo} & 19 & \text{Valparaíso} \\
+  \text{C6} & \text{C30} & \text{Red} & 19 & \text{Valparaíso} \\
   \hline
  \end{array}
 
