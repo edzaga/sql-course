@@ -79,8 +79,41 @@ a los valores de las diversas filas que puedan existir en la tabla). Hasta este 
 agregado de forma explicita todos y cada uno de los atributos de la tabla, sin poder prescindir en este caso de *sID* y su carcateristica
 de ser serial, pues la tupla atributo-valor (sID)=(1) está bloqueada.
 
+.. note::
+
+  Es posible eliminar directamente la fila que corresponde a 'Betty', pero ese paso se reserva a la
+  subsección  de DELETE, presentada más adelante en esta lectura
+
+
+Ejemplo 2
+^^^^^^^^^
+
 Resulta un tanto curioso que si se elimina la tabla, se crea de nuevo y se llenan los datos a la inversa, el error es el mismo, pero es 
 posible modificar la inserción de 'Betty' para que sea similar a la de 'Wilma'.
+
+.. note::
+  
+  A continuación se usará el comando SQL DROP TABLE, que permite eliminar una tabla entera.
+ 
+.. code-block:: sql
+
+  DROP TABLE Student2;
+  CREATE TABLE Student2(sID serial, sName VARCHAR(20), Average INTEGER,  PRIMARY kEY(sID));
+  INSERT INTO Student2 (sName, Average) VALUES ('Betty', 78);
+  INSERT INTO Student2 (sName, Average) VALUES ('Wilma', 81);
+
+Es posible ver que se ha modificado la consulta de 'Betty', y después de seleccionar toda la información de la tabla:
+
+.. code-block:: sql
+
+  SELECT * FROM Student2;
+
+la salida es::
+
+   sid | sname  | average  
+   ----+--------+---------
+    1  | Betty  |  78
+    2  | Wilma  |  81
 
 UPDATE
 ~~~~~~
