@@ -1,40 +1,40 @@
 Lecture 5 - Introduction
------------------------------
+------------------------
 
 .. role:: sql(code)
    :language: sql
    :class: highlight
 
-`SQL (Structured Query Language)`_ es un tipo de lenguaje vinculado con la gestión de
-bases de datos de carácter relacional que permite la especificación de distintas
-clases de operaciones entre éstas. Gracias a la utilización del álgebra y de
-cálculos relacionales, el lenguaje SQL brinda la posibilidad de realizar consultas
-que ayuden a recuperar información de las bases de datos de manera sencilla.
+`SQL (Structured Query Language)`_ is a type of language associated with the
+management of relational databases, which allows the specification of different 
+types of operations. Through the use of algebra and relational calculus, SQL 
+language provides the possibility to make queries that help to retrieve information 
+from databases easily.
 
-Characteristics
-~~~~~~~~~~~~~~~~
+Features
+~~~~~~~~~~
 
 .. index:: Features
 
-Algunas de las características de este lenguaje son:
+Some features of this language are: 
 
  * Supported by all major commercial database systems.
  * Standardized - many new features over time.
  * Interactive via GUI or prompt, or embedded in programs.
  * Declarative, based on relational algebra.
 
-Data Definition Languaje (DDL)
+Data Definition Language (DDL)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. index:: Data Definition Languaje (DDL)
 
 
-`DDL (Data Definition Language)`_ is a syntax similar
-to a computer programming language for defining data structures, especially
-database schemas.
+`DDL (Data Definition Language)`_  is a language that allows you define a 
+database (its structure or “schema”), and it also has a similar syntax to 
+programming languages. 
 
 Examples:
-
+^^^^^^^^^^
 .. code-block:: sql
 
    CREATE TABLE table_name;
@@ -66,20 +66,21 @@ Examples:
 
  * :sql:`ALTER`:
 
-  * ...
-  * ...
+  * Used to modify the structure of the table, as the following cases:
+
+    * Add a column
+    * Delete a column
+    * Change the name of a column
+    * Change the data type for a column
 
 Data Manipulation Languaje (DML)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`DML (Data Manipulation Language)`_ se refiere a los comandos que
-permiten a un usuario manipular los datos en un repositorio, es decir, añadir,
-consultar, borrar o actualizar.
-
-
-.. CMA: Escribir ejemplos de verdad por cada comando.
+`DML (Data Manipulation Language)`_ refers to commands that allow a user to manipulate 
+the data of tables, that is, query tables, add rows, delete rows, and update columns. 
 
 Examples of DML
+^^^^^^^^^^^^^^^ 
 
 .. code-block:: sql
 
@@ -111,21 +112,24 @@ The Basic SELECT Statement
 
 .. code-block:: sql
 
- SELECT 'A_{1},\ldots,A_{n}' FROM 'R_{1}, \ldots, R_{m}' WHERE 'condition'
+ SELECT A1, ..., An FROM R1, ..., Rm WHERE condition
 
-**Significado:**
+**Meaning:**
 
    * :sql:`SELECT` `A_{1}, \ldots, A_{n}`: What to return
    * :sql:`FROM` `R_{1}, \ldots,R_{m}`: relations
    * :sql:`WHERE` `condition`: combine, filter
 
-**Algebra relacional:**
+What this query seeks is to show the columns `A_{1}, \ldots, A_{n}` of the tables or relations `R_{1}, \ldots,R_{m}`, following some condition.
+
+**Relational Algebra:**
 
 .. math::
 
     \pi_{A_{1},\ldots, A_{n}} (\sigma_{condition}(R_{1} \times \ldots \times R_{m}))
 
-Comandos SQL:
+SQL commands:
+=============
 
    * :sql:`INSERT` - adds one or more records to any single table in a relational
      database.
@@ -134,10 +138,10 @@ Comandos SQL:
    * :sql:`UPDATE` - changes the data of one or more records in a table. Either all
      the rows can be updated, or a subset may be chosen using a condition.
 
-Ejemplo práctico
-~~~~~~~~~~~~~~~~
+Practical Example
+^^^^^^^^^^^^^^^^^^
 
-.. index:: ejemplo practico
+.. index:: Practical Example
 
 .. note::
 
@@ -153,195 +157,301 @@ Ejemplo práctico
 
    * For Red Hat/Scientific Linux/Fedora/CentOS users::
 
-      yum install postgresql
+      yum -y install postgresql postgresql-libs postgresql-contrib postgresql-server postgresql-docs
 
-   If you are a Windows user, you can download it from ... and installing it ...
-   For MAC users please use .... or refer to the following guide...
+   After the installation process, you need to enter into the **psql environment**
 
-   After the installation process, you need to enter into the **psql environment**::
+   * For Debian/Ubuntu users you can perform the following command as a root::
 
-        postgres -c psql
+      sudo su postgres -c psql
 
-   as a super user (root).
+   * For Red Hat/Scientific Linux/Fedora/CentOS users
 
-Primero que todo debemos *crear* una base de datos
-para comenzar nuestros ejercicios.
-La llamaremos **example**:
+    * Start the service. I should say OK if everything is correct
+      ::
 
-.. CMA: Aqui tienes dos opciones para que se vea mejor, o usar el code-block
-..      para resaltar el código SQL o usar testcase para dejar el negrita
-..      lo que el usuario debe ingresar, tu decides.
-..      OJO: La idea es que apliques esta decisión a todos los códigos que muestras.
+        service postgresql start
 
-.. CMA: También debes definir un formato especial cuando te refieras a:
-..      * El nombre del proceso a ejecutar (crear, editar, agregar, etc...)
-..      * Nombres de elementos de la base de datos (db, tablas, atributos, etc)
-..      *
+    * We change the user's password Postgres
+      ::
+
+        passwd postgres
+
+    * Now start Postgres (enter password from above)
+      ::
+
+        su postgres
+
+    * We started the service
+      ::
+
+        /etc/init.d/postgresql start
+
+    * You should see a prompt "bash-4.1 $", now we enter Postgres
+      ::
+
+        psql
+
+Firstly, we must create a ``database`` in order to start our excercises. We would call it **example**:
 
 .. code-block:: sql
 
    postgres=# create database example;
    CREATE DATABASE
 
-Luego de haber creado nuestra base de datos, necesitamos *ingresar*
-para comenzar a realizar distintas operaciones:
+After creating our database, we need to *enter* to start making different operations:
 
 .. testcase::
 
  postgres=# `\c example`
  psql (8.4.14)
- Ahora está conectado a la base de datos «example».
+ Now is connected to the databases «example».
 
-Ahora comenzamos a *crear una tabla* llamada **cliente** con las variables id que se
-define como serial en que al ir agregando datos se autoincrementará automaticamente
-en la base de datos example
+Now we begin to create a table called client with ID variables that are defined as serial, 
+in which as you add data it would auto-increase automatically in the database example: 
 
 .. code-block:: sql
 
- example=# CREATE TABLE cliente (id SERIAL, nombre VARCHAR(50), apellido VARCHAR(50), edad INTEGER, direccion VARCHAR(50), pais VARCHAR(25));
- 
-Y recibiremos el siguiente mensaje::
+ example=# CREATE TABLE client (id SERIAL, name VARCHAR(50), lastname VARCHAR(50), age INTEGER, address VARCHAR(50), country VARCHAR(25));
 
- NOTICE:  CREATE TABLE creará una secuencia implícita «cliente_id_seq» para la columna serial «cliente.id»
+And we would receive the following message::
+
+ NOTICE:  CREATE TABLE creará una secuencia implícita «client_id_seq» para la columna serial «client.id»
  CREATE TABLE
 
-Para *agregar* datos a la tabla **cliente** se realiza de la siguiente manera
+To *add* data to the table **client** is performed as follows:
 
 .. code-block:: sql
 
- example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('John', 'Smith', 35, '7635 N La Cholla Blvd', 'EEUU');
+ example=# INSERT INTO client (name,lastname,age,address,country) VALUES ('John', 'Smith', 35, '7635 N La Cholla Blvd', 'EEUU');
  INSERT 0 1
 
-*Agregar* más datos a la tabla **cliente**
+*Add* more data to the **client** table
 
 .. code-block:: sql
 
- example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('John', 'Smith', 35, '7635 N La Cholla Blvd', 'EEUU');
+ example=# INSERT INTO client (name,lastname,age,address,country) VALUES ('John', 'Smith', 35, '7635 N La Cholla Blvd', 'EEUU');
  INSERT 0 1
- example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('Judith', 'Ford', 20, '3901 W Ina Rd', 'Inglaterra');
+ example=# INSERT INTO client (name,lastname,age,address,country) VALUES ('Judith', 'Ford', 20, '3901 W Ina Rd', 'Inglaterra');
  INSERT 0 1
- example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('Sergio', 'Honores', 35, '1256 San Luis', 'Chile');
+ example=# INSERT INTO client (name,lastname,age,address,country) VALUES ('Sergio', 'Honores', 35, '1256 San Luis', 'Chile');
  INSERT 0 1
- example=# INSERT INTO cliente (nombre,apellido,edad,direccion,pais) VALUES ('Ana', 'Caprile', 25, '3456 Matta', 'Chile');
+ example=# INSERT INTO client (name,lastname,age,address,country) VALUES ('Ana', 'Caprile', 25, '3456 Matta', 'Chile');
  INSERT 0 1
 
-*Seleccionar* todos los datos de la tabla **cliente**
+*Select* all the data of the **client** table
 
 .. code-block:: sql
 
- example=# SELECT * FROM cliente;
- id | nombre | apellido | edad |       direccion       |    pais
+ example=# SELECT * FROM client;
+ id | name   | lastname | age  |        address        |    country
  ---+--------+----------+------+-----------------------+------------
   1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
   2 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
   3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
   4 | Sergio | Honores  |   35 | 1256 San Luis         | Chile
   5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
- (5 filas)
+ (5 rows)
 
 .. note::
- El asterisco (*) que está entre el :sql:`SELECT` y el :sql:`FROM` significa que se seleccionan todas las columnas de la tabla.
-
-Como cometimos el error de *agregar* en la segunda fila datos repetidos, pero se puede *eliminar* de la siguiente manera
-
-.. code-block:: sql
-
- example=# DELETE FROM cliente WHERE id=2;
- DELETE 1
-
-Verificamos que se haya *eliminado*
+ The asterisk (*) that is between :sql:`SELECT` and :sql:`FROM` means that are selected all the columns of the table.
+ 
+If we want to select the column name with last name the query should be 
 
 .. code-block:: sql
 
- example=# SELECT * FROM cliente;
- id | nombre | apellido | edad |       direccion       |    pais
+   SELECT name, lastname FROM client;
+
+As we made the mistake of *adding* in the second row repeated data, but it can be *removed* as follows
+
+.. code-block:: sql
+
+   example=# DELETE FROM client WHERE id=2;
+   DELETE 1
+
+We check that it has been *deleted*
+
+.. code-block:: sql
+
+ example=# SELECT * FROM client;
+ id |  name  | lastname | age  |        address        |   country
  ---+--------+----------+------+-----------------------+------------
   1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
   3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
   4 | Sergio | Honores  |   35 | 1256 San Luis         | Chile
   5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
- (4 filas)
+ (4 rows)
 
-Si se desea *actualizar* la dirección del cliente Sergio de la tabla **cliente**
+If you want to *update* client Sergio’s address from the **client** table 
 
 .. code-block:: sql
 
- example=# UPDATE cliente SET direccion='1459 Patricio Lynch' WHERE id=4;
+ example=# UPDATE client SET address='1459 Patricio Lynch' WHERE id=4;
  UPDATE 1
 
-Se puede *seleccionar* la tabla **cliente** para verificar que se haya actualizado la información
+You can *select* the **client** table to verify that the data has been updated.
 
 .. code-block:: sql
 
- example=# SELECT * FROM cliente;
- id | nombre | apellido | edad |       direccion       |    pais
+ example=# SELECT * FROM client;
+ id |  name  | lastname |  age |        address        |    country
  ---+--------+----------+------+-----------------------+------------
   1 | John   | Smith    |   35 | 7635 N La Cholla Blvd | EEUU
   3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
   5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
   4 | Sergio | Honores  |   35 | 1459 Patricio Lynch   | Chile
- (4 filas)
+ (4 rows)
 
-Para *borrar* la tabla **cliente**
+To *delete* **client** table
 
 .. code-block:: sql
 
- example=# DROP TABLE cliente;
+ example=# DROP TABLE client;
  DROP TABLE
 
-Seleccionamos la tabla **cliente**, para verificar que se haya eliminado
+Select the **client** table to verify that is has been removed
 
 .. code-block:: sql
 
- example=# SELECT * FROM cliente;
+ example=# SELECT * FROM client;
 
-Recibiremos el siguiente mensaje::
+We will receive the following message::
 
- ERROR:  no existe la relación «cliente»
- LÍNEA 1: SELECT * FROM cliente;
+ ERROR:  no existe la relación «client»
+ LÍNEA 1: SELECT * FROM client;
                        ^
 
-Clave Primaria y Foránea
+Foreign and primary key
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-En las bases de datos relacionales, se le llama **clave primaria** a un campo o a una
-combinación de campos que identifica de forma única a cada fila de una tabla. Por lo
-que no pueden existir dos filas en una tabla que tengan la misma clave primaria.
+In relational databases, **primary key** is called to a field or a combination of fields
+that uniquely identifies each row in a table. So it cannot exist in a table with the 
+same primary key.
 
-Y las **claves foráneas** tienen por objetivo establecer una conexión con la clave
-primaria que referencian de otra tabla, creandose una relación entre las dos tablas.
+And the **foreign keys** are intended to establish a connection with the primary key that 
+refer to the other table, creating an association between the two tables.
 
-----------------
-Ejemplo Práctico
-----------------
 
-Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está definido como serial que automáticamente irá ingresando los valores 1, 2,3 a cada registro.
+Practical example
+^^^^^^^^^^^^^^^^^^^ 
 
-.. code-block:: sql
-
- postgres=# CREATE TABLE profesores(ID_profesor serial, nombre VARCHAR(30), apellido VARCHAR(30), PRIMARY KEY(ID_profesor));
-
-Recibiremos el siguiente mensaje::
-
- NOTICE:  CREATE TABLE creará una secuencia implícita «profesores_id_profesor_seq» para la columna serial «profesores.id_profesor»
- NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «profesores_pkey» para la tabla «profesores»
- CREATE TABLE
-
-Ahora vamos a crear la tabla de cursos en que ID_curso será la clave primaria de esta tabla y ID_profesor será la clave foránea, que se encargará de realizar una conexión entre estas dos tablas.
+First we will create the teachers table in which ID_teacher will be the primary key. 
+It will be defined as a serial that automatically will be entering the values 1, 2, 3 
+to each record. 
 
 .. code-block:: sql
 
- postgres=# CREATE TABLE cursos(ID_curso serial, titulo VARCHAR(30), ID_profesor INTEGER, PRIMARY KEY(ID_curso), FOREIGN KEY(ID_profesor) REFERENCES profesores(ID_profesor));
+ postgres=# CREATE TABLE teachers(ID_teachers serial, name VARCHAR(30), lastname VARCHAR(30), PRIMARY KEY(ID_teachers));
 
-Recibiremos el siguiente mensaje::
+We will receive the following message::
 
- NOTICE:  CREATE TABLE creará una secuencia implícita «cursos_id_curso_seq» para la columna serial «cursos.id_curso»
- NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «cursos_pkey» para la tabla «cursos»
+ NOTICE:  CREATE TABLE creará una secuencia implícita «teachers_ID_teachers_seq» para la columna serial «teachers.ID_teachers»
+ NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «teachers_pkey» para la tabla «teachers»
  CREATE TABLE
 
-.. CMA: Y nada mas? :( quizás podrías idear un par de ejemplos más para ver
-        la importancia de las foreign y primary keys, o quizás planead un ejercicio.
+Now we will create the table of courses in which ID_courses will be the primary key of 
+this table and ID_teacher will be the foreign key, which will make a connection between 
+these two tables.
 
+.. code-block:: sql
+
+ postgres=# CREATE TABLE courses(ID_course serial, title VARCHAR(30), ID_teachers INTEGER, PRIMARY KEY(ID_course), FOREIGN KEY(ID_teachers) REFERENCES teachers(ID_teachers));
+
+We will receive the following message::
+
+ NOTICE:  CREATE TABLE creará una secuencia implícita «courses_ID_course_seq» para la columna serial «courses.ID_course»
+ NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «courses_pkey» para la tabla «courses»
+ CREATE TABLE
+
+Some data will be *inserted* in order to make a *selection* and to visualize the functioning of the primary and foreign key.
+
+.. code-block:: sql
+
+ postgres=# INSERT INTO teachers(name, lastname) VALUES('Alfred','JOHNSON');
+ INSERT 0 1
+ postgres=# INSERT INTO teachers(name, lastname) VALUES('Alisson','DAVIS');
+ INSERT 0 1
+ postgres=# INSERT INTO teachers(name, lastname) VALUES('Bob','MILLER');
+ INSERT 0 1
+ postgres=# INSERT INTO teachers(name, lastname) VALUES('Betty','WILSON');
+ INSERT 0 1
+ postgres=# INSERT INTO teachers(name, lastname) VALUES('Christin','JONES');
+ INSERT 0 1
+ postgres=# INSERT INTO teachers(name, lastname) VALUES('Edison','SMITH');
+ INSERT 0 1
+
+If we select all columns, the table will remain as follows.
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM teachers;
+  ID_teachers |   name   | lastname
+ -------------+----------+----------
+            1 | Alfred   | JOHNSON
+            2 | Alisson  | DAVIS
+            3 | Bob      | MILLER
+            4 | Betty    | WILSON
+            5 | Christin | JONES
+            6 | Edison   | SMITH
+ (6 rows)
+
+.. note::
+ As you can see in the **teachers** table, the “ID_teacher” wich we define as a type of serial data, automatically incremented without having the necessity to enter it by ourselves, and it is also defined as a primary key. 
+  
+Now we insert the data of the **courses** table.
+
+.. code-block:: sql
+
+ postgres=# INSERT INTO courses(title, ID_teachers) VALUES('Database',2);
+ INSERT 0 1
+ postgres=# INSERT INTO courses(title, ID_teachers) VALUES('Data structure ',5);
+ INSERT 0 1
+ postgres=# INSERT INTO courses(title, ID_teachers) VALUES('Computers architecture ',1);
+ INSERT 0 1
+ postgres=# INSERT INTO courses(title, ID_teachers) VALUES('Information retrieval',3);
+ INSERT 0 1
+ postgres=# INSERT INTO courses(title, ID_teachers) VALUES('Systems of theory',4);
+ INSERT 0 1
+ postgres=# INSERT INTO courses(title, ID_teachers) VALUES('Systems of information',6);
+ INSERT 0 1
+
+The resulting table would look as follows:
+
+.. code-block:: sql
+
+ postgres=# SELECT * FROM courses;
+  ID_course|            title            | ID_teachers
+ ----------+------------------------------+-------------
+         1 | Database                    |           2
+         2 | Data structure              |           5
+         3 | Computers architecture      |           1
+         4 | Information retrieval       |           3
+         5 | Systems of theory           |           4
+         6 | Systems of information      |           6
+ (6 rows)
+
+.. note::
+
+ A teacher may have assigned more than one course, there is no restriction.
+
+Now we want to have just one table with the "name", "last name" of the teacher and the 
+"title" of the course that he/she dictates. For that we made a selection of the following:
+
+.. code-block:: sql
+
+ postgres=# SELECT name, lastname, title FROM teachers, courses WHERE teachers.ID_teachers=courses.ID_teachers;
+   name    | lastname |            title
+ ----------+----------+------------------------------
+  Alisson  | DAVIS    | Database
+  Christin | JONES    | Data structure 
+  Alfred   | JOHNSON  | Computers architecture 
+  Bob      | MILLER   | Information retrieval
+  Betty    | WILSON   | Systems of theory
+  Edison   | SMITH    | Systems of information
+ (6 rows)
+
+This is where you see the importance of having the primary and foreign key, since in the condition 
+we can make equality between the “ID_teacher” of the **teachers** and **courses** table.
 
 .. _`SQL (Structured Query Language)`: http://en.wikipedia.org/wiki/SQL
 .. _`DDL (Data Definition Language)`: http://en.wikipedia.org/wiki/Data_Definition_Language

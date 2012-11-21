@@ -32,7 +32,8 @@ Data Definition Language (DDL)
 `DDL (Data Definition Language)`_ es un lenguaje que permite definir la base de datos
 (su estructura o "schemas"), tiene una sintaxis similar a los lenguajes de programación.
 
-Examples:
+Ejemplos:
+^^^^^^^^^
 
 .. code-block:: sql
 
@@ -76,10 +77,11 @@ Data Manipulation Languaje (DML)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `DML (Data Manipulation Language)`_ se refiere a los comandos que permiten a un
-usuario manipular los datos de las tablas, es decir, consultar tablas, añadir filas,
-borrar filas y actualizar columnas.
+usuario manipular los datos de las tablas, es decir, consultar tablas, añadir rows,
+borrar rows y actualizar columnas.
 
 Examples of DML
+^^^^^^^^^^^^^^^ 
 
 .. code-block:: sql
 
@@ -128,6 +130,7 @@ Lo que busca esta consulta es mostrar las columnas `A_{1}, \ldots, A_{n}` de las
     \pi_{A_{1},\ldots, A_{n}} (\sigma_{condition}(R_{1} \times \ldots \times R_{m}))
 
 Comandos SQL:
+=============
 
    * :sql:`INSERT` - adds one or more records to any single table in a relational
      database.
@@ -253,7 +256,7 @@ Para *agregar* datos a la tabla **cliente** se realiza de la siguiente manera:
   3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
   4 | Sergio | Honores  |   35 | 1256 San Luis         | Chile
   5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
- (5 filas)
+ (5 rows)
 
 .. note::
  El asterisco (*) que está entre el :sql:`SELECT` y el :sql:`FROM` significa que se seleccionan todas las columnas de la tabla.
@@ -282,7 +285,7 @@ Verificamos que se haya *eliminado*
   3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
   4 | Sergio | Honores  |   35 | 1256 San Luis         | Chile
   5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
- (4 filas)
+ (4 rows)
 
 Si se desea *actualizar* la dirección del cliente Sergio de la tabla **cliente**
 
@@ -302,7 +305,7 @@ Se puede *seleccionar* la tabla **cliente** para verificar que se haya actualiza
   3 | Judith | Ford     |   20 | 3901 W Ina Rd         | Inglaterra
   5 | Ana    | Caprile  |   25 | 3456 Matta            | Chile
   4 | Sergio | Honores  |   35 | 1459 Patricio Lynch   | Chile
- (4 filas)
+ (4 rows)
 
 Para *borrar* la tabla **cliente**
 
@@ -328,7 +331,7 @@ Clave Primaria y Foránea
 
 En las bases de datos relacionales, se le llama **clave primaria** a un campo o a una
 combinación de campos que identifica de forma única a cada fila de una tabla. Por lo
-que no pueden existir dos filas en una tabla que tengan la misma clave primaria.
+que no pueden existir dos rows en una tabla que tengan la misma clave primaria.
 
 Y las **claves foráneas** tienen por objetivo establecer una conexión con la clave
 primaria que referencian de otra tabla, creandose una asociación entre las dos tablas.
@@ -394,7 +397,7 @@ Quedando la tabla de la siguiente manera si seleccionamos todas las columnas.
             4 | Betty    | WILSON
             5 | Christin | JONES
             6 | Edison   | SMITH
- (6 filas)
+ (6 rows)
 
 .. note::
 
@@ -430,7 +433,7 @@ Quedando la tabla de siguiente manera.
          4 | Recuperacion de informacion  |           3
          5 | Teoria de sistemas           |           4
          6 | Sistemas de informacion      |           6
- (6 filas)
+ (6 rows)
 
 .. note::
 
@@ -449,7 +452,7 @@ Ahora queremos tener solo una tabla con el "nombre", "apellido" del profesor y e
   Bob      | MILLER   | Recuperacion de informacion
   Betty    | WILSON   | Teoria de sistemas
   Edison   | SMITH    | Sistemas de informacion
- (6 filas)
+ (6 rows)
 
 Aquí es donde tiene la importancia la clave primaria y foránea, puesto que en la condición podemos realizar una igualdad entre los "id_profesor" de la tabla **profesores** y **cursos**.
 
