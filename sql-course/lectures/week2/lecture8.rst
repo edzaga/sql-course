@@ -361,8 +361,8 @@ Utilizando "as" es posible cambiar el nombre de la columna donde quedará result
 se aprecia que la salida contiene los nombres de los empleados duplicados:
 
 .. note::
-   En el ejemplo anterior, se utiliza "as name" en ambos SELECT. Como hecho curioso, si se utilizan diferentes nombres junto al "as"
-   como por ejemplo, "as name" y "as lala", queda como nombre de la tabla UNION el primero en ser declarado.
+   En el ejemplo anterior, se utiliza "as name" en ambos SELECT. Es un hecho curioso que, si se utilizan diferentes nombres junto al "as",
+   digamos "as nombre1" y "as nombre2", queda como nombre de la tabla UNION el primero en ser declarado, en este caso nombre1. 
 
 
 Intersección
