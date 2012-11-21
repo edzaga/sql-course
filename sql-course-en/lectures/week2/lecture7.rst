@@ -202,6 +202,7 @@ sea mayor o igual al año 2005.
 .. code-block:: sql
 
  postgres=# SELECT * FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento AND Empleados.ano_ingreso>=2005 AND Departamentos.departamento='Informatica';
+
   id_empleados | nombre_empleado | id_departamento | ano_ingreso | id_departamento | departamento 
  --------------+-----------------+-----------------+-------------+-----------------+--------------
              4 | Karl            |               2 |        2008 |               2 | Informatica
@@ -212,14 +213,13 @@ sea mayor o igual al año 2005.
  Es posible dar referencia a un atributo de cada tabla con **nombre_tabla.atributo**, para 
  realizar las condiciones. 
 
-Independientemente del tipo de consulta, el resultado de una comparación es un valor booleano, es decir retorna valores TRUE o FALSE, los
-cuales se pueden combinar con sus operadores AND, OR y NOT, con sus respectivos significados.
+Regardless of the type of query, the result of a comparison is a Boolean value, that is to say returns ``TRUE`` or ``FALSE`` values, which 
+can be combined with their ``AND``, ``OR``, and ``NOT`` operators, with their respective meanings.
 
-A modo de repaso, los operadores lógicos mencionados son:
+As a review, the logical operators mentioned are:
 
-    * :sql:`AND`: Retorna TRUE siempre y cuando TODOS los atributos a comparar sean TRUE. Si hay AL MENOS UN valor FALSE, retornará FALSE.
-            Su tabla de verdad es:
-
+    * :sql:`AND`: returns TRUE as long as ALL attributes to compare are TRUE. If there is AT LEAST ONE value FALSE, it returns FALSE. 
+      	Its truth table is:
       .. math::
 
        \begin{array}{|c|c|c|}
@@ -233,8 +233,9 @@ A modo de repaso, los operadores lógicos mencionados son:
         \hline
        \end{array}
 
-    * :sql:`OR`: Retorna TRUE siempre y cuando AL MENOS UNO de los atributos a comparar sea TRUE. Si TODOS los valores son FALSE, retornará FALSE.
-            Su tabla de verdad es:
+    * :sql:`OR`: returns TRUE as long as AT ELAST ONE of the attributes to compare are TRUE. If ALL the values are FALSE, it returns FALSE.
+      	Its truth table is:
+
 
       .. math::
 
@@ -249,8 +250,8 @@ A modo de repaso, los operadores lógicos mencionados son:
         \hline
        \end{array}
 
-    * :sql:`NOT`: Retorna el valor contrario al valor actual, es decir que si el valor es TRUE, retorna FALSE y vice versa.
-            Su tabla de verdad es
+    * :sql:`NOT`: returns the contrary value to the current value, that is if the value is TRUE, returns False ad viceversa.  
+	Its truth table is:
 
       .. math::
 
@@ -265,18 +266,17 @@ A modo de repaso, los operadores lógicos mencionados son:
 
 .. note::
 
- SQL no distingue entre mayúsculas y minúsculas.    
- Por ejemplo, :sql:`FROM` (palabra reservada) es equivalente a :sql:`from`,           
- inclusive a :sql:`From`.                                                             
- Para los nombres de atributos, relaciones, etc., también ocurre lo mismo.       
- El único caso en que se distingue entre mayúsculas y minúsculas es al momento de     
- encerrar un string entre *' '*. Por ejemplo *'PALABRA'* es diferente a *'palabra'*.  
-                                                                                    
+ SQL is case insensitive, that is to say it does not distinguish between uppercase and lowercase letters. 
+ For example, :sql:`FROM` (reserved word) is equivalent to :sql:`from`, inclusive to :sql:`From`. The names of the attributes, 
+ relations, etc. are also case insensitive. The only case in which are distinguish uppercase and lowercase 
+ letters is at the moment of enclosing a string between *‘ ‘*. For example :sql:`'WORD'`  is different to :sql:`'word'`.
+                                                                 
 
-Resultados Repetidos
-~~~~~~~~~~~~~~~~~~~~~
+Repeated Results
+~~~~~~~~~~~~~~~~~
 
-Al realizar una consulta SELECT, no hay omisión de resultados repetidos, este "problema" se soluciona agregando DISTINCT a la consulta.
+When you perform a :sql:`SELECT` query, there is no omission of the repeated results; this “problem” is solved by 
+adding :sql:`DISTINCT` to the query. 
 
 .. code-block:: sql
 
@@ -328,9 +328,9 @@ SELECT-BY-ORDER
 
 .. index:: SELECT-BY-ORDER
 
-Hasta este momento, es posible obtener datos de una tabla utilizando los comandos SELECT y WHERE. Sin embargo, muchas veces es
-necesario enumerar el resultado en un orden particular. Esto podría ser en orden ascendente, en orden descendente, o podría basarse en
-valores numéricos o de texto. En tales casos, podemos utilizar la palabra clave ORDER BY para lograr esto.
+So far, it is possible to get data from a table using commands :sql:`SELECT` and :sql:`WHERE`. However, a lot of times are necessary 
+to enumerate the result in a particular order. This could be in ascending order, descending order, or it could be based 
+on numerical or text values. In such cases, we can use the keyword ORDER BY to accomplish this.
 
 .. code-block:: sql
 
@@ -339,24 +339,24 @@ valores numéricos o de texto. En tales casos, podemos utilizar la palabra clave
         WHERE "C"
         ORDER BY "O" [ASC, DESC];
 
-donde:
+where:
 
-  * "L" corresponde a la lista de atributos que se requieren, por lo general se asocia a una(s) columna(s).
-  * "R" corresponde al nombre de la relación, que por lo general se asocia a una tabla.
-  * "C" corresponde a la condición de la selección.
-  * "O" corresponde a cómo será ordenada la lista "L".
-  * ASC corresponde a un orden ascendente (corresponde a la opción por defecto)
-  * DESC corresponde a uno descendente.
+  * “L” corresponds to the list of attributes that are required, generally associated to (a) column(s). 
+  * “R” corresponds to the name of the relation, generally is associated to a table.  
+  * “C” corresponds to the condition of the selection.  
+  * “O” corresponds to how it will be ordered the list “L”.  
+  * ASC corresponds to an ascending order  (corresponds to the default option)
+  * DESC corresponds to a descending.
 
-Estrictamente, su sintaxis corresponde a ORDER BY y luego una lista de atributos que definirán los campos a ordenar:
+Strictly, the syntax corresponds to ORDER BY and then a list of attributes that will defined the fields to order:
 
 .. code-block:: sql
 
-        SELECT atributo1, atributo2 ...
-        FROM Clientes ORDER BY atributo_ordenar_primero, atributo_ordenar_segundo...
+       SELECT attribute1, attribute2 ...
+       FROM Clients ORDER BY attribute_order_first, attribute_order_second...
 
-Como se puede apreciar, con la sentencia ORDER BY se pueden ordenar las consultas a través de múltiples atributos. En este caso todos los
-campos estarían ordenados de forma ascendente (ASC).
+As can be seen, with the judgment ORDER BY queries can be sorted by multiple attributes. 
+In this case all the fields will be ordered in the ascending form (ASC). 
 
 Podemos utilizar los mismos ejemplos que creamos anteriormente ordenando los nombres
 de los empleados de la tabla **Empleados**.
