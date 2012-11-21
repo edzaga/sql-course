@@ -208,7 +208,7 @@ let’s consider 5 students::
    5 | Tim      |  60
 
 .. note::
-   La tabla de arriba se obtuvo realizando la consulta :SQL: 'SELECT * FROM Student;'    
+   La tabla de arriba se obtuvo realizando la consulta :sql:`SELECT * FROM Student` ;    
 
 The pair of students will be::
 
@@ -261,7 +261,7 @@ A continuación se explicará cada uno con un ejemplo:
 Union
 ^^^^^^
 
-The operator "UNION" allows combining the result of two or more :sql:`SELECT` statements. It is necessary that these have the same
+The operator :sql:`UNION` allows combining the result of two or more :sql:`SELECT` statements. It is necessary that these have the same
 number of columns, and furthermore, that they have the same data types. For example, we have the following tables:
 
 .. code-block:: sql
@@ -306,6 +306,7 @@ And fill in with the data shown next:
         ('Kent, Clark'),
         ('Svendson, Stephen'),
         ('Scott, Stephen');
+
 The result of the following query that includes the operator :sql:`UNION`:
 
 .. code-block:: sql
@@ -331,7 +332,7 @@ is:
 
 
 Pay attention! We have to take into account that there is in both tables an employee with the same name "Svendson, Stephen".
-However, in the output we only name one. If you want them to appear use "UNION ALL":
+However, in the output we only name one. If you want them to appear use :sql:`UNION ALL`:
 
 .. code-block:: sql
 
@@ -339,7 +340,7 @@ However, in the output we only name one. If you want them to appear use "UNION A
         UNION ALL
         SELECT E_Name as name FROM Employees_USA;
 
-Using "as" it is possible to change the name of the column where the result will be:
+Using :sql:`as` it is possible to change the name of the column where the result will be:
 
 .. code-block:: sql
 
@@ -357,7 +358,7 @@ Using "as" it is possible to change the name of the column where the result will
 It is seen that the output contains names of the duplicated employees: 
 
 .. note::
-   In the previous example, it is used "as name" in both :sql:`SELECT`. As a curiousity, if you use different names next to "as",
+   In the previous example, it is used "as name" in both :sql:`SELECT` . As a curiousity, if you use different names next to :sql:`as`,
    for example "as name1" and "as name2", remains as name of the :sql:`UNION` table the first to be declared.   
 
 Intersection
