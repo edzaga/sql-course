@@ -6,10 +6,10 @@ Lectura 7 - Sentencia SELECT Básica
 
 Corresponde a la forma más simple de hacer una consulta en SQL, la cual sirve para preguntar por aquellas tuplas de una relación
 que satisfagan una condición. Es análoga a la selección en álgebra relacional. Esta consulta, al igual que la mayoría
-de las realizadas en este lenguaje de programación, utiliza 3 palabras clave: SELECT - FROM - WHERE.
+de las realizadas en este lenguaje de programación, utiliza 3 palabras clave: :sql:`SELECT - FROM - WHERE`.
 
-En palabras simples, lo que se busca con esta consulta es seleccionar cierta información (SELECT) de alguna tabla (FROM)
-que satisfaga (WHERE) ciertas condiciones. Por ejemplo:
+En palabras simples, lo que se busca con esta consulta es seleccionar cierta información (:sql:`SELECT`) de alguna tabla (:sql:`FROM`)
+que satisfaga (:sql:`WHERE`) ciertas condiciones. Por ejemplo:
 
 .. code-block:: sql
 
