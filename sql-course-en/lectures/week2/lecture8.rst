@@ -358,22 +358,19 @@ It is seen that the output contains names of the duplicated employees:
 
 .. note::
    In the previous example, it is used "as name" in both :sql:`SELECT`. As a curiousity, if you use different names next to "as",
-   for example “as name and “as lala”, remains as name of the :sql:`UNION` table the first to be declared.   
-Intersection
-Similar to UNION operator, INTERSECT also operates with two SELECT statements. The difference is that UNION acts as an OR, while INTERSECT as a AND. 
+   for example "as name1" and "as name2", remains as name of the :sql:`UNION` table the first to be declared.   
 
-Intersección
+Intersection
 ^^^^^^^^^^^^^
 
-Muy similar al operador UNION, INTERSECT también opera con dos sentencias SELECT. La diferencia consiste en que UNION actúa como un OR,
-e INTERSECT lo hace como AND.
+Similar to :sql:`UNION` operator, :sql:`INTERSECT` also operates with two SELECT statements. The difference is that :sql:`UNION` acts as an OR, while INTERSECT as a AND. 
 
 .. note::
-   Las tablas de verdad de estos OR y AND se encuentran en la lectura 7.
+   You can find the truth tables of these OR and AND in lecture 7.
 
-Es decir que INTERSECT devuelve los valores repetidos.
+This means that INTERSECT returns the repeated values.
 
-Utilizando el ejemplo de los empleados, y ejecutando la consulta:
+Using the example of the employees, and making the query:
 
 ..         Table Store_Information
         store_name      Sales   Date
@@ -437,13 +434,12 @@ su salida es::
 .. Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
    pero que puede escribirse como otra consulta (agregarla)
 
-Excepción
+Exception
 ^^^^^^^^^^
 
-Similar a los operadores anteriores, su estructura se compone de dos o mas sentencias SELECT, y el operador EXCEPT. Es equivalente a la diferencia
-en el álgebra relacional.
+Similar to previous operators, its structure is componed by two or more SELECT statements, and the EXCEPT operator. It is equivalent to the difference in relational algebra.
 
-Utilizando las mismas tablas de los empleados, y realizando la siguiente consulta:
+Using the same tables of the employees, and performing the following query:
 
 .. code-block:: sql
 
@@ -451,7 +447,7 @@ Utilizando las mismas tablas de los empleados, y realizando la siguiente consult
         EXCEPT
         SELECT E_Name as name FROM Employees_USA;
 
-Su salida es::
+Its output is::
 
         e-name
         -----------
@@ -459,10 +455,9 @@ Su salida es::
         Svedson, Tove
         Hansen, Ola
 
-Es decir, devuelve los resultados no repetidos en ambas tablas.
+That is, it returns the no repeated results in the same tables.
 
-Hay que tener en cuenta que, a diferencia de los operadores anteriores, la salida de este no es conmutativa, pues si se ejecuta la 
-consulta de forma inversa,es decir:
+Attention! Unlike previous operators, the output of EXCEPT is not commutative as we execute the query in the inverse way, that is:
 
 .. code-block:: sql
 
@@ -470,7 +465,7 @@ consulta de forma inversa,es decir:
         EXCEPT
         SELECT E_Name as name FROM Employees_Norway;
 
-su salida será:
+Its output will be:
 
 .. code-block:: sql
 
