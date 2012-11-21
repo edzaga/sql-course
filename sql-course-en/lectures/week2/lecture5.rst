@@ -420,8 +420,10 @@ The resulting table would look as follows:
 .. code-block:: sql
 
  postgres=# SELECT * FROM courses;
+
+
   ID_course|            title            | ID_teachers
- ----------+------------------------------+-------------
+ ----------+-----------------------------+-------------
          1 | Database                    |           2
          2 | Data structure              |           5
          3 | Computers architecture      |           1
@@ -439,9 +441,12 @@ Now we want to have just one table with the "name", "last name" of the teacher a
 
 .. code-block:: sql
 
- postgres=# SELECT name, lastname, title FROM teachers, courses WHERE teachers.ID_teachers=courses.ID_teachers;
+ postgres=# SELECT name, lastname, title 
+ FROM teachers, courses 
+ WHERE teachers.ID_teachers=courses.ID_teachers;
+
    name    | lastname |            title
- ----------+----------+------------------------------
+ ----------+----------+---------------------------
   Alisson  | DAVIS    | Database
   Christin | JONES    | Data structure 
   Alfred   | JOHNSON  | Computers architecture 
