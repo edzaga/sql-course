@@ -1,4 +1,4 @@
-Lecture 8 - Table variables and set operators
+Lectura 8 - Table variables and set operators
 ------------------------------------------------
 .. role:: sql(code)
    :language: sql
@@ -107,12 +107,6 @@ utilizada); en los casos en que se deben comparar múltiples instancias de la mi
 
 .. note::
    El por qué de la nomenclatura "L", "R" y "C" y su significado están explicados en la lectura 7
-
-.. Así son las variables que se pueden asignar a las tablas. Estas variables en una consulta, se definen en el "FROM"  del
- "SELECT-FROM-WHERE".
-.. Eso es, la variable de la tabla?(table variable, no se como traducirlo, pq corresponde más a variable en la consulta).
-.. La variable en la consulta se define en el "FROM" de la consulta "SELECT-FROM-WHERE"
-
 
 .. CMA: Se invita al lector alplicado a realizar pruebas, se dejan las siguientes lineas de código a su disposición, con el fin de
 .. CMA:probar que efectivamente si se realizan las consultas mencionadas arriba, el resultado es el mismo. Cabe destacar que
@@ -298,7 +292,7 @@ Que se pueden crear mediante el comando CREATE TABLE:
     CREATE TABLE Employees_USA ( E_ID serial, E_Name varchar(50), PRIMARY KEY(E_ID));
 
 
-y pobladas  con los datos mostrados a continuación:
+y pobladas con los datos mostrados a continuación:
 
 .. code-block:: sql
 
