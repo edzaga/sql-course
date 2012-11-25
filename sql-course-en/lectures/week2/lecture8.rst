@@ -15,7 +15,7 @@ Consider the following tables::
         Student (sID, sName, Average)
         Apply (sID, cName, major, decision)
 
-las cuales representar un sistema simple de postulación de estudiantes a establecimientos educacionales, y son creadas mediante:
+which represent a simple system of application of students to Universities, and are created through:
 
 .. code-block:: sql
 
@@ -23,7 +23,7 @@ las cuales representar un sistema simple de postulación de estudiantes a establ
  CREATE TABLE Student(sID serial, sName VARCHAR(20), Average INTEGER, PRIMARY kEY(sID));
  CREATE TABLE Apply(sID INTEGER, cName VARCHAR(20), major VARCHAR(30), decision BOOLEAN, PRIMARY kEY(sID, cName, major));
 
-Se utilizarán 4 establecimientos educacionales:
+We will use 4 Universities:
 
 .. code-block:: sql
         
@@ -32,7 +32,7 @@ Se utilizarán 4 establecimientos educacionales:
  INSERT INTO College (cName, state, enrollment) VALUES ('MIT','MA',10000);
  INSERT INTO College (cName, state, enrollment) VALUES ('Harvard','CM',23000);
 
-4 estudiantes: 
+4 students: 
 
 .. code-block:: sql
         
@@ -41,7 +41,7 @@ Se utilizarán 4 establecimientos educacionales:
  INSERT INTO Student (sName, Average) Values ('Craig', 50);
  INSERT INTO Student (sName, Average) Values ('Irene', 49);
 
-y 6 postulaciones:
+And 6 applications:
 
 .. code-block:: sql
 
@@ -55,108 +55,55 @@ y 6 postulaciones:
 
 Example 1
 ^^^^^^^^^
-En este ejemplo se busca la información del nombre e id de los  alumnos, que postulan a uno o más establecimientos educacionales con 
-determinado Average:
+
+This example looks for information of the name and ID of the students who applicate for one or more 
+Universities with a determinate average:
 
 .. code-block:: sql
 
   SELECT Student.sID, sName, Apply.cName, Average FROM Student, Apply WHERE Apply.sID = Student.sID;
   
-cuya salida es::
+whose output is::
 
-  sid | sname  |  cname   | Average
-  ----+--------+----------+-----
-   1 | Amy     | Stanford |  60
-   1 | Amy     | Stanford |  60
-   2 | Edward  | Berkeley |  65
-   3 | Craig   | MIT      |  50
-   3 | Craig   | Harvard  |  50
-   4 | Irene   | Stanford |  49
+  sid |  sname  |  cname   | Average
+  ----+---------+----------+-----
+   1  | Amy     | Stanford |  60
+   1  | Amy     | Stanford |  60
+   2  | Edward  | Berkeley |  65
+   3  | Craig   | MIT      |  50
+   3  | Craig   | Harvard  |  50
+   4  | Irene   | Stanford |  49
 
 .. note::
-  
-   Notese que existe un supuesto duplicado en las primeras filas. Esto es debido a que Amy postuló a "science" y a "engineering" en Stanford. Esto
-   puede evitarse utilizando **SELECT DISTINCT** en lugar de **SELECT**.
 
-también es posible realizarla como:
+   There is a supposed duplicate in the first rows. This is because Amy applicate to 'Science'
+   and 'Engineer' in Standford University. This can be avoided using :sql:`SELECT DISTINCT` 
+   instead of :sql:`SELECT`.
+
+Also you can do it as:
 
 .. code-block:: sql
 
  SELECT S.sID, sName, A.cName, Average FROM Student S, Apply A WHERE A.sID = S.sID;
 
-cuya salida es::
+whose output is::
 
-   sid | sname  |  cname   | Average
-   ----+--------+----------+-----
-   1 | Amy     | Stanford |  60
-   1 | Amy     | Stanford |  60
-   2 | Edward  | Berkeley |  65
-   3 | Craig   | MIT      |  50
-   3 | Craig   | Harvard  |  50
-   4 | Irene   | Stanford |  49
+   sid |  sname |  cname   | Average
+   ----+--------+----------+---------
+   1   | Amy    | Stanford |  60
+   1   | Amy    | Stanford |  60
+   2   | Edward | Berkeley |  65
+   3   | Craig  | MIT      |  50
+   3   | Craig  | Harvard  |  50
+   4   | Irene  | Stanford |  49
 
 .. note::
 
-   Al igual que en la consulata anterior, es posible evitar el valor duplicado utilizando **SELECT DISTINCT** en lugar de **SELECT**.
-
-.. CMA: no entiendo esto...
+   As in the previous query, it is possible to avoid the duplicated value using :sql:`SELECT DISTINCT` instead of :sql:`SELECT`.
 
 As shown, you can assign variables to the relations "R" and use these variables in both "L" list and condition "C". The reader may 
 wonder what is the usefulness of this, beyond writing less (depending on the name of the variable used); and the answer corresponds 
-to the cases in which they must compare multiple instances of the same relation, como se verá en el ejemplo 2.
-
-.. note::
-   The reason for the nomenclature "L", "R", and "C" and its meaning are explained in lecture 7. 
-
-.. CMA: Se invita al lector alplicado a realizar pruebas, se dejan las siguientes lineas de código a su disposición, con el fin de
-.. CMA:probar que efectivamente si se realizan las consultas mencionadas arriba, el resultado es el mismo. Cabe destacar que
-
-.. CMA:.. code-block:: sql
-
-.. CMA:        INSERT INTO "R"
-        (Columna1,    (cName, state, enrollment)
-        VALUES
-        ('Stanford', 'stanford', 'mayor'),
-        ('Berkeley', 'miami', 'mayor'),
-        ('MIT', 'masachusets', 'minor');
-
-.. Columna2,..., ColumnaN)
-        VALUES
-        (Valor Columna1Fila1, Valor Columna2Fila1,..., Valor ColumnaNFila1),
-        (Valor Columna2Fila1, Valor Columna2Fila2,..., Valor ColumnaNFila2),
-        ...
-        (Valor Columna1FilaN, Valor Columna2FilaN,..., Valor ColumnaNFilaN),
-
-.. CMA:corresponde a la sentencia para ingresar datos a una tabla en particular, conociendo su estructura y tipos de datos.
-.. CMA El lector puede utilizar los  siguientes valores y realizar modificaciones.
-
-.. CMA: (explicar mejor el contexto)
-
-.. CMA:.. code-block:: sql
-
-.. CMA:        INSERT INTO College
-        (cName, state, enrollment)
-        VALUES
-        ('Stanford', 'stanford', 'mayor'),
-        ('Berkeley', 'miami', 'mayor'),
-        ('MIT', 'masachusets', 'minor');
-
-
-.. CMA:        INSERT INTO Student
-        (sName, Average, sizeHS)
-        VALUES
-        ('amy', 30, 'A'),
-        ('doris', 40, 'B'),
-        ('edward', 40, 'C');
-
-
-.. CMA:        INSERT INTO Apply
-        (cName, major, decision)VALUES
-        ('Stanford', 'phd', 'mayor'),
-        ('Berkeley', 'pregrado', 'minor'),
-        ('MIT', 'ingenieria', 'mayor');
-
-
+to the cases in which they must compare multiple instances of the same relation, just like you will see in example 2.
 
 Example 2
 ^^^^^^^^^
@@ -177,9 +124,9 @@ The difference is performed by:
         Student.sID o S.sID
         Apply.sID o  A.sID
 
+For the embodiment of this example, assume that to the last time you received papers from one more applicant. 
+So the administrator of the databases will have to add the necessary information, that is:
 
-Para la realización de este ejemplo, supongase que al último momento, llegan los papeles de un postulante más, por lo que el administrador
-de la base de datos deberá agregar la información necesaria, es decir:
 
 .. code-block:: sql
 
@@ -199,16 +146,16 @@ At the time to make this query (two instances of a table), the result will have 
 let’s consider 5 students::
 
 
-   sid | sname  | Average
-   ----+--------+----- 
-   1 | Amy      |  60
-   2 | Edward   |  65
-   3 | Craig    |  50
-   4 | Irene    |  49
-   5 | Tim      |  60
+   sid | sname    | Average
+   ----+----------+--------- 
+   1   | Amy      |  60
+   2   | Edward   |  65
+   3   | Craig    |  50
+   4   | Irene    |  49
+   5   | Tim      |  60
 
 .. note::
-   La tabla de arriba se obtuvo realizando la consulta :sql:`SELECT * FROM Student` ;    
+   The table above was obtained making the query :sql:`SELECT * FROM Student` ;    
 
 The pair of students will be::
 
@@ -217,17 +164,17 @@ The pair of students will be::
 but the output shows::
 
         sid | sname  | Average | sid | sname  | Average
-        ----+--------+-----+-----+--------+-----
-        1   | Amy    |  60 |   5 | Tim    | 60
-        1   | Amy    |  60 |   1 | Amy    | 60
-        2   | Edward |  65 |   2 | Edward | 65
-        3   | Craig  |  50 |   3 | Craig  | 50
-        4   | Irene  |  49 |   4 | Irene  | 49
-        5   | Tim    |  60 |   5 | Tim    | 60
-        5   | Tim    |  60 |   5 | Amy    | 60
+        ----+--------+---------+-----+--------+--------
+        1   | Amy    |    60   |   5 | Tim    | 60
+        1   | Amy    |    60   |   1 | Amy    | 60
+        2   | Edward |    65   |   2 | Edward | 65
+        3   | Craig  |    50   |   3 | Craig  | 50
+        4   | Irene  |    49   |   4 | Irene  | 49
+        5   | Tim    |    60   |   5 | Tim    | 60
+        5   | Tim    |    60   |   5 | Amy    | 60
 
 
-lo cual se puede evitar modificando la cosulta
+which can be avoid modifying the query
 
 .. code-block:: sql
 
@@ -237,9 +184,9 @@ lo cual se puede evitar modificando la cosulta
 That is, the id of the student S1 will be different to the id of the student S2; whose case, the output of the query is::
 
         sid | sname  | Average | sid | sname  | Average
-        ----+--------+-----+-----+--------+-----
-        1   | Amy    |  60 |   5 | Tim    | 60
-        5   | Tim    |  60 |   1 | Amy    | 60
+        ----+--------+---------+-----+--------+-----
+        1   | Amy    |  60     |   5 | Tim    | 60
+        5   | Tim    |  60     |   1 | Amy    | 60
     
 
 Set Operators
@@ -254,8 +201,7 @@ Set operators are three:
   * Exception
 
 
-A continuación se explicará cada uno con un ejemplo:
-
+The following will explain each one with an example:
 
 
 Union
@@ -426,7 +372,7 @@ Using the example of the employees, and making the query:
         SELECT E_Name as name FROM Employees_USA;
 
 
-su salida es::
+whose output is::
 
         e_name
         ----------

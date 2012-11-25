@@ -56,81 +56,79 @@ SELECT-FROM-WHERE
 
 .. index:: SELECT-FROM-WHERE
 
-Trabajemos bajo el siguiente ejemplo, el cual consiste en *seleccionar* toda la 
-información de la relación (o tabla) **Empleados** cuyos atributos *departamento* sea 
-'Informatica' y que su atributo *ano_ingreso* sea mayor o igual al año  2005.
+Work under the following example which involves selecting all the information of the **Employees** 
+relation (or table) whose department attributes is 'Computer' and that its *year_entry* attribute
+is greater than or equal to 2005.
 
-Para comenzar a realizar este ejemplo, primero debemos *crear* la tabla **Empleados** 
-de la siguiente manera.
+To start making this example, first we should create the **Employees** table as follows.
 
 .. code-block:: sql
 
- postgres=# CREATE TABLE Empleados(id_empleado serial, nombre_empleado VARCHAR(30),  departamento VARCHAR(30), ano_ingreso INTEGER);
+ postgres=# CREATE TABLE Employees(id_employee serial, name_employee VARCHAR(30),  department VARCHAR(30), year_entry INTEGER);
 
-retornando lo siguiente PostgreSQL.::
+returning the following PostgreSQL::
 
- NOTICE:  CREATE TABLE creará una secuencia implícita «empleados_id_empleado_seq» para la columna serial «empleados.id_empleado»
+ NOTICE:  CREATE TABLE will create an implicit sequence «employees_id_employee_seq» for the serial column «employees.id_employee»
  CREATE TABLE
 
-Ahora *insertaremos* algunos datos en la tabla **Empleados**.
+Now we insert some data in the **Employees** table.
 
 .. code-block:: sql
 
- postgres=# INSERT INTO Empleados(nombre_empleado, departamento, ano_ingreso) VALUES('Edgar', 'Administracion', 2000);
+ postgres=# INSERT INTO Employees(name_employee, department, year_entry) VALUES('Edgar', 'Administration', 2000);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, departamento, ano_ingreso) VALUES('Andrew', 'Comercial', 2009);
+ postgres=# INSERT INTO Employees(name_employee, department, year_entry) VALUES('Andrew', 'Commercial', 2009);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, departamento, ano_ingreso) VALUES('Valerie', 'Informatica', 2000);
+ postgres=# INSERT INTO Employees(name_employee, department, year_entry) VALUES('Valerie', 'Informatics', 2000);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, departamento, ano_ingreso) VALUES('Karl', 'Informatica', 2008);
+ postgres=# INSERT INTO Employees(name_employee, department, year_entry) VALUES('Karl', 'Informatics', 2008);
  INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, departamento, ano_ingreso) VALUES('Kevin', 'Finanzas', 2010);
+ postgres=# INSERT INTO Employees(name_employee, department, year_entry) VALUES('Kevin', 'Finances', 2010);
  INSERT 0 1
 
-Finalmente podemos realizar la consulta que nos interesa.
+Finally we can make the query of interest.
 
 .. code-block:: sql
 
- postgres=# SELECT * FROM Empleados WHERE departamento='Informatica' AND ano_ingreso>=2005;
-  id_empleado | nombre_empleado | departamento | ano_ingreso 
+ postgres=# SELECT * FROM Employees WHERE department='Informatics' AND year_entry>=2005;
+  id_employee |  name_employee  |  department  | year_entry 
  -------------+-----------------+--------------+-------------
-            4 | Karl            | Informatica  |        2008
+            4 | Karl            | Informatics  |        2008
  (1 fila)
 
 .. note::
 
- Podemos notar que la consulta retorna el registro que se cumplian las dos 
- condiciones.
+ The query returns the record that were meeting both conditions.
 
-Podemos realizar la siguiente consulta, encontrar en la tabla **Empleados** el registro de la(s)
-personas que sean del departamento de 'Informática' o que su año de ingreso sea mayor o igual
-al año 2005.
+You can make the following query: find in the **Employees** table the record of person/people
+who are from the 'Informatics' department or that their year of entry is greater or equal to 
+the year 2005.
 
 .. code-block:: sql
 
- postgres=# SELECT * FROM Empleados WHERE departamento='Informatica' OR ano_ingreso>=2005;
-  id_empleado | nombre_empleado | departamento | ano_ingreso 
+ postgres=# SELECT * FROM Employees WHERE department='Informatics' OR year_entry>=2005;
+  id_employee |  name_employee  |  department  | year_entry 
  -------------+-----------------+--------------+-------------
-            2 | Andrew          | Comercial    |        2009
-            3 | Valerie         | Informatica  |        2000
-            4 | Karl            | Informatica  |        2008
-            5 | Kevin           | Finanzas     |        2010
+            2 | Andrew          | Commercial   |        2009
+            3 | Valerie         | Informatics  |        2000
+            4 | Karl            | Informatics  |        2008
+            5 | Kevin           | Finances     |        2010
  (4 rows)
 
 .. note::
 
- Podemos observar que la consulta realizada retorna los registros que cumplen con una 
- de las dos condiciones o cuando se cumplen las dos al mismo tiempo.
+ The query carried out returns the records that meet one of two conditions or when 
+ both are met at the same time.
 
 This query exhibits the typical :sql:`SELECT` - :sql:`FROM` - :sql:`WHERE` of the majority of the SQL queries.
 La palabra clave FROM entrega la relación o relaciones
 de donde se obtiene la información (tablas). En estos ejemplos, se utilizaron dos comparaciones 
 unidas por la condición "AND" y "OR". 
 
-El atributo *departamento* de la tabla **Empleados** es probada por igualdad contra la 
-constante 'Informática'. Esta constante corresponde a una cadena de caracteres de largo 
-variable que en SQL como se detalló en la lectura anterior se denomina como VARCHAR(n) y 
-que al momento del *ingreso* de los datos a las tablas se escribe entre comillas simples.
+The department attribute of the **Employees** table is tested for equality against the constant 
+'Informatics'. This constant corresponds to a string of characters of variable length that in SQL,
+as it was explained in the previous lecture, is denominated as VARCHAR (n) and at the time de entry 
+of data to the tables is written between simple quotation marks.
 
 As it was mentioned before, the query of the :sql:`SELECT` - :sql:`FROM` - :sql:`WHERE` type
 search the information of one or more relations that meets with certain conditions. So far we
@@ -138,80 +136,63 @@ have only seen what happens if we compare attributes of the relations with const
 how can you compare the stored values of attributes which are in several relations?  
 
 
-El ejemplo anterior se podría realizar de otra manera para poder combinar dos relaciones 
-(tablas) a la hora de realizar la consulta, pero primero debemos realizar la *creación* de la 
-tabla **Empleados** y **Departamentos**.
+The previous example could be done in other way in order to combine two relations (tables)
+when we are making a query, but first we must create the **Employees** and **Department** table.
 
 .. warning::
+ Before creating the tables, we must delete the **Employees** table with an :sql:`DROP TABLE Employees`.
 
- Antes de realizar la *creación* de las tablas, hay que borrar la tabla **Empleados**
- con un :sql:`DROP TABLE Empleados`.
-
-Para poder realizar el ejemplo debemos crear la tabla de **Departamentos**.
+To make the example we must create the **Departments** table.
 
 .. code-block:: sql
 
- postgres=# CREATE TABLE Departamentos(id_departamento serial, departamento VARCHAR(30), PRIMARY KEY(id_departamento));
+ postgres=# CREATE TABLE Departments(id_department serial, department VARCHAR(30), PRIMARY KEY(id_department));
 
-retornando PostgreSQL que la tabla **Departamentos** ha sido correctamente creada.::
-
- NOTICE:  CREATE TABLE creará una secuencia implícita «departamentos_id_departamento_seq» para la columna serial «departamentos.id_departamento»
- NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «departamentos_pkey» para la tabla «departamentos»
- CREATE TABLE
-
-Y ahora creamos la tabla **Empleados**.
+Now we create the **Employees** table.
 
 .. code-block:: sql
 
- postgres=# CREATE TABLE Empleados(id_empleados serial, nombre_empleado VARCHAR(30), id_departamento INTEGER, ano_ingreso INTEGER, PRIMARY KEY(id_empleados), FOREIGN KEY(id_departamento) REFERENCES Departamentos(id_departamento));
+ postgres=# CREATE TABLE Employees(id_Employees serial, name_employee VARCHAR(30), id_department INTEGER, year_entry INTEGER, PRIMARY KEY(id_Employees), FOREIGN KEY(id_department) REFERENCES departments(id_department));
 
-retornando PostgreSQL que la tabla **Empleados** ha sido correctamente creada.::
-
- NOTICE:  CREATE TABLE creará una secuencia implícita «empleados_id_empleados_seq» para la columna serial «empleados.id_empleados»
- NOTICE:  CREATE TABLE / PRIMARY KEY creará el índice implícito «empleados_pkey» para la tabla «empleados»
- CREATE TABLE
-
-ahora debemos *ingresar* los datos en la tabla **Departamentos** y **Empleados**.
+now we should enter the data in the **Departments** and **Employees** table.
 
 .. code-block:: sql
  
- postgres=# INSERT INTO Departamentos(departamento) VALUES('Administracion');
+ postgres=# INSERT INTO Departments(department) VALUES('Administration');
  INSERT 0 1
- postgres=# INSERT INTO Departamentos(departamento) VALUES('Informatica');
+ postgres=# INSERT INTO Departments(department) VALUES('Informatics');
  INSERT 0 1
- postgres=# INSERT INTO Departamentos(departamento) VALUES('Finanzas');
+ postgres=# INSERT INTO Departments(department) VALUES('Finances');
  INSERT 0 1
- postgres=# INSERT INTO Departamentos(departamento) VALUES('Comercial');
- INSERT 0 1
-
- postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, ano_ingreso) VALUES('Edgar', 1, 2000);
- INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, ano_ingreso) VALUES('Andrew', 4, 2009);
- INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, ano_ingreso) VALUES('Valerie', 2, 2000);
- INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, ano_ingreso) VALUES('Karl', 2, 2008);
- INSERT 0 1
- postgres=# INSERT INTO Empleados(nombre_empleado, id_departamento, ano_ingreso) VALUES('Kevin', 3, 2010);
+ postgres=# INSERT INTO Departments(department) VALUES('Commercial');
  INSERT 0 1
 
-Ahora realizamos la siguiente consulta, encontrar en la tabla **Empleados** el registro
-de la(s) personas que sean del departamento de 'Informatica' y que su año de ingreso 
-sea mayor o igual al año 2005.
+ postgres=# INSERT INTO Employees(name_employee, id_department, year_entry) VALUES('Edgar', 1, 2000);
+ INSERT 0 1
+ postgres=# INSERT INTO Employees(name_employee, id_department, year_entry) VALUES('Andrew', 4, 2009);
+ INSERT 0 1
+ postgres=# INSERT INTO Employees(name_employee, id_department, year_entry) VALUES('Valerie', 2, 2000);
+ INSERT 0 1
+ postgres=# INSERT INTO Employees(name_employee, id_department, year_entry) VALUES('Karl', 2, 2008);
+ INSERT 0 1
+ postgres=# INSERT INTO Employees(name_employee, id_department, year_entry) VALUES('Kevin', 3, 2010);
+ INSERT 0 1
+
+Now we make the following query, find in the **Employees** table the record of the person/people that
+are from the 'Informatics' table and that their year of entry is greater or equal to the year 2005.
 
 .. code-block:: sql
 
- postgres=# SELECT * FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento AND Empleados.ano_ingreso>=2005 AND Departamentos.departamento='Informatica';
+ postgres=# SELECT * FROM Employees, departments WHERE Employees.id_department=departments.id_department AND Employees.year_entry>=2005 AND departments.department='Informatics';
 
-  id_empleados | nombre_empleado | id_departamento | ano_ingreso | id_departamento | departamento 
+  id_Employees |  name_employee  |  id_department  |  year_entry |  id_department  | department 
  --------------+-----------------+-----------------+-------------+-----------------+--------------
-             4 | Karl            |               2 |        2008 |               2 | Informatica
+             4 | Karl            |               2 |        2008 |               2 | Informatics
  (1 fila)
 
 .. note::
+ Is possible give reference to an attribute of each table with the **name_table.attribute**, to do the  conditions.
 
- Es posible dar referencia a un atributo de cada tabla con **nombre_tabla.atributo**, para 
- realizar las condiciones. 
 
 Regardless of the type of query, the result of a comparison is a Boolean value, that is to say returns ``TRUE`` or ``FALSE`` values, which 
 can be combined with their ``AND``, ``OR``, and ``NOT`` operators, with their respective meanings.
@@ -283,45 +264,46 @@ adding :sql:`DISTINCT` to the query.
         SELECT FROM WHERE
         SELECT DISTINCT FROM WHERE
 
-En el ejemplo anterior también es posible eliminar los resultados repetidos, puesto que
-existen muchas personas que trabajan en el mismo departamento, pero si eliminamos las 
-repeticiones solo nos retornaran los departamentos que existen.
+In the previous example it is also possible to delete repeated results, as there are many people working
+in the same department. However if we delete the repetitions, only the existing departments will return.
 
+First, we will show the result with a query with repetitions.
 
-Primero mostraremos un resultado con una consulta con repeticiones.
 
 .. code-block:: sql
 
- postgres=# SELECT Departamentos.departamento, Empleados.id_departamento FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento;     departamento  | id_departamento 
+ postgres=# SELECT departments.department, Employees.id_department FROM Employees, departments WHERE Employees.id_department=departments.id_department;     
+
+     department  | id_department 
  ----------------+-----------------
-  Administracion |               1
-  Comercial      |               4
-  Informatica    |               2
-  Informatica    |               2
-  Finanzas       |               3
+  Administration |               1
+  Commercial     |               4
+  Informatics    |               2
+  Informatics    |               2
+  Finances       |               3
  (5 rows)
 
 .. note::
 
- Según los datos que se ingresaron en la tabla **Empleados** existe más de una persona
- en el departamento de 'Informática'.
+ According to the data that were entered in the **Employees** table, thereare more tan one person in 
+ the 'Informatics' department.
 
-Y ahora realizamos una consulta sin repeticiones.
+Now we make the query without repetitions.
 
 .. code-block:: sql
 
- postgres=# SELECT DISTINCT Departamentos.departamento, Empleados.id_departamento FROM Empleados, Departamentos WHERE Empleados.id_departamento=Departamentos.id_departamento;
-   departamento  | id_departamento 
+ postgres=# SELECT DISTINCT departments.department, Employees.id_department FROM Employees, departments WHERE Employees.id_department=departments.id_department;
+   department    | id_department 
  ----------------+-----------------
-  Administracion |               1
-  Informatica    |               2
-  Comercial      |               4
-  Finanzas       |               3
+  Administration |               1
+  Informatics    |               2
+  Commercial     |               4
+  Finances       |               3
  (4 rows)
 
 .. note::
 
- Se puede notar que solo nos retorna los departamentos que existen.
+ You can notice that only returns the departments that exists.
  
 SELECT-BY-ORDER
 ~~~~~~~~~~~~~~~
@@ -358,13 +340,13 @@ Strictly, the syntax corresponds to ORDER BY and then a list of attributes that 
 As can be seen, with the judgment ORDER BY queries can be sorted by multiple attributes. 
 In this case all the fields will be ordered in the ascending form (ASC). 
 
-Podemos utilizar los mismos ejemplos que creamos anteriormente ordenando los nombres
-de los empleados de la tabla **Empleados**.
+We can use the same examples that we have created previously, sorting the names 
+of the employees of the **Employees** table.
 
 .. code-block:: sql
 
- postgres=# SELECT * FROM Empleados ORDER BY nombre_empleado;
-  id_empleados | nombre_empleado | id_departamento | ano_ingreso 
+ postgres=# SELECT * FROM Employees ORDER BY name_employee;
+  id_Employees |  name_employee  |  id_department  | year_entry 
  --------------+-----------------+-----------------+-------------
              2 | Andrew          |               4 |        2009
              1 | Edgar           |               1 |        2000
@@ -373,12 +355,12 @@ de los empleados de la tabla **Empleados**.
              3 | Valerie         |               2 |        2000
  (5 rows)
 
-Que es lo mismo que escribir.
+which is the same to say
 
 .. code-block:: sql
 
- postgres=# SELECT * FROM Empleados ORDER BY nombre_empleado ASC;
-  id_empleados | nombre_empleado | id_departamento | ano_ingreso 
+ postgres=# SELECT * FROM Employees ORDER BY name_employee ASC;
+  id_Employees |  name_employee  |  id_department  | year_entry 
  --------------+-----------------+-----------------+-------------
              2 | Andrew          |               4 |        2009
              1 | Edgar           |               1 |        2000
@@ -387,12 +369,12 @@ Que es lo mismo que escribir.
              3 | Valerie         |               2 |        2000
  (5 rows)
 
-Y de forma descendiente sería de la siguiente manera.
+and in descending form would be as follows.
 
 .. code-block:: sql
 
- postgres=# SELECT * FROM Empleados ORDER BY nombre_empleado DESC;
-  id_empleados | nombre_empleado | id_departamento | ano_ingreso 
+ postgres=# SELECT * FROM Employees ORDER BY name_employee DESC;
+  id_Employees | name_employee | id_department | year_entry 
  --------------+-----------------+-----------------+-------------
              3 | Valerie         |               2 |        2000
              5 | Kevin           |               3 |        2010
@@ -401,12 +383,12 @@ Y de forma descendiente sería de la siguiente manera.
              2 | Andrew          |               4 |        2009
  (5 rows)
 
-También es posible realizarlo con números o fechas.
+Also is posible to do it with number or dates.
 
 .. code-block:: sql
 
- postgres=# SELECT * FROM Empleados ORDER BY ano_ingreso DESC;
-  id_empleados | nombre_empleado | id_departamento | ano_ingreso 
+ postgres=# SELECT * FROM Employees ORDER BY year_entry DESC;
+  id_Employees |  name_employee  |  id_department  | year_entry 
  --------------+-----------------+-----------------+-------------
              5 | Kevin           |               3 |        2010
              2 | Andrew          |               4 |        2009
