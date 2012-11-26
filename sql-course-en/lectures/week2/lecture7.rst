@@ -38,7 +38,7 @@ These operators have the same meaning as in C language, and the only difference 
 to “different to”; the C language uses the symbol “!=” for this comparison. Following the comparison between these
 languages, the symbol of equality in SQL correspond to “=”, while in C is “==.”
 
-These values can be compared including constants and attributes of the realtions named after the keyword :sql:`FROM`. 
+These values can be compared including constants and attributes of the relations named after the keyword :sql:`FROM`. 
 In the example, would correspond to the attribute of the individual’s birth month with the month of November. 
 
 Some examples of comparison:
@@ -285,7 +285,7 @@ First, we will show the result with a query with repetitions.
 
 .. note::
 
- According to the data that were entered in the **Employees** table, thereare more tan one person in 
+ According to the data that were entered in the **Employees** table, there are more tan one person in 
  the 'Informatics' department.
 
 Now we make the query without repetitions.

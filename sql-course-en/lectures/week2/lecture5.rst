@@ -26,7 +26,7 @@ Some features of this language are:
 Data Definition Language (DDL)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. index:: Data Definition Languaje (DDL)
+.. index:: Data Definition Language (DDL)
 
 
 `DDL (Data Definition Language)`_  is a language that allows you define a 
@@ -73,7 +73,7 @@ Examples:
     * Change the name of a column
     * Change the data type for a column
 
-Data Manipulation Languaje (DML)
+Data Manipulation Language (DML)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `DML (Data Manipulation Language)`_ refers to commands that allow a user to manipulate 
@@ -107,8 +107,6 @@ Examples of DML
     constraints.
 
 The Basic SELECT Statement
-
-.. CMA: LaTeX no funciona dentro de código SQL
 
 .. code-block:: sql
 
@@ -148,8 +146,7 @@ Practical Example
    To perform this excercise, you must use the Virtual Machine of the course
    or install **Postgresql** in your computer.
 
-   If you have a Linux system, you can download the source from ...
-   Another possibility is to use the package manager of your OS
+   One possibility is to use the package manager of your OS
 
    * For Debian/Ubuntu users you can perform the following command as a root::
 
@@ -199,7 +196,7 @@ Firstly, we must create a ``database`` in order to start our excercises. We woul
    postgres=# create database example;
    CREATE DATABASE
 
-After creating our database, we need to *enter* to start making different operations:
+After creating our database, we need to *sign in* to start making different operations:
 
 .. testcase::
 
