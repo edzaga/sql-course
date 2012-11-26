@@ -122,9 +122,9 @@ al año 2005.
  Podemos observar que la consulta realizada retorna los registros que cumplen con una 
  de las dos condiciones o cuando se cumplen las dos al mismo tiempo.
 
-Esta consulta presentó un ejemplo básico de una consulta SELECT-FROM-WHERE de la 
-mayoría de las consultas SQL. La palabra clave FROM entrega la relación o relaciones
-de donde se obtiene la información (tablas). En estos ejemplos, se utilizaron dos comparaciones 
+Esta consulta presentó un ejemplo básico de una consulta :sql:`SELECT` - :sql:`FROM` - :sql:`WHERE` de la 
+mayoría de las consultas SQL. La palabra clave :sql:`FROM` selecciona la relación o relaciones de donde 
+se obtiene la información (tablas). En estos ejemplos, se utilizaron dos comparaciones 
 unidas por la condición "AND" y "OR". 
 
 El atributo *departamento* de la tabla **Empleados** es probada por igualdad contra la 
@@ -132,7 +132,7 @@ constante 'Informática'. Esta constante corresponde a una cadena de caracteres 
 variable que en SQL como se detalló en la lectura anterior se denomina como VARCHAR(n) y 
 que al momento del *ingreso* de los datos a las tablas se escribe entre comillas simples.
 
-Como se mencionó anteriormente, la consulta del tipo SELECT-FROM-WHERE busca la 
+Como se mencionó anteriormente, la consulta del tipo :sql:`SELECT` - :sql:`FROM` - :sql:`WHERE` busca la 
 información de una o más relaciones que cumplan con ciertas condiciones. Hasta ahora 
 sólo se ha visto qué pasa si se comparan atributos de las relaciones con constantes. 
 Pero ¿cómo se pueden comparar los valores almacenados de  atributos que están en varias relaciones?.
