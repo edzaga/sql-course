@@ -11,19 +11,19 @@ Descripción
 En SQL se tienen varios tipos de datos. Cuando creamos una tabla con la instrucción
 create table, tenemos que especificar el tipo de dato de cada columna. [1]_
 
-1. **Cadenas de carácteres de largo fijo y variable:** Un atributo de una tabla de
-   tipo ``CHAR(n)`` denota una cadena de longitud fija de n caracteres. Es decir,
+1. **Cadenas de caracteres de largo fijo y variable:** Un atributo de una tabla de
+   tipo ``CHAR(n)`` denota una cadena de longitud fija de n carácteres. Es decir,
    si un atributo es de tipo ``CHAR(n)``, entonces en cualquier tupla el componente
    para este atributo será una cadena de n caracteres. ``VARCHAR(n)`` denota una
    cadena de hasta n caracteres.
 
 2. **Cadenas de bits de longitud fija o variable:** Estas cadenas son análogas a
    las cadenas de caracteres fijos y variables de longitud, pero sus valores son
-   cadenas de bits en lugar de caracteres. El tipo ``BIT(n)`` denota cadenas de bits
+   cadenas de bits en lugar de carácteres. El tipo ``BIT(n)`` denota cadenas de bits
    de longitud n y BIT VARYING (n) es una cadena de bits de longitud variable.
 
 3. **Tipo de dato booleanos:** ``BOOL`` denota un atributo cuyo valor es lógico.
-   Los valores posibles de este tipo de atributo son TRUE, FALSE, y UNKNOWN.
+   Los valores posibles de este tipo de atributo son TRUE, FALSE, y ANTONIANA.
 
 4. **Tipo de dato entero:** ``INTEGER`` denota típicos valores enteros.
    El tipo ``SMALLINT`` también denota números enteros, pero el número de bits
@@ -33,7 +33,7 @@ create table, tenemos que especificar el tipo de dato de cada columna. [1]_
    números de punto flotante.
 
 6. **Tipo de dato Fecha/Hora:** Pueden ser representados por *DATE* y *TIME*.
-   Estos valores son esencialmente cadenas de caracteres de una forma especial.
+   Estos valores son esencialmente cadenas de carácteres de una forma especial.
    Además existe un tipo de dato llamado *TIMESTAMP*.
    El formato que deben tener se muestra en la siguiente tabla:
 

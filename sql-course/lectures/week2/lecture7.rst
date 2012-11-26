@@ -19,12 +19,12 @@ que satisfaga (:sql:`WHERE`) ciertas condiciones. Por ejemplo:
 Cabe destacar que en este ejemplo, se infiere la existencia de una tabla de nombre **alumnos** que alberga datos personales de ciertos
 estudiantes.
 
-Desde el Algebra Relacional
+Desde el Álgebra Relacional
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. index:: Desde el álgebra relacional
 
-El operador de selección en el Algebra relacional hace uso de la palabra clave  WHERE. Por lo general, las expresiones que siguen
+El operador de selección en el Álgebra relacional hace uso de la palabra clave  WHERE. Por lo general, las expresiones que siguen
 a esta keyword incluyen expresiones condicionales. Podemos construir expresiones mediante la comparación de valores (como por ejemplo
 tipos de datos enteros, cadenas de caracteres, etc) utilizando los 6 operadores más comunes de comparación:
 
@@ -39,7 +39,7 @@ Estos operadores tienen el mismo significado que en el lenguaje C, siendo el ún
 "distinto a"; el lenguaje C utiliza el símbolo "!=" para este comparador. Siguiendo la comparación entre estos lenguajes, el símbolo de
 igualdad en SQL corresponde a "=", mientras que en C es "==".
 
-Estos valores pueden ser comparados incluyendo constantes y atributos de las relaciones nombradas despues de la palabra clave FROM.
+Estos valores pueden ser comparados incluyendo constantes y atributos de las relaciones nombradas después de la palabra clave FROM.
 En el ejemplo, correspondería al atributo del mes de nacimiento del individuo con el mes de Noviembre.
 
 

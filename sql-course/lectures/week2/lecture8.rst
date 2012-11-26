@@ -1,11 +1,11 @@
-Lectura 8 - Table variables and set operators
-------------------------------------------------
+Lectura 8 - Variables de tablas y operadores de conjunto
+--------------------------------------------------------
 .. role:: sql(code)
    :language: sql
    :class: highlight
 
-Table Variables
-~~~~~~~~~~~~~~~
+Variables de tablas
+~~~~~~~~~~~~~~~~~~~
 
 .. index:: Table Variables
 
@@ -56,7 +56,7 @@ y 6 postulaciones:
 Ejemplo 1
 ^^^^^^^^^
 En este ejemplo se busca la información del nombre e id de los  alumnos, que postulan a uno o más establecimientos educacionales con 
-determinado Average:
+determinado *Average*:
 
 .. code-block:: sql
 
@@ -75,7 +75,7 @@ cuya salida es::
 
 .. note::
   
-   Notese que existe un supuesto duplicado en las primeras filas. Esto es debido a que Amy postuló a "science" y a "engineering" en Stanford. Esto
+   Existe un supuesto duplicado en las primeras filas. Esto es debido a que Amy postuló a "science" y a "engineering" en Stanford. Esto
    puede evitarse utilizando **SELECT DISTINCT** en lugar de **SELECT**.
 
 también es posible realizarla como:
@@ -86,77 +86,26 @@ también es posible realizarla como:
 
 cuya salida es::
 
-   sid | sname  |  cname   | Average
-   ----+--------+----------+-----
-   1 | Amy     | Stanford |  60
-   1 | Amy     | Stanford |  60
-   2 | Edward  | Berkeley |  65
-   3 | Craig   | MIT      |  50
-   3 | Craig   | Harvard  |  50
-   4 | Irene   | Stanford |  49
+   sid | sname   |  cname   | Average
+   ----+---------+----------+-----
+     1 | Amy     | Stanford |  60
+     1 | Amy     | Stanford |  60
+     2 | Edward  | Berkeley |  65
+     3 | Craig   | MIT      |  50
+     3 | Craig   | Harvard  |  50
+     4 | Irene   | Stanford |  49
 
 .. note::
 
-   Al igual que en la consulata anterior, es posible evitar el valor duplicado utilizando **SELECT DISTINCT** en lugar de **SELECT**.
-
-.. CMA: no entiendo esto...
+   Al igual que en la consulta anterior, es posible evitar el valor duplicado utilizando **SELECT DISTINCT** en lugar de **SELECT**.
 
 Como se aprecia, es posible asignar variables a las relaciones "R" y utilizar dichas variables tanto en la lista "L" como en la
 condición "C". ¿Cuál es la utilidad de esto?, más allá de escribir menos (dependiendo del nombre de la variable
 utilizada); en los casos en que se deben comparar múltiples instancias de la misma relación, como se verá en el ejemplo 2.
 
 .. note::
+
    El por qué de la nomenclatura "L", "R" y "C" y su significado están explicados en la lectura 7
-
-.. CMA: Se invita al lector alplicado a realizar pruebas, se dejan las siguientes lineas de código a su disposición, con el fin de
-.. CMA:probar que efectivamente si se realizan las consultas mencionadas arriba, el resultado es el mismo. Cabe destacar que
-
-.. CMA:.. code-block:: sql
-
-.. CMA:        INSERT INTO "R"
-        (Columna1,    (cName, state, enrollment)
-        VALUES
-        ('Stanford', 'stanford', 'mayor'),
-        ('Berkeley', 'miami', 'mayor'),
-        ('MIT', 'masachusets', 'minor');
-
-.. Columna2,..., ColumnaN)
-        VALUES
-        (Valor Columna1Fila1, Valor Columna2Fila1,..., Valor ColumnaNFila1),
-        (Valor Columna2Fila1, Valor Columna2Fila2,..., Valor ColumnaNFila2),
-        ...
-        (Valor Columna1FilaN, Valor Columna2FilaN,..., Valor ColumnaNFilaN),
-
-.. CMA:corresponde a la sentencia para ingresar datos a una tabla en particular, conociendo su estructura y tipos de datos.
-.. CMA El lector puede utilizar los  siguientes valores y realizar modificaciones.
-
-.. CMA: (explicar mejor el contexto)
-
-.. CMA:.. code-block:: sql
-
-.. CMA:        INSERT INTO College
-        (cName, state, enrollment)
-        VALUES
-        ('Stanford', 'stanford', 'mayor'),
-        ('Berkeley', 'miami', 'mayor'),
-        ('MIT', 'masachusets', 'minor');
-
-
-.. CMA:        INSERT INTO Student
-        (sName, Average, sizeHS)
-        VALUES
-        ('amy', 30, 'A'),
-        ('doris', 40, 'B'),
-        ('edward', 40, 'C');
-
-
-.. CMA:        INSERT INTO Apply
-        (cName, major, decision)VALUES
-        ('Stanford', 'phd', 'mayor'),
-        ('Berkeley', 'pregrado', 'minor'),
-        ('MIT', 'ingenieria', 'mayor');
-
-
 
 Ejemplo 2
 ^^^^^^^^^
@@ -164,8 +113,8 @@ Ejemplo 2
 Cuidado con los duplicados!!
 
 Si el lector se fija en la situación descrita, los nombres de algunos atributos de diferentes relaciones y/o tablas  se repiten, lo cual
-podría plantear la interrogante ¿a que tabla se refiere el atributo en cuestión?. Para resolver este pequeño gran problema, se precede al
-nombre del atributo con el nombre de la tabla y un punto, es decir::
+podría plantear la interrogante ¿a que tabla se refiere el atributo en cuestión?. Para resolver este problema, se escribe
+de la siguiente manera::
 
   "NombreTabla.atributo"
 
@@ -179,7 +128,7 @@ La diferencia se realiza a través de:
 
 
 
-Para la realización de este ejemplo, supongase que al último momento, llegan los papeles de un postulante más, por lo que el administrador
+Para la realización de este ejemplo, suponga que llegan los papeles de un postulante más, por lo que el administrador
 de la base de datos deberá agregar la información necesaria, es decir:
 
 .. code-block:: sql
@@ -198,7 +147,7 @@ se buscan todos los pares de estudiantes con el mismo Average:
 
 
 Al momento de realizar esta consulta (dos instancias de una tabla), el resultado contendrá uno o varios duplicados; por ejemplo,
-consideremos a los 5 estudantes::
+consideremos a los 5 estudiantes::
 
 
    sid | sname  | Average
@@ -230,7 +179,7 @@ pero la salida muestra::
 
 
 
-lo cual se puede evitar modificando la cosulta
+lo cual se puede evitar modificando la consulta
 
 .. code-block:: sql
 
@@ -246,8 +195,8 @@ es decir, que el id del estudiante S1 sea diferente al id del estudiante S2; en 
         5   | Tim    |  60 |   1 | Amy    | 60
     
 
-Set Operators
-~~~~~~~~~~~~~~~
+Establecimiento de  Operadores
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. index:: Set Operators
 
@@ -378,52 +327,6 @@ Es decir que INTERSECT devuelve los valores repetidos.
 
 Utilizando el ejemplo de los empleados, y ejecutando la consulta:
 
-..         Table Store_Information
-        store_name      Sales   Date
-        Los Angeles     $1500   Jan-05-1999
-        San Diego       $250    Jan-07-1999
-        Los Angeles     $300    Jan-08-1999
-        Boston  $700    Jan-08-1999
-        Table Internet_Sales
-        Date    Sales
-        Jan-07-1999     $250
-        Jan-10-1999     $535
-        Jan-11-1999     $320
-        Jan-12-1999     $750
-
-.. Para llegar a esta situación, el lector puede crear las tablas
- code-block:: sql
-    CREATE TABLE Store_Information
-        (
-     id int auto_increment primary key,
-     store_name varchar(20),
-     Sales integer,
-     Date date
-    );
-    CREATE TABLE Internet_Sales
-        (
-     id int auto_increment primary key,
-     Date date,
-     Sales integer
-    );
-.. y llenarlas con los siguientes datos
- ..code-block:: sql
-        INSERT INTO Store_Information
-        (store_name, Sales, Date)
-        VALUES
-        ('Los Angeles', 1500, '1999-01-05'),
-        ('San Diego', 250, '1999-01-07'),
-        ('Los Angeles', 300, '1999-01-08');
-        INSERT INTO Internet_Sales
-        (Date, Sales)
-        VALUES
-        ('1999-01-07', 250),
-        ('1999-01-10', 535),
-        ('1999-01-11', 320),
-        ('1999-01-12', 750);
-
-.. Al realizar la consulta
-
 .. code-block:: sql
 
         SELECT E_Name as name FROM Employees_Norway
@@ -436,9 +339,6 @@ su salida es::
         e_name
         ----------
         Svendson, Stephen
-
-.. Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
-   pero que puede escribirse como otra consulta (agregarla)
 
 Excepción
 ^^^^^^^^^^
@@ -482,9 +382,3 @@ su salida será:
    Turner, Sally
    Kent, Clark
    Scott, Stephen
-
-
-.. Es decir devuelve los resultados que no se repiten.
-
-.. Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
-  pero que puede escribirse como otra consulta (agregarla)
