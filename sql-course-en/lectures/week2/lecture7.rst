@@ -94,7 +94,7 @@ Finally we can make the query of interest.
   id_employee |  name_employee  |  department  | year_entry 
  -------------+-----------------+--------------+-------------
             4 | Karl            | Informatics  |        2008
- (1 fila)
+ (1 row)
 
 .. note::
 
