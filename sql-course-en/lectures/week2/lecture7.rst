@@ -47,7 +47,7 @@ Some examples of comparison:
 .. code-block:: sql
 
 	StudioName = 'Ubisoft' : it is compare that the attribute studioName is 'Ubisoft'
-	mesesVidaUtil <> 5 : it is compared that the attribute monthsServiceLife is not equal to 5
+	mothsServiceLife <> 5 : it is compared that the attribute monthsServiceLife is not equal to 5
 	monthBirth = 'November':  it is compared that the attribute monthBirth is equal to 'November'
 
         
@@ -126,7 +126,7 @@ In this examples, two comparisons were used, joined by the 'AND' and 'OR' condit
 
 The department attribute of the **Employees** table is tested for equality against the constant 
 'Informatics'. This constant corresponds to a string of characters of variable length that in SQL,
-as it was explained in the previous lecture, is denominated as VARCHAR (n) and at the time de entry 
+as it was explained in the previous lecture, is denominated as VARCHAR (n) and at the time of entry 
 of data to the tables is written between simple quotation marks.
 
 As it was mentioned before, the query of the :sql:`SELECT` - :sql:`FROM` - :sql:`WHERE` type
@@ -187,7 +187,7 @@ are from the 'Informatics' table and that their year of entry is greater or equa
   id_Employees |  name_employee  |  id_department  |  year_entry |  id_department  | department 
  --------------+-----------------+-----------------+-------------+-----------------+--------------
              4 | Karl            |               2 |        2008 |               2 | Informatics
- (1 fila)
+ (1 row)
 
 .. note::
  Is possible give reference to an attribute of each table with the **name_table.attribute**, to do the  conditions.
