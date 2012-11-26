@@ -231,7 +231,7 @@ As a review, the logical operators mentioned are:
         \hline
        \end{array}
 
-    * :sql:`NOT`: returns the contrary value to the current value, that is if the value is TRUE, returns False ad viceversa.  
+    * :sql:`NOT`: returns the contrary value to the current value, that is if the value is TRUE, returns False.  
 	Its truth table is:
 
       .. math::
