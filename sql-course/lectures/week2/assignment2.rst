@@ -23,10 +23,10 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 	**eID** (id único) que es clave primaria (primary key) y tiene otro atributo **nombre**
 	que almacena el nombre del evaluador.
 
-* Calificacion: (**eID**, **sID** ,nota,fecha)
+* Calificación: (**eID**, **sID** ,nota,fecha)
 	Luego que el evaluador califica una serie se guarda en la tabla **Calificacion** que
 	tiene dos claves foráneas **eID** que es el id del evaluador y **sID** que es el id de
-	algunas de las series almacenadas. Ambas claves foraneas (juntas) conforman la clave
+	algunas de las series almacenadas. Ambas claves foráneas (juntas) conforman la clave
 	primaria de **Calificación** También contiene la **nota** puesta por el evaluador
 	y la **fecha** que calificó dicha serie.
 

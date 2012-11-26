@@ -5,7 +5,7 @@ Lectura 5 - Introducción
    :language: sql
    :class: highlight
 
-`SQL (Lenguaje de consulta estructurado))`_ es un tipo de lenguaje vinculado con la gestión de
+`SQL (Lenguaje de consulta estructurado)`_ es un tipo de lenguaje vinculado con la gestión de
 bases de datos de carácter relacional que permite la especificación de distintas
 clases de operaciones. Gracias a la utilización del álgebra y de cálculo relacional,
 el lenguaje SQL brinda la posibilidad de realizar consultas que ayuden a recuperar
@@ -32,8 +32,8 @@ Lenguaje de descripción de datos (DDL)
 `DDL (Lenguaje de descripción de datos)`_ es un lenguaje que permite definir la base de datos
 (su estructura o "schemas"), tiene una sintaxis similar a los lenguajes de programación.
 
-Ejemplos:
-^^^^^^^^^
+Ejemplos de DDL:
+^^^^^^^^^^^^^^^^
 
 .. code-block:: sql
 
@@ -47,7 +47,7 @@ Ejemplos:
   
   * Para crear una nueva base de datos, índice o almacenamiento de consultas.  
   * Un argumento :sql:`CREATE` en SQL crea un objeto dentro del sistema de administración 
-de la base de datos relacional (`RDBMS`_).                 
+    de la base de datos relacional (`RDBMS`_).                 
   * El tipo de objetos que se pueden crear depende de qué RDBMS esta siendo utilizado, 
     pero la mayoría soporta la creación de tablas, índices, usuarios y bases de datos. 
   * Algunos sistemas (tales como **PostgreSQL**) permiten :sql:`CREATE` y otros comandos DDL,
@@ -57,7 +57,7 @@ de la base de datos relacional (`RDBMS`_).
 
   * Para destruir una base de datos, tabla, índice o vista existente.
   * Un argumento :sql:`DROP` en SQL remueve un objeto dentro del sistema de administración 
-de la base de datos relacional (`RDBMS`_).     
+    de la base de datos relacional (`RDBMS`_).     
   * El tipo de objetos que se pueden eliminar depende de que RDBMS esta siendo utilizado,
     pero la mayoría soporta la eliminación de tablas, índices, usuarios y bases de datos.      
   * Algunos sistemas (tales como **PostgreSQL**) permiten :sql:`DROP` y otros comandos DDL,
@@ -96,7 +96,7 @@ Ejemplos de DML
 
   * Devuelve el resultado de un conjunto de registros de una o mas tablas.       
   * Un argumento :sql:`SELECT` devuelve cero o más filas de una o más tablas de una 
-base de datos o vistas de base de datos.
+    base de datos o vistas de base de datos.
   * En la mayoría de las aplicaciones :sql:`SELECT` es el comando DML mas usado.                      
   * Como SQL es un lenguaje de programación declarativo, consultas :sql:`SELECT` especifican
     el conjunto de resultado, pero no como calcularlo.
@@ -130,9 +130,9 @@ Comandos SQL:
 
    * :sql:`INSERT` - agrega uno o más registros a una tabla de una base de datos relacional.
    * :sql:`DELETE` - elimina uno o más registros de una tabla. Un subconjunto de datos
-puede ser eliminado si existe una condición, de lo contrario todos los registros serán eliminados.
+     puede ser eliminado si existe una condición, de lo contrario todos los registros serán eliminados.
    * :sql:`UPDATE` - cambia los datos de uno o más registros de una tabla. Una fila o 
-un subconjunto de filas puede ser actualizadas utilizando una condición.
+     un subconjunto de filas puede ser actualizadas utilizando una condición.
 
 Ejemplo práctico
 ~~~~~~~~~~~~~~~~
@@ -330,9 +330,8 @@ que no pueden existir dos filas en una tabla que tengan la misma clave primaria.
 Y las **claves foráneas** tienen por objetivo establecer una conexión con la clave
 primaria que referencia de otra tabla, creándose una asociación entre las dos tablas.
 
-----------------
 Ejemplo Práctico
-----------------
+^^^^^^^^^^^^^^^^
 
 Primero crearemos la tabla profesores en que ID_profesor será la clave primaria y está
 definido como serial que automáticamente irá ingresando los valores 1, 2, 3 a cada registro.
@@ -450,7 +449,7 @@ Ahora queremos tener solo una tabla con el "nombre", "apellido" del profesor y e
 
 Aquí es donde tiene la importancia la clave primaria y foránea, puesto que en la condición podemos realizar una igualdad entre los "id_profesor" de la tabla **profesores** y **cursos**.
 
-.. _`SQL (Structured Query Language)`: http://en.wikipedia.org/wiki/SQL
-.. _`DDL (Data Definition Language)`: http://en.wikipedia.org/wiki/Data_Definition_Language
+.. _`SQL (Lenguaje de consulta estructurado)`: http://en.wikipedia.org/wiki/SQL
+.. _`DDL (Lenguaje de descripción de datos)`: http://en.wikipedia.org/wiki/Data_Definition_Language
 .. _`RDBMS`: http://en.wikipedia.org/wiki/Relational_database#Relational_database_management_systems
-.. _`DML (Data Manipulation Language)`: http://en.wikipedia.org/wiki/Data_manipulation_language
+.. _`DML (Lenguaje de manipulación de datos)`: http://en.wikipedia.org/wiki/Data_manipulation_language

@@ -110,7 +110,7 @@ Example 2
 
 Be careful with duplicates!
 
-If the reader looks at the situation described, names of some attributes of different realtions and/or tables are repeated, 
+If the reader looks at the situation described, names of some attributes of different relations and/or tables are repeated, 
 which could raise the question: to what table refers the attribute itself? To solve this problem, it precedes the name of 
 the attribute with the name of the table and a dot, that is::
 
@@ -319,52 +319,6 @@ This means that INTERSECT returns the repeated values.
 
 Using the example of the employees, and making the query:
 
-..         Table Store_Information
-        store_name      Sales   Date
-        Los Angeles     $1500   Jan-05-1999
-        San Diego       $250    Jan-07-1999
-        Los Angeles     $300    Jan-08-1999
-        Boston  $700    Jan-08-1999
-        Table Internet_Sales
-        Date    Sales
-        Jan-07-1999     $250
-        Jan-10-1999     $535
-        Jan-11-1999     $320
-        Jan-12-1999     $750
-
-.. Para llegar a esta situación, el lector puede crear las tablas
- code-block:: sql
-    CREATE TABLE Store_Information
-        (
-     id int auto_increment primary key,
-     store_name varchar(20),
-     Sales integer,
-     Date date
-    );
-    CREATE TABLE Internet_Sales
-        (
-     id int auto_increment primary key,
-     Date date,
-     Sales integer
-    );
-.. y llenarlas con los siguientes datos
- ..code-block:: sql
-        INSERT INTO Store_Information
-        (store_name, Sales, Date)
-        VALUES
-        ('Los Angeles', 1500, '1999-01-05'),
-        ('San Diego', 250, '1999-01-07'),
-        ('Los Angeles', 300, '1999-01-08');
-        INSERT INTO Internet_Sales
-        (Date, Sales)
-        VALUES
-        ('1999-01-07', 250),
-        ('1999-01-10', 535),
-        ('1999-01-11', 320),
-        ('1999-01-12', 750);
-
-.. Al realizar la consulta
-
 .. code-block:: sql
 
         SELECT E_Name as name FROM Employees_Norway
@@ -377,9 +331,6 @@ whose output is::
         e_name
         ----------
         Svendson, Stephen
-
-.. Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
-   pero que puede escribirse como otra consulta (agregarla)
 
 Exception
 ^^^^^^^^^^
@@ -421,9 +372,3 @@ Its output will be:
    Turner, Sally
    Kent, Clark
    Scott, Stephen
-
-
-.. Es decir devuelve los resultados que no se repiten.
-
-.. Duda: agregar lo de que ciertos motores de bases de datos no soportan este operador(buscar cuales en particular y nombrarlos),
-  pero que puede escribirse como otra consulta (agregarla)

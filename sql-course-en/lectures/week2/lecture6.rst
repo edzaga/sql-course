@@ -9,7 +9,7 @@ Description
 ~~~~~~~~~~~
 
 In SQL there are several types of data. When we create a table with the instruction 
-create table, we have to specify de type of data of each column. [1]_
+create table, we have to specify of type of data of each column. [1]_
 
 
 1. **Strings of characters of fixed and variable length:** an attribute of a table of 
@@ -70,7 +70,7 @@ Next we will show examples made with PostgreSQL, of the type of data that was na
      (1 row)
 
 * Next it will be shown an example in which we use the type of data ``VARCHAR``, ``CHAR`` and ``DATETIME``.
-  ``VARCHAR``, ``CHAR`` y ``DATETIME``.
+  ``VARCHAR``, ``CHAR`` and ``DATETIME``.
 
   We Create the person table with the ID of type serial, name, and last name of the type ``VACHAR`` 
   with a long variable to 35 characters; genre of the type ``CHAR`` with only one character; and the 
@@ -131,7 +131,7 @@ Next we will show examples made with PostgreSQL, of the type of data that was na
 
 * Now it will take place the following example in which the test_datatype table will 
   be created with the data types ``BIT(n)`` and ``BIT VARYING(n)``. In this case 
-  data1will have a fixed length of 4 and data2 a variable length of 6. 
+  data1 will have a fixed length of 4 and data2 a variable length of 6. 
 
   .. code-block:: sql
 
@@ -162,7 +162,7 @@ Next we will show examples made with PostgreSQL, of the type of data that was na
 
   .. code-block:: sql
 
-     postgres=# CREATE TABLE registro(id_registro serial, name VARCHAR(30), lastname VARCHAR(30), ingreso TIMESTAMP, anos_trabajados SMALLINT);
+     postgres=# CREATE TABLE registro(id_registro serial, name VARCHAR(30), lastname VARCHAR(30), entry TIMESTAMP, years_worked SMALLINT);
 
   Returning the following:
   ::
@@ -174,7 +174,7 @@ Next we will show examples made with PostgreSQL, of the type of data that was na
 
   .. code-block:: sql
 
-     postgres=# INSERT INTO registro(name,lastname,ingreso,anos_trabajados) VALUES('Elliott', 'ALLEN', '2012-10-23 14:05:08', 13);
+     postgres=# INSERT INTO registro(name,lastname,entry,years_worked) VALUES('Elliott', 'ALLEN', '2012-10-23 14:05:08', 13);
      INSERT 0 1
 
   Now we make a selection of the record table to verify the data that we have inserted.   
@@ -182,7 +182,7 @@ Next we will show examples made with PostgreSQL, of the type of data that was na
   .. code-block:: sql
 
      postgres=# SELECT * FROM registro;
-      id_registro | name  | lastname |       ingreso       | anos_trabajados
+      id_registro |   name  | lastname |        entry        | years_worked
      -------------+---------+----------+---------------------+-----------------
                 1 | Elliott | ALLEN    | 2012-10-23 14:05:08 |              13
      (1 row)
@@ -192,8 +192,8 @@ Next we will show examples made with PostgreSQL, of the type of data that was na
      The difference between INTEGER and SMALLINT cannot be noticed in this type of examples, but INTEGER supports -2147483648 to +2147483647 and SMALLINT -32768 to +32767.
 
 
-Referencias
-~~~~~~~~~~~~
+References
+~~~~~~~~~~
 .. [1] http://www.postgresql.org/docs/8.1/static/datatype.html
 
 
