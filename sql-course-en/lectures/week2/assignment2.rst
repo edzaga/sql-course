@@ -227,7 +227,7 @@ Expected query result:
 
 .. code-block:: sql
 
-       Name      |       Title        | nota |   fecha
+         Name      |        Title        | nota |   fecha
  ------------------+---------------------+------+------------
   Charles Napier   | Bones               |    8 | 2012-07-22
   Charles Napier   | Dexter              |    8 | 2012-09-27
