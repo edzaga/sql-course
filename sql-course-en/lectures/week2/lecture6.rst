@@ -80,6 +80,9 @@ Next we will show examples made with PostgreSQL, of the type of data that was na
 
      postgres=# CREATE TABLE person(id serial, name VARCHAR(25), lastname VARCHAR(25), genre CHAR(1), date_birth DATE);
 
+  .. note::
+	The following tests, were in a spanish version of postgres, so the terminal exit will be in spanish.
+
   Returning the following PostgreSQL
   ::
 
