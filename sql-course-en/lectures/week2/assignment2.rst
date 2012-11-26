@@ -4,47 +4,34 @@ Assignment 2
 .. role:: sql(code)
    :language: sql
    :class: highlight
-
 -------------
-Data Base
+Database
 -------------
 
-Se tiene una página que maneja base de datos de series de televisión con el siguiente esquema:
+* `\text{Series}(\underline{\text{sID}},\text{Title, Creator, Year, Audience, Genre, Season, final})`
+	The **Series** table has *sID* which is a unique ID and primary relationship key. Also it stores the series’ *Title*, the *Creator*, *Year* which is the year of the first season premiere, the average annual *Audience*, the series’ genre, the number of *Season* till year 2012 and *final* which tell if the series is still running.
 
-* Serie: (**sID**, titulo, creador, año, audiencia, genero, temp, final)
-	La tabla **Serie** posee **sID** que es un id único y es primary key de la relación,
-	además se almacena el **titulo** de la serie, el **creador**, **año** es el año de estreno
-	de la primera temporada, la **audiencia** promedio anual, **genero** de la serie y
-	finalmente el atributo **temp** que contiene el número de temporadas emitidas hasta
-	el 2012, **final** es un atributo que dice si la serie se sigue emitiendo o terminó.
+* `\text{Evaluator}(\underline{\text{eID}},\text{Name})`
+	The evaluator is who rates the series, and the relationship **Evaluator** has an attribute *eID* (unique ID) which is the primary key, and another attribute *Name* which is the evaluator’s name.
 
-* Evaluador: (**eID**, nombre)
-	El evaluador es quien califica la serie, la relación **Evaluador** tiene un atributo
-	**eID** (id único) que es clave primaria (primary key) y tiene otro atributo **nombre**
-	que almacena el nombre del evaluador.
-
-* Calificacion: (**eID**, **sID** ,nota,fecha)
-	Luego que el evaluador califica una serie se guarda en la tabla **Calificacion** que
-	tiene dos claves foráneas **eID** que es el id del evaluador y **sID** que es el id de
-	algunas de las series almacenadas. Ambas claves foraneas (juntas) conforman la clave
-	primaria de **Calificación** También contiene la **nota** puesta por el evaluador
-	y la **fecha** que calificó dicha serie.
+* `\text{Grade}(\underline{\text{eID,sID}},\text{Score, Date})`
+	After the evaluator rates a series, the Score is stored in the table **Grade** which has two foreign keys, *eID* which is the ID of the evaluator and *sID* which is the id of the series. Both key united conform the primary key of **Grade**. It also contains the *score* given by the evaluator and the date of the qualification. 
 
 .. math::
 
-  \textbf{Serie} \\
+  \textbf{Series} \\
 
 	\begin{array}{|c|c|c|c|c|c|c|c|}
         \hline
-	\textbf{sID} & \textbf{titulo} & \textbf{creador} & \textbf{año} & \textbf{audiencia} & \textbf{genero}& \textbf{temp}& \textbf{final} \\
+	\textbf{sID} & \textbf{Title} & \textbf{Creator} & \textbf{Year} & \textbf{Audience} & \textbf{Genre}& \textbf{Season}& \textbf{final} \\
 	\hline
-	1 & \text{The Big Bang Theory} & \text{Bill Prady} & 2007 & 45.99 & \text{comedia} & 6 & false\\
+	1 & \text{The Big Bang Theory} & \text{Bill Prady} & 2007 & 45.99 & \text{comedy} & 6 & false\\
 	\hline
 	2 & \text{Grey’s Anatomy} & \text{Shonda Rhimes} & 2005 & 40.35 & \text{drama} & 9 & false \\
 	\hline
-	3 & \text{Dexter} & \text{James Manos} & 2006 & 50.24	& \text{crimen} & 7 & false\\
+	3 & \text{Dexter} & \text{James Manos} & 2006 & 50.24	& \text{crime} & 7 & false\\
 	\hline
-	4 & \text{Bones} & \text{Hart Hanson} & 2005 & 30.61 & \text{crimen} &	8 & false \\
+	4 & \text{Bones} & \text{Hart Hanson} & 2005 & 30.61 & \text{crime} &	8 & false \\
 	\hline
 	5 & \text{Glee} & \text{Ryan Murphy} & 2009 &	39.67 & \text{musical} &	4 & false\\
 	\hline
@@ -52,19 +39,19 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 	\hline
 	7 & \text{Lost} & \text{Jeffrey Lieber} & 2004 & 49.32	& \text{fantasia} & 6 & true \\
 	\hline
-	8 & \text{Spartacus} & \text{Steven S. DeKnight} & 2010 & 38.51 &	\text{accion} & 2 & false \\
+	8 & \text{Spartacus} & \text{Steven S. DeKnight} & 2010 & 38.51 &	\text{action} & 2 & false \\
 	\hline
-	9 & \text{The Simpsons} & \text{Matt Groening} & 1989 & 55.82	& \text{comedia} & 25 & false\\
+	9 & \text{The Simpsons} & \text{Matt Groening} & 1989 & 55.82	& \text{comedy} & 25 & false\\
 	\hline
 	 \end{array}
 
 .. math::
 
-	\textbf{ Evaluador} \\
+	\textbf{ Evaluator} \\
 
 	\begin{array}{|c|c|}
 	\hline
-	\textbf{eID} & \textbf{nombre}  \\
+	\textbf{eID} & \textbf{Name}  \\
 	\hline
 	1	& \text{Nancy Cartwright} \\
 	\hline
@@ -88,11 +75,11 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 
 .. math::
 
-	\textbf{Calificacion} \\
+	\textbf{Grade} \\
 
 	\begin{array}{|c|c|}
 	\hline
-	\textbf{eID} & \textbf{sID} & \textbf{nota} & \textbf{fecha}  \\
+	\textbf{eID} & \textbf{sID} & \textbf{Score} & \textbf{Date}  \\
 	\hline
 	1 &	6&	5	&2012-06-08 \\
 	\hline
@@ -127,45 +114,45 @@ Se tiene una página que maneja base de datos de series de televisión con el si
 	\end{array}
 
 
-Pregunta 1:
+Question 1:
 ^^^^^^^^^^^
 
-* Cree, una base de datos de nombre tarea2.
-* Crear las 3 tablas de la base de datos dada, con sus respectivos atributos.
+* Create a database with the name “Assigment2”
+* Create 3 tables from de given database, with their respective attributes.
 
-Elija el tipo de datos que más se acomode para cada atributo según los valores dados.
+Choose the type of data which suits better each attribute, according to the provided values.
 
-Pregunta 2:
+
+Question 2:
 ^^^^^^^^^^^
 
-Inserte los datos dados en las tablas que se mostraron anteriormente.
+Insert the provided data in the previously showed tables.
 
 
-Pregunta 3:
+Question 3:
 ^^^^^^^^^^^
 
-Realice la consulta en SQL que encuentre los títulos de todas las series que sean del
-género de comedia.
+Make a query in SQL which returns all the titles of all the series from the comedy genre.
 
-Resultado esperado de la consulta:
+Expected query result:
 
 .. code-block:: sql
 
- titulo
+ Title
  ---------------------
   The Big Bang Theory
   The Simpsons
 
-Pregunta 4:
+Question 4:
 ^^^^^^^^^^^
 
-Buscar los títulos y audiencias de las series y ordenarlas en de forma descendente.
+Search all the titles and audiences of the series, and sort them in descendent order.
 
-Resultado esperado de la consulta:
+Expected query result:
 
 .. code-block:: sql
 
-          titulo        | audiencia
+          Title         | Audience
    ---------------------+-----------
     The Simpsons        |     55.82
     Dexter              |     50.24
@@ -178,16 +165,17 @@ Resultado esperado de la consulta:
     Bones               |     30.61
 
 
-^^^^^^^^^^^
-Pregunta 5:
-^^^^^^^^^^^
-Buscar los títulos (sin que se repitan)  de las series con nota mayor a 7.
 
-Resultado esperado de la consulta:
+Question 5:
+^^^^^^^^^^^
+
+Search al the titles (without repetition) of the series with a score greater than 7.
+
+Expected query result:
 
 .. code-block:: sql
 
-       titulo
+       Title
  ---------------------
   Lost
   Dexter
@@ -196,32 +184,32 @@ Resultado esperado de la consulta:
   Bones
 
 
-
+Question 6:
 ^^^^^^^^^^^
-Pregunta 6:
-^^^^^^^^^^^
-Buscar todos los años de estreno(sin que se repitan) que tiene una serie que recibió una calificación de 5 ó 6, y clasificarlos en orden descendentes.
 
-Resultado esperado de la consulta:
+Search all the premiere years that have series that received a score 5 or 6, and sort them in a decedent order.
+
+Expected query result:
 
 .. code-block:: sql
 
- año
+ Year
  ------
   2004
   2005
   2010
 
-^^^^^^^^^^^
-Pregunta 7:
-^^^^^^^^^^^
-Buscar el nombre de los evaluadores(sin que se repitan), que calificaron alguna serie que tenga más de 7 temporadas o haya finalizado.
 
-Resultado esperado de la consulta:
+Question 7:
+^^^^^^^^^^^
+
+Search all the evaluator’s names (without repetition) that rated any series with more than 7 seasons or that has finalized.
+
+Expected query result:
 
 .. code-block:: sql
 
-  nombre
+  Name
  ------------------
   Glenn Sloan
   Charles Napier
@@ -230,16 +218,16 @@ Resultado esperado de la consulta:
   David Crosby
 
 
+Question 8:
 ^^^^^^^^^^^
-Pregunta 8:
-^^^^^^^^^^^
-Escriba una consulta para devolver: nombre del evaluador, título de la serie, la nota, y la fecha de clasificación. Ordenar los datos, en primer lugar por el nombre del evaluador, y luego por título de la serie, y por último por la nota.
 
-Resultado esperado de la consulta:
+Write a query that returns: the evaluator’s name, the title of the series, the score and the date of qualification. Sort the data, in first place by the evaluator’s name, then by the series’ title, and lastly, by the score given.
+
+Expected query result:
 
 .. code-block:: sql
 
-       nombre      |       titulo        | nota |   fecha
+       Name      |       Title        | nota |   fecha
  ------------------+---------------------+------+------------
   Charles Napier   | Bones               |    8 | 2012-07-22
   Charles Napier   | Dexter              |    8 | 2012-09-27
@@ -258,9 +246,8 @@ Resultado esperado de la consulta:
   Stacy Keach      | Lost                |    5 | 2011-09-20
 
 
+Question 9:
 ^^^^^^^^^^^
-Pregunta 9:
-^^^^^^^^^^^
-El evaluador de eID=4 se equivocó al ingresar la nota de la serie con sID=1, por lo que quiere cambiar la calificación tiene de 9 a 8. Realizar la sentencia necesaria para cumplir con el ajuste requerido.
 
+The evaluator with eID = 4 entered wrong the score of the series with sID = 1, so he has to change the score from a 9 to an 8. Write the necessary sentence to accomplish the required adjustment.
 

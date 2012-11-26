@@ -11,24 +11,24 @@ Base de datos
 
 Se tiene una página que maneja base de datos de series de televisión con el siguiente esquema:
 
-* Serie: (**sID**, titulo, creador, año, audiencia, genero, temp, final)
-	La tabla **Serie** posee **sID** que es un id único y es primary key de la relación,
-	además se almacena el **titulo** de la serie, el **creador**, **año** es el año de estreno
-	de la primera temporada, la **audiencia** promedio anual, **genero** de la serie y
-	finalmente el atributo **temp** que contiene el número de temporadas emitidas hasta
-	el 2012, **final** es un atributo que dice si la serie se sigue emitiendo o terminó.
+* `\text{Series}(\underline{\text{sID}},\text{titulo, creador, año, audiencia, genero, temp, final})`
+	La tabla **Serie** posee *sID* que es un id único y es primary key de la relación,
+	además se almacena el *titulo* de la serie, el *creador*, *año* es el año de estreno
+	de la primera temporada, la *audiencia* promedio anual, *genero* de la serie y
+	finalmente el atributo *temp* que contiene el número de temporadas emitidas hasta
+	el 2012, *final* es un atributo que dice si la serie se sigue emitiendo o terminó.
 
-* Evaluador: (**eID**, nombre)
+* `\text{Evaluador}(\underline{\text{eID}},\text{nombre})`
 	El evaluador es quien califica la serie, la relación **Evaluador** tiene un atributo
-	**eID** (id único) que es clave primaria (primary key) y tiene otro atributo **nombre**
+	*eID* (id único) que es clave primaria (primary key) y tiene otro atributo *nombre*
 	que almacena el nombre del evaluador.
 
-* Calificación: (**eID**, **sID** ,nota,fecha)
+* `\text{Calificación}(\underline{\text{eID,sID}},\text{nota,fecha})`
 	Luego que el evaluador califica una serie se guarda en la tabla **Calificacion** que
-	tiene dos claves foráneas **eID** que es el id del evaluador y **sID** que es el id de
+	tiene dos claves foráneas *eID* que es el id del evaluador y *sID* que es el id de
 	algunas de las series almacenadas. Ambas claves foráneas (juntas) conforman la clave
-	primaria de **Calificación** También contiene la **nota** puesta por el evaluador
-	y la **fecha** que calificó dicha serie.
+	primaria de **Calificación** También contiene la *nota* puesta por el evaluador
+	y la *fecha* que calificó dicha serie.
 
 .. math::
 
@@ -178,7 +178,6 @@ Resultado esperado de la consulta:
     Bones               |     30.61
 
 
-^^^^^^^^^^^
 Pregunta 5:
 ^^^^^^^^^^^
 Buscar los títulos (sin que se repitan)  de las series con nota mayor a 7.
@@ -197,7 +196,6 @@ Resultado esperado de la consulta:
 
 
 
-^^^^^^^^^^^
 Pregunta 6:
 ^^^^^^^^^^^
 Buscar todos los años de estreno(sin que se repitan) que tiene una serie que recibió una calificación de 5 ó 6, y clasificarlos en orden descendentes.
@@ -212,7 +210,7 @@ Resultado esperado de la consulta:
   2005
   2010
 
-^^^^^^^^^^^
+
 Pregunta 7:
 ^^^^^^^^^^^
 Buscar el nombre de los evaluadores(sin que se repitan), que calificaron alguna serie que tenga más de 7 temporadas o haya finalizado.
@@ -230,7 +228,6 @@ Resultado esperado de la consulta:
   David Crosby
 
 
-^^^^^^^^^^^
 Pregunta 8:
 ^^^^^^^^^^^
 Escriba una consulta para devolver: nombre del evaluador, título de la serie, la nota, y la fecha de clasificación. Ordenar los datos, en primer lugar por el nombre del evaluador, y luego por título de la serie, y por último por la nota.
@@ -258,7 +255,6 @@ Resultado esperado de la consulta:
   Stacy Keach      | Lost                |    5 | 2011-09-20
 
 
-^^^^^^^^^^^
 Pregunta 9:
 ^^^^^^^^^^^
 El evaluador de eID=4 se equivocó al ingresar la nota de la serie con sID=1, por lo que quiere cambiar la calificación tiene de 9 a 8. Realizar la sentencia necesaria para cumplir con el ajuste requerido.
