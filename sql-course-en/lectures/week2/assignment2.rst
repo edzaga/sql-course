@@ -118,7 +118,7 @@ Question 1:
 ^^^^^^^^^^^
 
 * Create a database with the name “Assigment2”
-* Create 3 tables from de given database, with their respective attributes.
+* Create 3 tables from of given database, with their respective attributes.
 
 Choose the type of data which suits better each attribute, according to the provided values.
 
@@ -169,7 +169,7 @@ Expected query result:
 Question 5:
 ^^^^^^^^^^^
 
-Search al the titles (without repetition) of the series with a score greater than 7.
+Search all the titles (without repetition) of the series with a score greater than 7.
 
 Expected query result:
 
@@ -227,7 +227,7 @@ Expected query result:
 
 .. code-block:: sql
 
-         Name      |        Title        | nota |   fecha
+         Name      |        Title        | score |   date
  ------------------+---------------------+------+------------
   Charles Napier   | Bones               |    8 | 2012-07-22
   Charles Napier   | Dexter              |    8 | 2012-09-27
