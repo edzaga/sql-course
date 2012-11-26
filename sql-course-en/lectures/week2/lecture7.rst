@@ -121,8 +121,8 @@ the year 2005.
  both are met at the same time.
 
 This query exhibits the typical :sql:`SELECT` - :sql:`FROM` - :sql:`WHERE` of the majority of the SQL queries.
-La palabra clave FROM entrega la relación o relaciones de donde se obtiene la información (tablas). 
-En estos ejemplos, se utilizaron dos comparaciones unidas por la condición "AND" y "OR". 
+The :sql:`FROM` clause which indicates the relation (table) or relations from which data is to be retrieved. 
+In this examples, two comparisons were used, joined by the 'AND' and 'OR' conditions
 
 The department attribute of the **Employees** table is tested for equality against the constant 
 'Informatics'. This constant corresponds to a string of characters of variable length that in SQL,
