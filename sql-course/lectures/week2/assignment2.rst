@@ -11,7 +11,7 @@ Base de datos
 
 Se tiene una página que maneja base de datos de series de televisión con el siguiente esquema:
 
-* `\text{Series}(\underline{\text{sID}},\text{titulo, creador, año, audiencia, genero, temp, final})`
+* `\text{Serie}(\underline{\text{sID}},\text{titulo, creador, año, audiencia, genero, temp, final})`
 	La tabla **Serie** posee *sID* que es un id único y es primary key de la relación,
 	además se almacena el *titulo* de la serie, el *creador*, *año* es el año de estreno
 	de la primera temporada, la *audiencia* promedio anual, *genero* de la serie y
