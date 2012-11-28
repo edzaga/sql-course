@@ -338,14 +338,15 @@ Resolver las siguientes consultas mediante el álgebra relacional (recuerde que 
 **Respuesta**
 
 .. math::
-    \pi_{\text{codsocio,nombre}}((\text{Socio} \rhd \hspace{-0.1cm} \lhd \text{Prestamo} \rhd \hspace{-0.1cm} \lhd \text{Cinta} \rhd \hspace{-0.1cm} \lhd_{\text{titulo='WALL*E'}} \text{Pelicula}) \cup \\ (\text{Socio} \rhd \hspace{-0.1cm} \lhd \text{ListaEspera} \rhd \hspace{-0.1cm} \lhd_{\text{titulo='WALL*E'}} \text{Pelicula}) )
+    \pi_{\text{nombre}}(\sigma_{\text{titulo='WALL*E'}}(\text{Socio} \rhd \hspace{-0.1cm} \lhd \text{Prestamo} \rhd \hspace{-0.1cm} \lhd \text{Cinta} \rhd \hspace{-0.1cm} \lhd \text{Pelicula}) \cup \\ \sigma_{\text{titulo='WALL*E'}}(\text{Socio} \rhd \hspace{-0.1cm} \lhd \text{ListaEspera} \rhd \hspace{-0.1cm} \lhd \text{Pelicula}) )
 
 1.8. Obtener los nombres de los socios que han tomado prestada la película “WALL*E” alguna vez y que además están en su lista de espera.
 
 **Respuesta**
 
 .. math::
-    \pi_{\text{codsocio,nombre}}((\text{Socio} \rhd \hspace{-0.1cm} \lhd \text{Prestamo} \rhd \hspace{-0.1cm} \lhd \text{Cinta} \rhd \hspace{-0.1cm} \lhd_{\text{titulo='WALL*E'}} \text{Pelicula}) \cap \\ (\text{Socio} \rhd \hspace{-0.1cm} \lhd \text{ListaEspera} \rhd \hspace{-0.1cm} \lhd_{\text{titulo='WALL*E'}} \text{Pelicula}) )
+    \pi_{\text{nombre}}(\sigma_{\text{titulo='WALL*E'}}(\text{Socio} \rhd \hspace{-0.1cm} \lhd \text{Prestamo} \rhd \hspace{-0.1cm} \lhd \text{Cinta} \rhd \hspace{-0.1cm} \lhd \text{Pelicula}) \cap \\ \sigma_{\text{titulo='WALL*E'}}(\text{Socio} \rhd \hspace{-0.1cm} \lhd \text{ListaEspera} \rhd \hspace{-0.1cm} \lhd \text{Pelicula}) )
+
 
 Ejercicio 2
 ^^^^^^^^^^^^

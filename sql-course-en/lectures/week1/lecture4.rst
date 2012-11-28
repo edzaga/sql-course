@@ -348,14 +348,14 @@ Solve the following queries using relational algebra (remember that also in lect
 **Answer**
 
 .. math::
-    \pi_{\text{codmember,name}}((\text{Member} \rhd \hspace{-0.1cm} \lhd \text{Loan} \rhd \hspace{-0.1cm} \lhd \text{Tape} \rhd \hspace{-0.1cm} \lhd_{\text{title='WALL*E'}} \text{Film}) \cup \\ (\text{Member} \rhd \hspace{-0.1cm} \lhd \text{WaitingList} \rhd \hspace{-0.1cm} \lhd_{\text{title='WALL*E'}} \text{Film}) )
+   \pi_{\text{name}}(\sigma_{\text{title='WALL*E'}}(\text{Member} \rhd \hspace{-0.1cm} \lhd \text{Loan} \rhd \hspace{-0.1cm} \lhd \text{Tape} \rhd \hspace{-0.1cm} \lhd \text{Film}) \cup \\ \sigma_{\text{titulo='WALL*E'}}(\text{Member} \rhd \hspace{-0.1cm} \lhd \text{WaitingList} \rhd \hspace{-0.1cm} \lhd \text{Film}) )
 
 1.8. Get the names of the members who have ever borrowed the film WALL*E and that also are on its waiting list.
  
 **Answer**
 
 .. math::
-    \pi_{\text{codmember,name}}((\text{Member} \rhd \hspace{-0.1cm} \lhd \text{Loan} \rhd \hspace{-0.1cm} \lhd \text{Tape} \rhd \hspace{-0.1cm} \lhd_{\text{title='WALL*E'}} \text{Film}) \cap \\ (\text{Member} \rhd \hspace{-0.1cm} \lhd \text{WaitingList} \rhd \hspace{-0.1cm} \lhd_{\text{title='WALL*E'}} \text{Film}) )
+       \pi_{\text{name}}(\sigma_{\text{title='WALL*E'}}(\text{Member} \rhd \hspace{-0.1cm} \lhd \text{Loan} \rhd \hspace{-0.1cm} \lhd \text{Tape} \rhd \hspace{-0.1cm} \lhd \text{Film}) \cap \\ \sigma_{\text{titulo='WALL*E'}}(\text{Member} \rhd \hspace{-0.1cm} \lhd \text{WaitingList} \rhd \hspace{-0.1cm} \lhd \text{Film}) )
 
 Exercise 2
 ^^^^^^^^^^^^
