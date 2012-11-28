@@ -11,12 +11,12 @@ Question 1:
 
 Make an entity relationship model (E-R): 
 
-  1. We have a university in which there are several courses and special workshops. 
-  Each workshop is directed by a teacher who can direct several workshops. Special 
-  workshops demand many resources, so that only allows that each student enrolls to 
-  one workshop of this type. On the other hand, a course consists of several subjects. 
+  1. We have a university in which there are several  workshops. 
+  Each workshop is directed by a teacher who can direct several workshops.
+  Workshops demand many resources, so that only allows that each student enrolls to 
+  one workshop of this type. Also, a workshop consists of several subjects. 
   Each of them has a number of credits. Students can enroll to the subjects they want. 
-  Finally, the student receives a grade for each subject, at the end of the course.
+  Finally, the student receives a grade for each subject, at the end of the workshop.
 
   2. We want to make a database with discs that we have at home. A disc can have a singer 
   or a group, or more. Also a disc has a record. We are going to complicate the example the 

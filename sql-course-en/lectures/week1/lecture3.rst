@@ -702,7 +702,7 @@ Consider the following databases:
 
 4.  Serves ( `\underline{\text{pizzeria, pizza}}`, price ) : (pizzeria, pizza) is a key.
 
-Write relational algebra expressions for the following five queries.
+Write relational algebra expressions for the following two queries.
 
 *  Select those people who eat pizzas with extra cheese.
 
