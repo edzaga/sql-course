@@ -1,5 +1,8 @@
-Tarea 2
+Tarea 2 
 =======
+
+Fecha de entrega: Lunes 10 de Diciembre 2012 hasta 23:59
+-----------------------------------------------------------
 
 .. role:: sql(code)
    :language: sql

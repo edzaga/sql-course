@@ -1,6 +1,9 @@
 Assignment 2
 ============
 
+Deadline: December 10, 2012 until 23:59
+-----------------------------------------
+
 .. role:: sql(code)
    :language: sql
    :class: highlight
