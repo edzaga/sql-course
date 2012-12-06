@@ -30,7 +30,7 @@ Database
 	\hline
 	1 & \text{The Big Bang Theory} & \text{Bill Prady} & 2007 & 45.99 & \text{comedy} & 6 & false\\
 	\hline
-	2 & \text{Grey’s Anatomy} & \text{Shonda Rhimes} & 2005 & 40.35 & \text{drama} & 9 & false \\
+	2 & \text{Greys Anatomy} & \text{Shonda Rhimes} & 2005 & 40.35 & \text{drama} & 9 & false \\
 	\hline
 	3 & \text{Dexter} & \text{James Manos} & 2006 & 50.24	& \text{crime} & 7 & false\\
 	\hline
@@ -196,9 +196,9 @@ Expected query result:
 
  Year
  ------
-  2004
-  2005
   2010
+  2005
+  2004
 
 
 Question 7:
