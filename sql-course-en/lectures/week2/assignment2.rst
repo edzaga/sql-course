@@ -180,9 +180,7 @@ Expected query result:
 
        Title
  ---------------------
-  Lost
   Dexter
-  The Walking Dead
   The Big Bang Theory
   Bones
 

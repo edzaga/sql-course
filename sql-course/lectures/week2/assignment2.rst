@@ -191,9 +191,7 @@ Resultado esperado de la consulta:
 
        titulo
  ---------------------
-  Lost
   Dexter
-  The Walking Dead
   The Big Bang Theory
   Bones
 
