@@ -5,7 +5,7 @@ Lecture 10 - Subqueries in FROM and SELECT
    :class: highlight 
  
  
-En la lectura 9, se pudo ver como se utilizan las subconsultas en la condición **C**:: 
+En la lectura 9, se pudo ver cómo se utilizan las subconsultas en la condición **C**:: 
          
  SELECT L 
  FROM R 
@@ -31,7 +31,10 @@ en cuestión (en este caso Doris). Esto es posible realizarlo en una sola consul
 
 .. code-block:: sql
  
-  SELECT sname, average, average-(SELECT max(average) FROM student ) as diferencia FROM student WHERE sname ='Doris';
+  SELECT sname, average, average-(SELECT max(average) FROM student )
+  as diferencia
+  FROM student
+  WHERE sname ='Doris';
 
 cuya salida será::
 
@@ -44,7 +47,10 @@ Para distinguir a ambas Doris, se puede agregar el atributo sID a la consulta:
 
 .. code-block:: sql
  
-  SELECT sid, sname, average, average-(SELECT max(average) FROM student ) as diferencia FROM student WHERE sname ='Doris';
+  SELECT sid, sname, average, average-(SELECT max(average) FROM student )
+  as diferencia
+  FROM student
+  WHERE sname ='Doris';
 
 en cuyo caso la salida será::
 
@@ -53,7 +59,7 @@ en cuyo caso la salida será::
    5  | Doris |  45     | -25
    7  | Doris |  70     |   0
 
-por lo que, efectivamente se distingue que persona es la que tiene el promedio 45 y cual el 70.
+por lo que, efectivamente se distingue cual persona es la que tiene el promedio 45 y cual el 70.
 
 .. note::   
   
@@ -66,16 +72,19 @@ por lo que, efectivamente se distingue que persona es la que tiene el promedio 4
 
 
 Hay que tener la precaución de retornar un sólo valor a la hora de realizar una subconsulta dentro de un SELECT. De otra forma se retornará 
-un error, como se verá en el ejemplo 2.
+un error, como se ve en el ejemplo 2.
 
 Ejemplo 2
 ^^^^^^^^^
 
-Supongamos que se tabaja bajo el contexto del ejemplo 1, pero sin utilizar la funcioón MAX, que retorna sólo un valor:
+Supongamos que se tabaja bajo el contexto del ejemplo 1, pero sin utilizar la función MAX, que retorna sólo un valor:
 
 .. code-block:: sql
  
-  SELECT sname, average, average-(SELECT average FROM student ) as diferencia FROM student WHERE sname ='Doris';
+  SELECT sname, average, average-(SELECT average FROM student )
+  as diferencia
+  FROM student
+  WHERE sname ='Doris';
 
 en cuyo caso la salida correponderá al siguiente error::
   
@@ -88,7 +97,8 @@ Supongamos que se desea saber el nombre de cada alumno, su promedio,  y su difer
 
 .. code-block:: sql
  
-  SELECT sname, average, average-(SELECT min(average) FROM student ) as diferencia FROM student;
+  SELECT sname, average, average-(SELECT min(average) FROM student ) as diferencia
+  FROM student;
 
 en cuyo caso la salida será::
   
@@ -108,7 +118,7 @@ en cuyo caso la salida será::
 SELECT-FROM(SELECT)-WHERE 
 ~~~~~~~~~~~~~~~~~~~~~~~~~ 
  
-Otro uso que se les da a las subconsultas es en a palabra reservada FROM. En el FROM de la consulta, es posible utilizar una subconsulta. De 
+Otro uso que se les da a las subconsultas es en la palabra reservada FROM. En el FROM de la consulta, es posible utilizar una subconsulta. De 
 todos modos es recomendable agregarle un alias, pues el resultado de la subconsulta no tiene un nombre establecido.  
  
  
@@ -129,7 +139,8 @@ Ejemplo extra
   propiedades  se explicarán en la lectura 14 (semana 4). Ahora se exponen para dejar en claro que las subconsultas
   se pueden utilizar en cualquiera de las 4 operaciones básicas.
 
-Consideremos que se quiere saber el nombre, la calificación y  del estudiante con el menor promedio, además de su diferencia con el mejor promedio.
+Consideremos que se quiere saber el nombre y la calificación del estudiante con el menor promedio, además de su diferencia con el mejor promedio.
+
 .. de la tabla student, al alumno con el menor promedio:
 
 .. code-block:: sql
@@ -144,7 +155,7 @@ cuya salida es::
   -------+---------+-----------
   Doris  |  45     | -25
   
-Supongamos que el caso de la alumna que tiene el prmedio más bajo, Doris, corresponde a un error de planilla. Se decide actualizar 
+Supongamos que el caso de la alumna que tiene el promedio más bajo, Doris, corresponde a un error de planilla. Se decide actualizar 
 el promedio utilizando subconsultas (considerando que es la única almuna con el menor promedio):
 
 .. code-block:: sql
