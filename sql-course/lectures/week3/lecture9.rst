@@ -5,7 +5,7 @@ Lecture 9 - Subqueries in WHERE clause
    :class: highlight
 
 
-Una subconsulta es una consulta que retorna un **único** valor y que esta anidada dentro de un SELECT, INSERT. UPDATE o DELETE,
+Una subconsulta es una consulta que retorna un **único** valor y que está anidada dentro de un SELECT, INSERT. UPDATE o DELETE,
 o incluso otra subconsulta. Una subconsulta puede ser utilizada en cualquier lugar donde una expresión está permitida.
 
 
@@ -18,15 +18,15 @@ derivados, como lo son el uso de :sql:`JOIN` y operadores lógicos **AND, OR, NO
 son normalmente utilizados para filtrar resultados mediante la manipulación de una
 serie de condiciones.
 
-Sin embargo existe otra manera de filtrar consultas: Las **subconsultas**.
+Sin embargo  Las **subconsultas** son otra manera de filtrar consultas.
 Una subconsulta es una sentencia :sql:`SELECT` que aparece dentro de otra sentencia
-:sql:`SELECT` y que normalmente son utilizadas para filtrar una clausula LALAWHERE con el
+:sql:`SELECT` y que normalmente son utilizadas para filtrar una claúsula WHERE con el
 conjunto de resultados de la subconsulta.
 
 Una subconsulta tiene la misma sintaxis que una sentencia :sql:`SELECT` normal
 exceptuando que aparece encerrada entre paréntesis.
 
-Como es usual, se utilizará el ejemplo de la simple base de datos
+Como es usual, se utilizará el ejemplo de la base de datos
 "Admisión a la Universidad".
 ::
 
@@ -41,9 +41,12 @@ cuyas tablas son creadas mediante:
 
 .. code-block:: sql
 
- CREATE TABLE College(id  serial,  cName VARCHAR(20), state VARCHAR(30), enrollment INTEGER, PRIMARY KEY(id));
- CREATE TABLE Student(sID serial,  sName VARCHAR(20), Average   INTEGER,     PRIMARY kEY(sID));
- CREATE TABLE   Apply(sID INTEGER, cName VARCHAR(20), major VARCHAR(30), decision BOOLEAN,   PRIMARY kEY(sID, cName, major));
+ CREATE TABLE College(id  serial,  cName VARCHAR(20), state VARCHAR(30),
+ enrollment INTEGER, PRIMARY KEY(id));
+ CREATE TABLE Student(sID serial,  sName VARCHAR(20), Average INTEGER,
+ PRIMARY kEY(sID));
+ CREATE TABLE   Apply(sID INTEGER, cName VARCHAR(20), major VARCHAR(30), 
+ decision BOOLEAN,   PRIMARY kEY(sID, cName, major));
 
 
 Se utilizarán 4 establecimientos educacionales:
@@ -72,27 +75,48 @@ y 21 postulaciones:
 
 .. code-block:: sql
 
- INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Stanford', 'science'        , True);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Stanford', 'engineering'    , False);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Berkeley', 'science'        , True);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Berkeley', 'engineering'    , False);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (2, 'Berkeley', 'natural hostory', False);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'MIT'     , 'math'           , True);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'Harvard' , 'math'           , False);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'Harvard' , 'science'        , False);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'Harvard' , 'engineering'    , True);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (4, 'Stanford', 'marine biology' , True);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (4, 'Stanford', 'natural history', False);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (5, 'Harvard' , 'science'        , False);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (5, 'Berkeley', 'psychology'     , True);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (5, 'MIT'     , 'math'           , True);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (6, 'MIT'     , 'science'        , False);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'Stanford', 'psychology'     , True);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'Stanford', 'science'        , True);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'MIT'     , 'math'           , True);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'MIT'     , 'science'        , True);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'Harvard' , 'science'        , False);
- INSERT INTO Apply (sID, cName, major, decision) VALUES (8, 'MIT'     , 'engineering'    , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Stanford', 
+ 'science'        , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Stanford', 
+ 'engineering'    , False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Berkeley', 
+ 'science'        , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (1, 'Berkeley',
+ 'engineering'    , False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (2, 'Berkeley',
+ 'natural history', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'MIT'     ,
+ 'math'           , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'Harvard' ,
+ 'math'           , False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'Harvard'
+ , 'science'        , False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (3, 'Harvard' ,
+ 'engineering'    , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (4, 'Stanford',
+ 'marine biology' , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (4, 'Stanford',
+ 'natural history', False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (5, 'Harvard' ,
+ 'science'        , False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (5, 'Berkeley',
+ 'psychology'     , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (5, 'MIT'     ,
+ 'math'           , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (6, 'MIT'     ,
+ 'science'        , False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'Stanford',
+ 'psychology'     , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'Stanford',
+ 'science'        , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'MIT'     ,
+ 'math'           , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'MIT'     ,
+ 'science'        , True);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (7, 'Harvard' ,
+ 'science'        , False);
+ INSERT INTO Apply (sID, cName, major, decision) VALUES (8, 'MIT'     ,
+ 'engineering'    , True);
 
 
 La situación que se pretende describir con estas tablas de ejemplo es la
@@ -109,7 +133,10 @@ estudiantes que han postulado para estudiar "science" en algún centro educacion
 
 .. code-block:: sql
 
- SELECT sID, sName FROM Student WHERE sID in (SELECT sID FROM Apply WHERE major = 'science');
+ SELECT sID, sName
+ FROM Student
+ WHERE sID in
+ (SELECT sID FROM Apply WHERE major = 'science');
 
 cuya salida es::
 
@@ -141,7 +168,7 @@ por tanto, la consulta se puede reformular como:
    En la consulta se debe especificar que el atributo *sID* corresponde al de la
    tabla **Student**, pues la tabla **Apply** también cuenta con dicho atributo.
    Si no se toma en cuenta este detalle, es probable que la consulta termine en un
-   error o resultados no deseados.
+   error con resultados no deseados.
 
 en cuyo caso la salida será::
 
@@ -162,13 +189,15 @@ Las 3 filas "extra" se deben, a que al utilizar :sql:`join` y operadores lógico
 se toman en cuenta todos los resultados, por ejemplo Amy postuló en dos ocasiones a
 science. Al utilizar la subconsulta, se eliminan estos resultados duplicados,
 haciendo la consulta más fiel a la realidad pues se pregunta por aquellos
-estudiantes que han postulado a "science", no cuantas veces postuló cada uno.
+estudiantes que han postulado a "science", no cuántas veces postuló cada uno.
 No obstante si se agrega la clausula :sql:`DISTINCT`, se obtiene la misma respuesta
 que al utilizar una subconsulta. Es decir que para la consulta:
 
 .. code-block:: sql
 
- SELECT DISTINCT Student.sID, sName FROM Student, Apply WHERE Student.sID = Apply.sID AND major = 'science';
+ SELECT DISTINCT Student.sID, sName
+ FROM Student, Apply
+ WHERE Student.sID = Apply.sID AND major = 'science';
 
 su salida será::
 
@@ -190,7 +219,10 @@ quedado seleccionados para estudiar ciencias en algún centro educacional.
 
 .. code-block:: sql
 
-  SELECT sName FROM Student WHERE sID in (SELECT sID FROM Apply WHERE major = 'Science');
+  SELECT sName 
+  FROM Student
+  WHERE sID in
+  (SELECT sID FROM Apply WHERE major = 'Science');
 
 cuya salida es::
 
@@ -237,7 +269,9 @@ Por tanto, y al igual que el ejemplo anterior, se utilizará :sql:`DISTINCT`, es
 
 .. code-block:: sql
 
- SELECT DISTINCT sName FROM Student, Apply WHERE Student.sID = Apply.sID AND major = 'science';
+ SELECT DISTINCT sName
+ FROM Student, Apply
+ WHERE Student.sID = Apply.sID AND major = 'science';
 
 cuya salida es::
 
@@ -256,19 +290,19 @@ como ambas Doris cuentan con un *sID* diferente, no se tomaba en cuenta como
 duplicado, pero en esta consulta, al solo contar con *sName*, ambas Doris se toman
 como 2 instancias de la misma y se elimina una.
 
-La única forma de obtener el "número correcto de duplicados" es utilizando subconsultas
+En este caso, la única forma de obtener el "número correcto de duplicados" es utilizando subconsultas.
 
 
 IN AND NOT IN
 =============
 
-:sql:`IN` y :sql:`NOT IN` permiten realizar filtros de forma más específica, necesarios para
+:sql:`IN` y :sql:`NOT IN` permiten realizar filtros de forma más específica, que permiten
 responder preguntas como la del ejemplo 3
 
 Ejemplo 3
 ^^^^^^^^^
 En el siguiente ejemplo se quiere saber el *sID* y el *sName* de aquellos
-estudiantes que postularon a science, pero no a engineering:
+estudiantes que postularon a "science", pero no a "engineering":
 
 .. code-block:: sql
 
@@ -311,7 +345,7 @@ retorna al menos una fila.
 Ejemplo 4
 ^^^^^^^^^
 En este ejemplo se busca el nombre de todos los establecimientos educacionales
-que comparten estado. Si se ejecuta:
+que están en el mismo estado. Si se ejecuta:
 
 .. code-block:: sql
 
@@ -334,7 +368,10 @@ La consulta que pretende resolver esta pregunta es:
 
 .. code-block:: sql
 
- SELECT cName, state FROM College C1 WHERE exists (SELECT * FROM College C2 WHERE C2.state = C1.state);
+ SELECT cName, state
+ FROM College C1
+ WHERE exists
+ (SELECT * FROM College C2 WHERE C2.state = C1.state);
 
 .. note::
 
@@ -357,7 +394,10 @@ Por ende, es necesario dejar en claro que C1 y C2 son diferentes.
 
 .. code-block:: sql
 
- SELECT cName, state FROM College C1 WHERE exists (SELECT * FROM College C2 WHERE C2.state = C1.state and C1.cName <> C2.cName);
+ SELECT cName, state
+ FROM College C1
+ WHERE exists
+ (SELECT * FROM College C2 WHERE C2.state = C1.state and C1.cName <> C2.cName);
 
 en cuyo caso la salida corresponde a la correcta, es decir::
 
@@ -369,7 +409,10 @@ en cuyo caso la salida corresponde a la correcta, es decir::
  (2 rows)
 
 
-Es posible realizar computos matemáticos (valor más alto, valor más bajo)  utilizando subconsultas:
+CÁLCULOS MATEMÁTICOS
+====================
+
+Es posible realizar cálculos matemáticos (valor más alto, valor más bajo)  utilizando subconsultas:
 
 Ejemplo 5
 ^^^^^^^^^
@@ -380,7 +423,10 @@ primera.
 
 .. code-block:: sql
 
- SELECT cName, state FROM College C1 WHERE exists (SELECT * FROM College C2 WHERE C2.enrollment > C1.enrollment);
+ SELECT cName, state
+ FROM College C1
+ WHERE exists
+ (SELECT * FROM College C2 WHERE C2.enrollment > C1.enrollment);
 
 Donde el resultado corresponde a *Berkeley*.
 
