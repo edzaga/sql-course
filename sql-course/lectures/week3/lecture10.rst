@@ -200,8 +200,8 @@ cuya salida es::
 
 Es decir son equivalentes, pues el alias "example", contiene toda la información de la tabla student.
 
-Ejemplo 6
-^^^^^^^^^
+.. Ejemplo 6
+.. ^^^^^^^^^
 
 
 RECAPITULACIÓN
