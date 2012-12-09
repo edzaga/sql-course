@@ -21,8 +21,37 @@ SELECT(SELECT)-FROM-WHERE
 ~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
 .. parrafo introductorio que dice q se usa la tabla de alumnos de la lectura 9 para el ejemplo 
+Es posible utilizar una subconsulta como una columna dentro de la selección.
 
 Ejemplo 1
+^^^^^^^^^
+
+Supongamos que se terminó el periodo de postulaciones y desea obtener una lista de  los estudiantes y cuantas veces fueron aceptados.
+
+.. code-block:: sql
+
+   SELECT sid, sname, 
+   (SELECT COUNT (*) FROM apply A WHERE A.sid = S.sid and A.decision = 't')
+   as acepted
+   FROM student S
+   ORDER BY acepted DESC;
+
+cuya salida será::
+
+   sid | sname  | acepted
+   ----+--------+--------
+    7  | Doris  |  4     
+    5  | Doris  |  2     
+    1  | Amy    |  2     
+    4  | Irene  |  1     
+    3  | Craig  |  1    
+    8  | Tim    |  1   
+    6  | Gary   |  0    
+    2  | Edward |  0     
+
+ 
+
+Ejemplo 2
 ^^^^^^^^^
 
 Se desea saber el promedio de un determinado alumno y su diferencia con el promedio más alto del grupo de alumnos. Podría conseguirse
@@ -72,12 +101,12 @@ por lo que, efectivamente se distingue cual persona es la que tiene el promedio 
 
 
 Hay que tener la precaución de retornar un sólo valor a la hora de realizar una subconsulta dentro de un SELECT. De otra forma se retornará 
-un error, como se ve en el ejemplo 2.
+un error, como se ve en el ejemplo 3.
 
-Ejemplo 2
+Ejemplo 3
 ^^^^^^^^^
 
-Supongamos que se tabaja bajo el contexto del ejemplo 1, pero sin utilizar la función MAX, que retorna sólo un valor:
+Supongamos que se tabaja bajo el contexto del ejemplo 2, pero sin utilizar la función MAX, que retorna sólo un valor:
 
 .. code-block:: sql
  
@@ -90,7 +119,7 @@ en cuyo caso la salida correponderá al siguiente error::
   
    ERROR: more than one row returned by a subquery used as an expression.
 
-Ejemplo 3
+Ejemplo 4
 ^^^^^^^^^
 
 Supongamos que se desea saber el nombre de cada alumno, su promedio,  y su diferencia respecto al promedio más bajo del curso:
@@ -120,7 +149,6 @@ SELECT-FROM(SELECT)-WHERE
  
 Otro uso que se les da a las subconsultas es en la palabra reservada FROM. En el FROM de la consulta, es posible utilizar una subconsulta. De 
 todos modos es recomendable agregarle un alias, pues el resultado de la subconsulta no tiene un nombre establecido.  
- 
  
 
 
