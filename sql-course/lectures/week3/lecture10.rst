@@ -198,7 +198,7 @@ cuya salida es::
   7  | Doris
   8  | Tim   
 
-Es decir son equivalente, pues el alias "example", contiene toda la información de student.
+Es decir son equivalentes, pues el alias "example", contiene toda la información de la tabla student.
 
 Ejemplo 6
 ^^^^^^^^^
@@ -276,12 +276,5 @@ Cuya salida tras realizar el SELECT * de rigor, es::
     6  | Gary   |  53
     7  | Doris  |  70   
     8  | Tim    |  60 
-
-
-
-
-Falta::
-  
-  buscar ejemplo d subquery en from
 
 
