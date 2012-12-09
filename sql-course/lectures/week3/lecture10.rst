@@ -147,9 +147,61 @@ en cuyo caso la salida será::
 SELECT-FROM(SELECT)-WHERE 
 ~~~~~~~~~~~~~~~~~~~~~~~~~ 
  
-Otro uso que se les da a las subconsultas es en la palabra reservada FROM. En el FROM de la consulta, es posible utilizar una subconsulta. De 
-todos modos es recomendable agregarle un alias, pues el resultado de la subconsulta no tiene un nombre establecido.  
+Otro uso que se les da a las subconsultas es en la palabra reservada FROM. En el FROM de la consulta, es posible utilizar una
+subconsulta. De todos modos es necesario agregarle un alias, pues el resultado de la subconsulta no tiene un nombre establecido.  
+En caso de no hacerlo, aparece el siguiente error::
  
+ ERROR: subquery in FROM must have an alias
+ HINT: For example, FROM (SELECT ...) [AS] foo.
+
+Como ya se ha mencionado, en la sección del FROM, se listan las tablas desde donde se sacarán los datos para crear las relaciones. Por lo tanto
+la subconsulta de este estilo corresponde a crear una nueva tabla desde donde  se podrán extraer datos.
+
+Ejemplo 5
+^^^^^^^^^
+Para demostrar el funcionamiento de la subconsulta dentro del FROM, supongamos que se desea extraer el id y nombre de cada
+alumno dentro de la tabla student:
+
+.. code-block:: sql
+
+ SELECT sid, sname FROM student;
+
+cuya salida es::
+ 
+ sid | sname  
+ ----+--------
+  1  | Amy    
+  2  | Edward 
+  3  | Craig 
+  4  | Irene
+  5  | Doris
+  6  | Gary 
+  7  | Doris
+  8  | Tim   
+
+Lo cual es equivalente a la consulta:
+
+.. code-block:: sql
+
+ SELECT sid, sname FROM (SELECT * FROM student) as example;
+
+cuya salida es::
+ 
+ sid | sname  
+ ----+--------
+  1  | Amy    
+  2  | Edward 
+  3  | Craig 
+  4  | Irene
+  5  | Doris
+  6  | Gary 
+  7  | Doris
+  8  | Tim   
+
+Es decir son equivalente, pues el alias "example", contiene toda la información de student.
+
+Ejemplo 6
+^^^^^^^^^
 
 
 RECAPITULACIÓN
