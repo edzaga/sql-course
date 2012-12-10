@@ -108,8 +108,8 @@ Pregunta 5 (10 puntos):
 
 Se desea saber:
 
-	a) La cantitdad de titulos y el nombre del equipo que más ha ganado y la diferencia con la cantidad de titulos del equipo que menos ha ganado (5 ptos)
-	b) Corroborar esta informacion, consultando la cantitdad de titulos y el nombre del equipo que menos ha ganado y la diferencia con la cantidad de titulos del equipo que más ha ganado (5 ptos)
+	a) La cantitdad de titulos y el nombre del equipo que más ha ganado y la diferencia con la cantidad de titulos del equipo que menos ha ganado.
+	b) Corroborar esta informacion, consultando la cantitdad de titulos y el nombre del equipo que menos ha ganado y la diferencia con la cantidad de titulos del equipo que más ha ganado.
 
 Pregunta 6 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -123,13 +123,13 @@ Pregunta 7 (10 puntos):
 Obtener el nombre del equipo que más partidos ganó de local.
 
 
-Pregunta 8 (10 puntos):
+Pregunta 8 (15 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Elabore una consulta en SQL que obtenga la cantidad de puntos que obtuvo UCH durante el campeonato (los partidos ganados otorgan 3 puntos, empate 1 punto, perdido 0 punto, el partido lo gana el equipo que hace más goles).
 
 
-Pregunta 9 (10 puntos):
+Pregunta 9 (15 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Mediante una consulta SQL, obtenga el equipo que salió campeón (equipo campeón es aquel que obtuvo más puntos, siguiendo la ponderación dada en la pregunta anterior).
