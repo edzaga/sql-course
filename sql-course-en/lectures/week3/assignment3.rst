@@ -1,79 +1,120 @@
 Assignment 3
 ============
 
-#. A football game between two teams
-   can be represented as a tuple of two teams::
-   
-       >>> game = ('Chile', 'Spain')     
-   
-   The game result
-   can be represented as a tuple with the goals   
-   performed by each team::
-       
-       >>> result = (4, 1)    
-   
-   All the tournament games
-   cab be represented as a dictionary
-   associated to each result game::
-   
-       >>> tournament = {  
-       ...     ('Honduras',    'Chile'):       (1, 4),   
-       ...     ('Spain',       'Switzerland'): (1, 1),   
-       ...     ('Chile',       'Switzerland'): (2, 0),   
-       ...     ('Spain',       'Honduras'):    (1, 0),   
-       ...     ('Chile',       'Spain'):       (5, 5),   
-       ...     ('Switzerland', 'Honduras'):    (1, 2),
-       ... }  
+Deadline: 24/12/12 until 23:59
+------------------------------
 
-   **Note:** Use this dictionary to test your functions.
-   
-   #. Write a function called ``teams(tournament)``  
-      that return the set of teams which participated in the tournament::
-         
-          >>> teams(tournament)
-          set(['Chile', 'Honduras', 'Switzerland', 'Spain'])
-   
-   #. Write a function called ``draws(tournament)``    
-      which count how many games of the tournament finish in a draw::   
-         
-       >>> draws(tournament)
-       2
+.. role:: sql(code)
+  :language: sql
+  :class: highlight
 
-   #. When a team win a game, receives 3 points; 
-      when draws, receive 1 point, and when lose, does not receive any point.
-      Write a function called ``points(team, tournament)`` 
-      which return how many points obtained a team in a tournament::
+--------
+Database
+--------
 
-          >>> points('Chile', tournament) 
-          7 
-          >>> points('Honduras', tournament)    
-          3 
-   
-   #. The difference of the goals of a team    
-      is the sum of all the goals made 
-      minus the sum of the goals against.  
-      Write a function ``gd(team, tournament)``     
-      which returns the goal differences    
-      of a team in a tournament::    
-         
-          >>> gd('Chile', tournament)     
-          5 
-          >>> gd('Honduras', tournament)  
-          -3
-         
-   #. Write a function called ``best_game(tournament)``  
-      which return the game with more goals::
-         
-          >>> best_game(tournament)   
-          ('Chile', 'Spain')   
-   
-   #. Write a function called ``position_table(tournament)``  
-      which return a tuple lists
-      ``(team, points, goal differences)``   
-      order by the points from highest to lowest.
-      The teams with the same points, must be ordered by goal differences
-      from highest to lowest::
-         
-          >>> position_table(tournament)
-          [('Chile', 7, 5), ('Spain', 5, 1), ('Honduras', 3, -3), ('Switzerland', 1, -3)] 
+A database containing the data of various football teams exist with the following scheme:
 
+* `\text{Team}(\underline{\text{ideq}},\text{name, city, titles})`
+  The table **Team** has *ideq*, which is a unique ID, and primary relationship key.
+  The team’s name and homecity are stored in *name* and *city* accordingly. also the 
+  *titles* attribute is an integer containing the number of times the team emerged 
+  champion from a competition.
+
+.. code-block:: sql
+
+ ideq | name |   city   | titles
+------+--------+-------------+---------
+    1 | UCH    | Santiago    |      16
+    2 | ÑUB    | Chillan     |       0
+    3 | SW     | Valparaiso  |       3
+    4 | CDA    | Antofagasta |       0
+    5 | COB    | Calama      |       8
+    6 | UE     | Santiago    |       6
+               (6 rows)
+
+* `\text{Player}(\underline{\text{rut}},\text{ideq,name,position,shirtnum})`
+    The relationship **Player** has the *rut* attribute as a unique ID and is the primary key.
+    The *ideq* attribute is the foreign key that makes reference to the table of teams, 
+    while *name* and *position* store the name and position of the player. The *shirtnum* 
+    atribute corresponds to a integer with number in the player shirt.
+
+.. code-block:: sql
+
+ rut  | ideq |  name  | position  | shirtnum
+------+------+-----------+-----------+-------------
+ 1760 |    1 | Diaz      | Volante   |          21
+ 1345 |    1 | Herrera   | Arquero   |          25
+ 1313 |    1 | Rojas     | Defensa   |          13
+ 1995 |    1 | Rivarola  | Delantero |           7
+ 1999 |    1 | Salas     | Delantero |          11
+ 2343 |    1 | Vargas    | Delantero |          17
+ 5678 |    2 | Rodriguez | Volante   |           6
+ 3423 |    2 | Videla    | Volante   |           2
+ 1234 |    2 | Garces    | Arquero   |          12
+ 1235 |    2 | Gutierrez | Delantero |           9
+ 1349 |    2 | Marino    | Volante   |           8
+    (36 rows)
+
+
+* `\text{Match}(\underline{\text{ideql,ideqv}},\text{golLocal,golVisit})`
+  The **Match** table stores the results of the matches betwen two teams. *ideql* 
+  corresponds to the ID of the local team, while *ideqv* corresponds to the ID of the 
+  visiting team. *golLocal* and *golVisit* are the points scored by the local team and 
+  the visiting team accordingly.
+              
+
+.. code-block:: sql
+
+ ideql | ideqv | golLocal | golVisita
+-------+-------+----------+-----------
+     1 |     2 |        4 |         3
+     1 |     3 |        3 |         1
+     1 |     4 |        3 |         2
+     1 |     5 |        2 |         1
+     1 |     6 |        3 |         0
+     2 |     1 |        0 |         0
+     2 |     3 |        3 |         1
+     2 |     4 |        1 |         2
+     (30 filas)
+
+.. note::
+
+ The tables provided above are only a reference. the file with the values can be found in the documents section of the curse platform
+              
+Question 1:
+^^^^^^^^^^^
+
+Retrieve the name of all the players, except those who play in the “delantero” or “arquero” position (use subqueries).
+
+Question 2:
+^^^^^^^^^^^
+
+Retrieve the name of all the players that play in the same position as “Sanchez” (use subqueries).
+
+Question 3:
+^^^^^^^^^^^
+
+Select all the field of the Player table whose team’s home city is “Santiago” or “Valparaíso” (use subqueries).
+
+Question 4:
+^^^^^^^^^^^
+
+Make a SQL query that returns the amount of matches “SW” won playing as local.
+
+Question 5:
+^^^^^^^^^^^
+
+Retrieve the name of the team that won more matches playing as local.
+
+Question 6:
+^^^^^^^^^^^
+
+Make a SQL query that returns the amount of points that “UCH” obtained during the 
+championship ( won matches award 3 points, while a draw awards 1 and a defeat awards 
+no points. the winner is the team that scored more goals)
+
+Question 7:
+^^^^^^^^^^^
+
+Through a SQL query, retrieve the team that won the championship (the team that has 
+more points is the champion. the scoring system detailed in question 6 applies)
