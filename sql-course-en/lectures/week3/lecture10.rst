@@ -48,7 +48,7 @@ whose output is::
 
  
 
-Ejemplo 2
+Example 2
 ^^^^^^^^^
 
 You want to know the average of a particular student and his difference with the highest average of the group 
@@ -99,7 +99,7 @@ so that, effectively distinguishes which person is the one with the average 45 a
 We must be careful when we return only one value when making a subquery within a SELECT. Otherwise it will 
 return an error, as discussed in Example 3.
 
-Ejemplo 3
+Example 3
 ^^^^^^^^^
 
 Suppose you work under the context of Example 2, but without using the MAX function, which returns only one value:

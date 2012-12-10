@@ -416,7 +416,7 @@ students is greater than the first.
 Where the result corresponds to *Berkeley*.
 
 .. note::
- 
+
  Likewise it is possible to calculate the institution with fewer students, changing the mathematical sign **>** by **<**
 
 
