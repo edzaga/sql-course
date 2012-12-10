@@ -1,7 +1,7 @@
 Tarea 3
 ============
 
-Fecha de entrega: Lunes  de Diciembre 2012 hasta 23:59
+Fecha de entrega: Lunes 24 de Diciembre 2012 hasta 23:59
 -----------------------------------------------------------
 
 .. role:: sql(code)
@@ -12,7 +12,7 @@ Fecha de entrega: Lunes  de Diciembre 2012 hasta 23:59
 Base de datos
 -------------
 
-Se tiene una base de datos de equipos de futbol con el siguiente esquema:
+Se tiene una base de datos de equipos de fútbol con el siguiente esquema:
 
 * `\text{Equipo}(\underline{\text{ideq}},\text{nombre, ciudad, titulos})`
 	La tabla **Equipo** posee *ideq* que es un id único y es primary key de la relación.
@@ -33,7 +33,7 @@ Se tiene una base de datos de equipos de futbol con el siguiente esquema:
 
 * `\text{Jugador}(\underline{\text{rut}},\text{ideq,nombre,posicion,numcamiseta})`
 	La relación **Jugador** tiene un atributo *rut* que es único y es clave primaria (primary key), 
-        el atributo ideq es una clave foranea que hace referencia a la tabla equipo, *nombre*
+        el atributo ideq es una clave foránea que hace referencia a la tabla equipo, *nombre*
 	que almacena el nombre del jugador, también se almacena la *posicion* en la que se desempeña el 
 	jugador y *numcamiseta* guarda el número de camiseta que ocupa cada jugador.
 
@@ -76,10 +76,46 @@ Se tiene una base de datos de equipos de futbol con el siguiente esquema:
       (30 filas)
 
 .. note::
-	Las tablas anteriores son solo de referencia. El archivo con los valores se encuenta en la sección de documentos en la plataforma del curso.
+	Las tablas anteriores son solo de referencia. El archivo con los valores se encuenta en la sección de documentos en la plataforma del curso, se debe editar dicho archivo y mantener el formato, es decir entregar un archivo .sql
 
 
-Pregunta 1:
-^^^^^^^^^^^
+Pregunta 1 (10 puntos): 
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obtener el nombre de todos los jugadores, menos los que se desempeñan en la posición de delantero o arquero. 
 
 
+Pregunta 2 (10 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obtener el nombre de los jugadores que cumplen la misma función (posición) que "Sanchez" (utilice subconsultas). 
+
+
+Pregunta 3 (10 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Seleccione todos los campos de la tabla Jugador, cuyo equipo tenga sede en Santiago o Valparaiso (utilice subconsultas). 
+
+
+Pregunta 4 (10 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Realice una consulta en SQL que retorne la cantidad de partidos que SW ganó de local.
+
+
+Pregunta 5 (10 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Obtener el nombre del equipo que más partidos ganó de local.
+
+
+Pregunta 6 (10 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Elabore una consulta en SQL que obtenga la cantidad de puntos que obtuvo UCH durante el campeonato (los partidos ganados otorgan 3 puntos, empate 1 punto, perdido 0 punto, el partido lo gana el equipo que hace más goles).
+
+
+Pregunta 7 (10 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Mediante una consulta SQL, obtenga el equipo que salió campeón (equipo campeón es aquel que obtuvo más puntos, siguiendo la ponderación dada en la pregunta anterior).
