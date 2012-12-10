@@ -55,6 +55,7 @@ cuya salida será::
 Ejemplo 2
 ^^^^^^^^^
 
+
 Se desea saber el promedio de un determinado alumno y su diferencia con el promedio más alto del grupo de alumnos. Podría conseguirse
 averiguando el promedio más alto de grupo, y luego, en otra consulta, calcular la diferencia con el del valor del promedio del alumno
 en cuestión (en este caso Doris). Esto es posible realizarlo en una sola consulta:
@@ -147,13 +148,14 @@ en cuyo caso la salida será::
  
 SELECT-FROM(SELECT)-WHERE 
 ~~~~~~~~~~~~~~~~~~~~~~~~~ 
- 
+
 Otro uso que se les da a las subconsultas es en la palabra reservada FROM. En el FROM de la consulta, es posible utilizar una
 subconsulta. De todos modos es necesario agregarle un alias, pues el resultado de la subconsulta no tiene un nombre establecido.  
 En caso de no hacerlo, aparece el siguiente error::
  
  ERROR: subquery in FROM must have an alias
  HINT: For example, FROM (SELECT ...) [AS] foo.
+
 
 Como ya se ha mencionado, en la sección del FROM, se listan las tablas desde donde se sacarán los datos para crear las relaciones. Por lo tanto
 la subconsulta de este estilo corresponde a crear una nueva tabla desde donde  se podrán extraer datos.
@@ -277,5 +279,9 @@ Cuya salida tras realizar el SELECT * de rigor, es::
     6  | Gary   |  53
     7  | Doris  |  70   
     8  | Tim    |  60 
+
+
+
+
 
 
