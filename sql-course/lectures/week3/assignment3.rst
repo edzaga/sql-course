@@ -82,40 +82,57 @@ Se tiene una base de datos de equipos de fútbol con el siguiente esquema:
 Pregunta 1 (10 puntos): 
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Obtener el nombre de todos los jugadores, menos los que se desempeñan en la posición de delantero o arquero. 
+Se desea saber el equipo que más titulos ha ganado, utilizando subconsultas.  No se pueden utiizar comandos matematicos.
+ayuda: busque todos los equipos donde no exista otro equipo con mayor cantitdad de titulos logrados.
 
-
-Pregunta 2 (10 puntos):
+Pregunta 2 (10 puntos): 
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Obtener el nombre de los jugadores que cumplen la misma función (posición) que "Sanchez" (utilice subconsultas). 
+Obtener el nombre de todos los jugadores, menos los que se desempeñan en la posición de delantero o arquero. 
 
 
 Pregunta 3 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Seleccione todos los campos de la tabla Jugador, cuyo equipo tenga sede en Santiago o Valparaiso (utilice subconsultas). 
+Obtener el nombre de los jugadores que cumplen la misma función (posición) que "Sanchez" (utilice subconsultas). 
 
 
 Pregunta 4 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Realice una consulta en SQL que retorne la cantidad de partidos que SW ganó de local.
+Seleccione todos los campos de la tabla Jugador, cuyo equipo tenga sede en Santiago o Valparaiso (utilice subconsultas). 
 
 
 Pregunta 5 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Obtener el nombre del equipo que más partidos ganó de local.
+Se desea saber:
 
+	a) La cantitdad de titulos y el nombre del equipo que más ha ganado y la diferencia con la cantidad de titulos del equipo que menos ha ganado (5 ptos)
+	b) Corroborar esta informacion, consultando la cantitdad de titulos y el nombre del equipo que menos ha ganado y la diferencia con la cantidad de titulos del equipo que más ha ganado (5 ptos)
 
 Pregunta 6 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Elabore una consulta en SQL que obtenga la cantidad de puntos que obtuvo UCH durante el campeonato (los partidos ganados otorgan 3 puntos, empate 1 punto, perdido 0 punto, el partido lo gana el equipo que hace más goles).
+Realice una consulta en SQL que retorne la cantidad de partidos que SW ganó de local.
 
 
 Pregunta 7 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
+Obtener el nombre del equipo que más partidos ganó de local.
+
+
+Pregunta 8 (10 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Elabore una consulta en SQL que obtenga la cantidad de puntos que obtuvo UCH durante el campeonato (los partidos ganados otorgan 3 puntos, empate 1 punto, perdido 0 punto, el partido lo gana el equipo que hace más goles).
+
+
+Pregunta 9 (10 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
 Mediante una consulta SQL, obtenga el equipo que salió campeón (equipo campeón es aquel que obtuvo más puntos, siguiendo la ponderación dada en la pregunta anterior).
+
+
+
