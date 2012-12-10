@@ -1,5 +1,5 @@
 Tarea 3
-============
+=========
 
 Fecha de entrega: Lunes 24 de Diciembre 2012 hasta 23:59
 -----------------------------------------------------------
@@ -88,7 +88,7 @@ ayuda: busque todos los equipos donde no exista otro equipo con mayor cantitdad 
 Pregunta 2 (10 puntos): 
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Obtener el nombre de todos los jugadores, menos los que se desempeñan en la posición de delantero o arquero. 
+Obtener el nombre de todos los jugadores, menos los que se desempeñan en la posición de "delantero" o "arquero". 
 
 
 Pregunta 3 (10 puntos):
