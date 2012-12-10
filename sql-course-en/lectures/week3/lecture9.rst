@@ -282,7 +282,7 @@ answer questions like in example 3.
 Example 3
 ^^^^^^^^^
 
-In the next  example we want to know the *sID* and *sNAme* of those students 
+In the next  example we want to know the *sID* and *sName* of those students 
 who have applied to science, but no an engineering:
 
 
@@ -304,8 +304,8 @@ whose output corresponds precisely to::
 
 .. note::
 
-   It is posible to corrobórate the result by running: sql:´SELECT * FROM Apply;´
-   and cheked it manually.
+   It is possible to corroborate the result by running: sql:´SELECT * FROM Apply;´
+   and checked it manually.
  
 The query we have made in this example is possible to make it another way:
 
@@ -321,7 +321,7 @@ whose output is equivalent to the previous.
 EXISTS AND NOT EXISTS
 =====================
 
-:sql:`EXISTS` is a SQL function which returns true when a subquerty returns at least one row.
+:sql:`EXISTS` is a SQL function which returns true when a subquery returns at least one row.
 
 
 Example 4

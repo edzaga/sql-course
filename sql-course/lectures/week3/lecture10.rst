@@ -106,7 +106,7 @@ un error, como se ve en el ejemplo 3.
 Ejemplo 3
 ^^^^^^^^^
 
-Supongamos que se tabaja bajo el contexto del ejemplo 2, pero sin utilizar la función MAX, que retorna sólo un valor:
+Supongamos que se trabaja bajo el contexto del ejemplo 2, pero sin utilizar la función MAX, que retorna sólo un valor:
 
 .. code-block:: sql
  
@@ -115,7 +115,7 @@ Supongamos que se tabaja bajo el contexto del ejemplo 2, pero sin utilizar la fu
   FROM student
   WHERE sname ='Doris';
 
-en cuyo caso la salida correponderá al siguiente error::
+en cuyo caso la salida corresponderá al siguiente error::
   
    ERROR: more than one row returned by a subquery used as an expression.
 
@@ -236,7 +236,7 @@ cuya salida es::
   Doris  |  45     | -25
   
 Supongamos que el caso de la alumna que tiene el promedio más bajo, Doris, corresponde a un error de planilla. Se decide actualizar 
-el promedio utilizando subconsultas (considerando que es la única almuna con el menor promedio):
+el promedio utilizando subconsultas (considerando que es la única alumna con el menor promedio):
 
 .. code-block:: sql
 
@@ -259,7 +259,7 @@ en cuyo caso, y tras realizar un :sql:´SELECT * FROM student´, la salida es::
 Sin embargo, se descubre que Doris de id = 5, hizo trampa. Ella se metió de forma remota y sin permiso al servidor de datos donde se
 encontraban las planillas de notas, y procedió a alterar aquellas que aportaban en su promedio. Como castigo se opta por
 eliminarla del proceso de postulación. El encargado realiza la acción a través de subconsultas, considerando que Doris es la única 
-alumna con promedio 100, que corresopnde a la máxima calificación:
+alumna con promedio 100, que corresponde a la máxima calificación:
 
 .. code-block:: sql
 

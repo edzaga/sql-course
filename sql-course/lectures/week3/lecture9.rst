@@ -20,7 +20,7 @@ serie de condiciones.
 
 Sin embargo  Las **subconsultas** son otra manera de filtrar consultas.
 Una subconsulta es una sentencia :sql:`SELECT` que aparece dentro de otra sentencia
-:sql:`SELECT` y que normalmente son utilizadas para filtrar una claúsula WHERE con el
+:sql:`SELECT` y que normalmente son utilizadas para filtrar una cláusula WHERE con el
 conjunto de resultados de la subconsulta.
 
 Una subconsulta tiene la misma sintaxis que una sentencia :sql:`SELECT` normal
@@ -34,7 +34,7 @@ Como es usual, se utilizará el ejemplo de la base de datos
     Student (sID,   sName, Average)
     Apply   (sID,   cName, major, decision)
 
-.. La idea del ejemplo es que el estudiante "sid" postula al colegio "cname", al ramo(o mencion academica, ahi no se) "major"
+.. La idea del ejemplo es que el estudiante "sid" postula al colegio "cname", al ramo(o mención académica, ahí no se) "major"
    y es aceptado o no
 
 cuyas tablas son creadas mediante:
@@ -339,7 +339,7 @@ cuya salida es equivalente a la anterior.
 EXISTS AND NOT EXISTS
 =====================
 
-:sql:`EXISTS` es una función SQL que devuelve veradero cuando una subconsulta
+:sql:`EXISTS` es una función SQL que devuelve verdadero cuando una subconsulta
 retorna al menos una fila.
 
 Ejemplo 4

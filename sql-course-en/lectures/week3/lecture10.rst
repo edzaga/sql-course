@@ -13,7 +13,7 @@ In lecture 9, you could see how subqueries are used in the condition **C**::
 
 In this lecture you will see how to use them in both **L** and **R**
 
-For the examples of this subsection we will exercise with the values used in the previous lecture (lectura 9).
+For the examples of this subsection we will exercise with the values used in the previous lecture (lecture 9).
 
 SELECT(SELECT)-FROM-WHERE 
 ~~~~~~~~~~~~~~~~~~~~~~~~~ 
@@ -27,15 +27,15 @@ a list of the students and how many times they were accepted.
 
 .. code-block:: sql
 
-   SELECT sid, sname, 
-   (SELECT COUNT (*) FROM apply A WHERE A.sid = S.sid and A.decision = 't')
-   as acepted
+   SELECT Sid, sName, 
+   (SELECT COUNT (*) FROM apply A WHERE A.Sid = S.Sid and A.decision = 't')
+   as accepted
    FROM student S
-   ORDER BY acepted DESC;
+   ORDER BY accepted DE SC;
 
 whose output is::
 
-   sid | sname  | acepted
+   Sid | sName  | accepted
    ----+--------+--------
     7  | Doris  |  4     
     5  | Doris  |  2     
@@ -58,14 +58,14 @@ to do in a single query:
 
 .. code-block:: sql
  
-  SELECT sname, average, average-(SELECT max(average) FROM student )
+  SELECT sName, average, average-(SELECT max(average) FROM student )
   as diferencia
   FROM student
-  WHERE sname ='Doris';
+  WHERE sName ='Doris';
 
 whose output is::
 
-  sname | average | diferencia
+  sName | average | diferencia
   ------+---------+-----------
   Doris |  45     | -25
   Doris |  70     |   0
@@ -75,14 +75,14 @@ To distinguish both Doris, you can add the attribute *sID* to the query:
 
 .. code-block:: sql
  
-  SELECT sid, sname, average, average-(SELECT max(average) FROM student )
+  SELECT Sid, sName, average, average-(SELECT max(average) FROM student )
   as diferencia
   FROM student
-  WHERE sname ='Doris';
+  WHERE sName ='Doris';
 
 in which case the output will be::
 
-  sid | sname | average | diferencia
+  slid | sname | average | diferencia
   ----+-------+---------+-----------
    5  | Doris |  45     | -25
    7  | Doris |  70     |   0
