@@ -4,7 +4,8 @@ Lecture 10 - Subqueries in FROM and SELECT
       :language: sql 
    :class: highlight 
  
- 
+
+
 En la lectura 9, se pudo ver cómo se utilizan las subconsultas en la condición **C**:: 
          
  SELECT L 
