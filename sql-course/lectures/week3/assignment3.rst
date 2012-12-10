@@ -76,7 +76,7 @@ Se tiene una base de datos de equipos de fútbol con el siguiente esquema:
       (30 filas)
 
 .. note::
-	Las tablas anteriores son solo de referencia. El archivo con los valores se encuenta en la sección de documentos en la plataforma del curso, se debe editar dicho archivo y mantener el formato, es decir entregar un archivo .sql
+	Las tablas anteriores son solo de referencia. El archivo con los valores se encuenta en la sección de documentos en la plataforma del curso. Se debe editar dicho archivo y mantener el formato, es decir entregar un archivo assignment3.sql
 
 
 Pregunta 1 (10 puntos): 
