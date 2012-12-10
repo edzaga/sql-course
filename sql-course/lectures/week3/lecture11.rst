@@ -1,5 +1,5 @@
-Lectura 11 - The JOIN family of operators
------------------------------------------
+Lectura 11 - La familia de operadores JOIN
+------------------------------------------
 
 .. role:: sql(code)
    :language: sql
@@ -203,7 +203,7 @@ Ahora realizamos la consulta con el ejemplo que definimos al comienzo.
    2 | Monkey    |    |
    3 | Ninja     |  4 | Ninja
    4 | Spaghetti |    |
- (4 rows)
+ (4 filas)
 
 .. note::
 
@@ -237,7 +237,7 @@ Ahora realizamos la siguiente consulta.
    1 | Pirate |  2 | Pirate
      |        |  3 | Darth Vader
    3 | Ninja  |  4 | Ninja
- (4 rows)
+ (4 filas)
 
 .. note::
 
@@ -273,7 +273,7 @@ Ahora se realizará el ejemplo de la consulta.
    1 | Pirate    |  2 | Pirate
      |           |  1 | Rutabaga
    4 | Spaghetti |    |
- (6 rows)
+ (6 filas)
 
 .. note::
 

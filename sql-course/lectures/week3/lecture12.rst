@@ -65,7 +65,7 @@ Para calcular el ``precio promedio`` de las ordenes se realiza la siguiente cons
     precio_promedio
  -----------------------
   1081.6666666666666667
- (1 row)
+ (1 fila)
 
 .. note::
 
@@ -84,7 +84,7 @@ retornando el ``id``, ``fecha de orden``, ``precio_ordenes`` y el ``cliente``.
    1 | 2010-09-23    |           1120 | Alison
    2 | 2007-02-21    |           1990 | Alicia
    5 | 2005-03-30    |           2120 | Brad
- (3 rows)
+ (3 filas)
 
 
 Función COUNT()
@@ -113,7 +113,7 @@ que tengan el nombre de *Alison* existen en la tabla **Ordenes**.
   cliente_alison
  ----------------
                3
- (1 row)
+ (1 fila)
 
 SQL COUNT(*)
 ^^^^^^^^^^^^
@@ -133,7 +133,7 @@ que retornara el número de ordenes de la tabla **Ordenes**.
  numero_ordenes
  ----------------
                6
- (1 row)
+ (1 fila)
 
 SQL COUNT(DISTINCT nombre_columna)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -155,7 +155,7 @@ distintos que existen en la tabla **Ordenes**, que son *Alison*, *Alicia* y *Bra
  numero_de_clientes
  --------------------
                    3
- (1 row)
+ (1 fila)
 
 Función MAX()
 =============
@@ -177,7 +177,7 @@ de las ordenes en la tabla **Ordenes**.
   mayor_precio
  --------------
           2120
- (1 row)
+ (1 fila)
 
 Función MIN()
 =============
@@ -199,7 +199,7 @@ en la tabla **Ordenes**.
   menor_precio
  --------------
            160
- (1 row)
+ (1 fila)
 
 Función SUM()
 =============
@@ -221,7 +221,7 @@ ordenes que se encuentran en la tabla **Ordenes**.
  precio_total
  --------------
           6490
- (1 row)
+ (1 fila)
 
 SQL GROUP BY
 ~~~~~~~~~~~~
@@ -244,7 +244,7 @@ La siguiente consulta utilizará la instrucción ``GROUP BY``, para realizar la 
   Alison  | 2220
   Brad    | 2120
   Alicia  | 2150
- (3 rows)
+ (3 filas)
 
 SQL HAVING
 ~~~~~~~~~~
@@ -268,7 +268,7 @@ a 2130.
  ---------+------
   Alison  | 2220
   Alicia  | 2150
- (2 rows)
+ (2 filas)
 
 Realizaremos la consulta anterior, agregando la cláusula *WHERE* con la condición que
 el ``cliente`` se igual a "Alison".
@@ -279,5 +279,5 @@ el ``cliente`` se igual a "Alison".
   cliente | sum
  ---------+------
   Alicia  | 2150
- (1 row)
+ (1 fila)
 
