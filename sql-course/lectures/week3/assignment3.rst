@@ -1,79 +1,85 @@
-Assignment 3
+Tarea 3
 ============
 
-#. A football game between two teams
-   can be represented as a tuple of two teams::
-   
-       >>> game = ('Chile', 'Spain')     
-   
-   The game result
-   can be represented as a tuple with the goals   
-   performed by each team::
-       
-       >>> result = (4, 1)    
-   
-   All the tournament games
-   cab be represented as a dictionary
-   associated to each result game::
-   
-       >>> tournament = {  
-       ...     ('Honduras',    'Chile'):       (1, 4),   
-       ...     ('Spain',       'Switzerland'): (1, 1),   
-       ...     ('Chile',       'Switzerland'): (2, 0),   
-       ...     ('Spain',       'Honduras'):    (1, 0),   
-       ...     ('Chile',       'Spain'):       (5, 5),   
-       ...     ('Switzerland', 'Honduras'):    (1, 2),
-       ... }  
+Fecha de entrega: Lunes  de Diciembre 2012 hasta 23:59
+-----------------------------------------------------------
 
-   **Note:** Use this dictionary to test your functions.
-   
-   #. Write a function called ``teams(tournament)``  
-      that return the set of teams which participated in the tournament::
-         
-          >>> teams(tournament)
-          set(['Chile', 'Honduras', 'Switzerland', 'Spain'])
-   
-   #. Write a function called ``draws(tournament)``    
-      which count how many games of the tournament finish in a draw::   
-         
-       >>> draws(tournament)
-       2
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
 
-   #. When a team win a game, receives 3 points; 
-      when draws, receive 1 point, and when lose, does not receive any point.
-      Write a function called ``points(team, tournament)`` 
-      which return how many points obtained a team in a tournament::
+-------------
+Base de datos
+-------------
 
-          >>> points('Chile', tournament) 
-          7 
-          >>> points('Honduras', tournament)    
-          3 
-   
-   #. The difference of the goals of a team    
-      is the sum of all the goals made 
-      minus the sum of the goals against.  
-      Write a function ``gd(team, tournament)``     
-      which returns the goal differences    
-      of a team in a tournament::    
-         
-          >>> gd('Chile', tournament)     
-          5 
-          >>> gd('Honduras', tournament)  
-          -3
-         
-   #. Write a function called ``best_game(tournament)``  
-      which return the game with more goals::
-         
-          >>> best_game(tournament)   
-          ('Chile', 'Spain')   
-   
-   #. Write a function called ``position_table(tournament)``  
-      which return a tuple lists
-      ``(team, points, goal differences)``   
-      order by the points from highest to lowest.
-      The teams with the same points, must be ordered by goal differences
-      from highest to lowest::
-         
-          >>> position_table(tournament)
-          [('Chile', 7, 5), ('Spain', 5, 1), ('Honduras', 3, -3), ('Switzerland', 1, -3)] 
+Se tiene una base de datos de equipos de futbol con el siguiente esquema:
+
+* `\text{Equipo}(\underline{\text{ideq}},\text{nombre, ciudad, titulos})`
+	La tabla **Equipo** posee *ideq* que es un id único y es primary key de la relación.
+	Se almacena el *nombre* del equipo, la *ciudad* que corresponde a la sede donde el equipo juega de local y finalmente
+        el atributo *titulos* es un número entero que hace referencia a la cantidad de veces que el equipo ha salido campeón.
+
+.. code-block:: sql
+
+  ideq | nombre |   ciudad    | titulos 
+ ------+--------+-------------+---------
+     1 | UCH    | Santiago    |      16
+     2 | ÑUB    | Chillan     |       0
+     3 | SW     | Valparaiso  |       3
+     4 | CDA    | Antofagasta |       0
+     5 | COB    | Calama      |       8
+     6 | UE     | Santiago    |       6
+	(6 filas)
+
+* `\text{Jugador}(\underline{\text{rut}},\text{ideq,nombre,posicion,numcamiseta})`
+	La relación **Jugador** tiene un atributo *rut* que es único y es clave primaria (primary key), 
+        el atributo ideq es una clave foranea que hace referencia a la tabla equipo, *nombre*
+	que almacena el nombre del jugador, también se almacena la *posicion* en la que se desempeña el 
+	jugador y *numcamiseta* guarda el número de camiseta que ocupa cada jugador.
+
+.. code-block:: sql
+
+  rut  | ideq |  nombre   | posicion  | numcamiseta 
+ ------+------+-----------+-----------+-------------
+  1760 |    1 | Diaz      | Volante   |          21
+  1345 |    1 | Herrera   | Arquero   |          25
+  1313 |    1 | Rojas     | Defensa   |          13
+  1995 |    1 | Rivarola  | Delantero |           7
+  1999 |    1 | Salas     | Delantero |          11
+  2343 |    1 | Vargas    | Delantero |          17
+  5678 |    2 | Rodriguez | Volante   |           6
+  3423 |    2 | Videla    | Volante   |           2
+  1234 |    2 | Garces    | Arquero   |          12
+  1235 |    2 | Gutierrez | Delantero |           9
+  1349 |    2 | Marino    | Volante   |           8
+    (36 filas)
+
+
+* `\text{Partido}(\underline{\text{ideql,ideqv}},\text{golLocal,golVisita})`
+	La tabla **Partido** almacena los resultados de los partidos entre dos equipos, 
+        de esta forma *ideql* corresponde al id del equipo local, ideqv es el id del equipo
+        visitante, *golLocal* son los goles que marca el equipo que juega de local, *golVisita* 
+        son los goles marcados por el equipo visitante.
+
+.. code-block:: sql
+
+  ideql | ideqv | golLocal | golVisita 
+ -------+-------+----------+-----------
+      1 |     2 |        4 |         3
+      1 |     3 |        3 |         1
+      1 |     4 |        3 |         2
+      1 |     5 |        2 |         1
+      1 |     6 |        3 |         0
+      2 |     1 |        0 |         0
+      2 |     3 |        3 |         1
+      2 |     4 |        1 |         2
+      (30 filas)
+
+.. note::
+	Las tablas anteriores son solo de referencia. El archivo con los valores se encuenta en la sección de documentos en la plataforma del curso.
+
+
+Pregunta 1:
+^^^^^^^^^^^
+
 
