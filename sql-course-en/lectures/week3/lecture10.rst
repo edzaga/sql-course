@@ -5,28 +5,25 @@ Lecture 10 - Subqueries in FROM and SELECT
    :class: highlight 
  
  
-En la lectura 9, se pudo ver cómo se utilizan las subconsultas en la condición **C**:: 
+In lecture 9, you could see how subqueries are used in the condition **C**:: 
          
  SELECT L 
  FROM R 
  WHERE C; 
- 
-En esta lectura se verá como utilizarlas tanto en **L** como en **R** 
 
-.. Agregar lo que anoté en el papel...
- 
-Para los ejemplos de esta subsección, se usarán los valores utilizados en la lectura anterior (lectura 9).
+In this lecture you will see how to use them in both **L** and **R**
+
+For the examples of this subsection we will exercise with the values used in the previous lecture (lectura 9).
 
 SELECT(SELECT)-FROM-WHERE 
 ~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-.. parrafo introductorio que dice q se usa la tabla de alumnos de la lectura 9 para el ejemplo 
-Es posible utilizar una subconsulta como una columna dentro de la selección.
+It is possible use a subquery as a another column.
 
-Ejemplo 1
+Example 1
 ^^^^^^^^^
-
-Supongamos que se terminó el periodo de postulaciones y desea obtener una lista de  los estudiantes y cuantas veces fueron aceptados.
+You want to know a list a students. Suppose that the period of application has ended and you want to obtain 
+a list of the students and how many times they were accepted.
 
 .. code-block:: sql
 
@@ -36,7 +33,7 @@ Supongamos que se terminó el periodo de postulaciones y desea obtener una lista
    FROM student S
    ORDER BY acepted DESC;
 
-cuya salida será::
+whose output is::
 
    sid | sname  | acepted
    ----+--------+--------
@@ -54,9 +51,10 @@ cuya salida será::
 Ejemplo 2
 ^^^^^^^^^
 
-Se desea saber el promedio de un determinado alumno y su diferencia con el promedio más alto del grupo de alumnos. Podría conseguirse
-averiguando el promedio más alto de grupo, y luego, en otra consulta, calcular la diferencia con el del valor del promedio del alumno
-en cuestión (en este caso Doris). Esto es posible realizarlo en una sola consulta:
+You want to know the average of a particular student and his difference with the highest average of the group 
+of students. This could be achieved by finding the highest average group, and then in another query, calculate 
+the difference with the the value the average of the student in question (in this case Doris). This is possible 
+to do in a single query:
 
 .. code-block:: sql
  
@@ -65,14 +63,15 @@ en cuestión (en este caso Doris). Esto es posible realizarlo en una sola consul
   FROM student
   WHERE sname ='Doris';
 
-cuya salida será::
+whose output is::
 
   sname | average | diferencia
   ------+---------+-----------
   Doris |  45     | -25
   Doris |  70     |   0
 
-Para distinguir a ambas Doris, se puede agregar el atributo sID a la consulta:
+
+To distinguish both Doris, you can add the attribute *sID* to the query:
 
 .. code-block:: sql
  
@@ -81,55 +80,51 @@ Para distinguir a ambas Doris, se puede agregar el atributo sID a la consulta:
   FROM student
   WHERE sname ='Doris';
 
-en cuyo caso la salida será::
+in which case the output will be::
 
   sid | sname | average | diferencia
   ----+-------+---------+-----------
    5  | Doris |  45     | -25
    7  | Doris |  70     |   0
 
-por lo que, efectivamente se distingue cual persona es la que tiene el promedio 45 y cual el 70.
+so that, effectively distinguishes which person is the one with the average 45 and the one with 70.
 
 .. note::   
-  
-   En este ejemplo se utiliza la función de SQL: MAX(atributo) ; la cual retorna el mayor 
-   valor de una columna. Si se aplica en una columna de tipo string, el método de comparación 
-   corresponde al valor ASCII de la primera letra. Por otro lado la función
-   MIN(atributo), retorna el menor valor de una columna.
+ 
+  This example use SQL function: MAX (attribute), which returns the greatest 
+  value in a column. If it is applied to a column of type string, the method 
+  of comparison corresponds to the ASCII value of the first letter. Moreover MIN 
+  function (attribute), returns the smallest value in a column.
 
-
-
-
-Hay que tener la precaución de retornar un sólo valor a la hora de realizar una subconsulta dentro de un SELECT. De otra forma se retornará 
-un error, como se ve en el ejemplo 3.
+We must be careful when we return only one value when making a subquery within a SELECT. Otherwise it will 
+return an error, as discussed in Example 3.
 
 Ejemplo 3
 ^^^^^^^^^
 
-Supongamos que se tabaja bajo el contexto del ejemplo 2, pero sin utilizar la función MAX, que retorna sólo un valor:
+Suppose you work under the context of Example 2, but without using the MAX function, which returns only one value:
 
 .. code-block:: sql
  
   SELECT sname, average, average-(SELECT average FROM student )
-  as diferencia
+  as difference
   FROM student
   WHERE sname ='Doris';
 
-en cuyo caso la salida correponderá al siguiente error::
+In which case the output will correspond to the following error::
   
    ERROR: more than one row returned by a subquery used as an expression.
 
-Ejemplo 4
+Example 4
 ^^^^^^^^^
-
-Supongamos que se desea saber el nombre de cada alumno, su promedio,  y su diferencia respecto al promedio más bajo del curso:
+Suppose you want to know the name of each student, their average, and their difference from the lowest average of the course:
 
 .. code-block:: sql
  
   SELECT sname, average, average-(SELECT min(average) FROM student ) as diferencia
   FROM student;
 
-en cuyo caso la salida será::
+in which case the output will be::
   
    sname  | average | diferencia
    -------+---------+-----------
@@ -146,27 +141,28 @@ en cuyo caso la salida será::
  
 SELECT-FROM(SELECT)-WHERE 
 ~~~~~~~~~~~~~~~~~~~~~~~~~ 
- 
-Otro uso que se les da a las subconsultas es en la palabra reservada FROM. En el FROM de la consulta, es posible utilizar una
-subconsulta. De todos modos es necesario agregarle un alias, pues el resultado de la subconsulta no tiene un nombre establecido.  
-En caso de no hacerlo, aparece el siguiente error::
+Another use that you can give to subqueries is in the reserved word FROM. In the FROM of the query, it is possible to use 
+a subquery. Anyway, it is necessary to add an alias since the result of the subquery does not have an established name. 
+If you don’t do it, the follow error will appear::
  
  ERROR: subquery in FROM must have an alias
  HINT: For example, FROM (SELECT ...) [AS] foo.
 
-Como ya se ha mencionado, en la sección del FROM, se listan las tablas desde donde se sacarán los datos para crear las relaciones. Por lo tanto
-la subconsulta de este estilo corresponde a crear una nueva tabla desde donde  se podrán extraer datos.
+As already mentioned, the FROM clause is used to list all the tables and relationships that you will use to get some data. 
+So, this subquery seeks make “another table” where you will find some data.
 
-Ejemplo 5
+
+Example 5
 ^^^^^^^^^
-Para demostrar el funcionamiento de la subconsulta dentro del FROM, supongamos que se desea extraer el id y nombre de cada
-alumno dentro de la tabla student:
+
+To show how it works a subquery inside the FROM clause, suppose that you want to know the *sid* and sname of each 
+student inside the **student** relationship.
 
 .. code-block:: sql
 
  SELECT sid, sname FROM student;
 
-cuya salida es::
+whose output is::
  
  sid | sname  
  ----+--------
@@ -179,13 +175,16 @@ cuya salida es::
   7  | Doris
   8  | Tim   
 
-Lo cual es equivalente a la consulta:
+
+
+
+that is equivalent to this query:
 
 .. code-block:: sql
 
  SELECT sid, sname FROM (SELECT * FROM student) as example;
 
-cuya salida es::
+whose output is::
  
  sid | sname  
  ----+--------
@@ -198,30 +197,28 @@ cuya salida es::
   7  | Doris
   8  | Tim   
 
-Es decir son equivalentes, pues el alias "example", contiene toda la información de la tabla student.
+They are equivalent, because the alias “example” has all the data of **student**.
 
-.. Ejemplo 6
-.. ^^^^^^^^^
-
-
-RECAPITULACIÓN
-~~~~~~~~~~~~~~
+SUMMING UP
+~~~~~~~~~~
  
-Las subconsultas se utilizan cuando la consulta a realizar es demasiado compleja,
-Como se ha mencionado en la lectura anterior, es posible realizar tareas de inserción, actualización y eliminación de datos en las subconsultas.
+Subqueries are used when the query is too complex to perform. As it was mentioned in the previous reading, 
+you can perform tasks of insertion, updating and deleting data in subqueries.
 
-Ejemplo extra
+Extra example
 ^^^^^^^^^^^^^
 
 .. note::
+  
+  Next we will provide examples of subqueries in updating and deleting data. 
+  Its syntax and properties are explained  in reading 14 (week 4). Now we are 
+  exposing them to make clear which subqueries can be used in any of the 
+  four basic operations.
+
+
+Let's consider that you want to know the name and grades of the student with the lowest average, in addition to its difference 
+with the best average. ..of the student table, the student with the lowest average.
  
-  A continuación se verán ejemplos de subconsultas en actualización y eliminación de datos. Su sintaxis y 
-  propiedades  se explicarán en la lectura 14 (semana 4). Ahora se exponen para dejar en claro que las subconsultas
-  se pueden utilizar en cualquiera de las 4 operaciones básicas.
-
-Consideremos que se quiere saber el nombre y la calificación del estudiante con el menor promedio, además de su diferencia con el mejor promedio.
-
-.. de la tabla student, al alumno con el menor promedio:
 
 .. code-block:: sql
   
@@ -229,21 +226,21 @@ Consideremos que se quiere saber el nombre y la calificación del estudiante con
    FROM student 
    WHERE average = (SELECT min(average) FROM student ); 
 
-cuya salida es::
+whose output is::
   
   sname  | average | diferencia
   -------+---------+-----------
   Doris  |  45     | -25
   
-Supongamos que el caso de la alumna que tiene el promedio más bajo, Doris, corresponde a un error de planilla. Se decide actualizar 
-el promedio utilizando subconsultas (considerando que es la única almuna con el menor promedio):
+Suppose that the case of a student who has the lowest average, Doris, corresponds to a payroll error. 
+They decide to update the average using subqueries (considering it is the only student with the lowest average):
 
 .. code-block:: sql
 
   UPDATE student SET average = 100
   WHERE average = (SELECT min(average) FROM student);
 
-en cuyo caso, y tras realizar un :sql:´SELECT * FROM student´, la salida es::
+in which case, and after making a :sql:´SELECT * FROM student´, the output is::
  
    sid | sname  | average  
    ----+--------+---------
@@ -256,16 +253,17 @@ en cuyo caso, y tras realizar un :sql:´SELECT * FROM student´, la salida es::
     8  | Tim    |  60 
     5  | Doris  |  100    
 
-Sin embargo, se descubre que Doris de id = 5, hizo trampa. Ella se metió de forma remota y sin permiso al servidor de datos donde se
-encontraban las planillas de notas, y procedió a alterar aquellas que aportaban en su promedio. Como castigo se opta por
-eliminarla del proceso de postulación. El encargado realiza la acción a través de subconsultas, considerando que Doris es la única 
-alumna con promedio 100, que corresopnde a la máxima calificación:
+
+However, it was discovered that Doris id = 5 was cheating. She managed to remotely enter without permission to the data server 
+where there were the forms of grades, and proceeded to alter those that contributed to her average. As punishment, it was 
+decided to remove her from the application process. The person in charge removed her by using subqueries, considering that 
+Doris was the only student with average 100, which corresponds to the best grade:
 
 .. code-block:: sql
 
   DELETE FROM student where average = (SELECT max(average) FROM student);
 
-Cuya salida tras realizar el SELECT * de rigor, es::
+Whose output after making the rigor SELECT is::
 
    sid | sname  | average  
    ----+--------+---------
