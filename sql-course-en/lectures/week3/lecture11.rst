@@ -31,7 +31,7 @@ Here is a diagram of how this query works.
 Next, it will be shown an example of a **People** table and one of **Purchases** Orders 
 which they have made.
 
-We make the creation od **People** and **Purcharses** table.
+We make the creation of **People** and **Purcharses** table.
 
 .. code-block:: sql
 
@@ -84,7 +84,7 @@ We can also show all the attributes.
 
 .. note::
 
- It is observerd that the two tables **People** and **Purchases** are meeting the condition 
+ It is observed that the two tables **People** and **Purchases** are meeting the condition 
  that we have defined.
 
 NATURAL JOIN
