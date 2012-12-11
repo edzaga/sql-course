@@ -1,6 +1,54 @@
 Lectura 15 - Teoría del diseño Relacional: Información General
 --------------------------------------------------------------
 
+Diseño Relacional
+~~~~~~~~~~~~~~~~~
+
+Diseñar un esquema de base de datos
+
+* Por lo general existen *muchos* diseños posibles.
+* Algunos son (mucho) mejor que otros.
+* ¿Cómo elegir?.
+
+El diseño de una base de datos relacional puede abordarse de dos formas:
+* **Obteniendo el esquema relacional directamente:** Objetos y reglas captadas del 
+   análisis del mundo real, representadas por un conjunto de esquemas de relación, 
+   sus atributos y restricciones de integridad.
+* **Realizando el diseño del esquema "conceptual" de la BD (modelo E/R) y transformándolo 
+   a esquema relacional**.
+
+En los esquemas de bases de datos es posible encontrar anomalias que serán eliminadas
+gracias al proceso de normalización que se explicará en las proximas lecturas.
+
+Estas anomalias son:
+
+* **La redundancia de los datos:** repetición de datos en un sistema.
+* **Anomalías de actualización:** inconsistencias de los datos como resultado de datos
+redundantes y actualizaciones parciales.
+* **Anomalías de borrado:** pérdidas no intencionadas de datos debido a que se han borrado
+otros datos.
+* **Anomalías de inserción:** imposibilidad de adicionar datos en la base de datos debido
+a la ausencia de otros datos.
+
+A continuación se muestra una tabla y luego el detalle de los problemas que presenta:
+
+.. math::
+
+   \begin{array}{|c|c|c|}
+    \hline
+    \textbf{Nombre_autor} & \textbf{País} & \textbf{Cod_libro} & \textbf{Titulo_libro} & \textbf{Editor} \\
+    \hline
+    \text{Cortázar, Julio} & \text{Arg} & text{9786071110725} & \text{Cuentos Completos 1 Julio Cortazar}  & \text{Alfaguara}\\
+    \hline                                                                           
+    \text{Rosasco, José Luis}  & \text{Chi} & \text{9789561224056} & \text{Donde Estas, Constanza} & \text{Zig-Zag}  \\
+    \hline                                                                           
+    \text{True}       & \text{False} & \text{} & \text{} & \text{} \\
+    \hline
+    \text{False}      & \text{True} & \text{} & \text{} & \text{} \\
+    \hline
+   \end{array}
+
+
 Normalización
 ~~~~~~~~~~~~~
 
