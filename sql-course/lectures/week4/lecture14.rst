@@ -194,6 +194,6 @@ el ejemplo 2, sin la necesidad de borrar la tabla, crearla y agregar todo de nue
 Lo cual permite eliminar la fila correspondiente a 'Betty' y dejar la tabla vacia. Posteriormente es posible comenzar a llenarla de nuevo
 mediante las últimas 2 consultas del ejemplo 2.
 
-
+Falta agregar ejemplos practicos
 
 
