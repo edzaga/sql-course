@@ -195,5 +195,5 @@ Lo cual permite eliminar la fila correspondiente a 'Betty' y dejar la tabla vaci
 mediante las últimas 2 consultas del ejemplo 2.
 
 Falta agregar ejemplos practicos
-
+asdasdsa
 
