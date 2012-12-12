@@ -1,5 +1,5 @@
-Lecture 9 - Subqueries in WHERE clause
---------------------------------------
+Lecture 9 - Subconsultas en la cláusula WHERE 
+----------------------------------------------
 .. role:: sql(code)
    :language: sql
    :class: highlight
