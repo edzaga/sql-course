@@ -85,6 +85,7 @@ Pregunta 1 (10 puntos):
 Se desea saber el equipo que más titulos ha ganado, utilizando subconsultas.  No se pueden utiizar comandos matematicos.
 ayuda: busque todos los equipos donde no exista otro equipo con mayor cantitdad de titulos logrados.
 
+
 Pregunta 2 (10 puntos): 
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -100,16 +101,17 @@ Obtener el nombre de los jugadores que cumplen la misma función (posición) que
 Pregunta 4 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Seleccione todos los campos de la tabla Jugador, cuyo equipo tenga sede en Santiago o Valparaiso (utilice subconsultas). 
+Seleccione todos los campos de la tabla Jugador, cuyo equipo tenga sede en "Santiago" o "Valparaiso" (utilice subconsultas). 
 
 
-Pregunta 5 (10 puntos):
+Pregunta 5 (15 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Se desea saber:
 
 	a) La cantitdad de titulos y el nombre del equipo que más ha ganado y la diferencia con la cantidad de titulos del equipo que menos ha ganado.
 	b) Corroborar esta informacion, consultando la cantitdad de titulos y el nombre del equipo que menos ha ganado y la diferencia con la cantidad de titulos del equipo que más ha ganado.
+
 
 Pregunta 6 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -120,19 +122,22 @@ Realice una consulta en SQL que retorne la cantidad de partidos que SW ganó de 
 Pregunta 7 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Obtener el nombre del equipo que más partidos ganó de local.
+Realice una consulta en SQL que retorne un listado con el nombre del equipo y la cantidad de goles que hizo de visita.
 
 
-Pregunta 8 (15 puntos):
+
+Pregunta 8 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Elabore una consulta en SQL que obtenga la cantidad de puntos que obtuvo UCH durante el campeonato (los partidos ganados otorgan 3 puntos, empate 1 punto, perdido 0 punto, el partido lo gana el equipo que hace más goles).
+Obtener el nombre del equipo que más partidos ganó de local.
+
 
 
 Pregunta 9 (15 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Mediante una consulta SQL, obtenga el equipo que salió campeón (equipo campeón es aquel que obtuvo más puntos, siguiendo la ponderación dada en la pregunta anterior).
+Elabore una consulta en SQL que obtenga la cantidad de puntos que obtuvo UCH durante el campeonato (los partidos ganados otorgan 3 puntos, empate 1 punto, perdido 0 punto, el partido lo gana el equipo que hace más goles).
+
 
 
 

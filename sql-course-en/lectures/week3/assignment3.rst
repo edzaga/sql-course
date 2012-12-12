@@ -107,7 +107,7 @@ Question 4 (10 points):
 Select all the field of the Player table whose team’s home city is “Santiago” or “Valparaíso” (use subqueries).
 
 
-Question 5 (10 points):
+Question 5 (15 points):
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 We want to know:
@@ -117,24 +117,26 @@ We want to know:
 
 Question 6 (10 points):
 ^^^^^^^^^^^^^^^^^^^^^^^
+
 Make a SQL query that returns the amount of matches “SW” won playing as local.
 
 
 Question 7 (10 points):
 ^^^^^^^^^^^^^^^^^^^^^^^
-Retrieve the name of the team that won more matches playing as local.
+
+Make an SQL query that returns a list with the team names and the amount of goals made as a visit.
 
 
-Question 8 (15 points):
+Question 8 (10 points):
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Make a SQL query that returns the amount of points that “UCH” obtained during the 
-championship ( won matches award 3 points, while a draw awards 1 and a defeat awards 
-no points. the winner is the team that scored more goals)
+Retrieve the name of the team that won more matches playing as local.
+
 
 
 Question 9 (15 points):
 ^^^^^^^^^^^^^^^^^^^^^^^
+Make a SQL query that returns the amount of points that “UCH” obtained during the 
+championship ( won matches award 3 points, while a draw awards 1 and a defeat awards 
+no points. the winner is the team that scored more goals)
 
-Through a SQL query, retrieve the team that won the championship (the team that has 
-more points is the champion. the scoring system detailed in question 6 applies)
