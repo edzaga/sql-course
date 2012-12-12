@@ -239,7 +239,26 @@ ambas como se hizo en el ejemplo 2, sin la necesidad de borrar la tabla, crearla
   DELETE FROM Student_new WHERE sID = 1;
 
 Lo cual permite eliminar la fila correspondiente a 'Betty' y dejar la tabla vacia. Posteriormente 
-es posible comenzar a llenarla de nuevo mediante las últimas 2 consultas del ejemplo 2.
+es posible comenzar a llenarla de nuevo mediante las últimas 2 consultas del ejemplo 2, es decir:
+
+.. code-block:: sql
+
+  INSERT INTO Student_new (sName, Average) VALUES ('Betty', 78);
+  INSERT INTO Student_new (sName, Average) VALUES ('Wilma', 81);
+
+Ejemplo 5
+^^^^^^^^^
+
+RECAPITULACIÓN
+~~~~~~~~~~~~~~
+
+A continuación se expondrá un ejemplo que implique el uso de todos los comandos aprendidos en esta
+lectura.
+
+Ejemplo extra
+^^^^^^^^^^^^^
+
+
 
 
 Falta agregar ejemplos practicos
