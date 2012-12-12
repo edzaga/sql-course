@@ -79,7 +79,7 @@ A database containing the data of various football teams exist with the followin
 
 .. note::
 
- The tables provided above are only a reference. the file with the values can be found in the documents section of the curse platform.
+ The tables provided above are only a reference. the file with the values can be found in the documents section of the curse platform. The file must be edited keeping the format, ie submit a file named `assignment3.sql`_
         
       
 Question 1 (10 points):
@@ -139,4 +139,6 @@ Question 9 (15 points):
 Make a SQL query that returns the amount of points that “UCH” obtained during the 
 championship ( won matches award 3 points, while a draw awards 1 and a defeat awards 
 no points. the winner is the team that scored more goals)
+
+.. _`assignment3.sql`: https://csrg.inf.utfsm.cl/claroline/claroline/backends/download.php?url=L2Fzc2lnbm1lbnQzLnNxbA%3D%3D&cidReset=true&cidReq=SQL01
 

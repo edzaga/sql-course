@@ -76,7 +76,7 @@ Se tiene una base de datos de equipos de fútbol con el siguiente esquema:
       (30 filas)
 
 .. note::
-	Las tablas anteriores son solo de referencia. El archivo con los valores se encuenta en la sección de documentos en la plataforma del curso. Se debe editar dicho archivo y mantener el formato, es decir entregar un archivo assignment3.sql
+	Las tablas anteriores son solo de referencia. El archivo con los valores se encuenta en la sección de documentos en la plataforma del curso. Se debe editar dicho archivo y mantener el formato, es decir entregar un archivo `assignment3.sql`_
 
 
 Pregunta 1 (10 puntos): 
@@ -125,7 +125,6 @@ Pregunta 7 (10 puntos):
 Realice una consulta en SQL que retorne un listado con el nombre del equipo y la cantidad de goles que hizo de visita.
 
 
-
 Pregunta 8 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -139,5 +138,6 @@ Pregunta 9 (15 puntos):
 Elabore una consulta en SQL que obtenga la cantidad de puntos que obtuvo UCH durante el campeonato (los partidos ganados otorgan 3 puntos, empate 1 punto, perdido 0 punto, el partido lo gana el equipo que hace más goles).
 
 
+.. _`assignment3.sql`: https://csrg.inf.utfsm.cl/claroline/claroline/backends/download.php?url=L2Fzc2lnbm1lbnQzLnNxbA%3D%3D&cidReset=true&cidReq=SQL01
 
 
