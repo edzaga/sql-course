@@ -249,6 +249,13 @@ es posible comenzar a llenarla de nuevo mediante las últimas 2 consultas del ej
 Ejemplo 5
 ^^^^^^^^^
 
+Supongamos que 'Wilma' se enoja por el error de tipeo y desea salir del procrso de postulación. Es
+por ello que debe ser eliminada de la nueva planilla de estudiantes:
+
+.. code-block:: sql 
+
+  DELETE FROM Student_new WHERE sID = 1;
+
 RECAPITULACIÓN
 ~~~~~~~~~~~~~~
 
@@ -257,9 +264,45 @@ lectura.
 
 Ejemplo extra
 ^^^^^^^^^^^^^
+Tomando en cuenta el ejemplo 5, supongamos que 'Betty' pasa a la etapa de postulaciones
+y decide hacerlo en 2 Establecimientos educacionales. Postula a ciencias e ingeniería  en Stanford 
+y a Historia Natural en Berkeley, es aceptada en todo lo que ha postulado. La tabla **Apply** igual 
+que la tabla **Student**: ya se había enviado sin posibilidad de modificar,  Es por ello que se crea 
+la tabla **Apply_new**, cpn las mismas características que **Apply**:
 
 
+.. code-block:: sql
+
+   CREATE TABLE   Apply_new(sID INTEGER, cName VARCHAR(20), major VARCHAR(30), 
+   decision BOOLEAN,   PRIMARY kEY(sID, cName, major));
 
 
-Falta agregar ejemplos practicos
+  INSERT INTO Apply_new (sID, cName, major, decision) VALUES (1, 'Stanford', 
+  'science'        , True);
+  INSERT INTO Apply_new (sID, cName, major, decision) VALUES (1, 'Stanford', 
+  'engineering'    , True);
+  INSERT INTO Apply_new (sID, cName, major, decision) VALUES (1, 'Berkeley', 
+  'natural history'    , True);
+
+Supongamos ahora que hubo un error en la gestión de papeles respecto a la postulación a ingeniería: 
+Básicamente 'Wilma' no quedó aceptada  en dicha mención, por lo tanto se debe modificar
+
+.. code-block:: sql
+
+  UPDATE Apply SET decision = false
+  WHERE sid = 13 and cname = 'Stanford' and major = 'engineering';
+
+Lo que resulta en el cambio en la tabla.
+
+Supongamos ahora que 'Wilma', por suerte,  es una persona distraida y debido a sus enormes
+ganas de entrar a ciencias no se percata del error. El responsable de error, por temor a poner en
+juego su reputación, decide eliminar el registro de la postulación, en lo que considera un plan maestro,
+pues la tabla **Apply_new** no cuenta con un contador serial que pudiese causar algún conflicto. 
+
+.. code-block:: sql
+
+ DELETE FROM Apply 
+ WHERE sid = 1 and name = 'Stanford' and major = 'engineering';
+
+Falta agregar salida de las consultas (las verifiqué en todo caso)
 
