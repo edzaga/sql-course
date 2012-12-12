@@ -205,8 +205,9 @@ cuenten con un promedio igual a 81. Por lo tanto la consulta ideal corresponde a
 DELETE
 ~~~~~~
 
-Es posible eliminar filas de información, que cumplan una determinada condición. Esto es especialemnte útil en el caso del ejemplo 1
-así, se evita tener que borrar toda una tabla.
+Es posible eliminar filas de información, que cumplan una determinada condición. Esto 
+es especialemnte útil en casos donde se desee borrar filas específicas en lugar de tener que borrar 
+toda una tabla.
 
 La sintaxis del comando DELETE es:
 
@@ -214,7 +215,7 @@ La sintaxis del comando DELETE es:
 
   DELETE FROM table WHERE Condition;
 
-Es decir que de la tabla "table", se elimina el(los) valor(es) que cumpla(n) con la condición "Condition".
+Es decir que de la tabla **table**, se elimina el(los) valor(es) que cumpla(n) con la condición "Condition".
 
 .. note::
 
@@ -230,16 +231,16 @@ Si nos situamos temporalmente al final del ejemplo 1, con el error::
   ERROR: duplicate key value violates unique constraint "student2_pkey"
   DETAIL: Key(sid)=(1) already exists.
 
-Al querer insertar a 'Wilma', es posible eliminar la fila correspondiente a 'Betty' y volver insertar ambas como se hizo en
-el ejemplo 2, sin la necesidad de borrar la tabla, crearla y agregar todo de nuevo:
+Al querer insertar a 'Wilma', es posible eliminar la fila correspondiente a 'Betty' y volver insertar
+ambas como se hizo en el ejemplo 2, sin la necesidad de borrar la tabla, crearla y agregar todo de nuevo:
 
 .. code-block:: sql
 
   DELETE FROM Student_new WHERE sID = 1;
 
-Lo cual permite eliminar la fila correspondiente a 'Betty' y dejar la tabla vacia. Posteriormente es posible comenzar a llenarla de nuevo
-mediante las últimas 2 consultas del ejemplo 2.
+Lo cual permite eliminar la fila correspondiente a 'Betty' y dejar la tabla vacia. Posteriormente 
+es posible comenzar a llenarla de nuevo mediante las últimas 2 consultas del ejemplo 2.
+
 
 Falta agregar ejemplos practicos
-asdasdsa
 
