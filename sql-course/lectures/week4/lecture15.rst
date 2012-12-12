@@ -18,7 +18,7 @@ El diseño de una base de datos relacional puede abordarse de dos formas:
    a esquema relacional**.
 
 En los esquemas de bases de datos es posible encontrar anomalias que serán eliminadas
-gracias al proceso de normalización que se explicará en las proximas lecturas.
+gracias al proceso de normalización.
 
 Estas anomalias son:
 
@@ -42,19 +42,26 @@ A continuación se muestra una tabla y luego el detalle de los problemas que pre
     \hline                                                                           
     \text{Rosasco, José Luis}  & \text{Chi} & \text{9789561224056} & \text{Donde Estas, Constanza} & \text{Zig-Zag}  \\
     \hline                                                                           
-    \text{True}       & \text{False} & \text{} & \text{} & \text{} \\
+    \text{Rosasco, José Luis}  & \text{Chi} & \text{9561313669} & \text{Hoy Día es Mañana} & \text{Andrés Bello} \\
     \hline
-    \text{False}      & \text{True} & \text{} & \text{} & \text{} \\
+    \text{Coloane, Francisco} & \text{Chi} & \text{9789563473308} & \text{Golfo De Penas} & \text{Alfaguara} \\
     \hline
    \end{array}
 
+* **Redundancia:** cuando un autor tiene varios libros, se repite de la nacionalidad.
+* **Anomalias de modificación:** Si el autor "Julio Cortázar" y "José Luis Rosasco", desean 
+cambiar de editor, se modificará en los dos lugares. A priori no se puede saber cuandos
+autores tiene un libro. Los errores son frecuentes al olvidar la modificación de un autor.
+* **Anomalias de inserción:** Se desea ingresar a un autor sin libros. "Nombre_autor" y "Cod_libro"
+son campos claves, por lo que las claves no pueden ser valores nulos.
 
-Normalización
-~~~~~~~~~~~~~
+Al eliminar estas anomalias se asegura:
 
-Proceso mediante el cual se transforman datos complejos a un conjunto de estructuras 
-de datos más pequeñas, que además de ser más simples y más estables, son más
-fáciles de mantener.
+* **Integridad entre los datos:** consistencia de la información.
+
+Es por esto que nace el proceso de normalizacion en el cual se transforman datos complejos 
+a un conjunto de estructuras de datos más pequeñas, que además de ser más simples y más 
+estables, son más fáciles de mantener.
 También consiste en un conjunto de reglas denominadas Formas Normales (FN), las cuales 
 establecen las propiedades que deben cumplir los datos para alcanzar una representación 
 normalizada.
@@ -65,6 +72,11 @@ Grados de normalización
 Existen básicamente tres niveles de normalización: Primera Forma Normal (1NF), 
 Segunda Forma Normal (2NF) y Tercera Forma Normal (3NF). Cada una de estas formas 
 tiene sus propias reglas.
+
+La siguiente imagen muestra los grados de normalización que se utilizan en el diseño
+de esquemas de bases de datos.
+
+
 
 Primera formal normal (1FN)
 ===========================
