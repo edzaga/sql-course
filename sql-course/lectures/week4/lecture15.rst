@@ -14,6 +14,7 @@ El diseño de una base de datos relacional puede abordarse de dos formas:
 * **Obteniendo el esquema relacional directamente:** Objetos y reglas captadas del 
    análisis del mundo real, representadas por un conjunto de esquemas de relación, 
    sus atributos y restricciones de integridad.
+
 * **Realizando el diseño del esquema "conceptual" de la BD (modelo E/R) y transformándolo 
    a esquema relacional**.
 
@@ -23,10 +24,13 @@ gracias al proceso de normalización.
 Estas anomalias son:
 
 * **La redundancia de los datos:** repetición de datos en un sistema.
+
 * **Anomalías de actualización:** inconsistencias de los datos como resultado de datos
 redundantes y actualizaciones parciales.
+
 * **Anomalías de borrado:** pérdidas no intencionadas de datos debido a que se han borrado
 otros datos.
+
 * **Anomalías de inserción:** imposibilidad de adicionar datos en la base de datos debido
 a la ausencia de otros datos.
 
@@ -49,9 +53,11 @@ A continuación se muestra una tabla y luego el detalle de los problemas que pre
    \end{array}
 
 * **Redundancia:** cuando un autor tiene varios libros, se repite de la nacionalidad.
+
 * **Anomalias de modificación:** Si el autor "Julio Cortázar" y "José Luis Rosasco", desean 
 cambiar de editor, se modificará en los dos lugares. A priori no se puede saber cuandos
 autores tiene un libro. Los errores son frecuentes al olvidar la modificación de un autor.
+
 * **Anomalias de inserción:** Se desea ingresar a un autor sin libros. "Nombre_autor" y "Cod_libro"
 son campos claves, por lo que las claves no pueden ser valores nulos.
 
@@ -59,9 +65,12 @@ Al eliminar estas anomalias se asegura:
 
 * **Integridad entre los datos:** consistencia de la información.
 
-Es por esto que nace el proceso de normalizacion en el cual se transforman datos complejos 
-a un conjunto de estructuras de datos más pequeñas, que además de ser más simples y más 
-estables, son más fáciles de mantener.
+Normalización
+~~~~~~~~~~~~~
+
+Por todas las anomalias descritas anteriormente nace el proceso de normalizacion en el 
+cual se transforman datos complejos a un conjunto de estructuras de datos más pequeñas, 
+que además de ser más simples y más estables, son más fáciles de mantener.
 También consiste en un conjunto de reglas denominadas Formas Normales (FN), las cuales 
 establecen las propiedades que deben cumplir los datos para alcanzar una representación 
 normalizada.
@@ -76,7 +85,16 @@ tiene sus propias reglas.
 La siguiente imagen muestra los grados de normalización que se utilizan en el diseño
 de esquemas de bases de datos.
 
+.. image:: ../../../sql-course/src/formas_normales.jpg
+   :align: center
 
+El proceso de normalización es fundamental para obtener un diseño de base de datos
+eficiente. Durante las siguientes lecturas se analizará cada una de las formas normales 
+a través de ejemplos.
+Una entidad no normalizada generalmente expresados en forma plana (como una tabla). 
+Es muy probable que existan uno o más grupos repetitivos, no pudiendo en ese caso ser 
+un atributo simple su clave primaria. Las tres primeras formas normales se definen de 
+la siguiente manera:
 
 Primera formal normal (1FN)
 ===========================
@@ -116,4 +134,19 @@ que hace de clave primaria en la nueva tabla generada; a este atributo se le den
 clave foránea dentro de la tabla inicial (por clave foránea se entiende entonces, a
 aquel atributo que en una tabla no es clave primaria, pero sí lo es en otra tabla).
 
+Integración de Vistas
+~~~~~~~~~~~~~~~~~~~~~
 
+Este paso consiste en combinar las tablas generadas en base a un criterio común: igual clave primaria, 
+formando un conjunto de tablas en 3FN. Con esto se obtiene el modelo de datos conceptual 
+expresado como un conjunto de tablas o relaciones normalizadas.
+La integración basada en juntar aquellas tablas que tienen la misma clave primaria,
+permite agrupar los datos referidos a una misma entidad. Debe revisarse la tabla resultante pues
+es posible que al realizar la integración se introduzcan dependencias transitivas (es decir, la
+tabla quede en 2FN) que deben ser eliminadas.
+
+Generación del Modelo de Datos Conceptual
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Para una mejor comprensión del usuario es deseable transformar las tablas obtenidas en
+el paso previo a una representación gráfica. Como por ejemplo, a un Modelo E/R.
