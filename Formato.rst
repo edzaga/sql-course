@@ -34,6 +34,8 @@ Según el libro guía:
 Para hablar de una `\text{Tabla}` y de un *atributo* 
 
 * Bueno los comandos SQL ya saben :sql:`COMANDOS SQL`, 
+.. code-block:: sql
+ o asi 
 
 para resaltar algún **cocepto**
 
