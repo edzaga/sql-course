@@ -10,12 +10,8 @@ Diseñar un esquema de base de datos
 
 El diseño de una base de datos relacional puede abordarse de dos formas:
 
-* **Obteniendo el esquema relacional directamente:** Objetos y reglas captadas del 
-   análisis del mundo real, representadas por un conjunto de esquemas de relación, 
-   sus atributos y restricciones de integridad.
-
-* **Realizando el diseño del esquema "conceptual" de la BD (modelo E/R) y transformándolo 
-   a esquema relacional**.
+* **Obteniendo el esquema relacional directamente:** Objetos y reglas captadas del análisis del mundo real, representadas por un conjunto de esquemas de relación, sus atributos y restricciones de integridad.
+* **Realizando el diseño del esquema "conceptual" de la BD (modelo E/R) y transformándolo a esquema relacional**.
 
 En los esquemas de bases de datos es posible encontrar anomalias que serán eliminadas
 gracias al proceso de normalización.
@@ -23,15 +19,9 @@ gracias al proceso de normalización.
 Estas anomalias son:
 
 * **La redundancia de los datos:** repetición de datos en un sistema.
-
-* **Anomalías de actualización:** inconsistencias de los datos como resultado de datos
-redundantes y actualizaciones parciales.
-
-* **Anomalías de eliminación:** pérdidas no intencionadas de datos debido a que se han borrado
-otros datos.
-
-* **Anomalías de inserción:** imposibilidad de adicionar datos en la base de datos debido
-a la ausencia de otros datos.
+* **Anomalías de actualización:** inconsistencias de los datos como resultado de datos redundantes y actualizaciones parciales.
+* **Anomalías de eliminación:** pérdidas no intencionadas de datos debido a que se han borrado otros datos.
+* **Anomalías de inserción:** imposibilidad de adicionar datos en la base de datos debido a la ausencia de otros datos.
 
 A continuación se muestra una tabla y luego el detalle de los problemas que presenta:
 
@@ -41,7 +31,7 @@ A continuación se muestra una tabla y luego el detalle de los problemas que pre
     \hline
     \textbf{Nombre_autor} & \textbf{País} & \textbf{Cod_libro} & \textbf{Titulo_libro} & \textbf{Editor} \\
     \hline
-    \text{Cortázar, Julio} & \text{Arg} & text{9786071110725} & \text{Cuentos Completos 1 Julio Cortazar}  & \text{Alfaguara}\\
+    \text{Cortázar, Julio} & \text{Arg} & \text{9786071110725} & \text{Cuentos Completos 1 Julio Cortazar}  & \text{Alfaguara}\\
     \hline                                                                           
     \text{Rosasco, José Luis}  & \text{Chi} & \text{9789561224056} & \text{Donde Estas, Constanza} & \text{Zig-Zag}  \\
     \hline                                                                           
@@ -52,13 +42,8 @@ A continuación se muestra una tabla y luego el detalle de los problemas que pre
    \end{array}
 
 * **Redundancia:** cuando un autor tiene varios libros, se repite de la nacionalidad.
-
-* **Anomalias de modificación:** Si el autor "Julio Cortázar" y "José Luis Rosasco", desean 
-cambiar de editor, se modificará en los dos lugares. A priori no se puede saber cuandos
-autores tiene un libro. Los errores son frecuentes al olvidar la modificación de un autor.
-
-* **Anomalias de inserción:** Se desea ingresar a un autor sin libros. "Nombre_autor" y "Cod_libro"
-son campos claves, por lo que las claves no pueden ser valores nulos.
+* **Anomalias de modificación:** Si el autor "Julio Cortázar" y "José Luis Rosasco", desean cambiar de editor, se modificará en los dos lugares. A priori no se puede saber cuandos autores tiene un libro. Los errores son frecuentes al olvidar la modificación de un autor.
+* **Anomalias de inserción:** Se desea ingresar a un autor sin libros. "Nombre_autor" y "Cod_libro" son campos claves, por lo que las claves no pueden ser valores nulos.
 
 Al eliminar estas anomalias se asegura:
 
@@ -66,9 +51,9 @@ Al eliminar estas anomalias se asegura:
 
 Otro ejemplo se muestra en la siguiente tabla:
 
-Apply(SSN, sName, cName, HS, HScity, hobby)
+**Aplicar(SSN, sNombre, cNombre, HS, HSciudad, hobby)**
 
-123 Ann de PAHS (P.A) y GHS (P.A) juega tenis y toca la trompeta y postulo a Stanford, Berkeley y al MIT
+*123 Ann de PAHS (P.A) y GHS (P.A) juega tenis y toca la trompeta y postulo a Stanford, Berkeley y al MIT*
 
 Los datos ingresados en la tabla podrían ser los que se muestran a continuación:
 
@@ -78,7 +63,7 @@ Los datos ingresados en la tabla podrían ser los que se muestran a continuació
     \hline                                                                           
     \text{123} & \text{Ann} & \text{Stanford} & \text{PAHS} & \textbf{P.A} & \text{tenis} \\
     \hline                                                                           
-    \text{123} & \text{Ann} & text{Berkeley} & \text{PAHS}  & \text{P.A} & \text{tenis}\\
+    \text{123} & \text{Ann} & \text{Berkeley} & \text{PAHS}  & \text{P.A} & \text{tenis}\\
     \hline                                                                           
     \text{123}  & \text{Ann} & \text{Berkeley} & \text{PAHS} & \text{P.A}  & \text{trompeta}\\
     \hline                                                                           
@@ -90,15 +75,15 @@ Los datos ingresados en la tabla podrían ser los que se muestran a continuació
 
 * **Redundancia:** captura información muchas veces como por ejemplo "123 Ann", "PAHS", "tenis" o "MIT".
 * **Anomalia de actualización:** actualizar datos de diferente manera como "corneta" por "trompeta".
-* **Anomalia de eliminación:** eliminación inadvertida de datos
+* **Anomalia de eliminación:** eliminación inadvertida de datos.
 
 Una correcta forma de realizar la tabla anterior sin anomalias es:
 
-Student(SSN, sName);
-Apply(SSN, cName);
-HighSchool(SSN, HS);
-Located(HS, HScity);
-Hobbies(SSN, hobby); 
+* Estudiante(SSN, sNombre);
+* Aplicar(SSN, cNombre);
+* Escuela_secundaria(SSN, HS);
+* Ubicado(HS, HSciudad);
+* Aficiones(SSN, hobby); 
 
 Ejercicio
 =========
@@ -112,8 +97,11 @@ calificación.
 ¿Cuál de los siguientes esquemas recomiendan?
 
 a) Tomó(SID, nombre, cursoNum, título, año, calificación)
+
 b) Curso(cursoNum, título, año), Tomó(SID, cursoNum, calificación)
+
 c) Estudiante(SID, nombre), Curso(cursoNum, título), Tomó(SID, cursoNum, año, calificación)
+
 d) Estudiante(SID, nombre), Curso(cursoNum, título), Tomó(nombre, título, año, calificación)
 
 La alternativa correcta es la letra (c), puesto que en el enunciado se dice que existen
@@ -139,7 +127,7 @@ Descomposición automática:
 * El sistema descompone basandose en las propiedades.
 
 * Conjunto final de relaciones satisface la forma normal.
-  * No hay anomalías, hay pérdida de información.
+ * No hay anomalías, hay pérdida de información.
 
 Normalización
 ~~~~~~~~~~~~~                                                                        
@@ -155,7 +143,8 @@ Propiedades y formas normales
 =============================
 
 Dependencias funcionales-> Boyce-Codd forma normal
-+ Multivalor dependencias-> Cuarta Forma Normal
+
+"+ Multivalor dependencias-> Cuarta Forma Normal"
 
 .. note::
  La cuarta forma normal es más estricta que Boyce-Codd forma normal.
@@ -167,7 +156,7 @@ Cada una de estas formas tiene sus propias reglas.
 La siguiente imagen muestra los grados de normalización que se utilizan en el diseño
 de esquemas de bases de datos.
 
-.. image:: ../../../sql-course/src/formas_normales.jpg
+.. image:: ../../../sql-course/src/formas_normales.png
    :align: center
 
 El proceso de normalización es fundamental para obtener un diseño de base de datos
@@ -214,4 +203,50 @@ con la tabla inicial, la cual además de sus propios atributos, debe contener el
 que hace de clave primaria en la nueva tabla generada; a este atributo se le denomina 
 clave foránea dentro de la tabla inicial (por clave foránea se entiende entonces, a
 aquel atributo que en una tabla no es clave primaria, pero sí lo es en otra tabla).
+
+Ahora se detallarán las formas normales que se abordarán en las próximas lecturas como
+son Boyce-Codd y cuarta forma normal.
+
+Boyce-Codd forma normal (FNBC)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Es una versión ligeramente más fuerte de la Tercera forma normal (3FN). La forma normal de 
+Boyce-Codd requiere que no existan dependencias funcionales no triviales de los atributos 
+que no sean un conjunto de la clave candidata. En una tabla en 3FN, todos los atributos dependen 
+de una clave. Se dice que una tabla está en FNBC si y solo si está en 3FN y cada dependencia 
+funcional no trivial tiene una clave candidata como determinante. 
+
+Dependencias funcionales y FNBC
+===============================
+
+**Aplicar(SSN, sNombre, CNOMBRE)**
+
+* Redundancia, anomalías de actualización y eliminación.
+* Almacenamiento del SSN-sNombre para una vez por cada universidad.
+
+**Dependencia funcional SSN-> sNombre**
+
+* SSN siempre tiene el mismo sNombre 
+* En caso de almacenar sNombre cada SSN sólo una vez
+
+**Boyce-Codd forma normal si a-> b entonces a es una clave**
+
+Descomponer: Estudiante(SSN, sNombre) Aplicar(SSN, CNOMBRE)
+
+siendo finalmente SSN una clave primaria.
+
+Ejemplo
+^^^^^^^
+
+Tenga en cuenta la relación Tomó(SID, nombre, cursoNum, título). Los estudiantes tienen 
+el carné de estudiante y un nombre único (posiblemente no el único), los cursos tienen 
+un número único curso y (posiblemente no el único) título. Cada tupla de la relación 
+codifica el hecho de que un estudiante dado tomó el curso. ¿Cuáles son todas las 
+dependencias funcionales para la relación tomó?
+
+a) sID → cursoNum
+b) sID → nombre, cursoNum → titulo
+c) nombre → sID, titulo → cursoNum
+d) cursoNum → sID 
+
 
