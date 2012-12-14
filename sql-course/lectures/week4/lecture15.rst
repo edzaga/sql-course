@@ -53,6 +53,12 @@ Otro ejemplo se muestra en la siguiente tabla:
 
 **Aplicar(SSN, sNombre, cNombre, HS, HSciudad, hobby)**
 
+.. note::
+ La notación que se utiliza en la tabla es:
+
+ HS = high school (escuela secundaria).
+
+
 *123 Ann de PAHS (P.A) y GHS (P.A) juega tenis y toca la trompeta y postulo a Stanford, Berkeley y al MIT*
 
 Los datos ingresados en la tabla podrían ser los que se muestran a continuación:
@@ -249,4 +255,57 @@ b) sID → nombre, cursoNum → titulo
 c) nombre → sID, titulo → cursoNum
 d) cursoNum → sID 
 
+La respuesta correcta es la alternativa (b), puesto que un id de estudiante que único "sID", esta 
+asignado a solo un estudiante y un id del curso que es único "cursoNum" tiene asignado un titulo. Las
+otras alternativas no son porque, la alternativa (a) dice un estudiante sólo puede tomar un curso, la
+alternativa (c) dice que los nombres de los estudiantes y los títulos de los cursos son únicos y
+la alternativa (d) dice que los cursos sólo pueden ser tomados por un estudiante. 
+
+Cuarta forma normal (4FN)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+La 4NF se asegura de que las dependencias multivaluadas independientes estén correcta 
+y eficientemente representadas en un diseño de base de datos. La 4NF es el siguiente 
+nivel de normalización después de la forma normal de Boyce-Codd (BCNF).
+Una tabla está en 4NF si y solo si esta en Tercera forma normal o en BCNF y no posee 
+dependencias multivaluadas no triviales. La definición de la 4NF confía en la noción 
+de una dependencia multivaluada. Una tabla con una dependencia multivaluada es donde 
+hay una existencia de dos o más relaciones independientes de muchos a muchos que causa 
+redundancia; que es suprimida por la cuarta forma normal.
+
+Dependencias multivaluadas y 4FN
+================================
+
+**Aplicar(SSN, cNombre, HS)**
+
+* Redundancia, anomalias de actualización y eliminación.
+* Efecto multiplicativo: C colegios o H escuelas secundarias, por lo que se generarán "C * H" ó "C + H" tuplas.
+* No es dirigida por BCNF: No hay dependencias funcionales.
+
+**La dependencia multivalor SSN->>cName ó SSN->>HS**
+
+* SSN cuenta todas las combinaciones de cName con HS.
+* En caso de almacenar cada cName y HS, para obtener una vez un SSN.
+
+**Cuarta Forma Normal si A->>B entonces A es una clave**
+
+Descomponer: Aplicar(SSN, cNombre) Escuela_secundaria(SSN, HS)
+
+Ejemplo
+^^^^^^^
+
+Tenga en cuenta la relación Informacion_estudiante(SID, dormitorio, cursoNum). Los estudiantes 
+suelen vivir en varios dormitorios y tomar muchos cursos en la universidad. Supongamos 
+que los datos no capta en que dormitorio(s) un estudiante estaba en la hora de tomar 
+un curso específico, es decir, todas las combinaciones de cursos dormitorio se registran 
+para cada estudiante. ¿Cuáles son todas las dependencias para la relación Informacion_estudiante?
+
+a) sID->>dormitorio
+b) sID->>cursoNum
+c) sID->>dormitorio, sID->>cursoNum
+d) sID->>dormitorio, sID->>cursoNum, dormitorio->>cursoNum
+
+La alternativa correcta es (c), puesto que para un estudiante hay muchos dormitorios y 
+un estudiante puede tomar muchos cursos. La alternativa (a) y (b) ambos omiten una dependencia, 
+la alternativa (d) dice que todos los estudiantes de cada dormitorio toman el mismo conjunto de cursos.
 
