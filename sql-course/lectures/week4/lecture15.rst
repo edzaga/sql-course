@@ -1,16 +1,15 @@
 Lectura 15 - Teoría del diseño Relacional: Información General
 --------------------------------------------------------------
 
-Diseño Relacional
-~~~~~~~~~~~~~~~~~
-
 Diseñar un esquema de base de datos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Por lo general existen *muchos* diseños posibles.
 * Algunos son (mucho) mejor que otros.
 * ¿Cómo elegir?.
 
 El diseño de una base de datos relacional puede abordarse de dos formas:
+
 * **Obteniendo el esquema relacional directamente:** Objetos y reglas captadas del 
    análisis del mundo real, representadas por un conjunto de esquemas de relación, 
    sus atributos y restricciones de integridad.
@@ -28,7 +27,7 @@ Estas anomalias son:
 * **Anomalías de actualización:** inconsistencias de los datos como resultado de datos
 redundantes y actualizaciones parciales.
 
-* **Anomalías de borrado:** pérdidas no intencionadas de datos debido a que se han borrado
+* **Anomalías de eliminación:** pérdidas no intencionadas de datos debido a que se han borrado
 otros datos.
 
 * **Anomalías de inserción:** imposibilidad de adicionar datos en la base de datos debido
@@ -65,22 +64,105 @@ Al eliminar estas anomalias se asegura:
 
 * **Integridad entre los datos:** consistencia de la información.
 
-Normalización
-~~~~~~~~~~~~~
+Otro ejemplo se muestra en la siguiente tabla:
 
-Por todas las anomalias descritas anteriormente nace el proceso de normalizacion en el 
-cual se transforman datos complejos a un conjunto de estructuras de datos más pequeñas, 
-que además de ser más simples y más estables, son más fáciles de mantener.
-También consiste en un conjunto de reglas denominadas Formas Normales (FN), las cuales 
-establecen las propiedades que deben cumplir los datos para alcanzar una representación 
+Apply(SSN, sName, cName, HS, HScity, hobby)
+
+123 Ann de PAHS (P.A) y GHS (P.A) juega tenis y toca la trompeta y postulo a Stanford, Berkeley y al MIT
+
+Los datos ingresados en la tabla podrían ser los que se muestran a continuación:
+
+.. math::                                                                            
+                                                                                     
+   \begin{array}{|c|c|c|c|}                                                            
+    \hline                                                                           
+    \text{123} & \text{Ann} & \text{Stanford} & \text{PAHS} & \textbf{P.A} & \text{tenis} \\
+    \hline                                                                           
+    \text{123} & \text{Ann} & text{Berkeley} & \text{PAHS}  & \text{P.A} & \text{tenis}\\
+    \hline                                                                           
+    \text{123}  & \text{Ann} & \text{Berkeley} & \text{PAHS} & \text{P.A}  & \text{trompeta}\\
+    \hline                                                                           
+    \text{.}  & \text{.} & \text{.} & \text{GHS} & \text{.} & \text{.}\\
+    \hline                                                                           
+    \text{.} & \text{.} & \text{.} & \text{.} & \text{.} & \text{.}\\
+    \hline                                                                           
+   \end{array} 
+
+* **Redundancia:** captura información muchas veces como por ejemplo "123 Ann", "PAHS", "tenis" o "MIT".
+* **Anomalia de actualización:** actualizar datos de diferente manera como "corneta" por "trompeta".
+* **Anomalia de eliminación:** eliminación inadvertida de datos
+
+Una correcta forma de realizar la tabla anterior sin anomalias es:
+
+Student(SSN, sName);
+Apply(SSN, cName);
+HighSchool(SSN, HS);
+Located(HS, HScity);
+Hobbies(SSN, hobby); 
+
+Ejercicio
+=========
+
+Considere la posibilidad de una base de datos que contiene información sobre los cursos 
+tomados por los estudiantes. Los estudiantes tienen un ID único de estudiante y 
+(posiblemente no el único) nombre; cursos tienen un número único de curso y (posiblemente 
+no el único) título, los estudiantes toman un curso de un año determinado y reciben una 
+calificación.
+
+¿Cuál de los siguientes esquemas recomiendan?
+
+a) Tomó(SID, nombre, cursoNum, título, año, calificación)
+b) Curso(cursoNum, título, año), Tomó(SID, cursoNum, calificación)
+c) Estudiante(SID, nombre), Curso(cursoNum, título), Tomó(SID, cursoNum, año, calificación)
+d) Estudiante(SID, nombre), Curso(cursoNum, título), Tomó(nombre, título, año, calificación)
+
+La alternativa correcta es la letra (c), puesto que en el enunciado se dice que existen
+estudiantes con un ID único, que en este caso será "SID" y un "nombre"; los cursos tienen
+un ID único que es "cursoNum" y un "titulo", además que los estudiantes toman un curso en un 
+año determinado "año" y reciben una calificación "grado", pero el atributo "cursoNum" actúa como
+clave foránea de la tabla *Curso* con la cual se podrá obtener el titulo del curso y también debe
+poseer una clave primaria para poder identificar el curso tomado que será "SID".
+
+Diseño por descomposición
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Comience con las *"mega" relaciones* que contienen todo.
+
+* *Descomponer* en partes más pequeñas, se obtienen mejores relaciones con la misma información.
+
+* ¿Se puede *descomponer automáticamente*?
+
+Descomposición automática:
+
+* "Mega" relaciones + propiedades de los datos.
+
+* El sistema descompone basandose en las propiedades.
+
+* Conjunto final de relaciones satisface la forma normal.
+  * No hay anomalías, hay pérdida de información.
+
+Normalización
+~~~~~~~~~~~~~                                                                        
+                                                                                     
+Por todas las anomalias descritas anteriormente nace el proceso de normalizacion en el
+cual se transforman datos complejos a un conjunto de estructuras de datos más pequeñas,
+que además de ser más simples y más estables, son más fáciles de mantener.           
+También consiste en un conjunto de reglas denominadas Formas Normales (FN), las cuales
+establecen las propiedades que deben cumplir los datos para alcanzar una representación
 normalizada.
 
-Grados de normalización
-~~~~~~~~~~~~~~~~~~~~~~~
+Propiedades y formas normales
+=============================
 
-Existen básicamente tres niveles de normalización: Primera Forma Normal (1NF), 
-Segunda Forma Normal (2NF) y Tercera Forma Normal (3NF). Cada una de estas formas 
-tiene sus propias reglas.
+Dependencias funcionales-> Boyce-Codd forma normal
++ Multivalor dependencias-> Cuarta Forma Normal
+
+.. note::
+ La cuarta forma normal es más estricta que Boyce-Codd forma normal.
+
+Antes de estas formas de normalización se encuentran tres niveles de normalización: 
+Primera Forma Normal (1NF), Segunda Forma Normal (2NF) y Tercera Forma Normal (3NF). 
+Cada una de estas formas tiene sus propias reglas.
 
 La siguiente imagen muestra los grados de normalización que se utilizan en el diseño
 de esquemas de bases de datos.
@@ -89,15 +171,14 @@ de esquemas de bases de datos.
    :align: center
 
 El proceso de normalización es fundamental para obtener un diseño de base de datos
-eficiente. Durante las siguientes lecturas se analizará cada una de las formas normales 
-a través de ejemplos.
+eficiente. 
 Una entidad no normalizada generalmente expresados en forma plana (como una tabla). 
 Es muy probable que existan uno o más grupos repetitivos, no pudiendo en ese caso ser 
 un atributo simple su clave primaria. Las tres primeras formas normales se definen de 
 la siguiente manera:
 
 Primera formal normal (1FN)
-===========================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Una tabla está normalizada o en 1FN, si contiene sólo valores atómicos en la intersección 
 de cada fila y columna, es decir, no posee grupos repetitivos.
@@ -109,7 +190,7 @@ anomalías de inserción, eliminación o modificación; la razón de esto es la 
 de lo que se denomina dependencias parciales.
 
 Segunda forma normal (2FN)
-==========================
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Una tabla está en 2FN, si está en 1FN y se han eliminado las dependencias parciales 
 entre sus atributos. Una dependencia parcial se da cuando uno o más atributos que no 
@@ -123,7 +204,7 @@ Al aplicar esta forma normal, aún se siguen teniendo problemas de anomalías
 pues existen dependencias transitivas.
 
 Tercera forma normal (3FN)
-==========================
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Una tabla está en 3FN, si está en 2FN y no contiene dependencias transitivas. Es decir, 
 cada atributo no clave primaria no depende de otros atributos no claves primarias, sólo 
@@ -134,19 +215,3 @@ que hace de clave primaria en la nueva tabla generada; a este atributo se le den
 clave foránea dentro de la tabla inicial (por clave foránea se entiende entonces, a
 aquel atributo que en una tabla no es clave primaria, pero sí lo es en otra tabla).
 
-Integración de Vistas
-~~~~~~~~~~~~~~~~~~~~~
-
-Este paso consiste en combinar las tablas generadas en base a un criterio común: igual clave primaria, 
-formando un conjunto de tablas en 3FN. Con esto se obtiene el modelo de datos conceptual 
-expresado como un conjunto de tablas o relaciones normalizadas.
-La integración basada en juntar aquellas tablas que tienen la misma clave primaria,
-permite agrupar los datos referidos a una misma entidad. Debe revisarse la tabla resultante pues
-es posible que al realizar la integración se introduzcan dependencias transitivas (es decir, la
-tabla quede en 2FN) que deben ser eliminadas.
-
-Generación del Modelo de Datos Conceptual
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Para una mejor comprensión del usuario es deseable transformar las tablas obtenidas en
-el paso previo a una representación gráfica. Como por ejemplo, a un Modelo E/R.
