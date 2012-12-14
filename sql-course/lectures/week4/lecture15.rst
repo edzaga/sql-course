@@ -121,17 +121,13 @@ Diseño por descomposición
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Comience con las *"mega" relaciones* que contienen todo.
-
 * *Descomponer* en partes más pequeñas, se obtienen mejores relaciones con la misma información.
-
 * ¿Se puede *descomponer automáticamente*?
 
 Descomposición automática:
 
 * "Mega" relaciones + propiedades de los datos.
-
 * El sistema descompone basandose en las propiedades.
-
 * Conjunto final de relaciones satisface la forma normal.
  * No hay anomalías, hay pérdida de información.
 
