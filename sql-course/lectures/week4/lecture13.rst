@@ -236,7 +236,60 @@ Ahora, se prueba la comparación con otra sentencia:
 
 * Cuando hay valores :sql:`NULL` en los datos, los operadores lógicos y de comparación pueden devolver un tercer resultado :sql:`UNKNOWN` (desconocido) en lugar de simplemente :sql:`TRUE` (verdadero) o :sql:`FALSE` (falso). Esta necesidad de una lógica de tres valores es el origen de muchos errores de la aplicación. En estas tablas se destaca el efecto de escribir comparaciones con :sql:`NULL`.
 
-.. ejemplo 
+Para demostrar la sentencia anterior se agrega una nueva columna que contenga valores booleanos:
+
+.. code-block:: sql
+	postgres=# ALTER table Cliente add actual bool;
+	ALTER TABLE
+
+Se insertan algunos valores para la nueva columna *actual*. Esta columna describe si un cliente es actual o dejó de ser cliente de la compañía.
+
+.. code-block:: sql
+	postgres=# UPDATE Cliente SET actual=true WHERE rut=412;
+	UPDATE 1
+	postgres=# UPDATE Cliente SET actual=true WHERE rut=123;
+	UPDATE 1
+	postgres=# UPDATE Cliente SET actual=true WHERE rut=193;
+	UPDATE 1
+	postgres=# UPDATE Cliente SET actual=false WHERE rut=733;
+	UPDATE 1
+	postgres=# UPDATE Cliente SET actual=false WHERE rut=823;
+	UPDATE 1
+	postgres=# UPDATE Cliente SET actual=false WHERE rut=453;
+	UPDATE 1
+
+	SELECT * FROM Cliente;
+
+	 rut |  nombre  |  apellido  | deuda | direccion  | actual 
+	-----+----------+------------+-------+------------+--------
+	 132 | Mayim    | Bialik     |       | Barnett 34 | 
+	 583 | Hermione | Weasley    |    47 | Leakey 24  | 
+	 176 | Ron      | Granger    |    92 | Connor 891 | 
+	 235 | Hannah   | Winkle     |   104 |            | 
+	 412 | Greg     | Hanks      |    33 |            | t
+	 123 | Tom      | Hofstadter |   456 |            | t
+	 193 | Johnny   | Galecki    |   201 | Helberg 11 | t
+	 733 | Howard   | Brown      |       |            | f
+	 823 | Jim      | Parsons    |    93 |            | f
+	 453 | Leslie   | Abbott     |   303 |            | f
+	(10 filas)
+
+.. code-block:: sql
+	SELECT nombre
+	FROM Cliente C1
+	WHERE exists
+	(SELECT * FROM Cliente C2 WHERE C2.actual = C1.actual);
+
+	 nombre 
+	--------
+	 Greg
+	 Tom
+	 Johnny
+	 Howard
+	 Jim
+	 Leslie
+	(6 filas)
+
 
 .. Importante
 .. Para minimizar las tareas de mantenimiento y los posibles efectos en las consultas o informes existentes, debería minimizar el uso de los valores :sql:`NULL`. Planee sus consultas e instrucciones de modificación de datos de forma que los valores :sql:`NULL` tengan un efecto mínimo.
