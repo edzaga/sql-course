@@ -32,12 +32,14 @@ Se crea la tabla Cliente donde las columnas “rut”, “nombre” y “apellid
 
 .. code-block:: sql
 
-	CREATE TABLE Cliente 
-	(rut integer NOT NULL, 
+	postgres=# CREATE TABLE Cliente 
+	(rut int NOT NULL, 
 	nombre varchar (30) NOT NULL, 
 	apellido varchar(30)NOT NULL,
-	deuda interger, 
+	deuda int, 
 	direccion varchar (30));
+	CREATE TABLE
+
 
 INSERT UPDATE
 ~~~~~~~~~~~~~~
@@ -56,27 +58,70 @@ Continuando con el ejemplo anterior, se inserta un cliente:
 
 .. code-block:: sql
 
-	INSERT INTO Cliente (rut,nombre,apellido,deuda,direccion) values(123,'Tom', 'Hofstadter', 456, null);
+	postgres=# INSERT INTO Cliente (rut,nombre,apellido,deuda,direccion) values(123,'Tom', 'Hofstadter', 456, null);
+	INSERT 0 1
 
 Al insertar los valores del cliente 'Tom Hofstadter', se almacenó el atributo dirección como :sql:`NULL`, es decir sin valor asignado.
 Antes de exponer cómo funciona :sql:`UPDATE`, se agregan nuevos clientes para mostrar de mejor manera las siguientes consultas:
 
 .. code-block:: sql
 
-	INSERT INTO Cliente (rut,nombre,apellido,direccion) values(123,'Tom', 'Hofstadter', 737, null), 
+	postgres=# INSERT INTO Cliente (rut, nombre, apellido, deuda, direccion) values 
 	(412,'Greg', 'Hanks',33, 'Cooper'), (132,'Mayim ', 'Bialik',null, 'Barnett 34'), 
 	(823,'Jim', 'Parsons',93, null),(193,'Johnny', 'Galecki',201, 'Helberg 11'), 
 	(453,'Leslie', 'Abbott',303,null), (583,'Hermione', 'Weasley',47, 'Leakey 24'), 
 	(176,'Ron', 'Granger',92,'Connor 891'), (235,'Hannah', 'Winkle',104, null), 
-	(733,'Howard', 'Brown',null, null) ;
+	(733,'Howard', 'Brown',null, null);
+	INSERT 0 9
+
+Realizando una consulta SELECT, para ver todos los clientes que se insertaron, se puede apreciar un espacio vacío en los valores que llevaban :sql:`NULL` al momento de hacer INSERT. Tal es el caso de la dirección de 'Tom Hofstadter'  o la deuda 'Mayim Bialik' .
+
+.. code-block:: sql
+
+	postgres=# SELECT * FROM Cliente;
+	 rut |  nombre  |  apellido  | deuda | direccion  
+	-----+----------+------------+-------+------------
+	 123 | Tom      | Hofstadter |   456 | 
+	 412 | Greg     | Hanks      |    33 | Cooper
+	 132 | Mayim    | Bialik     |       | Barnett 34
+	 823 | Jim      | Parsons    |    93 | 
+	 193 | Johnny   | Galecki    |   201 | Helberg 11
+	 453 | Leslie   | Abbott     |   303 | 
+	 583 | Hermione | Weasley    |    47 | Leakey 24
+	 176 | Ron      | Granger    |    92 | Connor 891
+	 235 | Hannah   | Winkle     |   104 | 
+	 733 | Howard   | Brown      |       | 
+	(10 filas)
+
 
 Ahora se puede actualizar un cliente:
 
 .. code-block:: sql
 
-	UPDATE Cliente SET direccion=null WHERE rut=412;
+	postgres=# UPDATE Cliente SET direccion=null WHERE rut=412;
+	UPDATE 1
 
 Se actualiza el cliente de rut 412,  dejando su dirección sin valor conocido.
+
+Realizando nuevamente un SELECT para visualizar la tabla cliente, se puede apreciar que el cliente con rut 412, ‘Greg  Hanks’, ahora aparece con una dirección sin un valor asignado.
+
+.. code-block:: sql
+
+	postgres=# SELECT * FROM Cliente;
+	 rut |  nombre  |  apellido  | deuda | direccion  
+	-----+----------+------------+-------+------------
+	 123 | Tom      | Hofstadter |   456 | 
+	 132 | Mayim    | Bialik     |       | Barnett 34
+	 823 | Jim      | Parsons    |    93 | 
+	 193 | Johnny   | Galecki    |   201 | Helberg 11
+	 453 | Leslie   | Abbott     |   303 | 
+	 583 | Hermione | Weasley    |    47 | Leakey 24
+	 176 | Ron      | Granger    |    92 | Connor 891
+	 235 | Hannah   | Winkle     |   104 | 
+	 733 | Howard   | Brown      |       | 
+	 412 | Greg     | Hanks      |    33 | 
+	(10 filas)
+
 
 SELECT
 ~~~~~~~~
@@ -93,13 +138,32 @@ Utilizando el mismo ejemplo, Seleccionar todos los nombres y apellidos de los cl
 
 .. code-block:: sql
 
-	SELECT nombre,apellido FROM Cliente WHERE direccion IS NULL
+	postgres=# SELECT nombre,apellido FROM Cliente WHERE direccion IS NULL;
+
+	 nombre |  apellido  
+	--------+------------
+	 Tom    | Hofstadter
+	 Jim    | Parsons
+	 Leslie | Abbott
+	 Hannah | Winkle
+	 Howard | Brown
+	 Greg   | Hanks
+	(6 filas)
 
 Seleccionar todos los nombres y apellidos de los clientes donde la dirección es distinta a :sql:`NULL`:
 
 .. code-block:: sql
 
-	SELECT nombre,apellido FROM Cliente WHERE direccion IS NOT NULL
+	postgres=# SELECT nombre,apellido FROM Cliente WHERE direccion IS NOT NULL;
+
+	 nombre  | apellido 
+	----------+----------
+	 Mayim    | Bialik
+	 Johnny   | Galecki
+	 Hermione | Weasley
+	 Ron      | Granger
+	(4 filas)
+
 
 Al  utilizar la instrucción :sql:`IS NOT NULL` se seleccionan todos los clientes que tienen una dirección conocida, es decir que poseen algún valor designado en la base de datos.
 
@@ -110,11 +174,24 @@ La siguiente consulta selecciona el nombre y apellido de los clientes que poseen
 
 .. code-block:: sql
 
-	SELECT nombre,apellido FROM Cliente WHERE deuda > 100 or deuda <=100
+	postgres=# SELECT nombre,apellido FROM Cliente WHERE deuda > 100 or deuda <=100;
+
 
 Sin embargo al realizar la consulta retorna la siguiente tabla:
 
-.. pegar tabla
+.. code-block:: sql
+
+	  nombre  |  apellido  
+	----------+------------
+	 Tom      | Hofstadter
+	 Jim      | Parsons
+	 Johnny   | Galecki
+	 Leslie   | Abbott
+	 Hermione | Weasley
+	 Ron      | Granger
+	 Hannah   | Winkle
+	 Greg     | Hanks
+	(8 filas)
 
 Se puede notar que no se incluye a todos los clientes, esto ocurre pues el atributo deuda admitía valores nulos, y como se mencionó, un :sql:`NULL` no se puede comparar con ningún valor, pues arroja un resultado desconocido.
 
@@ -122,15 +199,40 @@ La forma de obtener todos los clientes es la siguiente:
 
 .. code-block:: sql
 
-	SELECT nombre,apellido FROM Cliente WHERE deuda > 100 or deuda <=100 or deuda is NULL
+	postgres=# SELECT nombre,apellido FROM Cliente WHERE deuda > 100 or deuda <=100 or deuda IS NULL;
+
+	  nombre  |  apellido  
+	----------+------------
+	 Tom      | Hofstadter
+	 Mayim    | Bialik
+	 Jim      | Parsons
+	 Johnny   | Galecki
+	 Leslie   | Abbott
+	 Hermione | Weasley
+	 Ron      | Granger
+	 Hannah   | Winkle
+	 Howard   | Brown
+	 Greg     | Hanks
+	(10 filas)
+
 
 Ahora, se prueba la comparación con otra sentencia: 
 
 .. code-block:: sql
 
-	SELECT nombre,apellido FROM Cliente WHERE deuda > 100 or nombre= ‘Howard’
+	postgres=# SELECT nombre,apellido FROM Cliente WHERE deuda > 100 or nombre= 'Howard';
 
-Howard tiene deuda :sql:`NULL`, anteriormente se demostró que :sql:`NULL` no se puede comparar, entonces no cumple con: deuda > 100. A pesar de esto, aparece en el resultado de la consulta, pues cumple con la segunda condición: nombre= ‘Howard’. Con esto se quiere explicar que no necesariamente, por tener un valor :sql:`NULL` dentro de sus atributos, pasa a ser completamente “invisible”, es decir mientras no se compare solamente el atributo :sql:`NULL` puede estar en el resultado. 
+	 nombre |  apellido  
+	--------+------------
+	 Tom    | Hofstadter
+	 Johnny | Galecki
+	 Leslie | Abbott
+	 Hannah | Winkle
+	 Howard | Brown
+	(5 filas)
+
+
+'Howard' tiene deuda :sql:`NULL`, anteriormente se demostró que :sql:`NULL` no se puede comparar, entonces no cumple con: deuda > 100. A pesar de esto, aparece en el resultado de la consulta, pues cumple con la segunda condición: nombre= 'Howard'. Con esto se quiere explicar que no necesariamente, por tener un valor :sql:`NULL` dentro de sus atributos, pasa a ser completamente “invisible”, es decir mientras no se compare solamente el atributo :sql:`NULL` puede estar en el resultado. 
 
 * Cuando hay valores :sql:`NULL` en los datos, los operadores lógicos y de comparación pueden devolver un tercer resultado :sql:`UNKNOWN` (desconocido) en lugar de simplemente :sql:`TRUE` (verdadero) o :sql:`FALSE` (falso). Esta necesidad de una lógica de tres valores es el origen de muchos errores de la aplicación. En estas tablas se destaca el efecto de escribir comparaciones con :sql:`NULL`.
 
