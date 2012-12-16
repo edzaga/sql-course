@@ -239,12 +239,14 @@ Ahora, se prueba la comparación con otra sentencia:
 Para demostrar la sentencia anterior se agrega una nueva columna que contenga valores booleanos:
 
 .. code-block:: sql
+	
 	postgres=# ALTER table Cliente add actual bool;
 	ALTER TABLE
 
 Se insertan algunos valores para la nueva columna *actual*. Esta columna describe si un cliente es actual o dejó de ser cliente de la compañía.
 
 .. code-block:: sql
+
 	postgres=# UPDATE Cliente SET actual=true WHERE rut=412;
 	UPDATE 1
 	postgres=# UPDATE Cliente SET actual=true WHERE rut=123;
@@ -257,6 +259,8 @@ Se insertan algunos valores para la nueva columna *actual*. Esta columna describ
 	UPDATE 1
 	postgres=# UPDATE Cliente SET actual=false WHERE rut=453;
 	UPDATE 1
+
+.. code-block:: sql
 
 	SELECT * FROM Cliente;
 
@@ -275,6 +279,7 @@ Se insertan algunos valores para la nueva columna *actual*. Esta columna describ
 	(10 filas)
 
 .. code-block:: sql
+
 	SELECT nombre
 	FROM Cliente C1
 	WHERE exists
