@@ -222,16 +222,13 @@ quedado seleccionados para estudiar ciencias en algún centro educacional.
   SELECT sName 
   FROM Student
   WHERE sID in
-  (SELECT sID FROM Apply WHERE major = 'Science');
+  (SELECT sID FROM Apply WHERE major = 'science' and decision ='t' );
 
 cuya salida es::
 
    sname
    -------
-   Gary
    Amy
-   Craig
-   Doris
    Doris
 
    (5 rows)
@@ -425,7 +422,7 @@ primera.
 
  SELECT cName, state
  FROM College C1
- WHERE exists
+ WHERE not exists
  (SELECT * FROM College C2 WHERE C2.enrollment > C1.enrollment);
 
 Donde el resultado corresponde a *Berkeley*.
