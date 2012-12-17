@@ -41,7 +41,7 @@ whose output is::
     5  | Doris  |  2     
     1  | Amy    |  2     
     4  | Irene  |  1     
-    3  | Craig  |  1    
+    3  | Craig  |  2    
     8  | Tim    |  1   
     6  | Gary   |  0    
     2  | Edward |  0     

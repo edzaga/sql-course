@@ -206,17 +206,15 @@ selected to study science in an educational institution.
   SELECT sName 
   FROM Student
   WHERE sID in
-  (SELECT sID FROM Apply WHERE major = 'Science');
+  (SELECT sID FROM Apply WHERE major = 'science' and decision ='t' );
 
 the output is::
 
    sname
    -------
-   Gary
    Amy
-   Craig
    Doris
-   Doris
+
 
    (5 rows)
 
@@ -410,7 +408,7 @@ students is greater than the first.
 
  SELECT cName, state
  FROM College C1
- WHERE exists
+ WHERE not exists
  (SELECT * FROM College C2 WHERE C2.enrollment > C1.enrollment);
 
 Where the result corresponds to *Berkeley*.
