@@ -55,8 +55,8 @@ que serán vistas en la lectura 4.
    :language: sql
    :class: highlight
 
-.. note:: 
-	
+.. note::
+
 	Resumiendo **Álgebra Relacional** se define como un conjunto de operaciones que se ejecutan sobre las relaciones (tablas) para obtener un resultado, el cual es otra relación.
 
 
@@ -70,7 +70,7 @@ Los operadores relacionales se utilizan para filtrar, cortar o combinar tablas.
 Selección(Select)
 ******************
 
-.. index:: Selección(Select) en Álgebra Relacional 
+.. index:: Selección(Select) en Álgebra Relacional
 
 Este operador se aplica a una relación `\text{R}` produciendo una nueva relación con un
 subconjunto de tuplas de `\text{R}`. Las tuplas de la relación resultante son las que
@@ -361,7 +361,7 @@ Con las tablas dadas realice el ``Cross-product`` de `\text{R}` con `\text{S}`:
 .. image:: ../../../sql-course/src/CROSS-PRODUCT2.png
    :align: center
 
-Con azul se resaltan las tuplas que provienen de `\text{R}` que preseden y se mezclan 
+Con azul se resaltan las tuplas que provienen de `\text{R}` que preseden y se mezclan
 con las de `\text{S}` resaltadas en verde.
 
 Con las tablas dadas realice el ``Cross-product`` de `\text{S}` con `\text{R}`:
@@ -439,11 +439,11 @@ NaturalJoin
 
 Este operador se utiliza cuando se tiene la necesidad de unir relaciones vinculando
 sólo las tuplas que coinciden de alguna manera. ``NaturalJoin`` une sólo los pares de
-tuplas de `\text{R}` y `\text{S}` que sean comunes. Más precisamente una tupla r de 
-`\text{R}` y una tupla s de `\text{S}` se emparejan correctamente si y sólo si r y s 
+tuplas de `\text{R}` y `\text{S}` que sean comunes. Más precisamente una tupla r de
+`\text{R}` y una tupla s de `\text{S}` se emparejan correctamente si y sólo si r y s
 coinciden en cada uno de los valores de los atributos comunes, el resultado de la
-vinculación es una tupla, llamada **joined tuple**. Entonces, al realizar ``NaturalJoin`` 
-se obtiene una relación con los atributos de ambas relaciones y se obtiene combinando las 
+vinculación es una tupla, llamada **joined tuple**. Entonces, al realizar ``NaturalJoin``
+se obtiene una relación con los atributos de ambas relaciones y se obtiene combinando las
 tuplas de ambas relaciones que tengan el mismo valor en los atributos comunes.
 
 **Notación en Álgebra Relacional**
@@ -603,7 +603,7 @@ anteriormente:
 
 **Método**
 
- 1. Se forma el ``producto cartesiano`` `\text{R} \times \text{S}` .
+ 1. Se forma el ``producto cartesiano`` :math:`\text{R} \times \text{S}`.
  2. Se selecciona, en el producto, solo la tupla que cumplan la condición `C`.
 
 Ejemplo 1
