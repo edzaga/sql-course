@@ -234,5 +234,94 @@ Ahora, se prueba la comparación con otra sentencia:
 
 'Howard' tiene deuda :sql:`NULL`, anteriormente se demostró que :sql:`NULL` no se puede comparar, entonces no cumple con: deuda > 100. A pesar de esto, aparece en el resultado de la consulta, pues cumple con la segunda condición: nombre= 'Howard'. Con esto se quiere explicar que no necesariamente, por tener un valor :sql:`NULL` dentro de sus atributos, pasa a ser completamente “invisible”, es decir mientras no se compare solamente el atributo :sql:`NULL` puede estar en el resultado. 
 
+A modo de resumen se puede decir que: 
+
+	* A = NULL no se puede decir que A tenga el mismo valor que NULL.
+	* A <> NULL no se puede decir que A tenga distinto valor a NULL.
+	* NULL = NULL es imposible saber si ambos NULL son iguales.
+
+* Recordar que :sql:`NULL` significa **desconocido**.  Al realizar suma donde uno de los datos es desconocido, la suma también es desconocida:
+
+.. code-block:: sql
+	
+	postgres=# SELECT (SELECT deuda FROM cliente WHERE rut=132)+( SELECT deuda FROM cliente WHERE rut=583) as suma;
+
+	 suma 
+	------
+	     
+	(1 fila)
+
+La sentencia suma la deuda del cliente 132 que es NULL con la deuda del cliente 583 que es 47, NULL + 47 arroja como resultado NULL.
+
+* Cuando hay valores :sql:`NULL` en los datos, los operadores lógicos y de comparación pueden devolver un tercer resultado :sql:`UNKNOWN` (desconocido) en lugar de simplemente :sql:`TRUE` (verdadero) o :sql:`FALSE` (falso). Esta necesidad de una lógica de tres valores es el origen de muchos errores de la aplicación. 
+
+Se agrega una nueva columna que contenga valores booleanos:
+
+.. code-block:: sql
+	
+	postgres=# ALTER table Cliente add actual bool;
+	ALTER TABLE
+
+Se insertan algunos valores para la nueva columna *actual*. Esta columna describe si un cliente es actual o dejó de ser cliente de la compañía.
+
+.. code-block:: sql
+
+	postgres=# UPDATE Cliente SET actual=true WHERE rut=412;
+	UPDATE 1
+	postgres=# UPDATE Cliente SET actual=true WHERE rut=123;
+	UPDATE 1
+	postgres=# UPDATE Cliente SET actual=true WHERE rut=193;
+	UPDATE 1
+	postgres=# UPDATE Cliente SET actual=false WHERE rut=733;
+	UPDATE 1
+	postgres=# UPDATE Cliente SET actual=false WHERE rut=823;
+	UPDATE 1
+	postgres=# UPDATE Cliente SET actual=false WHERE rut=453;
+	UPDATE 1
+
+.. code-block:: sql
+
+	postgres=#  SELECT * FROM Cliente;
+
+	 rut |  nombre  |  apellido  | deuda | direccion  | actual 
+	-----+----------+------------+-------+------------+--------
+	 132 | Mayim    | Bialik     |       | Barnett 34 | 
+	 583 | Hermione | Weasley    |    47 | Leakey 24  | 
+	 176 | Ron      | Granger    |    92 | Connor 891 | 
+	 235 | Hannah   | Winkle     |   104 |            | 
+	 412 | Greg     | Hanks      |    33 |            | t
+	 123 | Tom      | Hofstadter |   456 |            | t
+	 193 | Johnny   | Galecki    |   201 | Helberg 11 | t
+	 733 | Howard   | Brown      |       |            | f
+	 823 | Jim      | Parsons    |    93 |            | f
+	 453 | Leslie   | Abbott     |   303 |            | f
+	(10 filas)
+
+:sql:`IS UNKNOWN` retorna los valores que no son :sql:`false` ni :sql:`true`. A continuación se muestra su uso, seleccionando de la tabla **cliente** todos los nombres que en su atributo *actual*, no poseen valor. 
+
+.. code-block:: sql
+
+	postgres=#  SELECT nombre FROM cliente WHERE actual IS UNKNOWN;
+	  
+	nombre  
+	----------
+	 Mayim 
+	 Hermione
+	 Ron
+	 Hannah
+	(4 filas)
+
+:sql:`IS NOT UNKNOWN` funciona de la misma forma solo que retorna los valores que poseen algún valor asignado, ya sea :sql:`true` o :sql:`false`.
+
+
+Para los operadores and y or que involucran NULL, de manera general se puede decir:
+
+	* NULL or false = NULL
+	* NULL or true = true
+	* NULL or NULL = NULL
+	* NULL and false = false
+	* NULL and true = NULL
+	* NULL and NULL = NULL
+	* not (NULL) El inverso de NULL también es NULL.
 
 
