@@ -11,7 +11,7 @@ Lecture 13 - SQL: NULL Values
 .. note::
 	:sql:`NULL` no debe confundirse con un valor 0, ya que el valor 0 pertenece a algún tipo de dato (entero o flotante) mientras que, como ya se mencionó, :sql:`NULL` es la falta de un dato. 
 
-CREATE TABLE
+CREATE TABLE 
 ~~~~~~~~~~~~~~~
 
 En forma predeterminada, una columna puede ser :sql:`NULL`. Si se desea no permitir un valor :sql:`NULL` en una columna, se debe colocar una restricción en esta columna especificando que :sql:`NULL` no es ahora un valor permitido.
@@ -41,8 +41,8 @@ Se crea la tabla Cliente donde las columnas “rut”, “nombre” y “apellid
 	CREATE TABLE
 
 
-INSERT UPDATE
-~~~~~~~~~~~~~~
+INSERT y UPDATE
+~~~~~~~~~~~~~~~~
 
 Los valores :sql:`NULL` se pueden insertar en una columna si se indica explícitamente :sql:`NULL` en una instrucción :sql:`INSERT`. De igual forma se puede actualizar un valor con :sql:`UPDATE` especificando que es :sql:`NULL` en la consulta. 
 
@@ -126,6 +126,9 @@ Realizando nuevamente un SELECT para visualizar la tabla cliente, se puede aprec
 SELECT
 ~~~~~~~~
 
+Seleccionar atributos NULL
+===========================
+
 * Para comprobar si hay valores :sql:`NULL`, se usa :sql:`IS NULL` o :sql:`IS NOT NULL` en la cláusula :sql:`WHERE`.
 
 Forma general:
@@ -167,6 +170,8 @@ Seleccionar todos los nombres y apellidos de los clientes donde la dirección es
 
 Al  utilizar la instrucción :sql:`IS NOT NULL` se seleccionan todos los clientes que tienen una dirección conocida, es decir que poseen algún valor designado en la base de datos.
 
+Comparaciones con NULL
+=======================
 
 * La comparación entre dos :sql:`NULL` o entre cualquier valor y un :sql:`NULL` tiene un resultado desconocido pues el valor de cada :sql:`NULL` es desconocido. También se puede decir que no existen dos :sql:`NULL` iguales. 
 
@@ -240,6 +245,10 @@ A modo de resumen se puede decir que:
 	* A <> NULL no se puede decir que A tenga distinto valor a NULL.
 	* NULL = NULL es imposible saber si ambos NULL son iguales.
 
+
+Operaciones con NULL
+=====================
+
 * Recordar que :sql:`NULL` significa **desconocido**.  Al realizar suma donde uno de los datos es desconocido, la suma también es desconocida:
 
 .. code-block:: sql
@@ -251,7 +260,10 @@ A modo de resumen se puede decir que:
 	     
 	(1 fila)
 
-La sentencia suma la deuda del cliente 132 que es NULL con la deuda del cliente 583 que es 47, NULL + 47 arroja como resultado NULL.
+La sentencia suma la deuda del cliente 132 que es NULL con la deuda del cliente 583 que es 47, NULL + 47 arroja como resultado NULL. Lo mismo ocurre con la resta, multiplicación y división.
+
+Operadores lógicos 
+===================
 
 * Cuando hay valores :sql:`NULL` en los datos, los operadores lógicos y de comparación pueden devolver un tercer resultado :sql:`UNKNOWN` (desconocido) en lugar de simplemente :sql:`TRUE` (verdadero) o :sql:`FALSE` (falso). Esta necesidad de una lógica de tres valores es el origen de muchos errores de la aplicación. 
 
@@ -323,5 +335,9 @@ Para los operadores and y or que involucran NULL, de manera general se puede dec
 	* NULL and true = NULL
 	* NULL and NULL = NULL
 	* not (NULL) El inverso de NULL también es NULL.
+
+.. note::
+	Para minimizar las tareas de mantenimiento y los posibles efectos en las consultas o informes existentes, debería minimizarse el uso de los valores desconocidos. Es una buena práctica plantear las consultas e instrucciones de modificación de datos de forma que los datos :sql:`NULL` tengan un efecto mínimo.
+
 
 
