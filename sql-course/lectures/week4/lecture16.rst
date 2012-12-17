@@ -238,4 +238,36 @@ d) AE
 La alternativa correcta es (d), puesto que {AB}+ = {ABC}; {AC}+ = {AC}; {AD}+ = {ABCD}; 
 {AE}+ = {ABCDE}.
 
+Especificación funcionalmente dependiente para una relación
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+S1 y S2 conjunto funcionalmente dependiente.
+ 
+S2 "sigue de" S1 si cada instancia de relación satisfacer S1 si también satisface S2
+
+S2: {SSN, prioridad}
+
+S1: {SSN `\righarrow` GPA, GPA `\righarrow` prioridad}
+
+.. note::
+
+ Se observa que S1 satisface S2 
+
+Ejemplo 6
+=========
+
+Consideremos la relación R (A, B, C, D, E) y el conjunto de dependencias funcionales 
+S1 = {AB `\righarrow` C, AE `\righarrow` D, D `\righarrow` B}.
+
+¿Cuál de los siguientes conjuntos de S2 FD NO se deduce de S1?
+
+a) S2 = {AD `\righarrow` C}
+b) S2 = {AD `\righarrow` C, AE `\righarrow` B}
+c) S2 = {ABC `\righarrow` D, D `\righarrow` B}
+d) S2 = {ADE `\righarrow` BC}
+
+La alternativa correcta es (c), puesto que Using the FDs in S1: {AD}+ = {ABCD}; 
+{AE}+ = {ABCDE}; {ABC}+ = {ABC}; {D}+ = {B}; {ADE}+ = {ABCDE}
+
+
 
