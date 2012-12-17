@@ -38,7 +38,7 @@ Utilicemos la tabla "student", que ya se ha utilizado en lecturas anteriores::
 
  Student (sID, sName, Average)
 
-y creemos una nueva tabla llamada **Student_new**, con una estructura similar, pero vacia:
+y creemos una nueva tabla llamada **Student_new**, con una estructura similar, pero vacía:
 
 .. code-block:: sql
 
@@ -61,7 +61,7 @@ Por lo tanto es posible agregar un estudiante mediante:
 
   INSERT INTO Student_new VALUES (1,'Betty', 78);
 
-cuya salida, despues de ejecutar el :
+cuya salida, después de ejecutar el :
 
 .. code-block:: sql
 
@@ -140,7 +140,7 @@ la salida es::
 UPDATE
 ~~~~~~
 
-Es posible modificar o "actualzar" datos a través del comando UPDATE, cuya sintaxis es:
+Es posible modificar o "actualizar" datos a través del comando UPDATE, cuya sintaxis es:
 
 .. code-block:: sql
 
@@ -152,11 +152,11 @@ valor "Expression"), bajo una cierta condición "Condition"
 .. note::
 
    Es importante destacar que la condición puede variar, puede ser de carácter sumamente complejo,
-   una subconsulta, una setencia que involucre otras tablas. "Expression" también puede ser un valor
+   una sub-consulta, una sentencia que involucre otras tablas. "Expression" también puede ser un valor
    que involucre otras tablas, no necesariamente corresponde a un valor de comparación directa.
    Se aplica lo mismo para la condición.
 
-Es necesario destacar que, si bien se puede actualizar un atributo, también se pueden aactualizar
+Es necesario destacar que, si bien se puede actualizar un atributo, también se pueden actualizar
 varios a la vez:
 
 .. code-block:: sql
@@ -170,7 +170,7 @@ Ejemplo 3
 ^^^^^^^^^^
 
 Bajo el contexto del ejemplo 2, supongamos que la nota de 'Wilma' corresponde a un 91 en lugar de 81.
-Se desea corregir este error de tipeo, a través del comando UPDATE. Es necesario recordar que dependiendo de
+Se desea corregir este error de tipéo, a través del comando UPDATE. Es necesario recordar que dependiendo de
 la cantidad de atributos de la tabla, es posible realizar de muchas formas la actualización:
 
 .. code-block:: sql
@@ -205,7 +205,7 @@ DELETE
 ~~~~~~
 
 Es posible eliminar filas de información, que cumplan una determinada condición. Esto
-es especialemnte útil en casos donde se desee borrar filas específicas en lugar de tener que borrar
+es especialmente útil en casos donde se desee borrar filas específicas en lugar de tener que borrar
 toda una tabla.
 
 La sintaxis del comando DELETE es:
@@ -218,8 +218,8 @@ Es decir que de la tabla **table**, se elimina el(los) valor(es) que cumpla(n) c
 
 .. note::
 
-   Es impornate destacar que la condición puede variar, puede ser de carácter sumamente complejo,
-   una subconsulta, una setencia que involucre otras tablas.
+   Es importante destacar que la condición puede variar, puede ser de carácter sumamente complejo,
+   una sub-consulta, una sentencia que involucre otras tablas.
 
 
 Ejemplo 4
@@ -237,7 +237,7 @@ ambas como se hizo en el ejemplo 2, sin la necesidad de borrar la tabla, crearla
 
   DELETE FROM Student_new WHERE sID = 1;
 
-Lo cual permite eliminar la fila correspondiente a 'Betty' y dejar la tabla vacia. Posteriormente
+Lo cual permite eliminar la fila correspondiente a 'Betty' y dejar la tabla vacía. Posteriormente
 es posible comenzar a llenarla de nuevo mediante las últimas 2 consultas del ejemplo 2, es decir:
 
 .. code-block:: sql
@@ -248,7 +248,7 @@ es posible comenzar a llenarla de nuevo mediante las últimas 2 consultas del ej
 Ejemplo 5
 ^^^^^^^^^
 
-Supongamos que 'Wilma' se enoja por el error de tipeo y desea salir del procrso de postulación. Es
+Supongamos que 'Wilma' se enoja por el error de tipéo y desea salir del proceso de postulación. Es
 por ello que debe ser eliminada de la nueva planilla de estudiantes:
 
 .. code-block:: sql
@@ -293,7 +293,7 @@ Básicamente 'Wilma' no quedó aceptada  en dicha mención, por lo tanto se debe
 
 Lo que resulta en el cambio en la tabla.
 
-Supongamos ahora que 'Wilma', por suerte,  es una persona distraida y debido a sus enormes
+Supongamos ahora que 'Wilma', por suerte,  es una persona distraída y debido a sus enormes
 ganas de entrar a ciencias no se percata del error. El responsable de error, por temor a poner en
 juego su reputación, decide eliminar el registro de la postulación, en lo que considera un plan maestro,
 pues la tabla **Apply_new** no cuenta con un contador serial que pudiese causar algún conflicto.

@@ -13,10 +13,10 @@ El diseño de una base de datos relacional puede abordarse de dos formas:
 * **Obteniendo el esquema relacional directamente:** Objetos y reglas captadas del análisis del mundo real, representadas por un conjunto de esquemas de relación, sus atributos y restricciones de integridad.
 * **Realizando el diseño del esquema "conceptual" de la BD (modelo E/R) y transformándolo a esquema relacional**.
 
-En los esquemas de bases de datos es posible encontrar anomalias que serán eliminadas
+En los esquemas de bases de datos es posible encontrar anomalías que serán eliminadas
 gracias al proceso de normalización.
 
-Estas anomalias son:
+Estas anomalías son:
 
 * **La redundancia de los datos:** repetición de datos en un sistema.
 * **Anomalías de actualización:** inconsistencias de los datos como resultado de datos redundantes y actualizaciones parciales.
@@ -42,10 +42,10 @@ A continuación se muestra una tabla y luego el detalle de los problemas que pre
    \end{array}
 
 * **Redundancia:** cuando un autor tiene varios libros, se repite de la nacionalidad.
-* **Anomalias de modificación:** Si el autor "Julio Cortázar" y "José Luis Rosasco", desean cambiar de editor, se modificará en los dos lugares. A priori no se puede saber cuandos autores tiene un libro. Los errores son frecuentes al olvidar la modificación de un autor.
-* **Anomalias de inserción:** Se desea ingresar a un autor sin libros. "Nombre_autor" y "Cod_libro" son campos claves, por lo que las claves no pueden ser valores nulos.
+* **Anomalías de modificación:** Si el autor "Julio Cortázar" y "José Luis Rosasco", desean cambiar de editor, se modificará en los dos lugares. A priori no se puede saber cuando autores tiene un libro. Los errores son frecuentes al olvidar la modificación de un autor.
+* **Anomalías de inserción:** Se desea ingresar a un autor sin libros. "Nombre_autor" y "Cod_libro" son campos claves, por lo que las claves no pueden ser valores nulos.
 
-Al eliminar estas anomalias se asegura:
+Al eliminar estas anomalías se asegura:
 
 * **Integridad entre los datos:** consistencia de la información.
 
@@ -80,10 +80,10 @@ Los datos ingresados en la tabla podrían ser los que se muestran a continuació
    \end{array}
 
 * **Redundancia:** captura información muchas veces como por ejemplo "123 Ann", "PAHS", "tenis" o "MIT".
-* **Anomalia de actualización:** actualizar datos de diferente manera como "corneta" por "trompeta".
-* **Anomalia de eliminación:** eliminación inadvertida de datos.
+* **Anomalía de actualización:** actualizar datos de diferente manera como "corneta" por "trompeta".
+* **Anomalía de eliminación:** eliminación inadvertida de datos.
 
-Una correcta forma de realizar la tabla anterior sin anomalias es:
+Una correcta forma de realizar la tabla anterior sin anomalías es:
 
 * Estudiante(SSN, sNombre);
 * Aplicar(SSN, cNombre);
@@ -127,14 +127,14 @@ Diseño por descomposición
 Descomposición automática:
 
  * "Mega" relaciones + propiedades de los datos.
- * El sistema descompone basandose en las propiedades.
+ * El sistema descompone basándose en las propiedades.
  * Conjunto final de relaciones satisface la forma normal.
    * No hay anomalías, hay pérdida de información.
 
 Normalización
 ~~~~~~~~~~~~~
 
-Por todas las anomalias descritas anteriormente nace el proceso de normalizacion en el
+Por todas las anomalías descritas anteriormente nace el proceso de normalización en el
 cual se transforman datos complejos a un conjunto de estructuras de datos más pequeñas,
 que además de ser más simples y más estables, son más fáciles de mantener.
 También consiste en un conjunto de reglas denominadas Formas Normales (FN), las cuales
