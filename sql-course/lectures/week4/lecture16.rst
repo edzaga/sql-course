@@ -4,10 +4,21 @@ Lecture 16 - Teoría del Diseño Relacional: Dependencia Funcional
 Dependencia Funcional
 ~~~~~~~~~~~~~~~~~~~~~
 
-Las dependencias funcionales describen la relación existente entre atributos de una 
-relación. Por ejemplo, si A y B son atributos de la relación R, B será funcionalmente 
-dependiente de A ó A determina funcionalmente a B (lo que se denota A->B) si cada
-valor de A está asociado con exactamente un valor de B.
+Dados dos atributos A y B de una relación R, se dice que B depende funcionalmente de A, 
+si cada valor de A tiene asociado un único valor de B. En otras palabras: si en cualquier
+instante, conocido el valor de A podemos conocer el valor de B. Tanto A como B pueden
+ser conjuntos de atributos. La dependencia funcional se simboliza del siguiente modo:
+
+.. math::
+
+ R.A \righarrow R.B
+
+Por ejemplo en la relación R(`\underline{Nif}`, Nombre, Dirección), los atributos *Nombre* y
+*Dirección* dependen funcionalmente de *Nif*.
+
+.. math::
+
+ Nif \righarrow (Nombre, Dirección)
 
 Las dependencias funcionales son generalmente útiles para:
 
@@ -141,6 +152,7 @@ Dependencia funcional completamente Trivial
 `\overline{A} \righarrow \overline{B}` `\overline{A} \cap \overline{B} = \oslash`
 
 Reglas para las dependencias funcionales
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Regla de la división
 
