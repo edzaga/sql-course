@@ -299,7 +299,33 @@ Se insertan algunos valores para la nueva columna *actual*. Esta columna describ
 .. Importante
 .. Para minimizar las tareas de mantenimiento y los posibles efectos en las consultas o informes existentes, debería minimizar el uso de los valores :sql:`NULL`. Planee sus consultas e instrucciones de modificación de datos de forma que los valores :sql:`NULL` tengan un efecto mínimo.
 
-.. Select count(distinct deuda) from cliente where deuda is not :sql:`NULL`;
-.. Select count(distinct deuda) from cliente;
-.. Select distinct deuda from cliente;
+
+.. code-block:: sql
+
+	Select count(distinct deuda) from cliente where deuda is not NULL;
+	 count 
+	-------
+	     8
+	(1 fila)
+	Select count(distinct deuda) from cliente;
+	 count 
+	-------
+	     8
+	(1 fila)
+
+	Select distinct deuda from cliente;
+
+	 deuda 
+	-------
+	      
+	    47
+	    92
+	   303
+	    93
+	   201
+	    33
+	   456
+	   104
+	(9 filas)
+
 
