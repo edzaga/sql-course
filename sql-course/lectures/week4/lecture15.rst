@@ -10,6 +10,10 @@ Diseñar un esquema de base de datos
 
 El diseño de una base de datos relacional puede abordarse de dos formas:
 
+.. CMA: Se podría dejar algo más corto en negrita, para que fuera fácil de memorizar
+.. Así lo aprenderán mejor, puesto que el segundo item es muuy largo y todo en negrita
+.. es confuso, quizás "Obtener el esquema directamente" y "Realziar esquema conceptual".
+
 * **Obteniendo el esquema relacional directamente:** Objetos y reglas captadas del análisis del mundo real, representadas por un conjunto de esquemas de relación, sus atributos y restricciones de integridad.
 * **Realizando el diseño del esquema "conceptual" de la BD (modelo E/R) y transformándolo a esquema relacional**.
 
@@ -129,7 +133,7 @@ Descomposición automática:
  * "Mega" relaciones + propiedades de los datos.
  * El sistema descompone basándose en las propiedades.
  * Conjunto final de relaciones satisface la forma normal.
-   * No hay anomalías, hay pérdida de información.
+    * no hay anomalías, hay pérdida de información.
 
 Normalización
 ~~~~~~~~~~~~~
@@ -144,7 +148,12 @@ normalizada.
 Propiedades y formas normales
 =============================
 
+.. CMA: Esto es como el paso para algo? o es una relación de conceptos?
+.. quizás se debería explicar de otra forma.
+
 Dependencias funcionales-> Boyce-Codd forma normal
+
+.. CMA: Qué significa esta relación? y el signo "+" ?
 
 "+ Multivalor dependencias-> Cuarta Forma Normal"
 
@@ -167,6 +176,10 @@ Una entidad no normalizada generalmente expresados en forma plana (como una tabl
 Es muy probable que existan uno o más grupos repetitivos, no pudiendo en ese caso ser
 un atributo simple su clave primaria. Las tres primeras formas normales se definen de
 la siguiente manera:
+
+.. CMA: En la descripción de cada uno se podrían poner cosas en negritas
+..      para resaltar las cosas importantes, pues ahora está todo muy aburrido y
+..      explicado como de libro.
 
 Primera formal normal (1FN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -246,10 +259,10 @@ un número único curso y (posiblemente no el único) título. Cada tupla de la 
 codifica el hecho de que un estudiante dado tomó el curso. ¿Cuáles son todas las
 dependencias funcionales para la relación tomó?
 
-a) sID → cursoNum
-b) sID → nombre, cursoNum → titulo
-c) nombre → sID, titulo → cursoNum
-d) cursoNum → sID
+   a) sID → cursoNum
+   b) sID → nombre, cursoNum → titulo
+   c) nombre → sID, titulo → cursoNum
+   d) cursoNum → sID
 
 La respuesta correcta es la alternativa (b), puesto que un id de estudiante que único "sID", esta
 asignado a solo un estudiante y un id del curso que es único "cursoNum" tiene asignado un titulo. Las
@@ -278,6 +291,8 @@ Dependencias multivaluadas y 4FN
 * Efecto multiplicativo: C colegios o H escuelas secundarias, por lo que se generarán "C * H" ó "C + H" tuplas.
 * No es dirigida por BCNF: No hay dependencias funcionales.
 
+.. CMA: Que significa el signo "->>" ?
+
 **La dependencia multivalor SSN->>cName ó SSN->>HS**
 
 * SSN cuenta todas las combinaciones de cName con HS.
@@ -296,10 +311,10 @@ que los datos no capta en que dormitorio(s) un estudiante estaba en la hora de t
 un curso específico, es decir, todas las combinaciones de cursos dormitorio se registran
 para cada estudiante. ¿Cuáles son todas las dependencias para la relación Informacion_estudiante?
 
-a) sID->>dormitorio
-b) sID->>cursoNum
-c) sID->>dormitorio, sID->>cursoNum
-d) sID->>dormitorio, sID->>cursoNum, dormitorio->>cursoNum
+   a) sID->>dormitorio
+   b) sID->>cursoNum
+   c) sID->>dormitorio, sID->>cursoNum
+   d) sID->>dormitorio, sID->>cursoNum, dormitorio->>cursoNum
 
 La alternativa correcta es (c), puesto que para un estudiante hay muchos dormitorios y
 un estudiante puede tomar muchos cursos. La alternativa (a) y (b) ambos omiten una dependencia,
