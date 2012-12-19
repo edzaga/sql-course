@@ -433,12 +433,3 @@ Donde el resultado corresponde a *Berkeley*.
  alumnos, cambiando el signo matemático **>** por **<**
 
 
-.. ANY
- ===
- 
- ANY y SOME son sinónimos. Chequean si alguna fila de la lista, resultado de una subconsulta, coincide con el valor especificado
- en la condición. ANY será de utilidad para reolver el caso del ejemplo 6.
- 
- Ejemplo 6
- ^^^^^^^^^
- Se desea  saber las 

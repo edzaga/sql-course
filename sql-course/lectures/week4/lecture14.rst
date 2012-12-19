@@ -42,7 +42,7 @@ y creemos una nueva tabla llamada **Student_new**, con una estructura similar, p
 
 .. code-block:: sql
 
- CREATE TABLE Student_new (sID serial, sName VARCHAR(20), Average INTEGER,  PRIMARY kEY(sID));
+ CREATE TABLE Student_new (sID serial, sName VARCHAR(20), Average INTEGER,  PRIMARY KEY(sID));
 
 Es decir, cuenta con 3 atributos, los cuales son: el identificador o *sID* de carácter entero y serial,
 lo cual significa que si no se especifica un valor, tomará un valor entero; el nombre o *sName*  que
@@ -83,7 +83,7 @@ insertar un nuevo estudiante:
 
 Pero, esto resulta en el siguiente error::
 
-  ERROR: duplicate key value violates unique constraint "student2_pkey"
+  ERROR: duplicate key value violates unique constraint "student_new_pkey"
   DETAIL: Key(sid)=(1) already exists.
 
 Esto se debe a que *sID* es clave primaria, y serial tiene su propio contador, que parte de 1 (el cual
@@ -131,11 +131,6 @@ la salida es::
     2  | Wilma  |  81
 
 
-
-.. La otra forma de realizar inserciones de datos es mediante el uso de SELECT. Sin embargo, y aunque esta
- forma no es tan directa como la anterior, puede ser de gran utilidad.
-
-.. agregar la idea del video
 
 UPDATE
 ~~~~~~
@@ -200,6 +195,22 @@ cuenten con un promedio igual a 81. Por lo tanto la consulta ideal corresponde a
    WHERE sID = 2;
 
 
+Verificando a través de la ejecución de un select:
+ 
+.. code-block:: sql
+
+  SELECT * FROM Student_new;
+
+la salida es::
+
+   sid | sname  | average
+   ----+--------+---------
+    1  | Betty  |  78
+    2  | Wilma  |  91
+
+Es decir, se actualizó correctamente la nota de 'Wilma'.
+
+
 
 DELETE
 ~~~~~~
@@ -237,6 +248,17 @@ ambas como se hizo en el ejemplo 2, sin la necesidad de borrar la tabla, crearla
 
   DELETE FROM Student_new WHERE sID = 1;
 
+Si verificamos:
+
+.. code-block:: sql
+
+  SELECT * FROM Student_new;
+
+la salida es::
+
+   sid | sname  | average
+   ----+--------+---------
+
 Lo cual permite eliminar la fila correspondiente a 'Betty' y dejar la tabla vacía. Posteriormente
 es posible comenzar a llenarla de nuevo mediante las últimas 2 consultas del ejemplo 2, es decir:
 
@@ -244,6 +266,20 @@ es posible comenzar a llenarla de nuevo mediante las últimas 2 consultas del ej
 
   INSERT INTO Student_new (sName, Average) VALUES ('Betty', 78);
   INSERT INTO Student_new (sName, Average) VALUES ('Wilma', 81);
+
+Y verificando:
+.. code-block:: sql
+
+  SELECT * FROM Student_new;
+
+la salida es::
+
+   sid | sname  | average
+   ----+--------+---------
+    1  | Betty  |  78
+    2  | Wilma  |  81
+
+
 
 Ejemplo 5
 ^^^^^^^^^
@@ -253,7 +289,7 @@ por ello que debe ser eliminada de la nueva planilla de estudiantes:
 
 .. code-block:: sql
 
-  DELETE FROM Student_new WHERE sID = 1;
+  DELETE FROM Student_new WHERE sID = 2;
 
 RECAPITULACIÓN
 ~~~~~~~~~~~~~~
@@ -267,7 +303,7 @@ Tomando en cuenta el ejemplo 5, supongamos que 'Betty' pasa a la etapa de postul
 y decide hacerlo en 2 Establecimientos educacionales. Postula a ciencias e ingeniería  en Stanford
 y a Historia Natural en Berkeley, es aceptada en todo lo que ha postulado. La tabla **Apply** igual
 que la tabla **Student**: ya se había enviado sin posibilidad de modificar,  Es por ello que se crea
-la tabla **Apply_new**, cpn las mismas características que **Apply**:
+la tabla **Apply_new**, con las mismas características que **Apply**:
 
 
 .. code-block:: sql
@@ -283,17 +319,40 @@ la tabla **Apply_new**, cpn las mismas características que **Apply**:
   INSERT INTO Apply_new (sID, cName, major, decision) VALUES (1, 'Berkeley',
   'natural history'    , True);
 
+
+Verificando la salida:
+.. code-block:: sql
+
+  SELECT * FROM Apply_new;
+
+la salida es::
+  
+  sid |   cname   |     major        | decision
+  ----+-----------+------------------+---------
+   1  | Stanford  | science          |  t 
+   1  | Stanford  | engineering      |  t
+   1  | Stanford  | natural history  |  t
+
+ 
 Supongamos ahora que hubo un error en la gestión de papeles respecto a la postulación a ingeniería:
-Básicamente 'Wilma' no quedó aceptada  en dicha mención, por lo tanto se debe modificar
+Básicamente 'Betty' no quedó aceptada  en dicha mención, por lo tanto se debe modificar
 
 .. code-block:: sql
 
   UPDATE Apply SET decision = false
-  WHERE sid = 13 and cname = 'Stanford' and major = 'engineering';
+  WHERE sid = 1 and cname = 'Stanford' and major = 'engineering';
 
-Lo que resulta en el cambio en la tabla.
+Lo que resulta en el cambio en la tabla::
+  
+  sid |   cname   |     major        | decision
+  ----+-----------+------------------+---------
+   1  | Stanford  | science          |  t 
+   1  | Stanford  | natural history  |  t
+   1  | Stanford  | engineering      |  f
 
-Supongamos ahora que 'Wilma', por suerte,  es una persona distraída y debido a sus enormes
+
+
+Supongamos ahora que 'Betty', por suerte,  es una persona distraída y debido a sus enormes
 ganas de entrar a ciencias no se percata del error. El responsable de error, por temor a poner en
 juego su reputación, decide eliminar el registro de la postulación, en lo que considera un plan maestro,
 pues la tabla **Apply_new** no cuenta con un contador serial que pudiese causar algún conflicto.
@@ -303,5 +362,12 @@ pues la tabla **Apply_new** no cuenta con un contador serial que pudiese causar 
  DELETE FROM Apply
  WHERE sid = 1 and name = 'Stanford' and major = 'engineering';
 
-Falta agregar salida de las consultas (las verifiqué en todo caso)
+Lo que resulta en el cambio en la tabla::
+  
+  sid |   cname   |     major        | decision
+  ----+-----------+------------------+---------
+   1  | Stanford  | science          |  t 
+   1  | Stanford  | natural history  |  t
+
+y en la impunidad del responsable.
 
