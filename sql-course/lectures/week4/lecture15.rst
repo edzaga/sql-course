@@ -10,12 +10,8 @@ Diseñar un esquema de base de datos
 
 El diseño de una base de datos relacional puede abordarse de dos formas:
 
-.. CMA: Se podría dejar algo más corto en negrita, para que fuera fácil de memorizar
-.. Así lo aprenderán mejor, puesto que el segundo item es muuy largo y todo en negrita
-.. es confuso, quizás "Obtener el esquema directamente" y "Realziar esquema conceptual".
-
 * **Obteniendo el esquema relacional directamente:** Objetos y reglas captadas del análisis del mundo real, representadas por un conjunto de esquemas de relación, sus atributos y restricciones de integridad.
-* **Realizando el diseño del esquema "conceptual" de la BD (modelo E/R) y transformándolo a esquema relacional**.
+* **Diseño del esquema conceptual:** realizando el diseño del esquema "conceptual" de la BD (modelo E/R) y transformándolo a esquema relacional.
 
 En los esquemas de bases de datos es posible encontrar anomalías que serán eliminadas
 gracias al proceso de normalización.
@@ -130,42 +126,27 @@ Diseño por descomposición
 
 Descomposición automática:
 
- * "Mega" relaciones + propiedades de los datos.
- * El sistema descompone basándose en las propiedades.
- * Conjunto final de relaciones satisface la forma normal.
-    * no hay anomalías, hay pérdida de información.
+* "Mega" relaciones + propiedades de los datos.
+* El sistema descompone basándose en las propiedades.
+* Conjunto final de relaciones satisface la forma normal.
+ * no hay anomalías, hay pérdida de información.
 
 Normalización
 ~~~~~~~~~~~~~
 
-Por todas las anomalías descritas anteriormente nace el proceso de normalización en el
-cual se transforman datos complejos a un conjunto de estructuras de datos más pequeñas,
-que además de ser más simples y más estables, son más fáciles de mantener.
-También consiste en un conjunto de reglas denominadas Formas Normales (FN), las cuales
-establecen las propiedades que deben cumplir los datos para alcanzar una representación
-normalizada.
+Proceso que analiza las dependencias entre los atributos de una relación de tal manera de
+combinar los atributos, en entidades y asociaciones menos complejas y más pequeñas. Consiste
+en un conjunto de reglas denominadas Formas Normales (FN), las cuales establecen las
+propiedades que deben cumplir los datos para alcanzar una representación normalizada.
+En este paso se toma cada relación, se convierte en una entidad (relación o tabla)
+no normalizada y se aplican las reglas definidas para 1FN, 2FN, 3FN, Boyce Codd y 4FN.
 
-Propiedades y formas normales
-=============================
 
-.. CMA: Esto es como el paso para algo? o es una relación de conceptos?
-.. quizás se debería explicar de otra forma.
+Formas normales
+===============
 
-Dependencias funcionales-> Boyce-Codd forma normal
-
-.. CMA: Qué significa esta relación? y el signo "+" ?
-
-"+ Multivalor dependencias-> Cuarta Forma Normal"
-
-.. note::
- La cuarta forma normal es más estricta que Boyce-Codd forma normal.
-
-Antes de estas formas de normalización se encuentran tres niveles de normalización:
-Primera Forma Normal (1NF), Segunda Forma Normal (2NF) y Tercera Forma Normal (3NF).
-Cada una de estas formas tiene sus propias reglas.
-
-La siguiente imagen muestra los grados de normalización que se utilizan en el diseño
-de esquemas de bases de datos.
+La siguiente imagen muestra los grados de normalización 1FN, 2FN y 3FN que se utilizan 
+en el diseño de esquemas de bases de datos.
 
 .. image:: ../../../sql-course/src/formas_normales.png
    :align: center
@@ -174,24 +155,87 @@ El proceso de normalización es fundamental para obtener un diseño de base de d
 eficiente.
 Una entidad no normalizada generalmente expresados en forma plana (como una tabla).
 Es muy probable que existan uno o más grupos repetitivos, no pudiendo en ese caso ser
-un atributo simple su clave primaria. Las tres primeras formas normales se definen de
-la siguiente manera:
+un atributo simple su clave primaria. 
 
-.. CMA: En la descripción de cada uno se podrían poner cosas en negritas
-..      para resaltar las cosas importantes, pues ahora está todo muy aburrido y
-..      explicado como de libro.
+A continuación se dará una definición y un ejemplo de las formas normales:
+
 
 Primera formal normal (1FN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Una tabla está normalizada o en 1FN, si contiene sólo valores atómicos en la intersección
 de cada fila y columna, es decir, no posee grupos repetitivos.
-Para poder cumplir con esto, se deben pasar a otra tabla aquellos grupos repetitivos
+Para poder cumplir con esto, se deben pasar a otra tabla aquellos **grupos repetitivos**
 generándose dos tablas a partir de la tabla original. Las tablas resultantes deben
 tener algún atributo en común, en general una de las tablas queda con una clave primaria
 compuesta. Esta forma normal genera tablas con problemas de redundancia, y por ende,
 anomalías de inserción, eliminación o modificación; la razón de esto es la existencia
-de lo que se denomina dependencias parciales.
+de lo que se denomina **dependencias parciales**.
+
+Ejemplo
+"""""""
+
+Se dice que una tabla está encuentra en primera forma normal (1FN) si y solo si cada uno
+de los campos contiene un único valor para un registro determinado.
+Supongamos que deseamos realizar una tabla para guardar los cursos que están realizando
+los estudiantes de informática de la USM, podríamos considerar el siguiente diseño.
+
+.. math::
+
+ \begin{array}{|c|c|c|}                                                          
+    \hline                                                                           
+    \textbf{Código} & \textbf{Nombre} & \textbf{Cursos} \\
+    \hline                                                                           
+    \text{1} & \text{Patricia} & \text{Estructura de datos} \\
+    \hline                                                                           
+    \text{2}  & \text{Margarita} & \text{Bases de datos, Teoría de sistemas} \\
+    \hline                                                                           
+    \text{3}  & \text{Joao} & \text{Estructura de datos, Bases de datos} \\         
+    \hline                                                                           
+   \end{array}   
+
+Se puede observar que el registro 1 cumple con la primera forma normal, puesto que cada 
+campo cumple con la condición de tener solo un dato, pero esta condición no se cumple con 
+el registro 2 y 3, en el campo de *Cursos*, ya que en ambos existen dos datos.
+La solución a este problema es crear dos tablas del siguiente modo.
+
+.. math::                                                                            
+ \text{Tabla 1}
+                                                                                     
+ \begin{array}{|c|c|}                                                            
+    \hline                                                                           
+    \textbf{Código} & \textbf{Nombre}  \\                           
+    \hline                                                                           
+    \text{1} & \text{Patricia}  \\                       
+    \hline                                                                           
+    \text{2}  & \text{Margarita} \\      
+    \hline                                                                           
+    \text{3}  & \text{Joao} \\          
+    \hline                                                                           
+   \end{array}  
+
+ \text{Tabla 2}                                                                           
+                                                                                     
+ \begin{array}{|c|c|}                                                            
+    \hline                                                                           
+    \textbf{Código} & \textbf{Cursos} \\                           
+    \hline                                                                           
+    \text{1} & \text{Estructura de datos} \\                       
+    \hline                                                                           
+    \text{2}  & \text{Bases de datos} \\      
+    \hline                                                                           
+    \text{2}  & \text{Teoría de sistemas} \\          
+    \hline    
+    \text{3}  & \text{Estructura de datos} \\      
+    \hline                                                                           
+    \text{3}  & \text{Bases de datos} \\                                                                        
+    \hline
+  \end{array}  
+
+Como se puede comprobar, ahora todos los registros de las dos tablas cumplen con la condición
+de tener en todos sus campos un solo dato, por lo tanto la *Tabla 1* y *Tabla 2* están en 
+primera forma normal.
+ 
 
 Segunda forma normal (2FN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -205,12 +249,104 @@ problemas: una con los atributos que son dependientes de la clave primaria compl
 y otras con aquellos que son dependientes sólo de una parte. Las tablas generadas deben
 quedar con algún atributo en común para representar la asociación entre ellas.
 Al aplicar esta forma normal, aún se siguen teniendo problemas de anomalías
-pues existen dependencias transitivas.
+pues existen **dependencias transitivas**.
+
+Ejemplo
+"""""""
+
+La segunda forma normal compara todos y cada uno de los campos de la tabla con la clave
+definida. Si todos los campos dependen directamente de la clave se dice que la tabla está 
+en segunda forma normal.
+
+Se construye una tabla con los años que cada profesor ha estado trabajando en cada departamento
+de la USM.
+
+.. math::
+
+ \begin{array}{|c|c|c|c|c|}                                                                
+    \hline                                                                           
+    \textbf{Código_profesor} & \textbf{Código_departamento} & \textbf{Nombre} & \textbf{Departamento} & \textbf{Años_trabajados} \\                                  \hline                                                                           
+    \text{1} & \text{6} & \text{Javier} & \text{Electrónica} & 3\\                                         
+    \hline                                                                           
+    \text{2}  & \text{3} & \text{Luis} & \text{Eléctrica} & 15\\                                             
+    \hline                                                                           
+    \text{3}  & \text{2} & \text{Cecilia} & \text{Informática} & 8\\                                         
+    \hline                                                                           
+    \text{4}  & \text{3} & \text{Nora} & \text{Eléctrica} & 2\\                                        
+    \hline                                                                           
+    \text{2}  & \text{6} & \text{Luis} & \text{Electrónica} & 20\\                                                                        
+    \hline                                                                           
+  \end{array}                                                                        
+              
+La clave de esta tabla está conformada por el *Código_profesor* y *Código_departamento*, además 
+se puede decir que está en primera forma normal, por lo que ahora la transformaremos a 
+segunda forma normal.
+
+* El campo *Nombre* no depende funcionalmente de toda la clave, solo depende de la clave *Código_profesor*.
+* El campo *Departamento* no depende funcionalmente de toda la clave, solo depende de la clave *Código_departamento*.
+* El campo *Años_trabajados* si depende funcionalmente de las claves *Código_profesor* y *Código_departamento* (representa los años trabajados de cada profesor en el departamento de la universidad).
+
+Por lo tanto al no depender funcionalmente *todos* los campos de la tabla anterior no está 
+en segunda forma normal, entonces la solución es la siguiente:
+
+.. math::                                                                            
+
+ \text{Tabla A}
+                                                                                     
+ \begin{array}{|c|c|}                                                                
+    \hline                                                                           
+    \textbf{Código_profesor} & \textbf{Nombre} \\
+    \hline                                                                           
+    \text{1} & \text{Javier} \\                                         
+    \hline                                                                           
+    \text{2}  & \text{Luis} \\                                             
+    \hline                                                                           
+    \text{3}  & \text{Cecilia} \\                                         
+    \hline                                                                           
+    \text{4}  & \text{Nora} \\                                        
+    \hline                                                                           
+  \end{array} 
+
+ \text{Tabla B}
+
+ \begin{array}{|c|c|}                                                                
+    \hline                                                                           
+    \textbf{Código_departamento} & \textbf{Departamento} \\                                    
+    \hline                                                                           
+    \text{2} & \text{Informática} \\                                                      
+    \hline                                                                           
+    \text{3}  & \text{Eléctrica} \\                                                       
+    \hline                                                                           
+    \text{6}  & \text{Electrónica} \\                                                    
+    \hline                                                                           
+  \end{array}  
+
+ \text{Tabla C}
+
+  \begin{array}{|c|c|c|}                                                                
+    \hline                                                                           
+    \textbf{Código_empleado} & \textbf{Código_departamento} & \textbf{Años_trabajados} \\                                    
+    \hline                                                                           
+    1 & 6 & 3 \\                                                      
+    \hline                                                                           
+    2  & 3 & 15\\                                                       
+    \hline                                                                           
+    3  & 2 & 8\\                                                    
+    \hline
+    4  & 3 & 2\\                                                    
+    \hline 
+    2  & 6 & 20\\                                                    
+    \hline                                                                            
+  \end{array}   
+
+Se puede observar que la *Tabla A* tiene como índice la clave *Código_empleado*, *Tabla B* 
+tiene como clave *Código_departamento* y la *Tabla C* que tiene como clave compuesta *Código_empleado* 
+y *Código_departamento*, encontrandose finalmente estas tablas en segunda forma normal.
 
 Tercera forma normal (3FN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Una tabla está en 3FN, si está en 2FN y no contiene dependencias transitivas. Es decir,
+Una tabla está en 3FN, si está en 2FN y **no contiene dependencias transitivas**. Es decir,
 cada atributo no clave primaria no depende de otros atributos no claves primarias, sólo
 depende de la clave primaria. Este tipo de dependencia se elimina creando una nueva
 tabla con el o los atributo(s) no clave que depende(n) de otro atributo no clave, y
@@ -219,22 +355,80 @@ que hace de clave primaria en la nueva tabla generada; a este atributo se le den
 clave foránea dentro de la tabla inicial (por clave foránea se entiende entonces, a
 aquel atributo que en una tabla no es clave primaria, pero sí lo es en otra tabla).
 
-Ahora se detallarán las formas normales que se abordarán en las próximas lecturas como
-son Boyce-Codd y cuarta forma normal.
+Ejemplo
+"""""""
+
+Se dice que una tabla está en tercera forma normal si y solo si los campos de la tabla
+dependen únicamente de la clave, dicho en otras palabras los campos de las tablas no dependen
+unos de otros. Tomando como referencia el ejemplo de la primera forma normal, un alumno 
+solo puede tomar un curso a la vez y se desea guardar en que sala se imparte el curso.
+
+.. math::
+
+  \begin{array}{|c|c|c|c|}                                                                
+    \hline                                                                           
+    \textbf{Código} & \textbf{Nombre} & \textbf{Curso} & \textbf{Sala} \\                                    
+    \hline                                                                           
+    1 & \text{Patricia} & \text{Estructura de datos} & \text{A}\\                                                                     
+    \hline                                                                           
+    2  & \text{Margarita} & \text{Teoría de sistemas} & \text{B}\\                                                                    
+    \hline                                                                           
+    3  & \text{Joao} & \text{Bases de datos} & \text{C}\\                                                                     
+    \hline                                                                           
+  \end{array} 
+
+Veamos las dependencias de cada campo respecto a la clave:
+
+* *Nombre* depende directamente del *Código*.
+* *Curso* depende de igual manera del *Código*.
+* La *Sala* depende del *Código*, pero está más ligado al *Curso* que el alumno está realizando.
+
+Es por este último punto que se dice que la tabla no está en 3FN, pero a continuación se 
+muestra la solución:
+
+.. math::                                                                            
+               
+  \text{Tabla A}
+                                                                      
+  \begin{array}{|c|c|c|}                                                                
+    \hline                                                                           
+    \textbf{Código} & \textbf{Nombre} & \textbf{Curso} \\                                    
+    \hline                                                                           
+    1 & \text{Patricia} & \text{Estructura de datos} \\                                                                     
+    \hline                                                                           
+    2  & \text{Margarita} & \text{Teoría de sistemas} \\                                                                    
+    \hline                                                                           
+    3  & \text{Joao} & \text{Bases de datos} \\                                                                     
+    \hline                                                                           
+  \end{array}  
+
+  \text{Tabla B}
+
+  \begin{array}{|c|c|}                                                                
+    \hline                                                                           
+    \textbf{Curso} & \textbf{Sala} \\                                    
+    \hline                                                                           
+    \text{Estructura de datos} & \text{A} \\                                                                     
+    \hline                                                                           
+    \text{Teoría de sistemas} & \text{B}\\                                                                    
+    \hline                                                                           
+    \text{Bases de datos} & \text{C}\\                                                                     
+    \hline                                                                           
+  \end{array} 
 
 Boyce-Codd forma normal (FNBC)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Es una versión ligeramente más fuerte de la Tercera forma normal (3FN). La forma normal de
-Boyce-Codd requiere que no existan dependencias funcionales no triviales de los atributos
+Boyce-Codd requiere que **no existan dependencias funcionales no triviales** de los atributos
 que no sean un conjunto de la clave candidata. En una tabla en 3FN, todos los atributos dependen
 de una clave. Se dice que una tabla está en FNBC si y solo si está en 3FN y cada dependencia
 funcional no trivial tiene una clave candidata como determinante.
 
 Dependencias funcionales y FNBC
-===============================
+"""""""""""""""""""""""""""""""
 
-**Aplicar(SSN, sNombre, CNOMBRE)**
+**Aplicar(SSN, sNombre, cNombre)**
 
 * Redundancia, anomalías de actualización y eliminación.
 * Almacenamiento del SSN-sNombre para una vez por cada universidad.
@@ -246,12 +440,12 @@ Dependencias funcionales y FNBC
 
 **Boyce-Codd forma normal si a-> b entonces a es una clave**
 
-Descomponer: Estudiante(SSN, sNombre) Aplicar(SSN, CNOMBRE)
+Descomponer: Estudiante(SSN, sNombre) Aplicar(SSN, cNombre)
 
 siendo finalmente SSN una clave primaria.
 
 Ejemplo
-^^^^^^^
+"""""""
 
 Tenga en cuenta la relación Tomó(SID, nombre, cursoNum, título). Los estudiantes tienen
 el carné de estudiante y un nombre único (posiblemente no el único), los cursos tienen
@@ -259,10 +453,10 @@ un número único curso y (posiblemente no el único) título. Cada tupla de la 
 codifica el hecho de que un estudiante dado tomó el curso. ¿Cuáles son todas las
 dependencias funcionales para la relación tomó?
 
-   a) sID → cursoNum
-   b) sID → nombre, cursoNum → titulo
-   c) nombre → sID, titulo → cursoNum
-   d) cursoNum → sID
+a) sID → cursoNum
+b) sID → nombre, cursoNum → titulo
+c) nombre → sID, titulo → cursoNum
+d) cursoNum → sID
 
 La respuesta correcta es la alternativa (b), puesto que un id de estudiante que único "sID", esta
 asignado a solo un estudiante y un id del curso que es único "cursoNum" tiene asignado un titulo. Las
@@ -271,7 +465,7 @@ alternativa (c) dice que los nombres de los estudiantes y los títulos de los cu
 la alternativa (d) dice que los cursos sólo pueden ser tomados por un estudiante.
 
 Cuarta forma normal (4FN)
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 La 4NF se asegura de que las dependencias multivaluadas independientes estén correcta
 y eficientemente representadas en un diseño de base de datos. La 4NF es el siguiente
@@ -283,7 +477,7 @@ hay una existencia de dos o más relaciones independientes de muchos a muchos qu
 redundancia; que es suprimida por la cuarta forma normal.
 
 Dependencias multivaluadas y 4FN
-================================
+""""""""""""""""""""""""""""""""
 
 **Aplicar(SSN, cNombre, HS)**
 
@@ -291,19 +485,21 @@ Dependencias multivaluadas y 4FN
 * Efecto multiplicativo: C colegios o H escuelas secundarias, por lo que se generarán "C * H" ó "C + H" tuplas.
 * No es dirigida por BCNF: No hay dependencias funcionales.
 
-.. CMA: Que significa el signo "->>" ?
+**La dependencia multivalor SSN->>cNombre ó SSN->>HS**
 
-**La dependencia multivalor SSN->>cName ó SSN->>HS**
-
-* SSN cuenta todas las combinaciones de cName con HS.
+* SSN cuenta todas las combinaciones de cNombre con HS.
 * En caso de almacenar cada cName y HS, para obtener una vez un SSN.
+
+.. note::
+
+ La flecha ->> significa muchos
 
 **Cuarta Forma Normal si A->>B entonces A es una clave**
 
 Descomponer: Aplicar(SSN, cNombre) Escuela_secundaria(SSN, HS)
 
-Ejemplo
-^^^^^^^
+Ejemplo 1
+"""""""""
 
 Tenga en cuenta la relación Informacion_estudiante(SID, dormitorio, cursoNum). Los estudiantes
 suelen vivir en varios dormitorios y tomar muchos cursos en la universidad. Supongamos
@@ -311,12 +507,80 @@ que los datos no capta en que dormitorio(s) un estudiante estaba en la hora de t
 un curso específico, es decir, todas las combinaciones de cursos dormitorio se registran
 para cada estudiante. ¿Cuáles son todas las dependencias para la relación Informacion_estudiante?
 
-   a) sID->>dormitorio
-   b) sID->>cursoNum
-   c) sID->>dormitorio, sID->>cursoNum
-   d) sID->>dormitorio, sID->>cursoNum, dormitorio->>cursoNum
+a) sID->>dormitorio
+b) sID->>cursoNum
+c) sID->>dormitorio, sID->>cursoNum
+d) sID->>dormitorio, sID->>cursoNum, dormitorio->>cursoNum
 
 La alternativa correcta es (c), puesto que para un estudiante hay muchos dormitorios y
 un estudiante puede tomar muchos cursos. La alternativa (a) y (b) ambos omiten una dependencia,
 la alternativa (d) dice que todos los estudiantes de cada dormitorio toman el mismo conjunto de cursos.
 
+
+Ejemplo 2
+"""""""""
+
+Una tabla está en cuarta forma normal si y sólo si para cualquier combinación clave-campo 
+no existen valores duplicados.
+
+.. math::
+
+ \text{Geometría}
+ 
+ \begin{array}{|c|c|c|}                                                                
+    \hline                                                                           
+    \textbf{Figura} & \textbf{Color} & \textbf{Tamaño} \\                                    
+    \hline                                                                           
+    \text{Cuadrado} & \text{Rojo} & \text{Grande} \\                                                                     
+    \hline                                                                           
+    \text{Cuadrado} & \text{Azul} & \text{Grande}\\                                                                    
+    \hline                                                                           
+    \text{Cuadrado} & \text{Azul} & \text{Mediano}\\                                                                     
+    \hline
+    \text{Círculo} & \text{Blanco} & \text{Mediano}\\                                                                     
+    \hline 
+    \text{Círculo} & \text{Azul} & \text{Pequeño}\\                                                                     
+    \hline 
+    \text{Círculo} & \text{Azul} & \text{Mediano}\\                                                                     
+    \hline                                                                            
+  \end{array} 
+
+Vamos a comparar el atributo clave *Figura* con  *Tamaño*, se puede notar que Cuadrado 
+Grande está repetido; de igual manera Círculo Azul, entre otros registros. Son estas 
+repeticiones que se deben evitar para tener una tabla en 4FN.
+
+La solución a la tabla anterior es la siguiente:
+
+.. math::
+
+ \text{Tamaño}
+ 
+ \begin{array}{|c|c|}                                                                
+    \hline                                                                           
+    \textbf{Figura} & \textbf{Tamaño} \\                                    
+    \hline                                                                           
+    \text{Cuadrado} \text{Grande} \\                                                                     
+    \hline                                                                           
+    \text{Cuadrado} & \text{Mediano}\\                                                                     
+    \hline                                                                           
+    \text{Círculo} & \text{Mediano}\\                                                                     
+    \hline                                                                           
+    \text{Círculo} & \text{Pequeño}\\                                                                     
+    \hline                                                                           
+  \end{array}
+
+ \text{Color}
+
+ \begin{array}{|c|c|}                                                                
+    \hline                                                                           
+    \textbf{Figura} & \textbf{Color}  \\                                    
+    \hline                                                                           
+    \text{Cuadrado} & \text{Rojo} \\                                                                     
+    \hline                                                                           
+    \text{Cuadrado} & \text{Azul} \\                                                                    
+    \hline                                                                           
+    \text{Círculo} & \text{Blanco} \\                                                                     
+    \hline                                                                           
+    \text{Círculo} & \text{Azul} \\                                                                     
+    \hline                                                                            
+  \end{array}
