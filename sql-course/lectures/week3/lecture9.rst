@@ -34,9 +34,6 @@ Como es usual, se utilizará el ejemplo de la base de datos
     Student (sID,   sName, Average)
     Apply   (sID,   cName, major, decision)
 
-.. La idea del ejemplo es que el estudiante "sid" postula al colegio "cname", al ramo(o mención académica, ahí no se) "major"
-   y es aceptado o no
-
 cuyas tablas son creadas mediante:
 
 .. code-block:: sql
@@ -231,7 +228,7 @@ cuya salida es::
    Amy
    Doris
 
-   (5 rows)
+   (2 rows)
 
 .. note::
 
