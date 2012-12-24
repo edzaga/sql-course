@@ -1,4 +1,4 @@
-Lecture 13 - SQL: NULL Values
+Lecture 13 - SQL: Valores NULL 
 -----------------------------
 
 .. role:: sql(code)
