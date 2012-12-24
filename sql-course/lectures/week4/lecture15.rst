@@ -27,22 +27,22 @@ A continuación se muestra una tabla y luego el detalle de los problemas que pre
 
 .. math::
 
-   \begin{array}{|c|c|c|}
+   \begin{array}{|c|c|c|c|c|c|}
     \hline
-    \textbf{Nombre_autor} & \textbf{País} & \textbf{Cod_libro} & \textbf{Titulo_libro} & \textbf{Editor} \\
+    \textbf{Nombre_autor} & \textbf{País} & \textbf{Cod_libro} & \textbf{Titulo_libro} & \textbf{Editor} & \textbf{Dirección_editorial}\\
     \hline
-    \text{Cortázar, Julio} & \text{Arg} & \text{9786071110725} & \text{Cuentos Completos 1 Julio Cortazar}  & \text{Alfaguara}\\
+    \text{Cortázar, Julio} & \text{Arg} & \text{9786071110725} & \text{Cuentos Completos 1 Julio Cortazar}  & \text{Alfaguara} & \text{Padre Mariano 82}\\
     \hline
-    \text{Rosasco, José Luis}  & \text{Chi} & \text{9789561224056} & \text{Donde Estas, Constanza} & \text{Zig-Zag}  \\
+    \text{Rosasco, José Luis}  & \text{Chi} & \text{9789561224056} & \text{Donde Estas, Constanza} & \text{Zig-Zag} & \text{Los Conquistadores 1700} \\
     \hline
-    \text{Rosasco, José Luis}  & \text{Chi} & \text{9561313669} & \text{Hoy Día es Mañana} & \text{Andrés Bello} \\
+    \text{Rosasco, José Luis}  & \text{Chi} & \text{9561313669} & \text{Hoy Día es Mañana} & \text{Andrés Bello} & \text{Ahumada 131}\\
     \hline
-    \text{Coloane, Francisco} & \text{Chi} & \text{9789563473308} & \text{Golfo De Penas} & \text{Alfaguara} \\
+    \text{Coloane, Francisco} & \text{Chi} & \text{9789563473308} & \text{Golfo De Penas} & \text{Alfaguara} & \text{Padre Mariano 82}\\
     \hline
    \end{array}
 
-* **Redundancia:** cuando un autor tiene varios libros, se repite de la nacionalidad.
-* **Anomalías de modificación:** Si el autor "Julio Cortázar" y "José Luis Rosasco", desean cambiar de editor, se modificará en los dos lugares. A priori no se puede saber cuando autores tiene un libro. Los errores son frecuentes al olvidar la modificación de un autor.
+* **Redundancia:** cuando un autor tiene varios libros, se repite su país de origen.
+* **Anomalías de modificación:** Si se cambia la dirección de la editorial "Alfaguara", se deben modificar dos filas. A priori no se puede saber cuántos autores tiene un libro. Los errores son frecuentes al olvidar la modificación de un autor.
 * **Anomalías de inserción:** Se desea ingresar a un autor sin libros. "Nombre_autor" y "Cod_libro" son campos claves, por lo que las claves no pueden ser valores nulos.
 
 Al eliminar estas anomalías se asegura:
@@ -59,7 +59,7 @@ Otro ejemplo se muestra en la siguiente tabla:
  HS = high school (escuela secundaria).
 
 
-*123 Ann de PAHS (P.A) y GHS (P.A) juega tenis y toca la trompeta y postulo a Stanford, Berkeley y al MIT*
+*123 Ann de PAHS (P.A) y GHS (P.A) juega tenis y toca la trompeta y postuló a Stanford, Berkeley y al MIT*
 
 Los datos ingresados en la tabla podrían ser los que se muestran a continuación:
 
@@ -95,20 +95,19 @@ Ejercicio
 =========
 
 Considere la posibilidad de una base de datos que contiene información sobre los cursos
-tomados por los estudiantes. Los estudiantes tienen un ID único de estudiante y
-(posiblemente no el único) nombre; cursos tienen un número único de curso y (posiblemente
-no el único) título, los estudiantes toman un curso de un año determinado y reciben una
+tomados por los estudiantes. Los estudiantes tienen un ID único de estudiante y nombre; 
+cursos tienen un número único de curso y título, los estudiantes toman un curso de un año determinado y reciben una
 calificación.
 
 ¿Cuál de los siguientes esquemas recomiendan?
 
-a) Tomó(SID, nombre, cursoNum, título, año, calificación)
+a) Tomo(SID, nombre, cursoNum, título, año, calificación)
 
 b) Curso(cursoNum, título, año), Tomó(SID, cursoNum, calificación)
 
-c) Estudiante(SID, nombre), Curso(cursoNum, título), Tomó(SID, cursoNum, año, calificación)
+c) Estudiante(SID, nombre), Curso(cursoNum, título), Tomo(SID, cursoNum, año, calificación)
 
-d) Estudiante(SID, nombre), Curso(cursoNum, título), Tomó(nombre, título, año, calificación)
+d) Estudiante(SID, nombre), Curso(cursoNum, título), Tomo(nombre, título, año, calificación)
 
 La alternativa correcta es la letra (c), puesto que en el enunciado se dice que existen
 estudiantes con un ID único, que en este caso será "SID" y un "nombre"; los cursos tienen
@@ -120,7 +119,7 @@ poseer una clave primaria para poder identificar el curso tomado que será "SID"
 Diseño por descomposición
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Comience con las *"mega" relaciones* que contienen todo.
+* Comienza con las *"mega" relaciones* que contienen todo.
 * *Descomponer* en partes más pequeñas, se obtienen mejores relaciones con la misma información.
 * ¿Se puede *descomponer automáticamente*?
 
@@ -145,16 +144,16 @@ no normalizada y se aplican las reglas definidas para 1FN, 2FN, 3FN, Boyce Codd 
 Formas normales
 ===============
 
-La siguiente imagen muestra los grados de normalización 1FN, 2FN y 3FN que se utilizan 
-en el diseño de esquemas de bases de datos.
+La siguiente imagen muestra los tres principales niveles que se utilizan en el diseño 
+de esquemas de bases de datos.
 
 .. image:: ../../../sql-course/src/formas_normales.png
    :align: center
 
 El proceso de normalización es fundamental para obtener un diseño de base de datos
 eficiente.
-Una entidad no normalizada generalmente expresados en forma plana (como una tabla).
-Es muy probable que existan uno o más grupos repetitivos, no pudiendo en ese caso ser
+En una entidad no normalizada generalmente expresada en forma plana (como una tabla), 
+es muy probable que existan uno o más grupos repetitivos, no pudiendo en ese caso ser
 un atributo simple su clave primaria. 
 
 A continuación se dará una definición y un ejemplo de las formas normales:
@@ -347,8 +346,8 @@ Tercera forma normal (3FN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Una tabla está en 3FN, si está en 2FN y **no contiene dependencias transitivas**. Es decir,
-cada atributo no clave primaria no depende de otros atributos no claves primarias, sólo
-depende de la clave primaria. Este tipo de dependencia se elimina creando una nueva
+cada atributo no primario depende solo de la clave primaria, no existiendo dependencias
+entre atributos que no son clave primaria. Este tipo de dependencia se elimina creando una nueva
 tabla con el o los atributo(s) no clave que depende(n) de otro atributo no clave, y
 con la tabla inicial, la cual además de sus propios atributos, debe contener el atributo
 que hace de clave primaria en la nueva tabla generada; a este atributo se le denomina
@@ -447,10 +446,9 @@ siendo finalmente SSN una clave primaria.
 Ejemplo
 """""""
 
-Tenga en cuenta la relación Tomó(SID, nombre, cursoNum, título). Los estudiantes tienen
-el carné de estudiante y un nombre único (posiblemente no el único), los cursos tienen
-un número único curso y (posiblemente no el único) título. Cada tupla de la relación
-codifica el hecho de que un estudiante dado tomó el curso. ¿Cuáles son todas las
+Tenga en cuenta la relación Tomo(SID, nombre, cursoNum, título). Los estudiantes tienen
+el carné de estudiante y un nombre único, los cursos tienen un número único curso y título. 
+Cada tupla de la relación codifica el hecho de que un estudiante dado tomó el curso. ¿Cuáles son todas las
 dependencias funcionales para la relación tomó?
 
 a) sID → cursoNum
@@ -458,8 +456,8 @@ b) sID → nombre, cursoNum → titulo
 c) nombre → sID, titulo → cursoNum
 d) cursoNum → sID
 
-La respuesta correcta es la alternativa (b), puesto que un id de estudiante que único "sID", esta
-asignado a solo un estudiante y un id del curso que es único "cursoNum" tiene asignado un titulo. Las
+La respuesta correcta es la alternativa (b), puesto que un id de estudiante que único "sID", está
+asignado a solo un estudiante y un id del curso que es único "cursoNum" tiene asignado un título. Las
 otras alternativas no son porque, la alternativa (a) dice un estudiante sólo puede tomar un curso, la
 alternativa (c) dice que los nombres de los estudiantes y los títulos de los cursos son únicos y
 la alternativa (d) dice que los cursos sólo pueden ser tomados por un estudiante.
