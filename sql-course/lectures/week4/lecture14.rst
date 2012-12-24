@@ -12,7 +12,7 @@ la manipulación de datos en una tabla SQL::
      Actualización -> UPDATE
      Eliminación   -> DELETE
 
-En esta lectura se verá en profundidad, aquellas operaciones que permiten modificar datos, es decir,
+En esta lectura se verán en profundidad, las operaciones que permiten mantener una base de datos, es decir,
 INSERT, UPDATE y DELETE.
 
 
@@ -25,16 +25,16 @@ Para insertar datos, existen al menos dos formas. Una se ha visto desde las prim
 
    INSERT INTO table VALUES (atributo1, atributo2 ...);
 
-Es decir que se insertará en la tabla "table", los valores correspondientes a los atributos de la tabla
-**table**. Para poder utilizar esta forma, es necesario que la cantidad de valores asociados a los
-atributos, sea igual a la cantidad de atributos de la tabla **table**, y que estén en el mismo orden
+Es decir que se insertará en la tabla, los valores correspondientes a sus atributos de la. Para poder utilizar 
+esta forma, es necesario que la cantidad de valores asociados a los
+atributos, sea igual a la cantidad de atributos de la tabla, y que estén en el mismo orden
 respecto a los tipos de datos y los datos que se quieran insertar. El ejemplo 1 aclarará posibles dudas:
 
 
 Contexto
 ^^^^^^^^
 
-Utilicemos la tabla "student", que ya se ha utilizado en lecturas anteriores::
+Utilicemos la tabla "Student", que ya se ha utilizado en lecturas anteriores::
 
  Student (sID, sName, Average)
 
@@ -42,7 +42,8 @@ y creemos una nueva tabla llamada **Student_new**, con una estructura similar, p
 
 .. code-block:: sql
 
- CREATE TABLE Student_new (sID serial, sName VARCHAR(20), Average INTEGER,  PRIMARY KEY(sID));
+ CREATE TABLE Student_new (sID serial, sName VARCHAR(20), 
+ Average INTEGER,  PRIMARY KEY(sID));
 
 Es decir, cuenta con 3 atributos, los cuales son: el identificador o *sID* de carácter entero y serial,
 lo cual significa que si no se especifica un valor, tomará un valor entero; el nombre o *sName*  que
@@ -110,7 +111,8 @@ Es posible modificar la inserción de 'Betty' para que sea similar a la de 'Wilm
 .. code-block:: sql
 
   DROP TABLE Student_new;
-  CREATE TABLE Student_new(sID serial, sName VARCHAR(20), Average INTEGER,  PRIMARY kEY(sID));
+  CREATE TABLE Student_new(sID serial, sName VARCHAR(20), 
+  Average INTEGER,  PRIMARY kEY(sID));
   INSERT INTO Student_new (sName, Average) VALUES ('Betty', 78);
   INSERT INTO Student_new (sName, Average) VALUES ('Wilma', 81);
 
@@ -141,7 +143,7 @@ Es posible modificar o "actualizar" datos a través del comando UPDATE, cuya sin
 
   UPDATE table SET Attr = Expression  WHERE Condition;
 
-Es decir que se actualiza, de la tabla **table**, el atributo *Attr* (el valor anterior, por el
+Es decir que se actualiza de la tabla el atributo *Attr* (el valor anterior, por el
 valor "Expression"), bajo una cierta condición "Condition"
 
 .. note::
@@ -182,11 +184,10 @@ o
    SET Average = 91
    WHERE Average = 81;
 
-Ambos casos no son erróneos, pues realizan el cambio pedido. No obstante, *es necesario ganar la costumbre
-de trabajar con atributos que sean únicos, es decir la clave primaria* ; compuesta por un atributo o la
-combinación de algunos de ellos (en este caso el atributo *sID*). La razón corresponde a que en caso
-de haber más de una Wilma se cambiaría el promedio de ambas, lo mismo para el caso de que varias personas
-cuenten con un promedio igual a 81. Por lo tanto la consulta ideal corresponde a
+Ambos casos no son erróneos, pues realizan el cambio pedido. No obstante, *es necesario tener la costumbre
+de trabajar con atributos que sean únicos, es decir la clave primaria* (en este caso el atributo *sID*). 
+La razón corresponde a que en caso de haber más de una Wilma se cambiaría el promedio de ambas, lo mismo para el caso de 
+que varias personas cuenten con un promedio igual a 81. Por lo tanto la consulta ideal corresponde a:
 
 .. code-block:: sql
 
@@ -225,7 +226,7 @@ La sintaxis del comando DELETE es:
 
   DELETE FROM table WHERE Condition;
 
-Es decir que de la tabla **table**, se elimina el(los) valor(es) que cumpla(n) con la condición "Condition".
+Es decir que de la tabla, se elimine el(los) valor(es) que cumpla(n) con la condición "Condition".
 
 .. note::
 
@@ -300,9 +301,9 @@ lectura.
 Ejemplo extra
 ^^^^^^^^^^^^^
 Tomando en cuenta el ejemplo 5, supongamos que 'Betty' pasa a la etapa de postulaciones
-y decide hacerlo en 2 Establecimientos educacionales. Postula a ciencias e ingeniería  en Stanford
+y decide postular a 2 Establecimientos educacionales. Postula a Ciencias e Ingeniería  en Stanford
 y a Historia Natural en Berkeley, es aceptada en todo lo que ha postulado. La tabla **Apply** igual
-que la tabla **Student**: ya se había enviado sin posibilidad de modificar,  Es por ello que se crea
+que la tabla **Student**: ya se había enviado sin posibilidad de modificar.  Es por ello que se crea
 la tabla **Apply_new**, con las mismas características que **Apply**:
 
 
@@ -325,7 +326,7 @@ Verificando la salida:
 
   SELECT * FROM Apply_new;
 
-la salida es::
+se tiene que::
   
   sid |   cname   |     major        | decision
   ----+-----------+------------------+---------
@@ -360,7 +361,7 @@ pues la tabla **Apply_new** no cuenta con un contador serial que pudiese causar 
 .. code-block:: sql
 
  DELETE FROM Apply
- WHERE sid = 1 and name = 'Stanford' and major = 'engineering';
+ WHERE sid = 1 and cname = 'Stanford' and major = 'engineering';
 
 Lo que resulta en el cambio en la tabla::
   
