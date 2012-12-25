@@ -1,87 +1,137 @@
 Assignment 4
 ============
 
-#. To do this assignment,
-   you must download `the module with the data`_
-   that we will use.
-   
-   .. _the module with the data: ../../_static/programs/people.py
-   
-   For use the module you have to save them in the same folder
-   that you will use from the pyscripter,
-   and import the data as following::
-   
-       from people import *
-  
-   this module contains a list called ``people`` which contain tuples,
-   which represent the data of a people.
-   Each tuple has three values: name, last name and date of birth.
+Fecha de entrega: lunes 7 de enero 2013 hasta 23:59
+-----------------------------------------------------------
 
-   The name and last name are strings,
-   and the date of birth is a tuple of three values: day, month and year.
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
 
-   For example, we can see the data of the first person::
- 
-       >>> people[0]
-       ('martin', 'soto', (24, 8, 1990))
+-------------
+Base de datos
+-------------
 
-   #. Write a function which print the name of all the people.
-      For these, it is necessary to pass through the list with a ``for`` statement,
-      getting the name of the person and printing it using the ``print`` statement.
-      The function do not need to return nothing::
-      
-          >>> names(people)
-          martin
-          gabriel
-          humberto
-          sebastian
-          victor
-          ...
-          horacio
-          ignacio
-          nicolas
-          pablo
-          rolando
-          ricardo
-     
-   #. Write a function which print the date of birth of all the people::
-      
-        >>> dates(people)
-        August 24th, 1990
-        June 2nd, 1974
-        November 4th, 1973
-        September 18th, 1973
-        August 12th, 1992
-        ...
-        August 18th, 1981
-        April 24th, 1972
-        May 17th, 1977
-        February 4th, 1972
-        January 29th, 1976
-   
-      To do this easier, build a dictionary with the names of the months::
-    
-        months = {
-            1: 'January',
-            2: 'February',
-            # ...
-            12: 'December',
-        }
-    
-   #. Do a function called *how_many_people(list)* to determinate
-      the amount of people in the list.
+Se tiene una base de datos de zoológicos con el siguiente esquema:
 
-   #. Write a function which return a list of people which has their birthday
-      the same day that you have::
+`\text{Zoo}(\underline{\text{nombre}}, \text{ciudad, pais,tamanio, presupuesto})`
 
-        >>> my_birthday(people)
-        ['jonathan sepulveda']
-   
-   #. Do a function called *repeated_birthdays(list)* that can
-      determinate the number of people in the list who have their birthday the same day.
+Esta tabla almacena los datos de los zoológicos. Su *nombre*, *ciudad* y *pais* en el que se ubica, *tamanio* es el tamaño en hectáreas y *presupuesto* en unidades monetarias. 
 
-   #. Do a function called *most_common_name(list)* capable to determinate
-      the repeated name on the list of people.
-   
-   #. Do a function called *younger_older(list)* to determinate the younger and older people
-      of the list.
+.. code-block:: sql
+
+		 nombre         |      ciudad      |      pais      | tamanio | presupuesto 
+	------------------------+------------------+----------------+---------+-------------
+	 Metropolitano          | Santiago         | Chile          |     4.8 |         100
+	 BuinZoo                | Buin             | Chile          |         |          60
+	 San Diego              | San Diego        | Estados Unidos |      14 |       405.5
+	 Parque Safari          | Rancagua         | Chile          |         |          50
+	 London Zoo             | Londres          | Reino Unido    |       9 |       253.9
+	 Chapultepec            | Ciudad de Mexico | Mexico         |      16 |            
+	 Buenos Aires           | Buenos Aires     | Argentina      |      18 |       253.9
+	 Parque de las Leyendas | Peru             | Lima           |         |            
+	(8 rows)
+
+`\text{Especie}(\underline{\text{nomCient}},\text{nomComun, familia})`
+
+Esta tabla almacena los datos que caracterizan las especies animales. Almacena el nombre científico en *nomcient*, el nombre común con el que se le conoce es guardado en *nomcomun* y la *familia* a la que pertenece la especie.
+
+.. code-block:: sql
+
+		nomcient         |           nomcomun           | familia  
+	-------------------------+------------------------------+----------
+	 Panthera tigris         | Tigre                        | Mamifero
+	 Aptenodytes patagonicus | Pinguino Rey                 | Ave
+	 Ailuropoda melanoleuca  | Oso Panda                    | Mamifero
+	 Vultur gryphus          | Condor                       | Ave
+	 Pongo pygmaeus          | Orangutan                    | Mamifero
+	 Chelonoidis nigra       | Tortuga gigante de Galapagos | Reptil
+	 Balaenoptera musculus   | Ballena Azul                 | Mamifero
+	 Glaucidium nanum        | Chuncho                      | Ave
+	 (15 rows)
+
+`\text{Animal}(\underline{\text{numid}},\text{nomZoo, nomEspecie, sexo, anioNacim, pais})`
+
+La tabla animal guarda los datos de los animales que habitan cada zoológico. El atributo *nomZoo* es clave foranea a **Zoo**, se refiere al zoológico en el que se encuentra un animal, *nomEspecie* es clave foranea a **Especie** a la que pertenece cada uno, también se almacenan el *sexo*, año de nacimiento en *anioNacim* y el país de procedencia en *pais*. 
+
+.. code-block:: sql
+
+	numid |         nomzoo         |       nomespecie        |  sexo  | anionacim |   pais    
+	-------+------------------------+-------------------------+--------+-----------+-----------
+	     1 | Metropolitano          | Panthera tigris         | Macho  |           | India
+	     2 | San Diego              | Panthera tigris         | Macho  |      2010 | Nepal
+	     3 | London Zoo             | Panthera tigris         | Macho  |      2008 | Birmania
+	     4 | BuinZoo                | Pongo pygmaeus          | Hembra |      2004 | Indonesia
+	     5 | Metropolitano          | Hippocamelus bisulcus   | Hembra |           | Chile
+	     6 | Parque Safari          | Panthera tigris         | Macho  |      2009 | India
+	(28 rows)
+
+Existen reglas que se especificaron para las claves foráneas, después de haberlas consultado con los encargados de los zoológicos:
+
+* El *nombre* de los zoológicos debe ser un valor conocido.
+
+* Toda especie debe poseer un nombre científico.
+
+* Todo animal tiene *numid* conocido, se encuentra en un zoo conocido y pertenece a una especie conocida.
+
+.. note::
+	Las tablas anteriores son solo de referencia. Se creó un archivo assigment4.sql , que posee la información de creación de tablas con valores asignados.
+
+Pregunta 1 (5 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Modificar el archivo assigment4.sql de modo que la creación de tablas cumpla con las 3 reglas descritas anteriormente.
+
+Pregunta 2 (10 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Asignarle un valor desconocido (NULL) al año de nacimiento del animal que posee el nombre común 'Leon' y que habita en el 'Parque Safari'. 
+
+Pregunta 3 (5 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Actualizar los presupuestos que tengan valores nulos asignándoles un valor de presupuesto=0.
+
+
+Pregunta 4 (10 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Seleccionar el “nombre común” (Especie.nomComun), “nombre del zoológico”(Zoo.nombre) y “país”(Animal.pais), de los animales que se conoce su país de origen.
+
+Pregunta 5(10 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Eliminar de la base de datos (de la tabla **Animal**) los reptiles del 'London Zoo'. 
+
+-------------------------------
+Teoría del diseño Relacional
+-------------------------------
+
+Se cuenta con las siguientes vistas:
+
+* VISTA1 (FECHA-INGRESO, FECHA-MUERTE, #ANIMAL, NOMBRE-COMUN, NOMBRE-CIENT, APODO, 
+  HABITAT, CLASE, LONGITUD, PESO, LONGEVIDAD, FOTO, 
+  {FECHA-R, #EMP, DIAG, {#REMEDIO, NOM-REMEDIO, DOSIS}, OBSERVACION)
+
+La vista1 permite a un visitante web, conocer sobre los animales del ZooChile. 
+FECHA-R es la fecha y hora en que se revisó al animal. #REMEDIO se agrega para reducir 
+redundancia, ya que los mismos remedios pueden ser suministrados a distintos animales.
+
+* VISTA 2 (FECHA, NOM-V, FIRMA-V, {CLASE{#ANIMAL, {TIPO-ALIMENTO, CANT}}})
+La vista 2 permite al Director del Zoo, conocer el número de revisiones que realiza 
+mensualmente cada uno de sus veterinarios.
+La FECHA se guarda para saber cuándo y qué un animal comió, de tal forma de poder entregar 
+información al veterinario ante cualquier enfermedad. Se eliminan entidades intermedias con
+atributos como: (FECHA, CLASE) y (FECHA, CLASE, #ANIMAL) dado que no aportan información adicional.
+
+Pregunta 1 (40 puntos):
+^^^^^^^^^^^^^^^^^^^^^^^^
+Normalizar cada vista a 1FN, 2FN y 3FN. 
+
+
+.. note :: 
+	La tarea se entrega en un archivo comprimido .rar , que contenga:
+
+	* archivo assigment4.sql , con las respuestas a las preguntas de “Base de Datos”.
+	* archivo assigment4.doc , .docx o .pdf que incluya la respuesta a los ítem de “Teoría del diseño Relacional”.
+
