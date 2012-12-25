@@ -1,4 +1,4 @@
-Lecture 14 - SQL: Data modifications statements
+Lectura 14 - SQL: Data modifications statements
 ------------------------------------------------
 .. role:: sql(code)
          :language: sql

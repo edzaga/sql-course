@@ -1,4 +1,4 @@
-Lecture 16 - Teoría del Diseño Relacional: Dependencia Funcional
+Lectura 16 - Teoría del Diseño Relacional: Dependencia Funcional
 ----------------------------------------------------------------
 
 Dependencia Funcional

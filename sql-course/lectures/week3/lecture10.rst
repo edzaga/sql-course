@@ -1,4 +1,4 @@
-Lecture 10 - Subconsultas en FROM y SELECT
+Lectura 10 - Subconsultas en FROM y SELECT
 ------------------------------------------
 .. role:: sql(code)
       :language: sql

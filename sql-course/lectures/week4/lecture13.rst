@@ -1,5 +1,5 @@
-Lecture 13 - SQL: Valores NULL 
------------------------------
+Lectura 13 - SQL: Valores NULL 
+-------------------------------
 
 .. role:: sql(code)
    :language: sql
