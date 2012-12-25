@@ -5,7 +5,7 @@ Lecture 13 - SQL: Valores NULL
    :language: sql
    :class: highlight
 
-:sql:`NULL` indica que un valor es desconocido o que no existe un valor dentro de
+:sql:`NULL` indica que un valor es desconocido o que aún no existe un valor asignado dentro de
 una base de datos. :sql:`NULL` no pertenece a ningún dominio de datos (no pertenece
 a los enteros, ni a los booleanos, ni a los flotantes, etc), se puede considerar
 como un marcador que indica la ausencia de un valor.
@@ -204,7 +204,7 @@ Comparaciones con NULL
 
 * La comparación entre dos :sql:`NULL` o entre cualquier valor y un :sql:`NULL` tiene
   un resultado desconocido pues el valor de cada :sql:`NULL` es desconocido.
-  También se puede decir que no existen dos :sql:`NULL` iguales.
+  También se puede decir que no existen dos :sql:`NULL` que sean iguales.
 
 La siguiente consulta selecciona el nombre y apellido de los clientes que poseen una
 deuda mayor a 100 o menor/igual a 100. Se puede apreciar que esta consulta abarcaría
