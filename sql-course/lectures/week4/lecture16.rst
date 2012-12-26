@@ -94,7 +94,7 @@ valores diferentes para E.
 
 Las dependencias funcionales para las tablas son:
 
-**(SSN, sNombre, dirección, HScodigo, HSnombre, HSciudad, GPA, prioridad)**
+**Student(SSN, sNombre, dirección, HScodigo, HSnombre, HSciudad, GPA, prioridad)**
 
 SSN `\rightarrow` sNombre
 
@@ -200,7 +200,9 @@ Cierre de atributos
 Ejemplo 4
 =========
 
-Estudiante(SSN, sNombre, dirección, HScodigo, HSnombre, HSciudad, GPA, prioridad)
+Un ejemplo de cierre de atributos es:
+
+**Estudiante(SSN, sNombre, dirección, HScodigo, HSnombre, HSciudad, GPA, prioridad)**
 
 SSN `\rightarrow` sNombre, dirección, GPA
 
@@ -225,7 +227,7 @@ Considerar cada subconjunto `\overline{A}` de los atributos.
 
 `A^{+} \rightarrow` todos los atributos
 
-es llave
+**es llave**
 
 Ejemplo 5
 =========
