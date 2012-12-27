@@ -10,4 +10,4 @@ Lectures:
    lecture14
    lecture15
    lecture16
-..   assignment4
+   assignment4

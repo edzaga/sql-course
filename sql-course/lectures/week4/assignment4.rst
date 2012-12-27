@@ -56,7 +56,7 @@ La tabla animal guarda los datos de los animales que habitan cada zoológico. El
 
 .. code-block:: sql
 
-	numid |         nomzoo         |       nomespecie        |  sexo  | anionacim |   pais    
+	 numid |         nomzoo         |       nomespecie        |  sexo  | anionacim |   pais    
 	-------+------------------------+-------------------------+--------+-----------+-----------
 	     1 | Metropolitano          | Panthera tigris         | Macho  |           | India
 	     2 | San Diego              | Panthera tigris         | Macho  |      2010 | Nepal
@@ -87,7 +87,7 @@ Pregunta 2 (10 puntos):
 
 Asignarle un valor desconocido (NULL) al año de nacimiento del animal que posee el nombre común 'Leon' y que habita en el 'Parque Safari'. 
 
-Pregunta 3 (5 puntos):
+Pregunta 3 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Actualizar los presupuestos que tengan valores nulos asignándoles un valor de presupuesto=0.
@@ -98,7 +98,7 @@ Pregunta 4 (10 puntos):
 
 Seleccionar el “nombre común” (Especie.nomComun), “nombre del zoológico”(Zoo.nombre) y “país”(Animal.pais), de los animales que se conoce su país de origen.
 
-Pregunta 5(10 puntos):
+Pregunta 5 (15 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Eliminar de la base de datos (de la tabla **Animal**) los reptiles del 'London Zoo'. 
@@ -124,7 +124,7 @@ La FECHA se guarda para saber cuándo y qué un animal comió, de tal forma de p
 información al veterinario ante cualquier enfermedad. Se eliminan entidades intermedias con
 atributos como: (FECHA, CLASE) y (FECHA, CLASE, #ANIMAL) dado que no aportan información adicional.
 
-Pregunta 1 (40 puntos):
+Pregunta 1 (50 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 Normalizar cada vista a 1FN, 2FN y 3FN. 
 
@@ -133,5 +133,5 @@ Normalizar cada vista a 1FN, 2FN y 3FN.
 	La tarea se entrega en un archivo comprimido .rar , que contenga:
 
 	* archivo assigment4.sql , con las respuestas a las preguntas de “Base de Datos”.
-	* archivo assigment4.doc , .docx o .pdf que incluya la respuesta a los ítem de “Teoría del diseño Relacional”.
+	* archivo assigment4.doc , .docx o .pdf que incluya la respuesta de “Teoría del diseño Relacional”.
 
