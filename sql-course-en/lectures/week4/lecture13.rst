@@ -5,393 +5,385 @@ Lecture 13 - SQL: Null Values
    :language: sql
    :class: highlight
 
-:sql:`NULL` indica que un valor es desconocido o que aún no existe un valor asignado dentro de
-una base de datos. :sql:`NULL` no pertenece a ningún dominio de datos (no pertenece
-a los enteros, ni a los booleanos, ni a los flotantes, etc), se puede considerar
-como un marcador que indica la ausencia de un valor.
+:sql:`NULL` indicates that a value is unknown or that there is no a value within a database. 
+:sql:`NULL` does not belong to any data domain (not in integers, or booleans, or floats, etc). 
+It can be considered as a marker indicating the absence of a value.
 
 .. note::
-    :sql:`NULL` no debe confundirse con un valor 0, ya que el valor 0 pertenece
-    a algún tipo de dato (entero o flotante) mientras que, como ya se mencionó,
-    :sql:`NULL` es la falta de un dato.
+    :sql:`NULL` should not be confused with a value 0, since the value 0 belongs to any data type 
+    (integer or float), while as it was already mentioned,
+    :sql:`NULL` is the absence of a data.
+
 
 CREATE TABLE
 ~~~~~~~~~~~~~~~
 
-En forma predeterminada, una columna puede ser :sql:`NULL`. Si se desea no permitir
-un valor :sql:`NULL` en una columna, se debe colocar una restricción en esta columna
-especificando que :sql:`NULL` no es ahora un valor permitido.
+By default a column can be  :sql:`NULL`. If you want to disallow a 
+ :sql:`NULL` in a column, you should place a restriction on this column specifying that :sql:`NULL` 
+is now a valid value.
 
-Forma general:
+General form:
 
 .. code-block:: sql
 
-    CREATE TABLE nombreTabla
-    (atributo1 tipoAtributo NOT NULL,
-    atributo2 tipoAtributo);
+ CREATE TABLE nameTable
+ (atributte1 typeAtributte NOT NULL,
+ atributte2 typeAtributte);
 
-La consulta anterior crea una tabla llamada nombreTabla, con dos atributos.
-El primero  atributo1 no acepta valores nulos (:sql:`NULL`), esto debido a que es
-acompañado de la instrucción :sql:`NOT NULL`, atributo2 puede no tener valores, es
-decir se puede dar que atributo2 contenga, en alguna de sus filas, valores desconocidos.
+
+The query above creates a table called nameTable with two attributes. The first attribute1 do not accept 
+null values (:sql:`NULL`), since it is accompanied with the instruction :sql:`NOT NULL`. Attribute2 might not 
+have values, in other words, you can find that attribute2 might have in some rows, some unknown 
+values. In order to illustrate the particularities and usefulness of NULL, we will show the next 
+example: a table of clients which stores the id number, last name, name, debt and client address 
+(ID --- name, last name, debt, address).<
 
 Para ilustrar las particularidades y utilidad de :sql:`NULL` se utilizará el
 siguiente ejemplo: Una tabla de clientes que almacena el rut, apellido, nombre,
 deuda y dirección
 `\text{Cliente}(\underline{\text{rut}},\text{nombre,apellido, deuda,direccion})` .
 
-Se crea la tabla Cliente donde las columnas “rut”, “nombre” y “apellido” no incluyen
-:sql:`NULL`, mientras que “direccion” y “deuda”  puede incluir :sql:`NULL`.
-Es decir, podría desconocerse la dirección del usuario sin que esto traiga problemas
-a la base de datos. La consulta SQL que realiza esta acción es la siguiente:
+
+Create the Client table  where “ID number”, “name” and “last name” do not include :sql:`NULL`, 
+while “adress” and “debt” can include :sql:`NULL`. That means that you could disown the address 
+of the client without giving problems to the database. The SQL query which makes the action 
+is the following:
 
 .. code-block:: sql
 
-    postgres=# CREATE TABLE Cliente
-    (rut int NOT NULL,
-    nombre varchar (30) NOT NULL,
-    apellido varchar(30)NOT NULL,
-    deuda int,
-    direccion varchar (30));
+    postgres=# CREATE TABLE Client
+    (idnumber int NOT NULL,
+    name varchar (30) NOT NULL,
+    last name varchar(30)NOT NULL,
+    debt int,
+    address varchar (30));
     CREATE TABLE
 
 
 INSERT y UPDATE
 ~~~~~~~~~~~~~~~~
 
-Los valores :sql:`NULL` se pueden insertar en una columna si se indica explícitamente
-:sql:`NULL` en una instrucción :sql:`INSERT`. De igual forma se puede actualizar un
-valor con :sql:`UPDATE` especificando que es :sql:`NULL` en la consulta.
+:sql:`NULL` values can be inserted in one column if you explicitly indicate :sql:`NULL` in an :sql:`INSERT` 
+instruction. In the same way a value can be updated by specifying that is :sql:`NULL` in the query.
 
-Forma general:
-
-.. code-block:: sql
-
-    INSERT INTO nombreTabla (atributo1,atributo2) values(valorValido, null);
-
-    UPDATE nombreTabla SET atributo2= null WHERE condición;
-
-Continuando con el ejemplo anterior, se inserta un cliente:
+General form:
 
 .. code-block:: sql
 
-    postgres=# INSERT INTO Cliente (rut,nombre,apellido,deuda,direccion) values(123,'Tom', 'Hofstadter', 456, null);
-    INSERT 0 1
+ INSERT INTO nameTable (atributte1,atributte2) values(valueValid, null);
+ 
+ UPDATE nameTable SET atributte2= null WHERE condition;
 
-Al insertar los valores del cliente 'Tom Hofstadter', se almacenó el atributo
-dirección como :sql:`NULL`, es decir sin valor asignado.
-Antes de exponer cómo funciona :sql:`UPDATE`, se agregan nuevos clientes para mostrar
-de mejor manera las siguientes consultas:
 
-.. code-block:: sql
-
-    postgres=# INSERT INTO Cliente (rut, nombre, apellido, deuda, direccion) values
-    (412,'Greg', 'Hanks',33, 'Cooper'), (132,'Mayim ', 'Bialik',null, 'Barnett 34'),
-    (823,'Jim', 'Parsons',93, null),(193,'Johnny', 'Galecki',201, 'Helberg 11'),
-    (453,'Leslie', 'Abbott',303,null), (583,'Hermione', 'Weasley',47, 'Leakey 24'),
-    (176,'Ron', 'Granger',92,'Connor 891'), (235,'Hannah', 'Winkle',104, null),
-    (733,'Howard', 'Brown',null, null);
-    INSERT 0 9
-
-Realizando una consulta SELECT, para ver todos los clientes que se insertaron, se
-puede apreciar un espacio vacío en los valores que llevaban :sql:`NULL` al momento
-de hacer INSERT. Tal es el caso de la dirección de 'Tom Hofstadter'  o la deuda
-'Mayim Bialik' .
+Continuing with the previous example, insert a client:
 
 .. code-block:: sql
+ 
+ postgres=# INSERT INTO Client (idnumber,name,lastname,debt,address) values(123,'Tom', 'Hofstadter', 456, null);
+ INSERT 0 1
 
-    postgres=# SELECT * FROM Cliente;
-     rut |  nombre  |  apellido  | deuda | direccion
-    -----+----------+------------+-------+------------
-     123 | Tom      | Hofstadter |   456 |
-     412 | Greg     | Hanks      |    33 | Cooper
-     132 | Mayim    | Bialik     |       | Barnett 34
-     823 | Jim      | Parsons    |    93 |
-     193 | Johnny   | Galecki    |   201 | Helberg 11
-     453 | Leslie   | Abbott     |   303 |
-     583 | Hermione | Weasley    |    47 | Leakey 24
-     176 | Ron      | Granger    |    92 | Connor 891
-     235 | Hannah   | Winkle     |   104 |
-     733 | Howard   | Brown      |       |
-    (10 filas)
-
-
-Ahora se puede actualizar un cliente:
+While you put the values of the client 'Tom Hofstadter', it was store the attribute address as :sql:`NULL`, 
+that is without a designated value. Before exposing how :sql:`UPDATE` works, add new clients in order to show in 
+a better way the following queries:
 
 .. code-block:: sql
+ 
+ postgres=# INSERT INTO Clientt (idnumber, name, last name, debt, address) values
+ (412,'Greg', 'Hanks',33, 'Cooper'), (132,'Mayim ', 'Bialik',null, 'Barnett 34'),
+ (823,'Jim', 'Parsons',93, null),(193,'Johnny', 'Galecki',201, 'Helberg 11'),
+ (453,'Leslie', 'Abbott',303,null), (583,'Hermione', 'Weasley',47, 'Leakey 24'),
+ (176,'Ron', 'Granger',92,'Connor 891'), (235,'Hannah', 'Winkle',104, null),
+ (733,'Howard', 'Brown',null, null);
+ INSERT 0 9
 
-    postgres=# UPDATE Cliente SET direccion=null WHERE rut=412;
-    UPDATE 1
 
-Se actualiza el cliente de rut 412,  dejando su dirección sin valor conocido.
-
-Realizando nuevamente un SELECT para visualizar la tabla cliente, se puede apreciar
-que el cliente con rut 412, ‘Greg  Hanks’, ahora aparece con una dirección sin un
-valor asignado.
+By doing a SELECT query to see all clients who were inserted, you will be able to observe an empty 
+space in the values which carry :sql:`NULL` at the moment to apply INSERT.  For instance, you can see the 
+case of Tom Hofstadler’s address or Mayim Bialik’s debt.
 
 .. code-block:: sql
 
     postgres=# SELECT * FROM Cliente;
-     rut |  nombre  |  apellido  | deuda | direccion
-    -----+----------+------------+-------+------------
-     123 | Tom      | Hofstadter |   456 |
-     132 | Mayim    | Bialik     |       | Barnett 34
-     823 | Jim      | Parsons    |    93 |
-     193 | Johnny   | Galecki    |   201 | Helberg 11
-     453 | Leslie   | Abbott     |   303 |
-     583 | Hermione | Weasley    |    47 | Leakey 24
-     176 | Ron      | Granger    |    92 | Connor 891
-     235 | Hannah   | Winkle     |   104 |
-     733 | Howard   | Brown      |       |
-     412 | Greg     | Hanks      |    33 |
-    (10 filas)
+    idnumber |  name    |  last name  | debt  | address 
+    ---------+----------+-------------+-------+------------
+     123     | Tom      | Hofstadter  |   456 |
+     412     | Greg     | Hanks       |    33 | Cooper
+     132     | Mayim    | Bialik      |       | Barnett 34
+     823     | Jim      | Parsons     |    93 |
+     193     | Johnny   | Galecki     |   201 | Helberg 11
+     453     | Leslie   | Abbott      |   303 |
+     583     | Hermione | Weasley     |    47 | Leakey 24
+     176     | Ron      | Granger     |    92 | Connor 891
+     235     | Hannah   | Winkle      |   104 |
+     733     | Howard   | Brown       |       |
+    (10 rows)
+
+
+Now you can update a client:
+
+.. code-block:: sql
+  
+ postgres=# UPDATE Client SET address=null WHERE idnumber=412;
+ UPDATE 1
+
+Now we can update the client’s id number 412, leaving its address without a known value.
+
+By doing SELECT again to observe the client Table, you can see that client with the id number 412, 'Greg Hanks', 
+now presents an address without an assigned value.
+
+.. code-block:: sql
+
+    postgres=# SELECT * FROM Cliente;
+
+    idnumber |  name    |  last name  | debt  | address 
+    ---------+----------+-------------+-------+------------
+     123     | Tom      | Hofstadter  |   456 |
+     132     | Mayim    | Bialik      |       | Barnett 34
+     823     | Jim      | Parsons     |    93 |
+     193     | Johnny   | Galecki     |   201 | Helberg 11
+     453     | Leslie   | Abbott      |   303 |
+     583     | Hermione | Weasley     |    47 | Leakey 24
+     176     | Ron      | Granger     |    92 | Connor 891
+     235     | Hannah   | Winkle      |   104 |
+     733     | Howard   | Brown       |       |
+     412     | Greg     | Hanks       |    33 |
+    (10 rows)
 
 
 SELECT
 ~~~~~~~~
 
-Seleccionar atributos NULL
+Select NULL attributes 
 ===========================
 
-* Para comprobar si hay valores :sql:`NULL`, se usa :sql:`IS NULL` o
-* :sql:`IS NOT NULL` en la cláusula :sql:`WHERE`.
+* To check if there is any :sql:`NULL` value, you use IS :sql:`NULL` or 
+* IS :sql:`IS NOT NULL` in the WHERE clause.
 
-Forma general:
-
-.. code-block:: sql
-
-    SELECT atributo1 FROM nombreTabla WHERE atributo2 IS NULL
-
-Utilizando el mismo ejemplo, Seleccionar todos los nombres y apellidos de los
-clientes donde la dirección es :sql:`NULL`:
+General form:
 
 .. code-block:: sql
 
-    postgres=# SELECT nombre,apellido FROM Cliente WHERE direccion IS NULL;
+    SELECT attribute1 FROM nameTable WHERE attribute2 IS NUL
 
-     nombre |  apellido
-    --------+------------
-     Tom    | Hofstadter
-     Jim    | Parsons
-     Leslie | Abbott
-     Hannah | Winkle
-     Howard | Brown
-     Greg   | Hanks
-    (6 filas)
-
-Seleccionar todos los nombres y apellidos de los clientes donde la dirección es
-distinta a :sql:`NULL`:
+Using the same example, select all the names and last names of the clients where the address is :sql:`NULL`:
 
 .. code-block:: sql
+ 
+	postgres=# SELECT name,last name FROM Client WHERE address IS NULL;
 
-    postgres=# SELECT nombre,apellido FROM Cliente WHERE direccion IS NOT NULL;
+	name    |  last name
+	--------+------------
+	Tom     | Hofstadter
+	Jim     | Parsons
+	Leslie  | Abbott
+	Hannah  | Winkle
+	Howard  | Brown
+	Greg    | Hanks
+	(6 rows)
 
-     nombre  | apellido
-    ----------+----------
-     Mayim    | Bialik
-     Johnny   | Galecki
-     Hermione | Weasley
-     Ron      | Granger
-    (4 filas)
+Select all the names and last names of the clients where the address is different to :sql:`NULL`:
+
+.. code-block:: sql 
+ 
+	postgres=# SELECT name,last name FROM Client WHERE address IS NOT NULL;
+
+	name      | last name
+	----------+----------
+	Mayim     | Bialik
+	Johnny    | Galecki
+	Hermione  | Weasley
+	Ron       | Granger
+	(4 rows)
+
+When you use the :sql:`IS NOT NULL` instruction, you select all clients who have a known address, that is, the
+ ones who have any designated value in the database.
 
 
-Al  utilizar la instrucción :sql:`IS NOT NULL` se seleccionan todos los clientes que
-tienen una dirección conocida, es decir que poseen algún valor designado en la base
-de datos.
-
-Comparaciones con NULL
+Comparisons with NULL
 =======================
 
-* La comparación entre dos :sql:`NULL` o entre cualquier valor y un :sql:`NULL` tiene
-  un resultado desconocido pues el valor de cada :sql:`NULL` es desconocido.
-  También se puede decir que no existen dos :sql:`NULL` que sean iguales.
+* The comparison between two :sql:`NULL`  or between any value and :sql:`NULL`  have an unknown result, since the value 
+of each :sql:`NULL`  is unknown. Also you can say that there is not two identical :sql:`NULL` .  
 
-La siguiente consulta selecciona el nombre y apellido de los clientes que poseen una
-deuda mayor a 100 o menor/igual a 100. Se puede apreciar que esta consulta abarcaría
-a todos los clientes, pues cualquier número entero es mayor, menor o igual a 100.
+In the following query select the name and last name of the clients who have a debt greater to 100 or lower/equal to 100. 
+You can see this query would cover all clients since any integer is greater, lower or equal to 100.
 
 .. code-block:: sql
 
-    postgres=# SELECT nombre,apellido FROM Cliente WHERE deuda > 100 or deuda <=100;
+    postgres=# SELECT name,last name FROM Client WHERE debt > 100 or debt <=100;
 
 
-Sin embargo al realizar la consulta retorna la siguiente tabla:
-
-.. code-block:: sql
-
-      nombre  |  apellido
-    ----------+------------
-     Tom      | Hofstadter
-     Jim      | Parsons
-     Johnny   | Galecki
-     Leslie   | Abbott
-     Hermione | Weasley
-     Ron      | Granger
-     Hannah   | Winkle
-     Greg     | Hanks
-    (8 filas)
-
-Se puede notar que no se incluye a todos los clientes, esto ocurre pues el atributo
-deuda admitía valores nulos, y como se mencionó, un :sql:`NULL` no se puede comparar
-con ningún valor, pues arroja un resultado desconocido.
-
-La forma de obtener todos los clientes es la siguiente:
+However, doing this query resturns the following table:
 
 .. code-block:: sql
+ 
+	name  |  last name
+	----------+------------
+	Tom      | Hofstadter
+	Jim      | Parsons
+	Johnny   | Galecki
+	Leslie   | Abbott
+	Hermione | Weasley
+	Ron      | Granger
+	Hannah   | Winkle
+	Greg     | Hanks
+	(8 rows)
 
-    postgres=# SELECT nombre,apellido FROM Cliente WHERE deuda > 100 or deuda <=100 or deuda IS NULL;
+You can observe that not all clients are included because debt attribute admits :sql:`NULL` values, and as it 
+was metioned before, a :sql:`NULL` cannot be compared with any value since it returns an unknown result.
 
-      nombre  |  apellido
-    ----------+------------
-     Tom      | Hofstadter
-     Mayim    | Bialik
-     Jim      | Parsons
-     Johnny   | Galecki
-     Leslie   | Abbott
-     Hermione | Weasley
-     Ron      | Granger
-     Hannah   | Winkle
-     Howard   | Brown
-     Greg     | Hanks
-    (10 filas)
-
-
-Ahora, se prueba la comparación con otra sentencia:
+To obtain all clients, you should do the following:
 
 .. code-block:: sql
+ 
+	postgres=# SELECT name,last name FROM Client WHERE debt > 100 or debt <=100 or debt IS NULL;
+ 
+	name      |  last name
+	----------+------------
+	Tom       | Hofstadter
+	Mayim     | Bialik
+	Jim       | Parsons
+	Johnny    | Galecki
+	Leslie    | Abbott
+	Hermione  | Weasley
+	Ron       | Granger
+	Hannah    | Winkle
+	Howard    | Brown
+	Greg      | Hanks
+	(10 rows)
 
-    postgres=# SELECT nombre,apellido FROM Cliente WHERE deuda > 100 or nombre= 'Howard';
+Now let’s check the comparison with other sentence:
 
-     nombre |  apellido
-    --------+------------
-     Tom    | Hofstadter
-     Johnny | Galecki
-     Leslie | Abbott
-     Hannah | Winkle
-     Howard | Brown
-    (5 filas)
+ 
+.. code-block:: sql
+   
+	postgres=# SELECT name,last name FROM Client WHERE debt > 100 or name= 'Howard';
+
+	name    |  last name
+	--------+------------
+	Tom     | Hofstadter
+	Johnny  | Galecki
+	Leslie  | Abbott
+	Hannah  | Winkle
+	Howard  | Brown
+	(5 rows)
+
+'Howard' has a debt :sql:`NULL`. It was demonstrated previously that you cannot compare :sql:`NULL`, so it does 
+not meet with debt > 100. Despite this issue, you can see it in the result of the query since it 
+meets with the second condition: name = 'Howard'. The aim of this example is to show you that 
+having a :sql:`NULL` value within its attributes does not mean that it becomes completely invisible. That is, 
+while you do not compare only the :sql:`NULL` attribute, you can still have them in the result.
+
+As a summary:
+
+      * A = NULL. You cannot say that A has the same value as NULL.
+      * A <> NULL. You cannot say that A has a different value to NULL.
+      * NULL = NULL. It is impossible to know if both NULL are equal.
 
 
-'Howard' tiene deuda :sql:`NULL`, anteriormente se demostró que :sql:`NULL` no se
-puede comparar, entonces no cumple con: deuda > 100. A pesar de esto, aparece en el
-resultado de la consulta, pues cumple con la segunda condición: nombre= 'Howard'.
-Con esto se quiere explicar que no necesariamente, por tener un valor :sql:`NULL`
-dentro de sus atributos, pasa a ser completamente “invisible”, es decir mientras no
-se compare solamente el atributo :sql:`NULL` puede estar en el resultado.
-
-A modo de resumen se puede decir que:
-
-    * A = NULL no se puede decir que A tenga el mismo valor que NULL.
-    * A <> NULL no se puede decir que A tenga distinto valor a NULL.
-    * NULL = NULL es imposible saber si ambos NULL son iguales.
-
-
-Operaciones con NULL
+Operations with NULL
 =====================
 
-* Recordar que :sql:`NULL` significa **desconocido**.  Al realizar suma donde uno de
-* los datos es desconocido, la suma también es desconocida:
+* Remember that NULL means unknown. While doing a sum where one of
+* the data is unknown, the sum is also unknown:
 
 .. code-block:: sql
+ 
+ postgres=# SELECT (SELECT debt FROM client WHERE idnumb=132)+( SELECT debt FROM client WHERE idnumb=583) as sum;
 
-    postgres=# SELECT (SELECT deuda FROM cliente WHERE rut=132)+( SELECT deuda FROM cliente WHERE rut=583) as suma;
+ sum
+ ------
+ 
+ (1 row)
 
-     suma
-    ------
+The sentence sum the debt of the client 132 which is NULL with the debt of 47 of the client 538. NULL + 47 
+gives as a result NULL. The same happens in the case of the subtraction, multiplication, and division.
 
-    (1 fila)
-
-La sentencia suma la deuda del cliente 132 que es NULL con la deuda del cliente 583
-que es 47, NULL + 47 arroja como resultado NULL. Lo mismo ocurre con la resta,
-multiplicación y división.
 
 Operadores lógicos
 ===================
 
-* Cuando hay valores :sql:`NULL` en los datos, los operadores lógicos y de
-  comparación pueden devolver un tercer resultado :sql:`UNKNOWN` (desconocido) en
-  lugar de simplemente :sql:`TRUE` (verdadero) o :sql:`FALSE` (falso).
-  Esta necesidad de una lógica de tres valores es el origen de muchos errores de la
-  aplicación.
 
-Se agrega una nueva columna que contenga valores booleanos:
+ * When there are NULL values in the data, the logical operators and the comparison 
+can return a third UNKNOWN result instead of a simple TRUE or FALSE. This necessity of logic 
+of three values is the origin of many mistakes of this application.
+
+A new column is added which contains boolean values:
+
+.. code-block:: sql
+	
+	 postgres=# ALTER table Client add current bool;
+	 ALTER TABLE
+
+Some values are inserted to the new current column. This column describes if a client 
+is current or if it is not a client of the company anymore.
+
+.. code-block:: sql
+	 
+	postgres=# UPDATE Client SET current=true WHERE idnumber=412;
+	UPDATE 1
+	postgres=# UPDATE Client SET current=true WHERE idnumber=123;
+	UPDATE 1
+	postgres=# UPDATE Client SET current=true WHERE idnumber=193;
+	UPDATE 1
+	postgres=# UPDATE Client SET current=false WHERE idnumber=733;
+	UPDATE 1
+	postgres=# UPDATE Client SET current=false WHERE idnumber=823;
+	UPDATE 1
+	postgres=# UPDATE Client SET current=false WHERE idnumber=453;
+	UPDATE 1
+
+
+.. code-block:: sql
+  
+	postgres=#  SELECT * FROM Client;
+
+	idnumber |  name  |  last name  | debt | address  | current
+	-----+----------+------------+-------+------------+--------
+	132 | Mayim    | Bialik     |       | Barnett 34 |
+	583 | Hermione | Weasley    |    47 | Leakey 24  |
+	176 | Ron      | Granger    |    92 | Connor 891 |
+	235 | Hannah   | Winkle     |   104 |            |
+	412 | Greg     | Hanks      |    33 |            | t
+	123 | Tom      | Hofstadter |   456 |            | t
+	193 | Johnny   | Galecki    |   201 | Helberg 11 | t
+	733 | Howard   | Brown      |       |            | f
+	823 | Jim      | Parsons    |    93 |            | f
+	453 | Leslie   | Abbott     |   303 |            | f
+(10 rows)
+
+:sql:`IS UNKNOWN` returns the values which are neither :sql:`false` or :sql:`true`.. Now we will show how to use it, 
+by selecting in the client table all the names which have in the current attribute no value at all.
 
 .. code-block:: sql
 
-    postgres=# ALTER table Cliente add actual bool;
-    ALTER TABLE
 
-Se insertan algunos valores para la nueva columna *actual*. Esta columna describe
-si un cliente es actual o dejó de ser cliente de la compañía.
+	postgres=#  SELECT name FROM client WHERE current IS UNKNOWN;
 
-.. code-block:: sql
-
-    postgres=# UPDATE Cliente SET actual=true WHERE rut=412;
-    UPDATE 1
-    postgres=# UPDATE Cliente SET actual=true WHERE rut=123;
-    UPDATE 1
-    postgres=# UPDATE Cliente SET actual=true WHERE rut=193;
-    UPDATE 1
-    postgres=# UPDATE Cliente SET actual=false WHERE rut=733;
-    UPDATE 1
-    postgres=# UPDATE Cliente SET actual=false WHERE rut=823;
-    UPDATE 1
-    postgres=# UPDATE Cliente SET actual=false WHERE rut=453;
-    UPDATE 1
-
-.. code-block:: sql
-
-    postgres=#  SELECT * FROM Cliente;
-
-     rut |  nombre  |  apellido  | deuda | direccion  | actual
-    -----+----------+------------+-------+------------+--------
-     132 | Mayim    | Bialik     |       | Barnett 34 |
-     583 | Hermione | Weasley    |    47 | Leakey 24  |
-     176 | Ron      | Granger    |    92 | Connor 891 |
-     235 | Hannah   | Winkle     |   104 |            |
-     412 | Greg     | Hanks      |    33 |            | t
-     123 | Tom      | Hofstadter |   456 |            | t
-     193 | Johnny   | Galecki    |   201 | Helberg 11 | t
-     733 | Howard   | Brown      |       |            | f
-     823 | Jim      | Parsons    |    93 |            | f
-     453 | Leslie   | Abbott     |   303 |            | f
-    (10 filas)
-
-:sql:`IS UNKNOWN` retorna los valores que no son :sql:`false` ni :sql:`true`.
-A continuación se muestra su uso, seleccionando de la tabla **cliente** todos los
-nombres que en su atributo *actual*, no poseen valor.
-
-.. code-block:: sql
-
-    postgres=#  SELECT nombre FROM cliente WHERE actual IS UNKNOWN;
-
-    nombre
-    ----------
-     Mayim
-     Hermione
-     Ron
-     Hannah
-    (4 filas)
-
-:sql:`IS NOT UNKNOWN` funciona de la misma forma solo que retorna los valores que
-poseen algún valor asignado, ya sea :sql:`true` o :sql:`false`.
+	name
+	----------
+	Mayim
+	Hermione
+	Ron
+	Hannah
+	(4 rows)
 
 
-Para los operadores and y or que involucran NULL, de manera general se puede decir:
+:sql:`IS NOT UNKNOWN` works in the same way but it only returns the values which have an assigned value,
+ either :sql:`true` or :sql:`false`.
 
-    * NULL or false = NULL
-    * NULL or true = true
-    * NULL or NULL = NULL
-    * NULL and false = false
-    * NULL and true = NULL
-    * NULL and NULL = NULL
-    * not (NULL) El inverso de NULL también es NULL.
+For the AND and OR operators which involve NULL, in general terms it can be said that:
+
+
+      * NULL or false = NULL
+      * NULL or true = true
+      * NULL or NULL = NULL
+      * NULL and false = false
+      * NULL and true = NULL
+      * NULL and NULL = NULL
+      * not (NULL) the inverse of NULL it is also NULL.
 
 .. note::
-    Para minimizar las tareas de mantenimiento y los posibles efectos en las
-    consultas o informes existentes, debería minimizarse el uso de los valores
-    desconocidos. Es una buena práctica plantear las consultas e instrucciones de
-    modificación de datos de forma que los datos :sql:`NULL` tengan un efecto mínimo.
-
-
-
+	To minimize maintenance tasks and possible effects in queries or reporting data should 
+	be minimized the use of unknown values. It is good practice to raise queries and instructions 
+	on modifying data so that NULL data have minimal effect.

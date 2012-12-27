@@ -5,109 +5,104 @@ Lecture 14 - SQL: Data modifications statements
          :language: sql
          :class: highlight
 
-Como ya se ha dicho en algunas de las lecturas anteriores, existen 4 operaciones básicas relacionadas con
-la manipulación de datos en una tabla SQL::
+As it was said in some previous lectures, there are 4 basic operations related with the manipulation of data in a SQL table::
 
-     Selección     -> SELECT
-     Inserción     -> INSERT
-     Actualización -> UPDATE
-     Eliminación   -> DELETE
+	Selection     -> SELECT
+	Insertion     -> INSERT
+	Update        -> UPDATE
+	Deleting      -> DELETE
 
-En esta lectura se verán en profundidad, las operaciones que permiten mantener una base de datos, es decir,
-INSERT, UPDATE y DELETE.
+In this lecture you will see in depth those operations which allow modifying data. That is, INSERT, UPDATE, and DELETE.
 
 
 INSERT
 ~~~~~~
 
-Para insertar datos, existen al menos dos formas. Una se ha visto desde las primeras lecturas (INSERT INTO):
+There are at least two forms for inserting data. One of them has been studying in one the first lectures (INSERT INTO):
 
 .. code-block:: sql
+	
+	INSERT INTO table VALUES (attribute1, attribute2 ...);
 
-   INSERT INTO table VALUES (atributo1, atributo2 ...);
+That is to insert in the table the corresponding values to the attributes of the table. In order to use this form, 
+it is necessary that the quantity of values associated to the attributes is equal to the quantity of attributes of 
+the table, and that both are in the same order on terms of the type of data and the one that you want to insert. 
+Example 1 will show better this situation:
 
-Es decir que se insertará en la tabla, los valores correspondientes a sus atributos de la. Para poder utilizar 
-esta forma, es necesario que la cantidad de valores asociados a los
-atributos, sea igual a la cantidad de atributos de la tabla, y que estén en el mismo orden
-respecto a los tipos de datos y los datos que se quieran insertar. El ejemplo 1 aclarará posibles dudas:
-
-
-Contexto
+Context
 ^^^^^^^^
 
-Utilicemos la tabla "Student", que ya se ha utilizado en lecturas anteriores::
+Let’s use the **Student** table which has been already used in previous lectures::
 
  Student (sID, sName, Average)
 
-y creemos una nueva tabla llamada **Student_new**, con una estructura similar, pero vacía:
+and let’s create a new table called **Student_new**, with a similar structure, but empty:
 
 .. code-block:: sql
 
  CREATE TABLE Student_new (sID serial, sName VARCHAR(20), 
  Average INTEGER,  PRIMARY KEY(sID));
 
-Es decir, cuenta con 3 atributos, los cuales son: el identificador o *sID* de carácter entero y serial,
-lo cual significa que si no se especifica un valor, tomará un valor entero; el nombre o *sName*  que
-corresponde a una cadena de caracteres, y el promedio o *Average*, es decir un número entero.
+
+That is, it has 3 attributes which are: the identifier or *sID* of integer and serial character which means 
+that if you do not specification a value, it will take a integer value; the name or sName which corresponds 
+to a chain of characters; and the average or *Average* which is a integer.
 
 
-Ejemplo 1
+Example 1
 ^^^^^^^^^
-Supongamos que planilla de estudiantes albergada en la tabla **Student** ya fue enviada y no se puede
-modificar, es por ello que se necesita crear una nueva planilla (otra tabla student), y agregar a los
-nuevos alumnos postulantes.
+Suppose that worksheet students housed in the **Student** table has already been sent and cannot be changed, 
+that is why you need to create a new spreadsheet (another student table), and added to the new 
+student applications.
 
-Por lo tanto es posible agregar un estudiante mediante:
+Therefore it is possible to add a student by:
 
 .. code-block:: sql
 
   INSERT INTO Student_new VALUES (1,'Betty', 78);
 
-cuya salida, después de ejecutar el :
+whose output after doing:
 
 .. code-block:: sql
 
  SELECT * student;
 
-es ::
+is ::
 
    sid | sname  | average
    ----+--------+---------
     1  | Betty  |  78
 
-
-Al utilizar el atributo *sID* como serial, es posible omitir el valor de este atributo a la hora de
-insertar un nuevo estudiante:
+By using the *sID* attribute as serial, it is possible to omit the value of this attribute 
+when you are going to insert a new student:
 
 .. code-block:: sql
 
   INSERT INTO Student_new (sName, Average) VALUES ('Wilma', 81);
 
-Pero, esto resulta en el siguiente error::
+But, this lead us to the following error::
 
   ERROR: duplicate key value violates unique constraint "student_new_pkey"
   DETAIL: Key(sid)=(1) already exists.
 
-Esto se debe a que *sID* es clave primaria, y serial tiene su propio contador, que parte de 1 (el cual
-no está ligado necesariamente a los valores de las diversas filas que puedan existir en la tabla). Hasta
-este punto, sólo se pueden seguir añadiendo alumnos agregado de forma explícita todos y cada uno de los
-atributos de la tabla, sin poder prescindir en este caso de *sID* y su carcaterística de ser serial, pues
-la tupla atributo-valor (sID)=(1) está bloqueada.
+
+That is because *sID* is primary key, and serial has its own counter which starts in 1 (which is not link 
+necessarily to the values of diverse rows that can appear in the table). Until this point, you can only 
+still add students by explicitly adding all and each of the attributes of the table, without dispense in 
+this case the *sID* and its characteristic of been serial as the attribute-value tuple (sID)=(1) is locked.
 
 .. note::
+ 
+   You can directly delete the row corresponding to 'Betty', but that step is reserved to the subsection  
+   of DELETE, presented later in this reading
 
-  Es posible eliminar directamente la fila que corresponde a 'Betty', pero ese paso se reserva a la
-  subsección  de DELETE, presentada más adelante en esta lectura
-
-
-Ejemplo 2
+Example 2
 ^^^^^^^^^
 
-Es posible modificar la inserción de 'Betty' para que sea similar a la de 'Wilma'.
-
+You can modify the insertion of 'Betty' to be similar to 'Wilma'.
 .. note::
-
-  A continuación se usará el comando SQL DROP TABLE, que permite eliminar una tabla entera.
+ 
+  Now we will use the command SQL DROP TABLE, which allows to delete a whole table.
 
 .. code-block:: sql
 
@@ -117,16 +112,17 @@ Es posible modificar la inserción de 'Betty' para que sea similar a la de 'Wilm
   INSERT INTO Student_new (sName, Average) VALUES ('Betty', 78);
   INSERT INTO Student_new (sName, Average) VALUES ('Wilma', 81);
 
-Como  se ha modificado la consulta de 'Betty', se utiliza el contador propio del atributo serial, por
-lo que no hay conflictos.
 
-Si se selecciona toda la información de la tabla:
+As it has been modified the query 'Betty', we can use the own counter of the serial attribute, 
+so there are no conflicts.
+
+If you select the entire table information:
 
 .. code-block:: sql
 
   SELECT * FROM Student_new;
 
-la salida es::
+the output is::
 
    sid | sname  | average
    ----+--------+---------
@@ -137,25 +133,24 @@ la salida es::
 
 UPDATE
 ~~~~~~
-
-Es posible modificar o "actualizar" datos a través del comando UPDATE, cuya sintaxis es:
+It is possible to modify or update data by using the UPDATE command whose syntax is:
 
 .. code-block:: sql
 
   UPDATE table SET Attr = Expression  WHERE Condition;
 
-Es decir que se actualiza de la tabla el atributo *Attr* (el valor anterior, por el
-valor "Expression"), bajo una cierta condición "Condition"
+In other words, it is updated of the table the attribute *Attr* (the previous value 
+for the “expression” value”), under a certain “condition”.
 
 .. note::
 
-   Es importante destacar que la condición puede variar, puede ser de carácter sumamente complejo,
-   una sub-consulta, una sentencia que involucre otras tablas. "Expression" también puede ser un valor
-   que involucre otras tablas, no necesariamente corresponde a un valor de comparación directa.
-   Se aplica lo mismo para la condición.
+   It is important to highlight that the condition can change, as it can be of a extremely complex character, 
+   a sub-query, a sentence which involves other tables. “Expression” also can be a value which involves 
+   other tables, no necessarily corresponds to a value of a direct comparison. You can apply the same for 
+   the condition.
 
-Es necesario destacar que, si bien se puede actualizar un atributo, también se pueden actualizar
-varios a la vez:
+It is necessary to highlight that even though you can update an attribute, you can also update several
+ at the same time:
 
 .. code-block:: sql
 
@@ -164,12 +159,12 @@ varios a la vez:
   WHERE Condition;
 
 
-Ejemplo 3
+Example 3
 ^^^^^^^^^^
 
-Bajo el contexto del ejemplo 2, supongamos que la nota de 'Wilma' corresponde a un 91 en lugar de 81.
-Se desea corregir este error de tipéo, a través del comando UPDATE. Es necesario recordar que dependiendo de
-la cantidad de atributos de la tabla, es posible realizar de muchas formas la actualización:
+Under the context of Example 2, suppose that the grade of 'Wilma' corresponds to 91 instead of 81. You want 
+to correct the typo through the UPDATE command. We must remember that depending on the number of attributes 
+of the table, it is possible in many ways to update:
 
 .. code-block:: sql
 
@@ -177,7 +172,7 @@ la cantidad de atributos de la tabla, es posible realizar de muchas formas la ac
    SET Average = 91
    WHERE sName = 'Wilma';
 
-o
+or:
 
 .. code-block:: sql
 
@@ -185,10 +180,10 @@ o
    SET Average = 91
    WHERE Average = 81;
 
-Ambos casos no son erróneos, pues realizan el cambio pedido. No obstante, *es necesario tener la costumbre
-de trabajar con atributos que sean únicos, es decir la clave primaria* (en este caso el atributo *sID*). 
-La razón corresponde a que en caso de haber más de una Wilma se cambiaría el promedio de ambas, lo mismo para el caso de 
-que varias personas cuenten con un promedio igual a 81. Por lo tanto la consulta ideal corresponde a:
+Both cases are not wrong because they perform the requested change. However, *you must make a habit of working 
+with attributes that are unique, that is the primary key* (in this case the attribute *SID*). The reason is that 
+in case of having more than one 'Wilma', the average of the two would be changed. The same would apply in the event 
+that several people have an average equal to 81. Therefore the ideally query corresponds to:
 
 .. code-block:: sql
 
@@ -197,84 +192,84 @@ que varias personas cuenten con un promedio igual a 81. Por lo tanto la consulta
    WHERE sID = 2;
 
 
-Verificando a través de la ejecución de un select:
+Checking through the execution of a select:
  
 .. code-block:: sql
 
   SELECT * FROM Student_new;
 
-la salida es::
+the output is::
 
    sid | sname  | average
    ----+--------+---------
     1  | Betty  |  78
     2  | Wilma  |  91
 
-Es decir, se actualizó correctamente la nota de 'Wilma'.
-
+That is, it was successfully upgraded the grade of 'Wilma'.
 
 
 DELETE
 ~~~~~~
 
-Es posible eliminar filas de información, que cumplan una determinada condición. Esto
-es especialmente útil en casos donde se desee borrar filas específicas en lugar de tener que borrar
-toda una tabla.
+You can delete rows of information, that meet a certain condition. This is especially useful 
+in cases where you want to delete specific rows instead of having to delete the entire table.
 
-La sintaxis del comando DELETE es:
+The syntax of the command DELETE is:
 
 .. code-block:: sql
 
   DELETE FROM table WHERE Condition;
 
-Es decir que de la tabla, se elimine el(los) valor(es) que cumpla(n) con la condición "Condition".
+This mean that of the table it is delete the values which meet the “condition.”
 
 .. note::
 
-   Es importante destacar que la condición puede variar, puede ser de carácter sumamente complejo,
-   una sub-consulta, una sentencia que involucre otras tablas.
+   It is noteworthy that the condition may vary; it can be of an extremely complex character, 
+   a sub-query, a sentence involving other tables.
 
 
-Ejemplo 4
+Example 4
 ^^^^^^^^^
 
-Si nos situamos temporalmente al final del ejemplo 1, con el error::
+If we place temporarily at the end of Example 1, with the error::
 
   ERROR: duplicate key value violates unique constraint "student2_pkey"
   DETAIL: Key(sid)=(1) already exists.
 
-Al querer insertar a 'Wilma', es posible eliminar la fila correspondiente a 'Betty' y volver insertar
-ambas como se hizo en el ejemplo 2, sin la necesidad de borrar la tabla, crearla y agregar todo de nuevo:
+When you want to insert a 'Wilma', you can delete the row for 'Betty' and insert both back as was done 
+in Example 2, without the need to remove the table, create it and add it all over again:
 
 .. code-block:: sql
 
   DELETE FROM Student_new WHERE sID = 1;
 
-Si verificamos:
+if we check:
 
 .. code-block:: sql
 
   SELECT * FROM Student_new;
 
-la salida es::
+the output is::
 
    sid | sname  | average
    ----+--------+---------
 
-Lo cual permite eliminar la fila correspondiente a 'Betty' y dejar la tabla vacía. Posteriormente
-es posible comenzar a llenarla de nuevo mediante las últimas 2 consultas del ejemplo 2, es decir:
+
+Which allows to eliminate the row for 'Betty' and leave the table empty. Subsequently it is possible 
+to fill it again by using the last two queries of Example 2, that is:
 
 .. code-block:: sql
 
   INSERT INTO Student_new (sName, Average) VALUES ('Betty', 78);
   INSERT INTO Student_new (sName, Average) VALUES ('Wilma', 81);
 
-Y verificando:
+and checking:
+
 .. code-block:: sql
 
   SELECT * FROM Student_new;
 
-la salida es::
+the output is::
 
    sid | sname  | average
    ----+--------+---------
@@ -283,30 +278,29 @@ la salida es::
 
 
 
-Ejemplo 5
+Example 5
 ^^^^^^^^^
 
-Supongamos que 'Wilma' se enoja por el error de tipéo y desea salir del proceso de postulación. Es
-por ello que debe ser eliminada de la nueva planilla de estudiantes:
+Suppose that 'Wilma' gets upset by the typo and want to leave the application process. That is why she 
+must be eliminated from the new template of students:
 
 .. code-block:: sql
 
   DELETE FROM Student_new WHERE sID = 2;
 
-RECAPITULACIÓN
-~~~~~~~~~~~~~~
+RECAP
+~~~~~
 
-A continuación se expondrá un ejemplo que implique el uso de todos los comandos aprendidos en esta
-lectura.
+Below it is an example expose, involving the use of all commands learned in this lecture.
 
-Ejemplo extra
+Extra example
 ^^^^^^^^^^^^^
-Tomando en cuenta el ejemplo 5, supongamos que 'Betty' pasa a la etapa de postulaciones
-y decide postular a 2 Establecimientos educacionales. Postula a Ciencias e Ingeniería  en Stanford
-y a Historia Natural en Berkeley, es aceptada en todo lo que ha postulado. La tabla **Apply** igual
-que la tabla **Student**: ya se había enviado sin posibilidad de modificar.  Es por ello que se crea
-la tabla **Apply_new**, con las mismas características que **Apply**:
 
+Considering Example 5, suppose that 'Betty' moves to the stage of applications and decides to do it in 
+two universities. Apply to Science and Engineering at Stanford and Natural History in Berkeley. She is 
+accepted in all the places she has postulated. **Apply** table as well as table **Student** had already been 
+sent without the possibility of editing data. That is why **Apply_new** table is created with the same 
+characteristics as **Apply**:
 
 .. code-block:: sql
 
@@ -322,12 +316,13 @@ la tabla **Apply_new**, con las mismas características que **Apply**:
   'natural history'    , True);
 
 
-Verificando la salida:
+checking the output:
+
 .. code-block:: sql
 
   SELECT * FROM Apply_new;
 
-se tiene que::
+the output is::
   
   sid |   cname   |     major        | decision
   ----+-----------+------------------+---------
@@ -336,15 +331,15 @@ se tiene que::
    1  | Stanford  | natural history  |  t
 
  
-Supongamos ahora que hubo un error en la gestión de papeles respecto a la postulación a ingeniería:
-Básicamente 'Betty' no quedó aceptada  en dicha mención, por lo tanto se debe modificar
+Suppose now that there was an error in the management of papers with respect to engineering application: 
+Basically 'Betty' was not accepted in this major therefore must be modified:
 
 .. code-block:: sql
 
   UPDATE Apply SET decision = false
   WHERE sid = 1 and cname = 'Stanford' and major = 'engineering';
 
-Lo que resulta en el cambio en la tabla::
+which results in the change of the table::
   
   sid |   cname   |     major        | decision
   ----+-----------+------------------+---------
@@ -354,22 +349,22 @@ Lo que resulta en el cambio en la tabla::
 
 
 
-Supongamos ahora que 'Betty', por suerte,  es una persona distraída y debido a sus enormes
-ganas de entrar a ciencias no se percata del error. El responsable de error, por temor a poner en
-juego su reputación, decide eliminar el registro de la postulación, en lo que considera un plan maestro,
-pues la tabla **Apply_new** no cuenta con un contador serial que pudiese causar algún conflicto.
+Suppose now that 'Betty', thankfully, is a distracted person and because of her great desire to get 
+into science is not aware of the error. The responsible for the error, for fear of putting his 
+reputation at stake, decides to eliminate the registration of the application, on what he considers 
+a master plan since **Apply_new** table does not have a serial counter that would cause any conflict.
 
 .. code-block:: sql
 
  DELETE FROM Apply
  WHERE sid = 1 and cname = 'Stanford' and major = 'engineering';
 
-Lo que resulta en el cambio en la tabla::
+Which result in the change of the table::
   
   sid |   cname   |     major        | decision
   ----+-----------+------------------+---------
    1  | Stanford  | science          |  t 
    1  | Stanford  | natural history  |  t
 
-y en la impunidad del responsable.
+and the impunity of the responsible.
 
