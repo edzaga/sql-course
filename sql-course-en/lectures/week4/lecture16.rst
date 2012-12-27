@@ -1,56 +1,59 @@
 Lecture 16 - Relational Desing Theory: Multivalued dependencies (4th normal form)
 -----------------------------------------------------------------------------------
 
-Dependencia Funcional
+Functional dependency
 ~~~~~~~~~~~~~~~~~~~~~
 
-Dados dos atributos A y B de una relación R, se dice que B depende funcionalmente de A,
-si cada valor de A tiene asociado un único valor de B. En otras palabras: si en cualquier
-instante, conocido el valor de A podemos conocer el valor de B. Tanto A como B pueden
-ser conjuntos de atributos. La dependencia funcional se simboliza del siguiente modo:
+Attributes A and B are given from a relation R. It is said that B depends functionally on A if each 
+value of A has associated a unique value of B. In other words, if it is known the value of A, we can 
+know the value of B. Both A and B can be set of attributes. The functional dependence is symbolize 
+in the following way:
+
 
 .. math::
 
  R.A \rightarrow R.B
 
-Por ejemplo en la relación R(`\underline{Nif}`, Nombre, Dirección), los atributos *Nombre* y
-*Dirección* dependen funcionalmente de *Nif*.
-
 .. math::
 
- Nif \rightarrow (Nombre, Dirección)
+ Nif \rightarrow (Nombre, address)
 
-Las dependencias funcionales son generalmente útiles para:
+For example in the relation  R(`\underline{Nif}`, Name, Address), *Name* and 
+*Address* attributes depend functionally on *Nif*.
 
-* Almacenamiento de datos - compresión
-* Razonamiento acerca de las consultas - Optimización
+The functional dependencies are generally useful for:
 
-Ejemplo 1:
+*  Storage of data- understanding
+*  Rationing about queries- Optimization
+
+
+Example 1:
 ==========
 
-Estudiante(SSN, sNombre, dirección, HScodigo, HSnombre, HSciudad, GPA, prioridad)
+Student(SSN, sName, address, HScode, HSname, HScity, GPA, priority)
 
-Aplicar(SSN, cNombre, estado, fecha, principal)
+Apply(SSN, cName, state, date, major)
 
-Supongamos que la prioridad es determinada por GPA
+Suppose the priority is determined by GPA
 
-GPA > 3,8 prioridad = 1
+GPA > 3.8 priority=1
 
-3,3 < GPA <= 3,8 prioridad = 2
+3.3<GPA<=3.8 priority=2
 
-GPA <= 3,3 prioridad = 3
+GPA<=3.3 priority=3
 
-Dos tuplas con el mismo GPA tienen la misma prioridad
+Two tuples with same GPA have the same priority
+
 
 .. math::
 
- \forall t, u \in Estudiante
+ \forall t, u \in Student
 
  t.GPA = u.GPA \Rightarrow t.priority = u.priority
 
- GPA \rightarrow prioridad
+ GPA \rightarrow priority
 
-De forma general sería:
+The general form will be:
 
 .. math::
 
@@ -68,10 +71,11 @@ De forma general sería:
 
  \overline{A} \rightarrow \overline{B}
 
-Ejemplo 2
+
+Example 2
 =========
 
-Considere la posibilidad de una relación R (A, B, C, D, E) con dependencias funcionales:
+Consider the possibility of a relation R(A,B,C,D,E) with functional dependencies:
 
 .. math::
 
@@ -79,158 +83,156 @@ Considere la posibilidad de una relación R (A, B, C, D, E) con dependencias fun
 
  C,D \rightarrow E.
 
-Supongamos que hay un máximo de 3 valores diferentes para cada uno de A, B y D.
-¿Cuál es el número máximo de valores diferentes para la E?
+Suppose there are a maximum of 3 different values for each of A, B, and D. What is the maximum number of different values for E?
 
 a) 27
 b) 9
 c) 3
 d) 81
 
-La alternativa correcta es (a), puesto que hay a lo sumo 3 * 3 = 9 combinaciones de
-valores de A, B, así que por A, B -> C como máximo 9 valores diferentes para C con
-un máximo de 3 valores diferentes para D, por C,D -> E hay en la mayoría de 9 * 3 = 27
-valores diferentes para E.
+The correct choice is (a) since there are at most 3*3=9 combinations of A,B values, so A,B -> C has at 
+maximum 9 different values for C, with a maximum of 3 different values for D. By C,D -> E there is a 
+maximum of 9*3=27 different values for E.
 
-Las dependencias funcionales para las tablas son:
+The functional dependencies for the tables are:
 
-**(SSN, sNombre, dirección, HScodigo, HSnombre, HSciudad, GPA, prioridad)**
 
-SSN `\rightarrow` sNombre
+**Student(SSN, sName, address, HScode, HSname, HScity, GPA, priority)**
 
-SSN `\rightarrow` dirección
+SSN `\rightarrow` sName
 
-HScodigo `\rightarrow` HSnombre, HSciudad
+SSN `\rightarrow` address
 
-HSnombre, HSciudad `\rightarrow` HScodigo
+HScode `\rightarrow` HsName, HScity
+
+HsName, HScity `\rightarrow` HScode
 
 SSN `\rightarrow` GPA
 
-GPA `\rightarrow` prioridad
+GPA `\rightarrow` priority
 
-SSN `\rightarrow` prioridad
+SSN `\rightarrow` priority
 
-**Apply(SSN, cNombre, estado, fecha, principal)**
+**Apply(SSN, cName, state, date, major)**
 
-cNombre `\rightarrow` fecha
+cName `\rightarrow` date
 
-SSN, cNombre `\rightarrow` principal
+SSN, cName `\rightarrow` major
 
-SSN `\rightarrow` estado
+SSN `\rightarrow` state
 
-Ejemplo 3
+Example 3
 =========
+For the relation Apply(SSN,cName,state,date,major), what in the real-world is captured by the restriction SSN,cName → date?
 
-Para la relación Aplicar(SSN, cNombre, estado, fecha, principal), lo que en el mundo real es capturado por restricción
-SSN,fecha -> cNombre?
+a) A student can only apply to one school
+b) A student can apply to each school only once.
+c) A student must apply to all schools on the same date.
+d) Every application from a student to a specific school must be on the same date
 
-a) Un estudiante sólo puede aplicar a un colegio.
-b) Un estudiante puede aplicar a cada colegio una sola vez.
-c) Un estudiante debe aplicar a todos los colegios en la misma fecha.
-d) Toda solicitud de un estudiante a un colegio específico debe estar en la misma fecha.
+The correct alternative is (d) since any of the two tuples with the same SSN-cName combination should 
+also have the same date. So if a student (SSN) applies to an university (cName) more than once, they must be on the same date.
 
-La alternativa correcta es (d), puesto que cualquiera de las dos tuplas con el mismo
-SSN-cNombre combinación también deben tener la misma fecha. Así que si un estudiante (SSN) se aplica
-a una universidad (cNombre) más de una vez, deben estar en la misma fecha.
 
-Dependencias funcionales y llaves
+Functional dependencies and keys
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Relación sin duplicados
-* Supongamos `\overline{A}` todos los atributos
+* Relation without duplicate
+* Let’s suppose `\overline{A}` all the attributes.
 
-Dependencia funcional Trivial
+* Trivial Functional dependency
 
 `\overline{A} \rightarrow \overline{B}`  `\overline{B} \subseteq A`
 
-Dependencia funcional no Trivial
+* Non trivial functional dependency
 
 `\overline{A} \rightarrow \overline{B}` `\overline{B} \not\subseteq A`
 
-Dependencia funcional completamente Trivial
+* Complete trivial functional dependency
 
 `\overline{A} \rightarrow \overline{B}` `\overline{A} \cap \overline{B} = \oslash`
 
-Reglas para las dependencias funcionales
+Rules for functional dependencies.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Regla de la división
+*  Rule for division
 
 `\overline{A} \rightarrow B_{1}, B_{2},...,B_{n}`
 
 `\overline{A} \rightarrow B_{1}` `\overline{A} \rightarrow B_{2}` `...`
 
-* ¿Se puede también dividir a la izquierda?
+* Can we also divide it to the left?
 
 `A_{1}, A_{2}, ..., A_{n} \rightarrow \overline{B}`
 
 `A_{1} \rightarrow \overline{B}` `A_{2} \rightarrow \overline{B}` `...`
 
-No se puede realizar una división a la izquierda
+You cannot make a division to the left.
 
-* Combinación de las reglas
+* Rules of combination
 
 `\overline{A} \rightarrow B_{1}`
 
 `\overline{A} \rightarrow B_{2}`
 
 `\overline{A} \rightarrow B_{.}`
-
+en
 `\overline{A} \rightarrow B_{n}`
 
 `\rightarrow` `\overline{A} \rightarrow B_{1}, B_{2}, ..., B_{n}`
 
-* Reglas de dependencia trivial
+* Rules of trivial dependency
 
 `\overline{A} \rightarrow \overline{B}`  `\overline{B} \subseteq A`
 
-`\overline{A} \rightarrow \overline{B}` entonces `\overline{A} \rightarrow \overline{A} \cup \overline{B}`
+`\overline{A} \rightarrow \overline{B}` then `\overline{A} \rightarrow \overline{A} \cup \overline{B}`
 
-`\overline{A} \rightarrow \overline{B}` entonces `\overline{A} \rightarrow \overline{A} \cap \overline{B}`
+`\overline{A} \rightarrow \overline{B}` then `\overline{A} \rightarrow \overline{A} \cap \overline{B}`
 
-* Regla transitiva
+* Transitive rule
 
-`\overline{A} \rightarrow \overline{B}` `\overline{B} \rightarrow \overline{A}` entonces `\overline{A} \rightarrow \overline{C}`
+`\overline{A} \rightarrow \overline{B}` `\overline{B} \rightarrow \overline{A}` then `\overline{A} \rightarrow \overline{C}`
 
-Cierre de atributos
+Closing of attributes
 
-* Dada una relación, dependientemente funcional, un conjunto de atributos `\overline{A}`
-* Encuentre todos los B de forma que `\overline{A} \rightarrow B`
+* Given a relation, dependently functional, a set of attributes `\overline{A}`
+* Find all the B so that `\overline{A} \rightarrow B`
 
-Ejemplo 4
+Example 4
 =========
 
-Estudiante(SSN, sNombre, dirección, HScodigo, HSnombre, HSciudad, GPA, prioridad)
+Student(SSN, sName, address, HScode, HsName, HScity, GPA, priority)
 
-SSN `\rightarrow` sNombre, dirección, GPA
+SSN `\rightarrow` sName, address, GPA
 
-GPA `\rightarrow` prioridad
+GPA `\rightarrow` priority
 
-HScodigo `\rightarrow` HSnombre, HSciudad
+HScode `\rightarrow` HsName, HScity
 
-{SSN, HScodigo} `^{+}` `\rightarrow` (todos los atributos)(llave)
+{SSN, HScode} `^{+}` `\rightarrow` (all attributes)(key)
 
-{SSN, HScodigo, sNombre, dirección, GPA, prioridad, HSnombre, HSciudad}
+{SSN, HScode, sName, address, GPA, priority, HsName, HScity}
 
-Clausura y llaves
+Closing and Keys
 ~~~~~~~~~~~~~~~~~
 
-* ¿Es `\overline{A}` una llave para R?
+* ¿Is  `\overline{A}` a key for R?
 
-Calcular `\overline{A^{+}}` Si = todos atributos, entonces `\overline{A}` es una llave.
+Calculate `\overline{A^{+}}` if= all attributes, so `\overline{A}`  is a key.
 
-* ¿Cómo podemos encontrar todas las llaves dado un conjunto de dependencias funcionales?
+* How can we find all the keys with a given set of functional dependencies?
 
-Considerar cada subconjunto `\overline{A}` de los atributos.
+Consider each subgroup`\overline{A}` the attributes.
 
-`A^{+} \rightarrow` todos los atributos
+`A^{+} \rightarrow` all attributes
 
-es llave
+Is key
 
-Ejemplo 5
+Example 5
 =========
 
-Tenga en cuenta la relación R (A, B, C, D, E) y supongamos que tenemos las dependencias funcionales:
+Consider the relation R(A,B,C,D,E) and suppose we have the functional dependencies:
+
 
 .. math::
 
@@ -240,46 +242,57 @@ Tenga en cuenta la relación R (A, B, C, D, E) y supongamos que tenemos las depe
 
  D \rightarrow B
 
-¿Cuál de los siguientes pares de atributos es una clave para R?
+
+
+Which of the following pair of attributes is a key for R?
 
 a) AB
 b) AC
 c) AD
 d) AE
 
-La alternativa correcta es (d), puesto que {AB}+ = {ABC}; {AC}+ = {AC}; {AD}+ = {ABCD};
-{AE}+ = {ABCDE}.
+The correct choice is (d) because  {AB}+ = {ABC}; {AC}+ = {AC}; {AD}+ = {ABCD}; {AE}+ = {ABCDE}
 
-Especificación funcionalmente dependiente para una relación
+
+Functionally dependent specification for a relationship
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-S1 y S2 conjunto funcionalmente dependiente.
+S1 and S2 set functionally dependent.
 
-S2 "sigue de" S1 si cada instancia de relación satisfacer S1 si también satisface S2
+S2 "follows" S1 if every instance of relation satisfy S1, if also satisfies S2
 
-S2: {SSN, prioridad}
+S2: {SSN, priority}
 
-S1: {SSN `\rightarrow` GPA, GPA `\rightarrow` prioridad}
+S1: {SSN `\rightarrow` GPA, GPA `\rightarrow` priority}
 
 .. note::
 
- Se observa que S1 satisface S2
+ It is observed that S1 satisfies  S2
 
-Ejemplo 6
+Example 6
 =========
 
-Consideremos la relación R (A, B, C, D, E) y el conjunto de dependencias funcionales
+Consider the relation R(A,B,C,D,E) and the set of functional dependencies
 S1 = {AB `\rightarrow` C, AE `\rightarrow` D, D `\rightarrow` B}.
 
-¿Cuál de los siguientes conjuntos de S2 FD NO se deduce de S1?
+
+Which of the following set S2 of FDs CANNOT be deduced from S1?
 
 a) S2 = {AD `\rightarrow` C}
 b) S2 = {AD `\rightarrow` C, AE `\rightarrow` B}
 c) S2 = {ABC `\rightarrow` D, D `\rightarrow` B}
 d) S2 = {ADE `\rightarrow` BC}
 
-La alternativa correcta es (c), puesto que Using the FDs in S1: {AD}+ = {ABCD};
-{AE}+ = {ABCDE}; {ABC}+ = {ABC}; {D}+ = {B}; {ADE}+ = {ABCDE}
+
+The correct alternative is (c) because using the FDs in 
+S1: {AD}+ = {ABCD}; {AE}+ = {ABCDE}; {ABC}+ = {ABC}; {D}+ = {B}; {ADE}+ = {ABCDE}
+
+
+
+
+Assignment 4
+
+Deadline: January 7th, 2013 (23:59)
 
 
 
