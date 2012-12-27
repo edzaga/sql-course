@@ -149,51 +149,48 @@ The process of normalization is essential in order to obtain an efficient design
 In a non-normalized entity, generally expressed in a plane form (like a table), it is very likely there are 
 one or two more repetitive groups. In that case, its primary key cannot be a simple attribute.
  
+Next, we will give you a definition and an example regarding normal forms:
 
-A continuación se dará una definición y un ejemplo de las formas normales:
-
-
-Primera formal normal (1FN)
+First normal form  (1FN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Una tabla está normalizada o en 1FN, si contiene sólo valores atómicos en la intersección
-de cada fila y columna, es decir, no posee grupos repetitivos.
-Para poder cumplir con esto, se deben pasar a otra tabla aquellos **grupos repetitivos**
-generándose dos tablas a partir de la tabla original. Las tablas resultantes deben
-tener algún atributo en común, en general una de las tablas queda con una clave primaria
-compuesta. Esta forma normal genera tablas con problemas de redundancia, y por ende,
-anomalías de inserción, eliminación o modificación; la razón de esto es la existencia
-de lo que se denomina **dependencias parciales**.
+A table is normalized or in 1NF, if it only has atomic values in the intersection of every row and 
+column, which means that it does not have repetitive groups. In order to meet this, we must pass to 
+another table those **repetitive groups**, generating two tables based on the original one. The 
+resultant tables must have some attribute in common. Generally, one of the tables has a compound 
+primary key. This normal form generates tables with problems of redundancy, and therefore, anomalies 
+of insertion, elimination or modification. This is because of the existence of what we called **partial 
+dependencies**.
 
-Ejemplo
+Example
 """""""
 
-Se dice que una tabla está encuentra en primera forma normal (1FN) si y solo si cada uno
-de los campos contiene un único valor para un registro determinado.
-Supongamos que deseamos realizar una tabla para guardar los cursos que están realizando
-los estudiantes de informática de la USM, podríamos considerar el siguiente diseño.
+It is said that a table is in first normal form (1NF) if and only if each of the fields contain a unique 
+value for a determined record. Let’s suppose that we want to create a table for storing courses of
+ informatics students in USM. We could consider the following design:
 
 .. math::
 
  \begin{array}{|c|c|c|}                                                          
     \hline                                                                           
-    \textbf{Código} & \textbf{Nombre} & \textbf{Cursos} \\
+    \textbf{Code} & \textbf{Name} & \textbf{Courses} \\
     \hline                                                                           
-    \text{1} & \text{Patricia} & \text{Estructura de datos} \\
+    \text{1} & \text{Patricia} & \text{Structure of data} \\
     \hline                                                                           
-    \text{2}  & \text{Margarita} & \text{Bases de datos, Teoría de sistemas} \\
+    \text{2}  & \text{Margarita} & \text{Database, Theory of systems \\
     \hline                                                                           
-    \text{3}  & \text{Joao} & \text{Estructura de datos, Bases de datos} \\         
+    \text{3}  & \text{Joao} & \text{Structure of data, Bases de datos} \\         
     \hline                                                                           
    \end{array}   
 
-Se puede observar que el registro 1 cumple con la primera forma normal, puesto que cada 
-campo cumple con la condición de tener solo un dato, pero esta condición no se cumple con 
-el registro 2 y 3, en el campo de *Cursos*, ya que en ambos existen dos datos.
-La solución a este problema es crear dos tablas del siguiente modo.
+
+You can see that record 1 meets with the first normal form since each field meets the condition 
+of having only one data. However, this condition does not meet with record 2 and 3 in the *Courses* 
+field because in both there are two data. The solution to this problem is to create two tables in 
+the following way:
 
 .. math::                                                                            
- \text{Tabla 1}
+ \text{Table 1}
                                                                                      
  \begin{array}{|c|c|}                                                            
     \hline                                                                           
@@ -207,15 +204,15 @@ La solución a este problema es crear dos tablas del siguiente modo.
     \hline                                                                           
    \end{array}  
 
- \text{Tabla 2}                                                                           
+ \text{Table 2}                                                                           
                                                                                      
  \begin{array}{|c|c|}                                                            
     \hline                                                                           
-    \textbf{Código} & \textbf{Cursos} \\                           
+    \textbf{Code} & \textbf{Courses} \\                           
     \hline                                                                           
-    \text{1} & \text{Estructura de datos} \\                       
+    \text{1} & \text{Structure of data} \\                       
     \hline                                                                           
-    \text{2}  & \text{Bases de datos} \\      
+    \text{2}  & \text{Database} \\      
     \hline                                                                           
-    \text{2}  & \text{Teoría de sistemas} \\          
+    \text{2}  & \text{Theory of systems} \\          
     \hline    
