@@ -1,35 +1,33 @@
 Lecture 15 - Relational Desing Theory: Overview
 -------------------------------------------------
 
-Diseñar un esquema de base de datos
+Design a scheme of database
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Por lo general existen *muchos* diseños posibles.
-* Algunos son (mucho) mejor que otros.
-* ¿Cómo elegir?.
+* Generally there are many possible designs.
+* Some are better than others.
+* How should we choose?
 
-El diseño de una base de datos relacional puede abordarse de dos formas:
+The design of relational database can be addressed in two forms:
 
-* **Obteniendo el esquema relacional directamente:** Objetos y reglas captadas del análisis del mundo real, representadas por un conjunto de esquemas de relación, sus atributos y restricciones de integridad.
-* **Diseño del esquema conceptual:** realizando el diseño del esquema "conceptual" de la BD (modelo E/R) y transformándolo a esquema relacional.
+* **Getting the relational scheme directly:** objects and rules captured from real-world analysis, represented by a set of schemes of relation, their attributes and constraints of integrity.
+* **Design of the conceptual scheme:** make the design of the “conceptual” scheme of the BD (E/R model) and transforming it into a relational scheme.   
 
-En los esquemas de bases de datos es posible encontrar anomalías que serán eliminadas
-gracias al proceso de normalización.
+In database schemes is possible to find anomalies which will be deleted thanks to the process of normalization.
+Those anomalies are:
 
-Estas anomalías son:
+* **The redundancy of data:** repetition of data in a system.
+* **Anomalies of update:** inconsistency of data as a result of redundant data and partial updates.
+* **Anomalies of elimination:** unintentional loss of data because other data are deleted.
+* **Anomalies of insertion:** inability to add data to the database because of the absence of other data.
 
-* **La redundancia de los datos:** repetición de datos en un sistema.
-* **Anomalías de actualización:** inconsistencias de los datos como resultado de datos redundantes y actualizaciones parciales.
-* **Anomalías de eliminación:** pérdidas no intencionadas de datos debido a que se han borrado otros datos.
-* **Anomalías de inserción:** imposibilidad de adicionar datos en la base de datos debido a la ausencia de otros datos.
-
-A continuación se muestra una tabla y luego el detalle de los problemas que presenta:
+Now we will show you a table and then its problems presented with more detail:
 
 .. math::
 
    \begin{array}{|c|c|c|c|c|c|}
     \hline
-    \textbf{Nombre_autor} & \textbf{País} & \textbf{Cod_libro} & \textbf{Titulo_libro} & \textbf{Editor} & \textbf{Dirección_editorial}\\
+    \textbf{Name_author} & \textbf{Country} & \textbf{Cod_book} & \textbf{Title_book} & \textbf{publisher} & \textbf{Address_publishing_house}\\
     \hline
     \text{Cortázar, Julio} & \text{Arg} & \text{9786071110725} & \text{Cuentos Completos 1 Julio Cortazar}  & \text{Alfaguara} & \text{Padre Mariano 82}\\
     \hline
@@ -41,37 +39,40 @@ A continuación se muestra una tabla y luego el detalle de los problemas que pre
     \hline
    \end{array}
 
-* **Redundancia:** cuando un autor tiene varios libros, se repite su país de origen.
-* **Anomalías de modificación:** Si se cambia la dirección de la editorial "Alfaguara", se deben modificar dos filas. A priori no se puede saber cuántos autores tiene un libro. Los errores son frecuentes al olvidar la modificación de un autor.
-* **Anomalías de inserción:** Se desea ingresar a un autor sin libros. "Nombre_autor" y "Cod_libro" son campos claves, por lo que las claves no pueden ser valores nulos.
 
-Al eliminar estas anomalías se asegura:
+* **Redundancy:** when an author has several books, his/her nationality is repeated.
+* **Anomalies of modification:** if you change the address of “Algaguara” editorial, you must modify two rows. A priori, you cannot tell how many books an author has. Errors are very frequent when you forget to modify an author.
+* **Anomalies of insertion:** you want to insert an author who does not present books. “Name_author” and “Cod_book” are key fields, so the keys cannot be null values.
 
-* **Integridad entre los datos:** consistencia de la información.
+By deleting these anomalies ensures:
 
-Otro ejemplo se muestra en la siguiente tabla:
+* **Integrity among data:** consistency of the information.
 
-**Aplicar(SSN, sNombre, cNombre, HS, HSciudad, hobby)**
+Other example is shown in the following table:
+
+
+**Apply(SSN, sName, cName, HS, HScity, hobby)**
 
 .. note::
- La notación que se utiliza en la tabla es:
+  
+ The notation that we use in the table is:
+ 
+ HS = high school
 
- HS = high school (escuela secundaria).
 
+*123 Ann of PAHS (P.A) and GHS (P.A) plays tennis and the trumpet. She applied to Stanford, Berkeley and MIT.*
 
-*123 Ann de PAHS (P.A) y GHS (P.A) juega tenis y toca la trompeta y postuló a Stanford, Berkeley y al MIT*
-
-Los datos ingresados en la tabla podrían ser los que se muestran a continuación:
+The inserted data in the table could be the ones shown::
 
 .. math::
 
    \begin{array}{|c|c|c|c|}
     \hline
-    \text{123} & \text{Ann} & \text{Stanford} & \text{PAHS} & \textbf{P.A} & \text{tenis} \\
+    \text{123} & \text{Ann} & \text{Stanford} & \text{PAHS} & \textbf{P.A} & \text{tennis} \\
     \hline
-    \text{123} & \text{Ann} & \text{Berkeley} & \text{PAHS}  & \text{P.A} & \text{tenis}\\
+    \text{123} & \text{Ann} & \text{Berkeley} & \text{PAHS}  & \text{P.A} & \text{tennis}\\
     \hline
-    \text{123}  & \text{Ann} & \text{Berkeley} & \text{PAHS} & \text{P.A}  & \text{trompeta}\\
+    \text{123}  & \text{Ann} & \text{Berkeley} & \text{PAHS} & \text{P.A}  & \text{trumpet}\\
     \hline
     \text{.}  & \text{.} & \text{.} & \text{GHS} & \text{.} & \text{.}\\
     \hline
@@ -79,82 +80,75 @@ Los datos ingresados en la tabla podrían ser los que se muestran a continuació
     \hline
    \end{array}
 
-* **Redundancia:** captura información muchas veces como por ejemplo "123 Ann", "PAHS", "tenis" o "MIT".
-* **Anomalía de actualización:** actualizar datos de diferente manera como "corneta" por "trompeta".
-* **Anomalía de eliminación:** eliminación inadvertida de datos.
+* **Redundancy:** captures information many times, for instance: “123 Ann”, “PAHS”, “tennis” or “MIT”.
+* **Anomalies of update:** update data in a different way such as “bugle” for “trumpet.”
+* **Anomalies of elimination:** data inadvertent eliminated.
 
-Una correcta forma de realizar la tabla anterior sin anomalías es:
+A correct form to do the previous table without anomalies is
 
-* Estudiante(SSN, sNombre);
-* Aplicar(SSN, cNombre);
-* Escuela_secundaria(SSN, HS);
-* Ubicado(HS, HSciudad);
-* Aficiones(SSN, hobby);
+  * Student(SSN, sName);
+  * Apply(SSN, cName);
+  * High_School(SSN, HS);
+  * Located(HS, HSciudad);
+  * Hobbies(SSN, hobby);
 
-Ejercicio
+Exercise
 =========
+Consider the possibility of a database containing information about the courses taken by students. 
+Students have a unique ID of student and (possibly not a unique) name. Courses have a unique number of 
+courses and (possibly not a unique) title. Students take a course of a determined year and receive a grade.
 
-Considere la posibilidad de una base de datos que contiene información sobre los cursos
-tomados por los estudiantes. Los estudiantes tienen un ID único de estudiante y nombre; 
-cursos tienen un número único de curso y título, los estudiantes toman un curso de un año determinado y reciben una
-calificación.
+Which of the following eschemes would you recommend?
 
-¿Cuál de los siguientes esquemas recomiendan?
+ 1. Took(SID, name, courseNum, title, year, grade)
+ 2. Course(courseNum, title, year), Took(SID, courseNum, grade)
+ 3. Student(SID, name), Course(courseNum, title), Took(SID, courseNum, year, grade)
+ 4. Student(SID, name), Course(courseNum, title), Took(name, title, year, grade)
 
-a) Tomo(SID, nombre, cursoNum, título, año, calificación)
+The right choice is letter (c), as it says in the statement that there are students with a unique ID, which in 
+this case is "SID" and "name". The courses have an unique ID which is "courseNum" and "title". Further says that
+students take a course in a given year "year" and receive a "grade", but the attribute "courseNum" acts as 
+foreign key of the Course table with which you can get the title of the course. And also must have a primary
+ key to identify the course that will be taken "SID".
 
-b) Curso(cursoNum, título, año), Tomó(SID, cursoNum, calificación)
 
-c) Estudiante(SID, nombre), Curso(cursoNum, título), Tomo(SID, cursoNum, año, calificación)
-
-d) Estudiante(SID, nombre), Curso(cursoNum, título), Tomo(nombre, título, año, calificación)
-
-La alternativa correcta es la letra (c), puesto que en el enunciado se dice que existen
-estudiantes con un ID único, que en este caso será "SID" y un "nombre"; los cursos tienen
-un ID único que es "cursoNum" y un "titulo", además que los estudiantes toman un curso en un
-año determinado "año" y reciben una calificación "grado", pero el atributo "cursoNum" actúa como
-clave foránea de la tabla *Curso* con la cual se podrá obtener el titulo del curso y también debe
-poseer una clave primaria para poder identificar el curso tomado que será "SID".
-
-Diseño por descomposición
+Desing by decomposition
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Comienza con las *"mega" relaciones* que contienen todo.
-* *Descomponer* en partes más pequeñas, se obtienen mejores relaciones con la misma información.
-* ¿Se puede *descomponer automáticamente*?
+* Start with *“mega” relations* which contain everything.
+* *Decompose* in smaller parts to obtain better relations with the same information.
+* Can you *decompose it automatically*?
 
-Descomposición automática:
+Automatic decomposition:
 
-* "Mega" relaciones + propiedades de los datos.
-* El sistema descompone basándose en las propiedades.
-* Conjunto final de relaciones satisface la forma normal.
- * no hay anomalías, hay pérdida de información.
-
-Normalización
+* “Mega” relations + properties of data
+* The system decompose based on the properties.
+* Final ser of relations satisfy the normal form.
+* There are no anomalies; there is a loss of information.
+ 
+Normalization
 ~~~~~~~~~~~~~
 
-Proceso que analiza las dependencias entre los atributos de una relación de tal manera de
-combinar los atributos, en entidades y asociaciones menos complejas y más pequeñas. Consiste
-en un conjunto de reglas denominadas Formas Normales (FN), las cuales establecen las
-propiedades que deben cumplir los datos para alcanzar una representación normalizada.
-En este paso se toma cada relación, se convierte en una entidad (relación o tabla)
-no normalizada y se aplican las reglas definidas para 1FN, 2FN, 3FN, Boyce Codd y 4FN.
+Process that analyzes dependencies between attributes of a relation in a way to combine those attributes, 
+in entities and associations less complex and smaller. It consists of a set of rules called normal forms (NF), 
+which establish the properties that data must meet to achieve a normalized representation. In this step, you 
+take every relationship to become them into an entity (relationship or table) no normalized. Defined rules are 
+applied for 1NF, 2NF, 3NF, Boyce Codd and 4NF.
 
 
-Formas normales
+Normal Forms
 ===============
 
-La siguiente imagen muestra los tres principales niveles que se utilizan en el diseño 
-de esquemas de bases de datos.
+The following image shows the three main levels used in the design of schemes of database:
 
 .. image:: ../../../sql-course/src/formas_normales.png
    :align: center
 
-El proceso de normalización es fundamental para obtener un diseño de base de datos
-eficiente.
-En una entidad no normalizada generalmente expresada en forma plana (como una tabla), 
-es muy probable que existan uno o más grupos repetitivos, no pudiendo en ese caso ser
-un atributo simple su clave primaria. 
+The process of normalization is essential in order to obtain an efficient design of database. 
+
+In a non-normalized entity, generally expressed in a plane form (like a table), it is very likely there are 
+one or two more repetitive groups. In that case, its primary key cannot be a simple attribute.
+ 
 
 A continuación se dará una definición y un ejemplo de las formas normales:
 
