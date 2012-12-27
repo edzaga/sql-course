@@ -1,7 +1,7 @@
 Assignment 4
 ============
 
-Fecha de entrega: lunes 7 de enero 2013 hasta 23:59
+Date Line: Monday January 7 2013, till 23:59 
 -----------------------------------------------------------
 
 .. role:: sql(code)
@@ -9,36 +9,38 @@ Fecha de entrega: lunes 7 de enero 2013 hasta 23:59
    :class: highlight
 
 -------------
-Base de datos
+Database
 -------------
 
-Se tiene una base de datos de zoológicos con el siguiente esquema:
+It has a zoological database with the following scheme:
 
-`\text{Zoo}(\underline{\text{nombre}}, \text{ciudad, pais,tamanio, presupuesto})`
+`\text{Zoo}(\underline{\text{name}}, \text{city, country,size, budget})`
 
-Esta tabla almacena los datos de los zoológicos. Su *nombre*, *ciudad* y *pais* en el que se ubica, *tamanio* es el tamaño en hectáreas y *presupuesto* en unidades monetarias. 
 
+This table stores the data of zoos. Their *names*, *cities* and *countries* in which it is located, *tamanio* is 
+the size of the hectares and the *budget* of monetary units.
 .. code-block:: sql
 
-		 nombre         |      ciudad      |      pais      | tamanio | presupuesto 
+		 name           |      city        |    country     | size    | budget 
 	------------------------+------------------+----------------+---------+-------------
 	 Metropolitano          | Santiago         | Chile          |     4.8 |         100
 	 BuinZoo                | Buin             | Chile          |         |          60
-	 San Diego              | San Diego        | Estados Unidos |      14 |       405.5
+	 San Diego              | San Diego        | USA            |      14 |       405.5
 	 Parque Safari          | Rancagua         | Chile          |         |          50
-	 London Zoo             | Londres          | Reino Unido    |       9 |       253.9
+	 London Zoo             | Londres          | UK             |       9 |       253.9
 	 Chapultepec            | Ciudad de Mexico | Mexico         |      16 |            
 	 Buenos Aires           | Buenos Aires     | Argentina      |      18 |       253.9
-	 Parque de las Leyendas | Peru             | Lima           |         |            
+	 Parque de las Leyendas | Lima             | Peru           |         |            
 	(8 rows)
 
-`\text{Especie}(\underline{\text{nomCient}},\text{nomComun, familia})`
+`\text{Specie}(\underline{\text{nomCient}},\text{nomComun, family})`
 
-Esta tabla almacena los datos que caracterizan las especies animales. Almacena el nombre científico en *nomcient*, el nombre común con el que se le conoce es guardado en *nomcomun* y la *familia* a la que pertenece la especie.
 
+This table stores the data characterizing animal species. Stores the cientific name in *nomcient*, the 
+common name by which he or she is known, is saved in *nomcomun* and the family who belongs the specie.
 .. code-block:: sql
 
-		nomcient         |           nomcomun           | familia  
+		nomcient         |           nomcomun           | family  
 	-------------------------+------------------------------+----------
 	 Panthera tigris         | Tigre                        | Mamifero
 	 Aptenodytes patagonicus | Pinguino Rey                 | Ave
@@ -50,88 +52,91 @@ Esta tabla almacena los datos que caracterizan las especies animales. Almacena e
 	 Glaucidium nanum        | Chuncho                      | Ave
 	 (15 rows)
 
-`\text{Animal}(\underline{\text{numid}},\text{nomZoo, nomEspecie, sexo, anioNacim, pais})`
+`\text{Animal}(\underline{\text{numid}},\text{nomZoo, nomEspecie, sex, anioNacim, pais})`
 
-La tabla animal guarda los datos de los animales que habitan cada zoológico. El atributo *nomZoo* es clave foranea a **Zoo**, se refiere al zoológico en el que se encuentra un animal, *nomEspecie* es clave foranea a **Especie** a la que pertenece cada uno, también se almacenan el *sexo*, año de nacimiento en *anioNacim* y el país de procedencia en *pais*. 
-
+The animal table saves data of the animals that inhabit every zoo. The foreign *nomZoo* is key attribute **Zoo**, refers to 
+the zoo in which an animal is, *nomSpecie* is foreign key to *specie* belonging to each, also stored gender, year of 
+birth in *anioNacim* and country of origin *country*.
 .. code-block:: sql
 
-	numid |         nomzoo         |       nomespecie        |  sexo  | anionacim |   pais    
+	numid  |         nomzoo         |       nomespecie        |  sex   | anionacim |   country    
 	-------+------------------------+-------------------------+--------+-----------+-----------
-	     1 | Metropolitano          | Panthera tigris         | Macho  |           | India
-	     2 | San Diego              | Panthera tigris         | Macho  |      2010 | Nepal
-	     3 | London Zoo             | Panthera tigris         | Macho  |      2008 | Birmania
-	     4 | BuinZoo                | Pongo pygmaeus          | Hembra |      2004 | Indonesia
-	     5 | Metropolitano          | Hippocamelus bisulcus   | Hembra |           | Chile
-	     6 | Parque Safari          | Panthera tigris         | Macho  |      2009 | India
+	     1 | Metropolitano          | Panthera tigris         | Male   |           | India
+	     2 | San Diego              | Panthera tigris         | Male   |      2010 | Nepal
+	     3 | London Zoo             | Panthera tigris         | Male   |      2008 | Birmania
+	     4 | BuinZoo                | Pongo pygmaeus          | Female |      2004 | Indonesia
+	     5 | Metropolitano          | Hippocamelus bisulcus   | Female |           | Chile
+	     6 | Parque Safari          | Panthera tigris         | Male   |      2009 | India
 	(28 rows)
 
-Existen reglas que se especificaron para las claves foráneas, después de haberlas consultado con los encargados de los zoológicos:
+There are specified rules for foreign keys, after having consulted with the heads of zoos:
 
-* El *nombre* de los zoológicos debe ser un valor conocido.
+*The *name of the zoos should be a known value.
 
-* Toda especie debe poseer un nombre científico.
+* Every species must have a scientific name.
 
-* Todo animal tiene *numid* conocido, se encuentra en un zoo conocido y pertenece a una especie conocida.
+* Every animal has *numid* known, is in a zoo known and belongs to a species known.
 
 .. note::
-	Las tablas anteriores son solo de referencia. Se creó un archivo assigment4.sql , que posee la información de creación de tablas con valores asignados.
+	 The tables above are for reference only. It created a file assignment 4, having 
+         the information table creation with assigned values.
 
-Pregunta 1 (5 puntos):
+
+Question 1 (5 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Modificar el archivo assigment4.sql de modo que la creación de tablas cumpla con las 3 reglas descritas anteriormente.
+Modify the assignment 4.sql so creating tables meet the three rules described above.
 
-Pregunta 2 (10 puntos):
+Question 2 (10 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Asignarle un valor desconocido (NULL) al año de nacimiento del animal que posee el nombre común 'Leon' y que habita en el 'Parque Safari'. 
+Assign a value unknown (NULL) year of birth of the animal that has the common name "Leon" and living in 'Safari Park'.
 
-Pregunta 3 (5 puntos):
+Question 3 (5 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Actualizar los presupuestos que tengan valores nulos asignándoles un valor de presupuesto=0.
+Update budgets that have null values, assigning a budget value = 0.
 
 
-Pregunta 4 (10 puntos):
+Question 4 (10 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Seleccionar el “nombre común” (Especie.nomComun), “nombre del zoológico”(Zoo.nombre) y “país”(Animal.pais), de los animales que se conoce su país de origen.
+Select the "common name" (Especie.nomComun), "name of the zoo" (Zoo.nombre) and "country" (Animal.pais), 
+animals known their country of origin.
 
-Pregunta 5(10 puntos):
+Question 5(10 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Eliminar de la base de datos (de la tabla **Animal**) los reptiles del 'London Zoo'. 
+Remove from database (table **Animal**) reptiles of 'London Zoo'.
 
 -------------------------------
-Teoría del diseño Relacional
+Relational Design Theory
 -------------------------------
 
-Se cuenta con las siguientes vistas:
+It has the following views:
 
-* VISTA1 (FECHA-INGRESO, FECHA-MUERTE, #ANIMAL, NOMBRE-COMUN, NOMBRE-CIENT, APODO, 
-  HABITAT, CLASE, LONGITUD, PESO, LONGEVIDAD, FOTO, 
-  {FECHA-R, #EMP, DIAG, {#REMEDIO, NOM-REMEDIO, DOSIS}, OBSERVACION)
+* VIEW 1 (DATE-ENTRY, DATE-DEATH, #ANIMAL, NAME-COMMON, NAME-CIENT, NICKNAME, 
+  HABITAT, CLASS, LENGHT, WEIGHT, LONGEVITY, PHOTO, 
+  {DATE-R, #EMP, DIAG, {#REMEDY, NOM-REMEDY, DOSIS}, OBSERVATION)
 
-La vista1 permite a un visitante web, conocer sobre los animales del ZooChile. 
-FECHA-R es la fecha y hora en que se revisó al animal. #REMEDIO se agrega para reducir 
-redundancia, ya que los mismos remedios pueden ser suministrados a distintos animales.
+View1 allows a web visitor, learn about animals ZooChile. DATE-R is the date and time it was 
+revised animal. # REMEDY is added to reduce redundancy, since these remedies may be supplied to different animals.
 
-* VISTA 2 (FECHA, NOM-V, FIRMA-V, {CLASE{#ANIMAL, {TIPO-ALIMENTO, CANT}}})
-La vista 2 permite al Director del Zoo, conocer el número de revisiones que realiza 
-mensualmente cada uno de sus veterinarios.
-La FECHA se guarda para saber cuándo y qué un animal comió, de tal forma de poder entregar 
-información al veterinario ante cualquier enfermedad. Se eliminan entidades intermedias con
-atributos como: (FECHA, CLASE) y (FECHA, CLASE, #ANIMAL) dado que no aportan información adicional.
+* VIEW 2 (DATE, NOM-V, SIGNATURE-V, {CLASS{#ANIMAL, {TYPE-NOURISHMENT, CANT}}})
 
-Pregunta 1 (40 puntos):
+The view 2 allows the Director of the Zoo, know the number of revisions performed monthly each of their veterinarians. 
+The date is saved for when and how an animal ate, so we can deliver information to the veterinarian for any illness. 
+Eliminate intermediate entities with attributes such as: (DATE, CLASS) and (date, type, # ANIMAL) since not provide 
+additional information.
+
+QUESTION 1 (40 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
-Normalizar cada vista a 1FN, 2FN y 3FN. 
+Normalize each view to 1FN, 2FN y 3FN.. 
 
 
 .. note :: 
-	La tarea se entrega en un archivo comprimido .rar , que contenga:
+	The task is delivered in a compressed file .rar , containing:
 
-	* archivo assigment4.sql , con las respuestas a las preguntas de “Base de Datos”.
-	* archivo assigment4.doc , .docx o .pdf que incluya la respuesta a los ítem de “Teoría del diseño Relacional”.
+	* 4.sql assignment file with the answers to the questions of "Database".
+	* assignment 4.doc file,. Docx or. Pdf including response to the item "Relational Design Theory".
 
