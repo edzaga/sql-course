@@ -41,7 +41,7 @@ Now we will show you a table and then its problems presented with more detail:
 
 
 * **Redundancy:** when an author has several books, his/her nationality is repeated.
-* **Anomalies of modification:** if you change the address of “Algaguara” editorial, you must modify two rows. A priori, you cannot tell how many books an author has. Errors are very frequent when you forget to modify an author.
+* **Anomalies of modification:** if you change the address of “Alfaguara” editorial, you must modify two rows. A priori, you cannot tell how many books an author has. Errors are very frequent when you forget to modify an author.
 * **Anomalies of insertion:** you want to insert an author who does not present books. “Name_author” and “Cod_book” are key fields, so the keys cannot be null values.
 
 By deleting these anomalies ensures:
@@ -94,9 +94,10 @@ A correct form to do the previous table without anomalies is
 
 Exercise
 =========
+
 Consider the possibility of a database containing information about the courses taken by students. 
-Students have a unique ID of student and (possibly not a unique) name. Courses have a unique number of 
-courses and (possibly not a unique) title. Students take a course of a determined year and receive a grade.
+Students have a unique ID of student and name. Courses have a unique number of 
+courses and title. Students take a course of a determined year and receive a grade.
 
 Which of the following eschemes would you recommend?
 
@@ -152,7 +153,7 @@ one or two more repetitive groups. In that case, its primary key cannot be a sim
 Next, we will give you a definition and an example regarding normal forms:
 
 First normal form  (1FN)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 A table is normalized or in 1NF, if it only has atomic values in the intersection of every row and 
 column, which means that it does not have repetitive groups. In order to meet this, we must pass to 
@@ -177,7 +178,7 @@ value for a determined record. Let’s suppose that we want to create a table fo
     \hline                                                                           
     \text{1} & \text{Patricia} & \text{Structure of data} \\
     \hline                                                                           
-    \text{2}  & \text{Margarita} & \text{Database, Theory of systems \\
+    \text{2}  & \text{Margarita} & \text{Database, Theory of systems} \\
     \hline                                                                           
     \text{3}  & \text{Joao} & \text{Structure of data, Databases} \\         
     \hline                                                                           
