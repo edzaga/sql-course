@@ -304,7 +304,7 @@ b) S2 = {AD `\rightarrow` C, AE `\rightarrow` B}
 c) S2 = {ABC `\rightarrow` D, D `\rightarrow` B}
 d) S2 = {ADE `\rightarrow` BC}
 
-La alternativa correcta es (c), puesto que Using the FDs in S1: {AD}+ = {ABCD};
+La alternativa correcta es (c), puesto que el uso de las FDs en S1: {AD}+ = {ABCD};
 {AE}+ = {ABCDE}; {ABC}+ = {ABC}; {D}+ = {B}; {ADE}+ = {ABCDE}
 
 
