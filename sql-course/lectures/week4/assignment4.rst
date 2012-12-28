@@ -40,15 +40,16 @@ Esta tabla almacena los datos que caracterizan las especies animales. Almacena e
 
 		nomcient         |           nomcomun           | familia  
 	-------------------------+------------------------------+----------
-	 Panthera tigris         | Tigre                        | Mamifero
+	 Panthera tigris         | Tigre                        | Mammal
 	 Aptenodytes patagonicus | Pinguino Rey                 | Ave
-	 Ailuropoda melanoleuca  | Oso Panda                    | Mamifero
+	 Ailuropoda melanoleuca  | Oso Panda                    | Mammal
 	 Vultur gryphus          | Condor                       | Ave
-	 Pongo pygmaeus          | Orangutan                    | Mamifero
+	 Pongo pygmaeus          | Orangutan                    | Mammal
 	 Chelonoidis nigra       | Tortuga gigante de Galapagos | Reptil
-	 Balaenoptera musculus   | Ballena Azul                 | Mamifero
+	 Balaenoptera musculus   | Ballena Azul                 | Mammal
 	 Glaucidium nanum        | Chuncho                      | Ave
-	 (15 rows)
+	 
+	(15 rows)
 
 `\text{Animal}(\underline{\text{numid}},\text{nomZoo, nomEspecie, sexo, anioNacim, pais})`
 
@@ -64,6 +65,7 @@ La tabla animal guarda los datos de los animales que habitan cada zoológico. El
 	     4 | BuinZoo                | Pongo pygmaeus          | Hembra |      2004 | Indonesia
 	     5 | Metropolitano          | Hippocamelus bisulcus   | Hembra |           | Chile
 	     6 | Parque Safari          | Panthera tigris         | Macho  |      2009 | India
+	
 	(28 rows)
 
 Existen reglas que se especificaron para las claves foráneas, después de haberlas consultado con los encargados de los zoológicos:
@@ -80,7 +82,7 @@ Existen reglas que se especificaron para las claves foráneas, después de haber
 Pregunta 1 (5 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Modificar el archivo assigment4.sql de modo que la creación de tablas cumpla con las 3 reglas descritas anteriormente.
+Modificar el archivo `assignment4.sql`_ de modo que la creación de tablas cumpla con las 3 reglas descritas anteriormente.
 
 Pregunta 2 (10 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -101,7 +103,7 @@ Seleccionar el “nombre común” (Especie.nomComun), “nombre del zoológico�
 Pregunta 5 (15 puntos):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Eliminar de la base de datos (de la tabla **Animal**) los reptiles del 'London Zoo'. 
+Eliminar de la base de datos (de la tabla **Animal**) los animales de la familia de los reptiles(Especie.familia=Reptil) del 'London Zoo'. 
 
 -------------------------------
 Teoría del diseño Relacional
@@ -130,8 +132,11 @@ Normalizar cada vista a 1FN, 2FN y 3FN.
 
 
 .. note :: 
-	La tarea se entrega en un archivo comprimido .rar , que contenga:
+	La tarea se `entrega`_  en un archivo comprimido .rar , que contenga:
 
-	* archivo assigment4.sql , con las respuestas a las preguntas de “Base de Datos”.
+	* archivo `assignment4.sql`_ , con las respuestas a las preguntas de “Base de Datos”.
 	* archivo assigment4.doc , .docx o .pdf que incluya la respuesta de “Teoría del diseño Relacional”.
+
+.. _`assignment4.sql`: https://csrg.inf.utfsm.cl/claroline/claroline/backends/download.php?url=L0Fzc2lnbm1lbnQ0L3RhcmVhNC5zcWw%3D&cidReset=true&cidReq=SQL01
+.. _`entrega`: https://csrg.inf.utfsm.cl/claroline/claroline/work/work_list.php?assigId=4&cidReset=true&cidReq=SQL01
 

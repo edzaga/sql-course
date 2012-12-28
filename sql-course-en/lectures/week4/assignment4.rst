@@ -42,16 +42,16 @@ common name by which he or she is known, is saved in *comName* and the family wh
 
 .. code-block:: sql
 
-		cientName        |           comName            | family  
-	-------------------------+------------------------------+----------
-	 Panthera tigris         | Tigre                        | Mamifero
-	 Aptenodytes patagonicus | Pinguino Rey                 | Ave
-	 Ailuropoda melanoleuca  | Oso Panda                    | Mamifero
-	 Vultur gryphus          | Condor                       | Ave
-	 Pongo pygmaeus          | Orangutan                    | Mamifero
-	 Chelonoidis nigra       | Tortuga gigante de Galapagos | Reptil
-	 Balaenoptera musculus   | Ballena Azul                 | Mamifero
-	 Glaucidium nanum        | Chuncho                      | Ave
+	        cientname        |         comname          |   family   
+	-------------------------+--------------------------+------------
+	 Panthera tigris         | Tiger                    | Mammal
+	 Aptenodytes patagonicus | King penguin             | Bird
+	 Ailuropoda melanoleuca  | Giant panda              | Mammal
+	 Vultur gryphus          | Condor                   | Bird
+	 Pongo pygmaeus          | Orangutan                | Mammal
+	 Chelonoidis nigra       | Galapagos giant tortoise | Reptile
+	 Balaenoptera musculus   | Blue whale               | Mammal
+
 	 (15 rows)
 
 `\text{Animal}(\underline{\text{numid}},\text{zooName, specieName, sex, byear, country})`
@@ -70,6 +70,7 @@ birth in *byear* and country of origin *country*.
 	     4 | BuinZoo                | Pongo pygmaeus          | Female |      2004 | Indonesia
 	     5 | Metropolitano          | Hippocamelus bisulcus   | Female |           | Chile
 	     6 | Parque Safari          | Panthera tigris         | Male   |      2009 | India
+	
 	(28 rows)
 
 There are specified rules for foreign keys, after having consulted with the heads of zoos:
@@ -88,12 +89,12 @@ There are specified rules for foreign keys, after having consulted with the head
 Question 1 (5 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Modify the assignment 4.sql so creating tables meet the three rules described above.
+Modify the `assignment4.sql`_ so creating tables meet the three rules described above.
 
 Question 2 (10 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Assign a value unknown (NULL) year of birth of the animal that has the common name "Leon" and living in 'Safari Park'.
+Assign a value unknown (NULL) year of birth of the animal that has the common name "Lion" and living in 'Safari Park'.
 
 Question 3 (10 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -104,13 +105,13 @@ Update budgets that have null values, assigning a budget value = 0.
 Question 4 (10 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Select the "common name" (Especie.comName), "name of the zoo" (Zoo.name) and "country" (Animal.country), 
+Select the "common name" (Specie.comName), "name of the zoo" (Zoo.name) and "country" (Animal.country), 
 animals known their country of origin.
 
 Question 5 (15 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Remove from database (table **Animal**) reptiles of 'London Zoo'.
+Remove from database (table **Animal**) reptiles (Specie.family=Reptile) of 'London Zoo'.
 
 -------------------------------
 Relational Design Theory
@@ -138,8 +139,10 @@ Normalize each view to 1FN, 2FN y 3FN..
 
 
 .. note :: 
-	The task is delivered in a compressed file .rar , containing:
+	The task is `delivered`_ in a compressed file .rar , containing:
 
-	* assignment4.sql file with the answers to the questions of "Database".
+	* `assignment4.sql`_ file with the answers to the questions of "Database".
 	* assignment4.doc file,. Docx or. Pdf including response to the item "Relational Design Theory".
 
+.. _`assignment4.sql`: https://csrg.inf.utfsm.cl/claroline/claroline/backends/download.php?url=L0Fzc2lnbm1lbnQ0L2Fzc2lnbm1lbnQ0LnNxbA%3D%3D&cidReset=true&cidReq=SQL01
+.. _`delivered`: https://csrg.inf.utfsm.cl/claroline/claroline/work/work_list.php?assigId=4&cidReset=true&cidReq=SQL01
