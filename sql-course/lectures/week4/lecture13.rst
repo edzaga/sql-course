@@ -93,9 +93,9 @@ de mejor manera las siguientes consultas:
     (733,'Howard', 'Brown',null, null);
     INSERT 0 9
 
-Realizando una consulta SELECT, para ver todos los clientes que se insertaron, se
+Realizando una consulta :sql:`SELECT`, para ver todos los clientes que se insertaron, se
 puede apreciar un espacio vacío en los valores que llevaban :sql:`NULL` al momento
-de hacer INSERT. Tal es el caso de la dirección de 'Tom Hofstadter'  o la deuda
+de hacer :sql:`INSERT`. Tal es el caso de la dirección de 'Tom Hofstadter'  o la deuda
 'Mayim Bialik' .
 
 .. code-block:: sql
@@ -125,7 +125,7 @@ Ahora se puede actualizar un cliente:
 
 Se actualiza el cliente de rut 412,  dejando su dirección sin valor conocido.
 
-Realizando nuevamente un SELECT para visualizar la tabla cliente, se puede apreciar
+Realizando nuevamente un :sql:`SELECT` para visualizar la tabla cliente, se puede apreciar
 que el cliente con rut 412, ‘Greg  Hanks’, ahora aparece con una dirección sin un
 valor asignado.
 
