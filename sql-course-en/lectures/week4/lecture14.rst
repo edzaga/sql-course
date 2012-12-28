@@ -65,13 +65,15 @@ whose output after doing:
 
 .. code-block:: sql
 
- SELECT * student;
+ SELECT * FROM Student_new;
 
 is ::
 
-   sid | sname  | average
-   ----+--------+---------
-    1  | Betty  |  78
+  sid | sname | average 
+  -----+-------+---------
+    1 | Betty |      78
+  (1 row)
+
 
 By using the *sID* attribute as serial, it is possible to omit the value of this attribute 
 when you are going to insert a new student:
@@ -125,11 +127,11 @@ If you select the entire table information:
 
 the output is::
 
-   sid | sname  | average
-   ----+--------+---------
-    1  | Betty  |  78
-    2  | Wilma  |  81
-
+  sid | sname | average 
+  -----+-------+---------
+    1 | Betty |      78
+    2 | Wilma |      81
+  (2 rows)
 
 
 UPDATE
@@ -201,10 +203,11 @@ Checking through the execution of a select:
 
 the output is::
 
-   sid | sname  | average
-   ----+--------+---------
-    1  | Betty  |  78
-    2  | Wilma  |  91
+  sid | sname | average 
+  -----+-------+---------
+    1 | Betty |      78
+    2 | Wilma |      91
+  (2 rows)
 
 That is, it was successfully upgraded the grade of 'Wilma'.
 
@@ -305,8 +308,8 @@ characteristics as **Apply**:
 
 .. code-block:: sql
 
-   CREATE TABLE   Apply_new(sID INTEGER, cName VARCHAR(20), major VARCHAR(30),
-   decision BOOLEAN,   PRIMARY kEY(sID, cName, major));
+  CREATE TABLE   Apply_new(sID INTEGER, cName VARCHAR(20), major VARCHAR(30),
+  decision BOOLEAN,   PRIMARY kEY(sID, cName, major));
 
 
   INSERT INTO Apply_new (sID, cName, major, decision) VALUES (1, 'Stanford',
@@ -325,29 +328,29 @@ checking the output:
 
 the output is::
   
-  sid |   cname   |     major        | decision
-  ----+-----------+------------------+---------
-   1  | Stanford  | science          |  t 
-   1  | Stanford  | engineering      |  t
-   1  | Stanford  | natural history  |  t
-
+ sid |  cname   |      major      | decision 
+ -----+----------+-----------------+----------
+    1 | Stanford | science         | t
+    1 | Stanford | engineering     | t
+    1 | Berkeley | natural history | t
+ (3 rows)
  
 Suppose now that there was an error in the management of papers with respect to engineering application: 
 Basically 'Betty' was not accepted in this major therefore must be modified:
 
 .. code-block:: sql
 
-  UPDATE Apply SET decision = false
+  UPDATE Apply_new SET decision = false
   WHERE sid = 1 and cname = 'Stanford' and major = 'engineering';
 
 which results in the change of the table::
-  
-  sid |   cname   |     major        | decision
-  ----+-----------+------------------+---------
-   1  | Stanford  | science          |  t 
-   1  | Stanford  | natural history  |  t
-   1  | Stanford  | engineering      |  f
 
+ sid |  cname   |      major      | decision 
+ -----+----------+-----------------+----------
+    1 | Stanford | science         | t
+    1 | Berkeley | natural history | t
+    1 | Stanford | engineering     | f
+ (3 rows)
 
 
 Suppose now that 'Betty', thankfully, is a distracted person and because of her great desire to get 
@@ -357,15 +360,16 @@ a master plan since **Apply_new** table does not have a serial counter that woul
 
 .. code-block:: sql
 
- DELETE FROM Apply
+ DELETE FROM Apply_new
  WHERE sid = 1 and cname = 'Stanford' and major = 'engineering';
 
 Which result in the change of the table::
   
-  sid |   cname   |     major        | decision
-  ----+-----------+------------------+---------
-   1  | Stanford  | science          |  t 
-   1  | Stanford  | natural history  |  t
+ sid |  cname   |      major      | decision 
+ -----+----------+-----------------+----------
+    1 | Stanford | science         | t
+    1 | Berkeley | natural history | t
+ (2 rows)
 
 and the impunity of the responsible.
 

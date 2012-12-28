@@ -66,13 +66,14 @@ cuya salida, después de ejecutar el :
 
 .. code-block:: sql
 
- SELECT * student;
+ SELECT * FROM Student_new;
 
 es ::
 
-   sid | sname  | average
-   ----+--------+---------
-    1  | Betty  |  78
+  sid | sname | average 
+  -----+-------+---------
+    1 | Betty |      78
+  (1 row)
 
 
 Al utilizar el atributo *sID* como serial, es posible omitir el valor de este atributo a la hora de
@@ -127,11 +128,11 @@ Si se selecciona toda la información de la tabla:
 
 la salida es::
 
-   sid | sname  | average
-   ----+--------+---------
-    1  | Betty  |  78
-    2  | Wilma  |  81
-
+  sid | sname | average 
+  -----+-------+---------
+    1 | Betty |      78
+    2 | Wilma |      81
+  (2 rows)
 
 
 UPDATE
@@ -204,10 +205,11 @@ Verificando a través de la ejecución de un select:
 
 la salida es::
 
-   sid | sname  | average
-   ----+--------+---------
-    1  | Betty  |  78
-    2  | Wilma  |  91
+  sid | sname | average 
+  -----+-------+---------
+    1 | Betty |      78
+    2 | Wilma |      91
+  (2 rows)
 
 Es decir, se actualizó correctamente la nota de 'Wilma'.
 
@@ -309,8 +311,8 @@ la tabla **Apply_new**, con las mismas características que **Apply**:
 
 .. code-block:: sql
 
-   CREATE TABLE   Apply_new(sID INTEGER, cName VARCHAR(20), major VARCHAR(30),
-   decision BOOLEAN,   PRIMARY kEY(sID, cName, major));
+  CREATE TABLE   Apply_new(sID INTEGER, cName VARCHAR(20), major VARCHAR(30),
+  decision BOOLEAN,   PRIMARY kEY(sID, cName, major));
 
 
   INSERT INTO Apply_new (sID, cName, major, decision) VALUES (1, 'Stanford',
@@ -322,36 +324,36 @@ la tabla **Apply_new**, con las mismas características que **Apply**:
 
 
 Verificando la salida:
+
 .. code-block:: sql
 
   SELECT * FROM Apply_new;
 
 se tiene que::
   
-  sid |   cname   |     major        | decision
-  ----+-----------+------------------+---------
-   1  | Stanford  | science          |  t 
-   1  | Stanford  | engineering      |  t
-   1  | Stanford  | natural history  |  t
+  sid |  cname   |      major      | decision 
+  -----+----------+-----------------+----------
+    1 | Stanford | science         | t
+    1 | Stanford | engineering     | t
+    1 | Berkeley | natural history | t
+  (3 rows)
 
- 
 Supongamos ahora que hubo un error en la gestión de papeles respecto a la postulación a ingeniería:
 Básicamente 'Betty' no quedó aceptada  en dicha mención, por lo tanto se debe modificar
 
 .. code-block:: sql
 
-  UPDATE Apply SET decision = false
+  UPDATE Apply_new SET decision = false
   WHERE sid = 1 and cname = 'Stanford' and major = 'engineering';
 
 Lo que resulta en el cambio en la tabla::
   
-  sid |   cname   |     major        | decision
-  ----+-----------+------------------+---------
-   1  | Stanford  | science          |  t 
-   1  | Stanford  | natural history  |  t
-   1  | Stanford  | engineering      |  f
-
-
+  sid |  cname   |      major      | decision 
+  -----+----------+-----------------+----------
+    1 | Stanford | science         | t
+    1 | Berkeley | natural history | t
+    1 | Stanford | engineering     | f
+  (3 rows)
 
 Supongamos ahora que 'Betty', por suerte,  es una persona distraída y debido a sus enormes
 ganas de entrar a ciencias no se percata del error. El responsable de error, por temor a poner en
@@ -360,15 +362,16 @@ pues la tabla **Apply_new** no cuenta con un contador serial que pudiese causar 
 
 .. code-block:: sql
 
- DELETE FROM Apply
+ DELETE FROM Apply_new
  WHERE sid = 1 and cname = 'Stanford' and major = 'engineering';
 
 Lo que resulta en el cambio en la tabla::
   
-  sid |   cname   |     major        | decision
-  ----+-----------+------------------+---------
-   1  | Stanford  | science          |  t 
-   1  | Stanford  | natural history  |  t
+  sid |  cname   |      major      | decision 
+  -----+----------+-----------------+----------
+    1 | Stanford | science         | t
+    1 | Berkeley | natural history | t
+  (2 rows)
 
 y en la impunidad del responsable.
 
