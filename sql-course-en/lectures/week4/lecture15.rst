@@ -106,11 +106,12 @@ Which of the following schemes would you recommend?
  3. Student(SID, name), Course(courseNum, title), Took(SID, courseNum, year, grade)
  4. Student(SID, name), Course(courseNum, title), Took(name, title, year, grade)
 
-The right choice is letter (c), as it says in the statement that there are students with a unique ID, which in 
-this case is "SID" and "name". The courses have an unique ID which is "courseNum" and "title". Further says that
-students take a course in a given year "year" and receive a "grade", but the attribute "courseNum" acts as 
-foreign key of the Course table with which you can get the title of the course. And also must have a primary
- key to identify the course that will be taken "SID".
+The right choice is letter (c), as it says in the statement that there are students with 
+a unique ID, which in this case is "SID" and "name". The courses have an unique ID which 
+is "courseNum" and "title". Further says that students take a course in a given year "year" 
+and receive a "grade", but the attribute "courseNum" acts as foreign key of the Course table 
+with which you can get the title of the course. And also must have a primary key to identify 
+the course that will be taken "SID".
 
 
 Design by decomposition
@@ -125,7 +126,8 @@ Automatic decomposition:
 * “Mega” relations + properties of data
 * The system decompose based on the properties.
 * Final ser of relations satisfy the normal form.
-* There are no anomalies; there is a loss of information.
+
+ * There are no anomalies; there is a loss of information.
  
 Normalization
 ~~~~~~~~~~~~~
@@ -170,7 +172,8 @@ It is said that a table is in first normal form (1NF) if and only if each of the
 value for a determined record. Let’s suppose that we want to create a table for storing courses of
 informatics students in USM. We could consider the following design:
 
-.. math:: 
+.. math::
+ 
     \begin{array}{|c|c|c|}                                                          
     \hline                                                                           
     \textbf{Code} & \textbf{Name} & \textbf{Courses} \\
@@ -190,7 +193,7 @@ field because in both there are two data. The solution to this problem is to cre
 the following way:
 
 .. math::                                                                            
- \text{Table 1}
+ \textbf{Table 1}
                                                                                      
  \begin{array}{|c|c|}                                                            
     \hline                                                                           
@@ -204,7 +207,7 @@ the following way:
     \hline                                                                           
    \end{array}  
 
- \text{Table 2}                                                                           
+ \textbf{Table 2}                                                                           
                                                                                      
  \begin{array}{|c|c|}                                                            
     \hline                                                                           
@@ -222,8 +225,8 @@ the following way:
     \hline
   \end{array}  
 
-As you can check, now all the records of the two tables meet the conditions of having in all fields
- only one data. So, Table 1 and Table 2 are in first normal form.
+As you can check, now all the records of the two tables meet the conditions of having in all fields 
+only one data. So, Table 1 and Table 2 are in first normal form.
 
 
 
@@ -270,15 +273,14 @@ table is in first normal form, so that we can transform it in second normal form
 
 * The *Name* field does not depend functionally on the whole key. It only depends on the *Code_professor* key.
 * The *Department* field does not depend functionally on the whole key. It only depends on the *Code_department* key.
-* The *Years_worked* K depends functionally on the keys *Code_professor* and *Code_department* (it
- represent the years worked of each professor in the department of the university).
+* The *Years_worked* K depends functionally on the keys *Code_professor* and *Code_department* (it represent the years worked of each professor in the department of the university).
 
 Therefore, as it does not depend functionally on all the fields of the previous table, it is not in the second 
 normal form. So the solution is the following:            
 
 .. math::                                                                            
 
- \text{Table A}
+ \textbf{Table A}
                                                                                      
  \begin{array}{|c|c|}                                                                
     \hline                                                                           
@@ -294,7 +296,7 @@ normal form. So the solution is the following:
     \hline                                                                           
   \end{array} 
 
- \text{Table B}
+ \textbf{Table B}
 
  \begin{array}{|c|c|}                                                                
     \hline                                                                           
@@ -308,7 +310,7 @@ normal form. So the solution is the following:
     \hline                                                                           
   \end{array}  
 
- \text{Table C}
+ \textbf{Table C}
 
   \begin{array}{|c|c|c|}                                                                
     \hline                                                                           
@@ -334,12 +336,12 @@ Third normal form (3FN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A table is in 3NF if it is in 2NF, and it does not contain **transitive dependencies**. That is, each 
-non-primary attribute depends only on the primary key, with no dependencies between attributes that are
- not primary key. This type of dependency is deleted by creating a new table with the non-key attribute(s) 
-which depend on another non-key attribute. And with an initial table, which has its own attributes, it must
- contain the attribute that makes the primary key in the new generated table. This attribute is called 
-foreign key within the initial table. So by foreign key we understand that is those attribute that in
- table are not primary key, but it actually is in another table.
+non-primary attribute depends only on the primary key, with no dependencies between attributes that are 
+not primary key. This type of dependency is deleted by creating a new table with the non-key attribute(s) 
+which depend on another non-key attribute. And with an initial table, which has its own attributes, it must 
+contain the attribute that makes the primary key in the new generated table. This attribute is called 
+foreign key within the initial table. So by foreign key we understand that is those attribute that in 
+table are not primary key, but it actually is in another table.
 
 
 Example
@@ -374,7 +376,7 @@ It is for the last point that we said the table is not in 3NF. However, we will 
 
 .. math::                                                                            
                
-  \text{Table A}
+  \textbf{Table A}
                                                                       
   \begin{array}{|c|c|c|}                                                                
     \hline                                                                           
@@ -388,7 +390,7 @@ It is for the last point that we said the table is not in 3NF. However, we will 
     \hline                                                                           
   \end{array}  
 
-  \text{Table B}
+  \textbf{Table B}
 
   \begin{array}{|c|c|}                                                                
     \hline                                                                           
@@ -406,8 +408,8 @@ Boyce-Codd normal form (FNBC)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It is a slightly stronger version of the third normal form (3NF). The normal form Boyce-Codd requires 
-that **there are no non-trivial functional dependencies** of attributes that are not a set of the candidate
- key. On a table in 3NF, all attributes depend on a key. It is said that a table is in BCNF if and 
+that **there are no non-trivial functional dependencies** of attributes that are not a set of the candidate 
+key. On a table in 3NF, all attributes depend on a key. It is said that a table is in BCNF if and 
 only if it is in 3NF and every non-trivial functional dependency has a candidate key as a determinant.
 
 
@@ -441,8 +443,8 @@ c) name → sID, title → courseNum
 d) courseNum → sID
 
 The correct answer is option (b), since a single student id "sID” is assigned to only one student and the 
-course id that is unique "courseNum" has assigned a title. The other alternatives are not possible because
- the alternative (a) says a student can only take a course, the alternative (c) says that the names of 
+course id that is unique "courseNum" has assigned a title. The other alternatives are not possible because 
+the alternative (a) says a student can only take a course, the alternative (c) says that the names of 
 students and course titles are unique and alternative (d) says that courses can only be taken by a student.
 
 
@@ -487,8 +489,8 @@ Example 1
 """""""""
 
 Consider the relationship Information_student (SID, bedroom, courseNum). Students usually live in 
-several bedrooms and take many courses in college. Suppose that data does not captured in which bedroom (s)
- a student was in when taking a specific course, ie all courses-bedroom combinations are recorded for each 
+several bedrooms and take many courses in college. Suppose that data does not captured in which bedroom (s) 
+a student was in when taking a specific course, ie all courses-bedroom combinations are recorded for each 
 student. What are all the dependencies for Information_student relation?
 
 a) sID->>bedroom
@@ -507,7 +509,7 @@ A table is in the fourth normal form if and only if for any combination key-fiel
 
 .. math::
 
- \text{Geometry}
+ \textbf{Geometry}
  
  \begin{array}{|c|c|c|}                                                                
     \hline                                                                           
@@ -534,17 +536,15 @@ avoid in order to have a table in 4NF.
 
 The solution to the previous table is the following:
 
-Size
-
 .. math::
 
- \text{Size}
+ \textbf{Size}
  
  \begin{array}{|c|c|}                                                                
     \hline                                                                           
     \textbf{Figure} & \textbf{Size} \\                                    
     \hline                                                                           
-    \text{Square} \text{Big} \\                                                                     
+    \text{Square} & \text{Big} \\                                                                     
     \hline                                                                           
     \text{Square} & \text{Medium}\\                                                                     
     \hline                                                                           
@@ -554,7 +554,7 @@ Size
     \hline                                                                           
   \end{array}
 
- \text{Color}
+ \textbf{Color}
 
  \begin{array}{|c|c|}                                                                
     \hline                                                                           

@@ -1,4 +1,4 @@
-Lecture 16 - Relational Desing Theory: Multivalued dependencies (4th normal form)
+Lecture 16 - Relational Design Theory: Multivalued dependencies (4th normal form)
 -----------------------------------------------------------------------------------
 
 Functional dependency
@@ -16,7 +16,7 @@ in the following way:
 
 .. math::
 
- Nif \rightarrow (Nombre, address)
+ Nif \rightarrow (Name, address)
 
 For example in the relation  R(`\underline{Nif}`, Name, Address), *Name* and 
 *Address* attributes depend functionally on *Nif*.
@@ -30,20 +30,21 @@ The functional dependencies are generally useful for:
 Example 1:
 ==========
 
-Student(SSN, sName, address, HScode, HSname, HScity, GPA, priority)
+**Student(SSN, sName, address, HScode, HSname, HScity, GPA, priority)**
 
-Apply(SSN, cName, state, date, major)
+**Apply(SSN, cName, state, date, major)**
 
 Suppose the priority is determined by GPA
 
-GPA > 3.8 priority=1
+.. math::
 
-3.3<GPA<=3.8 priority=2
+ \text{GPA > 3.8 priority=1}
 
-GPA<=3.3 priority=3
+ \text{3.3<GPA<=3.8 priority=2}
+
+ \text{GPA<=3.3 priority=3}
 
 Two tuples with same GPA have the same priority
-
 
 .. math::
 
@@ -96,33 +97,37 @@ maximum of 9*3=27 different values for E.
 
 The functional dependencies for the tables are:
 
-
 **Student(SSN, sName, address, HScode, HSname, HScity, GPA, priority)**
 
-SSN `\rightarrow` sName
+.. math::
 
-SSN `\rightarrow` address
+ SSN \rightarrow sName
 
-HScode `\rightarrow` HsName, HScity
+ SSN \rightarrow address
 
-HsName, HScity `\rightarrow` HScode
+ HScode \rightarrow HSname, HScity
 
-SSN `\rightarrow` GPA
+ HSname, HScity \rightarrow HScode
 
-GPA `\rightarrow` priority
+ SSN \rightarrow GPA
 
-SSN `\rightarrow` priority
+ GPA \rightarrow priority
+
+ SSN \rightarrow priority
 
 **Apply(SSN, cName, state, date, major)**
 
-cName `\rightarrow` date
+.. math::
 
-SSN, cName `\rightarrow` major
+ cName \rightarrow date
 
-SSN `\rightarrow` state
+ SSN, cName \rightarrow major
+
+ SSN \rightarrow state
 
 Example 3
 =========
+
 For the relation Apply(SSN,cName,state,date,major), what in the real-world is captured by the restriction SSN,cName → date?
 
 a) A student can only apply to one school
@@ -142,56 +147,76 @@ Functional dependencies and keys
 
 * Trivial Functional dependency
 
-`\overline{A} \rightarrow \overline{B}`  `\overline{B} \subseteq A`
+.. math::
+
+ \overline{A} \rightarrow \overline{B} \hspace{1cm}  \overline{B} \subseteq A
 
 * Non trivial functional dependency
 
-`\overline{A} \rightarrow \overline{B}` `\overline{B} \not\subseteq A`
+.. math::
+
+ \overline{A} \rightarrow \overline{B} \hspace{1cm} \overline{B} \not\subseteq A
 
 * Complete trivial functional dependency
 
-`\overline{A} \rightarrow \overline{B}` `\overline{A} \cap \overline{B} = \oslash`
+.. math::
+
+ \overline{A} \rightarrow \overline{B} \hspace{1cm} \overline{A} \cap \overline{B} = \oslash
 
 Rules for functional dependencies.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *  Rule for division
 
-`\overline{A} \rightarrow B_{1}, B_{2},...,B_{n}`
+.. math::
 
-`\overline{A} \rightarrow B_{1}` `\overline{A} \rightarrow B_{2}` `...`
+ \overline{A} \rightarrow B_{1}, B_{2},...,B_{n}
+
+ \overline{A} \rightarrow B_{1} \hspace{1cm} \overline{A} \rightarrow B_{2} ...
 
 * Can we also divide it to the left?
 
-`A_{1}, A_{2}, ..., A_{n} \rightarrow \overline{B}`
+.. math::
 
-`A_{1} \rightarrow \overline{B}` `A_{2} \rightarrow \overline{B}` `...`
+ A_{1}, A_{2}, \ldots, A_{n} \rightarrow \overline{B}
+
+ A_{1} \rightarrow \overline{B} \hspace{1cm} A_{2} \rightarrow \overline{B} \ldots
 
 You cannot make a division to the left.
 
 * Rules of combination
 
-`\overline{A} \rightarrow B_{1}`
+.. math::
 
-`\overline{A} \rightarrow B_{2}`
+ \overline{A} \rightarrow B_{1}
 
-`\overline{A} \rightarrow B_{.}`
+ \overline{A} \rightarrow B_{2}
+
+ \overline{A} \rightarrow B_{\ldots}
+
 en
-`\overline{A} \rightarrow B_{n}`
 
-`\rightarrow` `\overline{A} \rightarrow B_{1}, B_{2}, ..., B_{n}`
+.. math::
+
+ \overline{A} \rightarrow B_{n}
+
+ \Rightarrow \overline{A} \rightarrow B_{1}, B_{2}, \ldots, B_{n}
 
 * Rules of trivial dependency
 
-`\overline{A} \rightarrow \overline{B}`  `\overline{B} \subseteq A`
+.. math::
 
-`\overline{A} \rightarrow \overline{B}` then `\overline{A} \rightarrow \overline{A} \cup \overline{B}`
+ \overline{A} \rightarrow \overline{B} \hspace{1cm}  \overline{B} \subseteq A
 
-`\overline{A} \rightarrow \overline{B}` then `\overline{A} \rightarrow \overline{A} \cap \overline{B}`
+ \overline{A} \rightarrow \overline{B} \hspace{1cm} \text{then} \hspace{1cm} \overline{A} \rightarrow \overline{A} \cup \overline{B}
+
+ \overline{A} \rightarrow \overline{B} \hspace{1cm} \text{then} \hspace{1cm} \overline{A} \rightarrow \overline{A} \cap \overline{B}
 
 * Transitive rule
 
-`\overline{A} \rightarrow \overline{B}` `\overline{B} \rightarrow \overline{A}` then `\overline{A} \rightarrow \overline{C}`
+.. math::
+
+ \overline{A} \rightarrow \overline{B} \hspace{1cm} \overline{B} \rightarrow \overline{A} \hspace{1cm} \text{then} \hspace{1cm}  \overline{A} \rightarrow \overline{C}
 
 Closing of attributes
 
@@ -201,38 +226,41 @@ Closing of attributes
 Example 4
 =========
 
-Student(SSN, sName, address, HScode, HsName, HScity, GPA, priority)
+An example of attributes closure is:
 
-SSN `\rightarrow` sName, address, GPA
+**Student(SSN, sName, address, HScode, HSname, HScity, GPA, priority)**
 
-GPA `\rightarrow` priority
+.. math::
 
-HScode `\rightarrow` HsName, HScity
+ \text{SSN} \rightarrow \text{sName, address, GPA}
 
-{SSN, HScode} `^{+}` `\rightarrow` (all attributes)(key)
+ \text{GPA} \rightarrow \text{priority}
 
-{SSN, HScode, sName, address, GPA, priority, HsName, HScity}
+ \text{HScode} \rightarrow \text{HSname, HScity}
+
+ \text{{SSN, HScode}}^{+} \rightarrow \text{(all attributes)(key)}
+
+ \text{{SSN, HScode, sName, address, GPA, priority, HSname, HScity}}
 
 Closing and Keys
 ~~~~~~~~~~~~~~~~~
 
 * ¿Is  `\overline{A}` a key for R?
 
-Calculate `\overline{A^{+}}` if= all attributes, so `\overline{A}`  is a key.
+ Calculate `\overline{A^{+}}` if= all attributes, so `\overline{A}`  is a key.
 
 * How can we find all the keys with a given set of functional dependencies?
 
-Consider each subgroup`\overline{A}` the attributes.
+ Consider each subgroup`\overline{A}` the attributes.
 
-`A^{+} \rightarrow` all attributes
+ `A^{+} \rightarrow` all attributes
 
-Is key
+ Is key
 
 Example 5
 =========
 
 Consider the relation R(A,B,C,D,E) and suppose we have the functional dependencies:
-
 
 .. math::
 
@@ -286,13 +314,4 @@ d) S2 = {ADE `\rightarrow` BC}
 
 The correct alternative is (c) because using the FDs in 
 S1: {AD}+ = {ABCD}; {AE}+ = {ABCDE}; {ABC}+ = {ABC}; {D}+ = {B}; {ADE}+ = {ABCDE}
-
-
-
-
-Assignment 4
-
-Deadline: January 7th, 2013 (23:59)
-
-
 
