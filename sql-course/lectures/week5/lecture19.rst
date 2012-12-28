@@ -21,4 +21,20 @@ Parrafo inicial con algo como: "en esta lectura se utilizará X herramienta para
 embargo existen muchas otras herramientas, tales como... *Cabe destacar que el uso de cualquiera de ellas no implica
 descuentos o bnificaciones en la tarea*"   **Preguntarle a la andrea esto ultimo**
 
+
+UML define 9 tipos de  diagramas::
+ class (package)
+ object
+ use case
+ sequence 
+ collaboration
+ statechart
+ activity
+ component
+ deployment
+
+El curso está oreintado a diagramas de objeto.
+
+Consejos para realizar un buen diagrama UML
+
 Estimacion inicial... mucha imagen, nada de sql, lectura larga
