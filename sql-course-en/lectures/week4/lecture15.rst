@@ -1,4 +1,4 @@
-Lecture 15 - Relational Desing Theory: Overview
+Lecture 15 - Relational Design Theory: Overview
 -------------------------------------------------
 
 Design a scheme of database
@@ -41,7 +41,7 @@ Now we will show you a table and then its problems presented with more detail:
 
 
 * **Redundancy:** when an author has several books, his/her nationality is repeated.
-* **Anomalies of modification:** if you change the address of “Algaguara” editorial, you must modify two rows. A priori, you cannot tell how many books an author has. Errors are very frequent when you forget to modify an author.
+* **Anomalies of modification:** if you change the address of “Alfaguara” editorial, you must modify two rows. Previously, you cannot tell how many books an author has. Errors are very frequent when you forget to modify an author.
 * **Anomalies of insertion:** you want to insert an author who does not present books. “Name_author” and “Cod_book” are key fields, so the keys cannot be null values.
 
 By deleting these anomalies ensures:
@@ -89,16 +89,17 @@ A correct form to do the previous table without anomalies is
   * Student(SSN, sName);
   * Apply(SSN, cName);
   * High_School(SSN, HS);
-  * Located(HS, HSciudad);
+  * Located(HS, HScity);
   * Hobbies(SSN, hobby);
 
 Exercise
 =========
-Consider the possibility of a database containing information about the courses taken by students. 
-Students have a unique ID of student and (possibly not a unique) name. Courses have a unique number of 
-courses and (possibly not a unique) title. Students take a course of a determined year and receive a grade.
 
-Which of the following eschemes would you recommend?
+Consider the possibility of a database containing information about the courses taken by students. 
+Students have a unique ID of student and name. Courses have a unique number of 
+courses and title. Students take a course of a determined year and receive a grade.
+
+Which of the following schemes would you recommend?
 
  1. Took(SID, name, courseNum, title, year, grade)
  2. Course(courseNum, title, year), Took(SID, courseNum, grade)
@@ -112,7 +113,7 @@ foreign key of the Course table with which you can get the title of the course. 
  key to identify the course that will be taken "SID".
 
 
-Desing by decomposition
+Design by decomposition
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Start with *“mega” relations* which contain everything.
@@ -152,7 +153,7 @@ one or two more repetitive groups. In that case, its primary key cannot be a sim
 Next, we will give you a definition and an example regarding normal forms:
 
 First normal form  (1FN)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 A table is normalized or in 1NF, if it only has atomic values in the intersection of every row and 
 column, which means that it does not have repetitive groups. In order to meet this, we must pass to 
@@ -193,7 +194,7 @@ the following way:
                                                                                      
  \begin{array}{|c|c|}                                                            
     \hline                                                                           
-    \textbf{Código} & \textbf{Nombre}  \\                           
+    \textbf{Code} & \textbf{Name}  \\                           
     \hline                                                                           
     \text{1} & \text{Patricia}  \\                       
     \hline                                                                           
@@ -270,7 +271,7 @@ table is in first normal form, so that we can transform it in second normal form
 * The *Name* field does not depend functionally on the whole key. It only depends on the *Code_professor* key.
 * The *Department* field does not depend functionally on the whole key. It only depends on the *Code_department* key.
 * The *Years_worked* K depends functionally on the keys *Code_professor* and *Code_department* (it
- represent the years worked of each professor in the deparment of the university).
+ represent the years worked of each professor in the department of the university).
 
 Therefore, as it does not depend functionally on all the fields of the previous table, it is not in the second 
 normal form. So the solution is the following:            
@@ -411,7 +412,7 @@ only if it is in 3NF and every non-trivial functional dependency has a candidate
 
 
 Functional dependencies and BCNF
-"""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
 
 * **Apply (SSN, sName, cName)**
 * Redundancy, anomalies of update and elimination.
@@ -458,7 +459,7 @@ is where there is an existence of two or more independent relationship of many t
 causes redundancy, which is suppressed by the fourth normal form.
 
 
-Mutivaluated dependencies and 4NF
+Multivalued dependencies and 4NF
 """""""""""""""""""""""""""""""""
 
 **Apply(SSN, cName, HS)**
@@ -467,7 +468,7 @@ Mutivaluated dependencies and 4NF
 * Multiplicative effect: S schools or H high schools, so it generates “S*H” or “S+H” tuples.
 * It is not directed by BCNF: there are no functional dependencies.
 
-**Multivalue dependency SSN ->> cName or SSN ->> HS**
+**Multivalued dependency SSN ->> cName or SSN ->> HS**
 
 * SSN counts all combinations of cName with HS.
 * In case of store each cName and HS, to obtain one time a SSN.
@@ -495,7 +496,7 @@ b) sID->>courseNum
 c) sID->>bedroom, sID->>courseNum
 d) sID->>bedroom, sID->>courseNum, bedroom->>courseNum
 
-The correct alternative is ( c ) as for a stundet there are many bedrooms and he/she can take many courses. 
+The correct alternative is ( c ) as for a student there are many bedrooms and he/she can take many courses. 
 Both alternatives (a) and (b) omit one dependency. And alternative (d) says that all students of each bedroom 
 take the same set of courses.
 
@@ -506,7 +507,7 @@ A table is in the fourth normal form if and only if for any combination key-fiel
 
 .. math::
 
- \text{Geometría}
+ \text{Geometry}
  
  \begin{array}{|c|c|c|}                                                                
     \hline                                                                           
