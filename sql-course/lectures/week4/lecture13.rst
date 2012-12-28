@@ -42,7 +42,7 @@ deuda y dirección
 
 Se crea la tabla Cliente donde las columnas “rut”, “nombre” y “apellido” no incluyen
 :sql:`NULL`, mientras que “direccion” y “deuda”  puede incluir :sql:`NULL`.
-Es decir, podría desconocerse la dirección del usuario sin que esto traiga problemas
+Es decir, se podría desconocer la dirección del usuario sin que esto traiga problemas
 a la base de datos. La consulta SQL que realiza esta acción es la siguiente:
 
 .. code-block:: sql
