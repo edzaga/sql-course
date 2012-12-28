@@ -199,7 +199,7 @@ el registro 2 y 3, en el campo de *Cursos*, ya que en ambos existen dos datos.
 La solución a este problema es crear dos tablas del siguiente modo.
 
 .. math::                                                                            
- \text{Tabla 1}
+ \textbf{Tabla 1}
                                                                                      
  \begin{array}{|c|c|}                                                            
     \hline                                                                           
@@ -213,7 +213,7 @@ La solución a este problema es crear dos tablas del siguiente modo.
     \hline                                                                           
    \end{array}  
 
- \text{Tabla 2}                                                                           
+ \textbf{Tabla 2}                                                                           
                                                                                      
  \begin{array}{|c|c|}                                                            
     \hline                                                                           
@@ -290,7 +290,7 @@ en segunda forma normal, entonces la solución es la siguiente:
 
 .. math::                                                                            
 
- \text{Tabla A}
+ \textbf{Tabla A}
                                                                                      
  \begin{array}{|c|c|}                                                                
     \hline                                                                           
@@ -306,7 +306,7 @@ en segunda forma normal, entonces la solución es la siguiente:
     \hline                                                                           
   \end{array} 
 
- \text{Tabla B}
+ \textbf{Tabla B}
 
  \begin{array}{|c|c|}                                                                
     \hline                                                                           
@@ -320,7 +320,7 @@ en segunda forma normal, entonces la solución es la siguiente:
     \hline                                                                           
   \end{array}  
 
- \text{Tabla C}
+ \textbf{Tabla C}
 
   \begin{array}{|c|c|c|}                                                                
     \hline                                                                           
@@ -340,7 +340,7 @@ en segunda forma normal, entonces la solución es la siguiente:
 
 Se puede observar que la *Tabla A* tiene como índice la clave *Código_empleado*, *Tabla B* 
 tiene como clave *Código_departamento* y la *Tabla C* que tiene como clave compuesta *Código_empleado* 
-y *Código_departamento*, encontrandose finalmente estas tablas en segunda forma normal.
+y *Código_departamento*, encontrándose finalmente estas tablas en segunda forma normal.
 
 Tercera forma normal (3FN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -387,7 +387,7 @@ muestra la solución:
 
 .. math::                                                                            
                
-  \text{Tabla A}
+  \textbf{Tabla A}
                                                                       
   \begin{array}{|c|c|c|}                                                                
     \hline                                                                           
@@ -401,7 +401,7 @@ muestra la solución:
     \hline                                                                           
   \end{array}  
 
-  \text{Tabla B}
+  \textbf{Tabla B}
 
   \begin{array}{|c|c|}                                                                
     \hline                                                                           
@@ -479,7 +479,7 @@ Dependencias multivaluadas y 4FN
 
 **Aplicar(SSN, cNombre, HS)**
 
-* Redundancia, anomalias de actualización y eliminación.
+* Redundancia, anomalías de actualización y eliminación.
 * Efecto multiplicativo: C colegios o H escuelas secundarias, por lo que se generarán "C * H" ó "C + H" tuplas.
 * No es dirigida por BCNF: No hay dependencias funcionales.
 
@@ -523,7 +523,7 @@ no existen valores duplicados.
 
 .. math::
 
- \text{Geometría}
+ \textbf{Geometría}
  
  \begin{array}{|c|c|c|}                                                                
     \hline                                                                           
@@ -551,13 +551,13 @@ La solución a la tabla anterior es la siguiente:
 
 .. math::
 
- \text{Tamaño}
+ \textbf{Tamaño}
  
  \begin{array}{|c|c|}                                                                
     \hline                                                                           
     \textbf{Figura} & \textbf{Tamaño} \\                                    
     \hline                                                                           
-    \text{Cuadrado} \text{Grande} \\                                                                     
+    \text{Cuadrado} & \text{Grande} \\                                                                     
     \hline                                                                           
     \text{Cuadrado} & \text{Mediano}\\                                                                     
     \hline                                                                           
@@ -567,7 +567,7 @@ La solución a la tabla anterior es la siguiente:
     \hline                                                                           
   \end{array}
 
- \text{Color}
+ \textbf{Color}
 
  \begin{array}{|c|c|}                                                                
     \hline                                                                           

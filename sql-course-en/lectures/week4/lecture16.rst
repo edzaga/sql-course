@@ -194,10 +194,6 @@ You cannot make a division to the left.
 
  \overline{A} \rightarrow B_{\ldots}
 
-en
-
-.. math::
-
  \overline{A} \rightarrow B_{n}
 
  \Rightarrow \overline{A} \rightarrow B_{1}, B_{2}, \ldots, B_{n}
@@ -255,7 +251,7 @@ Closing and Keys
 
  `A^{+} \rightarrow` all attributes
 
- Is key
+ **Is key**
 
 Example 5
 =========
