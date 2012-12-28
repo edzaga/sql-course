@@ -62,23 +62,23 @@ Other example is shown in the following table:
 
 *123 Ann of PAHS (P.A) and GHS (P.A) plays tennis and the trumpet. She applied to Stanford, Berkeley and MIT.*
 
-The inserted data in the table could be the ones shown::
+The inserted data in the table could be the ones shown:
 
 .. math::
 
-   \begin{array}{|c|c|c|c|}
-    \hline
-    \text{123} & \text{Ann} & \text{Stanford} & \text{PAHS} & \textbf{P.A} & \text{tennis} \\
-    \hline
-    \text{123} & \text{Ann} & \text{Berkeley} & \text{PAHS}  & \text{P.A} & \text{tennis}\\
-    \hline
-    \text{123}  & \text{Ann} & \text{Berkeley} & \text{PAHS} & \text{P.A}  & \text{trumpet}\\
-    \hline
-    \text{.}  & \text{.} & \text{.} & \text{GHS} & \text{.} & \text{.}\\
-    \hline
-    \text{.} & \text{.} & \text{.} & \text{.} & \text{.} & \text{.}\\
-    \hline
-   \end{array}
+	\begin{array}{|c|c|c|c|}
+	    \hline
+	    \text{123} & \text{Ann} & \text{Stanford} & \text{PAHS} & \textbf{P.A} & \text{tennis} \\
+	    \hline
+	    \text{123} & \text{Ann} & \text{Berkeley} & \text{PAHS}  & \text{P.A} & \text{tennis}\\
+	    \hline
+	    \text{123}  & \text{Ann} & \text{Berkeley} & \text{PAHS} & \text{P.A}  & \text{trumpet}\\
+	    \hline
+	    \text{.}  & \text{.} & \text{.} & \text{GHS} & \text{.} & \text{.}\\
+	    \hline
+	    \text{.} & \text{.} & \text{.} & \text{.} & \text{.} & \text{.}\\
+	    \hline
+	 \end{array}
 
 * **Redundancy:** captures information many times, for instance: “123 Ann”, “PAHS”, “tennis” or “MIT”.
 * **Anomalies of update:** update data in a different way such as “bugle” for “trumpet.”

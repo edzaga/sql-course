@@ -19,6 +19,7 @@ It has a zoological database with the following scheme:
 
 This table stores the data of zoos. Their *name*, *city* and *country* in which it is located, *size* is 
 the size of the hectares and the *budget* of monetary units.
+
 .. code-block:: sql
 
 		 name           |      city        |    country     | size    | budget 
@@ -38,6 +39,7 @@ the size of the hectares and the *budget* of monetary units.
 
 This table stores the data characterizing animal species. Stores the cientific name in *cientName*, the 
 common name by which he or she is known, is saved in *comName* and the family who belongs the specie.
+
 .. code-block:: sql
 
 		cientName        |           comName            | family  
@@ -57,6 +59,7 @@ common name by which he or she is known, is saved in *comName* and the family wh
 The animal table saves data of the animals that inhabit every zoo. The foreign *zooName* is key attribute **Zoo**, refers to 
 the zoo in which an animal is, *specieName* is foreign key to *specie* belonging to each, also stored gender, year of 
 birth in *byear* and country of origin *country*.
+
 .. code-block:: sql
 
 	numid  |         zooName        |       specieName        |  sex   |   byear   |   country    
@@ -71,7 +74,7 @@ birth in *byear* and country of origin *country*.
 
 There are specified rules for foreign keys, after having consulted with the heads of zoos:
 
-*The *name* of the zoos should be a known value.
+* The *name* of the zoos should be a known value.
 
 * Every species must have a scientific name.
 
@@ -92,7 +95,7 @@ Question 2 (10 points):
 
 Assign a value unknown (NULL) year of birth of the animal that has the common name "Leon" and living in 'Safari Park'.
 
-Question 3 (5 points):
+Question 3 (10 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Update budgets that have null values, assigning a budget value = 0.
@@ -104,7 +107,7 @@ Question 4 (10 points):
 Select the "common name" (Especie.comName), "name of the zoo" (Zoo.name) and "country" (Animal.country), 
 animals known their country of origin.
 
-Question 5(10 points):
+Question 5 (15 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Remove from database (table **Animal**) reptiles of 'London Zoo'.
@@ -129,7 +132,7 @@ The date is saved for when and how an animal ate, so we can deliver information 
 Eliminate intermediate entities with attributes such as: (DATE, CLASS) and (date, type, # ANIMAL) since not provide 
 additional information.
 
-QUESTION 1 (40 points):
+Question 1 (50 points):
 ^^^^^^^^^^^^^^^^^^^^^^^^
 Normalize each view to 1FN, 2FN y 3FN.. 
 
@@ -137,6 +140,6 @@ Normalize each view to 1FN, 2FN y 3FN..
 .. note :: 
 	The task is delivered in a compressed file .rar , containing:
 
-	* 4.sql assignment file with the answers to the questions of "Database".
-	* assignment 4.doc file,. Docx or. Pdf including response to the item "Relational Design Theory".
+	* assignment4.sql file with the answers to the questions of "Database".
+	* assignment4.doc file,. Docx or. Pdf including response to the item "Relational Design Theory".
 
