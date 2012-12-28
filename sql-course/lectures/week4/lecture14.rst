@@ -90,7 +90,7 @@ Pero, esto resulta en el siguiente error::
 Esto se debe a que *sID* es clave primaria, y serial tiene su propio contador, que parte de 1 (el cual
 no está ligado necesariamente a los valores de las diversas filas que puedan existir en la tabla). Hasta
 este punto, sólo se pueden seguir añadiendo alumnos agregado de forma explícita todos y cada uno de los
-atributos de la tabla, sin poder prescindir en este caso de *sID* y su carcaterística de ser serial, pues
+atributos de la tabla, sin poder prescindir en este caso de *sID* y su característica de ser serial, pues
 la tupla atributo-valor (sID)=(1) está bloqueada.
 
 .. note::

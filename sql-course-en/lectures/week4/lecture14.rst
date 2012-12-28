@@ -100,6 +100,7 @@ Example 2
 ^^^^^^^^^
 
 You can modify the insertion of 'Betty' to be similar to 'Wilma'.
+
 .. note::
  
   Now we will use the command SQL DROP TABLE, which allows to delete a whole table.
@@ -150,7 +151,7 @@ for the “expression” value”), under a certain “condition”.
    the condition.
 
 It is necessary to highlight that even though you can update an attribute, you can also update several
- at the same time:
+at the same time:
 
 .. code-block:: sql
 
