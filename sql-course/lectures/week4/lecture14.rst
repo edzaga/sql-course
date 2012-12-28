@@ -1,5 +1,5 @@
-Lectura 14 - SQL: Data modifications statements
-------------------------------------------------
+Lectura 14 - SQL: Declaraciones de las Modificaciones de Datos
+--------------------------------------------------------------
 .. role:: sql(code)
          :language: sql
          :class: highlight
@@ -271,6 +271,7 @@ es posible comenzar a llenarla de nuevo mediante las últimas 2 consultas del ej
   INSERT INTO Student_new (sName, Average) VALUES ('Wilma', 81);
 
 Y verificando:
+
 .. code-block:: sql
 
   SELECT * FROM Student_new;

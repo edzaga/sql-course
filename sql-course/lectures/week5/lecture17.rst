@@ -1,3 +1,3 @@
-Lecture 17 - Advanced topics on functions
------------------------------------------
+Lecture 17 - Relational Design Theory: Boyce-Codd normal form
+--------------------------------------------------------------
 
