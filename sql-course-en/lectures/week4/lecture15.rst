@@ -167,17 +167,16 @@ Example
 
 It is said that a table is in first normal form (1NF) if and only if each of the fields contain a unique 
 value for a determined record. Let’s suppose that we want to create a table for storing courses of
- informatics students in USM. We could consider the following design:
+informatics students in USM. We could consider the following design:
 
-.. math::
-
- \begin{array}{|c|c|c|}                                                          
+.. math:: 
+    \begin{array}{|c|c|c|}                                                          
     \hline                                                                           
     \textbf{Code} & \textbf{Name} & \textbf{Courses} \\
     \hline                                                                           
     \text{1} & \text{Patricia} & \text{Structure of data} \\
     \hline                                                                           
-    \text{2}  & \text{Margarita} & \text{Database, Theory of systems \\
+    \text{2}  & \text{Margarita} & \text{Database, Theory of systems} \\
     \hline                                                                           
     \text{3}  & \text{Joao} & \text{Structure of data, Databases} \\         
     \hline                                                                           
@@ -535,6 +534,7 @@ avoid in order to have a table in 4NF.
 The solution to the previous table is the following:
 
 Size
+
 .. math::
 
  \text{Size}
