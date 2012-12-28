@@ -28,17 +28,19 @@ Las dependencias funcionales son generalmente útiles para:
 Ejemplo 1:
 ==========
 
-Estudiante(SSN, sNombre, dirección, HScodigo, HSnombre, HSciudad, GPA, prioridad)
+**Estudiante(SSN, sNombre, dirección, HScodigo, HSnombre, HSciudad, GPA, prioridad)**
 
-Aplicar(SSN, cNombre, estado, fecha, principal)
+**Aplicar(SSN, cNombre, estado, fecha, principal)**
 
 Supongamos que la prioridad es determinada por GPA
 
-GPA > 3,8 prioridad = 1
+.. math::
 
-3,3 < GPA <= 3,8 prioridad = 2
+ \text{GPA > 3,8 prioridad = 1}
 
-GPA <= 3,3 prioridad = 3
+ \text{3,3 < GPA <= 3,8 prioridad = 2}
+
+ \text{GPA <= 3,3 prioridad = 3}
 
 Dos tuplas con el mismo GPA tienen la misma prioridad
 
@@ -96,27 +98,31 @@ Las dependencias funcionales para las tablas son:
 
 **Student(SSN, sNombre, dirección, HScodigo, HSnombre, HSciudad, GPA, prioridad)**
 
-SSN `\rightarrow` sNombre
+.. math::
 
-SSN `\rightarrow` dirección
+ SSN \rightarrow sNombre
 
-HScodigo `\rightarrow` HSnombre, HSciudad
+ SSN \rightarrow dirección
 
-HSnombre, HSciudad `\rightarrow` HScodigo
+ HScodigo \rightarrow HSnombre, HSciudad
 
-SSN `\rightarrow` GPA
+ HSnombre, HSciudad \rightarrow HScodigo
 
-GPA `\rightarrow` prioridad
+ SSN \rightarrow GPA
 
-SSN `\rightarrow` prioridad
+ GPA \rightarrow prioridad
+
+ SSN \rightarrow prioridad
 
 **Apply(SSN, cNombre, estado, fecha, principal)**
 
-cNombre `\rightarrow` fecha
+.. math::
 
-SSN, cNombre `\rightarrow` principal
+ cNombre \rightarrow fecha
 
-SSN `\rightarrow` estado
+ SSN, cNombre \rightarrow principal
+
+ SSN \rightarrow estado
 
 Ejemplo 3
 =========
@@ -141,56 +147,72 @@ Dependencias funcionales y llaves
 
 Dependencia funcional Trivial
 
-`\overline{A} \rightarrow \overline{B}`  `\overline{B} \subseteq A`
+.. math::
+
+ \overline{A} \rightarrow \overline{B} \hspace{1cm}  \overline{B} \subseteq A
 
 Dependencia funcional no Trivial
 
-`\overline{A} \rightarrow \overline{B}` `\overline{B} \not\subseteq A`
+.. math::
+
+ \overline{A} \rightarrow \overline{B} \hspace{1cm} \overline{B} \not\subseteq A
 
 Dependencia funcional completamente Trivial
 
-`\overline{A} \rightarrow \overline{B}` `\overline{A} \cap \overline{B} = \oslash`
+.. math::
+
+ \overline{A} \rightarrow \overline{B} \hspace{1cm} \overline{A} \cap \overline{B} = \oslash
 
 Reglas para las dependencias funcionales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Regla de la división
 
-`\overline{A} \rightarrow B_{1}, B_{2},...,B_{n}`
+.. math::
 
-`\overline{A} \rightarrow B_{1}` `\overline{A} \rightarrow B_{2}` `...`
+ \overline{A} \rightarrow B_{1}, B_{2}, \ldots,B_{n}
+
+ \overline{A} \rightarrow B_{1} \hspace{1cm} \overline{A} \rightarrow B_{2} \ldots
 
 * ¿Se puede también dividir a la izquierda?
 
-`A_{1}, A_{2}, ..., A_{n} \rightarrow \overline{B}`
+.. math::
 
-`A_{1} \rightarrow \overline{B}` `A_{2} \rightarrow \overline{B}` `...`
+ A_{1}, A_{2}, \ldots, A_{n} \rightarrow \overline{B}
+
+ A_{1} \rightarrow \overline{B} \hspace{1cm} A_{2} \rightarrow \overline{B} \ldots
 
 No se puede realizar una división a la izquierda
 
 * Combinación de las reglas
 
-`\overline{A} \rightarrow B_{1}`
+.. math::
 
-`\overline{A} \rightarrow B_{2}`
+ \overline{A} \rightarrow B_{1}
 
-`\overline{A} \rightarrow B_{.}`
+ \overline{A} \rightarrow B_{2}
 
-`\overline{A} \rightarrow B_{n}`
+ \overline{A} \rightarrow B_{\ldots}
 
-`\rightarrow` `\overline{A} \rightarrow B_{1}, B_{2}, ..., B_{n}`
+ \overline{A} \rightarrow B_{n}
+
+ \Rightarrow \overline{A} \rightarrow B_{1}, B_{2}, \ldots, B_{n}
 
 * Reglas de dependencia trivial
 
-`\overline{A} \rightarrow \overline{B}`  `\overline{B} \subseteq A`
+.. math::
 
-`\overline{A} \rightarrow \overline{B}` entonces `\overline{A} \rightarrow \overline{A} \cup \overline{B}`
+ \overline{A} \rightarrow \overline{B} \hspace{1cm}  \overline{B} \subseteq A
 
-`\overline{A} \rightarrow \overline{B}` entonces `\overline{A} \rightarrow \overline{A} \cap \overline{B}`
+ \overline{A} \rightarrow \overline{B} \hspace{1cm} \text{entonces} \hspace{1cm} \overline{A} \rightarrow \overline{A} \cup \overline{B}
+
+ \overline{A} \rightarrow \overline{B} \hspace{1cm} \text{entonces} \hspace{1cm} \overline{A} \rightarrow \overline{A} \cap \overline{B}
 
 * Regla transitiva
 
-`\overline{A} \rightarrow \overline{B}` `\overline{B} \rightarrow \overline{A}` entonces `\overline{A} \rightarrow \overline{C}`
+.. math::
+
+ \overline{A} \rightarrow \overline{B} \hspace{1cm} \overline{B} \rightarrow \overline{A} \hspace{1cm} \text{then} \hspace{1cm}  \overline{A} \rightarrow \overline{C}
 
 Cierre de atributos
 
@@ -204,30 +226,32 @@ Un ejemplo de cierre de atributos es:
 
 **Estudiante(SSN, sNombre, dirección, HScodigo, HSnombre, HSciudad, GPA, prioridad)**
 
-SSN `\rightarrow` sNombre, dirección, GPA
+.. math::
 
-GPA `\rightarrow` prioridad
+ \text{SSN} \rightarrow \text{sNombre, dirección, GPA}
 
-HScodigo `\rightarrow` HSnombre, HSciudad
+ \text{GPA} \rightarrow \text{prioridad}
 
-{SSN, HScodigo} `^{+}` `\rightarrow` (todos los atributos)(llave)
+ \text{HScodigo} \rightarrow \text{HSnombre, HSciudad}
 
-{SSN, HScodigo, sNombre, dirección, GPA, prioridad, HSnombre, HSciudad}
+ \text{{SSN, HScodigo}}^{+} \rightarrow \text{(todos los atributos)(llave)}
+
+ \text{{SSN, HScodigo, sNombre, dirección, GPA, prioridad, HSnombre, HSciudad}}
 
 Clausura y llaves
 ~~~~~~~~~~~~~~~~~
 
 * ¿Es `\overline{A}` una llave para R?
 
-Calcular `\overline{A^{+}}` Si = todos atributos, entonces `\overline{A}` es una llave.
+ Calcular `\overline{A^{+}}` Si = todos atributos, entonces `\overline{A}` es una llave.
 
 * ¿Cómo podemos encontrar todas las llaves dado un conjunto de dependencias funcionales?
 
-Considerar cada subconjunto `\overline{A}` de los atributos.
+ Considerar cada subconjunto `\overline{A}` de los atributos.
 
-`A^{+} \rightarrow` todos los atributos
+ `A^{+} \rightarrow` todos los atributos
 
-**es llave**
+ **es llave**
 
 Ejemplo 5
 =========
@@ -280,7 +304,7 @@ b) S2 = {AD `\rightarrow` C, AE `\rightarrow` B}
 c) S2 = {ABC `\rightarrow` D, D `\rightarrow` B}
 d) S2 = {ADE `\rightarrow` BC}
 
-La alternativa correcta es (c), puesto que Using the FDs in S1: {AD}+ = {ABCD};
+La alternativa correcta es (c), puesto que el uso de las FDs en S1: {AD}+ = {ABCD};
 {AE}+ = {ABCDE}; {ABC}+ = {ABC}; {D}+ = {B}; {ADE}+ = {ABCDE}
 
 
