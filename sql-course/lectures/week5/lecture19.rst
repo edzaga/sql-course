@@ -128,7 +128,11 @@ Cada establecimiento puede recibir a lo más 50000 postulaciones.
 
 Ejemplo 4
 ^^^^^^^^^
-Bajo el siguiente contexto y con el fin de diversificar 
+Con el fin de diversificar y bajo el siguiente contexto, supongamos que tenemos personas que realizan
+giros en bancos. Dependiendo del tipo de cuenta, supongamos que existe una cuenta que permite a lo más
+3 giros por mes. Por su parte el banco no tiene reestricción de giros que puede recibir.
+
+.. agregar imagen.
 
 Asociaciones y Clases
 ~~~~~~~~~~~~~~~~~~~~~~
