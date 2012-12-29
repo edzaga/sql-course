@@ -1,5 +1,60 @@
 Lecture 19 - Unified Modeling Language: UML data modeling
 ---------------------------------------------------------
+
+<agregar algo de introducción>
+
+Existen diversas formas de modelar bases de datos (BD), ya sea a través de Modelos Relacionales (lo cual se verá
+en esta lectura) o XML (relativamente nuevo), entre otras.
+
+En lugar de crear las relaciones de forma directa en la BD, el diseñador realiza un modelado de 
+alto nivel, de modo que la situación que se está enfrentando con la BD pueda verse en su totalidad.
+Posteriormente el diseñador, una vez que valida su modelo, procede a su traducción al lenguaje de la BD.
+
+Esta situación no presenta trabajo innecesario (correspondiente al modelado y a la posterior creación
+de relaciones en la BD), pues afortunadamente la gran mayoría de estas herramientas permiten realizar 
+una traducción al lenguaje de la BD.
+ 
+.. mejorar la idea previa.
+
+Dentro del modelado de BD Relacionales, los métodos más conocidos son los diagramas de Entidad-Relación
+(ER), vistos en la primera semana, y el Lenguaje de Modelado Unificado (UML, por sus siglas en inglés).
+Ambos comparten la característica de ser gráficos; es decir que UML al igual que ER está compuesto por
+"simbolos" bajo una serie de reglas. Además, ambos comparten la cualidad de que pueden ser traspasados
+a lenguaje de BD de forma relativamente autónoma.
+
+Por otro lado, cabe destacar que ER es mucho más antiguo que UML, superandole en edad en el orden de 
+décadas. UML es un lenguaje más amplio, es decir, no solo se utiliza para modelar BD, sino que es utilizado
+para modelar programas también. De hecho UML define 9 tipos de diagramas. **(Agregar lo de los diagramas que
+aparece más abajo con una breve explicacion.)**
+
+Existen 5 conceptos claves en UML:
+
+ 1) Clases
+ 2) Asociaciones
+ 3) Asociaciones entre clases
+ 4) Subclases
+ 5) Composiciones y agregaciones
+
+
+Clases
+~~~~~~
+
+Asociaciones
+~~~~~~~~~~~~
+
+Asociaciones entre Clases
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Subclases
+~~~~~~~~~
+
+Composiciones y Agregaciones
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+La razón de crear estos modelos correspond
+
+
 Pauta a seguir y completar
 
 * Data Modeling
