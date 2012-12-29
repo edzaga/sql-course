@@ -27,6 +27,13 @@ décadas. UML es un lenguaje más amplio, es decir, no solo se utiliza para mode
 para modelar programas también. De hecho UML define 9 tipos de diagramas. **(Agregar lo de los diagramas que
 aparece más abajo con una breve explicacion.)**
 
+.. note::
+
+  Existen variadas herramientas a la hora de gráficar diagramas UML. Algunas de ellas son: 
+  DIA, StarUML o Umbrello entre otras. 
+  
+  
+
 Existen 5 conceptos claves en UML:
 
  1) Clases
@@ -38,6 +45,23 @@ Existen 5 conceptos claves en UML:
 
 Clases
 ~~~~~~
+
+Las clases se componen de: un nombre, atributos y métodos. Para quienes hayan experimentado alguna 
+vez con la programación orientada a objetos probablemente se sientan algo familiarizados.
+
+A la hora de realizar modelos de BD, es necesario agregar un identificador de que atributo corresponde a
+la clave primaria, además de un método de eliminación. **Revisar si hay que agregar sobre drop cascade en el video o no**
+No obstante en está lectura se pondrá énfasis a los atributos, pues está enfocada más al  modelado de datos
+que a su operación a través de sus métodos.
+
+Ejemplo 1
+^^^^^^^^^
+Retomemos el caso de los Estudiantes y Establecimientos Educacionales. Dibujemos ambas relaciones como
+clases en UML:
+
+.. agregar la captura de pantalla con el modelado.
+
+
 
 Asociaciones
 ~~~~~~~~~~~~
