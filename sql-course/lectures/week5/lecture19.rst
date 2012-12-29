@@ -62,12 +62,76 @@ clases en UML:
 .. agregar la captura de pantalla con el modelado.
 
 
-
 Asociaciones
 ~~~~~~~~~~~~
 
-Asociaciones entre Clases
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Las Asociaciones corresponden a como se relacionan 2 clases.
+
+Ejemplo 2
+^^^^^^^^^
+El ejemplo 1 terminó con 2 clases separadas, es decir, Estudiantes y Establecimientos Educacionales.
+Sin embargo, y como ya se ha visto en ejemplos de lecturas anteriores, los estudiantes postulan a estos 
+establecimientos, por lo tanto la relacion es **postular**, por lo tanto:
+
+.. agregar imagen sin relacion direccionada.
+
+Es decir que el **Estudiante** **postula** a un **Establecimiento**. Es posible direccionar esta 
+relación para lograr mayor claridad a la hora de ver los diagramas: 
+
+.. agregar imagen con relacion direccionada
+
+Sin embargo no marca la diferencia a la hora de traducir a relaciones.
+
+=============
+Multiplicidad
+=============
+
+Es necesario determinar cuantas veces un objeto de una clase puede relacionarse con objetos de otra clase. 
+Supongamos que se han creado las clases **C1** y **C2**, la multiplicidad apunta a::
+
+ "Cada objeto de la clase C1 está asociado (a través de la relación A)a al menos 
+  'm' y a lo más 'n' objetos de la clase C2"
+
+La notación para ello corresponde a *m..n*, es decir que el valor mínimo es *m* y el máximo *n*. Ambos
+valores van separados por *..* (dos puntos).
+
+.. agregar imagen.
+
+Cabe mencionar que estas relaciones pueden ser bidirecciones
+
+Algunos casos especiales son::
+ 
+ m..*   -> a lo menos 'm' a lo más cualquier valor superior a 'm'
+ 0..n   -> a lo menos '0' a lo más 'n'
+ 0..*   -> a lo menos '0' a lo más cualquier valor superior a '0', es decir , sin reestricción.
+ 1..1   -> sólo 1 valor.
+
+Existen varios tipos de multiplicidad, con su respectiva notación. Ellos son:
+
+1. uno a uno: **0..1 - 0..1**
+2. muchos a uno: **0..* - 0..1**
+3. muchos a muchos:  **0..* - 0..*** 
+4. completa: **1..* - 1..1** o **1..1 - 1..*** o **1..* - 1..***
+
+.. agregar imagen explicativa de cada uno.
+
+..note::
+  En la multiplicidad completa, no deben quedar objetos sin relacionarse.
+
+Ejemplo 3
+^^^^^^^^^
+Supongamos que cada Estudiante debe postular a lo menos a 1 Establecimientos y a lo más a 3. Por otro lado
+Cada establecimiento puede recibir a lo más 50000 postulaciones.
+
+.. agregar imagen
+
+
+Ejemplo 4
+^^^^^^^^^
+Bajo el siguiente contexto y con el fin de diversificar 
+
+Asociaciones y Clases
+~~~~~~~~~~~~~~~~~~~~~~
 
 Subclases
 ~~~~~~~~~
@@ -76,7 +140,6 @@ Composiciones y Agregaciones
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-La razón de crear estos modelos correspond
 
 
 Pauta a seguir y completar
