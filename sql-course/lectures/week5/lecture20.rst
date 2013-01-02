@@ -38,9 +38,9 @@ Según las clases descritas anteriormente tenemos las siguientes relaciones:
 
 .. math::
 
- Estudiante(\underline{sID}, sName, GPA)
+ Estudiante(\underline{sID}, sNombre, GPA)
 
- Universidad(\underline{cName}, state, enr)
+ Universidad(\underline{cNombre}, estado, inscripción)
 
 Asociaciones
 ============
@@ -55,7 +55,7 @@ relación con las claves primarias de ambas clases.
 
 .. math::
 
- Aplicado(\underline{sID}, \underline{cName})
+ Aplicado(sID, cNombre)
 
 Claves para las relaciones de asociación
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -75,38 +75,38 @@ Claves para las relaciones de asociación
 
   Por ejemplo:
 
-.. image:: ../../../sql-course/src/diagrama3_semana5.png                               
-   :align: center
+  .. image:: ../../../sql-course/src/diagrama3_semana5.png                               
+     :align: center
 
-Ahora al tener una multiplicidad 1-n, se debe agregar la clave primaria *Atr1_clase1* 
-de la *Clase1* a la *Clase2* (que es la que posee la multiplicidad "muchos"), quedando 
-como clave foránea de la *Clase2*. 
+  Ahora al tener una multiplicidad 1-n, se debe agregar la clave primaria *Atr1_clase1* 
+  de la *Clase1* a la *Clase2* (que es la que posee la multiplicidad "muchos"), quedando 
+  como clave foránea de la *Clase2*. 
 
-Finalmente las relaciones quedan de la siguiente manera: 
+  Finalmente las relaciones quedan de la siguiente manera: 
 
-.. math::
+  .. math::
 
- Clase1(\underline{Atr1_clase1}, Atr2_clase1)
+     Clase1(\underline{Atr1\_clase1}, Atr2\_clase1)
  
- Clase2(\underline{Atr1_clase2}, Atr2_clase2, Atr1_clase1)
+     Clase2(\underline{Atr1\_clase2}, Atr2\_clase2, Atr1\_clase1)
     
-Si la relación hubiese sido de 0..1-n, el atributo *Atr1_clase1* sería *NULL*.
+  Si la relación hubiese sido de 0..1-n, el atributo *Atr1_clase1* sería *NULL*.
 
-Ahora se mostrará otro ejemplo:
+  Ahora se mostrará otro ejemplo:
 
-.. image:: ../../../sql-course/src/diagrama4_semana5.png                               
-   :align: center
+  .. image:: ../../../sql-course/src/diagrama4_semana5.png                               
+     :align: center
 
-Las relaciones para este ejemplo serían:
+  Las relaciones para este ejemplo serían:
 
-.. math::
+  .. math::
 
- Estudiante(\underline{sID}, sNombre, GPA, cNombre)
+     Estudiante(\underline{sID}, sNombre, GPA, cNombre)
  
- Universidad(\underline{cNombre}, estado, inscripción)
+     Universidad(\underline{cNombre}, estado, inscripción)
    
-Al poseer este tipo de multiplicidad (1-n), se agrega a la clase *Estudiante* (muchos)
-la clave primaria *cNombre* de la clase *Universidad*. 
+  Al poseer este tipo de multiplicidad (1-n), se agrega a la clase *Estudiante* (muchos)
+  la clave primaria *cNombre* de la clase *Universidad*. 
 
  * **Multiplicidad n-m**
  
@@ -118,7 +118,7 @@ la clave primaria *cNombre* de la clase *Universidad*.
 .. CMD: Me falta un ejemplo aquí
  
 Ejemplo
-=======
+"""""""
 
 Supongamos que tenemos 0..2 en el lado derecho, por lo que los estudiantes pueden 
 solicitar hasta un máximo de 2 universidades. ¿Existe todavía una forma de "plegarse" 
@@ -136,5 +136,6 @@ suponiendo que se permiten valores nulos.
 Asociación de clases
 ====================
 
+Agregar atributos a la relación de asociación.
 
 
