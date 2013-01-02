@@ -133,9 +133,51 @@ b) No, si no es 0..1 ó 1..1 *aplicado* entonces se requiere.
 La alternativa correcta es (a), puesto que se debería crear la relación Estudiante(sID, sNombre, GPA, cNombre1, cNombre2), 
 suponiendo que se permiten valores nulos. 
 
-Asociación de clases
-====================
+Clase de asociación
+===================
 
-Agregar atributos a la relación de asociación.
+Las clases de asociación permiten añadir atributos, operaciones y otras características
+a las asociaciones.
+
+.. image:: ../../../sql-course/src/diagrama5_semana5.png                               
+   :align: center
+
+Las relaciones de estas clases queda de la siguiente manera:
+
+.. math::
+
+ Estudiante(\underline{sID}, sNombre, GPA)                              
+                                                                                     
+ Universidad(\underline{cNombre}, estado, inscripción)
+
+ Aplicado(sID, cNombre, Fecha, Decisión)
+
+Otro ejemplo que detalla más claramente las clases de asociación
+
+.. image:: ../../../sql-course/src/diagrama6_semana5.png                               
+   :align: center 
+
+El diagrama nos permite apreciar que una *Persona* puede trabajar para una sola *Compañía*. 
+Necesitamos conservar la información sobre el período de tiempo que trabaja cada empleado 
+para cada *Compañía*.
+
+Para lograrlo, añadimos un atributo *Período* a la asociación *Empleo*.
+
+Subclases
+=========
+
+Si la clase "A" hereda de la clase "B", entonces "B" es la **superclase** de "A". "A" es 
+**subclase** de "B". Los objetos de una **subclase** pueden ser usados en las circunstancias 
+donde son usados los objetos de la **superclase** correspondiente. Esto se debe al hecho 
+que los objetos de la **subclase** comparten el mismo comportamiento que los objetos de la **superclase**.
 
 
+
+1) Las relaciones de las subclases contienen una clave de la superclase más atributos especializados. 
+   
+   
+2) Las relaciones de las subclases contienen todos los atributos.
+3) Una relación que contiene todos los atributos de la superclase y la subclase.
+
+
+ 
