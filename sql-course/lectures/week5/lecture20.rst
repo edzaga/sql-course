@@ -62,19 +62,61 @@ Claves para las relaciones de asociación
 
 * Depende de la multiplicidad
 
+ * **Multiplicidad 1-1**
+
+  * Cada objeto de A está asociado con un objeto de B, y cada objeto de B está asociado con un objeto de A.
+  * Cualquiera de las dos tablas relacionadas implementará una columna con el *ID* de la otra tabla.
+  * Esta columna será la clave foránea para relacionarlas.
+
+ * **Multiplicidad 1-n**
+
+  * Cada objeto A está asociado con más objetos B, pero cada objeto B está asociado con un objeto A.
+  * Implementando la clave foránea *ID* en la tabla “muchos” a la tabla “uno”.
+
+  Por ejemplo:
+
 .. image:: ../../../sql-course/src/diagrama3_semana5.png                               
    :align: center
 
-.. math::                                                                            
-     
+Ahora al tener una multiplicidad 1-n, se debe agregar la clave primaria *Atr1_clase1* 
+de la *Clase1* a la *Clase2* (que es la que posee la multiplicidad "muchos"), quedando 
+como clave foránea de la *Clase2*. 
+
+Finalmente las relaciones quedan de la siguiente manera: 
+
+.. math::
+
  Clase1(\underline{Atr1_clase1}, Atr2_clase1)
+ 
+ Clase2(\underline{Atr1_clase2}, Atr2_clase2, Atr1_clase1)
+    
+Si la relación hubiese sido de 0..1-n, el atributo *Atr1_clase1* sería *NULL*.
 
- Clase2(\underline{Atr1_clase2}, Atr2_clase2)
-                                                                                  
- A(\underline{Atr1_clase1}, \underline{Atr2_clase2})
+Ahora se mostrará otro ejemplo:
 
+.. image:: ../../../sql-course/src/diagrama4_semana5.png                               
+   :align: center
 
+Las relaciones para este ejemplo serían:
 
+.. math::
+
+ Estudiante(\underline{sID}, sNombre, GPA, cNombre)
+ 
+ Universidad(\underline{cNombre}, estado, inscripción)
+   
+Al poseer este tipo de multiplicidad (1-n), se agrega a la clase *Estudiante* (muchos)
+la clave primaria *cNombre* de la clase *Universidad*. 
+
+ * **Multiplicidad n-m**
+ 
+  * Cada objeto A está asociado con más objetos B, y a su vez, cada objeto B está asociado a más objetos A.
+  * En el modelo relacional se usa una tabla auxiliar asociativa para representar la relación.
+  * Dicha tabla tendrá al menos dos columnas, cada una representando la clave foránea a las dos tablas que relaciona.
+  * Con lo anterior se transforma la relación n-m a dos relaciones (1-n, 1-m). 
+
+.. CMD: Me falta un ejemplo aquí
+ 
 Ejemplo
 =======
 
@@ -82,7 +124,17 @@ Supongamos que tenemos 0..2 en el lado derecho, por lo que los estudiantes puede
 solicitar hasta un máximo de 2 universidades. ¿Existe todavía una forma de "plegarse" 
 la relación de asociación en este caso, o que tenemos una relación independiente *Aplicado*? 
 
-.. note::
+.. image:: ../../../sql-course/src/ejemplo_asociacion.png                               
+   :align: center 
 
- La multiplicidad se muestra como un rango [mín...máx] de valores no negativos, con 
- un asterisco (*) representando el infinito en el lado máximo.
+a) Sí, hay una manera.
+b) No, si no es 0..1 ó 1..1 *aplicado* entonces se requiere.
+
+La alternativa correcta es (a), puesto que se debería crear la relación Estudiante(sID, sNombre, GPA, cNombre1, cNombre2), 
+suponiendo que se permiten valores nulos. 
+
+Asociación de clases
+====================
+
+
+
