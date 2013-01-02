@@ -47,6 +47,42 @@ Asociaciones
 
 Relación con la clave de cada lado.
 
+.. image:: ../../../sql-course/src/diagrama2_semana5.png                               
+   :align: center 
+
+Se obtendrán las mismas relaciones del ejemplo anterior, pero se agregará una nueva 
+relación con las claves primarias de ambas clases.
+
+.. math::
+
+ Aplicado(\underline{sID}, \underline{cName})
+
+Claves para las relaciones de asociación
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Depende de la multiplicidad
+
+.. image:: ../../../sql-course/src/diagrama3_semana5.png                               
+   :align: center
+
+.. math::                                                                            
+     
+ Clase1(\underline{Atr1_clase1}, Atr2_clase1)
+
+ Clase2(\underline{Atr1_clase2}, Atr2_clase2)
+                                                                                  
+ A(\underline{Atr1_clase1}, \underline{Atr2_clase2})
 
 
 
+Ejemplo
+=======
+
+Supongamos que tenemos 0..2 en el lado derecho, por lo que los estudiantes pueden 
+solicitar hasta un máximo de 2 universidades. ¿Existe todavía una forma de "plegarse" 
+la relación de asociación en este caso, o que tenemos una relación independiente *Aplicado*? 
+
+.. note::
+
+ La multiplicidad se muestra como un rango [mín...máx] de valores no negativos, con 
+ un asterisco (*) representando el infinito en el lado máximo.
