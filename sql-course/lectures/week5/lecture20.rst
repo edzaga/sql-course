@@ -264,3 +264,6 @@ Las relaciones son de la misma manera que el ejemplo anterior pero al poseer una
 multiplicidad el valor del atributo *cNombre* de la clase *Departamento*, puede tomar el 
 valor **NULL**.
 
+.. note::
+
+ El software utilizado en esta lectura para realizar los diagramas es "Umbrello".
