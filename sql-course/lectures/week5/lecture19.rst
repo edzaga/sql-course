@@ -38,7 +38,7 @@ Existen 5 conceptos claves en UML:
 
  1) Clases
  2) Asociaciones
- 3) Asociaciones entre clases
+ 3) Clases de asociación
  4) Subclases
  5) Composiciones y agregaciones
 
@@ -134,8 +134,81 @@ giros en bancos. Dependiendo del tipo de cuenta, supongamos que existe una cuent
 
 .. agregar imagen.
 
-Asociaciones y Clases
+Clase de asociación
 ~~~~~~~~~~~~~~~~~~~~~~
+
+Cuando la multiplicidad de las relaciones impide definir con exactitud que objeto de la clase **C1** esta asociado 
+a que objeto de la clase **C2**.
+
+Ejemplo 5
+^^^^^^^^^
+
+Supongamos que tenemos a varios  Estudiantes que desean postular a diferentes Establecimientos Educacionales.
+
+.. agregar imagen.
+
+No obstante no hay información que permita definir que estyudiante realiza la postulación, es por ello que se 
+crea una clase de asociación, en este caso postulación (Apply).
+
+.. agregar imagen
+
+.. note::
+
+ Cabe recordar que si no se especifica la multiplicidad de la relación, 
+ se define **1..1** por defecto.
+
+Sin embargo en este modelo no se permite el caso de que un Estudiante postule multiples veces a un
+mismo Establecimiento Educacional. Es por ello que es una buena práctica que, en caso de utilizar este
+tipo de clases, se utilice como Clave Primaria (PK), las PK de las clases que están relacionadas. 
+
+
+El siguiente diagrama clarificará la idea:
+
+.. agregar imagen
+
+Como se puede observar, se han modificado las clases Student, College y Apply. 
+
+
+==========================================
+Eliminar clases de asociación innecesarias
+==========================================
+
+Usando las clases genéricas C1, C2 de atributos A1 y A2 respectivamente. Supongamos que la relación entre 
+ellas es de multiplicidad (* - 1..1) o (* - 0..1). Supongamos que existe una clase de asociación AC de atributos
+A3 y A4. Todo ordenado de acuerdo a la siguiente imagen:
+
+.. agregar imagen
+
+Es posible mover los atributos A3 y A4 a la clase C1, pues dada la multiplicidad un objeto de la clase C1 está
+asociado a 1 objeto de la clase C2. Por lo tanto la clase de asociación se puede eliminar.
+
+.. note::
+
+  La clase de asociación se puede eliminar cuando hay multiplicidad 
+  (* - 1..1) o (* - 0..1). De hecho está pensada para dejar en claro que
+  la asociación entre objetos en caso de que la multiplicidad sea m, n o * en
+  ambos lados de la relación.
+
+
+================
+Autoasociaciones
+================
+
+Corresponden a asociaciones entre una clase y si misma.
+
+Ejemplo 6
+^^^^^^^^^
+
+Supongamos que se desea modelar en UML a la Universidad Técnica Federico Santa María (UTFSM), su Casa
+Central y Campus. Supongamos que existen los atributos *NumAlumnos, Dirección, Nombre, Campus*. 
+.. En lugar de realizar dos clases diferentes, se utiliza el atributo campu para realizar la asicación. 
+Existe una sola Casa Central, pero varios Campus, supongamos que por temas de presupuesto, solo existen
+7 campus.
+.. agregar imagen
+
+En UML, es posible agregar una etiqueta a la relación y a cada lado.
+
+
 
 Subclases
 ~~~~~~~~~
