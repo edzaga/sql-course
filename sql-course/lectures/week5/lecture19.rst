@@ -4,11 +4,15 @@ Lecture 19 - Unified Modeling Language: UML data modeling
          :language: sql
          :class: highlight
 
+Dentro del modelado de BD Relacionales, los métodos más conocidos son los diagramas de Entidad-Relación
+(ER), vistos en la primera semana, y el Lenguaje de Modelado Unificado (UML, por sus siglas en inglés).
+Ambos comparten la característica de ser gráficos; es decir que UML, al igual que ER está compuesto por
+"simbolos" bajo una serie de reglas. Además, ambos comparten la cualidad de que pueden ser traspasados
+a lenguaje de BD de forma relativamente autónoma.
 
-<agregar algo de introducción>
-
-Existen diversas formas de modelar bases de datos (BD), ya sea a través de Modelos Relacionales (lo cual se verá
-en esta lectura) o XML (relativamente nuevo), entre otras.
+Por otro lado, cabe destacar que ER es mucho más antiguo que UML, superandole en edad en el orden de 
+décadas. UML es un lenguaje más amplio, es decir, no solo se utiliza para modelar BD, sino que es utilizado
+para modelar programas también.
 
 En lugar de crear las relaciones de forma directa en la BD, el diseñador realiza un modelado de 
 alto nivel, de modo que la situación que se está enfrentando con la BD pueda verse en su totalidad.
@@ -18,21 +22,9 @@ Esta situación no presenta trabajo innecesario (correspondiente al modelado y a
 de relaciones en la BD), pues afortunadamente la gran mayoría de estas herramientas permiten realizar 
 una traducción al lenguaje de la BD.
  
-.. mejorar la idea previa.
-
-Dentro del modelado de BD Relacionales, los métodos más conocidos son los diagramas de Entidad-Relación
-(ER), vistos en la primera semana, y el Lenguaje de Modelado Unificado (UML, por sus siglas en inglés).
-Ambos comparten la característica de ser gráficos; es decir que UML al igual que ER está compuesto por
-"simbolos" bajo una serie de reglas. Además, ambos comparten la cualidad de que pueden ser traspasados
-a lenguaje de BD de forma relativamente autónoma.
-
-Por otro lado, cabe destacar que ER es mucho más antiguo que UML, superandole en edad en el orden de 
-décadas. UML es un lenguaje más amplio, es decir, no solo se utiliza para modelar BD, sino que es utilizado
-para modelar programas también. De hecho UML define 9 tipos de diagramas. **(Agregar lo de los diagramas que
-aparece más abajo con una breve explicacion.)**
 
 .. note::
-
+ 
   Existen variadas herramientas a la hora de gráficar diagramas UML. Algunas de ellas son: 
   DIA, StarUML o Umbrello entre otras. 
   
@@ -40,11 +32,11 @@ aparece más abajo con una breve explicacion.)**
 
 Existen 5 conceptos claves en UML:
 
- 1) Clases
- 2) Asociaciones
- 3) Clases de asociación
- 4) Subclases
- 5) Composiciones y agregaciones
+1. Clases
+2. Asociaciones
+3. Clases de asociación
+4. Subclases
+5. Composiciones y agregaciones
 
 
 Clases
@@ -54,7 +46,8 @@ Las clases se componen de: un nombre, atributos y métodos. Para quienes hayan e
 vez con la programación orientada a objetos probablemente se sientan algo familiarizados.
 
 A la hora de realizar modelos de BD, es necesario agregar un identificador de que atributo corresponde a
-la clave primaria, además de un método de eliminación. **Revisar si hay que agregar sobre drop cascade en el video o no**
+la clave primaria, además de un método de eliminación.
+
 No obstante en está lectura se pondrá énfasis a los atributos, pues está enfocada más al  modelado de datos
 que a su operación a través de sus métodos.
 
@@ -92,10 +85,10 @@ Multiplicidad
 
 Es necesario determinar cuantas veces un objeto de una clase puede relacionarse con objetos de otra clase. 
 Supongamos que se han creado las clases **C1** y **C2**, la multiplicidad apunta a::
-
+ 
  "Cada objeto de la clase C1 está asociado (a través de la relación A)a al menos 
   'm' y a lo más 'n' objetos de la clase C2"
-
+ 
 La notación para ello corresponde a *m..n*, es decir que el valor mínimo es *m* y el máximo *n*. Ambos
 valores van separados por *..* (dos puntos).
 
@@ -157,7 +150,7 @@ crea una clase de asociación, en este caso postulación (Apply).
 .. agregar imagen
 
 .. note::
-
+ 
  Cabe recordar que si no se especifica la multiplicidad de la relación, 
  se define **1..1** por defecto.
 
@@ -187,7 +180,7 @@ Es posible mover los atributos A3 y A4 a la clase C1, pues dada la multiplicidad
 asociado a 1 objeto de la clase C2. Por lo tanto la clase de asociación se puede eliminar.
 
 .. note::
-
+ 
   La clase de asociación se puede eliminar cuando hay multiplicidad 
   (* - 1..1) o (* - 0..1). De hecho está pensada para dejar en claro que
   la asociación entre objetos en caso de que la multiplicidad sea m, n o * en
@@ -244,7 +237,7 @@ información más específica, como lo son el *país* y *pasaporte* en el caso d
 *región* y *RUN* en el caso de los **Nacionales**. Esta técnica es muy útil para la reutilización.
 
 .. note::
-
+ 
  Las Subclases **heredan** propiedades de las **superclases / clase padre**, es decir no solo 
  atributos, sino que también asociaciones u operaciones  están disponibles en las 
  **subclases / clases hijas**
@@ -269,6 +262,7 @@ Supongamos que un objeto de tipo ciudad tiene una lista de objetos de tipo aereo
 una ciudad, tiene un número de aereopuertos. 
 
 .. note::
+  
    Hay que destacar, que la cardinalidad del extremo que lleva el rombo, es siempre uno.
 
 .. agregar imagen.
@@ -301,57 +295,3 @@ estas siempre serán del mismo avión.
 La composición corresponde a aquellos objetos de los que depende un objeto para que este llegue a funcionar,
 en este caso el avión no puede funcionar sin las 2 alas.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Pauta a seguir y completar
-
-* Data Modeling
-* Modelado de datos de alto nivel (ER (de las primeras lecturas), UML)
-
-* 5 conceptos de UML:
- 1) Clases
- 2) Asociaciones
- 3) Asociaciones entre clases
- 4) Subclases
- 5) Composiciones y agregaciones
-
-Multiplicidad
-Tipos de relaciones (1-1, muchos - 1 , muchos - muchos)
-
-Ejemplos por cada concepto.
-
-Parrafo inicial con algo como: "en esta lectura se utilizará X herramienta para trabajar en el modelado UML. Sin
-embargo existen muchas otras herramientas, tales como... *Cabe destacar que el uso de cualquiera de ellas no implica
-descuentos o bnificaciones en la tarea*"   **Preguntarle a la andrea esto ultimo**
-
-
-UML define 9 tipos de  diagramas::
- class (package)
- object
- use case
- sequence 
- collaboration
- statechart
- activity
- component
- deployment
-
-El curso está oreintado a diagramas de objeto.
-
-Consejos para realizar un buen diagrama UML
-
-Estimacion inicial... mucha imagen, nada de sql, lectura larga
