@@ -9,6 +9,9 @@ Base de datos de alto nivel y modelo de diseño
 .. image:: ../../../sql-course/src/dibujo1_semana5.png                               
    :align: center  
 
+En la imagen anterior se observa que el lenguaje UML, puede ser traducido en relaciones
+de una base de datos.
+
 UML (Lenguaje de Modelado Unificado)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -20,7 +23,7 @@ Subconjunto de datos de modelado
  2) Asociaciones 
  3) Asociación de clases
  4) Subclases
- 5) Composición y agregación
+ 5) Composición y Agregación
 
 * Los diseños pueden ser traducidos automáticamente a las relaciones
 
@@ -114,8 +117,6 @@ Claves para las relaciones de asociación
   * En el modelo relacional se usa una tabla auxiliar asociativa para representar la relación.
   * Dicha tabla tendrá al menos dos columnas, cada una representando la clave foránea a las dos tablas que relaciona.
   * Con lo anterior se transforma la relación n-m a dos relaciones (1-n, 1-m). 
-
-.. CMD: Me falta un ejemplo aquí
  
 Ejemplo
 """""""
@@ -171,13 +172,95 @@ Si la clase "A" hereda de la clase "B", entonces "B" es la **superclase** de "A"
 donde son usados los objetos de la **superclase** correspondiente. Esto se debe al hecho 
 que los objetos de la **subclase** comparten el mismo comportamiento que los objetos de la **superclase**.
 
-
+.. image:: ../../../sql-course/src/diagrama7_semana5.png                               
+   :align: center
 
 1) Las relaciones de las subclases contienen una clave de la superclase más atributos especializados. 
    
+.. math::
+
+  S(\underline{K}, A)
+
+  S1(\underline{K}, B)
+
+  S2(\underline{K}, C)
    
 2) Las relaciones de las subclases contienen todos los atributos.
+
+.. math::
+
+  S(\underline{K}, A)
+
+  S1(\underline{K}, A, B)
+
+  S2(\underline{K}, A, C)
+
 3) Una relación que contiene todos los atributos de la superclase y la subclase.
 
+.. math::
 
- 
+  S(\underline{K}, A, B, C)
+
+Ejemplo de subclases
+^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ../../../sql-course/src/diagrama8_semana5.png                               
+   :align: center  
+
+Las relaciones de este ejemplo son:
+
+.. math::
+
+ Estudiante(\underline{sID}, sNombre)
+
+ Est\_extranjeros(\underline{sID}, País)
+
+ Est\_nacionales(\underline{sID}, Estado, SS\#)
+
+ AP\_Estudiante(\underline{sID})
+
+ AP\_Curso(\underline{Curso\#}, Titulo)
+
+ Tomó(sID, Curso\#, Año, Nota)
+
+Composición y Agregación
+========================
+
+Composición
+^^^^^^^^^^^
+
+La composición es un tipo de relación estática, en donde el tiempo de vida del objeto 
+incluido está condicionado por el tiempo de vida del que lo incluye (el objeto base se 
+construye a partir del objeto incluido, es decir, es parte/todo).
+
+Ejemplo
+"""""""
+
+.. image:: ../../../sql-course/src/diagrama9_semana5.png                               
+   :align: center 
+
+Las relaciones se definen de la siguiente manera:
+
+.. math::
+
+ Universidad(\underline{cNombre}, Estado)
+
+ Departamento(\underline{cNombre}, Edificio, cNombre)
+
+Agregación
+^^^^^^^^^^
+
+La agregación es un tipo de relación dinámica, en donde el tiempo de vida del objeto 
+incluido es independiente del que lo incluye (el objeto base utiliza al incluido para 
+su funcionamiento).
+
+Ejemplo
+"""""""
+
+.. image:: ../../../sql-course/src/diagrama10_semana5.png                               
+   :align: center
+
+Las relaciones son de la misma manera que el ejemplo anterior pero al poseer una diferente
+multiplicidad el valor del atributo *cNombre* de la clase *Departamento*, puede tomar el 
+valor **NULL**.
+
