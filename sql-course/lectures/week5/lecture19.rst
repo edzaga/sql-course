@@ -252,9 +252,6 @@ Composiciones y Agregaciones
 Ambas correponden a la forma de representar que un objeto tiene como contenido a otro, esto quiere decir que 
 **un objeto de un tipo, puede contener a otro**.
 
-===========
-Agregación
-===========
 
 Ejemplo 8
 ^^^^^^^^^
@@ -273,10 +270,6 @@ Nos esta diciendo que los objetos rueda forman parte del objeto medio de transpo
 vida no esta atado al del objeto medio de transporte. Es decir si el automóvil se destruye las ruedas 
 pueden seguir existiendo independientemente.
 
-
-===========
-Composición
-===========
 
 En la misma linea, la composición, es una relación más fuerte de los objetos, asi como la agregación, es el 
 hecho de que un objeto posea a otro, la composición es cuando la relación entre ambos objetos es tal, que el 
