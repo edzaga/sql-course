@@ -1,5 +1,9 @@
 Lecture 19 - Unified Modeling Language: UML data modeling
 ---------------------------------------------------------
+.. role:: sql(code)
+         :language: sql
+         :class: highlight
+
 
 <agregar algo de introducción>
 
@@ -201,20 +205,114 @@ Ejemplo 6
 
 Supongamos que se desea modelar en UML a la Universidad Técnica Federico Santa María (UTFSM), su Casa
 Central y Campus. Supongamos que existen los atributos *NumAlumnos, Dirección, Nombre, Campus*. 
-.. En lugar de realizar dos clases diferentes, se utiliza el atributo campu para realizar la asicación. 
+
 Existe una sola Casa Central, pero varios Campus, supongamos que por temas de presupuesto, solo existen
 7 campus.
 .. agregar imagen
 
-En UML, es posible agregar una etiqueta a la relación y a cada lado.
-
+En UML, es posible etiquetar la relación.
 
 
 Subclases
 ~~~~~~~~~
 
+Las clases se dividen:
+
+1. Superclase/ Clase Padre: De carácter general, contiene información que heredarán las diversas subclases.
+2. Subclases/ Clases Hijas: De carácter específico, contiene información extra a la que hereda de la superclase.
+
+Estos conceptos nacen de la programación orientada a objetos.
+
+Ejemplo 7
+^^^^^^^^^
+
+Supongamos que dentro de la clase Estudiantes, se desea diferenciar a los estudiantes extranjeros
+de los estudiantes nacionales.  Se podría pensar en crear dos clases nuevas, llamadas 
+**Estudiantes Nacionales** y **Estudiantes Extranjeros**:
+
+.. agregar imagen
+
+
+Sin embargo, hay atributos que se repiten en ambas, ellos son: *sID, sName, Average*. Es por ello que
+se pueden separar en una superclase llamada Estudiante (la misma utilizada en las otras lecturas), y crear
+2 subclases llamadas **Extranjeros** y **Nacionales**.
+
+.. agregar imagen
+
+Como se puede observar, los atributos mencionados son heredados por ambas subclases. Ambas además agregan
+información más específica, como lo son el *país* y *pasaporte* en el caso de los **Extranjeros**; la
+*región* y *RUN* en el caso de los **Nacionales**. Esta técnica es muy útil para la reutilización.
+
+.. note::
+
+ Las Subclases **heredan** propiedades de las **superclases / clase padre**, es decir no solo 
+ atributos, sino que también asociaciones u operaciones  están disponibles en las 
+ **subclases / clases hijas**
+
+.. agregar lo de las restricciones.
+
+
 Composiciones y Agregaciones
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ambas correponden a la forma de representar que un objeto tiene como contenido a otro, esto quiere decir que 
+**un objeto de un tipo, puede contener a otro**.
+
+==========
+Agregación
+==========
+
+Ejemplo 8
+^^^^^^^^^
+
+Supongamos que un objeto de tipo ciudad tiene una lista de objetos de tipo aereopuerto, esto quiere decir, que 
+una ciudad, tiene un número de aereopuertos. 
+
+.. note::
+   Hay que destacar, que la cardinalidad del extremo que lleva el rombo, es siempre uno.
+
+.. agregar imagen.
+
+También se puede leer como que un medio de transporte tiene varias ruedas.
+Nos esta diciendo que los objetos rueda forman parte del objeto medio de transporte. Pero, su ciclo de 
+vida no esta atado al del objeto medio de transporte. Es decir si el automóvil se destruye las ruedas 
+pueden seguir existiendo independientemente.
+
+
+===========
+Composición
+===========
+
+En la misma linea, la composición, es una relación más fuerte de los objetos, asi como la agregación, es el 
+hecho de que un objeto posea a otro, la composición es cuando la relación entre ambos objetos es tal, que el 
+primero no tiene sentido suelto, y el segundo, necesita definir al primero para ampliar su significado
+
+
+Ejemplo 9
+^^^^^^^^^
+.. agregar imagen
+
+
+El avión tiene sentido por si solo. Esta claro que esta compuesto de 2 alas, esta relación es de mucha 
+fuerza, mucho más que el caso de los aereopuertos, y esta claro, que un avión siempre tendrá sus dos alas, y 
+estas siempre serán del mismo avión.
+
+
+La composición corresponde a aquellos objetos de los que depende un objeto para que este llegue a funcionar,
+en este caso el avión no puede funcionar sin las 2 alas.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
