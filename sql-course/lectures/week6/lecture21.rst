@@ -28,17 +28,22 @@ visto en algunas lecturas anteriores:
 
 Ejemplo 1
 ^^^^^^^^^
-Para que el estudiante sea aceptado, su promedio debe ser mayor a 50: **Average > 50**
+Para que el estudiante sea aceptado, su promedio debe ser mayor a 50::
+ 
+  Average > 50
 
 
 Ejemplo 2
 ^^^^^^^^^
-El establecimiento X no puede tener más de 45000 alumnos: **Enrollment < 45000**
-
+El establecimiento X no puede tener más de 45000 alumnos::
+ 
+  Enrollment < 45000
 
 Ejemplo 3
 ^^^^^^^^^
-El criterio para la decisión es Verdadero, Falso o NULL: **Desicion: 'T', 'F', NULL**
+El criterio para la decisión es Verdadero, Falso o NULL::
+ 
+  Desicion: 'T', 'F', NULL
 
 
 Las reestricciones se utilizan para:
@@ -93,14 +98,14 @@ Ejemplo 4
 ^^^^^^^^^
 Si la capacidad de un Establecimiento X, sobrepasa los 30000, el sistema debe  comenzar a rechazar a los nuevos postulantes::
  
-    **Enrollment > 30000 -> rechazar nuevos postulantes**
+    Enrollment > 30000 -> rechazar nuevos postulantes
 
 
 Ejemplo 5
 ^^^^^^^^^
 Si un alumno tiene promedio mayor a 49.5, queda aceptado::
  
-  **Student with  Average > 49.5 -> Decision='True'**
+  Student with  Average > 49.5 -> Decision='True'
 
 
 
