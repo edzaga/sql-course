@@ -49,6 +49,21 @@ Existen diversos tipos de reestricciones. Ellas se clasifican en:
 Declaraciondo y forzando reestricciones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Las reestricciones se pueden declarar con el schema original, y todo se chequea al final
+de la carga de datos. **ver mejor el otro tipo de declaracion**
+
+
+Se puede forzar el chequeo despues de cada modificación *peligrosa*, es decir
+aquellas que violan una restricción. No es necesario modificar después de un cambio de promedio
+en la tabla de Estudiantes, eso sólo ralentizaría el sistema. 
+
+Otra forma de forzar chequeos es despues de cada **transacción**. Este concepto, se verá  más adelante,
+pero es posible adelantar que una trasacciones corresponden a un conjunto de operaciones que al finalizar
+modifican la BD **revisar esto también**
+
+ 
+
+
 
 ========
 Triggers
