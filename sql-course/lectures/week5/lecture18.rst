@@ -65,7 +65,7 @@ llamado Hetland, es necesario insertar dos nuevas tuplas; una para cada uno de l
 	Base de datos  |  Widom   | A First Course in Database
 	Base de datos  |  Widom   | Database System Concepts
 	Base de datos  |  Hetland | A First Course in Database
-	Base de datos  | Hetland  | Database System Concepts
+	Base de datos  |  Hetland | Database System Concepts
 	Programación   |  Ullman  | Rapid GUI Programming
 	Programación   |  Ullman  | Learning Python
 	Programación   |  Ullman  | Python Algorithms
@@ -74,7 +74,7 @@ llamado Hetland, es necesario insertar dos nuevas tuplas; una para cada uno de l
 Los problemas en cuestión son generados por el hecho de que los profesores y los textos 
 son completamente independientes entre sí. 
 
-La existencia de relaciones Forma Normal de Boyce-Codd (FNBC) "problemáticas" como la del 
+La existencia de relaciones Forma Normal de Boyce-Codd (BCNF) "problemáticas" como la del 
 ejemplo llevaron a presentar la noción de las dependencias multivaluadas. 
 
 Las dependencias multivaluadas son una generalización de las dependencias funcionales, 
@@ -89,15 +89,15 @@ es multidependiente de A, si y solamente si en todo valor válido posible de R, 
 valores B que coinciden con un determinado par (valor A, valor C) depende sólo del valor de A
 y es independiente del valor de C.
 
-Es fácil mostrar que dado R{A,B,C}, `A ->-> B` es válida si y solamente si también es válida `A ->->C`.
+Es fácil mostrar que dado R{A,B,C}, ``A->->B`` es válida si y solamente si también es válida ``A->->C``.
 Las dependencias multivaluadas siempre van en pares, de esta forma. Por esta razón, es común representar
 ambas en un solo enunciado de esta manera:
 
-`A->->B|C`
+``A->->B|C``
 
 A partir de la definición de dependencia multivalorada se puede obtener la regla siguiente:
 
-Si `A->B`, entonces `A ->->B`.
+Si ``A->B``, entonces ``A->->B``.
 
 En otras palabras, cada dependencia funcional es también una dependencia multivalorada.
 
@@ -121,12 +121,12 @@ de normalización después de la forma normal de Boyce-Codd (BCNF).
 Definición
 ==========
 
-* Una relación está en 4FN si y sólo si, en cada dependencia multivaluada `A ->-> B` no trivial, 
-  A es **clave candidata**. Una dependencia multivaluada `A ->-> B` es trivial cuando B es parte de A. 
+* Una relación está en 4FN si y sólo si, en cada dependencia multivaluada ``A->->B`` no trivial, 
+  A es **clave candidata**. Una dependencia multivaluada ``A->->B`` es trivial cuando B es parte de A. 
   Esto sucede cuando A es un conjunto de atributos, y B es un subconjunto de A.
 
 
-..note::
+.. note::
 
 	Si una relación tiene más de una clave, cada una es una **clave candidata**. Una de ellas es 
 	arbitrariamente designada como clave primaria, el resto son secundarias.
@@ -183,8 +183,9 @@ es razonable sugerir que debe existir una forma de "normalizar aún más", es as
 
 En este ejemplo hay dos DMVs válidas:
 
-CURSO ->-> PROFESOR
-CURSO ->-> TEXTO
+``CURSO ->-> PROFESOR``
+
+``CURSO ->-> TEXTO``
 
 La primera DMV se lee como "Profesor es **multidependiente** de Curso" o manera equivalente, 
 "Curso **multidetermina** a Profesor". 
@@ -281,19 +282,21 @@ unívoca cada tupla. De modo los tres atributos deben formar la clave candidata.
 
 Pero las dependencias que se tienen son:
 
-`nombre ->-> teléfono`
-`nombre ->-> correo`
+``nombre ->-> teléfono``
+
+``nombre ->-> correo``
 
 Y nombre no es clave candidata de esta relación, por lo que se debe separar esta relación en 
 2 relaciones:
 
 `Teléfonos(nombre, teléfono)`
+
 `Correos(nombre, correo)`
 
 Ahora en las dos relaciones se cumple la 4FN. 
 
-..note::
+.. note::
 
-De manera general una relación se separa en tantas relaciones como atributos multivaluados tenga.
+	De manera general una relación se separa en tantas relaciones como atributos multivaluados tenga.
 
 
