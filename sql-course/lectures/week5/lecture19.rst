@@ -112,7 +112,8 @@ Existen varios tipos de multiplicidad, con su respectiva notación. Ellos son:
 
 .. agregar imagen explicativa de cada uno.
 
-..note::
+.. note::
+ 
   En la multiplicidad completa, no deben quedar objetos sin relacionarse.
 
 Ejemplo 3
@@ -251,9 +252,9 @@ Composiciones y Agregaciones
 Ambas correponden a la forma de representar que un objeto tiene como contenido a otro, esto quiere decir que 
 **un objeto de un tipo, puede contener a otro**.
 
-==========
+===========
 Agregación
-==========
+===========
 
 Ejemplo 8
 ^^^^^^^^^
