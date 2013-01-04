@@ -4,13 +4,14 @@ Lecture 19 - Unified Modeling Language: UML data modeling
          :language: sql
          :class: highlight
 
+
 Dentro del modelado de BD Relacionales, los métodos más conocidos son los diagramas de Entidad-Relación
 (ER), vistos en la primera semana, y el Lenguaje de Modelado Unificado (UML, por sus siglas en inglés).
 Ambos comparten la característica de ser gráficos; es decir que UML, al igual que ER está compuesto por
-"simbolos" bajo una serie de reglas. Además, ambos comparten la cualidad de que pueden ser traspasados
+"símbolos" bajo una serie de reglas. Además, ambos comparten la cualidad de que pueden ser traspasados
 a lenguaje de BD de forma relativamente autónoma.
 
-Por otro lado, cabe destacar que ER es mucho más antiguo que UML, superandole en edad en el orden de 
+Por otro lado, cabe destacar que ER es mucho más antiguo que UML, superándole en edad en el orden de 
 décadas. UML es un lenguaje más amplio, es decir, no solo se utiliza para modelar BD, sino que es utilizado
 para modelar programas también.
 
@@ -69,7 +70,7 @@ Ejemplo 2
 ^^^^^^^^^
 El ejemplo 1 terminó con 2 clases separadas, es decir, Estudiantes y Establecimientos Educacionales.
 Sin embargo, y como ya se ha visto en ejemplos de lecturas anteriores, los estudiantes postulan a estos 
-establecimientos, por lo tanto la relacion es **postular**, por lo tanto:
+establecimientos, por lo tanto la relación es **postular**, por lo tanto:
 
 
 .. image:: ../../../sql-course/src/diagrama2_lecture19.png                               
@@ -77,8 +78,6 @@ establecimientos, por lo tanto la relacion es **postular**, por lo tanto:
 
 Es decir que el **Estudiante** **postula** a un **Establecimiento**. Es posible direccionar esta 
 relación para lograr mayor claridad a la hora de ver los diagramas: 
-
-.. agregar imagen con relacion direccionada
 
 .. image:: ../../../sql-course/src/diagrama3_lecture19.png                               
       :align: center  
@@ -103,15 +102,13 @@ valores van separados por *..* (dos puntos).
 .. image:: ../../../sql-course/src/diagrama4_lecture19.png                               
       :align: center  
 
-.. agregar imagen.
-
-Cabe mencionar que estas relaciones pueden ser bidirecciones
+Cabe mencionar que estas relaciones pueden ser bidireccionales
 
 Algunos casos especiales son::
  
  m..*   -> a lo menos 'm' a lo más cualquier valor superior a 'm'
  0..n   -> a lo menos '0' a lo más 'n'
- 0..*   -> a lo menos '0' a lo más cualquier valor superior a '0', es decir , sin reestricción.
+ 0..*   -> a lo menos '0' a lo más cualquier valor superior a '0', es decir , sin restricción.
  1..1   -> sólo 1 valor.
 
 Existen varios tipos de multiplicidad, con su respectiva notación. Ellos son:
@@ -142,7 +139,7 @@ Ejemplo 4
 ^^^^^^^^^
 Con el fin de diversificar y bajo el siguiente contexto, supongamos que tenemos personas que realizan
 giros en bancos. Dependiendo del tipo de cuenta, supongamos que existe una cuenta que permite a lo más
-3 giros por mes. Por su parte el banco no tiene reestricción de giros que puede recibir.
+3 giros por mes. Por su parte el banco no tiene restricción de giros que puede recibir.
 
 
 .. image:: ../../../sql-course/src/diagrama6_lecture19.png                               
@@ -169,7 +166,7 @@ Supongamos que tenemos a varios  Estudiantes que desean postular a diferentes Es
 
 
 
-No obstante no hay información que permita definir que estyudiante realiza la postulación, es por ello que se 
+No obstante no hay información que permita definir que estudiante realiza la postulación, es por ello que se 
 crea una clase de asociación, en este caso postulación (Apply).
 
 .. agregar imagen
@@ -183,15 +180,12 @@ crea una clase de asociación, en este caso postulación (Apply).
  Cabe recordar que si no se especifica la multiplicidad de la relación, 
  se define **1..1** por defecto.
 
-Sin embargo en este modelo no se permite el caso de que un Estudiante postule multiples veces a un
+Sin embargo en este modelo no se permite el caso de que un Estudiante postule múltiples veces a un
 mismo Establecimiento Educacional. Es por ello que es una buena práctica que, en caso de utilizar este
 tipo de clases, se utilice como Clave Primaria (PK), las PK de las clases que están relacionadas. 
 
 
 El siguiente diagrama clarificará la idea:
-
-.. agregar imagen
-
 
 
 .. image:: ../../../sql-course/src/diagrama9_lecture19.png                               
@@ -219,9 +213,9 @@ asociado a 1 objeto de la clase C2. Por lo tanto la clase de asociación se pued
   ambos lados de la relación.
 
 
-================
-Autoasociaciones
-================
+=====================
+Auto asociaciones
+=====================
 
 Corresponden a asociaciones entre una clase y si misma.
 
@@ -255,14 +249,20 @@ Supongamos que dentro de la clase Estudiantes, se desea diferenciar a los estudi
 de los estudiantes nacionales.  Se podría pensar en crear dos clases nuevas, llamadas 
 **Estudiantes Nacionales** y **Estudiantes Extranjeros**:
 
-.. agregar imagen
+
+.. image:: ../../../sql-course/src/ejemplo7a_lectura19.png
+         :align: center
+
 
 
 Sin embargo, hay atributos que se repiten en ambas, ellos son: *sID, sName, Average*. Es por ello que
 se pueden separar en una superclase llamada Estudiante (la misma utilizada en las otras lecturas), y crear
 2 subclases llamadas **Extranjeros** y **Nacionales**.
 
-.. agregar imagen
+.. image:: ../../../sql-course/src/ejemplo7b_lectura19.png
+            :align: center
+
+
 
 Como se puede observar, los atributos mencionados son heredados por ambas subclases. Ambas además agregan
 información más específica, como lo son el *país* y *pasaporte* en el caso de los **Extranjeros**; la
@@ -274,28 +274,23 @@ información más específica, como lo son el *país* y *pasaporte* en el caso d
  atributos, sino que también asociaciones u operaciones  están disponibles en las 
  **subclases / clases hijas**
 
-.. agregar lo de las restricciones.
-
 
 Composiciones y Agregaciones
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ambas correponden a la forma de representar que un objeto tiene como contenido a otro, esto quiere decir que 
+Ambas corresponden a la forma de representar que un objeto tiene como contenido a otro, esto quiere decir que 
 **un objeto de un tipo, puede contener a otro**.
 
 
 Ejemplo 8
 ^^^^^^^^^
 
-Supongamos que un objeto de tipo ciudad tiene una lista de objetos de tipo aereopuerto, esto quiere decir, que 
-una ciudad, tiene un número de aereopuertos. 
+Supongamos que un objeto de tipo ciudad tiene una lista de objetos de tipo aeropuerto, esto quiere decir, que 
+una ciudad, tiene un número de aeropuertos. 
 
 .. note::
   
    Hay que destacar, que la cardinalidad del extremo que lleva el rombo, es siempre uno.
-
-.. agregar imagen.
-
 
 .. image:: ../../../sql-course/src/ejemplo8_lectura19.png                               
          :align: center  
@@ -309,22 +304,20 @@ vida no esta atado al del objeto medio de transporte. Es decir si el automóvil 
 pueden seguir existiendo independientemente.
 
 
-En la misma linea, la composición, es una relación más fuerte de los objetos, asi como la agregación, es el 
+En la misma linea, la composición, es una relación más fuerte de los objetos, así como la agregación, es el 
 hecho de que un objeto posea a otro, la composición es cuando la relación entre ambos objetos es tal, que el 
 primero no tiene sentido suelto, y el segundo, necesita definir al primero para ampliar su significado
 
 
 Ejemplo 9
 ^^^^^^^^^
-.. agregar imagen
-
 
 .. image:: ../../../sql-course/src/ejemplo9_lectura19.png                               
          :align: center  
 
 
 El avión tiene sentido por si solo. Esta claro que esta compuesto de 2 alas, esta relación es de mucha 
-fuerza, mucho más que el caso de los aereopuertos, y esta claro, que un avión siempre tendrá sus dos alas, y 
+fuerza, mucho más que el caso de los aeropuertos, y esta claro, que un avión siempre tendrá sus dos alas, y 
 estas siempre serán del mismo avión.
 
 
