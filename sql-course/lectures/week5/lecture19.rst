@@ -56,7 +56,8 @@ Ejemplo 1
 Retomemos el caso de los Estudiantes y Establecimientos Educacionales. Dibujemos ambas relaciones como
 clases en UML:
 
-.. agregar la captura de pantalla con el modelado.
+.. image:: ../../../sql-course/src/diagrama1_lecture19.png                               
+   :align: center  
 
 
 Asociaciones
@@ -70,12 +71,18 @@ El ejemplo 1 terminó con 2 clases separadas, es decir, Estudiantes y Establecim
 Sin embargo, y como ya se ha visto en ejemplos de lecturas anteriores, los estudiantes postulan a estos 
 establecimientos, por lo tanto la relacion es **postular**, por lo tanto:
 
-.. agregar imagen sin relacion direccionada.
+
+.. image:: ../../../sql-course/src/diagrama2_lecture19.png                               
+   :align: center  
 
 Es decir que el **Estudiante** **postula** a un **Establecimiento**. Es posible direccionar esta 
 relación para lograr mayor claridad a la hora de ver los diagramas: 
 
 .. agregar imagen con relacion direccionada
+
+.. image:: ../../../sql-course/src/diagrama3_lecture19.png                               
+      :align: center  
+
 
 Sin embargo no marca la diferencia a la hora de traducir a relaciones.
 
@@ -91,6 +98,10 @@ Supongamos que se han creado las clases **C1** y **C2**, la multiplicidad apunta
  
 La notación para ello corresponde a *m..n*, es decir que el valor mínimo es *m* y el máximo *n*. Ambos
 valores van separados por *..* (dos puntos).
+
+
+.. image:: ../../../sql-course/src/diagrama4_lecture19.png                               
+      :align: center  
 
 .. agregar imagen.
 
@@ -110,7 +121,6 @@ Existen varios tipos de multiplicidad, con su respectiva notación. Ellos son:
 3. muchos a muchos:  **0..* - 0..*** 
 4. completa: **1..* - 1..1** o **1..1 - 1..*** o **1..* - 1..***
 
-.. agregar imagen explicativa de cada uno.
 
 .. note::
  
@@ -123,6 +133,10 @@ Cada establecimiento puede recibir a lo más 50000 postulaciones.
 
 .. agregar imagen
 
+.. image:: ../../../sql-course/src/diagrama5_lecture19.png                               
+      :align: center  
+
+
 
 Ejemplo 4
 ^^^^^^^^^
@@ -130,7 +144,11 @@ Con el fin de diversificar y bajo el siguiente contexto, supongamos que tenemos 
 giros en bancos. Dependiendo del tipo de cuenta, supongamos que existe una cuenta que permite a lo más
 3 giros por mes. Por su parte el banco no tiene reestricción de giros que puede recibir.
 
-.. agregar imagen.
+
+.. image:: ../../../sql-course/src/diagrama6_lecture19.png                               
+      :align: center  
+
+
 
 Clase de asociación
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -145,10 +163,20 @@ Supongamos que tenemos a varios  Estudiantes que desean postular a diferentes Es
 
 .. agregar imagen.
 
+
+.. image:: ../../../sql-course/src/diagrama7_lecture19.png                               
+         :align: center  
+
+
+
 No obstante no hay información que permita definir que estyudiante realiza la postulación, es por ello que se 
 crea una clase de asociación, en este caso postulación (Apply).
 
 .. agregar imagen
+
+.. image:: ../../../sql-course/src/diagrama8_lecture19.png                               
+         :align: center  
+
 
 .. note::
  
@@ -164,7 +192,10 @@ El siguiente diagrama clarificará la idea:
 
 .. agregar imagen
 
-Como se puede observar, se han modificado las clases Student, College y Apply. 
+
+
+.. image:: ../../../sql-course/src/diagrama9_lecture19.png                               
+      :align: center  
 
 
 ==========================================
@@ -265,6 +296,13 @@ una ciudad, tiene un número de aereopuertos.
 
 .. agregar imagen.
 
+
+.. image:: ../../../sql-course/src/ejemplo8_lectura19.png                               
+         :align: center  
+
+
+
+
 También se puede leer como que un medio de transporte tiene varias ruedas.
 Nos esta diciendo que los objetos rueda forman parte del objeto medio de transporte. Pero, su ciclo de 
 vida no esta atado al del objeto medio de transporte. Es decir si el automóvil se destruye las ruedas 
@@ -279,6 +317,10 @@ primero no tiene sentido suelto, y el segundo, necesita definir al primero para 
 Ejemplo 9
 ^^^^^^^^^
 .. agregar imagen
+
+
+.. image:: ../../../sql-course/src/ejemplo9_lectura19.png                               
+         :align: center  
 
 
 El avión tiene sentido por si solo. Esta claro que esta compuesto de 2 alas, esta relación es de mucha 
