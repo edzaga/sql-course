@@ -13,15 +13,33 @@ Fecha de entrega: Lunes 21 de Enero 2013 hasta 23:59
 Cuarta Forma Normal 
 -------------------
 
----
-UML
----
+Pregunta 1 (x ptos.)
+^^^^^^^^^^^^^^^^^^^^
 
-Realice diagramas UML de los siguientes casos:
+----------------------------
+UML: Preguntas conceptuales
+----------------------------
 
-Pregunta 1 (5 ptos)
+Pregunta 1 (5 ptos.)
 ^^^^^^^^^^^^^^^^^^^
+¿Para que sirve UML?
 
 
-|:wq
+Pregunta 2 (20 ptos.)
+^^^^^^^^^^^^^^^^^^^^
+Defina los siguientes conceptos (5 ptos. c/u):
+
+1. Clase:
+2. Asociación:
+3. Multiplicidad:
+4. Superclase:
+
+
+----------------------------
+UML: Preguntas de desarrollo
+----------------------------
+
+Se tiene el 
+
+Realice diagramas UML (utilizando un software apropiado) de los siguientes casos:
 
