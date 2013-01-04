@@ -42,11 +42,11 @@ Pregunta 1 (30 ptos.)
 
 .. <inventar una situación>
 
- Palabras clave: equipo, campeonatos/copas, director técnico, plantel, países
+ Palabras clave: equipo, campeonatos/copas, director técnico, plantel, jugadores, países, ficha médica.
 
 .. clase de asociacion.
 
-En inglaterra existe la 'Premier League'. Los equipos que componen esta liga (20), pueden jugar varios campeonatos
+En Inglaterra existe la 'Premier League'. Los equipos que componen esta liga (20), pueden jugar varios campeonatos
 y copas, nacionales e internacionales. Dentro de los campeonatos internacionales destacan la 'Champions league',
 la 'Europa League' y el 'Mundial de Clubes', entre otros. Por lo general en este tipo de campeonatos se juegan
 desde 16 a 32 equipos. Un equipo puede jugar en más de un campeonato internacional, pero debe llenar
@@ -75,9 +75,9 @@ Pregunta 2 (30 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^
 
 Bender necesita una gran cantidad de cervezas, pues está escaso de energía. En la tierra no hay ya que los
-habitantes del planeta 'Omicrón Persei 8' en una de sus constantes invasiones, han saqueado todo el suminstro de esta
+habitantes del planeta 'Omicrón Persei 8' en una de sus constantes invasiones, han saqueado todo el suministro de esta
 bebida. Planet Express debe hacer un viaje al planeta UML (cuyos habitantes son grandes bebedores). Sin embargo,
-Con el aupuro, Fry y Leela no llevaron dinero. Los 'UMLianos' permitirán llevarse cervezas si son capaces de resolver 
+Con el apuro, Fry y Leela no llevaron dinero. Los 'UMLianos' permitirán las llevarse cervezas si son capaces de resolver 
 el siguiente problema, de casi 1000 años de antiguedad:
 
 A partir de las siguientes clases y asociaciones, describa relaciones:
@@ -87,7 +87,7 @@ A partir de las siguientes clases y asociaciones, describa relaciones:
          :align: center  
 
 
-¿Podrás ayudar a Fry y Leela en su misión de salvar a bender?
+¿Podrás ayudar a Fry y Leela en su misión de salvar a Bender?
 
 .. note::
 
