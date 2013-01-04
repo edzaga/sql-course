@@ -8,30 +8,44 @@ Fecha de entrega: Lunes 21 de Enero 2013 hasta 23:59
    :language: sql
    :class: highlight
 
+--------------------
 Cuarta Forma Normal
--------------------
+--------------------
 
-Pregunta 1 (10 ptos.)
-^^^^^^^^^^^^^^^^^^^^^^^
+Pregunta 1 (12 ptos.)
+^^^^^^^^^^^^^^^^^^^^^
+De acuerdo a las lecturas de ésta semana, y en sus palabras:
+1. ¿Para que sirve la Cuarta Forma Normal?
+2. ¿Cuál es su propósito?
+3. ¿Qué es una dependencia multivaluada?
+4. ¿Cuál es su proposito? 
+
 
 ----------------------------
 UML: Preguntas conceptuales
 ----------------------------
 
-Pregunta 1 (5 ptos.)
+Pregunta 1 (3 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^^^
-¿Para que sirve UML?
+De acuerdo a las lecturas de esta semana y, en sus palabras:
+1. ¿Para que sirve UML?
 
 
 Pregunta 2 (25 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^^^
-Defina, de acuerdo a las lecturas, los siguientes conceptos (5 ptos. c/u):
+Defina, de acuerdo a las lecturas, y en sus palabras, los siguientes 
+conceptos (5 ptos. c/u):
 
 1. Clase:
 2. Asociación:
 3. Multiplicidad:
 4. Superclase:
 5. Clase hija:
+
+.. note::
+
+  Al decir 'en sus palabras', se menciona que no es posible realizar una copia textual
+  de la lectura.
 
 ----------------------------
 UML: Preguntas de desarrollo
@@ -42,7 +56,7 @@ Pregunta 1 (30 ptos.)
 
 .. <inventar una situación>
 
- Palabras clave: equipo, campeonatos/copas, director técnico, plantel, jugadores, países, ficha médica.
+ Palabras clave: equipo, campeonatos/copas, director técnico, plantel, jugadores, países, ficha médica, fichas de inscripción.
 
 .. clase de asociacion.
 
@@ -63,7 +77,7 @@ defensa, capacidad de salto, mentalidad, riesgo de lesión, edad, estatura, naci
 .. agregación
 
 Por otra parte cada jugador tiene una ficha médica, la que en caso de que el jugador se cambie de equipo
-puede guardarse.
+puede guardarse en los registros de éste último..
 
 .. composición
 
@@ -91,10 +105,10 @@ A partir de las siguientes clases y asociaciones, describa relaciones:
 
 .. note::
 
-    La tarea se `entrega`_  en un archivo comprimido .rar , que contenga:
+     La tarea se `entrega`_  en un archivo comprimido .rar , que contenga:
 
         * archivo `assignment5.jpg`, o .png, o bmp, que incluya la respuesta de la pregunta 1 de UML: preguntas de desarrollo”
         * archivo assigment5.doc , .docx o .pdf que incluya la respuesta de “UML: preguntas conceptuales y
           la pregunta 2 de UML: preguntas de desarrollo”.
 
-.. _`entrega`: https://csrg.inf.utfsm.cl/
+.. _`entrega`: https://csrg.inf.utfsm.cl/claroline/

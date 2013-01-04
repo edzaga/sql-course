@@ -128,11 +128,8 @@ Ejemplo 3
 Supongamos que cada Estudiante debe postular a lo menos a 1 Establecimientos y a lo más a 3. Por otro lado
 Cada establecimiento puede recibir a lo más 50000 postulaciones.
 
-.. agregar imagen
-
 .. image:: ../../../sql-course/src/diagrama5_lecture19.png                               
       :align: center  
-
 
 
 Ejemplo 4
@@ -158,9 +155,6 @@ Ejemplo 5
 
 Supongamos que tenemos a varios  Estudiantes que desean postular a diferentes Establecimientos Educacionales.
 
-.. agregar imagen.
-
-
 .. image:: ../../../sql-course/src/diagrama7_lecture19.png                               
          :align: center  
 
@@ -168,8 +162,6 @@ Supongamos que tenemos a varios  Estudiantes que desean postular a diferentes Es
 
 No obstante no hay información que permita definir que estudiante realiza la postulación, es por ello que se 
 crea una clase de asociación, en este caso postulación (Apply).
-
-.. agregar imagen
 
 .. image:: ../../../sql-course/src/diagrama8_lecture19.png                               
          :align: center  
@@ -196,14 +188,20 @@ El siguiente diagrama clarificará la idea:
 Eliminar clases de asociación innecesarias
 ==========================================
 
-Usando las clases genéricas C1, C2 de atributos A1 y A2 respectivamente. Supongamos que la relación entre 
+Usando las clases genéricas C1, C2 de atributos A1, A2 y A3, A4 respectivamente. Supongamos que la relación entre 
 ellas es de multiplicidad (* - 1..1) o (* - 0..1). Supongamos que existe una clase de asociación AC de atributos
-A3 y A4. Todo ordenado de acuerdo a la siguiente imagen:
+B1 y B2. Todo ordenado de acuerdo a la siguiente imagen:
 
-.. agregar imagen
 
-Es posible mover los atributos A3 y A4 a la clase C1, pues dada la multiplicidad un objeto de la clase C1 está
+.. image:: ../../../sql-course/src/diagrama10_lectura19.png                               
+      :align: center  
+
+Es posible mover los atributos B1 y B2 a la clase C1, pues dada la multiplicidad un objeto de la clase C1 está
 asociado a 1 objeto de la clase C2. Por lo tanto la clase de asociación se puede eliminar.
+
+
+.. image:: ../../../sql-course/src/diagrama11_lectura19.png                               
+      :align: center  
 
 .. note::
  
@@ -227,7 +225,11 @@ Central y Campus. Supongamos que existen los atributos *NumAlumnos, Dirección, 
 
 Existe una sola Casa Central, pero varios Campus, supongamos que por temas de presupuesto, solo existen
 7 campus.
-.. agregar imagen
+
+
+.. image:: ../../../sql-course/src/ejemplo6_lectura19.png
+            :align: center
+
 
 En UML, es posible etiquetar la relación.
 
