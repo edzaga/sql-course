@@ -95,7 +95,7 @@ Ejercicio
 =========
 
 Considere la posibilidad de una base de datos que contiene información sobre los cursos
-tomados por los estudiantes. Los estudiantes tienen un ID único de estudiante y nombre; 
+tomados por los estudiantes. Los estudiantes tienen un ID único de estudiante y nombre;
 cursos tienen un número único de curso y título, los estudiantes toman un curso de un año determinado y reciben una
 calificación.
 
@@ -125,10 +125,10 @@ Diseño por descomposición
 
 Descomposición automática:
 
-* "Mega" relaciones + propiedades de los datos.
-* El sistema descompone basándose en las propiedades.
-* Conjunto final de relaciones satisface la forma normal.
- * no hay anomalías, hay pérdida de información.
+    * "Mega" relaciones + propiedades de los datos.
+    * El sistema descompone basándose en las propiedades.
+    * Conjunto final de relaciones satisface la forma normal.
+       * no hay anomalías, hay pérdida de información.
 
 Normalización
 ~~~~~~~~~~~~~
@@ -144,7 +144,7 @@ no normalizada y se aplican las reglas definidas para 1FN, 2FN, 3FN, Boyce Codd 
 Formas normales
 ===============
 
-La siguiente imagen muestra los tres principales niveles que se utilizan en el diseño 
+La siguiente imagen muestra los tres principales niveles que se utilizan en el diseño
 de esquemas de bases de datos.
 
 .. image:: ../../../sql-course/src/formas_normales.png
@@ -152,9 +152,9 @@ de esquemas de bases de datos.
 
 El proceso de normalización es fundamental para obtener un diseño de base de datos
 eficiente.
-En una entidad no normalizada generalmente expresada en forma plana (como una tabla), 
+En una entidad no normalizada generalmente expresada en forma plana (como una tabla),
 es muy probable que existan uno o más grupos repetitivos, no pudiendo en ese caso ser
-un atributo simple su clave primaria. 
+un atributo simple su clave primaria.
 
 A continuación se dará una definición y un ejemplo de las formas normales:
 
@@ -181,60 +181,60 @@ los estudiantes de informática de la USM, podríamos considerar el siguiente di
 
 .. math::
 
- \begin{array}{|c|c|c|}                                                          
-    \hline                                                                           
+ \begin{array}{|c|c|c|}
+    \hline
     \textbf{Código} & \textbf{Nombre} & \textbf{Cursos} \\
-    \hline                                                                           
+    \hline
     \text{1} & \text{Patricia} & \text{Estructura de datos} \\
-    \hline                                                                           
+    \hline
     \text{2}  & \text{Margarita} & \text{Bases de datos, Teoría de sistemas} \\
-    \hline                                                                           
-    \text{3}  & \text{Joao} & \text{Estructura de datos, Bases de datos} \\         
-    \hline                                                                           
-   \end{array}   
+    \hline
+    \text{3}  & \text{Joao} & \text{Estructura de datos, Bases de datos} \\
+    \hline
+   \end{array}
 
-Se puede observar que el registro 1 cumple con la primera forma normal, puesto que cada 
-campo cumple con la condición de tener solo un dato, pero esta condición no se cumple con 
+Se puede observar que el registro 1 cumple con la primera forma normal, puesto que cada
+campo cumple con la condición de tener solo un dato, pero esta condición no se cumple con
 el registro 2 y 3, en el campo de *Cursos*, ya que en ambos existen dos datos.
 La solución a este problema es crear dos tablas del siguiente modo.
 
-.. math::                                                                            
+.. math::
  \textbf{Tabla 1}
-                                                                                     
- \begin{array}{|c|c|}                                                            
-    \hline                                                                           
-    \textbf{Código} & \textbf{Nombre}  \\                           
-    \hline                                                                           
-    \text{1} & \text{Patricia}  \\                       
-    \hline                                                                           
-    \text{2}  & \text{Margarita} \\      
-    \hline                                                                           
-    \text{3}  & \text{Joao} \\          
-    \hline                                                                           
-   \end{array}  
 
- \textbf{Tabla 2}                                                                           
-                                                                                     
- \begin{array}{|c|c|}                                                            
-    \hline                                                                           
-    \textbf{Código} & \textbf{Cursos} \\                           
-    \hline                                                                           
-    \text{1} & \text{Estructura de datos} \\                       
-    \hline                                                                           
-    \text{2}  & \text{Bases de datos} \\      
-    \hline                                                                           
-    \text{2}  & \text{Teoría de sistemas} \\          
-    \hline    
-    \text{3}  & \text{Estructura de datos} \\      
-    \hline                                                                           
-    \text{3}  & \text{Bases de datos} \\                                                                        
+ \begin{array}{|c|c|}
     \hline
-  \end{array}  
+    \textbf{Código} & \textbf{Nombre}  \\
+    \hline
+    \text{1} & \text{Patricia}  \\
+    \hline
+    \text{2}  & \text{Margarita} \\
+    \hline
+    \text{3}  & \text{Joao} \\
+    \hline
+   \end{array}
+
+ \textbf{Tabla 2}
+
+ \begin{array}{|c|c|}
+    \hline
+    \textbf{Código} & \textbf{Cursos} \\
+    \hline
+    \text{1} & \text{Estructura de datos} \\
+    \hline
+    \text{2}  & \text{Bases de datos} \\
+    \hline
+    \text{2}  & \text{Teoría de sistemas} \\
+    \hline
+    \text{3}  & \text{Estructura de datos} \\
+    \hline
+    \text{3}  & \text{Bases de datos} \\
+    \hline
+  \end{array}
 
 Como se puede comprobar, ahora todos los registros de las dos tablas cumplen con la condición
-de tener en todos sus campos un solo dato, por lo tanto la *Tabla 1* y *Tabla 2* están en 
+de tener en todos sus campos un solo dato, por lo tanto la *Tabla 1* y *Tabla 2* están en
 primera forma normal.
- 
+
 
 Segunda forma normal (2FN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -254,7 +254,7 @@ Ejemplo
 """""""
 
 La segunda forma normal compara todos y cada uno de los campos de la tabla con la clave
-definida. Si todos los campos dependen directamente de la clave se dice que la tabla está 
+definida. Si todos los campos dependen directamente de la clave se dice que la tabla está
 en segunda forma normal.
 
 Se construye una tabla con los años que cada profesor ha estado trabajando en cada departamento
@@ -262,84 +262,84 @@ de la USM.
 
 .. math::
 
- \begin{array}{|c|c|c|c|c|}                                                                
-    \hline                                                                           
-    \textbf{Código_profesor} & \textbf{Código_departamento} & \textbf{Nombre} & \textbf{Departamento} & \textbf{Años_trabajados} \\                                  \hline                                                                           
-    \text{1} & \text{6} & \text{Javier} & \text{Electrónica} & 3\\                                         
-    \hline                                                                           
-    \text{2}  & \text{3} & \text{Luis} & \text{Eléctrica} & 15\\                                             
-    \hline                                                                           
-    \text{3}  & \text{2} & \text{Cecilia} & \text{Informática} & 8\\                                         
-    \hline                                                                           
-    \text{4}  & \text{3} & \text{Nora} & \text{Eléctrica} & 2\\                                        
-    \hline                                                                           
-    \text{2}  & \text{6} & \text{Luis} & \text{Electrónica} & 20\\                                                                        
-    \hline                                                                           
-  \end{array}                                                                        
-              
-La clave de esta tabla está conformada por el *Código_profesor* y *Código_departamento*, además 
-se puede decir que está en primera forma normal, por lo que ahora la transformaremos a 
+ \begin{array}{|c|c|c|c|c|}
+    \hline
+    \textbf{Código_profesor} & \textbf{Código_departamento} & \textbf{Nombre} & \textbf{Departamento} & \textbf{Años_trabajados} \\                                  \hline
+    \text{1} & \text{6} & \text{Javier} & \text{Electrónica} & 3\\
+    \hline
+    \text{2}  & \text{3} & \text{Luis} & \text{Eléctrica} & 15\\
+    \hline
+    \text{3}  & \text{2} & \text{Cecilia} & \text{Informática} & 8\\
+    \hline
+    \text{4}  & \text{3} & \text{Nora} & \text{Eléctrica} & 2\\
+    \hline
+    \text{2}  & \text{6} & \text{Luis} & \text{Electrónica} & 20\\
+    \hline
+  \end{array}
+
+La clave de esta tabla está conformada por el *Código_profesor* y *Código_departamento*, además
+se puede decir que está en primera forma normal, por lo que ahora la transformaremos a
 segunda forma normal.
 
 * El campo *Nombre* no depende funcionalmente de toda la clave, solo depende de la clave *Código_profesor*.
 * El campo *Departamento* no depende funcionalmente de toda la clave, solo depende de la clave *Código_departamento*.
 * El campo *Años_trabajados* si depende funcionalmente de las claves *Código_profesor* y *Código_departamento* (representa los años trabajados de cada profesor en el departamento de la universidad).
 
-Por lo tanto al no depender funcionalmente *todos* los campos de la tabla anterior no está 
+Por lo tanto al no depender funcionalmente *todos* los campos de la tabla anterior no está
 en segunda forma normal, entonces la solución es la siguiente:
 
-.. math::                                                                            
+.. math::
 
  \textbf{Tabla A}
-                                                                                     
- \begin{array}{|c|c|}                                                                
-    \hline                                                                           
+
+ \begin{array}{|c|c|}
+    \hline
     \textbf{Código_profesor} & \textbf{Nombre} \\
-    \hline                                                                           
-    \text{1} & \text{Javier} \\                                         
-    \hline                                                                           
-    \text{2}  & \text{Luis} \\                                             
-    \hline                                                                           
-    \text{3}  & \text{Cecilia} \\                                         
-    \hline                                                                           
-    \text{4}  & \text{Nora} \\                                        
-    \hline                                                                           
-  \end{array} 
+    \hline
+    \text{1} & \text{Javier} \\
+    \hline
+    \text{2}  & \text{Luis} \\
+    \hline
+    \text{3}  & \text{Cecilia} \\
+    \hline
+    \text{4}  & \text{Nora} \\
+    \hline
+  \end{array}
 
  \textbf{Tabla B}
 
- \begin{array}{|c|c|}                                                                
-    \hline                                                                           
-    \textbf{Código_departamento} & \textbf{Departamento} \\                                    
-    \hline                                                                           
-    \text{2} & \text{Informática} \\                                                      
-    \hline                                                                           
-    \text{3}  & \text{Eléctrica} \\                                                       
-    \hline                                                                           
-    \text{6}  & \text{Electrónica} \\                                                    
-    \hline                                                                           
-  \end{array}  
+ \begin{array}{|c|c|}
+    \hline
+    \textbf{Código_departamento} & \textbf{Departamento} \\
+    \hline
+    \text{2} & \text{Informática} \\
+    \hline
+    \text{3}  & \text{Eléctrica} \\
+    \hline
+    \text{6}  & \text{Electrónica} \\
+    \hline
+  \end{array}
 
  \textbf{Tabla C}
 
-  \begin{array}{|c|c|c|}                                                                
-    \hline                                                                           
-    \textbf{Código_empleado} & \textbf{Código_departamento} & \textbf{Años_trabajados} \\                                    
-    \hline                                                                           
-    1 & 6 & 3 \\                                                      
-    \hline                                                                           
-    2  & 3 & 15\\                                                       
-    \hline                                                                           
-    3  & 2 & 8\\                                                    
+  \begin{array}{|c|c|c|}
     \hline
-    4  & 3 & 2\\                                                    
-    \hline 
-    2  & 6 & 20\\                                                    
-    \hline                                                                            
-  \end{array}   
+    \textbf{Código_empleado} & \textbf{Código_departamento} & \textbf{Años_trabajados} \\
+    \hline
+    1 & 6 & 3 \\
+    \hline
+    2  & 3 & 15\\
+    \hline
+    3  & 2 & 8\\
+    \hline
+    4  & 3 & 2\\
+    \hline
+    2  & 6 & 20\\
+    \hline
+  \end{array}
 
-Se puede observar que la *Tabla A* tiene como índice la clave *Código_empleado*, *Tabla B* 
-tiene como clave *Código_departamento* y la *Tabla C* que tiene como clave compuesta *Código_empleado* 
+Se puede observar que la *Tabla A* tiene como índice la clave *Código_empleado*, *Tabla B*
+tiene como clave *Código_departamento* y la *Tabla C* que tiene como clave compuesta *Código_empleado*
 y *Código_departamento*, encontrándose finalmente estas tablas en segunda forma normal.
 
 Tercera forma normal (3FN)
@@ -359,22 +359,22 @@ Ejemplo
 
 Se dice que una tabla está en tercera forma normal si y solo si los campos de la tabla
 dependen únicamente de la clave, dicho en otras palabras los campos de las tablas no dependen
-unos de otros. Tomando como referencia el ejemplo de la primera forma normal, un alumno 
+unos de otros. Tomando como referencia el ejemplo de la primera forma normal, un alumno
 solo puede tomar un curso a la vez y se desea guardar en que sala se imparte el curso.
 
 .. math::
 
-  \begin{array}{|c|c|c|c|}                                                                
-    \hline                                                                           
-    \textbf{Código} & \textbf{Nombre} & \textbf{Curso} & \textbf{Sala} \\                                    
-    \hline                                                                           
-    1 & \text{Patricia} & \text{Estructura de datos} & \text{A}\\                                                                     
-    \hline                                                                           
-    2  & \text{Margarita} & \text{Teoría de sistemas} & \text{B}\\                                                                    
-    \hline                                                                           
-    3  & \text{Joao} & \text{Bases de datos} & \text{C}\\                                                                     
-    \hline                                                                           
-  \end{array} 
+  \begin{array}{|c|c|c|c|}
+    \hline
+    \textbf{Código} & \textbf{Nombre} & \textbf{Curso} & \textbf{Sala} \\
+    \hline
+    1 & \text{Patricia} & \text{Estructura de datos} & \text{A}\\
+    \hline
+    2  & \text{Margarita} & \text{Teoría de sistemas} & \text{B}\\
+    \hline
+    3  & \text{Joao} & \text{Bases de datos} & \text{C}\\
+    \hline
+  \end{array}
 
 Veamos las dependencias de cada campo respecto a la clave:
 
@@ -382,38 +382,38 @@ Veamos las dependencias de cada campo respecto a la clave:
 * *Curso* depende de igual manera del *Código*.
 * La *Sala* depende del *Código*, pero está más ligado al *Curso* que el alumno está realizando.
 
-Es por este último punto que se dice que la tabla no está en 3FN, pero a continuación se 
+Es por este último punto que se dice que la tabla no está en 3FN, pero a continuación se
 muestra la solución:
 
-.. math::                                                                            
-               
+.. math::
+
   \textbf{Tabla A}
-                                                                      
-  \begin{array}{|c|c|c|}                                                                
-    \hline                                                                           
-    \textbf{Código} & \textbf{Nombre} & \textbf{Curso} \\                                    
-    \hline                                                                           
-    1 & \text{Patricia} & \text{Estructura de datos} \\                                                                     
-    \hline                                                                           
-    2  & \text{Margarita} & \text{Teoría de sistemas} \\                                                                    
-    \hline                                                                           
-    3  & \text{Joao} & \text{Bases de datos} \\                                                                     
-    \hline                                                                           
-  \end{array}  
+
+  \begin{array}{|c|c|c|}
+    \hline
+    \textbf{Código} & \textbf{Nombre} & \textbf{Curso} \\
+    \hline
+    1 & \text{Patricia} & \text{Estructura de datos} \\
+    \hline
+    2  & \text{Margarita} & \text{Teoría de sistemas} \\
+    \hline
+    3  & \text{Joao} & \text{Bases de datos} \\
+    \hline
+  \end{array}
 
   \textbf{Tabla B}
 
-  \begin{array}{|c|c|}                                                                
-    \hline                                                                           
-    \textbf{Curso} & \textbf{Sala} \\                                    
-    \hline                                                                           
-    \text{Estructura de datos} & \text{A} \\                                                                     
-    \hline                                                                           
-    \text{Teoría de sistemas} & \text{B}\\                                                                    
-    \hline                                                                           
-    \text{Bases de datos} & \text{C}\\                                                                     
-    \hline                                                                           
-  \end{array} 
+  \begin{array}{|c|c|}
+    \hline
+    \textbf{Curso} & \textbf{Sala} \\
+    \hline
+    \text{Estructura de datos} & \text{A} \\
+    \hline
+    \text{Teoría de sistemas} & \text{B}\\
+    \hline
+    \text{Bases de datos} & \text{C}\\
+    \hline
+  \end{array}
 
 Boyce-Codd forma normal (FNBC)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -447,7 +447,7 @@ Ejemplo
 """""""
 
 Tenga en cuenta la relación Tomo(SID, nombre, cursoNum, título). Los estudiantes tienen
-el carné de estudiante y un nombre único, los cursos tienen un número único curso y título. 
+el carné de estudiante y un nombre único, los cursos tienen un número único curso y título.
 Cada tupla de la relación codifica el hecho de que un estudiante dado tomó el curso. ¿Cuáles son todas las
 dependencias funcionales para la relación tomó?
 
@@ -518,33 +518,33 @@ la alternativa (d) dice que todos los estudiantes de cada dormitorio toman el mi
 Ejemplo 2
 """""""""
 
-Una tabla está en cuarta forma normal si y sólo si para cualquier combinación clave-campo 
+Una tabla está en cuarta forma normal si y sólo si para cualquier combinación clave-campo
 no existen valores duplicados.
 
 .. math::
 
  \textbf{Geometría}
- 
- \begin{array}{|c|c|c|}                                                                
-    \hline                                                                           
-    \textbf{Figura} & \textbf{Color} & \textbf{Tamaño} \\                                    
-    \hline                                                                           
-    \text{Cuadrado} & \text{Rojo} & \text{Grande} \\                                                                     
-    \hline                                                                           
-    \text{Cuadrado} & \text{Azul} & \text{Grande}\\                                                                    
-    \hline                                                                           
-    \text{Cuadrado} & \text{Azul} & \text{Mediano}\\                                                                     
-    \hline
-    \text{Círculo} & \text{Blanco} & \text{Mediano}\\                                                                     
-    \hline 
-    \text{Círculo} & \text{Azul} & \text{Pequeño}\\                                                                     
-    \hline 
-    \text{Círculo} & \text{Azul} & \text{Mediano}\\                                                                     
-    \hline                                                                            
-  \end{array} 
 
-Vamos a comparar el atributo clave *Figura* con  *Tamaño*, se puede notar que Cuadrado 
-Grande está repetido; de igual manera Círculo Azul, entre otros registros. Son estas 
+ \begin{array}{|c|c|c|}
+    \hline
+    \textbf{Figura} & \textbf{Color} & \textbf{Tamaño} \\
+    \hline
+    \text{Cuadrado} & \text{Rojo} & \text{Grande} \\
+    \hline
+    \text{Cuadrado} & \text{Azul} & \text{Grande}\\
+    \hline
+    \text{Cuadrado} & \text{Azul} & \text{Mediano}\\
+    \hline
+    \text{Círculo} & \text{Blanco} & \text{Mediano}\\
+    \hline
+    \text{Círculo} & \text{Azul} & \text{Pequeño}\\
+    \hline
+    \text{Círculo} & \text{Azul} & \text{Mediano}\\
+    \hline
+  \end{array}
+
+Vamos a comparar el atributo clave *Figura* con  *Tamaño*, se puede notar que Cuadrado
+Grande está repetido; de igual manera Círculo Azul, entre otros registros. Son estas
 repeticiones que se deben evitar para tener una tabla en 4FN.
 
 La solución a la tabla anterior es la siguiente:
@@ -552,33 +552,33 @@ La solución a la tabla anterior es la siguiente:
 .. math::
 
  \textbf{Tamaño}
- 
- \begin{array}{|c|c|}                                                                
-    \hline                                                                           
-    \textbf{Figura} & \textbf{Tamaño} \\                                    
-    \hline                                                                           
-    \text{Cuadrado} & \text{Grande} \\                                                                     
-    \hline                                                                           
-    \text{Cuadrado} & \text{Mediano}\\                                                                     
-    \hline                                                                           
-    \text{Círculo} & \text{Mediano}\\                                                                     
-    \hline                                                                           
-    \text{Círculo} & \text{Pequeño}\\                                                                     
-    \hline                                                                           
+
+ \begin{array}{|c|c|}
+    \hline
+    \textbf{Figura} & \textbf{Tamaño} \\
+    \hline
+    \text{Cuadrado} & \text{Grande} \\
+    \hline
+    \text{Cuadrado} & \text{Mediano}\\
+    \hline
+    \text{Círculo} & \text{Mediano}\\
+    \hline
+    \text{Círculo} & \text{Pequeño}\\
+    \hline
   \end{array}
 
  \textbf{Color}
 
- \begin{array}{|c|c|}                                                                
-    \hline                                                                           
-    \textbf{Figura} & \textbf{Color}  \\                                    
-    \hline                                                                           
-    \text{Cuadrado} & \text{Rojo} \\                                                                     
-    \hline                                                                           
-    \text{Cuadrado} & \text{Azul} \\                                                                    
-    \hline                                                                           
-    \text{Círculo} & \text{Blanco} \\                                                                     
-    \hline                                                                           
-    \text{Círculo} & \text{Azul} \\                                                                     
-    \hline                                                                            
+ \begin{array}{|c|c|}
+    \hline
+    \textbf{Figura} & \textbf{Color}  \\
+    \hline
+    \text{Cuadrado} & \text{Rojo} \\
+    \hline
+    \text{Cuadrado} & \text{Azul} \\
+    \hline
+    \text{Círculo} & \text{Blanco} \\
+    \hline
+    \text{Círculo} & \text{Azul} \\
+    \hline
   \end{array}
