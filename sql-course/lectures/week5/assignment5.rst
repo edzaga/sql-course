@@ -70,11 +70,21 @@ A partir de la situación descrita realice un diagrama uml utilizando un softwar
 
 Pregunta 2 (30 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^
-A partir del siguiente diagrama UML, describir las tablas y relaciones.
+
+Bender necesita una gran cantidad de cervezas, pues está escaso de energía. En la tierra no hay ya que los
+habitantes del planeta 'Omicrón Persei 8' en una de sus constantes invasiones, han saqueado todo el suminstro de esta
+bebida. Planet Express debe hacer un viaje al planeta UML (cuyos habitantes son grandes bebedores). Sin embargo,
+Con el aupuro, Fry y Leela no llevaron dinero. Los 'UMLianos' permitirán llevarse cervezas si son capaces de resolver 
+el siguiente problema, de casi 1000 años de antiguedad:
+
+A partir de las siguientes clases y asociaciones, describa relaciones:
 
 
+.. image:: ../../../sql-course/src/tarea5_diagrama.png                               
+         :align: center  
 
 
+¿Podrás ayudar a Fry y Leela en su misión de salvar a bender?
 
 .. note::
  
