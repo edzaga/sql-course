@@ -25,7 +25,7 @@ Pregunta 1 (5 ptos.)
 
 Pregunta 2 (25 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^^^
-Defina los siguientes conceptos (5 ptos. c/u):
+Defina, de acuerdo a las lecturas, los siguientes conceptos (5 ptos. c/u):
 
 1. Clase:
 2. Asociación:
