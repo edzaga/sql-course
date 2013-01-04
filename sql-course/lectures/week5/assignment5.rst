@@ -75,10 +75,10 @@ Pregunta 2 (30 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^
 
 Bender necesita una gran cantidad de cervezas, pues está escaso de energía. En la tierra no hay ya que los
-habitantes del planeta 'Omicrón Persei 8' en una de sus constantes invasiones, han saqueado todo el suministro de esta
+habitantes del planeta 'Ómicron Persei 8' en una de sus constantes invasiones, han saqueado todo el suministro de esta
 bebida. Planet Express debe hacer un viaje al planeta UML (cuyos habitantes son grandes bebedores). Sin embargo,
 Con el apuro, Fry y Leela no llevaron dinero. Los 'UMLianos' permitirán las llevarse cervezas si son capaces de resolver 
-el siguiente problema, de casi 1000 años de antiguedad:
+el siguiente problema, de casi 1000 años de antigüedad:
 
 A partir de las siguientes clases y asociaciones, describa relaciones:
 
