@@ -105,10 +105,12 @@ A partir de las siguientes clases y asociaciones, describa relaciones:
 
 .. note::
 
-     La tarea se `entrega`_  en un archivo comprimido .rar , que contenga:
+     La tarea se `entrega`_  en un archivo comprimido, que contenga:
 
-        * archivo `assignment5.jpg`, o .png, o bmp, que incluya la respuesta de la pregunta 1 de UML: preguntas de desarrollo”
-        * archivo assigment5.doc , .docx o .pdf que incluya la respuesta de “UML: preguntas conceptuales y
-          la pregunta 2 de UML: preguntas de desarrollo”.
+        * archivo assigment5.doc , .docx o .pdf que incluya la respuesta de todas las preguntas, 
+          incluyendo las imagenes. Cuide bien el formato de entrega. Otros formatos no serán aceptados.
+
 
 .. _`entrega`: https://csrg.inf.utfsm.cl/claroline/
+
+
