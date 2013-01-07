@@ -184,6 +184,7 @@ el de 'Tim'.
 
 Existe más de una forma de definir claves primarias:
 
+
 Ejemplo 6
 ^^^^^^^^^
 Por lo general, en SQL sólo se permite una clave primaria (de allí el nombre), al igual que 
@@ -254,6 +255,55 @@ Es decir que se comparan sólo los valores de la columna/atributo *sName*. Como 
 aparece el error de arriba.
 
 
+Ejemplo 7
+^^^^^^^^^
+Como se dijo en la nota del ejemplo anterior, es posible definir un grupo de atributos 
+como clave primaria.
+
+Para variar un poco las cosas, utilicemos la tabla **College**. 
+
+Supongamos que se desea crear la tabla **College** con 2 atributos como clave primaria: *cName*
+y *State*.
+
+Por el ejemplo 6 ya sabemos que algo como lo siguiente, no funcionará:
+
+.. code-block:: sql
+
+ CREATE TABLE College (cName VARCHAR(50) PRIMARY KEY, 
+ State VARCHAR (30) PRIMARY KEY, Enrollment INT);
+
+Pues no se permite el uso de múltiples claves primarias. Sin embargo es posible si se define la 
+clave primaria al final, única, pero de varios atributos:
+
+.. code-block:: sql
+
+  CREATE TABLE College (cName VARCHAR(50), State VARCHAR(30), 
+  INT Enrollment, PRIMARY KEY (cName, State));
+
+En este caso la salida será::
+ 
+ NOTICE: CREATE TABLE / PRIMARY KEY will create implicit index "college_pkey"
+ for table "college"
+ CREATE TABLE
+
+Si nos fijamos, la clave primaria se compone de *cName* y *State*. A esto se le conoce como 
+**clave compuesta**, pues no es ni una ni la otra, sino la combinación de ambas. Por ejemplo si
+se hubiese dejado solo *cName* como clave primaria y *State* como UNIQUE, no se permitirían las 
+inserciones de este tipo:
+
+.. code-block:: sql
+
+  INSERT INTO College VALUES ('MIT', 'CA',20000);
+  INSERT INTO College VALUES ('Harvard', 'CA', 34000);
+
+Pues con UNIQUE en la columna *State*, no se permitiría 'CA' dos veces. No obstante al ser 
+un **clave primaria compuesta**, si se permite. En este caso una violación a la restricción, sería
+el caso de 2 filas que compartan los mismos valores en ambos atributos, es decir en *cName* y *State*
+
+.. note::
+
+   Los datos de las inserciones de arriba no tienen correlación con los datos utilizados
+   en otras lecturas o los reales. Sólo se utilizan para explicar el ejemplo.
 
 ===================================
 Restricciones de atributo y tupla
