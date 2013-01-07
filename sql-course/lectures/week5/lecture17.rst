@@ -195,10 +195,6 @@ Se tiene un esquema de relación y sus respectivas dependencias funcionales:
 
 ``nombreS -> activo ciudadS``
 
-* préstamo = (nombreS, nombreC, numPréstamo, importe)
-
-``numPréstamo -> importe nombreS``
-
 Puede afirmarse que cliente está en FNBC. Obsérvese que una clave candidata para la relación es
 nombreC. Las únicas dependencias funcionales no triviales que se cumplen en cliente tienen a 
 nombreC a la izquierda de la flecha. Dado que nombreC es una clave candidata, las dependencias 
