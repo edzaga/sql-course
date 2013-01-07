@@ -1,5 +1,5 @@
-Lecture 19 - Unified Modeling Language: UML data modeling
----------------------------------------------------------
+Lecture 19 - Unified Modeling Language: UML modelado de datos
+--------------------------------------------------------------
 .. role:: sql(code)
          :language: sql
          :class: highlight
