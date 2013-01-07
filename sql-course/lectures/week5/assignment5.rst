@@ -15,9 +15,13 @@ Cuarta Forma Normal
 Pregunta 1 (12 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^
 De acuerdo a las lecturas de ésta semana, y en sus palabras:
+
 1. ¿Para que sirve la Cuarta Forma Normal?
+
 2. ¿Cuál es su propósito?
+
 3. ¿Qué es una dependencia multivaluada?
+
 4. ¿Cuál es su proposito? 
 
 
