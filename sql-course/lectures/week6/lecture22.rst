@@ -10,11 +10,11 @@ Lecture 22 - Restricciones y  triggers: Restricciones de múltiples tipos
 Como se pudo apreciar en la lectura anterior, existen varios tipos de restricciones,
 las cuales se dividen en:
 
-  1. Restricciones que no permiten valores NULL
-  2. Restricciones de clave primaria
-  3. Restricciones de atributo y tupla
+  1. Restricciones que no permiten valores *NULL*.
+  2. Restricciones de clave primaria.
+  3. Restricciones de atributo y tupla.
      .. (litados por cada implementaci+on de lenguaje sql... investigar más)
-  4. Restricciones generales
+  4. Restricciones generales.
      .. (No implementado en ninguna distribución)
 
 ==========
@@ -38,6 +38,7 @@ Como su nombre lo indica, su idea es evitar que cierto atributo contenga valores
 
 Ejemplo 1
 ^^^^^^^^^
+
 Creemos una tabla de estudiantes, en la cual no se permita tener el campo 'Average' vacío.
 
 .. code-block:: sql
@@ -59,6 +60,7 @@ Lo cual para la segunda inserción, el siguiente error aparecerá::
 
 Ejemplo 2
 ^^^^^^^^^
+
 Si probamos utilizando comandos de actualización (**UPDATE**)
 
 Digamos que el promedio de 'Amy' es incorrecto, pero aún no se sabe cual
@@ -114,6 +116,7 @@ Esto ocurre dado que, se definió *sID* como la clave primaria de la tabla.
 Ejemplo 4
 ^^^^^^^^^^
 Similar al caso del Ejemplo 2, si se desea actualizar el valor del atributo *sID*,
+
 
 .. code-block:: sql
 
@@ -376,7 +379,7 @@ Tanto para la primera inserción como para la tercera se tiene::
 
 Para las segunda y cuarta inserciones, no existe tal error pues, y como se mencionó dentro
 de las primeras semanas, el único caso en que SQL es keysensitive es para cadenas de caracteres
-que esten dentro de comillas simples (''). por lo tanto 'asd' que es una de las cadenas
+que estén dentro de comillas simples (''). por lo tanto 'asd' que es una de las cadenas
 restringidas difiere de 'Asd' y de 'asd '.
 
 .. note::
