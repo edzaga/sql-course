@@ -1,4 +1,4 @@
-Lecture 17 - Teoría del diseño relacional: Forma normal Boyce-Codd 
+Lectura 17 - Teoría del diseño relacional: Forma normal Boyce-Codd 
 --------------------------------------------------------------
 
 .. role:: sql(code)
@@ -36,7 +36,7 @@ superclave. Tales **superclaves mínimas** se llaman **claves candidatas**.
 * **Clave candidata:** Cuando una superclave, se reduce al mínimo de atributos que la componen, pero aún así 
   sirve para identificar la tupla, entonces ésta pasa a ser una clave candidata.  La **clave (o llave) candidata** 
   es solo a nivel **conceptual**. En una relación más de un atributo podría llegar a ser llave primaria, pues
-  pueden identificar a cada tupla, es decir que no existe dos valores para ese atributo que sean iguales. Dichos
+  pueden identificar a cada tupla, es decir que no existen dos valores para ese atributo que sean iguales. Dichos
   atributos que se proponen a reconocer una tupla, se denominan **clave candidata** porque son **candidatos** 
   a ser **clave primaria**. 
 
@@ -49,7 +49,7 @@ Entonces, los conjuntos *{idCliente}* y *{nombre, calle}* son claves candidatas.
 *nombre* juntos puedan distinguir las tuplas de *Cliente*, su combinación no forma una clave candidata, ya que el 
 atributo *idCliente* por sí solo es una clave candidata.
 
-* **Clave primaria:** Una vez que se elije cual de los atributos de la clave candidata será el que permitirá identificar 
+* **Clave primaria:** Una vez que se elige cual de los atributos de la clave candidata será el que permitirá identificar 
   cada registro en una tabla, dicho atributo se pasa a llamar **llave primaria**. Se puede decir que la clave primaria 
   es una clave candidata, elegida por el diseñador de la base de datos, para identificar unívocamente las tuplas.
 
@@ -138,7 +138,7 @@ Ejemplo 1
 	Matrix        | 1999 |   136    | Action | Wachowski       | Laurence Fishburne
 
 La Relación *Películas* no es en FNBC. Para ver por qué, primero tenemos que determinar qué 
-conjuntos de atributos son claves. Nuestra hipotesis será que *{título, año, actor}* son en conjunto una clave,
+conjuntos de atributos son claves. Nuestra hipótesis será que *{título, año, actor}* son en conjunto una clave,
 para demostrar que es una clave en primer lugar, tenemos que verificar que identifica inequívocamente
 una tupla. Para ello supongamos que dos tuplas tienen igual valor en estos tres atributos: 
 *{título, año y actor}*. Al ser la misma película, los otros atributos *{duración, género y director}* 

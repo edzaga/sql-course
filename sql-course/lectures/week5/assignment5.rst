@@ -22,7 +22,7 @@ De acuerdo a las lecturas de ésta semana, y en sus palabras:
 
 3. ¿Qué es una dependencia multivaluada?
 
-4. ¿Cuál es su proposito? 
+4. ¿Cuál es su propósito? 
 
 
 ----------------------------
@@ -111,8 +111,8 @@ A partir de las siguientes clases y asociaciones, describa relaciones:
 
      La tarea se `entrega`_  en un archivo comprimido, que contenga:
 
-        * archivo assigment5.doc , .docx o .pdf que incluya la respuesta de todas las preguntas, 
-          incluyendo las imagenes. Cuide bien el formato de entrega. Otros formatos no serán aceptados.
+        * archivo assignment5.doc , .docx o .pdf que incluya la respuesta de todas las preguntas, 
+          incluyendo las imágenes. Cuide bien el formato de entrega. Otros formatos no serán aceptados.
 
 
 .. _`entrega`: https://csrg.inf.utfsm.cl/claroline/
