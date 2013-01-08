@@ -74,7 +74,7 @@ llamado Hetland, es necesario insertar dos nuevas tuplas; una para cada uno de l
 Los problemas en cuestión son generados por el hecho de que los profesores y los textos
 son completamente independientes entre sí.
 
-La existencia de relaciones Forma Normal de Boyce-Codd (BCNF) "problemáticas" como la del
+La existencia de relaciones Forma Normal de Boyce-Codd (FNBC) "problemáticas" como la del
 ejemplo llevaron a presentar la noción de las dependencias multivaluadas.
 
 Las dependencias multivaluadas son una generalización de las dependencias funcionales,
@@ -95,11 +95,11 @@ ambas en un solo enunciado de esta manera:
 
 ``A->->B|C``
 
-A partir de la definición de dependencia multivalorada se puede obtener la regla siguiente:
+A partir de la definición de dependencia multivaluada se puede obtener la regla siguiente:
 
 Si ``A->B``, entonces ``A->->B``.
 
-En otras palabras, cada dependencia funcional es también una dependencia multivalorada.
+En otras palabras, cada dependencia funcional es también una dependencia multivaluada.
 
 Las dependencias multivaluadas se utilizan de dos maneras:
 
@@ -116,7 +116,7 @@ Cuarta forma normal
 La cuarta forma normal (4FN) tiene por objetivo eliminar las dependencias multivaluadas.
 La 4FN se asegura de que las dependencias multivaluadas independientes estén correcta y
 eficientemente representadas en un diseño de base de datos. La 4FN es el siguiente nivel
-de normalización después de la forma normal de Boyce-Codd (BCNF).
+de normalización después de la forma normal de Boyce-Codd (FNBC).
 
 Definición
 ==========
@@ -131,7 +131,7 @@ Definición
 	Si una relación tiene más de una clave, cada una es una **clave candidata**. Una de ellas es
 	arbitrariamente designada como clave primaria, el resto son secundarias.
 
-Es otras palabras una relación está en 4FN si esta en Tercera forma normal o en BCNF y no posee dependencias
+Es otras palabras una relación está en 4FN si esta en Tercera forma normal o en FNBC y no posee dependencias
 multivaluadas no triviales. Como se mencionó, una relación posee una dependencia multivaluada cuando la existencia
 de dos o más relaciones independientes muchos a muchos causa redundancia; y es esta redundancia la que es
 suprimida por la cuarta forma normal.
@@ -197,7 +197,7 @@ Se tiene una relación entre estudiantes, ramo y deporte. Los estudiantes pueden
 varios ramos y participar en diversos deportes. Esto quiere decir que sid no será único, de esta
 forma la única clave candidata posible es la combinación de los atributos (sid, ramo, deporte).
 El estudiante 1 tiene los ramos física y programación, participa en natación y tenis.  El  estudiante
-2 sólo tiene el ramo matemáticas y participa en vóleibol.
+2 sólo tiene el ramo matemáticas y participa en voleibol.
 
 .. code-block:: sql
 
@@ -207,7 +207,7 @@ El estudiante 1 tiene los ramos física y programación, participa en natación 
 	1   | programación | natación
 	1   |   física     | tenis
 	1   | programación | tenis
-	2   | matemáticas  | vóleibol
+	2   | matemáticas  | voleibol
 
 La relación entre sid y ramo no es una dependencia funcional porque los estudiantes pueden tener
 distintos ramos. Un valor único de sid puede poseer muchos valores de ramo.  Esto también se aplica
@@ -236,14 +236,14 @@ como en se muestra a continuación:
 	1   | programación | natación
 	1   |   física     | tenis
 	1   | programación | tenis
-	2   | matemáticas  | vóleibol
+	2   | matemáticas  | voleibol
 
-Esta relación está en BCNF (2FN porque todo es clave; 3FN porque no tiene dependencias transitivas;
-y BCNF porque no tiene determinantes que no son claves). A pesar de esto se aprecia esta anomalía
+Esta relación está en FNBC (2FN porque todo es clave; 3FN porque no tiene dependencias transitivas;
+y FNBC porque no tiene determinantes que no son claves). A pesar de esto se aprecia esta anomalía
 de actualización, pues hay que hacer demasiadas actualizaciones para realizar un cambio en los datos.
 
 Lo mismo ocurre si un estudiante se desea inscribir un nuevo ramo. También existe anomalía si un estudiante
-desinscribe un ramo pues se deben eliminar cada uno de los registros que contienen tal materia. Si participa
+des-inscribe un ramo pues se deben eliminar cada uno de los registros que contienen tal materia. Si participa
 en cuatro deportes, habrá cuatro tuplas que contengan el ramo que ha dejado y deberán borrarse las cuatro tuplas.
 
 Para evitar tales anomalías se construyen dos relaciones, donde cada una almacena datos para solamente uno
@@ -266,9 +266,9 @@ de los atributos multivaluados. Las relaciones resultantes no tienen anomalías:
 	1   | fútbol
 	1   | natación
 	1   | tenis
-	2   | vóleibol
+	2   | voleibol
 
-A partir de estas observaciones, se define la 4FN: Una relación está en 4FN si está en BCNF y
+A partir de estas observaciones, se define la 4FN: Una relación está en 4FN si está en FNBC y
 no tiene dependencias multivaluadas.
 
 Ejemplo 3

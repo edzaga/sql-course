@@ -1,5 +1,5 @@
-Lecture 19 - Unified Modeling Language: UML data modeling
----------------------------------------------------------
+Lectura 19 - Unified Modeling Language: UML modelado de datos
+--------------------------------------------------------------
 .. role:: sql(code)
          :language: sql
          :class: highlight
@@ -26,7 +26,7 @@ una traducción al lenguaje de la BD.
 
 .. note::
  
-  Existen variadas herramientas a la hora de gráficar diagramas UML. Algunas de ellas son: 
+  Existen variadas herramientas a la hora de graficar diagramas UML. Algunas de ellas son: 
   DIA, StarUML o Umbrello entre otras. 
   
   

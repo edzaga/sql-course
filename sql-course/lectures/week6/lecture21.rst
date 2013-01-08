@@ -1,25 +1,27 @@
-Lecture 21 - Constraints and triggers: Introduction
+Lecture 21 - Restricciones y triggers: Introducción
 -----------------------------------------------------
 .. role:: sql(code)
          :language: sql
          :class: highlight
 
-.. Ambos están orientados a Bases de Datos Relacionales o RDB por sus siglas en inglés.Si bien SQL no cuenta con ellos, en las diversas implementaciones del lenguaje se ha corregido este error. Lamentablemente no cuenta con un standar
+Ambos están orientados a Bases de Datos Relacionales o RDB por sus siglas en inglés. 
+Si bien SQL no cuenta con ellos, en las diversas implementaciones del lenguaje se ha corregido 
+este "error". Lamentablemente no cuenta con un estándar, por lo que existe gran cantidad de variaciones.
 
-Las reestricciones, también llamadas reestricciones de integridad, permiten definir 
+Las restricciones, también llamadas restricciones de integridad, permiten definir 
 los estados permitidos dentro de la Base de Datos (BD).
 
 Los triggers, en cambio, monitorean los cambios en la BD, chequean condiciones, e inician
 acciones de forma automática. Es por ello que se les considera de naturaleza dinámica, a 
-diferencia de las reestricciones de integridad, que son de naturaleza estática.
+diferencia de las restricciones de integridad, que son de naturaleza estática.
 
 Ambos se analizarán en detalle en las próximas lecturas.
 
 ==============
-Reestricciones
+Restricciones
 ==============
 
-Imponen reestricciones de datos permitidos, más alla de aquellos impuestos por la estructura
+Imponen restricciones de datos permitidos, más allá de aquellos impuestos por la estructura
 y los tipos de datos en la BD.
 
 
@@ -46,14 +48,14 @@ El criterio para la decisión es Verdadero, Falso o NULL::
   Desicion: 'T', 'F', NULL
 
 
-Las reestricciones se utilizan para:
+Las restricciones se utilizan para:
 
 1. Evitar errores a la hora de ingresar datos (**INSERT**).
 2. Evitar errores a la hora de modificar datos (**UPDATE**). 
 3. Forzar consistencia de datos.
 
 
-Existen diversos tipos de reestricciones. Ellas se clasifican en:
+Existen diversos tipos de restricciones. Ellas se clasifican en:
 
 1. **NOT NULL**              : No permiten valores nulos.
 2. **Key**                   : Permiten sólo valores únicos, asociados a la llave primaria.
@@ -63,19 +65,19 @@ Existen diversos tipos de reestricciones. Ellas se clasifican en:
 6. **Generales**             : Restringen toda la BD.
 
 
-Declaraciondo y forzando reestricciones
+Declaraciondo y forzando restricciones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Las reestricciones se pueden declarar con el schema original, y todo se chequea al final
-de la carga de datos. **ver mejor el otro tipo de declaracion**
+Las restricciones se pueden declarar con el schema original, y todo se chequea al final
+de la carga de datos. **ver mejor el otro tipo de declaración**
 
 
-Se puede forzar el chequeo despues de cada modificación *peligrosa*, es decir
+Se puede forzar el chequeo después de cada modificación *peligrosa*, es decir
 aquellas que violan una restricción. No es necesario modificar después de un cambio de promedio
 en la tabla de Estudiantes, eso sólo ralentizaría el sistema. 
 
-Otra forma de forzar chequeos es despues de cada **transacción**. Este concepto, se verá  más adelante,
-pero es posible adelantar que una trasacciones corresponden a un conjunto de operaciones que al finalizar
+Otra forma de forzar chequeos es después de cada **transacción**. Este concepto, se verá  más adelante,
+pero es posible adelantar que una tras acciones corresponden a un conjunto de operaciones que al finalizar
 modifican la BD **revisar esto también**
 
 
@@ -89,7 +91,7 @@ La lógica del trigger es::
    Si es cierta se realiza una acción"
 
 
-Como ya se mencionó, a diferencia de las restricciones, un trigger detecta un evento, verifíca 
+Como ya se mencionó, a diferencia de las restricciones, un trigger detecta un evento, verifica 
 alguna condición de activación y en caso de ser cierta, realiza una acción.
 
 Contextualizandonos en el sistema de admisión de Estudiantes:
@@ -114,13 +116,13 @@ Los triggers se utilizan para:
 1. **Mover la lógica desde la aplicación a Sistema Administrador de la Base de Datos (BDMS)**, lo
    cual permite un sistema más modular y automatizado.
 
-2. **Forzar reestricciones**. Ningun sistema implementado soporta todas las reestricciones de otro, es decir
+2. **Forzar restricciones**. Ningún sistema implementado soporta todas las restricciones de otro, es decir
    no existe un estándar actual. Un caso es el ejemplo 5, en el cual algún DBMS podría redondear hacía abajo
-   en lugar de hacia arriba; con el trigger esto se podría resolver. Además existen reestricciones que no se pueden
+   en lugar de hacia arriba; con el trigger esto se podría resolver. Además existen restricciones que no se pueden
    escribir de forma directa, pero si utilizando triggers.
    
-3. **Forzar reestricciones utilizando lógica reparadora**. Un error se puede detectar y realizar una 
-   acción, que puede ser por ejemplo, si existe la reestricción **0 <= Average <= 100**, y alguien por error de tipeo 
+3. **Forzar restricciones utilizando lógica reparadora**. Un error se puede detectar y realizar una 
+   acción, que puede ser por ejemplo, si existe la restricción **0 <= Average <= 100**, y alguien por error de tipeo 
    ingresa un promedio -50, un trigger podría cambiar este valor a 0, por ejemplo cualquier valor que no esté en el 
    rango, cambiarlo a 0.
 

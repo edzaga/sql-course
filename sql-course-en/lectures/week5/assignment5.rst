@@ -1,163 +1,112 @@
 Assignment 5
 ============
 
-Sticker Album
--------------
+Deadline: Monday January 21 2013 till 23:59
+-----------------------------------------------------------
 
-One of the most common hobbies of the children
-is to buy an sticker album, from any interesting
-topic, like dinosaurs, football, cars, cartoon, etc,
-maybe you had one where you are a little boy!
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
 
-First of all, please note that you can generate random numbers,
-using the python ``random`` module, which provide several
-functions to obtain random numbers in different ways.
+-------------------------
+Fourth Normal Form (4NF)
+-------------------------
 
-For example, the ``randrange(n, m)`` function,
-return a random number between ``n`` and ``m``::
+Question  1 (12 pts.)
+^^^^^^^^^^^^^^^^^^^^^
 
-    >>> from random import randrange
-    >>> randrange(5, 15)
-    14
-    >>> randrange(5, 15)
-    6
-    >>> randrange(5, 15)
-    14
-    >>> randrange(5, 15)
-    5
-    >>> randrange(5, 15)
-    12
-    >>> randrange(5, 15)
-    9
+Explain, in your own words and in accordance of  this week readings, the following:
 
-(Remember that the ranges include the first value but not the last one,
-so the maximum previous value will be 14).
+1. Which is the use of the Fourth Normal Form?
 
-#. Lets think that a boy want to collect an sticker album.
-   The stickers are enumerated from 1 to 640,
-   and the boy can buy some sticker packets,
-   which contain 5 stickers, but by error
-   in some packets are only 4 stickers.
+2. What is it purpose?
 
-   Write a function called ``new_packet()``
-   which return a list with the new stickers
-   and a status, which is *wrong* or *correct*
-   in cases which the stickers are 4 or 5 respectively::
+3. What is a multi evaluated dependency? 
 
-    >>> new_packet()
-    ([27, 31, 207, 455, 529], 'correct')
-    >>> new_packet()
-    ([66, 577, 481, 171], 'wrong')
-    >>> new_packet()
-    ([275, 493, 167, 25], 'wrong')
-    >>> new_packet()
-    ([113, 35, 592, 560, 244], 'correct')
+4. What is it purpose?
 
 
-   **Hint:** Returning more than one value.
+----------------------------
+UML: Conceptual Questions
+----------------------------
 
-#. The boy has a sticker register of all their albums,
-   but in this time, he is only looking to finish the
-   **Python album**.
+Question 1 (3 pts.)
+^^^^^^^^^^^^^^^^^^^^
 
-   The register is a simple list, called ``album_stickers``.
+In your own words and in accordance of  this week readings, which is the use of UML?
 
-   Each day, the boy go to the store and buy some stickers
-   and obviously, add them to the register.
+Question 2 (25 pts.)
+^^^^^^^^^^^^^^^^^^^^^
 
-   Write a function called ``add_stickers()``,
-   which receive a parameter of the number of stickers,
-   which can be *one* or *n* stickers,
-   because in some days, the boy buys a lot of packets
-   and he want to add them all::
+Define, in your own words and in accordance of  this week readings, the following concepts: (5 pts. each):
 
-    >>> album_stickers = []
-    >>> add_stickers(1)
-    >>> album_stickers
-    [1]
-    >>> add_stickers(2,500,156)
-    >>> album_stickers
-    [1,2,500,156]
+1. Class:
+ 
+2. Association:
 
-   Also, the boy can add new entire packets,
-   without know the content::
+3. Multiplicity:
 
-    >>> add_stickers(14, new_packets=2)
-    [14,1,2,500,156,4,75,23,8,324]
+4. Super Class:
 
-   Please note that the function does not return anything,
-   only modify the ``album_stickers`` list.
+5. Child Class:
 
-   **Hint:** Default parameter and special parameters.
 
-#. Write a function called ``missing(stickers)``
-   which return the missing sticker set to complete the album::
+.. note::
 
-    >>> album_stickers = []
-    >>> add_stickers(new_packets=128)
-    >>> print missing(album_stickers)
-    [514, 3, 5, 7, 10, 523, 12, 525, 14, 16, 529, ...]
+  “in your own words” refers that the answer must NOT be a copy of one of the lectures.
 
-   Please note that the boy buy 128 packets,
-   that in total are the same number of the album stickers
-   in approximation (because the bad packets), but because
-   some stickers are more than once, or another stickers
-   which does not are present in the packets is not
-   enough to complete the album.
 
-   **Hint:** List comprehensions.
+----------------------------
+UML: Development Questions
+----------------------------
 
-#. Write a function called ``count_stickers(stickers)``
-   which return a dictionary associating each sticker
-   to the number of times which is in the stickers list::
+Question 1 (30 pts.)
+^^^^^^^^^^^^^^^^^^^^^^
 
-    >>> album_stickers = [4, 6, 9, 12, 9, 9, 6, 12, 2]
-    >>> print count_stickers(album_stickers)
-    {9: 3, 2: 1, 4: 1, 6: 2, 12: 2}
+In England exists the “Premier League”. The 20 teams that compose this league can play in a variety
+of championships and tournaments, both nationally and internationally. From the international 
+championships, the “Champions League”, the “Europa League” and the “Club World Cup” stand out, 
+among others. This type of championships are usually played by 16 to 32 teams. A team can play in more 
+than one International Championship, but it must fill the inscription forms that allows allowing 
+differentiation of the championships in which it participates.
 
-  **Hint:** *sorted()* function.
+Each team is composed by a roster of players and a technical director.
+The players from the roster are foreign and national; they can be differentiated by the fact that
+the national use an ID and the foreign use a passport.
 
-#. If the boy wants to exchange stickers with a friend,
-   he need to know what stickers does not have and
-   what of their stickers has the friend.
+Each player has certain characteristics: Attack, Defense, Assault Capacity, Mentality, Injury Risk, 
+Age, Height, Nationality and Name. Also, each player has a medical record, that in the eventuality 
+that the player changes teams, the record is transferred to the new team.
 
-   The friend of the boy will exchange only the repeated
-   stickers.
+From the situation described above, create a UML diagram using a software of your choosing (DIA, StarUML, Umbrello, etc).
 
-   Write a function called ``needed_stickers(wanted_stickers,friend_stickers)``
-   which return the set of the stickers that can be exchanged,
-   which are the intersection between the ``wanted_stickers`` (missing stickers)
-   and the repeated stickers from his friend ``friend_stickers``::
 
-    >>> album_stickers = [4, 6, 9, 12, 9, 9, 6, 12, 2]
-    >>> friend_stickers = [4, 9, 7, 7, 4, 4, 8]
-    >>> needed_stickers(album_stickers, friend_stickers)
-    [7]
-    >>> needed_stickers(friend_stickers, album_stickers)
-    [12, 6]
+Question 2 (30 pts.)
+^^^^^^^^^^^^^^^^^^^^^
 
-   This means, the boy wants the sticker number 7, which
-   his friend has repeated.
-   Also he wants the sticker number 8, but she does not
-   has it repeated, so, there is no exchange.
-   His friend have repeated the stickers number 4,
-   but the boy already have it, so, there is no exchange.
+Bender needs a lot of beers because he is running low on energy. There are no more beers in Earth, 
+as the inhabitants of the planet “Omicron Persei 8” took them all in their last invasion. Planet Express 
+must now journey to the planet UML (whose inhabitants are avid drinkers of beer) to recover this 
+precious drink. When they arrive,  Fry and Leela notice they didn’t had any money to buy beer. 
+Fortunately, the UMLians will allow them to take all the beer they want, if the answer a thousand 
+years old problem correctly. The problem is the following:
 
-   **Hint:** *filter()* function.
+From the following classes and associations, describe the relationships between them:
 
-#. Each packet have the possibility to contain an holographic sticker,
-   which are multiples of ten.
 
-   The boy want to sell to their friends the repeated stickers,
-   a simple stickers cost 0.25 USD and the holographic stickers
-   cost 0.50 USD.
+.. image:: ../../../sql-course/src/tarea5_diagrama.png                               
+         :align: center  
 
-   Write a function called ``sticker_cost()``
-   which first obtain the sticker cost
-   and later calculate the total cost of the repeated stickers::
-   
-     >>> album_stickers = [1,3,62,10,323,120,34]
-     >>> sticker_cost(album_stickers)
-     2.25 USD
 
-   **Hint:** *map()* and *reduce()* function.
+Will Fry and Leela be able to save Bender?
+
+
+.. note::
+
+	The assignment is to be `delivered`_ in a compress file, containing the file “assignment5” 
+	with a file extension of .doc, .docx or .pdf. Any other extension or format will not be accepted so be careful.
+
+
+.. _`delivered`: https://csrg.inf.utfsm.cl/claroline/
+
+

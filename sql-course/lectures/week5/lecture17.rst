@@ -1,5 +1,5 @@
-Lecture 17 - Teoría del diseño relacional: Forma normal Boyce-Codd 
---------------------------------------------------------------
+Lectura 17 - Teoría del diseño relacional: Forma normal Boyce-Codd 
+-------------------------------------------------------------------
 
 .. role:: sql(code)
    :language: sql
@@ -36,7 +36,7 @@ superclave. Tales **superclaves mínimas** se llaman **claves candidatas**.
 * **Clave candidata:** Cuando una superclave, se reduce al mínimo de atributos que la componen, pero aún así 
   sirve para identificar la tupla, entonces ésta pasa a ser una clave candidata.  La **clave (o llave) candidata** 
   es solo a nivel **conceptual**. En una relación más de un atributo podría llegar a ser llave primaria, pues
-  pueden identificar a cada tupla, es decir que no existe dos valores para ese atributo que sean iguales. Dichos
+  pueden identificar a cada tupla, es decir que no existen dos valores para ese atributo que sean iguales. Dichos
   atributos que se proponen a reconocer una tupla, se denominan **clave candidata** porque son **candidatos** 
   a ser **clave primaria**. 
 
@@ -49,7 +49,7 @@ Entonces, los conjuntos *{idCliente}* y *{nombre, calle}* son claves candidatas.
 *nombre* juntos puedan distinguir las tuplas de *Cliente*, su combinación no forma una clave candidata, ya que el 
 atributo *idCliente* por sí solo es una clave candidata.
 
-* **Clave primaria:** Una vez que se elije cual de los atributos de la clave candidata será el que permitirá identificar 
+* **Clave primaria:** Una vez que se elige cual de los atributos de la clave candidata será el que permitirá identificar 
   cada registro en una tabla, dicho atributo se pasa a llamar **llave primaria**. Se puede decir que la clave primaria 
   es una clave candidata, elegida por el diseñador de la base de datos, para identificar unívocamente las tuplas.
 
@@ -111,7 +111,7 @@ de dos atributos, y el resultado estará en FNBC. Sin embargo, tal descomposici�
 la condición (2). De hecho, se debe ser más cuidadosos y utilizar el DF debido a guiar la descomposición.
 La estrategia de descomposición que vamos a seguir es buscar un DF trivial `A_1 A_2 ... A_n -> B_1 B_2 ... B_m`
 que viola FNBC, es decir, `{A_1, A_2, ... , A_n}` no es una superclave. Vamos a añadir a la derecha tantos atributos 
-como son funcionalmente determinado por `{A i, A 2, ... , A n}` . Este paso no es obligatorio, pero a menudo se reduce
+como son funcionalmente determinado por `{A_1, A_2, ... , A_n}` . Este paso no es obligatorio, pero a menudo se reduce
 la cantidad de trabajo realizado, y lo vamos a incluir en nuestro algoritmo.
 La Figura que se muestra a continuación ilustra cómo los atributos se dividen en dos esquemas de relación que se 
 superponen. Uno es de todos los atributos involucrados en la violación de DF, y el otro es el lado izquierdo de la DF 
@@ -138,11 +138,11 @@ Ejemplo 1
 	Matrix        | 1999 |   136    | Action | Wachowski       | Laurence Fishburne
 
 La Relación *Películas* no es en FNBC. Para ver por qué, primero tenemos que determinar qué 
-conjuntos de atributos son claves. Nuestra hipotesis será que *{título, año, actor}* son en conjunto una clave,
+conjuntos de atributos son claves. Nuestra hipótesis será que *{título, año, actor}* son en conjunto una clave,
 para demostrar que es una clave en primer lugar, tenemos que verificar que identifica inequívocamente
 una tupla. Para ello supongamos que dos tuplas tienen igual valor en estos tres atributos: 
-*{título, año y actor}*. Al ser la misma película, los otros atributos *{duración, género y director}* 
-serán iguales también. Así, dos tuplas diferentes no pueden concordar en *{título, año y actor}* pues 
+*{título, año, actor}*. Al ser la misma película, los otros atributos *{duración, género, director}* 
+serán iguales también. Así, dos tuplas diferentes no pueden concordar en *{título, año, actor}* pues 
 en realidad sería la misma tupla.
 
 Ahora, debemos argumentar que ningún subconjunto propio de *{título, año, actor}* determina funcionalmente 
@@ -154,7 +154,7 @@ título, realizada en diferentes años, de vez en cuando tienen un actor en com�
 
 Como *{título, año, actor}* es una clave, cualquier conjunto de atributos que contienen estos tres es 
 una superclave. Los mismos argumentos anteriores se pueden utilizar para explicar por qué no existe 
-un conjunto de atributos que no incluya a los tres atributos *{título, año y actor}* que pudiera ser 
+un conjunto de atributos que no incluya a los tres atributos *{título, año, actor}* que pudiera ser 
 una superclave. Por lo tanto, afirmamos que *{título, año, actor}* es la única clave para *Películas*.
 
 Sin embargo, tenga en cuenta: 
@@ -194,10 +194,6 @@ Se tiene un esquema de relación y sus respectivas dependencias funcionales:
 * sucursal = (nombreS, activo,ciudadS)
 
 ``nombreS -> activo ciudadS``
-
-* préstamo = (nombreS, nombreC, numPréstamo, importe)
-
-``numPréstamo -> importe nombreS``
 
 Puede afirmarse que cliente está en FNBC. Obsérvese que una clave candidata para la relación es
 nombreC. Las únicas dependencias funcionales no triviales que se cumplen en cliente tienen a 
