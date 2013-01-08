@@ -12,7 +12,7 @@ las cuales se dividen en:
 1. Restricciones que no permiten valores NULL
 2. Restricciones de clave primaria
 3. Restricciones de atributo y tupla 
-.. (lmiitados por cada implementaci+on de lenguaje sql... investigar más)
+.. (litados por cada implementaci+on de lenguaje sql... investigar más)
 4. Restricciones generales
 .. (No implementado en ninguna distribución)
 
@@ -296,21 +296,190 @@ inserciones de este tipo:
   INSERT INTO College VALUES ('MIT', 'CA',20000);
   INSERT INTO College VALUES ('Harvard', 'CA', 34000);
 
-Pues con UNIQUE en la columna *State*, no se permitiría 'CA' dos veces. No obstante al ser 
-un **clave primaria compuesta**, si se permite. En este caso una violación a la restricción, sería
-el caso de 2 filas que compartan los mismos valores en ambos atributos, es decir en *cName* y *State*
-
 .. note::
 
    Los datos de las inserciones de arriba no tienen correlación con los datos utilizados
    en otras lecturas o los reales. Sólo se utilizan para explicar el ejemplo.
 
+Pues con UNIQUE en la columna *State*, no se permitiría 'CA' dos veces. No obstante al ser 
+un **clave primaria compuesta**, si se permite. En este caso una violación a la restricción, sería
+el caso de 2 filas que compartan los mismos valores en ambos atributos, es decir en *cName* y *State*
+
+.. note::
+   
+   Para el caso de PostgreSQL, en una atributo declarado como UNIQUE, se permite el múltiple 
+   uso de valores NULL. Por otra parte si e desea utilizar NULL en una clave primaria (PK), no 
+   está permitido.
+
 ===================================
 Restricciones de atributo y tupla
 ===================================
 
+Este tipo de restricción busca limitar los valores de entrada (o actualización) permitidos; con el
+fin de evitar errores como por ejemplo insertar valores negativos cuando sólo se permiten positivos.
+Para ello se utiliza la palabra reservada **CHECK**.
+
+Ejemplo 8
+^^^^^^^^^
+Si creamos la tabla estudiantes 3, cuya característica principal es verficar que, en las operaciones
+de inserción y actualización, los promedios estén dentro del valor permitido:
+
+.. code-block:: sql
+  
+  CREATE TABLE Student3 (sID INT, sName VARCHAR(50), 
+  Average INT CHECK(Average>=0 and Average<=100));
+
+Para comprobar el chequeo, hagamos algunas inserciones:
+
+.. code-block:: sql
+
+ INSERT INTO Student3 VALUES (123,'Amy', 60);
+ INSERT INTO Student3 VALUES (234,'Tim', 70); 
+ INSERT INTO Student3 VALUES (345,'Bob', -55);
+ INSERT INTO Student3 VALUES (456,'Clara', 190);
+
+Con las primeras dos inserciones no hay problemas, pero con la tercera y cuarta, el siguiente error 
+aparece::
+ 
+ ERROR: new row for relation "student3" violates check constriaint "student3_average_check"
+
+pues violan la restricción del promedio.
 
 
-========================
+Ejemplo 9
+^^^^^^^^^
+
+Es posible además, restringir cadenas de caracteres, como el caso del atributo *sName*. Supongamos que
+se desea denegar la entrada o actualización de nombres groseros o sin sentido, limitemos el caso a las
+cadenas: 'asd' y 'lala':
+
+.. code-block:: sql
+  
+  DROP TABLE Student3; 
+  CREATE TABLE Student3 (sID INT, 
+  sName VARCHAR(50) CHECK(sName <> 'asd' and sName <> 'lala'), 
+  Average INT CHECK(Average>=0 and Average<=100));
+
+Si realizamos algunas inserciones:
+
+.. code-block:: sql
+
+ INSERT INTO Student3 VALUES (123,'asd', 60);
+ INSERT INTO Student3 VALUES (234,'Asd', 70); 
+ INSERT INTO Student3 VALUES (345,'lala',55);
+ INSERT INTO Student3 VALUES (454,'asd ',90); 
+
+Tanto para la primera inserción como para la tercera se tiene::
+
+  ERROR: new row for relation "student3" violates check constraint "student3_sname_check"
+
+Para las segunda y cuarta inserciones, no existe tal error pues, y como se mencionó dentro
+de las primeras semanas, el único caso en que SQL es keysensitive es para cadenas de caracteres 
+que esten dentro de comillas simples (''). por lo tanto 'asd' que es una de las cadenas 
+restringidas difiere de 'Asd' y de 'asd '. 
+
+.. note::
+ 
+ Es sumamente importante que si se desea declarar cadenas de caracteres y que además
+ se quieran  restringir valores específicos (como ocurre en el Ejemplo 9), el largo permitido
+ no sea ni demasiado largo, como para tener que restringir cada caso específico, ya sea: 'asd',
+ 'asd ', 'asd  ',... o 'Asd', 'Asd '... considerando todas las combinaciones posibles; ni
+ demasiado corto para tener problemas de inserción con datos reales.
+
+Al igual que en los primeros ejemplos, si se desea actualizar los atributos que cuentan con el tipo
+de restricción de este apartado, con valores que están fuera de rango o dentro de las restricción,
+se obtendrá un error de tipo::
+
+  ERROR: new row for relation "**table**" violates check constraint "**table**_*atribute*_check"
+
+Donde **table** se refiere a la relación en cuestión y *atribute* al atributo que cuenta con la 
+restricción del tipo **CHECK**.
+
+
+Es posible, además utilizar este tipo de restricción para evitar valores NULL, como 
+se verá en el siguiente ejemplo.
+
+Ejemplo 10
+^^^^^^^^^^
+Supongamos que deseamos creamos la tabla de postulación **Apply**, pero que el atributo
+*desicion*, de tipo booleano, no admita valores nulos, utilizando restricciones de 
+atributo y tupla.
+
+.. code-block:: sql
+ 
+ CREATE TABLE Apply (sID INT, cName VARCHAR(50), Major VARCHAR(11), 
+ decision BOOL, CHECK(decision IS NOT NULL));
+ 
+Y luego insertamos algunos datos:
+
+.. code-block:: sql
+
+ INSERT INTO Apply VALUES (123, 'MIT', 'engineering', true);
+ INSERT INTO Apply VALUES (123, 'Stanford', 'engineering', null);
+
+Para la primera inserción no hay problemas, pero para la segunda::
+ 
+ ERROR: new row for relation "apply" violates  check constraint "apply_decision_check"
+
+Si se quisiera actualizar la primera inserción a *decision=null*:
+
+.. code-block:: sql
+
+  UPDATE Apply SET decision = null WHERE sID = 123;
+
+Nos topamos con el mismo error::
+
+ ERROR: new row for relation "apply" violates  check constraint "apply_decision_check"
+
+
+Ejemplo 11
+^^^^^^^^^^
+
+Supongamos que al agregar una nueva postulación en la tabla **Apply**,  deseamos 
+verificar la existencia en la tabla **Student** a través del atributo *sID*, utilizando
+para ello, subconsultas:
+
+.. code-block:: sql
+ 
+ DROP TABLE Student;
+ CREATE TABLE Student (sID INT, sName VARCHAR (50), Average INT);
+ CREATE TABLE (sID INT, cName VARCHAR(50), Major VARCHAR(11), 
+ decision BOOL, CHECK( sID IN (SELECT sID FROM Student)));
+
+Con las primeras 2 instrucciones no hay problemas, pero al intentar crear la tabla **Apply**,
+el siguiente error aparece::
+
+ ERROR: cannot use subquery in check constraint
+
+Eso es, utilizar subconsultas dentro de un CHECK no está permitido en PostgreSQL, de hecho
+no se permite en la mayoría de motores de bases de datos.
+
+.. La forma de realizar restricciones de integridad con otras tablas,se verá en otra lectura.
+
+=========================
 Restricciones generales
-========================
+=========================
+
+Si bien son formas de restricción bastante poderosas, no están soportadas por casi
+ningún sistema actual.
+
+Ejemplo 12
+^^^^^^^^^^
+Supongamos una Tabla **T** de atributo *A*. Deseamos forzar que este atributo sea
+llave de **T**.
+
+.. code-block:: sql
+
+ CREATE TABLE T (A INT);
+ CREATE ASSERTION KEY CHECK ((SELECT COUNT (DISTICT A) FROM T)=
+ (SELECT COUNT(*) FROM T));
+
+La consulta de arriba busca forzar que por cada fila de la tabla **T**, el atributo *A*
+sea distinto, lo que dejaría a *A* como clave.
+
+No obstante la función assertion no está implementada en PostgreSQL::
+ 
+ CREATE ASSERTION is not yet implemented 
+
+.. Así finaliza esta lectura.
+
