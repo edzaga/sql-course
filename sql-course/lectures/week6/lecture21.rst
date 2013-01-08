@@ -59,18 +59,14 @@ Existen diversos tipos de restricciones. Ellas se clasifican en:
 
 1. **NOT NULL**              : No permiten valores nulos.
 2. **Key**                   : Permiten sólo valores únicos, asociados a la llave primaria.
-3. **Integridad Referencial**: Relacionados con la llave foránea. (completar)
+3. **Integridad Referencial**: Relacionados con la llave foránea y múltiples tablas.
 4. **Basado en atributos**   : Restringe el valor de un atributo.
 5. **Basado en tupla**       : Restringe el valor de una tupla. Más especifico que el anterior.
 6. **Generales**             : Restringen toda la BD.
 
 
-Declaraciondo y forzando restricciones
+Declarando y forzando restricciones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Las restricciones se pueden declarar con el schema original, y todo se chequea al final
-de la carga de datos. **ver mejor el otro tipo de declaración**
-
 
 Se puede forzar el chequeo después de cada modificación *peligrosa*, es decir
 aquellas que violan una restricción. No es necesario modificar después de un cambio de promedio
@@ -78,8 +74,7 @@ en la tabla de Estudiantes, eso sólo ralentizaría el sistema.
 
 Otra forma de forzar chequeos es después de cada **transacción**. Este concepto, se verá  más adelante,
 pero es posible adelantar que una tras acciones corresponden a un conjunto de operaciones que al finalizar
-modifican la BD **revisar esto también**
-
+modifican la BD.
 
 ========
 Triggers

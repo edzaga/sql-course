@@ -1,3 +1,3 @@
-Lecture 28 - Views: View and automatic modifications 
-----------------------------------------------------
+Lectura 28 - Vistas: Vistas y modificaciones automáticas 
+---------------------------------------------------------
 
