@@ -1,5 +1,5 @@
 Lectura 17 - Teoría del diseño relacional: Forma normal Boyce-Codd 
---------------------------------------------------------------
+-------------------------------------------------------------------
 
 .. role:: sql(code)
    :language: sql
@@ -111,7 +111,7 @@ de dos atributos, y el resultado estará en FNBC. Sin embargo, tal descomposici�
 la condición (2). De hecho, se debe ser más cuidadosos y utilizar el DF debido a guiar la descomposición.
 La estrategia de descomposición que vamos a seguir es buscar un DF trivial `A_1 A_2 ... A_n -> B_1 B_2 ... B_m`
 que viola FNBC, es decir, `{A_1, A_2, ... , A_n}` no es una superclave. Vamos a añadir a la derecha tantos atributos 
-como son funcionalmente determinado por `{A i, A 2, ... , A n}` . Este paso no es obligatorio, pero a menudo se reduce
+como son funcionalmente determinado por `{A 1, A 2, ... , A n}` . Este paso no es obligatorio, pero a menudo se reduce
 la cantidad de trabajo realizado, y lo vamos a incluir en nuestro algoritmo.
 La Figura que se muestra a continuación ilustra cómo los atributos se dividen en dos esquemas de relación que se 
 superponen. Uno es de todos los atributos involucrados en la violación de DF, y el otro es el lado izquierdo de la DF 
