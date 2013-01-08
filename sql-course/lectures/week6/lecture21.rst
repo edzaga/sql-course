@@ -47,7 +47,7 @@ El establecimiento X no puede tener más de 45000 alumnos::
 Ejemplo 3
 ^^^^^^^^^
 
-El criterio para la decisión es Verdadero, Falso o **NUL**::
+El criterio para la decisión es Verdadero, Falso o **NULL**::
 
   Decisión: 'T', 'F', **NULL**
 

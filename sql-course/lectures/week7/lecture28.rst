@@ -17,7 +17,6 @@ están almacenadas en las tablas. Es por ello que, podemos decir que las vistas 
 =======
 por un conjunto de definiciones, pero no almacenan datos, pues utilizan los datos que
 están alamacenadas en las tablas. Es por ello que, podemos decir que las vistas son
->>>>>>> 218b73c117afd2626c80168ba4ceae6bda61df3d
 tablas virtuales.
 
 Su sintaxis es:
@@ -61,15 +60,15 @@ automatiza este proceso.
 Reglas
 =============
 
-Dentro del estandar de SQL
-El proceso de automatizado de traducción está sujeto a 4 grandes reglas, ellas son:
+Dentro del estandar de SQL, existen 4 reglas para las "vistas modificables", ellas son:
+
+.. El proceso de automatizado de traducción está sujeto a 4 grandes reglas, ellas son:
 .. ojo, buscar más info aca
 1. Hacer un select de una tabla, no de un join (??)
 2. Si un atributo no esta en la vista, debe permitirsele tener valor NULL o uno por defecto
 3. Si la vista está sobre la relación/tabla T, las subconsultas no pueden referirse a T, pero
    si a otras relaciones/tablas.
 4. En una vista, no se puede usar GROUP BY o AGGREGATION
-
 
 
 ============
@@ -80,6 +79,5 @@ Para esta lectura, se utilizará el sistema de Postulación de Estudiantes a
 Establecimientos Educacionales, con los datos utilizados en la lectura 9(tercera semana).
 
 
-=======
 
 

@@ -185,6 +185,11 @@ problemas: el *sID* de 'Amy' pasa de 123 a 12, luego el de 'Tim' de 234 a 123.
 En el segundo caso al sumar, el *sID* de 'Amy' pasa de 12 a 123, pero genera conflicto con
 el de 'Tim'.
 
+.. note::
+ 
+   FIFO es acrónimo de "First In First Out", es decir se atiende primero a quien llega.
+   Este modelo de atención es conocido como cola.
+
 
 Existe más de una forma de definir claves primarias:
 
