@@ -65,7 +65,7 @@ Question 1 (30 pts.)
 
 In England exists the “Premier League”. The 20 teams that compose this league can play in a variety
 of championships and tournaments, both nationally and internationally. From the international 
-championships, the “Champions League”, the “Europa League” and the “Mundial de Clubes” stand out, 
+championships, the “Champions League”, the “Europa League” and the “Club World Cup” stand out, 
 among others. This type of championships are usually played by 16 to 32 teams. A team can play in more 
 than one International Championship, but it must fill the inscription forms that allows allowing 
 differentiation of the championships in which it participates.
@@ -104,7 +104,7 @@ Will Fry and Leela be able to save Bender?
 .. note::
 
 	The assignment is to be `delivered`_ in a compress file, containing the file “assignment5” 
-	with a file extension of .doc, .docx or .pdf. Any other extension or format will not be accepted so be carefull.
+	with a file extension of .doc, .docx or .pdf. Any other extension or format will not be accepted so be careful.
 
 
 .. _`delivered`: https://csrg.inf.utfsm.cl/claroline/
