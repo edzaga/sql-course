@@ -111,7 +111,7 @@ de dos atributos, y el resultado estará en FNBC. Sin embargo, tal descomposici�
 la condición (2). De hecho, se debe ser más cuidadosos y utilizar el DF debido a guiar la descomposición.
 La estrategia de descomposición que vamos a seguir es buscar un DF trivial `A_1 A_2 ... A_n -> B_1 B_2 ... B_m`
 que viola FNBC, es decir, `{A_1, A_2, ... , A_n}` no es una superclave. Vamos a añadir a la derecha tantos atributos 
-como son funcionalmente determinado por `{A 1, A 2, ... , A n}` . Este paso no es obligatorio, pero a menudo se reduce
+como son funcionalmente determinado por `{A_1, A_2, ... , A_n}` . Este paso no es obligatorio, pero a menudo se reduce
 la cantidad de trabajo realizado, y lo vamos a incluir en nuestro algoritmo.
 La Figura que se muestra a continuación ilustra cómo los atributos se dividen en dos esquemas de relación que se 
 superponen. Uno es de todos los atributos involucrados en la violación de DF, y el otro es el lado izquierdo de la DF 
@@ -141,8 +141,8 @@ La Relación *Películas* no es en FNBC. Para ver por qué, primero tenemos que 
 conjuntos de atributos son claves. Nuestra hipótesis será que *{título, año, actor}* son en conjunto una clave,
 para demostrar que es una clave en primer lugar, tenemos que verificar que identifica inequívocamente
 una tupla. Para ello supongamos que dos tuplas tienen igual valor en estos tres atributos: 
-*{título, año y actor}*. Al ser la misma película, los otros atributos *{duración, género y director}* 
-serán iguales también. Así, dos tuplas diferentes no pueden concordar en *{título, año y actor}* pues 
+*{título, año, actor}*. Al ser la misma película, los otros atributos *{duración, género, director}* 
+serán iguales también. Así, dos tuplas diferentes no pueden concordar en *{título, año, actor}* pues 
 en realidad sería la misma tupla.
 
 Ahora, debemos argumentar que ningún subconjunto propio de *{título, año, actor}* determina funcionalmente 
@@ -154,7 +154,7 @@ título, realizada en diferentes años, de vez en cuando tienen un actor en com�
 
 Como *{título, año, actor}* es una clave, cualquier conjunto de atributos que contienen estos tres es 
 una superclave. Los mismos argumentos anteriores se pueden utilizar para explicar por qué no existe 
-un conjunto de atributos que no incluya a los tres atributos *{título, año y actor}* que pudiera ser 
+un conjunto de atributos que no incluya a los tres atributos *{título, año, actor}* que pudiera ser 
 una superclave. Por lo tanto, afirmamos que *{título, año, actor}* es la única clave para *Películas*.
 
 Sin embargo, tenga en cuenta: 

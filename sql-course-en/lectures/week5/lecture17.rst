@@ -17,7 +17,6 @@ Types of keys
  
 Example
 ^^^^^^^^ 
-
 The *idClient* attribute of the relation *Client* is sufficient to distinguish a row of a *Client* of the others. So, *idClient* is a superkey. Analogously, the combination of name and *idClient* is a superkey of the set of *Client* relation. The attribute *name* of client is not a superkey because several people could have the same name.
 
 The concept of a superkey is not sufficient for what we have proposed here, since a superkey can contain unnecessary attributes. If K is a superkey, then so is any superset of K. Often superkeys are interested such that the proper subsets of them are not superkey. **Such "minimum" superkeys are called candidate keys.**
@@ -33,7 +32,7 @@ It is possible that different set of attributes could serve as candidate key. Su
  
 .. note::
 
-	Other concept that we will be using is functional dependence (FD) which you can review in lecture 16.
+	Other concept that we will be using is functional dependence (FD) which you can review in `Lecture16`_
 
 Boyce-Codd normal form
 ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
@@ -77,7 +76,7 @@ Example 1
 .. code-block:: sql
 	Movie:
 
-	title         | year |  lenght  | genre  |     director    | actor
+	title         | year |  length  | genre  |     director    | actor
 	--------------+------+----------+--------+-----------------+-------------
 	Forrest Gump  | 1994 |   142    | Drama  | Robert Zemeckis | Tom Hanks
 	Forrest Gump  | 1994 |   142    | Drama  | Robert Zemeckis | Robin Wright
@@ -87,7 +86,7 @@ Example 1
 	Matrix        | 1999 |   136    | Action | Wachowski       | Laurence Fishburne
 	 
  
-The *Movies* relation is not in BCFN. To see why, we must first determine which sets of attributes are keys. Our hypothesis is that *{title, year, actor}* are in a key set. To show that it is a key in the first place we have to verify that uniquely identifies a tuple. Let's suppose two tuples have the same value in these three attributes: *{title, year, actor}*. By being the same movie, the other attributes *{lenght, genre, director}* are equal too. Thus, two different tuples cannot agree on *{title, year, actor}* since actually it would be the same tuple.
+The *Movies* relation is not in BCNF. To see why, we must first determine which sets of attributes are keys. Our hypothesis is that *{title, year, actor}* are in a key set. To show that it is a key in the first place we have to verify that uniquely identifies a tuple. Let's suppose two tuples have the same value in these three attributes: *{title, year, actor}*. By being the same movie, the other attributes *{length, genre, director}* are equal too. Thus, two different tuples cannot agree on *{title, year, actor}* since actually it would be the same tuple.
 
 Now, we must argue that no proper subset of *{title, year, actor}* functionally determines all the rest of the attributes. First it is observed that the title and the year do not determined actor, because many Movies have more than one actor. Therefore, *{title, year}* is not a key. *{year, actor}* is not a key, because we could have an actor in two Movies in the same year, thus: actor year -> title is not a FD. Furthermore, we argue that *{title, actor}* is not a key, because two *Movies* with the same *title*, held in different years, from time to time have a common *actor*.
 
@@ -95,7 +94,7 @@ As *{title, year, actor}* is a key, any set of attributes containing these three
 
 However, keep in mind:
 
-``title year-> lenght genre actor``
+``title year-> length genre actor``
  
 Unfortunately, the left side of the previous FD is not a superkey. In particular, it is known that the title and year do not attribute functionally determine the attribute actor. Therefore, the existence of the FD violates BCNF and tells us that *Movies* **is not in BCNF**.
 
@@ -104,13 +103,13 @@ On the other hand:
 .. code-block:: sql 
 	Movies2:
 
-	title         | year |  lenght  | genre  |     director
+	title         | year |  length  | genre  |     director
 	--------------+------+----------+--------+-----------------
 	Forrest Gump  | 1994 |   142    | Drama  | Robert Zemeckis
 	The Godfather | 1972 |   175    | Crime  | Mario Puzo
 	Matrix        | 1999 |   136    | Action | Wachowski
  
-``year title -> lenght genre director``
+``year title -> length genre director``
  
 The only key for *Movie2* is *{title, year}*. Moreover, the only non trivial FD should have at least title and year in the left side, and therefore the left side must be the superkey. As a result, *Movies2* **is in BCNF**.
 
@@ -123,7 +122,7 @@ We have a scheme of relation and its respective functional dependencies:
 
 ``nameC -> address city``
  
-* office = (nameS, activo,cityS)
+* office = (nameS, active,cityS)
 
 ``nameS -> active cityS``
  
@@ -142,7 +141,7 @@ Example 3
 	121 | Math    | David
 	345 | Spanish | Paul
 	567 | math    | Robert
-	567 | spanish | Julia
+	567 | Spanish | Julia
 	563 | Math    | Robert
  
 The table is in 3NF because it has not transitive dependencies. But it is not in the form of Boyce - Codd, since ``(ID, subject)->teacher`` and ``teacher-> subject.`` In this case, the redundancy occurs because of a bad selection of the key. The redundancy of the subject is completely avoidable. The solution will be:
@@ -166,4 +165,4 @@ The table is in 3NF because it has not transitive dependencies. But it is not in
  
 In the forms of Boyce-Codd you must be careful when you decompose, since you might lose information for a bad decomposition.
 
-
+.. _`lecture16`: http://sql.csrg.cl/en/lectures/week4/lecture16.html
