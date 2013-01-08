@@ -220,7 +220,7 @@ No obstante la salida es::
  LINE1: ... E student (sID PRIMARY KEY, sNname VARCHAR(50) PRIMARY KE...
                                                            ^
 
-Una forma de evitar este error es utilizar UNIQUE en lugar de PRIMARY KEY, para el
+Una forma de evitar este error es utilizar :sql:`UNIQUE` en lugar de PRIMARY KEY, para el
 atributo *sName*.
 
 
@@ -231,14 +231,14 @@ atributo *sName*.
 
 En cuyo caso la salida será::
 
- NOTICE: CREATE TABLE /PRIMARY KEY will create implicit index "student_pkey"
+ NOTICE: CREATE TABLE / PRIMARY KEY will create implicit index "student_pkey"
  for table "student"
- NOTICE: CREATE TABLE /UNIQUE will create implicit index "student_sname_key"
+ NOTICE: CREATE TABLE / UNIQUE will create implicit index "student_sname_key"
  for table "student"
  CREATE TABLE
 
-Al utilizar UNIQUE se permite tener incluso todos los atributos, que no son
-clave primaria, como clave (no primaria). UNIQUE funciona comparando **sólo los valores de la
+Al utilizar :sql:`UNIQUE` se permite tener incluso todos los atributos, que no son
+clave primaria, como clave (no primaria). :sql:`UNIQUE` funciona comparando **sólo los valores de la
 columna en cuestión**. Si se repite un valor, a pesar no haber claves conflictos en
 la clave primaria, habrá error de todos modos:
 
@@ -292,7 +292,7 @@ En este caso la salida será::
 
 Si nos fijamos, la clave primaria se compone de *cName* y *State*. A esto se le conoce como
 **clave compuesta**, pues no es ni una ni la otra, sino la combinación de ambas. Por ejemplo si
-se hubiese dejado solo *cName* como clave primaria y *State* como UNIQUE, no se permitirían las
+se hubiese dejado solo *cName* como clave primaria y *State* como :sql:`UNIQUE`, no se permitirían las
 inserciones de este tipo:
 
 .. code-block:: sql
@@ -305,13 +305,13 @@ inserciones de este tipo:
    Los datos de las inserciones de arriba no tienen correlación con los datos utilizados
    en otras lecturas o los reales. Sólo se utilizan para explicar el ejemplo.
 
-Pues con UNIQUE en la columna *State*, no se permitiría 'CA' dos veces. No obstante al ser
+Pues con :sql:`UNIQUE` en la columna *State*, no se permitiría 'CA' dos veces. No obstante al ser
 un **clave primaria compuesta**, si se permite. En este caso una violación a la restricción, sería
 el caso de 2 filas que compartan los mismos valores en ambos atributos, es decir en *cName* y *State*
 
 .. note::
 
-   Para el caso de PostgreSQL, en una atributo declarado como UNIQUE, se permite el múltiple
+   Para el caso de PostgreSQL, en una atributo declarado como :sql:`UNIQUE`, se permite el múltiple
    uso de valores NULL. Por otra parte si e desea utilizar NULL en una clave primaria (PK), no
    está permitido.
 
@@ -361,26 +361,26 @@ cadenas: 'asd' y 'lala':
 
   DROP TABLE Student3;
   CREATE TABLE Student3 (sID INT,
-  sName VARCHAR(50) CHECK(sName <> 'asd' and sName <> 'lala'),
+  sName VARCHAR(50) CHECK(sName <> 'amY' and sName <> 'amy  '),
   Average INT CHECK(Average>=0 and Average<=100));
 
 Si realizamos algunas inserciones:
 
 .. code-block:: sql
 
- INSERT INTO Student3 VALUES (123,'asd', 60);
- INSERT INTO Student3 VALUES (234,'Asd', 70);
- INSERT INTO Student3 VALUES (345,'lala',55);
- INSERT INTO Student3 VALUES (454,'asd ',90);
+ INSERT INTO Student3 VALUES (123,'amY', 60);
+ INSERT INTO Student3 VALUES (234,'amy', 70);
+ INSERT INTO Student3 VALUES (345,'amy  ',55);
+ INSERT INTO Student3 VALUES (454,'Amy',90);
 
 Tanto para la primera inserción como para la tercera se tiene::
 
   ERROR: new row for relation "student3" violates check constraint "student3_sname_check"
 
 Para las segunda y cuarta inserciones, no existe tal error pues, y como se mencionó dentro
-de las primeras semanas, el único caso en que SQL es keysensitive es para cadenas de caracteres
-que estén dentro de comillas simples (''). por lo tanto 'asd' que es una de las cadenas
-restringidas difiere de 'Asd' y de 'asd '.
+de las primeras semanas, el único caso en que SQL es sensible al uso de mayúsculas y minúsculas 
+es para cadenas de caracteres que estén dentro de comillas simples (''). por lo tanto 'amY' o 
+'amy  ' que son las cadenas restringidas difieren de 'Amy' y de 'amy'.
 
 .. note::
 
@@ -481,7 +481,7 @@ llave de **T**.
 La consulta de arriba busca forzar que por cada fila de la tabla **T**, el atributo *A*
 sea distinto, lo que dejaría a *A* como clave.
 
-No obstante la función assertion no está implementada en PostgreSQL::
+No obstante la función **assertion** no está implementada en PostgreSQL::
 
  CREATE ASSERTION is not yet implemented
 

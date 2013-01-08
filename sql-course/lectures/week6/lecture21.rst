@@ -1,5 +1,5 @@
-Lecture 21 - Restricciones y triggers: Introducción
------------------------------------------------------
+Lecture 21 - Restricciones y :sql:`triggers`: Introducción
+------------------------------------------------------------
 
 .. role:: sql(code)
          :language: sql
@@ -12,7 +12,7 @@ este "error". Lamentablemente no cuenta con un estándar, por lo que existe gran
 Las restricciones, también llamadas restricciones de integridad, permiten definir
 los estados permitidos dentro de la Base de Datos (BD).
 
-Los triggers, en cambio, monitorean los cambios en la BD, chequean condiciones, e inician
+Los :sql:`triggers`, en cambio, monitorean los cambios en la BD, chequean condiciones, e inician
 acciones de forma automática. Es por ello que se les considera de naturaleza dinámica, a
 diferencia de las restricciones de integridad, que son de naturaleza estática.
 
@@ -47,15 +47,15 @@ El establecimiento X no puede tener más de 45000 alumnos::
 Ejemplo 3
 ^^^^^^^^^
 
-El criterio para la decisión es Verdadero, Falso o NULL::
+El criterio para la decisión es Verdadero, Falso o **NUL**::
 
-  Decisión: 'T', 'F', NULL
+  Decisión: 'T', 'F', **NULL**
 
 
 Las restricciones se utilizan para:
 
-1. Evitar errores a la hora de ingresar datos (**INSERT**).
-2. Evitar errores a la hora de modificar datos (**UPDATE**).
+1. Evitar errores a la hora de ingresar datos (:sql:`INSERT`).
+2. Evitar errores a la hora de modificar datos (:sql:`UPDATE`).
 3. Forzar consistencia de datos.
 
 
@@ -80,17 +80,17 @@ Otra forma de forzar chequeos es después de cada **transacción**. Este concept
 pero es posible adelantar que una tras acciones corresponden a un conjunto de operaciones que al finalizar
 modifican la BD.
 
-========
-Triggers
-========
+================
+:sql:`triggers`
+================
 
-La lógica del trigger es::
+La lógica del :sql:`trigger` es::
 
   "Cuando pasa algo, se chequea una condición.
    Si es cierta se realiza una acción"
 
 
-Como ya se mencionó, a diferencia de las restricciones, un trigger detecta un evento, verifica
+Como ya se mencionó, a diferencia de las restricciones, un :sql:`trigger` detecta un evento, verifica
 alguna condición de activación y en caso de ser cierta, realiza una acción.
 
 Contextualizándonos en el sistema de admisión de Estudiantes:
@@ -112,32 +112,32 @@ Si un alumno tiene promedio mayor a 49.5, queda aceptado::
 
 
 
-Los triggers se utilizan para:
+Los :sql:`triggers` se utilizan para:
 
 1. **Mover la lógica desde la aplicación a Sistema Administrador de la Base de Datos (BDMS)**, lo
    cual permite un sistema más modular y automatizado.
 
 2. **Forzar restricciones**. Ningún sistema implementado soporta todas las restricciones de otro, es decir
    no existe un estándar actual. Un caso es el ejemplo 5, en el cual algún DBMS podría redondear hacía abajo
-   en lugar de hacia arriba; con el trigger esto se podría resolver. Además existen restricciones que no se pueden
-   escribir de forma directa, pero si utilizando triggers.
+   en lugar de hacia arriba; con el :sql:`trigger` esto se podría resolver. Además existen restricciones que no se pueden
+   escribir de forma directa, pero si utilizando :sql:`triggers`.
 
 3. **Forzar restricciones utilizando lógica reparadora**. Un error se puede detectar y realizar una
    acción, que puede ser por ejemplo, si existe la restricción **0 <= Average <= 100**, y alguien por error de tipeo
-   ingresa un promedio -50, un trigger podría cambiar este valor a 0, por ejemplo cualquier valor que no esté en el
+   ingresa un promedio -50, un :sql:`trigger` podría cambiar este valor a 0, por ejemplo cualquier valor que no esté en el
    rango, cambiarlo a 0.
 
 
-A modo de introducción, un trigger esta definido por
+A modo de introducción, un :sql:`trigger` esta definido por
 
 .. code-block:: sql
 
- CREATE TRIGGER name
+ CREATE trigger name
  BEFORE|AFTER|INSTEAD OF events
  [referencing-variables]
  [FOR EACH ROW]
  WHEN (condition)
  action
 
-Es decir que cada trigger tiene un nombre que es activado por eventos (antes, durante o después).
+Es decir que cada :sql:`trigger` tiene un nombre que es activado por eventos (antes, durante o después).
 Se toman ciertas variables y por cada fila se revisa una condición se realiza una acción.
