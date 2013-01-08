@@ -187,8 +187,8 @@ el de 'Tim'.
 
 .. note::
  
-   FIFO es acrónimo de "First In First Out", es decir se atiende primero a quien llega.
-   Este modelo de atención es conocido como cola.
+   FIFO es acrónimo de "First In First Out", es decir se atiende primero al primero que 
+   llega. Este modelo de atención es conocido como cola.
 
 
 Existe más de una forma de definir claves primarias:
