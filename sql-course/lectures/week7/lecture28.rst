@@ -1,4 +1,4 @@
-Lectura 28 - Vistas: Vistas y modificaciones automáticas 
+Lectura 28 - Vistas: Vistas y modificaciones automáticas
 ---------------------------------------------------------
 .. role:: sql(code)
          :language: sql
@@ -8,12 +8,16 @@ Lectura 28 - Vistas: Vistas y modificaciones automáticas
 Repaso
 =======
 
-Por lo general, las tablas son constituidas por un conjunto de definiciones y almacenan 
+Por lo general, las tablas son constituidas por un conjunto de definiciones y almacenan
 datos físicos.
 
 Por otra parte las vistas se encuentran en un nivel superior, es decir son constituidas
 por un conjunto de definiciones, pero no almacenan datos, pues utilizan los datos que 
 están almacenadas en las tablas. Es por ello que, podemos decir que las vistas son 
+=======
+por un conjunto de definiciones, pero no almacenan datos, pues utilizan los datos que
+están alamacenadas en las tablas. Es por ello que, podemos decir que las vistas son
+>>>>>>> 218b73c117afd2626c80168ba4ceae6bda61df3d
 tablas virtuales.
 
 Su sintaxis es:
@@ -24,10 +28,9 @@ Su sintaxis es:
 
 Donde:
 
-1. "view_name": corresponde al nombre de la vista 
-2. "sql_instruction": corresponde a alguna instrucción SQL vista hasta ahora, es 
+1. "view_name": corresponde al nombre de la vista
+2. "sql_instruction": corresponde a alguna instrucción SQL vista hasta ahora, es
     decir, operaciones de inserción.
-.. modificación, etc... **REVISAR EST0**
 
 Toda Base de Datos (BD), puede ser vista como un árbol de 3 niveles:
 
@@ -77,6 +80,6 @@ Para esta lectura, se utilizará el sistema de Postulación de Estudiantes a
 Establecimientos Educacionales, con los datos utilizados en la lectura 9(tercera semana).
 
 
-
+=======
 
 
