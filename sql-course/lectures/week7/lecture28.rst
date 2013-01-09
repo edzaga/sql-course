@@ -63,13 +63,11 @@ Reglas
 Dentro del estándar de SQL, existen 4 reglas para las "vistas modificables", es decir
 las vistas que al modificar, se modifican las tablas, ellas son:
 
-.. El proceso de automatizado de traducción está sujeto a 4 grandes reglas, ellas son:
-.. ojo, buscar más info aca
-1. Hacer un select de una tabla, no de un join **(??)**
-2. Si un atributo no esta en la vista, debe permitirse le tener valor NULL o uno por defecto
+1. Hacer un select de una tabla, no de una unión (JOIN). Además la tabla no puede ser  :sql:`DISTINCT`.
+2. Si un atributo no esta en la vista, debe permitirse le tener valor NULL o uno por defecto.
 3. Si la vista está sobre la relación/tabla T, las subconsultas no pueden referirse a T, pero
    si a otras relaciones/tablas.
-4. En una vista, no se puede usar GROUP BY o AGGREGATION
+4. En una vista, no se puede usar GROUP BY o AGGREGATION.
 
 
 ============
@@ -95,19 +93,21 @@ a Establecimientos Educacionales:
 
  CREATE TABLE College(cName VARCHAR(20), state VARCHAR(30),
  enrollment INTEGER, PRIMARY KEY(cName));
- CREATE TABLE Student(sID INTEGER,  sName VARCHAR(20), Average INTEGER,
- PRIMARY kEY(sID));
+ CREATE TABLE Student(sID SERIAL,  sName VARCHAR(20), Average INTEGER,
+ PRIMARY KEY(sID));
  CREATE TABLE   Apply(sID INTEGER, cName VARCHAR(20), major VARCHAR(30), 
- decision BOOLEAN,   PRIMARY kEY(sID, cName, major));
+ decision BOOLEAN,   PRIMARY KEY(sID, cName, major));
 
 con los siguientes datos para la tabla **College**, **Student** y **Apply** respectivamente:
 
+4 establecimientos:
+
 .. code-block:: sql
 
- INSERT INTO College (cName, state, enrollment) VALUES ('Stanford','CA',15000);
- INSERT INTO College (cName, state, enrollment) VALUES ('Berkeley','CA',36000);
- INSERT INTO College (cName, state, enrollment) VALUES ('MIT',     'MA',10000);
- INSERT INTO College (cName, state, enrollment) VALUES ('Harvard', 'CM',23000);
+ INSERT INTO College VALUES ('Stanford','CA',15000);
+ INSERT INTO College VALUES ('Berkeley','CA',36000);
+ INSERT INTO College VALUES ('MIT',     'MA',10000);
+ INSERT INTO College VALUES ('Harvard', 'CM',23000);
 
 .. note::
  
@@ -115,17 +115,27 @@ con los siguientes datos para la tabla **College**, **Student** y **Apply** resp
   su veracidad (estado o capacidad), pues se escapa al alcance de este curso. Sólo buscan 
   ser meras herramientas para el desarrollo de los ejemplos de esta lectura.
 
-4 estudiantes
+3 estudiantes:
 
 .. code-block:: sql
 
- INSERT INTO Student  VALUES (123, 'Amy',    60);
+ INSERT INTO Student (sName, Average) VALUES ('Clark',  70);
+ INSERT INTO Student (sName, Average) VALUES ('Marge',  85);
+ INSERT INTO Student (sName, Average) VALUES ('Homer',  50);
 
-10 postulaciones
+8 postulaciones:
+
 .. code-block:: sql
 
- INSERT INTO Apply (sID, cName, major, decision) VALUES (123, 'Stanford', 
- 'science'        , True);
+ INSERT INTO Apply VALUES (1, 'Stanford', 'science'         , True);
+ INSERT INTO Apply VALUES (1, 'Berkeley', 'science'         , False;
+ INSERT INTO Apply VALUES (2, 'Harvard' , 'science'         , False;
+ INSERT INTO Apply VALUES (2, 'MIT'     , 'engineering'     , True);
+ INSERT INTO Apply VALUES (2, 'Berkeley', 'science'         , True);
+ INSERT INTO Apply VALUES (3, 'MIT'     , 'science'         , True);
+ INSERT INTO Apply VALUES (3, 'Harvard' , 'engineering'     , True);
+ INSERT INTO Apply VALUES (3, 'Harvard' , 'natural history' , True);
+
 
 .. note::
  
@@ -158,20 +168,23 @@ Si se hace un select de la vista:
 
  SELECT * FROM scAccepted;
  
-y su salida es:
-
-.. agregar salida después de agregar los datos.
-
+su salida es:: 
+ 
+ sid | cname
+ ----+----------
+   1 | Stanford
+   2 | Berkeley
+   3 | MIT
 
 Ejemplo 1
 ^^^^^^^^^
-Supongamos que se desea eliminar de la vista al estudiante con *sID* 123, pues
+Supongamos que se desea eliminar de la vista al estudiante con *sID* 3, pues
 realizó trampa en esta prueba. La idea es eliminarlo de la vista y a la vez, de la tabla
 Apply, para no tener que realizar 2 operaciones:
 
 .. code.block:: sql
 
- DELETE FROM scAccepted WHERE sid = 13;
+ DELETE FROM scAccepted WHERE sid = 3;
 
 No obstante::
  
@@ -181,7 +194,7 @@ No obstante::
 
 Pues MySQL es el único sistema, en relación a PostgreSQL o SQLite que permite un 
 manejo de datos de este tipo. Estos últimos permiten la modificación en base a 
-reglas y/o :sql:'triggers'
+reglas y/o :sql:`triggers`
 
 .. warning::
  
@@ -202,13 +215,23 @@ a Ciencias o Ingeniería.
 
 Verificando a través de una selección:
 
-.. code-block:: sql
- 
+.. code-block:: sql 
+
  SELECT * FROM sceng;
  
-la salida es:
+la salida es::
 
-.. agregar salida
+  sid | cname    | major
+  ----+----------+-------------
+   1  | Stanford | science
+   1  | Berkeley | science
+   2  | Harvard  | science
+   2  | MIT      | engineering
+   2  | Berkeley | science
+   3  | MIT      | science
+   3  | Harvard  | engineering
+
+
 
 Si deseamos agregar una fila, digamos:
 
@@ -216,18 +239,47 @@ Si deseamos agregar una fila, digamos:
  
  INSERT INTO sceng VALUES (234, 'Berkeley', 'science');
 
-No hay problemas, pues cuenta con las 4 reglas de "vistas modificables". El ejemplo funciona en MySQL 
-y en la teoría.
+No hay problemas, pues cuenta con las 4 reglas de "vistas modificables". 
+El ejemplo funciona en MySQL y en la teoría.
 
 
 Ejemplo 3
 ^^^^^^^^^
 Supongamos que deseamos agregar una fila a la vista **scAccepted**, 
 
+.. code-block:: sql 
+
+ INSERT INTO scAccepted VALUES (2, 'MIT');
+
+Si bien podría pensarse que, como la vista contiene valores determinados para el
+atributo *major* y *decision*, bastaría con agregar sólo los restantes, es decir
+*sID* y *cName*. No obstante si se seleccionan todos los datos de la vista, 
+(en MySQL) no se verá este nueva fila, pues:
+
+1. El hecho de que la vista cuente con valores de **selección** no quiere decir que ellos
+   sean de inserción.
+2. Al no tener los atributos *major* y *decision* con valores 'science' y 'true' respectivamente
+   no pasan el filtro de la vista.
+
+Sin embargo en la tabla (**Apply** en este caso), la nueva fila se agrega. Pero claro,
+no tiene sentido, pues los campos *major* y *decision* son **NULL**.
+
+ 
 Ejemplo 4
 ^^^^^^^^^
+En los sistemas que se permite el cambio automático, es posible evitar  inconsistencias 
+como la que se generó en el ejemplo 3, agregando al final de la vista:
 
-Ejemplo 5
-^^^^^^^^^
+.. code-block:: sql 
+  
+ CREATE VIEW scAccepted2 as 
+ SELECT sid, sname FROM Apply 
+ WHERE major='science' and decision = true;
+ WITH CHECK OPTION;
 
+No obstante esta opción no está implementada en PostgreSQL, por lo 
+que el siguiente error aparece al ejecutar la consulta que está arriba::
+ 
+ ERROR: WITH CHECK OPTION is not implemented.
+ 
 
