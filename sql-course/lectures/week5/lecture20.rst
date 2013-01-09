@@ -245,7 +245,7 @@ Las relaciones se definen de la siguiente manera:
 
  Universidad(\underline{cNombre}, Estado)
 
- Departamento(\underline{cNombre}, Edificio, cNombre)
+ Departamento(\underline{dNombre}, Edificio, cNombre)
 
 Agregación
 ^^^^^^^^^^
