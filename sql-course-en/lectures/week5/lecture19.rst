@@ -5,26 +5,23 @@ Lecture 19 - Unified Modeling Language: UML data modeling
          :language: sql
          :class: highlight
 
+Inside the modeling of relational DB, the most known methods are the Entity-Relation (ER) 
+diagrams, seen in the first week, and the Unified Modeling Language (UML). Both share the 
+characteristic of being graphic. This mean that UML as well as ER, are compose by “symbols” 
+under a series of rules. Also, both share the quality that they can be passed to the language 
+of DB of the form relatively autonomous.
 
+On the other hand, it is important to highlight that ER is much older than UML, super passing 
+in age in the order of decades. UML is a broader language, that is, not only used for modeling 
+DB, as it is used for modeling programs as well.
 
-Dentro del modelado de BD Relacionales, los métodos más conocidos son los diagramas de Entidad-Relación
-(ER), vistos en la primera semana, y el Lenguaje de Modelado Unificado (UML, por sus siglas en inglés).
-Ambos comparten la característica de ser gráficos; es decir que UML, al igual que ER está compuesto por
-"símbolos" bajo una serie de reglas. Además, ambos comparten la cualidad de que pueden ser traspasados
-a lenguaje de BD de forma relativamente autónoma.
+Instead of creating the relations in a direct form in the DB, the designer makes a modeling 
+of high level, so that the situation that we are facing with the DB can be seen in its totality. 
+After the designer makes valid its model, he proceeds to translate it to the language of the DB.
 
-Por otro lado, cabe destacar que ER es mucho más antiguo que UML, superándole en edad en el orden de 
-décadas. UML es un lenguaje más amplio, es decir, no solo se utiliza para modelar BD, sino que es utilizado
-para modelar programas también.
-
-En lugar de crear las relaciones de forma directa en la BD, el diseñador realiza un modelado de 
-alto nivel, de modo que la situación que se está enfrentando con la BD pueda verse en su totalidad.
-Posteriormente el diseñador, una vez que valida su modelo, procede a su traducción al lenguaje de la BD.
-
-Esta situación no presenta trabajo innecesario (correspondiente al modelado y a la posterior creación
-de relaciones en la BD), pues afortunadamente la gran mayoría de estas herramientas permiten realizar 
-una traducción al lenguaje de la BD.
- 
+This situation does not present unnecessary work (corresponding to the mould and the creation 
+of relations afterwards in the DB), since fortunately the majority of these tools let us 
+do a translation in the language of the DB.
 
 .. note::
  
@@ -32,10 +29,10 @@ una traducción al lenguaje de la BD.
  
 There are 5 key concepts in UML:
 
-1. Class
+1. Classes
 2. Associations
-3. Types of associations
-4. Subclass
+3. Clases of associations
+4. Subclasses
 5. Compositions and aggregations  
 
 
@@ -62,7 +59,7 @@ Let’s return to the case of Students and Universities. Draw both relations as 
 Associations
 ~~~~~~~~~~~~
 
-The associations correspond to how are related two class.
+The associations correspond to how are related two classes.
 
 Example 2
 ^^^^^^^^^
@@ -176,147 +173,126 @@ The following diagram clarifies the idea:
 .. image:: ../../../sql-course/src/diagrama9_lecture19.png                               
       :align: center  
 
-=======================================
-Delete types of unnecessary association
-=======================================
+=========================================
+Delete classes of unnecessary association
+=========================================
 
-
-
-Usando las clases genéricas C1, C2 de atributos A1, A2 y A3, A4 respectivamente. Supongamos que la relación entre 
-ellas es de multiplicidad (* - 1..1) o (* - 0..1). Supongamos que existe una clase de asociación AC de atributos
-B1 y B2. Todo ordenado de acuerdo a la siguiente imagen:
-
+Using the generic classes C1, C2 with the attributes A1, A2, A3 and A4 respectively. Suppose 
+that the relationship between them is the multiplicity (* - 1..1) o (* - 0..1). Suppose 
+that there is a type of association AC of attributes B1 and B2. 
+Everything is sorted according to the following image:
 
 .. image:: ../../../sql-course/src/diagrama10_lectura19.png                               
       :align: center  
 
-Es posible mover los atributos B1 y B2 a la clase C1, pues dada la multiplicidad un objeto de la clase C1 está
-asociado a 1 objeto de la clase C2. Por lo tanto la clase de asociación se puede eliminar.
-
+It is possible to move attributes B1 and B2 to the class C1, since given the multiplicity; 
+an object of the class C1 is associated to an object of the class C2. So, the type of association can be deleted.
 
 .. image:: ../../../sql-course/src/diagrama11_lectura19.png                               
       :align: center  
 
 .. note::
+  
+  The class of association can be deleted when there is multiplicity (* - 1..1) or (* - 0..1). 
+  In fact, it is intended to make clear that the association between objects in case the 
+  multiplicity is m, n or * on both sides of the relationship.  
  
-  La clase de asociación se puede eliminar cuando hay multiplicidad 
-  (* - 1..1) o (* - 0..1). De hecho está pensada para dejar en claro que
-  la asociación entre objetos en caso de que la multiplicidad sea m, n o * en
-  ambos lados de la relación.
+=================
+Auto-associations
+=================
 
+They correspond to associations between one type and itself.
 
-=====================
-Auto asociaciones
-=====================
-
-Corresponden a asociaciones entre una clase y si misma.
-
-Ejemplo 6
+Example 6
 ^^^^^^^^^
 
-Supongamos que se desea modelar en UML a la Universidad Técnica Federico Santa María (UTFSM), su Casa
-Central y Campus. Supongamos que existen los atributos *NumAlumnos, Dirección, Nombre, Campus*. 
+Suppose you want to modeling in UML the Universidad Técnica Federico Santa María (UTFSM), 
+its main house and its campus. Suppose there are the *NumStudents, Address, Name, Campus* 
+attributes. 
 
-Existe una sola Casa Central, pero varios Campus, supongamos que por temas de presupuesto, solo existen
-7 campus.
-
+There is only one main house, but several campuses. So suppose that for budget issues there 
+are only seven campuses.
 
 .. image:: ../../../sql-course/src/ejemplo6_lectura19.png
             :align: center
 
+In UML, it is possible to tag the relation.
 
-En UML, es posible etiquetar la relación.
 
+Subclasses
+~~~~~~~~~~
 
-Subclases
-~~~~~~~~~
+The types are divided into:
 
-Las clases se dividen:
+1. Superclass/Class Father: it is of general character. It contains information that inherited the diverse superclasses.
+2. Subclasses/Classes Daugther: it is of specific character. It contains extra information which is inherited from the superclass.
 
-1. Superclase/ Clase Padre: De carácter general, contiene información que heredarán las diversas subclases.
-2. Subclases/ Clases Hijas: De carácter específico, contiene información extra a la que hereda de la superclase.
+These concepts arise from programming oriented to objects.
 
-Estos conceptos nacen de la programación orientada a objetos.
-
-Ejemplo 7
+Example 7
 ^^^^^^^^^
 
-Supongamos que dentro de la clase Estudiantes, se desea diferenciar a los estudiantes extranjeros
-de los estudiantes nacionales.  Se podría pensar en crear dos clases nuevas, llamadas 
-**Estudiantes Nacionales** y **Estudiantes Extranjeros**:
-
+Suppose that inside the type Students, we want to differentiate foreign students from 
+the national ones. We could think in creating two new classes, call **National Student** 
+and **Foreign Students**:
 
 .. image:: ../../../sql-course/src/ejemplo7a_lectura19.png
          :align: center
 
-
-
-Sin embargo, hay atributos que se repiten en ambas, ellos son: *sID, sName, Average*. Es por ello que
-se pueden separar en una superclase llamada Estudiante (la misma utilizada en las otras lecturas), y crear
-2 subclases llamadas **Extranjeros** y **Nacionales**.
+However, there are attributes that are repeated in both, those are: *sID, sName, Average*. 
+For this reason, we can separate in one superclass called Student (the same used in other lectures), 
+and create 2 subclasses called **Foreign** and **National**.
 
 .. image:: ../../../sql-course/src/ejemplo7b_lectura19.png
             :align: center
 
-
-
-Como se puede observar, los atributos mencionados son heredados por ambas subclases. Ambas además agregan
-información más específica, como lo son el *país* y *pasaporte* en el caso de los **Extranjeros**; la
-*región* y *RUN* en el caso de los **Nacionales**. Esta técnica es muy útil para la reutilización.
+As you can see, this attributes are inherited for both subclasses. Also, both add more specific 
+information, as **country** and **passport** in the case of **Foreign**. And *region* and *RUN* 
+in the case of **National**. These techniques are very useful for reuse.
 
 .. note::
+
+ Subclasses **inherit** properties of **superclasses / father class**, ie not only attributes, 
+ but also associations or operations are available in the **subclasses / class daughters**.
  
- Las Subclases **heredan** propiedades de las **superclases / clase padre**, es decir no solo 
- atributos, sino que también asociaciones u operaciones  están disponibles en las 
- **subclases / clases hijas**
-
-
-Composiciones y Agregaciones
+Compositions and Aggregations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ambas corresponden a la forma de representar que un objeto tiene como contenido a otro, esto quiere decir que 
-**un objeto de un tipo, puede contener a otro**.
+Both correspond to the form of representing that an object has as content another one, 
+this means that **an object of a type can contain other**.
 
-
-Ejemplo 8
+Example 8
 ^^^^^^^^^
 
-Supongamos que un objeto de tipo ciudad tiene una lista de objetos de tipo aeropuerto, esto quiere decir, que 
-una ciudad, tiene un número de aeropuertos. 
+Suppose an object of the type city has a list of objects of type airport. This means that 
+a city has a number of airports.
 
 .. note::
-  
-   Hay que destacar, que la cardinalidad del extremo que lleva el rombo, es siempre uno.
+
+   It should be noted that the cardinality of the end carrying the rhombus, is always one.  
 
 .. image:: ../../../sql-course/src/ejemplo8_lectura19.png                               
          :align: center  
 
+It can also be read as in a means of transport has several wheels. It is saying that 
+objects “wheel” are part of the object “means of transport.” However, its cycle of life 
+is not tied to the object of “means of transport.” This means that if the car is destroyed, 
+the wheels can still exist independently.
 
+In the same way, the composition is a stronger relation of objects. As aggregation, it is 
+the fact that an object has other one, the composition is when the relation between objects 
+is such that, the first has no loose sense, and second, that it needs to define the first to 
+extend its meaning.
 
-
-También se puede leer como que un medio de transporte tiene varias ruedas.
-Nos esta diciendo que los objetos rueda forman parte del objeto medio de transporte. Pero, su ciclo de 
-vida no esta atado al del objeto medio de transporte. Es decir si el automóvil se destruye las ruedas 
-pueden seguir existiendo independientemente.
-
-
-En la misma linea, la composición, es una relación más fuerte de los objetos, así como la agregación, es el 
-hecho de que un objeto posea a otro, la composición es cuando la relación entre ambos objetos es tal, que el 
-primero no tiene sentido suelto, y el segundo, necesita definir al primero para ampliar su significado
-
-
-Ejemplo 9
+Example 9
 ^^^^^^^^^
 
 .. image:: ../../../sql-course/src/ejemplo9_lectura19.png                               
          :align: center  
 
+The airplane makes sense by itself. It is clear that is composed of 2 wings, this relationship 
+is very strong, much more than the case of airports, and it is clear that a plane will 
+always have its 2 wings, and these will always be in the same plane.
 
-El avión tiene sentido por si solo. Esta claro que esta compuesto de 2 alas, esta relación es de mucha 
-fuerza, mucho más que el caso de los aeropuertos, y esta claro, que un avión siempre tendrá sus dos alas, y 
-estas siempre serán del mismo avión.
-
-
-La composición corresponde a aquellos objetos de los que depende un objeto para que este llegue a funcionar,
-en este caso el avión no puede funcionar sin las 2 alas.
-
+The composition corresponds to those objects that depends an object so that it comes to 
+work. In this case the plane cannot work without the 2 wings.
