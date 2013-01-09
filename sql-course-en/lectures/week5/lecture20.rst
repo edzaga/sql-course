@@ -174,7 +174,7 @@ of the **subclass** share the same behavior of the objects of the **superclass**
 .. image:: ../../../sql-course/src/diagrama7_semana5.png                               
    :align: center
 
-1) The relations of the subtypes have a key of the supertype, plus the specialized attributes. 
+1) The relations of the subclass have a key of the superclass, plus the specialized attributes. 
    
 .. math::
 
@@ -184,7 +184,7 @@ of the **subclass** share the same behavior of the objects of the **superclass**
 
   S2(\underline{K}, C)
    
-2) The relations of the subtypes have all the attributes.
+2) The relations of the subclass have all the attributes.
 
 .. math::
 
