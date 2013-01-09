@@ -31,7 +31,7 @@ There are 5 key concepts in UML:
 
 1. Classes
 2. Associations
-3. Clases of associations
+3. Classes of associations
 4. Subclasses
 5. Compositions and aggregations  
 
@@ -105,7 +105,7 @@ Some special cases are::
  0..*   -> at least '0' at most any value greater to '0', that is , without restrictions.
  1..1   -> only 1 value.
 
-There are several types of multiplicity with their respective notaion. There are:
+There are several types of multiplicity with their respective notation. There are:
 
 1. One to one: **0..1 - 0..1**
 2. Many to one: **0..* - 0..1**
@@ -225,7 +225,7 @@ Subclasses
 The types are divided into:
 
 1. Superclass/Class Father: it is of general character. It contains information that inherited the diverse superclasses.
-2. Subclasses/Classes Daugther: it is of specific character. It contains extra information which is inherited from the superclass.
+2. Subclasses/Classes Daughter: it is of specific character. It contains extra information which is inherited from the superclass.
 
 These concepts arise from programming oriented to objects.
 
