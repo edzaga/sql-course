@@ -5,19 +5,19 @@ Lectura 28 - Vistas: Vistas y modificaciones automáticas
          :language: sql
          :class: highlight
 
-=======
-Repaso
-=======
 
 Por lo general, las tablas son constituidas por un conjunto de definiciones y almacenan
 datos físicos.
 
 Por otra parte las vistas se encuentran en un nivel superior, es decir son constituidas
 por un conjunto de definiciones, pero no almacenan datos, pues utilizan los datos que 
-están almacenadas en las tablas. Es por ello que, podemos decir que las vistas son 
-por un conjunto de definiciones, pero no almacenan datos, pues utilizan los datos que
-están almacenadas en las tablas. Es por ello que, podemos decir que las vistas son
-tablas virtuales.
+están almacenadas en las tablas.
+
+Es por ello que, podemos decir que las vistas son por un conjunto de definiciones, pero no 
+almacenan datos, pues utilizan los datos que están almacenadas en las tablas.
+
+
+Es decir que las vistas se consideran "tablas virtuales".
 
 Su sintaxis es:
 
@@ -27,9 +27,8 @@ Su sintaxis es:
 
 Donde:
 
-1. "view_name": corresponde al nombre de la vista
-2. "sql_instruction": corresponde a alguna instrucción SQL vista hasta ahora, es
-    decir, operaciones de inserción.
+1. **"view_name"**      : corresponde al nombre de la vista.
+2. **"sql_instruction"**: corresponde a alguna instrucción SQL vista hasta ahora, es decir, operaciones de inserción y/o modificación.
 
 Toda Base de Datos (BD), puede ser vista como un árbol de 3 niveles:
 
@@ -38,14 +37,13 @@ Toda Base de Datos (BD), puede ser vista como un árbol de 3 niveles:
 2. **El tronco**, compuesto por las relaciones de dentro de la BD, es decir,
    su parte **conceptual**.
 3. **Las ramas**, que corresponde a la parte **lógica**, se refiere a las relaciones 
-    que nacen desde las relaciones del tronco y/o relaciones desde las ramas.
+   que nacen desde las relaciones del tronco (tablas) y/o relaciones desde las ramas (otras vistas).
 
 
 
 Realizar modificaciones en una vista no tiene mucho sentido, pues al no almacenar 
 información,estos cambios simplemente se perderían. No obstante, si el objetivo de 
-estos cambios corresponde a modificar la(s) tabla(s) bases, dicha modificación 
-adquiere sentido.
+estos cambios corresponde a modificar la(s) tabla(s), dicha modificación adquiere sentido.
 
 .. note::
 
@@ -59,14 +57,15 @@ automatiza este proceso.
 Reglas
 =============
 
-Dentro del estándar de SQL, existen 4 reglas para las "vistas modificables", es decir
-las vistas que al modificar, se modifican las tablas, ellas son:
+Dentro del estándar de SQL, existen 4 reglas para que una "vista sea modificable", es decir
+si se modifica la vista en cuestión, se modifica la relación/tabla desde donde nace la vista. 
+Estas reglas son: 
 
-1. Hacer un select de una tabla, no de una unión (JOIN). Además la tabla no puede ser  :sql:`DISTINCT`.
-2. Si un atributo no esta en la vista, debe permitirse le tener valor NULL o uno por defecto.
-3. Si la vista está sobre la relación/tabla T, las subconsultas no pueden referirse a T, pero
+1. Hacer un :sql:`SELECT`. de una tabla, no de una unión (JOIN). Además la tabla no puede ser  :sql:`DISTINCT`.
+2. Si un atributo no esta en la vista, debe soportar valores  **NULL** o uno por defecto.
+3. Si la vista está sobre la relación/tabla **T**, las subconsultas no pueden referirse a **T**, pero
    si a otras relaciones/tablas.
-4. En una vista, no se puede usar GROUP BY o AGGREGATION.
+4. En una vista, no se puede usar :sql:`GROUP BY` o :sql:`AGREGGATION`.
 
 
 ============
@@ -76,17 +75,14 @@ Contexto
 Supongamos que durante el primer semestre de clases, específicamente a un mes de que 
 se implementara el sistema de postulación a Establecimientos Educacionales, postulan 4 
 estudiantes más. Es por ello que se decide realizar una mejora utilizando vistas, debido
-a sus propiedades y simplificar complejas consultas sobre tablas, ya sea seleccionando
+a sus propiedades y simplificar complejas consultas sobre tablas, ya sea seleccionando (:sql:`SELECT`.)
 y/o modificando(:sql:`INSERT`, :sql:`UPDATE`, :sql:`DELETE`) datos.
 
-Además se utilizarán criterios más estrictos, pues el año anterior se le permitió la
-entrada a alumnos que no tenían promedio arriba de 50.
-
-Se le denomina sistema de postulación 2.0 BETA.
+Además se utilizarán criterios más estrictos, pues en la versión del sistema, se permitió la
+entrada a alumnos que no tenían promedio arriba de 50: se le denominará sistema de postulación 2.0 (BETA).
 
 Es por ello que, para esta lectura, se utilizará el sistema de Postulación de Estudiantes 
 a Establecimientos Educacionales:
-
 
 .. code-block:: sql
 
@@ -139,7 +135,7 @@ con los siguientes datos para la tabla **College**, **Student** y **Apply** resp
 .. note::
  
   Estos datos no son necesariamente reales, ni se hicieron investigaciones para corroborar
-  su veracidad (mención académica o major ), pues se escapa al alcance de este curso. 
+  su veracidad (mención académica), pues se escapa al alcance de este curso. 
   Sólo buscan  ser meras herramientas para el desarrollo de los ejemplos de esta lectura.
 
 
@@ -148,9 +144,9 @@ con los siguientes datos para la tabla **College**, **Student** y **Apply** resp
 Modificación automática de vistas y tablas
 ===========================================
 
-De acuerdo a la serie de reglas que se explicaron anteriormente, Supongamos que 
-deseamos seleccionar a los Estudiantes que postularon y fueron aceptados en
-en ciencias, en cualquier Establecimiento Educacional, pero utilizando vistas:
+.. De acuerdo a la serie de reglas que se explicaron anteriormente
+Supongamos que deseamos seleccionar a los Estudiantes que postularon y fueron aceptados en
+en Ciencias, en cualquier Establecimiento Educacional, pero utilizando vistas:
 
 .. code-block:: sql
  
@@ -159,9 +155,15 @@ en ciencias, en cualquier Establecimiento Educacional, pero utilizando vistas:
  WHERE major='science' and decision = true;
 
 Esta vista cuenta con las 4 restricciones impuestas por el estándar SQL para que 
-sea considerada como "vista modificable".
+sea considerada como "vista modificable":
 
-Si se hace un select de la vista:
+1. Se selecionan datos solamente de la tabla **Apply**.
+2. Los atributos de dicha tabla no contienen alguna restricción de tipo **NOT NULL**.
+3. No hay subconsultas que se refieran a la tabla **Apply**.
+4. No se utiliza :sql:`GROUP BY` o :sql:`AGREGGATION`.
+
+
+Si se seleccionan los datos de la vista:
  
 .. code-block:: sql
 
@@ -177,7 +179,7 @@ su salida es::
 
 Ejemplo 1
 ^^^^^^^^^
-Supongamos que se desea eliminar de la vista al estudiante con *sID* 3, pues
+Supongamos que se desea eliminar de la vista al estudiante con *sID* = 3  (Homer), pues
 realizó trampa en esta prueba. La idea es eliminarlo de la vista y a la vez, de la tabla
 Apply, para no tener que realizar 2 operaciones:
 
@@ -193,12 +195,13 @@ No obstante::
 
 Pues MySQL es el único sistema, en relación a PostgreSQL o SQLite que permite un 
 manejo de datos de este tipo. Estos últimos permiten la modificación en base a 
-reglas y/o :sql:`triggers`
+reglas y/o :sql:`triggers` solamente.
 
 .. warning::
  
  Si bien el motor de Base de Datos utilizado para este curso, no soporta el tópico de
- esta lectura, se verán casos y consejos para utilizarlos en MySQL.
+ esta lectura, se verán casos y consejos para utilizarlos en sistemas que funcionen.
+ De todos modos, los ejemplos se construyen utilizando PostgreSQL.
 
 
 Ejemplo 2
@@ -236,7 +239,7 @@ Si deseamos agregar una fila, digamos:
 
 .. code-block:: sql
  
- INSERT INTO sceng VALUES (234, 'Berkeley', 'science');
+ INSERT INTO sceng VALUES (1, 'MIT', 'science');
 
 No hay problemas, pues cuenta con las 4 reglas de "vistas modificables". 
 El ejemplo funciona en MySQL y en la teoría.
@@ -252,11 +255,11 @@ Supongamos que deseamos agregar una fila a la vista **scAccepted**,
 
 Si bien podría pensarse que, como la vista contiene valores determinados para el
 atributo *major* y *decision*, bastaría con agregar sólo los restantes, es decir
-*sID* y *cName*. No obstante si se seleccionan todos los datos de la vista, 
-(en MySQL) no se verá este nueva fila, pues:
+*sID* y *cName*. Al momento de seleccionar todos los datos de la vista, no se verá 
+esta nueva fila, debido a que:
 
 1. El hecho de que la vista cuente con valores de **selección** no quiere decir que ellos
-   sean de inserción.
+   sean de **inserción**.
 2. Al no tener los atributos *major* y *decision* con valores 'science' y 'true' respectivamente
    no pasan el filtro de la vista.
 
