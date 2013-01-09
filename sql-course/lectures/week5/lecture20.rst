@@ -1,38 +1,31 @@
-Lectura 20 - Lenguaje de Modelado Unificado: UML a las relaciones
------------------------------------------------------------------
+Lectura 20 - Lenguaje de Modelado Unificado: UML y las bases de datos
+---------------------------------------------------------------------
 
-Base de datos de alto nivel y modelo de diseño
+Este lenguaje de modelado se caracteriza por:
 
-* Fácil de usar (gráfica) especificación del lenguaje
-* Traducido al modelo de DBMS
+* Fácil de usar, se apoya en muchos diagramas (gráficos).
+* Es fácil traducirlo al modelo de DBMS.
+
+En siguiente imagen anterior se observa que el lenguaje UML, puede ser traducido en relaciones 
+(o tablas) de una base de datos. 
 
 .. image:: ../../../sql-course/src/dibujo1_semana5.png                               
    :align: center  
 
-En la imagen anterior se observa que el lenguaje UML, puede ser traducido en relaciones
-de una base de datos.
-
-UML (Lenguaje de Modelado Unificado)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Subconjunto de datos de modelado
-
-* Cinco Conceptos
+* Son cinco los conceptos claves:
 
  1) Clases
  2) Asociaciones 
- 3) Asociación de clases
+ 3) Clases de asociación
  4) Subclases
  5) Composición y Agregación
 
-* Los diseños pueden ser traducidos automáticamente a las relaciones
-
- Siempre y cada clase "regular" tiene una clave.
+* Los diseños pueden ser traducidos automáticamente a relaciones o tablas
 
 Clases
 ======
 
-Cada clase se convierte en una relación; pk -> clave primaria
+Cada clase se convierte en una relación (o tabla) con su clave primaria
 
 .. image:: ../../../sql-course/src/diagrama1_semana5.png                               
    :align: center   
@@ -85,7 +78,7 @@ Claves para las relaciones de asociación
   de la *Clase1* a la *Clase2* (que es la que posee la multiplicidad "muchos"), quedando 
   como clave foránea de la *Clase2*. 
 
-  Finalmente las relaciones quedan de la siguiente manera: 
+  Finalmente, las relaciones quedan de la siguiente manera: 
 
   .. math::
 
@@ -158,7 +151,7 @@ Otro ejemplo que detalla más claramente las clases de asociación
 .. image:: ../../../sql-course/src/diagrama6_semana5.png                               
    :align: center 
 
-El diagrama nos permite apreciar que una *Persona* puede trabajar para una sola *Compañía*. 
+El diagrama permite apreciar que una *Persona* puede trabajar para una sola *Compañía*. 
 Necesitamos conservar la información sobre el período de tiempo que trabaja cada empleado 
 para cada *Compañía*.
 
@@ -261,7 +254,7 @@ Ejemplo
    :align: center
 
 Las relaciones son de la misma manera que el ejemplo anterior pero al poseer una diferente
-multiplicidad el valor del atributo *cNombre* de la clase *Departamento*, puede tomar el 
+multiplicidad el valor del atributo *cNombre* de la clase *Departamento*, puede tómar el 
 valor **NULL**.
 
 .. note::
