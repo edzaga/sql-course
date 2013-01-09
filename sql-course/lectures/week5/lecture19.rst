@@ -13,7 +13,7 @@ a lenguaje de BD de forma relativamente autónoma.
 
 Por otro lado, cabe destacar que ER es mucho más antiguo que UML, superándole en edad en el orden de 
 décadas. UML es un lenguaje más amplio, es decir, no solo se utiliza para modelar BD, sino que es utilizado
-para modelar programas también.
+para modelar software también.
 
 En lugar de crear las relaciones de forma directa en la BD, el diseñador realiza un modelado de 
 alto nivel, de modo que la situación que se está enfrentando con la BD pueda verse en su totalidad.
@@ -43,13 +43,13 @@ Existen 5 conceptos claves en UML:
 Clases
 ~~~~~~
 
-Las clases se componen de: un nombre, atributos y métodos. Para quienes hayan experimentado alguna 
+Las clases se componen de: nombre, atributos y métodos. Para quienes hayan experimentado alguna 
 vez con la programación orientada a objetos probablemente se sientan algo familiarizados.
 
-A la hora de realizar modelos de BD, es necesario agregar un identificador de que atributo corresponde a
-la clave primaria, además de un método de eliminación.
+A la hora de realizar modelos de BD, es necesario agregar un identificador para el atributo corresponde 
+que a la clave primaria, además de un método de eliminación.
 
-No obstante en está lectura se pondrá énfasis a los atributos, pues está enfocada más al  modelado de datos
+No obstante en está lectura se pondrá más énfasis en los atributos, pues está enfocada más al  modelado de datos
 que a su operación a través de sus métodos.
 
 Ejemplo 1
@@ -70,7 +70,7 @@ Ejemplo 2
 ^^^^^^^^^
 El ejemplo 1 terminó con 2 clases separadas, es decir, Estudiantes y Establecimientos Educacionales.
 Sin embargo, y como ya se ha visto en ejemplos de lecturas anteriores, los estudiantes postulan a estos 
-establecimientos, por lo tanto la relación es **postular**, por lo tanto:
+establecimientos, por lo tanto la relación es **postular**:
 
 
 .. image:: ../../../sql-course/src/diagrama2_lecture19.png                               
@@ -83,13 +83,14 @@ relación para lograr mayor claridad a la hora de ver los diagramas:
       :align: center  
 
 
-Sin embargo no marca la diferencia a la hora de traducir a relaciones.
+Sin embargo no marca la diferencia a la hora de traducir a relaciones, es necesario cuantificar 
+la relación
 
 =============
 Multiplicidad
 =============
 
-Es necesario determinar cuantas veces un objeto de una clase puede relacionarse con objetos de otra clase. 
+Es necesario determinar cuántas veces un objeto de una clase puede relacionarse con objetos de otra clase. 
 Supongamos que se han creado las clases **C1** y **C2**, la multiplicidad apunta a::
  
  "Cada objeto de la clase C1 está asociado (a través de la relación A)a al menos 
@@ -125,8 +126,8 @@ Existen varios tipos de multiplicidad, con su respectiva notación. Ellos son:
 
 Ejemplo 3
 ^^^^^^^^^
-Supongamos que cada Estudiante debe postular a lo menos a 1 Establecimientos y a lo más a 3. Por otro lado
-Cada establecimiento puede recibir a lo más 50000 postulaciones.
+Supongamos que cada Estudiante debe postular a lo menos a 1 Establecimientos y a lo más a 3. Por otro lado,
+cada establecimiento puede recibir a lo más 50000 postulaciones.
 
 .. image:: ../../../sql-course/src/diagrama5_lecture19.png                               
       :align: center  
@@ -136,7 +137,7 @@ Ejemplo 4
 ^^^^^^^^^
 Con el fin de diversificar y bajo el siguiente contexto, supongamos que tenemos personas que realizan
 giros en bancos. Dependiendo del tipo de cuenta, supongamos que existe una cuenta que permite a lo más
-3 giros por mes. Por su parte el banco no tiene restricción de giros que puede recibir.
+3 giros por mes. Por su parte, el banco no tiene restricción de giros que puede recibir.
 
 
 .. image:: ../../../sql-course/src/diagrama6_lecture19.png                               
@@ -147,8 +148,8 @@ giros en bancos. Dependiendo del tipo de cuenta, supongamos que existe una cuent
 Clase de asociación
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Cuando la multiplicidad de las relaciones impide definir con exactitud que objeto de la clase **C1** esta asociado 
-a que objeto de la clase **C2**.
+Esto se produce cuando la multiplicidad de las relaciones impide definir con exactitud qué objeto de la 
+clase **C1** está asociado a qué objeto de la clase **C2**.
 
 Ejemplo 5
 ^^^^^^^^^
@@ -160,7 +161,7 @@ Supongamos que tenemos a varios  Estudiantes que desean postular a diferentes Es
 
 
 
-No obstante no hay información que permita definir que estudiante realiza la postulación, es por ello que se 
+No obstante no hay información que permita definir qué estudiante realiza la postulación, es por ello que se 
 crea una clase de asociación, en este caso postulación (Apply).
 
 .. image:: ../../../sql-course/src/diagrama8_lecture19.png                               
@@ -197,7 +198,7 @@ B1 y B2. Todo ordenado de acuerdo a la siguiente imagen:
       :align: center  
 
 Es posible mover los atributos B1 y B2 a la clase C1, pues dada la multiplicidad un objeto de la clase C1 está
-asociado a 1 objeto de la clase C2. Por lo tanto la clase de asociación se puede eliminar.
+asociado a 1 objeto de la clase C2. Por lo tanto, la clase de asociación se puede eliminar.
 
 
 .. image:: ../../../sql-course/src/diagrama11_lectura19.png                               
@@ -274,7 +275,7 @@ información más específica, como lo son el *país* y *pasaporte* en el caso d
  
  Las Subclases **heredan** propiedades de las **superclases / clase padre**, es decir no solo 
  atributos, sino que también asociaciones u operaciones  están disponibles en las 
- **subclases / clases hijas**
+ **subclases / clases hijas**.
 
 
 Composiciones y Agregaciones
@@ -300,15 +301,16 @@ una ciudad, tiene un número de aeropuertos.
 
 
 
-También se puede leer como que un medio de transporte tiene varias ruedas.
-Nos esta diciendo que los objetos rueda forman parte del objeto medio de transporte. Pero, su ciclo de 
-vida no esta atado al del objeto medio de transporte. Es decir si el automóvil se destruye las ruedas 
+Otro ejemplo puede ser que un medio de transporte tiene varias ruedas.
+
+Nos está diciendo que los objetos rueda forman parte del objeto medio de transporte. Pero, su ciclo de 
+vida no está atado al del objeto medio de transporte. Es decir, si el automóvil se destruye las ruedas 
 pueden seguir existiendo independientemente.
 
 
 En la misma linea, la composición, es una relación más fuerte de los objetos, así como la agregación, es el 
 hecho de que un objeto posea a otro, la composición es cuando la relación entre ambos objetos es tal, que el 
-primero no tiene sentido suelto, y el segundo, necesita definir al primero para ampliar su significado
+primero no tiene sentido solo, y el segundo, necesita definir al primero para ampliar su significado
 
 
 Ejemplo 9
@@ -318,11 +320,11 @@ Ejemplo 9
          :align: center  
 
 
-El avión tiene sentido por si solo. Esta claro que esta compuesto de 2 alas, esta relación es de mucha 
-fuerza, mucho más que el caso de los aeropuertos, y esta claro, que un avión siempre tendrá sus dos alas, y 
+El avión tiene sentido por si solo. Está claro que está compuesto de 2 alas, esta relación es de mucha 
+fuerza, mucho más que el caso de los aeropuertos, y está claro, que un avión siempre tendrá sus dos alas, y 
 estas siempre serán del mismo avión.
 
 
 La composición corresponde a aquellos objetos de los que depende un objeto para que este llegue a funcionar,
-en este caso el avión no puede funcionar sin las 2 alas.
+en éste caso el avión no puede funcionar sin las 2 alas.
 
