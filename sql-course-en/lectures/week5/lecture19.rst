@@ -53,7 +53,7 @@ Example 1
 
 Let’s return to the case of Students and Universities. Draw both relations as class in UML:
 
-.. image:: ../../../sql-course/src/diagrama1_lecture19.png                               
+.. image:: ../../../sql-course-en/src/example1_l19.png                               
    :align: center  
 
 Associations
@@ -68,16 +68,17 @@ The example 1 finished with two class separated, that is, Students and Universit
 and as you have seen in examples of previous lectures, the students apply to these universities, so 
 the relation is **apply**:
 
-.. image:: ../../../sql-course/src/diagrama2_lecture19.png                               
+.. image:: ../../../sql-course-en/src/example2a_l19.png                               
    :align: center  
 
 That is the **Student** **applies** to a **University**. It is possible direct this relation 
 to get more clarity when we are observing diagrams:
 
-.. image:: ../../../sql-course/src/diagrama3_lecture19.png                               
+.. image:: ../../../sql-course-en/src/example2b_l19.png                               
       :align: center  
 
-However, it does not make any difference when we translate to relations.
+However, it does not make any difference when we translate to relations, it is necessary when
+you want to cuantify the relationship.
 
 ============
 Multiplicity
@@ -97,7 +98,7 @@ Both values go separated by *..* (two periods).
       :align: center  
 
 It is important to mention that these relations can be bidirections. 
-                
+               
 Some special cases are::
 
  m..*   -> at least 'm' at most any value greater to 'm'.
@@ -123,7 +124,7 @@ Example 3
 Suppose that each student must apply to at least one university and no more than 3. On the 
 other hand, each university can receive no more than 50000 applications.
 
-.. image:: ../../../sql-course/src/diagrama5_lecture19.png                               
+.. image:: ../../../sql-course-en/src/example3_l19.png                               
       :align: center  
 
 
@@ -134,13 +135,13 @@ In order to diversify and under the next context, suppose that there are people 
 draft in banks. Depending on the type of account, suppose there is an account that allows 
 at most 3 drafts per month. The bank has not restrictions about drafts that you can receive.
 
-.. image:: ../../../sql-course/src/diagrama6_lecture19.png                               
+.. image:: ../../../sql-course-en/src/example4_l19.png                               
       :align: center  
 
 Class of association
 ~~~~~~~~~~~~~~~~~~~~
 
-When the multiplicity of relations cannot define with accuracy what object of the class **C1** 
+This happens when the multiplicity of relations cannot define with accuracy what object of the class **C1** 
 is associated to what object of the class **C2**.
 
 Example 5
@@ -148,14 +149,14 @@ Example 5
 
 Suppose that we have several students who want to apply to different universities.
 
-.. image:: ../../../sql-course/src/diagrama7_lecture19.png                               
+.. image:: ../../../sql-course-en/src/example5a_l19.png                               
          :align: center  
 
 
 Nevertheless, there is not information which allows defining which student makes the application. 
 Therefore, we create a class of association, in this case Application (Apply).
 
-.. image:: ../../../sql-course/src/diagrama8_lecture19.png                               
+.. image:: ../../../sql-course-en/src/example5b_l19.png                               
          :align: center  
 
 
@@ -170,7 +171,7 @@ you use as primary key (PK), the PK of the classes that are related.
 
 The following diagram clarifies the idea:
 
-.. image:: ../../../sql-course/src/diagrama9_lecture19.png                               
+.. image:: ../../../sql-course-en/src/example5c_l19.png                               
       :align: center  
 
 =========================================
@@ -236,14 +237,14 @@ Suppose that inside the type Students, we want to differentiate foreign students
 the national ones. We could think in creating two new classes, call **National Student** 
 and **Foreign Students**:
 
-.. image:: ../../../sql-course/src/ejemplo7a_lectura19.png
+.. image:: ../../../sql-course-en/src/example7a_l19.png
          :align: center
 
 However, there are attributes that are repeated in both, those are: *sID, sName, Average*. 
 For this reason, we can separate in one superclass called Student (the same used in other lectures), 
 and create 2 subclasses called **Foreign** and **National**.
 
-.. image:: ../../../sql-course/src/ejemplo7b_lectura19.png
+.. image:: ../../../sql-course-en/src/example7b_l19.png
             :align: center
 
 As you can see, this attributes are inherited for both subclasses. Also, both add more specific 
@@ -271,13 +272,14 @@ a city has a number of airports.
 
    It should be noted that the cardinality of the end carrying the rhombus, is always one.  
 
-.. image:: ../../../sql-course/src/ejemplo8_lectura19.png                               
+.. image:: ../../../sql-course-en/src/example8_l19.png                               
          :align: center  
 
-It can also be read as in a means of transport has several wheels. It is saying that 
-objects “wheel” are part of the object “means of transport.” However, its cycle of life 
-is not tied to the object of “means of transport.” This means that if the car is destroyed, 
-the wheels can still exist independently.
+Another example could be that a transport has several wheels. 
+
+It is saying that objects “wheel” are part of the object “means of transport.” However, its 
+cycle of life is not tied to the object of “means of transport.” This means that if the car 
+is destroyed, the wheels can still exist independently.
 
 In the same way, the composition is a stronger relation of objects. As aggregation, it is 
 the fact that an object has other one, the composition is when the relation between objects 
@@ -287,7 +289,7 @@ extend its meaning.
 Example 9
 ^^^^^^^^^
 
-.. image:: ../../../sql-course/src/ejemplo9_lectura19.png                               
+.. image:: ../../../sql-course-en/src/example9_l19.png                               
          :align: center  
 
 The airplane makes sense by itself. It is clear that is composed of 2 wings, this relationship 
