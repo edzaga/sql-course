@@ -9,5 +9,5 @@ Lectures:
    lecture17
    lecture18
    lecture19
-..   lecture20
+   lecture20
    assignment5
