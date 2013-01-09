@@ -1,5 +1,6 @@
 Lectura 28 - Vistas: Vistas y modificaciones automáticas
 ---------------------------------------------------------
+
 .. role:: sql(code)
          :language: sql
          :class: highlight
@@ -14,7 +15,6 @@ datos físicos.
 Por otra parte las vistas se encuentran en un nivel superior, es decir son constituidas
 por un conjunto de definiciones, pero no almacenan datos, pues utilizan los datos que 
 están almacenadas en las tablas. Es por ello que, podemos decir que las vistas son 
-=======
 por un conjunto de definiciones, pero no almacenan datos, pues utilizan los datos que
 están almacenadas en las tablas. Es por ello que, podemos decir que las vistas son
 tablas virtuales.
@@ -41,7 +41,6 @@ Toda Base de Datos (BD), puede ser vista como un árbol de 3 niveles:
     que nacen desde las relaciones del tronco y/o relaciones desde las ramas.
 
 
-.. agregar el dibujo(?)
 
 Realizar modificaciones en una vista no tiene mucho sentido, pues al no almacenar 
 información,estos cambios simplemente se perderían. No obstante, si el objetivo de 
@@ -182,7 +181,7 @@ Supongamos que se desea eliminar de la vista al estudiante con *sID* 3, pues
 realizó trampa en esta prueba. La idea es eliminarlo de la vista y a la vez, de la tabla
 Apply, para no tener que realizar 2 operaciones:
 
-.. code.block:: sql
+.. code-block:: sql
 
  DELETE FROM scAccepted WHERE sid = 3;
 
@@ -282,4 +281,13 @@ que el siguiente error aparece al ejecutar la consulta que está arriba::
  
  ERROR: WITH CHECK OPTION is not implemented.
  
+
+=============
+Conclusiones
+=============
+
+1. Los cambios automáticos sólo se pueden realizar a "tablas modificables", es decir que
+   cumplan con las 4 reglas.
+2. PostgreSQL **no soporta este tipo de modificación**, sólo la permite a través
+   de reglas y/o :sql:`triggers`. SQLite tampoco la soporta. MySQL si.
 
