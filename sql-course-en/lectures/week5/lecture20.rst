@@ -1,38 +1,31 @@
-Lecture 20 - Unified Modeling Language: UML to relations
---------------------------------------------------------
+Lecture 20 - Unified Modeling Language: UML and the database
+------------------------------------------------------------
 
-Database of high level and model of design.
+This modeling language is characterized by:
 
-* Very easy to use (graphic), specification of the language.
-* Translated to the model of DBMS
+* Easy to use, relies on many diagrams (graphs).
+* It is easy to translate to the model DBMS.
+
+In the following image, you can observe that the UML language can be translated in relations
+(or tables) of a database. 
 
 .. image:: ../../../sql-course-en/src/dibujo1_semana5_en.png                               
    :align: center  
 
-In the previous image, you can observe that the UML language can be translated in relations 
-of a database.
-
-UML (Unified Modeling Language)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Subset of data of modeling
-
-* Five concepts
+* There are five key concepts:
 
  1) Classes
  2) Associations
- 3) Associations of classes
+ 3) Associations classes
  4) Subclasses
  5) Composition and Aggregation
 
-* The designs can be translated automatically to the relations.
-
- Always and each “regular” type has a key. 
+* The designs can be translated automatically to the relations (or tables).
 
 Classes
 =======
 
-Each type becomes into a relation; pk-> primary key.
+Each type becomes into a relation (or tables) with its primary key
 
 .. image:: ../../../sql-course-en/src/diagrama1_semana5_en.png                               
    :align: center   
@@ -134,10 +127,10 @@ b) No, if it is not 0..1 or 1..1 *applied* then, is required.
 The correct answer is (a), since we should create the relation Student(sID, sName, GPA, cName1, cName2), 
 supposing that null values are allowed. 
 
-Class of association
-====================
+Association class
+=================
 
-The classes of association allows adding attributes, operations, and others characteristics 
+The association class allows adding attributes, operations, and others characteristics 
 to the associations. 
 
 .. image:: ../../../sql-course-en/src/diagrama5_semana5_en.png                               
