@@ -179,14 +179,55 @@ No obstante::
  HINT: You need a unconditional ON DELETE DO INSTEAD rule or 
  INSTEAD OF DELETE trigger.
 
-Pues MySQL es el único sistema, en relación a PostgreSQL o SQLite que permite un manejo de datos 
-de este tipo. Estos últimos permiten la modificación en base a reglas y/o :sql:'triggers'
-
+Pues MySQL es el único sistema, en relación a PostgreSQL o SQLite que permite un 
+manejo de datos de este tipo. Estos últimos permiten la modificación en base a 
+reglas y/o :sql:'triggers'
 
 .. warning::
  
  Si bien el motor de Base de Datos utilizado para este curso, no soporta el tópico de
  esta lectura, se verán casos y consejos para utilizarlos en MySQL.
 
+
+Ejemplo 2
+^^^^^^^^^
+Supongamos que deseamos crear una vista que contenga a los Estudiantes que postularon
+a Ciencias o Ingeniería. 
+
+.. code-block:: sql
+
+ CREATE VIEW sceng as
+ SELECT sid, cname, major  FROM Apply
+ WHERE major = 'science' or major = 'engineering';
+
+Verificando a través de una selección:
+
+.. code-block:: sql
+ 
+ SELECT * FROM sceng;
+ 
+la salida es:
+
+.. agregar salida
+
+Si deseamos agregar una fila, digamos:
+
+.. code-block:: sql
+ 
+ INSERT INTO sceng VALUES (234, 'Berkeley', 'science');
+
+No hay problemas, pues cuenta con las 4 reglas de "vistas modificables". El ejemplo funciona en MySQL 
+y en la teoría.
+
+
+Ejemplo 3
+^^^^^^^^^
+Supongamos que deseamos agregar una fila a la vista **scAccepted**, 
+
+Ejemplo 4
+^^^^^^^^^
+
+Ejemplo 5
+^^^^^^^^^
 
 
