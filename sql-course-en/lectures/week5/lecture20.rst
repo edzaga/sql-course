@@ -6,7 +6,7 @@ Database of high level and model of design.
 * Very easy to use (graphic), specification of the language.
 * Translated to the model of DBMS
 
-.. image:: ../../../sql-course/src/dibujo1_semana5_en.png                               
+.. image:: ../../../sql-course-en/src/dibujo1_semana5_en.png                               
    :align: center  
 
 In the previous image, you can observe that the UML language can be translated in relations 
@@ -34,10 +34,10 @@ Classes
 
 Each type becomes into a relation; pk-> primary key.
 
-.. image:: ../../../sql-course/src/diagrama1_semana5_en.png                               
+.. image:: ../../../sql-course-en/src/diagrama1_semana5_en.png                               
    :align: center   
 
-According to the types described before, we have the following relations:
+According to the classes described before, we have the following relations:
 
 .. math::
 
@@ -50,11 +50,11 @@ Associations
 
 Relation to the type of each side. 
 
-.. image:: ../../../sql-course/src/diagrama2_semana5_en.png                               
+.. image:: ../../../sql-course-en/src/diagrama2_semana5_en.png                               
    :align: center 
 
 You will obtain the same relations of the previous example, but it will be added a new 
-relation with the primary keys of both types. 
+relation with the primary keys of both classes. 
 
 .. math::
 
@@ -79,7 +79,7 @@ Keys for the relations of association
 
   For example,
 
-  .. image:: ../../../sql-course/src/diagrama3_semana5_en.png                               
+  .. image:: ../../../sql-course-en/src/diagrama3_semana5_en.png                               
      :align: center
 
   Now that we have a multiplicity of 1-n, we must add the primary key *Attr1_class1* of the 
@@ -98,7 +98,7 @@ Keys for the relations of association
 
   Now we will show this with other example:
 
-  .. image:: ../../../sql-course/src/diagrama4_semana5.png                               
+  .. image:: ../../../sql-course-en/src/diagrama4_semana5_en.png                               
      :align: center
   
   The relations for this example will be:
@@ -125,7 +125,7 @@ Suppose that we have 0..2 on the right side, therefore students can ask for at m
 Is there still a way to "bend" the relationship of association in this case, or that we 
 have an independent relation *Applied*?
 
-.. image:: ../../../sql-course/src/ejemplo_asociacion.png                               
+.. image:: ../../../sql-course-en/src/ejemplo_asociacion_en.png                               
    :align: center 
 
 a) Yes, there is a way.
@@ -140,7 +140,7 @@ Class of association
 The classes of association allows adding attributes, operations, and others characteristics 
 to the associations. 
 
-.. image:: ../../../sql-course/src/diagrama5_semana5_en.png                               
+.. image:: ../../../sql-course-en/src/diagrama5_semana5_en.png                               
    :align: center
 
 The relations of this classes result in the following way:
@@ -155,7 +155,7 @@ The relations of this classes result in the following way:
 
 Another example that details more clearly the classes of association.
 
-.. image:: ../../../sql-course/src/diagrama6_semana5_en.png                               
+.. image:: ../../../sql-course-en/src/diagrama6_semana5_en.png                               
    :align: center 
 
 The diagram allows us to see that a *Person* can work for a single *Company*. We need 
@@ -171,7 +171,7 @@ of "B". The objects of a **subclass** can be used in the circumstances in which 
 the objects of the corresponding **subclass**. This is due to the fact that the objects 
 of the **subclass** share the same behavior of the objects of the **superclass**. 
 
-.. image:: ../../../sql-course/src/diagrama7_semana5_en.png                               
+.. image:: ../../../sql-course-en/src/diagrama7_semana5_en.png                               
    :align: center
 
 1) The relations of the subclass have a key of the superclass, plus the specialized attributes. 
@@ -203,7 +203,7 @@ of the **subclass** share the same behavior of the objects of the **superclass**
 Example of subclasses
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: ../../../sql-course/src/diagrama8_semana5_en.png                               
+.. image:: ../../../sql-course-en/src/diagrama8_semana5_en.png                               
    :align: center  
 
 The relations of this example are:
@@ -235,7 +235,7 @@ the object included, ie, is part / whole).
 Example
 """""""
 
-.. image:: ../../../sql-course/src/diagrama9_semana5_en.png                               
+.. image:: ../../../sql-course-en/src/diagrama9_semana5_en.png                               
    :align: center 
 
 The relations are defined in the following way: 
@@ -256,7 +256,7 @@ functioning).
 Example
 """""""
 
-.. image:: ../../../sql-course/src/diagrama10_semana5_en.png                               
+.. image:: ../../../sql-course-en/src/diagrama10_semana5_en.png                               
    :align: center
 
 The relations are in the same way as the previous example, but as it has a different multiplicity, 

@@ -74,6 +74,7 @@ Example 1
 ^^^^^^^^^^
 
 .. code-block:: sql
+
 	Movie:
 
 	title         | year |  length  | genre  |     director    | actor
@@ -101,6 +102,7 @@ Unfortunately, the left side of the previous FD is not a superkey. In particular
 On the other hand:
 
 .. code-block:: sql 
+
 	Movies2:
 
 	title         | year |  length  | genre  |     director
@@ -147,6 +149,7 @@ Example 3
 The table is in 3NF because it has not transitive dependencies. But it is not in the form of Boyce - Codd, since ``(ID, subject)->teacher`` and ``teacher-> subject.`` In this case, the redundancy occurs because of a bad selection of the key. The redundancy of the subject is completely avoidable. The solution will be:
 
 .. code-block:: sql 
+
 	ID  | teacher
 	----+----------
 	121 | Paul
