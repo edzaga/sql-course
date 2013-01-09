@@ -6,7 +6,7 @@ Database of high level and model of design.
 * Very easy to use (graphic), specification of the language.
 * Translated to the model of DBMS
 
-.. image:: ../../../sql-course/src/dibujo1_semana5.png                               
+.. image:: ../../../sql-course/src/dibujo1_semana5_en.png                               
    :align: center  
 
 In the previous image, you can observe that the UML language can be translated in relations 
@@ -34,23 +34,23 @@ Classes
 
 Each type becomes into a relation; pk-> primary key.
 
-.. image:: ../../../sql-course/src/diagrama1_semana5.png                               
+.. image:: ../../../sql-course/src/diagrama1_semana5_en.png                               
    :align: center   
 
 According to the types described before, we have the following relations:
 
 .. math::
 
- Estudiante(\underline{sID}, sNombre, GPA)
+ Student(\underline{sID}, sName, GPA)
 
- Universidad(\underline{cNombre}, estado, inscripción)
+ College(\underline{cName}, state, enrollment)
 
 Associations 
 ============
 
 Relation to the type of each side. 
 
-.. image:: ../../../sql-course/src/diagrama2_semana5.png                               
+.. image:: ../../../sql-course/src/diagrama2_semana5_en.png                               
    :align: center 
 
 You will obtain the same relations of the previous example, but it will be added a new 
@@ -58,7 +58,7 @@ relation with the primary keys of both types.
 
 .. math::
 
- Aplicado(sID, cNombre)
+ Applied(sID, cName)
 
 
 Keys for the relations of association
@@ -79,22 +79,22 @@ Keys for the relations of association
 
   For example,
 
-  .. image:: ../../../sql-course/src/diagrama3_semana5.png                               
+  .. image:: ../../../sql-course/src/diagrama3_semana5_en.png                               
      :align: center
 
-  Now that we have a multiplicity of 1-n, we must add the primary key *Atr1_clase1* of the 
-  *Clase1* to the *Clase2* (which is the one that has the “many” multiplicity), leaving 
-  as foreign key the *Clase2*.
+  Now that we have a multiplicity of 1-n, we must add the primary key *Attr1_class1* of the 
+  *Class1* to the *Class2* (which is the one that has the “many” multiplicity), leaving 
+  as foreign key the *Class2*.
 
   Finally, the relations result in the following way: 
 
   .. math::
 
-     Clase1(\underline{Atr1\_clase1}, Atr2\_clase1)
+     Class1(\underline{Attr1\_class1}, Attr2\_class1)
  
-     Clase2(\underline{Atr1\_clase2}, Atr2\_clase2, Atr1\_clase1)
+     Class2(\underline{Attr1\_class2}, Attr2\_class2, Attr1\_class1)
     
-  If the relation has been of o..1-n, the *Atr1_clase1* attribute will be *NULL*. 
+  If the relation has been of o..1-n, the *Attr1_class1* attribute will be *NULL*. 
 
   Now we will show this with other example:
 
@@ -105,12 +105,12 @@ Keys for the relations of association
 
   .. math::
 
-     Estudiante(\underline{sID}, sNombre, GPA, cNombre)
+     Student(\underline{sID}, sName, GPA, cName)
  
-     Universidad(\underline{cNombre}, estado, inscripción)
+     College(\underline{cName}, state, enrollment)
    
-  By owning this type of multiplicity (1-n), it is added to the type *Estudiante* (many) 
-  the primary key *cNombre* of the class *Universidad*.
+  By owning this type of multiplicity (1-n), it is added to the class *Student* (many) 
+  the primary key *cName* of the class *College*.
 
  * **Multiplicity n-m**
  
@@ -123,45 +123,45 @@ Example
 """""""
 Suppose that we have 0..2 on the right side, therefore students can ask for at most 2 universities. 
 Is there still a way to "bend" the relationship of association in this case, or that we 
-have an independent relation *Aplicado*?
+have an independent relation *Applied*?
 
 .. image:: ../../../sql-course/src/ejemplo_asociacion.png                               
    :align: center 
 
 a) Yes, there is a way.
-b) No, if it is not 0..1 or 1..1 *aplicado* then, is required.
+b) No, if it is not 0..1 or 1..1 *applied* then, is required.
 
-The correct answer is (a), since we should create the relation Estudiante(sID, sNombre, GPA, cNombre1, cNombre2), 
+The correct answer is (a), since we should create the relation Student(sID, sName, GPA, cName1, cName2), 
 supposing that null values are allowed. 
 
 Class of association
 ====================
 
-The types of association allows adding attributes, operations, and others characteristics 
+The classes of association allows adding attributes, operations, and others characteristics 
 to the associations. 
 
-.. image:: ../../../sql-course/src/diagrama5_semana5.png                               
+.. image:: ../../../sql-course/src/diagrama5_semana5_en.png                               
    :align: center
 
 The relations of this classes result in the following way:
 
 .. math::
 
- Estudiante(\underline{sID}, sNombre, GPA)                              
+ Student(\underline{sID}, sName, GPA)                              
                                                                                      
- Universidad(\underline{cNombre}, estado, inscripción)
+ College(\underline{cName}, state, enrollment)
 
- Aplicado(sID, cNombre, Fecha, Decisión)
+ Applied(sID, cName, Date, Decision)
 
 Another example that details more clearly the classes of association.
 
-.. image:: ../../../sql-course/src/diagrama6_semana5.png                               
+.. image:: ../../../sql-course/src/diagrama6_semana5_en.png                               
    :align: center 
 
-The diagram allows us to see that a *Persona* can work for a single *Compañia*. We need 
-to keep information on the amount of time that each employee works for each *Compañia*.
+The diagram allows us to see that a *Person* can work for a single *Company*. We need 
+to keep information on the amount of time that each employee works for each *Company*.
 
-To achieve this, we add an *Periodo* attribute to the association *Empleo*.
+To achieve this, we add an *Period* attribute to the association *Employment*.
 
 Subclasses
 ==========
@@ -171,7 +171,7 @@ of "B". The objects of a **subclass** can be used in the circumstances in which 
 the objects of the corresponding **subclass**. This is due to the fact that the objects 
 of the **subclass** share the same behavior of the objects of the **superclass**. 
 
-.. image:: ../../../sql-course/src/diagrama7_semana5.png                               
+.. image:: ../../../sql-course/src/diagrama7_semana5_en.png                               
    :align: center
 
 1) The relations of the subclass have a key of the superclass, plus the specialized attributes. 
@@ -203,24 +203,24 @@ of the **subclass** share the same behavior of the objects of the **superclass**
 Example of subclasses
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: ../../../sql-course/src/diagrama8_semana5.png                               
+.. image:: ../../../sql-course/src/diagrama8_semana5_en.png                               
    :align: center  
 
 The relations of this example are:
 
 .. math::
 
- Estudiante(\underline{sID}, sNombre)
+ Student(\underline{sID}, sName)
 
- Est\_extranjeros(\underline{sID}, País)
+ St\_foreign(\underline{sID}, Country)
 
- Est\_nacionales(\underline{sID}, Estado, SS\#)
+ St\_national(\underline{sID}, State, SS\#)
 
- AP\_Estudiante(\underline{sID})
+ AP\_Student(\underline{sID})
 
- AP\_Curso(\underline{Curso\#}, Titulo)
+ AP\_Course(\underline{Course\#}, Title)
 
- Tomó(sID, Curso\#, Año, Nota)
+ Took(sID, Course\#, Year, Grade)
 
 Composition and Aggregation
 ===========================
@@ -235,16 +235,16 @@ the object included, ie, is part / whole).
 Example
 """""""
 
-.. image:: ../../../sql-course/src/diagrama9_semana5.png                               
+.. image:: ../../../sql-course/src/diagrama9_semana5_en.png                               
    :align: center 
 
 The relations are defined in the following way: 
 
 .. math::
 
- Universidad(\underline{cNombre}, Estado)
+ College(\underline{cName}, State)
 
- Departamento(\underline{cNombre}, Edificio, cNombre)
+ Department(\underline{dName}, Building, cName)
 
 Aggregation
 ^^^^^^^^^^^
@@ -256,11 +256,11 @@ functioning).
 Example
 """""""
 
-.. image:: ../../../sql-course/src/diagrama10_semana5.png                               
+.. image:: ../../../sql-course/src/diagrama10_semana5_en.png                               
    :align: center
 
 The relations are in the same way as the previous example, but as it has a different multiplicity, 
-the value of the *cNombre* attribute of the class *Departamento* can take the value **NULL**. 
+the value of the *cName* attribute of the class *Department* can take the value **NULL**. 
 
 .. note::
 
