@@ -56,6 +56,36 @@ Servicios en PostgreSQL
 
 De forma nativa PostgreSQL cuenta con las siguientes funciones:
 
+.. warning::
+  
+  Algunos de los comandos que se verán a continuación, son ejecutados en terminales 
+  bajo sistemas UNIX. No necesariamente dentro del entorno de PostgreSQL (psql).
+  
+
+SQL Dump
+^^^^^^^^
+Esta función genera un achivo de texto con comandos SQL que, cuando son reintroducidos
+al servidor, dejas a la BD en el mismo estado en el que se encontraba al momento de ejecutar
+este comando.
+
+
+su sintaxis es::
+  
+  pg_dump dbname > archivo_salida
+
+y se usa desde la linea de comandos.
+
+.. ojo con el problema acceso denegado pg_dump tarea2 > a.sql (bash: permission denied
+
+Para realizar la restaurar se utiliza::
+ 
+ psql dbname < archivo_entrada
+
+Donde **archivo_entrada** corresponde al **archivo_salida** de la instrucción **pg_dump**.
+
+Antes de retaurar, es necesario recrear el contexto que tenía la BD. Específicamente usuarios
+que poseían ciertos objetos o permisos. Si esto no calza con la BD, 
+
 
 
 =============
