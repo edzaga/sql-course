@@ -1,3 +1,5 @@
-Lecture 31 - Backup and Recovery Services Database
-----------------------------------------------------
+Lecture 31 - Servicios de  Respaldo y Recuperación para Bases de Datos
+-----------------------------------------------------------------------
+
+
 
