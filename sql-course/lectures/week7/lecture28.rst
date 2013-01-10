@@ -144,7 +144,6 @@ con los siguientes datos para la tabla **College**, **Student** y **Apply** resp
 Modificación automática de vistas y tablas
 ===========================================
 
-.. De acuerdo a la serie de reglas que se explicaron anteriormente
 Supongamos que deseamos seleccionar a los Estudiantes que postularon y fueron aceptados en
 en Ciencias, en cualquier Establecimiento Educacional, pero utilizando vistas:
 
