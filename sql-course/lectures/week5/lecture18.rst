@@ -1,4 +1,4 @@
-Lectura 18 - Teoría de diseño relacional: Dependencias Multivaluadas(4ta forma normal)
+Lectura 18 - Teoría de Diseño Relacional: Dependencias Multivaluadas(4ta forma normal)
 ---------------------------------------------------------------------------------------
 
 .. role:: sql(code)
@@ -11,24 +11,23 @@ Dependencias multivaluadas
 Introducción
 ============
 
-Una **dependencias multivaluadas** es una afirmación donde dos atributos o conjuntos de
+Una **dependencia multivaluada** es una afirmación donde dos atributos o conjuntos de
 atributos son independientes uno de otro.
 Si A implica B, las **dependencias funcionales** prohíben que haya dos tuplas con igual
 valor de A y distinto valores de B,  es decir A tiene asociado un único valor de B. Al
-contrario las **dependencias multivaluadas** permite que un mismo valor de A tenga asociado
+contrario las **dependencias multivaluadas** permiten que un mismo valor de A tenga asociado
 diferente valor de B, pero exige que estén presentes en la relación de una forma determinada.
 Por este motivo, las dependencias funcionales se conocen también como **dependencias de
 generación de igualdad** y las dependencias multivaluadas se denominan **dependencias de
 generación de tuplas**.
 
-Atributo de Independencia y redundancia
+Atributo de independencia y redundancia
 ========================================
 
 En bases de datos, la **redundancia** hace referencia al almacenamiento de los mismos
-datos varias veces en diferentes lugares. Esto puede traer problemas como incremento del
-trabajo, desperdicio de espacio de almacenamiento e inconsistencia de datos. Si una base
-de datos está bien diseñada, no debería haber redundancia de datos (exceptuando la redundancia
-de datos controlada, que se emplea para mejorar el rendimiento en las consultas a las bases de datos).
+datos varias veces en diferentes lugares. Esto puede traer problemas como incremento en el procesamiento, desperdicio de espacio de almacenamiento e inconsistencia de datos. Si una base
+de datos está bien diseñada, debería haber mínima redundancia de datos, es decir una redundancia
+de datos controlada, que se emplea para mejorar el rendimiento en las consultas a las bases de datos.
 
 Ejemplo
 ^^^^^^^^
@@ -52,8 +51,8 @@ imparta el curso, se utilizan los mismos textos.
 	Programación   |  Ullman  | Python Algorithms
 
 Se puede observar que el ejemplo involucra una buena cantidad de **redundancia**, la
-cual conduce a ciertas anomalías de actualización. Por ejemplo, para agregar la
-información de que el curso de Base de datos puede ser impartido por un nuevo profesor,
+cual conduce a algunas anomalías de actualización. Por ejemplo, para agregar la
+información que el curso de Base de datos puede ser impartido por un nuevo profesor,
 llamado Hetland, es necesario insertar dos nuevas tuplas; una para cada uno de los textos.
 
 .. code-block:: sql
@@ -71,10 +70,10 @@ llamado Hetland, es necesario insertar dos nuevas tuplas; una para cada uno de l
 	Programación   |  Ullman  | Python Algorithms
 
 
-Los problemas en cuestión son generados por el hecho de que los profesores y los textos
+Los problemas en cuestión son generados por el hecho que los profesores y los textos
 son completamente independientes entre sí.
 
-La existencia de relaciones Forma Normal de Boyce-Codd (FNBC) "problemáticas" como la del
+La existencia de relaciones con la problemática de la Forma Normal de Boyce-Codd (FNBC) como la del
 ejemplo llevaron a presentar la noción de las dependencias multivaluadas.
 
 Las dependencias multivaluadas son una generalización de las dependencias funcionales,
@@ -90,7 +89,7 @@ valores B que coinciden con un determinado par (valor A, valor C) depende sólo 
 y es independiente del valor de C.
 
 Es fácil mostrar que dado R{A,B,C}, ``A->->B`` es válida si y solamente si también es válida ``A->->C``.
-Las dependencias multivaluadas siempre van en pares, de esta forma. Por esta razón, es común representar
+Las dependencias multivaluadas siempre van en pares. Por esta razón, es común representar
 ambas en un solo enunciado de esta manera:
 
 ``A->->B|C``
@@ -110,13 +109,13 @@ Las dependencias multivaluadas se utilizan de dos maneras:
    preocuparse de las relaciones que satisfagan un conjunto dado de dependencias funcionales y multivaluadas.
 
 
-Cuarta forma normal
+Cuarta Forma Normal
 ~~~~~~~~~~~~~~~~~~~~~
 
-La cuarta forma normal (4FN) tiene por objetivo eliminar las dependencias multivaluadas.
-La 4FN se asegura de que las dependencias multivaluadas independientes estén correcta y
+La Cuarta Forma Normal (4FN) tiene por objetivo eliminar las dependencias multivaluadas.
+La 4FN asegura que las dependencias multivaluadas independientes estén correcta y
 eficientemente representadas en un diseño de base de datos. La 4FN es el siguiente nivel
-de normalización después de la forma normal de Boyce-Codd (FNBC).
+de normalización después de la Forma Normal de Boyce-Codd (FNBC).
 
 Definición
 ==========
@@ -131,10 +130,10 @@ Definición
 	Si una relación tiene más de una clave, cada una es una **clave candidata**. Una de ellas es
 	arbitrariamente designada como clave primaria, el resto son secundarias.
 
-Es otras palabras una relación está en 4FN si esta en Tercera forma normal o en FNBC y no posee dependencias
+Es otras palabras una relación está en 4FN si esta en Tercera Forma Normal o en FNBC y no posee dependencias
 multivaluadas no triviales. Como se mencionó, una relación posee una dependencia multivaluada cuando la existencia
-de dos o más relaciones independientes muchos a muchos causa redundancia; y es esta redundancia la que es
-suprimida por la cuarta forma normal.
+de dos o más relaciones independientes muchos a muchos que causan redundancia; y es esta redundancia la que es
+suprimida por la Cuarta Forma Normal.
 
 Ejemplo 1
 ^^^^^^^^^^
@@ -163,7 +162,7 @@ Profesores (curso,profesor) y Textos (curso,texto).
 	Programación   |  Python Algorithms
 
 
-Para agregar la información de que el curso de Base de datos puede ser impartido
+Para agregar la información que el curso de Base de datos puede ser impartido
 por un nuevo profesor, sólo tenemos que insertar una tupla en la relación Profesores:
 
 .. code-block:: sql
@@ -178,8 +177,7 @@ por un nuevo profesor, sólo tenemos que insertar una tupla en la relación Prof
 	Programación   |  Ullman
 
 También se observa que se puede recuperar la relación inicial al juntar nuevamente
-Profesores y Textos, de manera que la descomposición es sin pérdida. Por lo tanto,
-es razonable sugerir que debe existir una forma de "normalizar aún más", es así como nace la 4FN
+Profesores y Textos, de manera que la descomposición es sin pérdida. 
 
 En este ejemplo hay dos DMVs válidas:
 
@@ -194,7 +192,7 @@ Ejemplo 2
 ^^^^^^^^^^
 
 Se tiene una relación entre estudiantes, ramo y deporte. Los estudiantes pueden inscribirse en
-varios ramos y participar en diversos deportes. Esto quiere decir que sid no será único, de esta
+varios ramos y participar en diversos deportes. Esto quiere decir que el atributo *sid* no será único, de esta
 forma la única clave candidata posible es la combinación de los atributos (sid, ramo, deporte).
 El estudiante 1 tiene los ramos física y programación, participa en natación y tenis.  El  estudiante
 2 sólo tiene el ramo matemáticas y participa en voleibol.
@@ -238,7 +236,7 @@ como en se muestra a continuación:
 	1   | programación | tenis
 	2   | matemáticas  | voleibol
 
-Esta relación está en FNBC (2FN porque todo es clave; 3FN porque no tiene dependencias transitivas;
+Esta relación está en FNBC (2FN porque todo es clave primaria; 3FN porque no tiene dependencias transitivas;
 y FNBC porque no tiene determinantes que no son claves). A pesar de esto se aprecia esta anomalía
 de actualización, pues hay que hacer demasiadas actualizaciones para realizar un cambio en los datos.
 

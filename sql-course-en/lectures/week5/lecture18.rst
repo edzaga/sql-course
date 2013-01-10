@@ -21,14 +21,14 @@ in the relation of a determined form. For this reason, the functional dependenci
 known as **dependencies of generation of equality**. And multivalued dependencies are denominated 
 **dependencies of generation of tuples**.
 
-Attribute of Independence and Redundancy
+Attribute of independence and redundancy
 ========================================
 
 In databases, **redundancy** refers to the storage of the same data several times in 
 different places. This can bring problems such as increased work, waste of space of 
-storage and inconsistency of data. If a database is well design, you should not have 
-redundancy in the data (excepting the redundancy of controlled data, which is used to 
-improve the performance in the queries of a database).
+storage and inconsistency of data. If a database is well design, you should have minimum
+redundancy in the data, that is excepting the redundancy of controlled data, which is used to 
+improve the performance in the queries of a database.
 
 Example
 ^^^^^^^
@@ -110,12 +110,12 @@ and multivalued dependencies.
 2. To specify constraints of all legal relations, in this way, you just have to worry 
 about the relations that satisfy a given set of functional and multivalued dependencies. 
 
-Fourth normal form
+Fourth Normal Form
 ~~~~~~~~~~~~~~~~~~
 
-The fourth normal form (4NF) is to eliminate multivalued dependencies. The 4NF ensures 
+The Fourth Normal Form (4NF) is to eliminate multivalued dependencies. The 4NF ensures 
 that independent multivalued dependencies are correctly and efficiently represented in 
-a database design. The 4NF is the next level of normalization after the normal form of 
+a database design. The 4NF is the next level of normalization after the Normal Form of 
 Boyce-Codd (BCNF).
 
 Definition
@@ -125,10 +125,10 @@ Definition
   A is a **candidate key**. A multivalued dependency ``A->->B`` is trivial when B is part of A. 
   This happens when A is a set of attributes, and B is a subset of A.
 
-In other words a relation is in 4NF if it is in third normal form or BCNF and has no 
+In other words a relation is in 4NF if it is in Third Normal Form or BCNF and has no 
 nontrivial multivalued dependencies. As it was mentioned, a relation has a multivalued 
 dependency when the existence of two or more independent relations many to many causes 
-redundancy. It is this redundancy which is removed by the fourth normal form.
+redundancy. It is this redundancy which is removed by the Fourth Normal Form.
 
 Example 1
 ^^^^^^^^^
@@ -172,8 +172,7 @@ just have to insert a tuple in the Professor relation:
 	Programming    |  Ullman
 
 It also shows that you can recover the initial relation when you join Professors and 
-Texts again, so that the decomposition is lossless. Therefore, it is reasonable to suggest 
-that there must be a form of “normalize even more”, which is called 4NF.
+Texts again, so that the decomposition is lossless. 
 
 In this example there are two valid MVDs:
 
@@ -204,7 +203,7 @@ swimming and tennis. The student 2 only has the subject math and participates in
 	2   |     math     | volleyball
 
 The relation between sid and subject is not a functional dependency since students can 
-have different subjects. A unique value of sid can have many values of the subject. This 
+have different subjects. A unique value of *sid* can have many values of the subject. This 
 is also apply to the relation between sid and sport.
 You can notice then, that this dependency for attributes is a multivalued dependency. You 
 can see that redundancy in the example since the student 1 has 4 records. Each one shows 
