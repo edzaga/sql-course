@@ -1,4 +1,4 @@
-Lecture 17 - Theory of relational design: Boyce-Codd normal form
+Lecture 17 - Relational Design Theory: Boyce-Codd normal form
 -----------------------------------------------------------------
 
 .. role:: sql(code)
