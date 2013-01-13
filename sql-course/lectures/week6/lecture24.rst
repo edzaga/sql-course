@@ -1,6 +1,10 @@
 Lectura 24 - Restricciones y triggers: Triggers introducción y demostración
 -----------------------------------------------------------------------------
 
+.. role:: sql(code)
+         :language: sql
+         :class: highlight
+
 Triggers (disparadores)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -55,6 +59,7 @@ Creación de un disparo
 *Forma general:*
 
 .. code-block:: sql
+
 	(1)CREATE trigger nombreTrigger 
 	(2)BEFORE|AFTER|INSTEAD OF AlgúnEvento
 	     ON nombreTabla
@@ -96,7 +101,8 @@ MovieExec(name, address, cert# , netWorth)
   condición y la acción, estos nombres se pueden utilizar como si fueran variables declaradas en la cláusula 
   :sql:`FROM` de una consulta SQL.
 
-* **(6)**, La frase :sql:`FOR EACH ROW`, expresa la exigencia de que este trigger se ejecute una vez por cada tupla actualizada. 
+* **(6)**, La frase :sql:`FOR EACH ROW`, expresa la exigencia de que este trigger se ejecute una vez por cada 
+  tupla actualizada. 
 
 * **(7) Condición del trigger:** Se dice que sólo se realiza la acción cuando el nuevo **netWorth** es menor 
   que el **netWorth** antiguo. 
@@ -129,6 +135,7 @@ Se crea una base de datos y se instala el lenguaje **plpgsql**, un lenguaje impe
 permite el uso de funciones.
 
 .. code-block:: sql
+
 	postgres=# create database trggr2;
 	CREATE DATABASE
 	postgres=# \c trggr2
@@ -182,17 +189,20 @@ cada vez que se inserte o actualice un dato.
 Postgres retorna:
 
 .. code-block:: sql
+
 	CREATE TRIGGER
 
 Para ver cómo funciona el trigger se insertan los números 4, 9 y 6.
 
 .. code-block:: sql
+
 	trggr2=# INSERT INTO numbers (number) VALUES (4),(9),(6);
 	INSERT 0 3
 
 Y se realiza un select para ver los datos almacenados.
 
 .. code-block:: sql
+
 	trggr2=#  SELECT * FROM numbers;
 
 	 number | square | squareroot 
@@ -237,6 +247,7 @@ primer :sql:`INSERT` (number = 4), el trigger save_data llama a la función save
 
 Cuándo no deben usarse los triggers
 =====================================
+
 Existen algunos casos que pueden ser manejados de mejor forma con otras técnicas:
 
 * **Realizar resúmenes de datos:** Muchos sistemas de bases de datos actuales soportan las vistas 
@@ -249,5 +260,8 @@ Existen algunos casos que pueden ser manejados de mejor forma con otras técnica
   incorporadas para el respaldo de bases de datos, haciendo innecesarios a los triggers para la réplica 
   en la mayoría de los casos. 
 
-Los triggers se deberían escribir con sumo cuidado, dado que un error de un trigger detectado en tiempo de ejecución causa el fallo de la instrucción de inserción, borrado o actualización que inició el trigger. En el peor de los casos esto podría dar lugar a una cadena infinita de triggers. Generalmente, los sistemas de bases de datos limitan la longitud de las cadenas de triggers.
+Los triggers se deberían escribir con sumo cuidado, dado que un error de un trigger detectado en tiempo de 
+ejecución causa el fallo de la instrucción de inserción, borrado o actualización que inició el trigger. 
+En el peor de los casos esto podría dar lugar a una cadena infinita de triggers. Generalmente, los sistemas 
+de bases de datos limitan la longitud de las cadenas de triggers.
 
