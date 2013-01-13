@@ -425,8 +425,59 @@ ambas tablas.
 A continuación se mostrarán otras características que no se han visto en los ejemplos 
 anteriores:
 
+.. code-block:: sql
 
+ CREATE TABLE T(A INT, B INT, C INT, PRIMARY KEY(A,B), FOREIGN KEY(B,C) REFERENCES T(A,B) ON DELETE CASCADE);
 
+ INSERT INTO T VALUES(1,1,1);
+ INSERT INTO T VALUES(2,1,1);
+ INSERT INTO T VALUES(3,2,1);
+ INSERT INTO T VALUES(4,3,2);
+ INSERT INTO T VALUES(5,4,3);
+ INSERT INTO T VALUES(6,5,4);
+ INSERT INTO T VALUES(7,6,5);
+ INSERT INTO T VALUES(8,7,6);
 
+Este ejemplo es para demostrar la integridad referencial dentro de una sola tabla **T**.
+
+.. code-block:: sql
+
+ SELECT * FROM T;
+  a | b | c 
+ ---+---+---
+  1 | 1 | 1
+  2 | 1 | 1
+  3 | 2 | 1
+  4 | 3 | 2
+  5 | 4 | 3
+  6 | 5 | 4
+  7 | 6 | 5
+  8 | 7 | 6
+ (8 rows)
+
+Si queremos borrar de la tabla **T**, cuando A=1.
+
+.. code-block:: sql
+
+ DELETE FROM T WHERE A=1;
+
+Quedando la tabla como:
+
+.. code-block:: sql
+
+ SELECT * FROM T;
+  a | b | c 
+ ---+---+---
+ (0 rows)
+
+Podemos observar que al dar la condición de borrar A=1, se eliminan todos los demás valores, 
+esto sucede por la definición que se dió como clave foránea de B y C en la creación de la
+tabla **T**.
+
+La integración referencial es muy común en las implementaciones de las bases de datos relacionales.
+La forma natural de diseñar un esquema relacional suelen tener valores en columnas de una tabla 
+que se refieren a los valores de las columnas de otra tabla, y el establecimiento de 
+restricciones de integridad referencial, este sistema controlará la base de datos y se 
+asegurará de que se mantenga siempre constante.
 
 
