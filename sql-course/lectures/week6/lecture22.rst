@@ -13,9 +13,7 @@ las cuales se dividen en:
   1. Restricciones que no permiten valores *NULL*.
   2. Restricciones de clave primaria.
   3. Restricciones de atributo y tupla.
-     .. (litados por cada implementaci+on de lenguaje sql... investigar más)
   4. Restricciones generales.
-     .. (No implementado en ninguna distribución)
 
 ==========
 Contexto
@@ -463,7 +461,7 @@ el siguiente error aparece::
 Eso es, utilizar subconsultas dentro de un CHECK no está permitido en PostgreSQL, de hecho
 no se permite en la mayoría de motores de bases de datos.
 
-.. La forma de realizar restricciones de integridad con otras tablas,se verá en otra lectura.
+
 
 =========================
 Restricciones generales
