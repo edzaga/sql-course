@@ -1,6 +1,10 @@
 Lectura 23 - Restricciones y triggers: Integridad Referencial
 -------------------------------------------------------------
 
+.. role:: sql(code)
+         :language: sql
+         :class: highlight
+
 Esta lectura presenta un tipo muy importante de *restricción* conocida como **integridad 
 referencial**.
 
@@ -13,7 +17,7 @@ que aparecen en la base de datos.
 A continuación se muestra de ejemplo una base de datos con las tablas de *Student*, *Apply* y
 *College*.
 
-.. image:: ../../../sql-course/src/lecture23/imagen1_semana6.png                               
+.. image:: ../../../sql-course/src/lectura23/imagen1_semana6.png                               
    :align: center  
     
 Supongamos por ejemplo, que se tiene un alumno, "1", que había solicitado a la universidad 
@@ -86,7 +90,7 @@ Las relaciones ``R.A a S.B`` tienen como características:
   Por ejemplo, si el atributo *cName* y *State* de la tabla **College** fuesen claves foráneas 
   es necesario agregar una columna en la tabla **Apply** de *State*.
 
-.. image:: ../../../sql-course/src/lecture23/imagen2_semana6.png                               
+.. image:: ../../../sql-course/src/lectura23/imagen2_semana6.png                               
    :align: center 
 
 Aplicacion de la integridad referencial (R.A a R.B)
@@ -94,19 +98,19 @@ Aplicacion de la integridad referencial (R.A a R.B)
 
 Modificaciones potencialmente violadas:
 
-* `INSERT INTO` R.
+* :sql:`INSERT INTO` R.
 
    Si insertamos una tupla (o fila) en la relación *Apply* se puede haber violado la 
    integridad referencial si el valor insertado, por ejemplo un nombre de *sID* o *cName*, 
    no tienen valores coincidentes en las relaciones de referencia como son: **Student** y **College**.
-* `DELETE FROM` R.
+* :sql:`DELETE FROM` R.
 
    Si borramos de una relación de referencia, digamos que se borra un estudiante de la tabla 
    **Student**, entonces eso podría causar una violación de integridad referencial, puesto que 
    al borrar la tupla (o fila) de la tabla **Student** el valor *sID* = "1", se pierde la 
    referencia que existia de este estudiante en la tabla **Apply**.
-* `UPDATE` R.A.
-* `UPDATE` S.B.
+* :sql:`UPDATE` R.A.
+* :sql:`UPDATE` S.B.
 
    Y por supuesto, si actualizamos el valor que hace referencia a cualquiera de estas 
    columnas podrían causar una violación de integridad referencial si es que el nuevo valor no 
@@ -142,13 +146,13 @@ al igual que la violación de otros tipos de restricciones.
 Acciones especiales
 ~~~~~~~~~~~~~~~~~~~
 
-* `DELETE FROM` S.
+* :sql:`DELETE FROM` S.
 
  * Restrict(default):
  * SET NULL
  * CASCADE
 
-* `UPDATE` S.B.
+* :sql:`UPDATE` S.B.
 
  * Restrict(default)
  * SET NULL
@@ -200,7 +204,7 @@ Ahora se quiere actualizar la tabla **Apply**.
 
  UPDATE Apply SET sID=3 WHERE sID=1;
 
-Retornando el siguiente `error`, puesto que intenta establecer la identificación del 
+Retornando el siguiente ``error``, puesto que intenta establecer la identificación del 
 estudiante a "3", pero vamos a conseguir una violación de la integridad referencial 
 porque no hay estudiantes con ID = "3".::
 
@@ -349,8 +353,8 @@ Cumpliendo todas las tuplas de la tabla **Apply** con la integridad referencial.
     3 | UTFSM | CS      | Y
  (5 rows)
 
-Ejemplo `ON DELETE SET NULL`
-============================
+Ejemplo :sql:`ON DELETE SET NULL`
+=================================
 
 Ahora vamos a eliminar todos los estudiantes cuyo *sID* es mayor a 2:
 
@@ -382,10 +386,10 @@ Quedando como resultado las tablas **Student** y **Apply**
 
 Se observa que se eliminó a la estudiante "Lucy", que tenía un *sID* = 3, de la tabla 
 **Student** y la tabla **Apply** dejando en esta última el valor del atributo *sID* = "null",
-cumpliendose la restricción que se detalló en la creación de la tabla `ON DELETE SET NULL`.
+cumpliendose la restricción que se detalló en la creación de la tabla :sql:`ON DELETE SET NULL`.
 
-Ejemplo `CASCADE`
-=================
+Ejemplo :sql:`CASCADE`
+======================
 
 Se desea actualizar el *cName* de la tabla **College** el valor de "UTFSM" por "USM".
 

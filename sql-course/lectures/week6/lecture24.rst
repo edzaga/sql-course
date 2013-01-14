@@ -18,7 +18,7 @@ Definición
 
 **Un trigger es una orden que el sistema ejecuta de manera automática** como efecto secundario de alguna
 modificación de la base de datos. Entonces los tiggers siguen en orden la secuencia: ``evento->condición->acción``. 
-Se ejecutan mediante los comandos :sql:`INSERT`, :sql:`DELETE` y :sql:`UPTADE`. 
+Se ejecutan mediante los comandos :sql:`INSERT`, :sql:`DELETE` y :sql:`UPDATE`. 
 
 Para diseñar un mecanismo trigger hay que cumplir algunos **requisitos**:
 
@@ -35,7 +35,7 @@ base de datos asume la responsabilidad de ejecutarlo cada vez que ocurra el even
 la condición correspondiente.
 
 Algunas aplicaciones de triggers
-===============================  
+================================  
 
 El tigger es útil en una serie de situaciones diferentes. Un ejemplo es realizar una función de registro. 
 Algunas acciones críticas para la integridad de una base de datos, tales como insertar, editar o eliminar 
