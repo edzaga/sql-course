@@ -13,9 +13,7 @@ las cuales se dividen en:
   1. Restricciones que no permiten valores *NULL*.
   2. Restricciones de clave primaria.
   3. Restricciones de atributo y tupla.
-     .. (litados por cada implementaci+on de lenguaje sql... investigar más)
   4. Restricciones generales.
-     .. (No implementado en ninguna distribución)
 
 ==========
 Contexto
@@ -360,7 +358,7 @@ Ejemplo 9
 
 Es posible además, restringir cadenas de caracteres, como el caso del atributo *sName*. Supongamos que
 se desea denegar la entrada o actualización de nombres groseros o sin sentido, limitemos el caso a las
-cadenas: 'asd' y 'lala':
+cadenas: 'amY' y 'amy  ':
 
 .. code-block:: sql
 
@@ -391,8 +389,8 @@ es para cadenas de caracteres que estén dentro de comillas simples (''). por lo
 
  Es sumamente importante que si se desea declarar cadenas de caracteres y que además
  se quieran  restringir valores específicos (como ocurre en el Ejemplo 9), el largo permitido
- no sea ni demasiado largo, como para tener que restringir cada caso específico, ya sea: 'asd',
- 'asd ', 'asd  ',... o 'Asd', 'Asd '... considerando todas las combinaciones posibles; ni
+ no sea ni demasiado largo, como para tener que restringir cada caso específico, ya sea: 'amy',
+ 'amy ', 'amy  ',... o 'Amy', 'Amy '... considerando todas las combinaciones posibles; ni
  demasiado corto para tener problemas de inserción con datos reales.
 
 Al igual que en los primeros ejemplos, si se desea actualizar los atributos que cuentan con el tipo
@@ -463,7 +461,7 @@ el siguiente error aparece::
 Eso es, utilizar subconsultas dentro de un CHECK no está permitido en PostgreSQL, de hecho
 no se permite en la mayoría de motores de bases de datos.
 
-.. La forma de realizar restricciones de integridad con otras tablas,se verá en otra lectura.
+
 
 =========================
 Restricciones generales
@@ -490,5 +488,4 @@ No obstante la función **assertion** no está implementada en PostgreSQL::
 
  CREATE ASSERTION is not yet implemented
 
-.. Así finaliza esta lectura.
 
