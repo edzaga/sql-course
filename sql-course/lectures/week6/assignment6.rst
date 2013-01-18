@@ -15,7 +15,7 @@ Integración Referencial
 Pregunta 1 (15 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^
 
-Realice un ejemplo en que se aplique la materia de las lecturas donde se apliquen los siguientes comandos:
+Realice un ejemplo en que se aplique la materia de las lecturas donde se utilicen los siguientes comandos:
 
 * Crear 3 o más tablas, que deben incluir ``PRIMARY KEY, FOREIGN KEY, CASCADE, SET NULL``. (5 ptos)
 * Insertar datos en las tablas. (2.5 ptos)
@@ -58,7 +58,7 @@ La salida es:
  **cubo:** entero.
  **PRIMARY KEY:** num.
 
- El que no cumpla con estas condiciones tendrá un descuento de (1 pto) por cada uno.
+ Se descontará 1 punto por cada condición incumplida. 
 
 Pregunta 2 (30 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^
@@ -92,7 +92,8 @@ La salida es:
  **num:** entero no nulo.
  **resultado:** entero
 
- El que no cumpla con estas condiciones tendrá un descuento de (1 pto) por cada uno.
+
+ Se descontará 1 punto por cada condición incumplida. 
 
 Pregunta 3 (40 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^
@@ -119,7 +120,7 @@ Condiciones para calcular el impuesto:
  **duty:** REAL.
  **PRIMARY KEY:** ID.
 
- El que no cumpla con estas condiciones tendrá un descuento de (1 pto) por cada uno.
+ Se descontará 1 punto por cada condición incumplida. 
 
  Ayuda: Para utilizar condiciones en la función:
 
