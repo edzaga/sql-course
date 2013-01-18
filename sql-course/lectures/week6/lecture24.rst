@@ -1,4 +1,4 @@
-Lectura 24 - Restricciones y triggers: Triggers introducción y demostración
+Lectura 24 - Restricciones y Triggers: Triggers introducción y demostración
 -----------------------------------------------------------------------------
 
 .. role:: sql(code)
@@ -16,25 +16,25 @@ que posee SQL para entregar esta capacidad.
 Definición
 =========== 
 
-**Un trigger es una orden que el sistema ejecuta de manera automática** como efecto secundario de alguna
+**Un Trigger es una orden que el sistema ejecuta de manera automática** como efecto secundario de alguna
 modificación de la base de datos. Entonces los tiggers siguen en orden la secuencia: ``evento->condición->acción``. 
 Se ejecutan mediante los comandos :sql:`INSERT`, :sql:`DELETE` y :sql:`UPDATE`. 
 
-Para diseñar un mecanismo trigger hay que cumplir algunos **requisitos**:
+Para diseñar un mecanismo Trigger hay que cumplir algunos **requisitos**:
 
- 1. **Procedimiento almacenado:** Se debe crear la base de datos y las relaciones, antes de definir el trigger.
+ 1. **Procedimiento almacenado:** Se debe crear la base de datos y las relaciones, antes de definir el Trigger.
 
- 2. **Especificar condiciones para ejecutar el trigger:** Se debe definir un **evento** que causa la comprobación
-    del trigger y una **condición** que se debe cumplir para ejecutar el trigger.
+ 2. **Especificar condiciones para ejecutar el Trigger:** Se debe definir un **evento** que causa la comprobación
+    del Trigger y una **condición** que se debe cumplir para ejecutar el Trigger.
 
- 3. **Especificar las acciones:** Se debe precisar qué acciones se van a realizar cuando se ejecute el trigger.
+ 3. **Especificar las acciones:** Se debe precisar qué acciones se van a realizar cuando se ejecute el Trigger.
 
-La base de datos almacena trigger como si fuesen datos normales, por lo que son persistentes y accesibles para 
-todas las operaciones de la base de datos. Una vez se almacena un trigger en la base de datos, el sistema de 
+La base de datos almacena Trigger como si fuesen datos normales, por lo que son persistentes y accesibles para 
+todas las operaciones de la base de datos. Una vez se almacena un Trigger en la base de datos, el sistema de 
 base de datos asume la responsabilidad de ejecutarlo cada vez que ocurra el evento especificado y se satisfaga
 la condición correspondiente.
 
-Algunas aplicaciones de triggers
+Algunas aplicaciones de Triggers
 ================================  
 
 El tigger es útil en una serie de situaciones diferentes. Un ejemplo es realizar una función de registro. 
@@ -42,11 +42,11 @@ Algunas acciones críticas para la integridad de una base de datos, tales como i
 una fila de la tabla, podrían desencadenar una inscripción en un registro que documente la acción realizada. 
 El registro podrían grabar no sólo lo que se modificó, sino también cuando fue modificada y por quién.
 
-Los triggers también pueden ser usados para mantener una base de datos consistente. Por ejemplo si se tiene 
+Los Triggers también pueden ser usados para mantener una base de datos consistente. Por ejemplo si se tiene 
 una relación de *Pedidos*, el pedido de un producto especifico puede activar una sentencia que cambie el 
 estado de ese producto en la tabla *Inventario*, y pase de *disponible* a *reservado*. Del mismo modo, la 
 eliminación de una fila en la tabla de pedidos puede activar la acción para cambia el estado del producto 
-de *reservado* a *disponible*. Los triggers ofrecen una flexibilidad aún mayor que la que se ilustra en 
+de *reservado* a *disponible*. Los Triggers ofrecen una flexibilidad aún mayor que la que se ilustra en 
 los ejemplos anteriores. 
 
 Creación de un disparo
@@ -60,7 +60,7 @@ Creación de un disparo
 
 .. code-block:: sql
 
-	(1)CREATE trigger nombreTrigger 
+	(1)CREATE TRIGGER nombreTrigger 
 	(2)BEFORE|AFTER|INSTEAD OF AlgúnEvento
 	     ON nombreTabla
 	(3)WHEN (condición)
@@ -69,29 +69,29 @@ Creación de un disparo
 Variables especiales 
 ^^^^^^^^^^^^^^^^^^^^
 
-Existen algunas palabras reservadas, que están disponibles para ser utilizadas por triggers. 
+Existen algunas palabras reservadas, que están disponibles para ser utilizadas por Triggers. 
 Algunas de estas variables especiales disponibles son las siguientes:
 
 * :sql:`NEW`: Variable que contiene la nueva fila de la tabla para las operaciones :sql:`INSERT/UPDATE`.
 
 * :sql:`OLD`: Variable que contiene la antigua fila de la tabla para las operaciones :sql:`UPDATE/DELETE`.
 
-* :sql:`TG_NAME`: Variable que contiene el nombre del trigger que está usando la función actualmente.
+* :sql:`TG_NAME`: Variable que contiene el nombre del Trigger que está usando la función actualmente.
 
-* :sql:`TG_RELID`: identificador de objeto de la tabla que ha activado el trigger.
+* :sql:`TG_RELID`: identificador de objeto de la tabla que ha activado el Trigger.
 
-* :sql:`TG_TABLE_NAME`: nombre de la tabla que ha activado el trigger.
+* :sql:`TG_TABLE_NAME`: nombre de la tabla que ha activado el Trigger.
 
 Ejemplo :
 ^^^^^^^^^
 
 .. note::
 
-	El ejemplo a continuación es para explicar el funcionamiento de un trigger, si se desea probar 
-	el postgres se debe crear la base de datos y la tabla MovieExec, más adelante se verán un ejemplo
+	El ejemplo a continuación es para explicar el funcionamiento de un Trigger, si se desea probar 
+	en postgreSQL se debe crear la base de datos y la tabla MovieExec, más adelante se verán un ejemplo
 	práctico que podrá copiarse directamente en la consola.
 
-El siguiente trigger se "dispara" por cambios en el atributo *salary*. El efecto de este trigger es 
+El siguiente Trigger se "dispara" por cambios en el atributo *salary*. El efecto de este Trigger es 
 para frustrar cualquier intento de disminuir el valor de *salary* en la tabla *Employee*.
 
 `\text{Employee}(\underline{\text{cert}},\text{name, address, salary})`
@@ -109,7 +109,7 @@ para frustrar cualquier intento de disminuir el valor de *salary* en la tabla *E
 	(9) SET salary = OldTuple.salary
 	(10) WHERE cert = NewTuple.cert ;
 
-* **(1) Se crea el trigger:** con las palabras claves :sql:`CREATE TRIGGER` y el nombre del trigger *salaryTrigger*.
+* **(1) Se crea el Trigger:** con las palabras claves :sql:`CREATE TRIGGER` y el nombre del Trigger *salaryTrigger*.
 
 * **(2) Evento de activación:**, en este caso es la actualización del atributo *salary* de la relación *Employee*. 
 
@@ -118,13 +118,13 @@ para frustrar cualquier intento de disminuir el valor de *salary* en la tabla *E
   condición y la acción, estos nombres se pueden utilizar como si fueran variables declaradas en la cláusula 
   :sql:`FROM` de una consulta SQL.
 
-* **(6)**, La frase :sql:`FOR EACH ROW`, expresa la exigencia de que este trigger se ejecute una vez por cada 
+* **(6)**, La frase :sql:`FOR EACH ROW`, expresa la exigencia de que este Trigger se ejecute una vez por cada 
   tupla actualizada. 
 
-* **(7) Condición del trigger:** Se dice que sólo se realiza la acción cuando el nuevo **salary** es menor 
+* **(7) Condición del Trigger:** Se dice que sólo se realiza la acción cuando el nuevo **salary** es menor 
   que el **salary** antiguo. 
 
-* **(8) (9) y (10) Acción del trigger** Esta acción es una instrucción SQL de actualización que tiene el 
+* **(8) (9) y (10) Acción del Trigger** Esta acción es una instrucción SQL de actualización que tiene el 
   efecto de restaurar el *salary* a lo que era antes de la actualización. Tenga en cuenta que, en principio, 
   cada tupla de *Employee* se considera para la actualización, pero la cláusula :sql:`WHERE` de la línea (10) 
   garantiza que sólo la tupla actualizada (con el correcto *cert*) se verán afectados.
@@ -133,7 +133,7 @@ para frustrar cualquier intento de disminuir el valor de *salary* en la tabla *E
 Funciones
 ==========
 
-Existe una forma de separar las **acciones** y las **condiciones** de un trigger. Esto se logra mediante el uso 
+Existe una forma de separar las **acciones** y las **condiciones** de un Trigger. Esto se logra mediante el uso 
 de **funciones**. Uno de los motivos de utilizar funciones es mantener la lógica lejos de la aplicación, con esto 
 se consigue consistencia entre aplicaciones y reducción de funcionalidad duplicada. Además un acceso predefinido a
 objetos restringidos. 
@@ -152,7 +152,7 @@ este curso se usará un **lenguaje imperativo**, llamado **PL/pgSQL** (Procedura
 
 **PL/pgSQL** dispone de estructuras condicionales y repetitivas. Se pueden realizar cálculos complejos y crear nuevos tipos 
 de datos de usuario. En **PL/pgSQL** se pueden crear funciones. En esta sección se verá como dichas funciones pueden ser 
-ejecutadas en eventos de tipo trigger.
+ejecutadas en eventos de tipo Trigger.
 
 
 Ejemplo Práctico 1:
@@ -186,7 +186,7 @@ al final del ejemplo se explica detalladamente su funcionamiento:
 
 .. code-block:: sql
 
-	CREATE OR REPLACE FUNCTION save_data() RETURNS TRIGGER AS $save_data$
+	CREATE OR REPLACE FUNCTION save_data() RETURNS Trigger AS $save_data$
 	  DECLARE
 	  BEGIN
 	   
@@ -197,13 +197,13 @@ al final del ejemplo se explica detalladamente su funcionamiento:
 	  END;
 	$save_data$ LANGUAGE plpgsql;
 
-Postgres retorna:
+PostgreSQL retorna:
 
 .. code-block:: sql
 
 	CREATE FUNCTION
 
-Ahora ya se puede definir el trigger que llamará a la función ``save_data()`` automáticamente, 
+Ahora ya se puede definir el Trigger que llamará a la función ``save_data()`` automáticamente, 
 cada vez que se inserte o actualice un dato.
 
 .. code-block:: sql
@@ -212,13 +212,13 @@ cada vez que se inserte o actualice un dato.
 	    ON numbers FOR EACH ROW 
 	    EXECUTE PROCEDURE save_data();
 
-Postgres retorna:
+PostgreSQL retorna:
 
 .. code-block:: sql
 
 	CREATE TRIGGER
 
-Para ver cómo funciona el trigger se insertan los números 4, 9 y 6.
+Para ver cómo funciona el Trigger se insertan los números 4, 9 y 6.
 
 .. code-block:: sql
 
@@ -254,9 +254,9 @@ También se puede actualizar
 
 Como se puede apreciar, solo se ha insertado o actualizado el valor number pero al hacerlo automáticamente 
 se llenaron los valores para los atributos *square* y *squareroot*. Esto es debido a que el tigger estaba 
-definido para activarse al realizar un :sql:`INSERT` o :sql:`UPDATE`. Por cada uno de estos comandos el trigger 
+definido para activarse al realizar un :sql:`INSERT` o :sql:`UPDATE`. Por cada uno de estos comandos el Trigger 
 ordenó la ejecución de la función ``save_data()``, una vez por cada fila involucrada. Es decir cuando realizamos el 
-primer :sql:`INSERT` (number = 4), el trigger ``save_data`` llama a la función ``save_data()`` una vez. 
+primer :sql:`INSERT` (number = 4), el Trigger ``save_data`` llama a la función ``save_data()`` una vez. 
 
 * El valor de la variable ``NEW`` al empezar a ejecutarse ``save_data()`` es: ``number=4, square=NULL, squareroot=NULL``. 
   La tabla *numbers* aún está vacía. 
@@ -281,19 +281,19 @@ filas, pues retorna ``NULL`` que, como se vio en lecturas anteriores, es la inex
 
 .. code-block:: sql
 
-	 CREATE OR REPLACE FUNCTION protect_data() RETURNS TRIGGER AS $Tprotect$
+	 CREATE OR REPLACE FUNCTION protect_data() RETURNS Trigger AS $Tprotect$
 	  DECLARE
 	  BEGIN
 	   RETURN NULL;
 	  END;
 	$Tprotect$ LANGUAGE plpgsql;
 
-El siguiente trigger llamado **Tprotect** se activa antes de realizar una eliminación de datos de la 
+El siguiente Trigger llamado **Tprotect** se activa antes de realizar una eliminación de datos de la 
 tabla *numbers*, la acción que realiza es llamar a la función ``protect_data``.
 
 .. code-block:: sql
 
-	CREATE TRIGGER Tprotect BEFORE DELETE 
+	CREATE Trigger Tprotect BEFORE DELETE 
 	    ON numbers FOR EACH ROW 
 	    EXECUTE PROCEDURE protect_data();
 
@@ -304,7 +304,7 @@ Se intenta eliminar todos los datos de la tabla *numbers* con la siguiente sente
 	trggr2=# DELETE FROM numbers;
 	DELETE 0
 
-Sin embargo no es posible borrar datos pues el trigger acciona la función ``protect_data``, y ningún dato es eliminado.
+Sin embargo no es posible borrar datos pues el Trigger acciona la función ``protect_data``, y ningún dato es eliminado.
 
 .. code-block:: sql
 
@@ -319,7 +319,7 @@ Sin embargo no es posible borrar datos pues el trigger acciona la función ``pro
 Ejemplo Práctico 3:
 ^^^^^^^^^^^^^^^^^^^^^
 
-Nuevamente se utiliza la relación *numbers*, las *funciones* y los *triggers* ya creados.
+Nuevamente se utiliza la relación *numbers*, las *funciones* y los *Triggers* ya creados.
 
 La función que se verá a continuación busca evitar errores al calcular la raíz cuadrada de un número negativo. 
 Observe que ocurre al intentar insertar el valor -4:
@@ -346,7 +346,7 @@ calcular el cuadrado y la raíz.
 
 .. code-block:: sql
 
-	CREATE OR REPLACE FUNCTION invalid_root() RETURNS TRIGGER AS $invalid_root$
+	CREATE OR REPLACE FUNCTION invalid_root() RETURNS Trigger AS $invalid_root$
 	DECLARE
 	BEGIN
 		IF (NEW.number < 0) THEN
@@ -360,7 +360,7 @@ calcular el cuadrado y la raíz.
 	END;
 	$invalid_root$ LANGUAGE plpgsql;
 
-Luego de tener la función se define el trigger que detona la función. El trigger ``invalid_root`` se 
+Luego de tener la función se define el Trigger que detona la función. El Trigger ``invalid_root`` se 
 activa cuando se realiza una inserción o actualización de datos en *numbers*.
 
 .. code-block:: sql
@@ -393,12 +393,12 @@ Y si se intenta ingresar un numero positivo, se consigue sin problemas:
 	      5 |     25 |    2.23607
 	(4 filas)
 
-Para borrar un trigger y una función primero se elimina el trigger:
+Para borrar un Trigger y una función primero se elimina el Trigger:
 
 .. code-block:: sql
 
-	trggr2=# DROP TRIGGER invalid_root ON numbers;
-	DROP TRIGGER
+	trggr2=# DROP Trigger invalid_root ON numbers;
+	DROP Trigger
 
 Y luego se puede eliminar la función:
 
@@ -407,7 +407,7 @@ Y luego se puede eliminar la función:
 	trggr2=# DROP FUNCTION invalid_root();
 	DROP FUNCTION
 
-Cuándo no deben usarse los triggers
+Cuándo no deben usarse los Triggers
 =====================================
 
 Existen algunos casos que pueden ser manejados de mejor forma con otras técnicas:
@@ -415,14 +415,14 @@ Existen algunos casos que pueden ser manejados de mejor forma con otras técnica
 * **Realizar resúmenes de datos:** Muchos sistemas de bases de datos actuales soportan las vistas 
   materializadas, que proporcionan una forma mucho más sencilla de mantener **los datos de resumen**. 
 
-* **Respaldo de las bases de datos:** Anteriormente los diseñadores de sistemas,  usaban triggers con 
+* **Respaldo de las bases de datos:** Anteriormente los diseñadores de sistemas,  usaban Triggers con 
   la inserción, eliminación o actualización de las relaciones para registrar los cambios. Un proceso 
   separado copiaba los cambios al respaldo de la base de datos, y el sistema ejecutaba los cambios 
   sobre la réplica. Sin embargo, los sistemas de bases de datos modernos proporcionan características 
-  incorporadas para el respaldo de bases de datos, haciendo innecesarios a los triggers para la réplica 
+  incorporadas para el respaldo de bases de datos, haciendo innecesarios a los Triggers para la réplica 
   en la mayoría de los casos. 
 
-Los triggers se deberían escribir con sumo cuidado, dado que un error de un trigger detectado en tiempo de 
-ejecución causa el fallo de la instrucción de inserción, borrado o actualización que inició el trigger. 
-En el peor de los casos esto podría dar lugar a una cadena infinita de triggers. Generalmente, los sistemas 
-de bases de datos limitan la longitud de las cadenas de triggers.
+Los Triggers se deberían escribir con sumo cuidado, dado que un error de un Trigger detectado en tiempo de 
+ejecución causa el fallo de la instrucción de inserción, borrado o actualización que inició el Trigger. 
+En el peor de los casos esto podría dar lugar a una cadena infinita de Triggers. Generalmente, los sistemas 
+de bases de datos limitan la longitud de las cadenas de Triggers.
