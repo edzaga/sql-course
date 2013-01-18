@@ -17,7 +17,7 @@ Definición
 =========== 
 
 **Un Trigger es una orden que el sistema ejecuta de manera automática** como efecto secundario de alguna
-modificación de la base de datos. Entonces los tiggers siguen en orden la secuencia: ``evento->condición->acción``. 
+modificación de la base de datos. Entonces los Triggers siguen en orden la secuencia: ``evento->condición->acción``. 
 Se ejecutan mediante los comandos :sql:`INSERT`, :sql:`DELETE` y :sql:`UPDATE`. 
 
 Para diseñar un mecanismo Trigger hay que cumplir algunos **requisitos**:
@@ -37,7 +37,7 @@ la condición correspondiente.
 Algunas aplicaciones de Triggers
 ================================  
 
-El tigger es útil en una serie de situaciones diferentes. Un ejemplo es realizar una función de registro. 
+El Trigger es útil en una serie de situaciones diferentes. Un ejemplo es realizar una función de registro. 
 Algunas acciones críticas para la integridad de una base de datos, tales como insertar, editar o eliminar 
 una fila de la tabla, podrían desencadenar una inscripción en un registro que documente la acción realizada. 
 El registro podrían grabar no sólo lo que se modificó, sino también cuando fue modificada y por quién.
@@ -52,8 +52,8 @@ los ejemplos anteriores.
 Creación de un disparo
 =======================
 
- 1. Un tigger se crea con la sentencia :sql:`CREATE TRIGGER`. 
- 2. Después de que se crea, el tigger se encuentra a la espera de que se produzca el evento de activación. 
+ 1. Un Trigger se crea con la sentencia :sql:`CREATE TRIGGER`. 
+ 2. Después de que se crea, el Trigger se encuentra a la espera de que se produzca el evento de activación. 
  3. Cuando el evento se produce desencadena una acción.  
 
 *Forma general:*
@@ -88,7 +88,7 @@ Ejemplo :
 .. note::
 
 	El ejemplo a continuación es para explicar el funcionamiento de un Trigger, si se desea probar 
-	en postgreSQL se debe crear la base de datos y la tabla MovieExec, más adelante se verán un ejemplo
+	en postgreSQL se debe crear la base de datos y la tabla Employee, más adelante se verán un ejemplo
 	práctico que podrá copiarse directamente en la consola.
 
 El siguiente Trigger se "dispara" por cambios en el atributo *salary*. El efecto de este Trigger es 
@@ -253,7 +253,7 @@ También se puede actualizar
 	(3 rows)
 
 Como se puede apreciar, solo se ha insertado o actualizado el valor number pero al hacerlo automáticamente 
-se llenaron los valores para los atributos *square* y *squareroot*. Esto es debido a que el tigger estaba 
+se llenaron los valores para los atributos *square* y *squareroot*. Esto es debido a que el Trigger estaba 
 definido para activarse al realizar un :sql:`INSERT` o :sql:`UPDATE`. Por cada uno de estos comandos el Trigger 
 ordenó la ejecución de la función ``save_data()``, una vez por cada fila involucrada. Es decir cuando realizamos el 
 primer :sql:`INSERT` (number = 4), el Trigger ``save_data`` llama a la función ``save_data()`` una vez. 
