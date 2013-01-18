@@ -39,8 +39,8 @@ integridad), como si la órden de la transacción nunca se hubiese realizado.
 Ahora se mostrarán ejemplos de dificultades que puede ocurrir cuando múltiples clientes 
 están interactuando con la base de datos.
 
-Atributo de nivel de incosistencia
-==================================
+Nivel de Incosistencia en Atributos
+===================================
 
 .. code-block:: sql
 
@@ -52,7 +52,50 @@ concurrente con
 
  UPDATE College SET enrollment = enrollment + 1000 WHERE cName = 'UTFSM';
 
-En el ejemplo anterior se puede observar como en un solo atributo en el que varios clientes 
-están trabajando. 
+En el ejemplo anterior se puede observar que tenemos 2 clientes, uno esta emitiendo una 
+declaración que aumenta las matriculas de *UTFSM* en 500.
+El segundo cliente, alrededor del mismo instante, está emitiendo una declaracion que 
+aumenta las matriculas en 1000.
+
+El problema que se genera en este caso es que si el primer cliente modifica el valor 
+de la matricula de la universidad *UTFSM* en 500 y ahora el segundo cliente va a modificar 
+el valor de la matricula, sobre lo que modifico el primer cliente, por lo que a la base 
+de datos se modifico dos veces el valor de la matricula.
+
+Supongamos que el valor de la matricula está a 3000 y estas dos sentencias se ejecutan 
+al mismo tiempo, el valor final de la matricula será 4500.
+
+Nivel de Inconsistencia en Tuplas
+=================================
+
+.. code-block:: sql
+
+ UPDATE Apply SET major = 'history' WHERE sID = 1;
+
+concurrente con
+
+.. code-block:: sql
+
+ UPDATE Apply SET decision = 'Y' WHERE sID = 1;
+
+En este ejemplo al poseer dos clientes que están realizando una modificación en una tupla 
+(o fila) *sID = 1*, el primero actualizando la especialidad a *history* y el segundo a una decision 
+con valor *Y*.
+Es posible que se vean ambas modificaciones reflejadas en la base de datos, pero también 
+existe la posibilidad de que solo se visualice una. 
+
+Nivel de Incosistencia en Tablas
+================================
+
+.. code-block:: sql
+
+ UPDATE Apply SET decision = 'Y' WHERE sID IN (SELECT sID FROM Student WHERE GPA > 3.9);
+
+concurrente con
+
+.. code-block:: sql
+
+ UPDATE Student SET GPA = (1.1) * GPA WHERE sizeHS > 2500;
+
 
     
