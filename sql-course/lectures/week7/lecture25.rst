@@ -97,5 +97,31 @@ concurrente con
 
  UPDATE Student SET GPA = (1.1) * GPA WHERE sizeHS > 2500;
 
+Tenemos el primer cliente trabajando en la tabla **Apply**, pero las condiciones que se 
+detallan en la tabla **Apply**, dependen de la tabla **Student**.
+Mientras tanto el segundo cliente esta modificando la tabla **Student**.
 
+Así que lo que sucede en la tabla **Apply**, puede depender de si ocurre antes, despues o 
+durante la modificación de la tabla **Student**.
+
+Entonces los GPA se modifican y luego las aceptaciones se hacen o viceversa.
+
+
+Objetivo de la Concurrencia
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tenemos multiples clientes interactuando con la base de datos al mismo tiempo, y si en 
+realidad los comandos que se ejecutan en la base de datos fuesen intercalados, a menudo los 
+comandos de *actualizacion* e incluso los de *selección*, pueden generar un comportamiento 
+inconsistene o inesperado.
     
+Lo que idealmente sse busca es que el cliente ejecute comandos a las bases de datos y no 
+preocuparse de lo que están realizando otros clientes en ese mismo instante.
+
+¿Por qué los sistemas de bases de datos no simplemente ejecutan las sentencias de manera 
+aislada?
+
+Este sistema de base de datos puede tomar las peticiones de los clientes y simplemente hacer uno 
+a la vez sin la concurrencia.
+
+   
