@@ -137,5 +137,38 @@ Y los sistemas de bases de datos, como también tienen acceso a la base de datos
 a realizar muchos I/O (entrada/salida) para un sistema que proporciona I/O (entrada/salida) 
 asíncrona, también puede ejecutar varias cosas al mismo tiempo.
 
+Ahora vamos a cambiar de tema y hablaremos acerca de las fallas de sistema.
+
+Resistencia a fallos del sistema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Una vez más, tenemos nuestro sistema de base de datos con los datos en el disco, y supongamos 
+que justo estamos en el proceso de una carga masiva de datos en la base de datos.
+
+Quizás una gran cantidad de datos de una fuente externa, por ejemplo un conjunto de archivos, 
+y justo en el medio de carga masiva de datos, tenemos una caída del sistema o un fallo del sistema.
+
+Esto podría deberse a un fallo de software o hardware, o algo tan simple como la salida de energía.
+
+Por lo tanto, si se cargaron la mitad de los datos que se debían cargar en la base de datos 
+
+¿Qué sucede cuando el sistema vuelve?
+
+Se queda en un estado inconsistente bastante desagradable.
+
+Como ejemplo, vamos a suponer que estábamos realizando un montón de cambios en la base de datos.
+Entonces los datos que se quieren actualizar son modificados en la memoria y luego se escriben nuevamente 
+en el disco.
+Así que suponemos que en medio de este proceso tenemos una caída del sistema.
+
+Esto volvería a dejar a la base de datos en un estado inconsistente.
+
+Así que el objetivo general frente a los fallos del sistema es que cuando queremos hacer 
+algo en la base de datos es indicarle al sistema que queremos garantizar la ejecución de todo 
+o nada para ese conjunto particular de operaciones en la base de datos independientemente 
+de los fallos que pudieran ocurrir durante la ejecución. 
+
+
+
 
    
