@@ -115,13 +115,27 @@ realidad los comandos que se ejecutan en la base de datos fuesen intercalados, a
 comandos de *actualizacion* e incluso los de *selección*, pueden generar un comportamiento 
 inconsistene o inesperado.
     
-Lo que idealmente sse busca es que el cliente ejecute comandos a las bases de datos y no 
+Lo que idealmente se busca es que el cliente ejecute comandos a las bases de datos y no 
 preocuparse de lo que están realizando otros clientes en ese mismo instante.
 
-¿Por qué los sistemas de bases de datos no simplemente ejecutan las sentencias de manera 
-aislada?
+Objetivo Principal
+==================
 
-Este sistema de base de datos puede tomar las peticiones de los clientes y simplemente hacer uno 
-a la vez sin la concurrencia.
+Ejecutar secuencias de instrucciones SQL que parecen estar funcionando de manera aislada.
+
+* **Solución Simple:** ejecutarlos de forma aislada.
+
+Pero desea habilitar la concurrencia siempre que sea seguro hacerlo.
+
+Por lo general para poder hacer funcionar un ambiente con concurrencia es posible con un 
+sistema que posea:
+
+* Sistema multi-procesador.
+* Sistema multi-threads
+
+Y los sistemas de bases de datos, como también tienen acceso a la base de datos, tienden 
+a realizar muchos I/O (entrada/salida) para un sistema que proporciona I/O (entrada/salida) 
+asíncrona, también puede ejecutar varias cosas al mismo tiempo.
+
 
    
