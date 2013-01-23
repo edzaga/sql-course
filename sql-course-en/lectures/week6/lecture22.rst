@@ -312,7 +312,7 @@ To verify the check up, lets do some insertions:
 
 With the first two insertions  there are no problems, but with the third and fourth the following error appears::
 
- ERROR: new row for relation "student3" violates check constriaint "student3_average_check"
+ ERROR: new row for relation "student3" violates check constraint "student3_average_check"
 
 since it violates the restriction of the average.
 

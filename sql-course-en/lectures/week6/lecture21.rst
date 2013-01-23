@@ -51,7 +51,7 @@ The criteria for the decision is True, False or **NULL**::
   Decision: 'T', 'F', **NULL**
 
 
-Las restricciones se utilizan para:
+The restrictions are used for:
 
 1. Avoid errors when you insert data (:sql:`INSERT`).
 2. Avoid errors when you modify data (:sql:`UPDATE`).
