@@ -8,6 +8,6 @@ Lectures:
 
    lecture21
    lecture22
-   lecture23
-   lecture24
-   assignment6
+..   lecture23
+..   lecture24
+..   assignment6
