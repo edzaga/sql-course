@@ -168,7 +168,19 @@ algo en la base de datos es indicarle al sistema que queremos garantizar la ejec
 o nada para ese conjunto particular de operaciones en la base de datos independientemente 
 de los fallos que pudieran ocurrir durante la ejecución. 
 
+Solución para la concurrencia y fallos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Una transacción es una secuencia de una o más operaciones de SQL tratados como una unidad.
 
+* Transacciones parecen funcionar de forma aislada.
+* Si el sistema falla, los cambios de cada transacción se reflejan en su totalidad.
 
-   
+Estándar SQL:
+
+* Una transacción comienza automáticamente en la primera sentencia SQL.
+* Cuando el comando "commit" (una palabra clave especial) se ejecuta, la transacción 
+actual termina y comienza una nueva.
+* La transacción actual, también termina cuando su período de sesiones termina con la base 
+de datos.
+* "Autocommit" cada sentencia SQL se ejecuta como una transacción.  
