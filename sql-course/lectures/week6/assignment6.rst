@@ -1,7 +1,7 @@
 Tarea 6
 =======
 
-Fecha de entrega: Martes 5 de Febrero 2013 hasta 23:59
+Fecha de entrega: Miércoles 6 de Febrero 2013 hasta 23:59
 ------------------------------------------------------
 
 .. role:: sql(code)
@@ -29,7 +29,7 @@ Triggers (disparadores)
 Pregunta 1 (15 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^
 
-Realizar un trigger, en que al insertar un entero **no nulo**, calcule automáticamente en cuatro columnas "el entero + 1", "el entero + 2", "el entero al cuadraro" y "el entero al cubo". 
+Realizar un trigger, en que al insertar un entero **no nulo**, calcule automáticamente en cuatro columnas "el entero + 1", "el entero + 2", "el entero al cuadrado" y "el entero al cubo". 
 
 * Crear tabla "pregunta1", con atributos ``num``, ``suma1``, ``suma2``, ``cuadrado`` y ``cubo``. (2.5 ptos)
 * Crear FUNCTION "preg1()" (7 ptos)

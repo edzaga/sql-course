@@ -93,7 +93,7 @@ Las relaciones ``R.A a S.B`` tienen como características:
 .. image:: ../../../sql-course/src/lectura23/imagen2_semana6.png
    :align: center
 
-Aplicacion de la integridad referencial (R.A a R.B)
+Aplicación de la integridad referencial (R.A a R.B)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Modificaciones potencialmente violadas:
@@ -264,7 +264,7 @@ Si queremos actualizar el nombre de la universidad "UTFSM" por "USM" en la tabla
 
 Pero el resultado no es satisfactorio, puesto que si se modificara el atributo *cName* por
 "USM" de la tabla **College**, se tendrá una referencia en la tabla **Apply** con el atributo
-*cName*, pero que posee el valor de "UTFSM", generandose una violación de integridad.::
+*cName*, pero que posee el valor de "UTFSM", generándose una violación de integridad.::
 
  ERROR:  update or delete on table "college" violates foreign key constraint "apply_cname_fkey" on table "apply"
  DETAIL:  Key (cname)=(UTFSM) is still referenced from table "apply".

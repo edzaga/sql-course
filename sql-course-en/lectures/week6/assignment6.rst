@@ -1,7 +1,7 @@
 Assignment 6
 ============
 
-Deadline:  23:59 Tuesday 5 February 2013
+Deadline:  23:59 Wednesday 5 February 2013
 ------------------------------------------------------
 
 .. role:: sql(code)
@@ -101,10 +101,10 @@ Question 3 (40 pts.)
 
 Calculate the value of the tax on the salary of a worker.
 
-* Create a table “Question 3” with attributes "ID", "name", "salary" y "duty". (5 ptos)
+* Create a table “Question 3” with attributes "ID", "name", "salary" y "duty". (5 pts)
 * Create FUNCTION "Quest3()" (25 pts.)
 * Create TRIGGER "Quest3". (5 pts.)
-* Insert 4 data created by you. (5 ptos)
+* Insert 4 data created by you. (5 pots)
 
 Condition for the calculation of the tax:
 
