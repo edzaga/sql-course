@@ -1,7 +1,7 @@
 Tarea 6
 =======
 
-Fecha de entrega: Lunes 4 de Febrero 2013 hasta 23:59
+Fecha de entrega: Martes 5 de Febrero 2013 hasta 23:59
 ------------------------------------------------------
 
 .. role:: sql(code)
