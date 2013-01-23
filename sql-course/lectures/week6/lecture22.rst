@@ -1,4 +1,4 @@
-Lecture 22 - Restricciones y  triggers: Restricciones de múltiples tipos
+Lectura 22 - Restricciones y  triggers: Restricciones de múltiples tipos
 -------------------------------------------------------------------------
 
 .. role:: sql(code)

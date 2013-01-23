@@ -1,4 +1,4 @@
-Lecture 21 - Restricciones y :sql:`triggers`: Introducción
+Lectura 21 - Restricciones y :sql:`triggers`: Introducción
 ------------------------------------------------------------
 
 .. role:: sql(code)
