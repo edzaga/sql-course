@@ -17,9 +17,9 @@ En la siguiente imagen podemos observar que los datos son almacenados en el disc
 tiene comunicación con el sistema de gestión de base de datos, o DBMS, que controla las 
 interacciones con los datos.
 A menudo hay software adicional por encima del DBMS, tal vez un servidor de aplicaciones 
-o servidor web, que luego interactuan con los que podrían ser usuarios a través de comandos 
+o servidor web, que luego interactúan con los que podrían ser usuarios a través de comandos 
 de selección, actualización, creación de tablas, comandos de borrado, etc. Y es aquí 
-finalmente donde ocurre el problema que es la interacción concurrente de multiples usuarios. 
+finalmente donde ocurre el problema que es la interacción concurrente de múltiples usuarios. 
 
 .. image:: ../../../sql-course/src/lectura25/imagen1_semana7.png                               
    :align: center
@@ -34,12 +34,12 @@ indivisible (atómica) sobre una base de datos.
 puedan finalizar en un estado intermedio.
 * Si por algún motivo se debe cancelar la *transacción*, el DBMS empieza a deshacer las 
 órdenes ejecutadas hasta dejar la base de datos en su estado inicial (llamado punto de 
-integridad), como si la órden de la transacción nunca se hubiese realizado.
+integridad), como si la orden de la transacción nunca se hubiese realizado.
 
 Ahora se mostrarán ejemplos de dificultades que puede ocurrir cuando múltiples clientes 
 están interactuando con la base de datos.
 
-Nivel de Incosistencia en Atributos
+Nivel de Inconsistencia en Atributos
 ===================================
 
 .. code-block:: sql
@@ -54,7 +54,7 @@ concurrente con
 
 En el ejemplo anterior se puede observar que tenemos 2 clientes, uno esta emitiendo una 
 declaración que aumenta las matriculas de *UTFSM* en 500.
-El segundo cliente, alrededor del mismo instante, está emitiendo una declaracion que 
+El segundo cliente, alrededor del mismo instante, está emitiendo una declaración que 
 aumenta las matriculas en 1000.
 
 El problema que se genera en este caso es que si el primer cliente modifica el valor 
@@ -84,7 +84,7 @@ con valor *Y*.
 Es posible que se vean ambas modificaciones reflejadas en la base de datos, pero también 
 existe la posibilidad de que solo se visualice una. 
 
-Nivel de Incosistencia en Tablas
+Nivel de Inconsistencia en Tablas
 ================================
 
 .. code-block:: sql
@@ -101,7 +101,7 @@ Tenemos el primer cliente trabajando en la tabla **Apply**, pero las condiciones
 detallan en la tabla **Apply**, dependen de la tabla **Student**.
 Mientras tanto el segundo cliente esta modificando la tabla **Student**.
 
-Así que lo que sucede en la tabla **Apply**, puede depender de si ocurre antes, despues o 
+Así que lo que sucede en la tabla **Apply**, puede depender de si ocurre antes, después o 
 durante la modificación de la tabla **Student**.
 
 Entonces los GPA se modifican y luego las aceptaciones se hacen o viceversa.
@@ -110,10 +110,10 @@ Entonces los GPA se modifican y luego las aceptaciones se hacen o viceversa.
 Objetivo de la Concurrencia
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tenemos multiples clientes interactuando con la base de datos al mismo tiempo, y si en 
+Tenemos múltiples clientes interactuando con la base de datos al mismo tiempo, y si en 
 realidad los comandos que se ejecutan en la base de datos fuesen intercalados, a menudo los 
-comandos de *actualizacion* e incluso los de *selección*, pueden generar un comportamiento 
-inconsistene o inesperado.
+comandos de *actualización* e incluso los de *selección*, pueden generar un comportamiento 
+inconsistente o inesperado.
     
 Lo que idealmente se busca es que el cliente ejecute comandos a las bases de datos y no 
 preocuparse de lo que están realizando otros clientes en ese mismo instante.
