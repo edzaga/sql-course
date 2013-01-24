@@ -28,19 +28,15 @@ finalmente donde ocurre el problema que es la interacción concurrente de múlti
 Integridad de las transacciones
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Una *transacción* es un conjunto de operaciones (u órdenes) que se ejecutan en forma 
-indivisible (atómica) sobre una base de datos.
-* El DBMS debe mantener la integridad de los datos, haciendo que estas *transacciones* no 
-puedan finalizar en un estado intermedio.
-* Si por algún motivo se debe cancelar la *transacción*, el DBMS empieza a deshacer las 
-órdenes ejecutadas hasta dejar la base de datos en su estado inicial (llamado punto de 
-integridad), como si la orden de la transacción nunca se hubiese realizado.
+* Una *transacción* es un conjunto de operaciones (u órdenes) que se ejecutan en forma indivisible (atómica) sobre una base de datos.
+* El DBMS debe mantener la integridad de los datos, haciendo que estas *transacciones* no puedan finalizar en un estado intermedio.
+* Si por algún motivo se debe cancelar la *transacción*, el DBMS empieza a deshacer las órdenes ejecutadas hasta dejar la base de datos en su estado inicial (llamado punto de integridad), como si la orden de la transacción nunca se hubiese realizado.
 
 Ahora se mostrarán ejemplos de dificultades que puede ocurrir cuando múltiples clientes 
 están interactuando con la base de datos.
 
 Nivel de Inconsistencia en Atributos
-===================================
+====================================
 
 .. code-block:: sql
 
@@ -85,7 +81,7 @@ Es posible que se vean ambas modificaciones reflejadas en la base de datos, pero
 existe la posibilidad de que solo se visualice una. 
 
 Nivel de Inconsistencia en Tablas
-================================
+=================================
 
 .. code-block:: sql
 
@@ -179,8 +175,6 @@ Una transacción es una secuencia de una o más operaciones de SQL tratados como
 Estándar SQL:
 
 * Una transacción comienza automáticamente en la primera sentencia SQL.
-* Cuando el comando "commit" (una palabra clave especial) se ejecuta, la transacción 
-actual termina y comienza una nueva.
-* La transacción actual, también termina cuando su período de sesiones termina con la base 
-de datos.
+* Cuando el comando "commit" (una palabra clave especial) se ejecuta, la transacción actual termina y comienza una nueva.
+* La transacción actual, también termina cuando su período de sesiones termina con la base de datos.
 * "Autocommit" cada sentencia SQL se ejecuta como una transacción.  
