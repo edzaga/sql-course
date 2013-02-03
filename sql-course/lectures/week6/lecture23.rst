@@ -71,7 +71,7 @@ b) Dorm.name a Student.dormName
 c) Student.name a Student.roommateName
 d) Student.roommateName a Student.name
 
-La alternativa correcta es (c), puesto que la respuesta 1 dorm dice que cada estudiante existe.
+La alternativa correcta es (c), puesto que la respuesta 1 dice que existe un estudiante con dormitorio.
 Respuesta 2 dice que cada dormitorio tiene por lo menos un estudiante. Respuesta 3 dice que
 cada estudiante tiene algún compañero estudiante de dormitorio (no es necesario).
 Respuesta 4 dice que cada compañero de dormitorio es un estudiante actual.
