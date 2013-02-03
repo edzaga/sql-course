@@ -20,86 +20,87 @@ Considere la relación R(x) que contiene números enteros.  Se ejecutan 3 transa
 
 * **Sentencia 1:**
 
-.. code-block:: sql
+	.. code-block:: sql
 
- SELECT sum(x) FROM R;
-Commit; 
+	 SELECT sum(x) FROM R;
+	 commit; 
 
-* **Sentencia 2: ** 
+* **Sentencia 2:** 
 
-.. code-block:: sql
+	.. code-block:: sql
 
-INSERT INTO R VALUES (10);
- INSERT INTO R VALUES (20);
- INSERT INTO R VALUES (30);
- Commit;  
+	 INSERT INTO R VALUES (10);
+	 INSERT INTO R VALUES (20);
+	 INSERT INTO R VALUES (30);
+	 commit;  
 
 * **Sentencia 3:**
 
-.. code-block:: sql
+	.. code-block:: sql
 
-DELETE FROM R WHERE x=30;
-DELETE FROM R WHERE x=20;
- Commit;  
+	 DELETE FROM R WHERE x=30;
+	 DELETE FROM R WHERE x=20;
+	 commit;  
 
-Antes de ejecutar cualquiera de estas transacciones, la suma de los enteros en R es 1000, y no contiene los enteros 10, 20 y 30. Si las tres transacciones se ejecutan casi al mismo tiempo y en aislamiento. Escribir y explicar 4 posibles resultados de la suma que podría mostrar la sentencia 1.
+Antes de ejecutar cualquiera de estas transacciones, la suma de los enteros en R es 1000, y no contiene los enteros 10, 20 y 30. Si las tres transacciones se ejecutan casi al mismo tiempo y en aislamiento. Escribir 3 resultados de la suma que podría mostrar la sentencia 1. Explicar brevemente como se obtienen dichos resultados.
 
 Pregunta 2:
 ^^^^^^^^^^^
+
 Considere la relación R(x) que contiene {3, 4, 8, 6, 20}. Se ejecutan 3 transacciones:
 
 * **Sentencia 1:**
 
-.. code-block:: sql
+	.. code-block:: sql
 
- SELECT * FROM R;
- Commit;  
+	 SELECT * FROM R;
+	 commit;  
 
 * **Sentencia 2:** 
 
-.. code-block:: sql
+	.. code-block:: sql
 
-UPDATE R SET x = x*2 + 1;
-Commit;
+	 UPDATE R SET x = x*2 + 1;
+	 commit;
 
 * **Sentencia 3:**
 
-.. code-block:: sql
+	.. code-block:: sql
 
-UPDATE R SET x = 100- x;
-Commit;
+	 UPDATE R SET x = 100- x;
+	 commit;
    
-Si las tres transacciones se ejecutan casi al mismo tiempo y se presentan bajo la propiedad de aislamiento y atomicidad. Escribir y explicar 3 posibles resultados de la suma que podría mostrar la sentencia 1.
+Si las tres transacciones se ejecutan casi al mismo tiempo y se presentan bajo la propiedad de aislamiento y atomicidad. Escribir 3 posibles resultados que podría mostrar la sentencia 1. Explicar brevemente como se obtienen dichos resultados.
 
 -------------
 Vistas
 -------------
 
-Se tiene una página que maneja base de datos de series de televisión con el siguiente esquema:
+Se tiene una base de datos de series de televisión con el siguiente esquema:
 
-* `\text{Serie}(\underline{\text{sID}},\text{titulo, creador, año, audiencia, genero, temp, final})`
-	La tabla **Serie** posee *sID* que es un id único y es primary key de la relación,
-	además se almacena el *titulo* de la serie, el *creador*, *año* es el año de estreno
-	de la primera temporada, la *audiencia* promedio anual, *genero* de la serie y
-	finalmente el atributo *temp* que contiene el número de temporadas emitidas hasta
+* `\text{Series}(\underline{\text{sID}},\text{title, creator, year, audience, genre, season, final})`
+	La tabla **Series** posee *sID* que es un id único y es primary key de la relación,
+	además se almacena el titulo de la serie *title*, el creador *creator*, *year* es el año de estreno
+	de la primera temporada, la audiencia promedio anual *audience*, *genre* el genero de la serie 
+        *season* que contiene el número de temporadas emitidas hasta
 	el 2012, *final* es un atributo que dice si la serie se sigue emitiendo o terminó.
 
-* `\text{Evaluador}(\underline{\text{eID}},\text{nombre})`
-	El evaluador es quien califica la serie, la relación **Evaluador** tiene un atributo
-	*eID* (id único) que es clave primaria (primary key) y tiene otro atributo *nombre*
+* `\text{Evaluator}(\underline{\text{eID}},\text{name})`
+	El evaluador es quien califica la serie, la relación **Evaluator** tiene un atributo
+	*eID* (id único) que es clave primaria y tiene otro atributo *name*
 	que almacena el nombre del evaluador.
 
-* `\text{Calificación}(\underline{\text{eID,sID}},\text{nota,fecha})`
-	Luego que el evaluador califica una serie se guarda en la tabla **Calificacion** que
+* `\text{Grade}(\underline{\text{eID,sID}},\text{score, dateg})`
+	Luego que el evaluador califica una serie se guarda en la tabla **Grade** que
 	tiene dos claves foráneas *eID* que es el id del evaluador y *sID* que es el id de
 	algunas de las series almacenadas. Ambas claves foráneas (juntas) conforman la clave
-	primaria de **Calificación** También contiene la *nota* puesta por el evaluador
-	y la *fecha* que calificó dicha serie.
+	primaria de **Grade** También contiene la nota *score* puesta por el evaluador
+	y la fecha que calificó dicha serie *dateg*.
 
 Pregunta 1:
 ^^^^^^^^^^^
 
-Crear la **Vista LateGrade:** contiene clasificaciones de películas a partir del 20 de enero del 2012. La vista contiene el *sID* de serie, su título (*title*), la nota(*score*) y la fecha de calificación (*datag*).
+Crear la **Vista LateGrade:** contiene clasificaciones de películas a partir del 20 de enero del 2012. La vista contiene el *sID* de serie, su título (*title*), la nota(*score*) y la fecha de calificación (*dateg*).
 
 .. code-block:: sql
 
@@ -185,9 +186,9 @@ Crear la **Vista TotalGrade:** contiene el titulo (*title*) de cada serie y su p
 
 .. note::
 
-     La tarea se `entrega`_ en un archivo assignment6.doc , .txt, .docx o .pdf que incluya la respuesta de todas las preguntas. Cuide bien el formato de entrega. Otros formatos no serán aceptados.
-        * Existirá un descuento de 10 puntos por envíar tareas al mail del profesor.
-        * La persona que posea problemas con la entrega, escribir al mail del profesor con la excusa pertinente.
+     La tarea se `entrega`_ en un archivo assignment7.doc , .txt, .docx o .pdf que incluya la respuesta de todas las preguntas. Cuide bien el formato de entrega. Otros formatos no serán aceptados.
+        * Existirá un descuento de 10 puntos por enviar tareas al mail del profesor.
+        * Si posea problemas con la entrega, escribir al mail del profesor con la excusa pertinente.
 
 .. _`entrega`: https://csrg.inf.utfsm.cl/claroline/
 
