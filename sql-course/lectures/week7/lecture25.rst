@@ -1,5 +1,8 @@
 Lectura 25 - Transacciones: Introducción
 ----------------------------------------
+.. role:: sql(code)
+         :language: sql
+         :class: highlight
 
 En esta lectura se presentarán los conceptos de *transacciones* y *acciones* de interacción 
 con los sistemas de base de datos.
