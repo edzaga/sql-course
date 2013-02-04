@@ -63,7 +63,7 @@ Las vistas se emplean para:
 * **Modularidad de acceso a base de datos:** las vistas se pueden pensar en forma de módulos que nos da acceso 
   a partes de la base de datos. Cuando ese detalle que se requiere no corresponde precisamente a las relaciones. 
 
-Las aplicaciones reales tienden a usar un muchas vitas, por lo que cuanto más grande es la aplicación, más necesario 
+Las aplicaciones reales tienden a usar un muchas vistas, por lo que cuanto más grande es la aplicación, más necesario 
 es que haya modularidad, para facilitar determinadas consultas o para ocultar los datos. Las vistas entonces son 
 el mecanismo para alcanzar dichos objetivos.
 
