@@ -97,12 +97,16 @@ Se tiene una base de datos de series de televisión con el siguiente esquema:
 	primaria de **Grade** También contiene la nota *score* puesta por el evaluador
 	y la fecha que calificó dicha serie *dateg*.
 
+El archivo con los datos se descarga aquí
+
 Pregunta 1:
 ^^^^^^^^^^^
 
 Crear la **Vista LateGrade:** contiene clasificaciones de películas a partir del 20 de enero del 2012. La vista contiene el *sID* de serie, su título (*title*), la nota(*score*) y la fecha de calificación (*dateg*).
 
 .. code-block:: sql
+
+	postgres=# SELECT * FROM LateGrade;
 
 	 sid |        title        | score |   dateg    
 	-----+---------------------+-------+------------
@@ -124,6 +128,8 @@ Crear la**Vista NoGrade:** contiene series sin clasificación en la base de dato
 
 .. code-block:: sql
 
+	postgres=# SELECT * FROM NoGrade;
+
 	 sid |    title     
 	-----+--------------
 	   5 | Glee
@@ -137,6 +143,8 @@ Pregunta 3:
 Crear la **Vista HighlyGrade:** contiene series con al menos una nota (*score*) mayor a 5. La vista contiene el sID de la serie y título de la serie.
 
 .. code-block:: sql
+
+	postgres=# SELECT * FROM HighlyGrade;
 
 	 sid |        title        
 	-----+---------------------
@@ -157,6 +165,8 @@ Crear la **Vista nullDate:** contiene los nombres de los evaluadores que no ingr
 
 .. code-block:: sql
 
+	postgres=# SELECT * FROM nullDate;
+
 	     name      
 	---------------
 	 Harry Shearer
@@ -171,6 +181,8 @@ Pregunta 5:
 Crear la **Vista TotalGrade:** contiene el titulo (*title*) de cada serie y su promedio de nota (*score*). La vista se encuentra ordenada por el promedio de nota de forma decendente y con titulo de columna *total_score*. 
 
 .. code-block:: sql
+
+	postgres=# SELECT * FROM TotalGrade;
 
 		title        |    total_score     
 	---------------------+--------------------
@@ -188,7 +200,7 @@ Crear la **Vista TotalGrade:** contiene el titulo (*title*) de cada serie y su p
 
      La tarea se `entrega`_ en un archivo assignment7.doc , .txt, .docx o .pdf que incluya la respuesta de todas las preguntas. Cuide bien el formato de entrega. Otros formatos no serán aceptados.
         * Existirá un descuento de 10 puntos por enviar tareas al mail del profesor.
-        * Si posea problemas con la entrega, escribir al mail del profesor con la excusa pertinente.
+        * Si posea problemas con la entrega, escribir al mail del profesor con la excusa pertinente, antes del plazo de entrega (miércoles 20 febrero 2013).
 
 .. _`entrega`: https://csrg.inf.utfsm.cl/claroline/
 
