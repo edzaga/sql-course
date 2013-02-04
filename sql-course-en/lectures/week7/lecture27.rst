@@ -24,7 +24,7 @@ also changes. Is because of this that views use little to none disk space.
 As a view is defined a as query on the relation, it belongs to the relational data model.
 To define a view **V**, a view query is specified in SQL, through a set of existing tables **(R1, R2, …,Rn)
 
-``Vista V= ConsultaSQL(R1, R2, …, Rn)``
+``View V= QuerySQL(R1, R2, …, Rn)``
 
 The **V** view, can be viewed as a table of the query results. Let’s suppose we wish to execute a query **Q** in the 
 database. This is not a view query; it’s just a query as seen before in the course. The query **Q** makes reference 

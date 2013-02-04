@@ -53,7 +53,7 @@ Context
 ============
 
 Let’s suppose that during the first semester of class, specifically on a month in which a new 
-College-Application system is being implemented, 4 students apply. Because of this, is desided to make an 
+College-Application system is being implemented, 4 students apply. Because of this, is decided to make an 
 upgrade using views, as they simplify complex queries about tables, be it by selecting (:sql:`SELECT`.) 
 and/or (:sql:`INSERT`, :sql:`UPDATE`, :sql:`DELETE`) data.
 
@@ -174,7 +174,7 @@ These last two allow for the modification according to rules and/or :sql:`trigge
 Example 2
 ^^^^^^^^^
 
-Let’s suppose we want to create a view that contains all the students tha applied to Science or engineering.
+Let’s suppose we want to create a view that contains all the students that applied to Science or engineering.
 
 .. code-block:: sql
  
@@ -222,7 +222,7 @@ even thought someone could think that as the view has predetermined values for t
  be enough to add the rest of the atributes, namely *sID* and *cName*.  But, at the moment we select the data 
 from the view, we will not see a new row. This is because:
 
-1. Even though the view has **selection** values, it doesn’t mean they are also for **insertion**. **inserción**.
+1. Even though the view has **selection** values, it doesn’t mean they are also for **insertion**. 
 2. as it doesn’t have its attributes *major* and *decision* set to 'science' y 'true', it doesn’t pass the view filter.
 
 It must be noted that the table (**Apply** in this case), a new row is added. It has its *major* and *decision* set 

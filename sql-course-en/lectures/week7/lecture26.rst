@@ -126,7 +126,7 @@ guarantees that all the actions within a transaction are carried out. This requi
 by a failure, it partial results must be undone. "* [3]_
 
 This time we will also be working with a single client who sent a series of transaction to the database. Also we 
-are going to see the transactionT2 as set of instructions followed by a confirmation “commit”.
+are going to see the transaction T2 as set of instructions followed by a confirmation “commit”.
 
 Atomicity works when there’s been a failure after the transaction has been “send” to the database. What this 
 mean is that, even in the case of a system failure, each transaction is executed all or nothing in the database.  
@@ -178,7 +178,7 @@ We have the table **colors**, with its *id* and  *color*, but before starting we
    4 | green
  (4 rows)
 
-Now w estar the transaction with *commit*.
+Now we start the transaction with *commit*.
 
 .. code-block:: sql
 
@@ -231,7 +231,7 @@ But we realize it wasn’t *orange* the color we wanted, so we go back to the la
 
 With postgreSQL returning as a result *ROLLBACK*.
 
-Volviendo al punto anterior.
+Returning to the previous point.
 
 .. code-block:: sql
  

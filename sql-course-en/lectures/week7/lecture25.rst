@@ -95,7 +95,7 @@ The ideal is that the client be allowed to issue commands to the database and no
 Main Objective
 ==================
 
-Execute secuebces of SQL instruction that appear to be working in isolation.
+Execute sequences of SQL instruction that appear to be working in isolation.
 **Simple Solution:** Execute them in isolation.
 But we want to enable concurrency every time is safe to do.
 Usually to be able to get a environment to work in concurrency, the system must be a:
