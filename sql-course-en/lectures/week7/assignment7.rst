@@ -6,9 +6,8 @@ Wednesday  February 20  2013 till 23:59
 -----------------------------------------------------------
 
 .. role:: sql(code)
- :language: sql
- :class:
-highlight
+   :language: sql
+   :class: highlight
 
 
 -----------------
@@ -34,7 +33,7 @@ Consider the relation R(x) that contains integers. 3 transactions are executed:
            INSERT INTO R VALUES (10);
            INSERT INTO R VALUES (20);
            INSERT INTO R VALUES (30);
-           commit;  
+           commit;
 
 * **Sentence 3:**
 
@@ -42,10 +41,10 @@ Consider the relation R(x) that contains integers. 3 transactions are executed:
 
            DELETE FROM R WHERE x=30;
            DELETE FROM R WHERE x=20;
-           commit;  
+           commit;
 
-Before the execution of these transactions, the sum of integers in R is 1000, and doesn’t contain the integers 
-10, 20 or 30. If the 3 sentences are executed almost at the same time, and in isolation from one another, write 
+Before the execution of these transactions, the sum of integers in R is 1000, and doesn’t contain the integers
+10, 20 or 30. If the 3 sentences are executed almost at the same time, and in isolation from one another, write
 3 possible results from the sum that sentence 1 could show. Explain how you obtained these results.
 
 Question 2:
@@ -57,7 +56,7 @@ Consider the relation R(x) that contains {3, 4, 8, 6, 20}. 3 transactions are ex
 .. code-block:: sql
 
            SELECT * FROM R;
-           commit;  
+           commit;
 
 * **Sentence 2:**
 
@@ -73,9 +72,9 @@ Consider the relation R(x) that contains {3, 4, 8, 6, 20}. 3 transactions are ex
            UPDATE R SET x = 100- x;
            commit;
 
-3 transactions are executed at almost the same time and are presented under the property of isolation and 
+3 transactions are executed at almost the same time and are presented under the property of isolation and
 atomicity. Write 3 possible results that could show sentence 1. Explain briefly how you obtained these results.
- 
+
 
 -------------
 Views
@@ -103,7 +102,7 @@ Create the view **Vista LateGrade:** that contains the classification of  movies
 
            postgres=# SELECT * FROM LateGrade;
 
-           sid |        title        | score |   dateg    
+           sid |        title        | score |   dateg
            -----+---------------------+-------+------------
              4 | Bones               |     8 | 2012-07-22
              6 | The Walking Dead    |     5 | 2012-05-19
@@ -124,7 +123,7 @@ Create the view **Vista NoGrade:** contains series without clasification, namely
 
            postgres=# SELECT * FROM NoGrade;
 
-           sid |    title     
+           sid |    title
            -----+--------------
              5 | Glee
              9 | The Simpsons
@@ -133,13 +132,13 @@ Create the view **Vista NoGrade:** contains series without clasification, namely
 
 Question 3:
 ^^^^^^^^^^^
-Create the view “**Vista HighlyGrade:** that contains series with at least one *score* greater than 5. The view contains *sID* of the series and the *title*.
+Create the view **Vista HighlyGrade:** that contains series with at least one *score* greater than 5. The view contains *sID* of the series and the *title*.
 
 .. code-block:: sql
 
            postgres=# SELECT * FROM HighlyGrade;
 
-           sid |        title        
+           sid |        title
            -----+---------------------
              1 | The Big Bang Theory
              2 | Greys Anatomy
@@ -159,7 +158,7 @@ Create the view **Vista nullDate:** containing the names of the evaluators that 
 
            postgres=# SELECT * FROM nullDate;
 
-               name      
+               name
            ---------------
            Harry Shearer
            Jon Lovitz
@@ -175,7 +174,7 @@ Create the view **VistaTotalGrade:**, that contains the *title* of each series a
 
            postgres=# SELECT * FROM TotalGrade;
 
-                       title        |    total_score     
+                       title        |    total_score
            ---------------------+--------------------
            The Big Bang Theory | 8.0000000000000000
            Dexter              | 8.0000000000000000
@@ -188,7 +187,7 @@ Create the view **VistaTotalGrade:**, that contains the *title* of each series a
 
 
 .. note::
- 
+
  The assigment must be delivered in a file assigment7.doc, .docx, .txt or .pdf, that includes the answer to all the answer. Be carefull with the delivey format, as other formats will not be accepted.
       * 10 pts. penalty for delivering the assignment to the teacher’s email.
       * if you have problem with the delivery, write an email to the teacher with pertinent excuse before the deadline (Wednesday February 20 2013).
