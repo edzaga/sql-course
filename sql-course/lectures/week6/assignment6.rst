@@ -2,7 +2,7 @@ Tarea 6
 =======
 
 Fecha de entrega: Miércoles 6 de Febrero 2013 hasta 23:59
-------------------------------------------------------
+---------------------------------------------------------
 
 .. role:: sql(code)
    :language: sql
@@ -29,19 +29,19 @@ Triggers (disparadores)
 Pregunta 1 (15 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^
 
-Realizar un trigger, en que al insertar un entero **no nulo**, calcule automáticamente en cuatro columnas "el entero + 1", "el entero + 2", "el entero al cuadrado" y "el entero al cubo". 
+Realizar un trigger, en que al insertar un entero **no nulo**, calcule automáticamente en cuatro columnas "el entero + 1", "el entero + 2", "el entero al cuadrado" y "el entero al cubo".
 
 * Crear tabla "pregunta1", con atributos ``num``, ``suma1``, ``suma2``, ``cuadrado`` y ``cubo``. (2.5 ptos)
 * Crear FUNCTION "preg1()" (7 ptos)
 * Crear TRIGGER "preg1" (3 ptos)
-* Insertar los enteros "2", "4", "6" y "8". (2.5 ptos) 
+* Insertar los enteros "2", "4", "6" y "8". (2.5 ptos)
 
 La salida es:
 
 .. code-block:: sql
 
  SELECT * FROM pregunta1;
-  num | suma1 | suma2 | cuadrado | cubo 
+  num | suma1 | suma2 | cuadrado | cubo
  -----+-------+-------+----------+------
     2 |     3 |     4 |        4 |    8
     4 |     5 |     6 |       16 |   64
@@ -58,7 +58,7 @@ La salida es:
  **cubo:** entero.
  **PRIMARY KEY:** num.
 
- Se descontará 1 punto por cada condición incumplida. 
+ Se descontará 1 punto por cada condición incumplida.
 
 Pregunta 2 (30 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^
@@ -79,7 +79,7 @@ La salida es:
 .. code-block:: sql
 
  SELECT * FROM pregunta2;
-  num | resultado 
+  num | resultado
  -----+-----------
     1 |         9
     3 |       329
@@ -93,14 +93,14 @@ La salida es:
  **resultado:** entero
 
 
- Se descontará 1 punto por cada condición incumplida. 
+ Se descontará 1 punto por cada condición incumplida.
 
 Pregunta 3 (40 ptos.)
 ^^^^^^^^^^^^^^^^^^^^^
 
 Calcular el valor del impuesto del salario de un trabajador.
 
-* Crear una tabla "pregunta3" con atributos "ID", "name", "salary" y "duty". (5 ptos) 
+* Crear una tabla "pregunta3" con atributos "ID", "name", "salary" y "duty". (5 ptos)
 * Crear FUNCTION "preg3()" (25 ptos)
 * Crear TRIGGER "preg3". (5 ptos)
 * Insertar 4 datos (los que ud. desee). (5 ptos)
@@ -108,9 +108,9 @@ Calcular el valor del impuesto del salario de un trabajador.
 Condiciones para calcular el impuesto:
 
 * si el salario es menor a 2500 (5% impuesto)
-* si el salario es mayor o igual que 2500 y menor e igual que 3999 (6% de impuesto) 
-* si el salario es mayor o igual que 4000 y menor e igual  que 8000 (8% de impuesto) 
-* si el salario es mayor 8000 (10% de impuesto) 
+* si el salario es mayor o igual que 2500 y menor e igual que 3999 (6% de impuesto)
+* si el salario es mayor o igual que 4000 y menor e igual  que 8000 (8% de impuesto)
+* si el salario es mayor 8000 (10% de impuesto)
 
 .. note::
 
@@ -120,7 +120,7 @@ Condiciones para calcular el impuesto:
  **duty:** REAL.
  **PRIMARY KEY:** ID.
 
- Se descontará 1 punto por cada condición incumplida. 
+ Se descontará 1 punto por cada condición incumplida.
 
  Ayuda: Para utilizar condiciones en la función:
 
@@ -139,7 +139,7 @@ La salida a modo de ejemplo sería:
 .. code-block:: sql
 
  SELECT * FROM pregunta3;
-  id | name | salary |  duty  
+  id | name | salary |  duty
  ----+------+--------+--------
    1 | Brad |   2506 | 150.36
    2 | Tom  |   4500 |    360
@@ -149,7 +149,7 @@ La salida a modo de ejemplo sería:
 
      La tarea se `entrega`_  en un archivo comprimido, que contenga:
 
-        * archivo assignment6.doc , .txt, .docx o .pdf que incluya la respuesta de todas las preguntas, 
+        * archivo assignment6.doc , .txt, .docx o .pdf que incluya la respuesta de todas las preguntas,
           incluyendo las imágenes. Cuide bien el formato de entrega. Otros formatos no serán aceptados.
         * Existirá un descuento de 10 puntos por envíar tareas al mail del profesor.
         * La persona que posea problemas con la entrega, escribir al mail del profesor con la excusa pertinente.

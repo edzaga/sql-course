@@ -10,7 +10,7 @@ Fecha de entrega: miércoles 20 de Febrero 2013 hasta 23:59
 
 
 -----------------
-Transacciones 
+Transacciones
 -----------------
 
 Pregunta 1:
@@ -23,16 +23,16 @@ Considere la relación R(x) que contiene números enteros.  Se ejecutan 3 transa
 	.. code-block:: sql
 
 	 SELECT sum(x) FROM R;
-	 commit; 
+	 commit;
 
-* **Sentencia 2:** 
+* **Sentencia 2:**
 
 	.. code-block:: sql
 
 	 INSERT INTO R VALUES (10);
 	 INSERT INTO R VALUES (20);
 	 INSERT INTO R VALUES (30);
-	 commit;  
+	 commit;
 
 * **Sentencia 3:**
 
@@ -40,7 +40,7 @@ Considere la relación R(x) que contiene números enteros.  Se ejecutan 3 transa
 
 	 DELETE FROM R WHERE x=30;
 	 DELETE FROM R WHERE x=20;
-	 commit;  
+	 commit;
 
 Antes de ejecutar cualquiera de estas transacciones, la suma de los enteros en R es 1000, y no contiene los enteros 10, 20 y 30. Si las tres transacciones se ejecutan casi al mismo tiempo y en aislamiento. Escribir 3 resultados de la suma que podría mostrar la sentencia 1. Explicar brevemente como se obtienen dichos resultados.
 
@@ -54,9 +54,9 @@ Considere la relación R(x) que contiene {3, 4, 8, 6, 20}. Se ejecutan 3 transac
 	.. code-block:: sql
 
 	 SELECT * FROM R;
-	 commit;  
+	 commit;
 
-* **Sentencia 2:** 
+* **Sentencia 2:**
 
 	.. code-block:: sql
 
@@ -69,7 +69,7 @@ Considere la relación R(x) que contiene {3, 4, 8, 6, 20}. Se ejecutan 3 transac
 
 	 UPDATE R SET x = 100- x;
 	 commit;
-   
+
 Si las tres transacciones se ejecutan casi al mismo tiempo y se presentan bajo la propiedad de aislamiento y atomicidad. Escribir 3 posibles resultados que podría mostrar la sentencia 1. Explicar brevemente como se obtienen dichos resultados.
 
 -------------
@@ -81,7 +81,7 @@ Se tiene una base de datos de series de televisión con el siguiente esquema:
 * `\text{Series}(\underline{\text{sID}},\text{title, creator, year, audience, genre, season, final})`
 	La tabla **Series** posee *sID* que es un id único y es primary key de la relación,
 	además se almacena el titulo de la serie *title*, el creador *creator*, *year* es el año de estreno
-	de la primera temporada, la audiencia promedio anual *audience*, *genre* el genero de la serie 
+	de la primera temporada, la audiencia promedio anual *audience*, *genre* el genero de la serie
         *season* que contiene el número de temporadas emitidas hasta
 	el 2012, *final* es un atributo que dice si la serie se sigue emitiendo o terminó.
 
@@ -108,7 +108,7 @@ Crear la **Vista LateGrade:** contiene clasificaciones de películas a partir de
 
 	postgres=# SELECT * FROM LateGrade;
 
-	 sid |        title        | score |   dateg    
+	 sid |        title        | score |   dateg
 	-----+---------------------+-------+------------
 	   4 | Bones               |     8 | 2012-07-22
 	   6 | The Walking Dead    |     5 | 2012-05-19
@@ -130,7 +130,7 @@ Crear la**Vista NoGrade:** contiene series sin clasificación en la base de dato
 
 	postgres=# SELECT * FROM NoGrade;
 
-	 sid |    title     
+	 sid |    title
 	-----+--------------
 	   5 | Glee
 	   9 | The Simpsons
@@ -138,7 +138,7 @@ Crear la**Vista NoGrade:** contiene series sin clasificación en la base de dato
 
 
 Pregunta 3:
-^^^^^^^^^^
+^^^^^^^^^^^
 
 Crear la **Vista HighlyGrade:** contiene series con al menos una nota (*score*) mayor a 5. La vista contiene el sID de la serie y título de la serie.
 
@@ -146,7 +146,7 @@ Crear la **Vista HighlyGrade:** contiene series con al menos una nota (*score*) 
 
 	postgres=# SELECT * FROM HighlyGrade;
 
-	 sid |        title        
+	 sid |        title
 	-----+---------------------
 	   1 | The Big Bang Theory
 	   2 | Greys Anatomy
@@ -159,7 +159,7 @@ Crear la **Vista HighlyGrade:** contiene series con al menos una nota (*score*) 
 
 
 Pregunta 4:
-^^^^^^^^^^
+^^^^^^^^^^^
 
 Crear la **Vista nullDate:** contiene los nombres de los evaluadores que no ingresaron la fecha de calificación.
 
@@ -167,7 +167,7 @@ Crear la **Vista nullDate:** contiene los nombres de los evaluadores que no ingr
 
 	postgres=# SELECT * FROM nullDate;
 
-	     name      
+	     name
 	---------------
 	 Harry Shearer
 	 Jon Lovitz
@@ -178,13 +178,13 @@ Crear la **Vista nullDate:** contiene los nombres de los evaluadores que no ingr
 Pregunta 5:
 ^^^^^^^^^^^
 
-Crear la **Vista TotalGrade:** contiene el titulo (*title*) de cada serie y su promedio de nota (*score*). La vista se encuentra ordenada por el promedio de nota de forma decendente y con titulo de columna *total_score*. 
+Crear la **Vista TotalGrade:** contiene el titulo (*title*) de cada serie y su promedio de nota (*score*). La vista se encuentra ordenada por el promedio de nota de forma decendente y con titulo de columna *total_score*.
 
 .. code-block:: sql
 
 	postgres=# SELECT * FROM TotalGrade;
 
-		title        |    total_score     
+		title        |    total_score
 	---------------------+--------------------
 	 The Big Bang Theory | 8.0000000000000000
 	 Dexter              | 8.0000000000000000
