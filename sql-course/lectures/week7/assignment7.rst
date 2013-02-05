@@ -124,7 +124,7 @@ Crear la **Vista LateGrade:** contiene clasificaciones de películas a partir de
 Pregunta 2:
 ^^^^^^^^^^^
 
-Crear la**Vista NoGrade:** contiene series sin clasificación en la base de datos, es decir que *score* sea NULL. La vista contiene el *sID* de la serie y su título (*title*).
+Crear la **Vista NoGrade:** contiene series sin clasificación en la base de datos, es decir que *score* sea NULL. La vista contiene el *sID* de la serie y su título (*title*).
 
 .. code-block:: sql
 
