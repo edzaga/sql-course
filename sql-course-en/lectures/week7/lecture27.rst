@@ -85,7 +85,7 @@ The *animal* table stores the data about the animals that each zoo keeps. The *z
 country is *country*.
 
 The creation of the values that are used in this example are stored in the following `file`_
-.. (INSERTAR LINK).
+
 
 We create a view:
 
