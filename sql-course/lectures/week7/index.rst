@@ -1,5 +1,5 @@
-Semana Siete
-------------
+Septima Semana
+--------------
 
 Lectures:
 
