@@ -218,7 +218,7 @@ Suppose we want to add a row to the view **scAccepted**:
  
  INSERT INTO scAccepted VALUES (2, 'MIT');
 
-even thought someone could think that as the view has predetermined values for the values *major* and *decisión* it would 
+even thought someone could think that as the view has predetermined values for the values *major* and *decision* it would 
 be enough to add the rest of the atributes, namely *sID* and *cName*.  But, at the moment we select the data 
 from the view, we will not see a new row. This is because:
 
