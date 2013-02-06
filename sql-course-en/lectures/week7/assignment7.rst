@@ -94,7 +94,7 @@ Clic here to download the file with the `data`_:
 
 Question 1:
 ^^^^^^^^^^^
-Create the view **Vista LateGrade:** that contains the classification of  movies after January 20 2012. The view contains *sID*, the*title*, the *score* and the rating date (*dateg*).
+Create the view **Vista LateGrade:** that contains the classification of  movies after January 20 2012. The view contains *sID*, the *title*, the *score* and the rating date (*dateg*).
 
 .. code-block:: sql
 
@@ -190,6 +190,6 @@ Create the view **VistaTotalGrade:**, that contains the *title* of each series a
       * 10 pts. penalty for delivering the assignment to the teacher’s email.
       * if you have problem with the delivery, write an email to the teacher with pertinent excuse before the deadline (Wednesday February 20 2013).
 
-.. _`Delivery`: https://csrg.inf.utfsm.cl/claroline/claroline/work/work_list.php?assigId=8&cidReset=true&cidReq=SQL01
+.. _`delivered`: https://csrg.inf.utfsm.cl/claroline/claroline/work/work_list.php?assigId=8&cidReset=true&cidReq=SQL01
 
 .. _`data`: https://csrg.inf.utfsm.cl/claroline/claroline/backends/download.php?url=L2Fzc2lnbm1lbnQ3LnNxbA%3D%3D&cidReset=true&cidReq=SQL01
