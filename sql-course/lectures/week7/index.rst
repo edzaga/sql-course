@@ -1,4 +1,4 @@
-Seventh week
+Semana Siete
 ------------
 
 Lectures:
