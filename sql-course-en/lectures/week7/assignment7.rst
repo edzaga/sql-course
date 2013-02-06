@@ -1,8 +1,7 @@
 Assignment 7
 ============
 
-Deadline:
-Wednesday  February 20  2013 till 23:59
+Deadline: Wednesday  February 20  2013 till 23:59
 -----------------------------------------------------------
 
 .. role:: sql(code)

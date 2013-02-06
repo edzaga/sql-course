@@ -8,7 +8,7 @@ Lecture 27 - Views: Defining and using views
 
 The views are based in a vision of databases in 3 layers which are:
 
-* *Physical Layer:** The lowest layer, is the data actually stored in the disk.
+* **Physical Layer:** The lowest layer, is the data actually stored in the disk.
 * **Concept Layer:** Is the abstraction of the relations (or tables) of the data stored in the disk.
 * **Logic Layer:** the top layer is an abstraction above the relations and is known as **views**
 
