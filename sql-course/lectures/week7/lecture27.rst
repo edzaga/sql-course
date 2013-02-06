@@ -1,7 +1,6 @@
 Lectura 27 – Vistas: Definición y usos
 ----------------------------------------------------------
 
-
 .. role:: sql(code)
          :language: sql
          :class: highlight
@@ -100,7 +99,7 @@ La tabla *animal* guarda los datos de los animales que habitan cada zoológico. 
 foránea a *Zoo*, se refiere al zoológico en el que se encuentra un animal, *sName* es clave foránea a la
 *Specie* que pertenece, *country* es el país de procedencia.
 
-La creación de las relaciones y los valores que se utilizarán en este ejemplo se encuentran en el siguiente archivo
+La creación de las relaciones y los valores que se utilizarán en este ejemplo se encuentran en el siguiente `archivo`_
 
 .. (INSERTAR LINK).
 
@@ -275,10 +274,17 @@ Luego View2 puede ser utilizada en sentencias :sql:`SELECT` de la misma forma qu
 	   3 | San Diego |   14
 	(1 row)
 
+Finalmente se eliminan las vistas:
+
+.. code-block:: sql
+
+	DROP VIEW View1;
+	DROP VIEW View2;
+	DROP VIEW View3;
 
 
 
-
+.. _`archivo`: https://csrg.inf.utfsm.cl/claroline/claroline/backends/download.php?url=L0xlY3R1cmUyNy5zcWw%3D&cidReset=true&cidReq=SQL01
 
 
 

@@ -92,7 +92,7 @@ We have a database about tv series with the following structure:
 `\text{Grade}(\underline{\text{eID,sID}},\text{score, dateg})`
            After the evaluator rates a series, the Score is stored in the table **Grade** which has two foreign keys, *eID* which is the ID of the evaluator and *sID* which is the id of the series. Both key united conform the primary key of **Grade**. It also contains the *score* given by the evaluator and the date of the qualification *dateg*.
 
-Clic here to download the file with the data:
+Clic here to download the file with the `data`_:
 
 Question 1:
 ^^^^^^^^^^^
@@ -188,9 +188,10 @@ Create the view **VistaTotalGrade:**, that contains the *title* of each series a
 
 .. note::
 
- The assigment must be delivered in a file assigment7.doc, .docx, .txt or .pdf, that includes the answer to all the answer. Be carefull with the delivey format, as other formats will not be accepted.
+ The assigment must be `delivered`_ in a file assigment7.doc, .docx, .txt or .pdf, that includes the answer to all the answer. Be carefull with the delivey format, as other formats will not be accepted.
       * 10 pts. penalty for delivering the assignment to the teacher’s email.
       * if you have problem with the delivery, write an email to the teacher with pertinent excuse before the deadline (Wednesday February 20 2013).
 
-.. _`Delivery`: https://csrg.inf.utfsm.cl/claroline/
+.. _`Delivery`: https://csrg.inf.utfsm.cl/claroline/claroline/work/work_list.php?assigId=8&cidReset=true&cidReq=SQL01
 
+.. _`data`: https://csrg.inf.utfsm.cl/claroline/claroline/backends/download.php?url=L2Fzc2lnbm1lbnQ3LnNxbA%3D%3D&cidReset=true&cidReq=SQL01

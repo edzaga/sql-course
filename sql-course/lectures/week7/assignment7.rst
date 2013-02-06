@@ -97,7 +97,7 @@ Se tiene una base de datos de series de televisión con el siguiente esquema:
 	primaria de **Grade** También contiene la nota *score* puesta por el evaluador
 	y la fecha que calificó dicha serie *dateg*.
 
-El archivo con los datos se descarga aquí
+El archivo con los datos se descarga `aquí`_
 
 Pregunta 1:
 ^^^^^^^^^^^
@@ -202,6 +202,6 @@ Crear la **Vista TotalGrade:** contiene el titulo (*title*) de cada serie y su p
         * Existirá un descuento de 10 puntos por enviar tareas al mail del profesor.
         * Si posea problemas con la entrega, escribir al mail del profesor con la excusa pertinente, antes del plazo de entrega (miércoles 20 febrero 2013).
 
-.. _`entrega`: https://csrg.inf.utfsm.cl/claroline/
+.. _`entrega`: https://csrg.inf.utfsm.cl/claroline/claroline/work/work_list.php?assigId=8&cidReset=true&cidReq=SQL01
 
-
+.. _`aquí`: https://csrg.inf.utfsm.cl/claroline/claroline/backends/download.php?url=L2Fzc2lnbm1lbnQ3LnNxbA%3D%3D&cidReset=true&cidReq=SQL01

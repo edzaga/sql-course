@@ -80,7 +80,7 @@ The *animal* table stores the data about the animals that each zoo keeps. The *z
 *Zoo*, and refers to in what zoo the animal lives. *sName* is the foreing key from *Specie* and the origin 
 country is *country*.
 
-The creation of the values that are used in this example are stored in the following file
+The creation of the values that are used in this example are stored in the following `file`_
 .. (INSERTAR LINK).
 
 We create a view:
@@ -249,4 +249,13 @@ The View2 can be used in sentences :sql:`SELECT` in the same way as other tables
               3 | San Diego |   14
            (1 row)
 
+finally, the views are eliminated.
+
+.. code-block:: sql
+
+	DROP VIEW View1;
+	DROP VIEW View2;
+	DROP VIEW View3;
+
+.. _`file`: https://csrg.inf.utfsm.cl/claroline/claroline/backends/download.php?url=L0xlY3R1cmUyNy5zcWw%3D&cidReset=true&cidReq=SQL01
 
