@@ -149,7 +149,7 @@ La salida a modo de ejemplo sería:
 
      La tarea se `entrega`_  en un archivo comprimido, que contenga:
 
-        * archivo assignment6.doc , .txt, .docx o .pdf que incluya la respuesta de todas las preguntas,
+        * archivo assignment6.doc , .txt, .docx, .sql o .pdf que incluya la respuesta de todas las preguntas,
           incluyendo las imágenes. Cuide bien el formato de entrega. Otros formatos no serán aceptados.
         * Existirá un descuento de 10 puntos por envíar tareas al mail del profesor.
         * La persona que posea problemas con la entrega, escribir al mail del profesor con la excusa pertinente.
