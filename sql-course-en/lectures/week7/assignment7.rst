@@ -80,15 +80,14 @@ Views
 -------------
 
 We have a database about tv series with the following structure:
+
 * `\text{Series}(\underline{\text{sID}},\text{title, creator, year, audience, genre, season, final})`
            The **Series** table has *sID* which is a unique ID and primary relationship key. Also it stores the series’ *title*, the *creator*, *year* which is the year of the first season premiere, the average annual *audience*, the series’ genre, the number of *season* till year 2012 and *final* which tell if the series is still running.
 
-*
-`\text{Evaluator}(\underline{\text{eID}},\text{name})`
+* `\text{Evaluator}(\underline{\text{eID}},\text{name})`
            The evaluator is who rates the series, and the relationship **Evaluator** has an attribute *eID* (unique ID) which is the primary key, and another attribute *Name* which is the evaluator’s name.
 
-*
-`\text{Grade}(\underline{\text{eID,sID}},\text{score, dateg})`
+* `\text{Grade}(\underline{\text{eID,sID}},\text{score, dateg})`
            After the evaluator rates a series, the Score is stored in the table **Grade** which has two foreign keys, *eID* which is the ID of the evaluator and *sID* which is the id of the series. Both key united conform the primary key of **Grade**. It also contains the *score* given by the evaluator and the date of the qualification *dateg*.
 
 Clic here to download the file with the `data`_:
