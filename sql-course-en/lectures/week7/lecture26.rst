@@ -20,6 +20,7 @@ We will now detail each one of these properties and explain them:
 
 Isolation (I)
 ~~~~~~~~~~~~~~~
+
 *"This property guarantees that transactions are not affected by other transactions. In other words, it allows for two or more transactions
 to work over the same data independently and without error. "* [1]_
 
@@ -121,6 +122,7 @@ The protocols used for this are not that complicate and are based in the concept
 
 Atomicity (A)
 ~~~~~~~~~~~~~~
+
 *"Any change of state that creates an atomic change, in other words, all changes are executed or none. This property
 guarantees that all the actions within a transaction are carried out. This requires that if a transaction is interrupted
 by a failure, it partial results must be undone. "* [1]_
@@ -134,7 +136,7 @@ There is also a log-in mechanism, specifically, when the system recovers from a 
 was in the middle of execution when the failure took place.
 
 
-Example:
+Example
 =======
 
 Consider the possibility of a relation R(A) that contains {(5), (6)} and 2 transactions

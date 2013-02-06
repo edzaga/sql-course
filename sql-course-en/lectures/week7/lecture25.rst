@@ -2,7 +2,7 @@ Lecture 25 - Transactions: Introduction
 -----------------------------------------
 
 .. role:: sql(code)
-            :language: sql
+         :language: sql
          :class: highlight
 
   
@@ -26,8 +26,7 @@ Transaction integrity
 
 * A transaction is a set of instruction or commands that are executed together over a database. They cannot be separated
 * The DBMS must maintain the integrity of the data. To this end, the DBMS ensures that no transaction end in an intermediate state.
-* If by any reason a transaction must be canceled, the DBMS starts undoing the orders executed till the database gets back to 
-initial state (called integrity point), as if the order was never executed.
+* If by any reason a transaction must be canceled, the DBMS starts undoing the orders executed till the database gets back to initial state (called integrity point), as if the order was never executed.
 
 We will now see examples of some difficulties that may occur when multiple clients are interacting with a database.
 

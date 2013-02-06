@@ -11,18 +11,20 @@ The views are based in a vision of databases in 3 layers which are:
 * *Physical Layer:** The lowest layer, is the data actually stored in the disk.
 * **Concept Layer:** Is the abstraction of the relations (or tables) of the data stored in the disk.
 * **Logic Layer:** the top layer is an abstraction above the relations and is known as **views**
+
 .. image:: ../../../sql-course/src/view.png                              
   :align: center
 
 Definition
 ~~~~~~~~~~~
+
 **A view is a virtual table derived from the real tables** of a database. The views are not stored in the database, 
 only a query definition is stored, in other words, a view must contain the instruction  :sql:`SELECT` to be created. 
 The result of this is a table that contains data from the database or other views. This guarantees that the data is 
 coherent when using the data stored in the tables. If the data from the relations change, the view that uses this data 
 also changes. Is because of this that views use little to none disk space.
 As a view is defined a as query on the relation, it belongs to the relational data model.
-To define a view **V**, a view query is specified in SQL, through a set of existing tables **(R1, R2, …,Rn)
+To define a view **V**, a view query is specified in SQL, through a set of existing tables **(R1, R2, …,Rn)**.
 
 ``View V= QuerySQL(R1, R2, …, Rn)``
 
@@ -63,12 +65,13 @@ View Creation
 
 Example 1
 ^^^^^^^^^^^^
+
 Using a database with the following relations:
 
 `\text{Specie}(\underline{\text{sName}},\text{comName,family})`
 
 This table stores the data that characterizes the animal species. The store the scientific name in *sName* , the 
-common name in *comName* and the family in *family.
+common name in *comName* and the family in *family*.
 
 `\text{Zoo}(\underline{\text{zID}},\text{zooName,size, budget})`
 
@@ -76,6 +79,7 @@ The Zoo relation stores the data from the Zoos. A *zID* is the primary key, the 
 hectares and the budget is *budget* in monetary units.
 
 `\text{Animal}(\underline{\text{zID, sName, aName}},\text{country})`
+
 The *animal* table stores the data about the animals that each zoo keeps. The *zID* is the foreing key from 
 *Zoo*, and refers to in what zoo the animal lives. *sName* is the foreing key from *Specie* and the origin 
 country is *country*.
@@ -100,9 +104,9 @@ PostgreSQL returns:
 
 .. code-block:: sql
 
-           CREATE VIEW
+ CREATE VIEW
 
-When issuing a :sql:`SELECT`from the view, PostgreSQL shows it as any other relation.
+When issuing a :sql:`SELECT` from the view, PostgreSQL shows it as any other relation.
 
 .. code-block:: sql
 
