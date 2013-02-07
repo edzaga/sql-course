@@ -101,7 +101,13 @@ Es decir:
 .. code-block:: sql
 
  CREATE DATABASE lecture31;
+
+conectandose::
+
  \c lecture31
+
+.. code-block:: sql
+
  CREATE TABLE Numbers(Number INTEGER, Name VARCHAR(20));
  INSERT INTO Numbers VALUES (1, 'One' );
  INSERT INTO Numbers VALUES (2, 'Two' );
@@ -147,11 +153,12 @@ el archivo de respaldo es posible volver al estado anterior::
     
  Notese que dentro de la salida del comando aparece: ERROR: relation "numbers" already exists
 
-Revisando la tabla a través de:
+Revisando la tabla a través de::
+
+ \c lecture31
 
 .. code-block:: sql
 
- \c lecture31
  SELECT * FROM Numbers;
 
 La salida es::
@@ -184,7 +191,7 @@ Pero ¿Qué ocurre si utilizamos el atributo *number* como PK?, es decir modific
 de los pasos de la misma forma):
 
 .. code-block:: sql
-
+ 
  CREATE TABLE Numbers(Number INTEGER, Name VARCHAR(20), PRIMARY KEY (Number));
 
 Al momento de borrar la tupla, digamos (3, 'Three'), e intentar restaurar, dentro de la salida del comando aparece::
@@ -200,11 +207,12 @@ Ejemplo 2
 ^^^^^^^^^
 
 Este ejemplo es muy similar al anterior, sólo que, en lugar de trabajar con atributos
-INTEGER, se trabajará con atributo serial es decir:
-
-.. code-block:: sql
+INTEGER, se trabajará con atributo serial es decir::
 
  \c lecture31
+
+.. code-block:: sql
+ 
  DROP TABLE Numbers;
  CREATE TABLE Numbers2(Number SERIAL, Name VARCHAR(20));
  INSERT INTO Numbers2 (name) VALUES ('One' );
@@ -237,18 +245,17 @@ Posteriormente se realiza la restauración::
  psql lecture31 < resp.sql
 
 .. note::
- Notese que en la salida, es posible ver:
- 
+ Notese que en la salida, es posible ver: 
  setval
- --------
-      3
- (1 row)
+ 3
 
-Revisando la tabla a través de:
+
+Revisando la tabla a través de::
+ 
+ \c lecture31
 
 .. code-block:: sql
 
- \c lecture31
  SELECT * FROM Numbers2;
 
 La salida es::
