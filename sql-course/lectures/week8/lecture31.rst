@@ -68,7 +68,7 @@ SQL Dump
 pg_dump
 ^^^^^^^
 Esta función genera un archivo de texto con comandos SQL que, cuando son reintroducidos
-al servidor, dejas a la BD en el mismo estado en el que se encontraba al momento de ejecutar
+al servidor, se deja a la BD en el mismo estado en el que se encontraba al momento de ejecutar
 este comando.
 
 
@@ -78,7 +78,43 @@ su sintaxis es::
 
 y se usa desde la linea de comandos.
 
-.. ojo con el problema acceso denegado pg_dump tarea2 > a.sql (bash: permission denied
+Supongamos que tenemos una BD llamada lecture31 y dentro de ella una única tabla llamada **Numbers** con atributos 
+*Number* Y *Name*, con datos::
+ 
+ 1 One 
+ 2 Two
+ 3 Three
+
+Es decir:
+
+.. code-block:: sql
+
+ CREATE DATABASE lecture31;
+ \c lecture31
+ CREATE TABLE Numbers(Number INTEGER, Name VARCHAR(20));
+ INSERT INTO Numbers VALUES (1, 'One' );
+ INSERT INTO Numbers VALUES (2, 'Two' );
+ INSERT INTO Numbers VALUES (3, 'Three' );
+
+Es decir que si se hace un select, se podrá ver::
+ 
+ number | name 
+ -------+-------
+   1    | One 
+   2    | Two
+   3    | Three
+
+Para poder realizar el respaldo, utilizando pg_dump::
+ 
+ pg_dump lecture31 > resp.sql
+
+y su estructura es::
+
+Un posible problema a la hora de ejecutar pg_dump es 
+.. ojo con el problema acceso denegado pg_dump prueba > a.sql (bash: permission denied)
+
+.. Se resuelve si el usuario es owner de la db
+
 
 Para realizar la restaurar se utiliza::
 
@@ -87,7 +123,8 @@ Para realizar la restaurar se utiliza::
 Donde **archivo_entrada** corresponde al **archivo_salida** de la instrucción **pg_dump**.
 
 Antes de restaurar, es necesario recrear el contexto que tenía la BD. Específicamente usuarios
-que poseían ciertos objetos o permisos. Si esto no calza con la BD,
+que poseían ciertos objetos o permisos. Si esto no calza con la BD, original, es posible que la restauración
+no se realice correctamente.
 
 pg_dumpall
 ^^^^^^^^^^^
