@@ -278,7 +278,29 @@ De hecho si en este estado se agrega la tupla (4, Four) y se revisan los conteni
    3    | Three
    4    | Four
 
-Lo cual ocurre debido a que el contador serial vuelve a 3.
+Esto ocurre debido a que el contador serial vuelve a 3.
+
+Ejercicio propuesto
+^^^^^^^^^^^^^^^^^^^^
+
+Se deja en manos del lector ver que ocurre en caso de trabajar con atributo serial PK, es decir:
+
+.. code-block:: sql
+ 
+ CREATE TABLE Numbers2(Number SERIAL, Name VARCHAR(20), PRIMARY KEY (number));
+
+y luego seguir los mismos pasos, es decir agregar las tuplas (1, 'One'), (2, 'Two') y (3, 'Three'). Luego
+realizar un respaldo, acceder a la BD, eliminar la última tupla, agregar (4, 'Four'), realizar la 
+restauración, intentar agregar más tuplas (conectandose a la BD primero) y los que desee hacer el lector.
+
+A modo de pista, si al agregar una tupla, aparece::
+ 
+ ERROR: duplicate key value violates unique constraint "numbers2_pkey"
+
+Siga intentando, verá que es posible agregar más tuplas. Fijese en el valor de la llave primaria. ¿Cuántas veces
+tuvo que intentar?
+
+¿Qué ocurre si en lugar de eliminar la última tupla, se elimina la primera?
 
 
 pg_dumpall
