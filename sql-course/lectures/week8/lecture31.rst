@@ -150,6 +150,10 @@ el archivo de respaldo es posible volver al estado anterior::
  
  psql lecture31 < resp.sql
 
+.. note::
+    
+ Notese que dentro de la salida del comando aparece: ERROR: relation "numbers" already exists
+
 Revisando la tabla a través de:
 
 .. code-block:: sql
@@ -182,6 +186,99 @@ por ejemplo utlizar lecture32 en lugar de 31, el siguiente error aparecerá::
    
  psql: FATAL: database "lecture32" does not exist
 
+
+Pero ¿Qué ocurre si utilizamos el atributo *number* como PK?, es decir modificar sólo la linea (y seguir el resto
+de los pasos de la misma forma):
+
+.. code-block:: sql
+
+ CREATE TABLE Numbers(Number INTEGER, Name VARCHAR(20), PRIMARY KEY (Number));
+
+Al momento de borrar la tupla (3, 'Three'), e intentar restaurar, dentro de la salida del comando aparece::
+ 
+ ERROR: relation "numbers" already exists
+ ERROR: duplicate key violates unique constraint "numbers_pkey"
+ CONTEXT: COPY numbers, line 1: "1    One" 
+ ERROR: multiple primary keys for table "numbers" are not allowed
+
+Ejemplo 2
+^^^^^^^^^
+
+Resulta curioso el caso en que se desea, en lugar de trabajar con enteros, hacerlo serial es decir:
+
+.. code-block:: sql
+
+ \c lecture31
+ DROP TABLE Numbers;
+ CREATE TABLE Numbers2(Number SERIAL, Name VARCHAR(20));
+ INSERT INTO Numbers2 (name)  VALUES ('One' );
+ INSERT INTO Numbers2 (name) VALUES ('Two' );
+ INSERT INTO Numbers2 (name) VALUES ('Three' );
+
+Es decir que si se hace un select, se podrá ver::
+ 
+ number | name 
+ -------+-------
+   1    | One 
+   2    | Two
+   3    | Three
+
+Para poder realizar el respaldo, utilizando pg_dump::
+ 
+ pg_dump lecture31 > resp2.sql
+
+Digamos que se agrega la tupla (4, 'Four') y  borra la tupla (3, 'Three'). Después de realizar
+el respaldo::
+
+ number | name 
+ -------+-------
+   1    | One 
+   2    | Two
+   4    | Four
+
+Posteriormente se realiza la restauración::
+ 
+ psql lecture31 < resp.sql
+
+Notese que en la salida, es posible ver::
+ 
+ setval
+ --------
+      3
+ (1 row)
+
+Revisando la tabla a través de:
+
+.. code-block:: sql
+
+ \c lecture31
+ SELECT * FROM Numbers2;
+
+La salida es::
+
+ number | name 
+ -------+-------
+   1    | One 
+   2    | Two
+   4    | Four
+   1    | One 
+   2    | Two
+   3    | Three
+
+Lo cual es un problema, pues se trabaja con valores seriales.
+De hecho si en este estado se agrega la tupla (4, Four) y se revisan los contenidos de la tabla, la salida es::
+
+ number | name 
+ -------+-------
+   1    | One 
+   2    | Two
+   4    | Four
+   1    | One 
+   2    | Two
+   3    | Three
+   4    | Four
+
+Lo cual ocurre debido a que el contador serial vuelve a 3.
 
 
 pg_dumpall
