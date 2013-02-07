@@ -71,6 +71,11 @@ Esta función genera un archivo de texto con comandos SQL que, cuando son reintr
 al servidor, se deja a la BD en el mismo estado en el que se encontraba al momento de ejecutar
 este comando.
 
+.. note::
+  
+  Esto ocurre siempre y cuando la BD esté vacia, es decir, en el mismo estado inicial. pg_dump
+  guarda los comandos introducidos hasta el punto de control. El ejemplo 1 permitirá aclarar dudas.
+
 
 su sintaxis es::
 
@@ -78,6 +83,16 @@ su sintaxis es::
 
 y se usa desde la linea de comandos.
 
+
+Para realizar la restaurar se utiliza::
+
+ psql dbname < archivo_entrada
+
+Donde **archivo_entrada** corresponde al **archivo_salida** de la instrucción **pg_dump**.
+
+
+Ejemplo 1
+^^^^^^^^^^
 Supongamos que tenemos una BD llamada lecture31 y dentro de ella una única tabla llamada **Numbers** con atributos 
 *Number* Y *Name*, con datos::
  
@@ -108,23 +123,66 @@ Para poder realizar el respaldo, utilizando pg_dump::
  
  pg_dump lecture31 > resp.sql
 
-y su estructura es::
+.. Posteriormente se puede conectar a la BD lecture31, eliminar la tabla **Numbers**, salir del entorno psql,
+   y ejecutar::
 
-Un posible problema a la hora de ejecutar pg_dump es 
-.. ojo con el problema acceso denegado pg_dump prueba > a.sql (bash: permission denied)
+Un posible problema a la hora de ejecutar pg_dump es::
 
-.. Se resuelve si el usuario es owner de la db
+  pg_dump lecture31 > resp.sql (bash: permission denied)
+
+Para evitar esto, es necesario considerar que el usuario de la BD debe tener permisos de escritura en la carpeta
+donde se alojará el archivo.
+
+.. note::
+
+  Para los usuarios locales, basta con hacer "cd" en la linea de comandos (como usuario postgres), 
+  para acceder a la carpeta de postgres. Si desea realizar pruebas desde el servidor dedicado, puede 
+  crear BDs desde su sesión y alojar los archivos de respaldo en su capeta home.
+
+.. warning::
+  
+ Es posible cambiar los permisos de lectura y escritura de las carpetas, dar accesos a usuarios que no 
+ son dueños de las BD. No se profundiza esto, pués escapa a los alcances de este curso.
 
 
-Para realizar la restaurar se utiliza::
+Supongamos que se comete un error, se borra información valiosa, digamos la tupla "1, One". Utilizando
+el archivo de respaldo es posible volver al estado anterior::
+ 
+ psql lecture31 < resp.sql
 
- psql dbname < archivo_entrada
+Revisando la tabla a través de:
 
-Donde **archivo_entrada** corresponde al **archivo_salida** de la instrucción **pg_dump**.
+.. code-block:: sql
 
-Antes de restaurar, es necesario recrear el contexto que tenía la BD. Específicamente usuarios
+ \c lecture31
+ SELECT * FROM Numbers;
+
+La salida es::
+
+ 
+ number | name 
+ -------+-------
+   2    | Two
+   3    | Three
+   1    | One 
+   2    | Two
+   3    | Three
+
+Lo cual, claramente, no corresponde a la información inicial.
+
+**Antes de restaurar, es necesario recrear el contexto que tenía la BD. Específicamente usuarios
 que poseían ciertos objetos o permisos. Si esto no calza con la BD, original, es posible que la restauración
-no se realice correctamente.
+no se realice correctamente.**
+
+En este caso el contexto inicial corresponde a una BD vacia. Se invita al lector a borrar la tabla y realizar la
+restauración. 
+
+Es necesario aclarar que se necesita una BD existente para hacer la restauración. Si está no existe, 
+por ejemplo utlizar lecture32 en lugar de 31, el siguiente error aparecerá:: 
+   
+ psql: FATAL: database "lecture32" does not exist
+
+
 
 pg_dumpall
 ^^^^^^^^^^^
