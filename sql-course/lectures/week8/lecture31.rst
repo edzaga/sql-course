@@ -31,7 +31,6 @@ definido. Cuando realizamos operaciones de modificación, es decir:
 
 Cambiamos su estado, llevándolo a uno nuevo.
 
-.. agregar diagrama de estado simple
 
 .. note::
 
@@ -39,20 +38,17 @@ Cambiamos su estado, llevándolo a uno nuevo.
   operación de selección.
 
 Al momento de realizar un respaldo, se guarda el estado en que se encuentra la BD al momento
-de realizar la operación de respaldo.
+de realizar dicha operación de respaldo.
 
 Al momento de realizar la operación de recuperación, puede ser de varias formas, ya sea
 a través de las operaciones (en orden) que han dejado la BD en el estado actual u otras formas.
 
-.. llenar más
 
 La gran mayoría de Motores de BD cuentan con funciones de este tipo y PostgreSQL no es la excepción.
 
 ========================
 Servicios en PostgreSQL
 ========================
-
-.. Párrafo introductorio,  Explicación más específica de como funcionan en este sistema (sintaxis, etc) y ejemplo prácticos
 
 De forma nativa PostgreSQL cuenta con las siguientes funciones:
 
@@ -67,7 +63,7 @@ SQL Dump
 
 pg_dump
 ^^^^^^^
-Esta función genera un archivo de texto con comandos SQL que, cuando son reintroducidos
+Esta función genera un archivo de texto con comandos SQL que, cuando son reintroducidos (bajo cierto contexto )
 al servidor, se deja a la BD en el mismo estado en el que se encontraba al momento de ejecutar
 este comando.
 
@@ -84,7 +80,7 @@ su sintaxis es::
 y se usa desde la linea de comandos.
 
 
-Para realizar la restaurar se utiliza::
+Para realizar la restauración se utiliza::
 
  psql dbname < archivo_entrada
 
@@ -111,7 +107,7 @@ Es decir:
  INSERT INTO Numbers VALUES (2, 'Two' );
  INSERT INTO Numbers VALUES (3, 'Three' );
 
-Es decir que si se hace un select, se podrá ver::
+A través de un select::
  
  number | name 
  -------+-------
@@ -119,16 +115,13 @@ Es decir que si se hace un select, se podrá ver::
    2    | Two
    3    | Three
 
-Para poder realizar el respaldo, utilizando pg_dump::
+Para realizar el respaldo, se  utiliza pg_dump::
  
  pg_dump lecture31 > resp.sql
 
-.. Posteriormente se puede conectar a la BD lecture31, eliminar la tabla **Numbers**, salir del entorno psql,
-   y ejecutar::
-
 Un posible problema a la hora de ejecutar pg_dump es::
 
-  pg_dump lecture31 > resp.sql (bash: permission denied)
+ pg_dump lecture31 > resp.sql (bash: permission denied)
 
 Para evitar esto, es necesario considerar que el usuario de la BD debe tener permisos de escritura en la carpeta
 donde se alojará el archivo.
@@ -145,7 +138,7 @@ donde se alojará el archivo.
  son dueños de las BD. No se profundiza esto, pués escapa a los alcances de este curso.
 
 
-Supongamos que se comete un error, se borra información valiosa, digamos la tupla "1, One". Utilizando
+Supongamos que se comete un error, se borra información de seguridad nacional, digamos la tupla "1, One". Utilizando
 el archivo de respaldo es posible volver al estado anterior::
  
  psql lecture31 < resp.sql
@@ -178,10 +171,10 @@ Lo cual, claramente, no corresponde a la información inicial.
 que poseían ciertos objetos o permisos. Si esto no calza con la BD, original, es posible que la restauración
 no se realice correctamente.**
 
-En este caso el contexto inicial corresponde a una BD vacia. Se invita al lector a borrar la tabla y realizar la
-restauración. 
+En este caso el contexto inicial corresponde a una BD vacia, dentro de la cual se crea una tabla y 
+se agregan algunos datos Se invita al lector a borrar la tabla y realizar la restauración. 
 
-Es necesario aclarar que se necesita una BD existente para hacer la restauración. Si está no existe, 
+Es necesario aclarar que se necesita una BD existente para hacer la restauración. Si ésta no existe, 
 por ejemplo utlizar lecture32 en lugar de 31, el siguiente error aparecerá:: 
    
  psql: FATAL: database "lecture32" does not exist
@@ -194,24 +187,27 @@ de los pasos de la misma forma):
 
  CREATE TABLE Numbers(Number INTEGER, Name VARCHAR(20), PRIMARY KEY (Number));
 
-Al momento de borrar la tupla (3, 'Three'), e intentar restaurar, dentro de la salida del comando aparece::
+Al momento de borrar la tupla, digamos (3, 'Three'), e intentar restaurar, dentro de la salida del comando aparece::
  
  ERROR: relation "numbers" already exists
  ERROR: duplicate key violates unique constraint "numbers_pkey"
  CONTEXT: COPY numbers, line 1: "1    One" 
  ERROR: multiple primary keys for table "numbers" are not allowed
 
+¿Qué ocurre si se elimina la primera tupla antes de restaurar?
+
 Ejemplo 2
 ^^^^^^^^^
 
-Resulta curioso el caso en que se desea, en lugar de trabajar con enteros, hacerlo serial es decir:
+Este ejemplo es muy similar al anterior, sólo que, en lugar de trabajar con atributos
+INTEGER, se trabajará con atributo serial es decir:
 
 .. code-block:: sql
 
  \c lecture31
  DROP TABLE Numbers;
  CREATE TABLE Numbers2(Number SERIAL, Name VARCHAR(20));
- INSERT INTO Numbers2 (name)  VALUES ('One' );
+ INSERT INTO Numbers2 (name) VALUES ('One' );
  INSERT INTO Numbers2 (name) VALUES ('Two' );
  INSERT INTO Numbers2 (name) VALUES ('Three' );
 
@@ -240,7 +236,8 @@ Posteriormente se realiza la restauración::
  
  psql lecture31 < resp.sql
 
-Notese que en la salida, es posible ver::
+.. note::
+ Notese que en la salida, es posible ver:
  
  setval
  --------
