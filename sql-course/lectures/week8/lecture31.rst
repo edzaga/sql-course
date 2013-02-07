@@ -304,7 +304,7 @@ pg_dumpall
 ^^^^^^^^^^^
 Un pequeño inconveniente con pg_dump es que sólo puede hacer respaldos de una BD a la vez.
 Además no respalda información acerca de roles de usuario e información por el estilo
-.. ??
+
 Para realizar un respaldo de la BD y el cluster de datos, existe el comando pg_dumpall.
 
 
@@ -319,6 +319,10 @@ y para realizar la restauración::
 Que trabaja emitiendo las consultas y comandos para re-crear roles, tablespaces y Bases de
 Datos vacios. Posteriormente se invoca pg_dump por cada BD para corroborar consistencia interna.
 
+.. warning:: 
+ 
+ Es posible que el servidor dedicado no le permita restaurar, debido a que se utiliza 
+ con el usuario postgres. Por favor, utilice este comando sólo de manera local.
 
 
 =============================
