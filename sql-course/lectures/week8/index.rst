@@ -8,6 +8,6 @@ Lectures:
 
    lecture29
    lecture30
-   lecture31
+   lectura31
    lecture32
-   assignment8
+   tarea8
