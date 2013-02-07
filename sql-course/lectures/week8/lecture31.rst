@@ -336,45 +336,54 @@ Datos vacios. Posteriormente se invoca pg_dump por cada BD para corroborar consi
 Respaldo a nivel de archivos
 =============================
 
-Otra estrategia de respaldo es realizar copias de los archivos, los cuales por lo general
-se encuentran en la ruta **/usr/local/pgsql/data**
-
-.. note::
+.. Otra estrategia de respaldo es realizar copias de los archivos, los cuales por lo general
+ se encuentran en la ruta **/usr/local/pgsql/data**
+ 
+ .. note::
   Esto utilizando un sistema basado en UNIX.
-
-Para poder realizar el respaldo::
-
+ 
+ Para poder realizar el respaldo::
+ 
   tar -cf backup.tar /usr/local/pgsql/data
-
+ 
 No obstante, existen 2 restricciones que hacen que este método sea menos práctico
 que utilizar pg_dump:
 
 1. El servidor **debe** ser apagado para poder obtener un respaldo utilizable.
-2.
+2. Cada vez que se realize un respado, el servidor debe estar apagado, para que los cambios se guarden
+   en su totalidad. 
 
-Captura en frío
-^^^^^^^^^^^^^^^
-
-
+.. warning::
+ 
+ La mayor parte de las veces, se necesita acceso root, para poder realizar este tipo de operación,
+ pués es necesario configurar archivos de confguración de postgres. Es de suma importancia que se realicen
+ de forma correcta, pués ante algún fallo es posible destruir la base de datos de forma completa.
+ Por lo tanto, no se abordará de forma extensa este apartado. No obstante es posible obtener información
+ en foros y Twikis [1].
 
 Rsync
 ^^^^^
 
+*Rsync*  corresponde a un programa que sincroniza dos directorios a través
+de distintos sistemas de archivos, incluso si están en distinto computadores, físicamente hablando. A través
+del uso de SSH o *Secure SHell* por sus siglas en inglés, se pueden realizar transferencias seguras y basadas
+en llaves de autentificación.
 
+La principal ventaja de utilizar *rsync* a diferencia de otros comandos similares, como *scp*, es que si
+el archivo que se encuentra en la fuente, es el mismo que, el que se encuentra en el objetivo, no hay 
+transmisión de datos; si el archivo que se encuentra en el objetivo difiere del que se encuentra en
+la fuente, **sólo aquellas partes que difieren son transmitidas**, en lugar de transmitir todo.
 
+=============
+Conclusiones
+=============
 
-
-
-.. =============
-   Conclusiones
-   =============
-
-Para finalizar, por lo general, los respaldos realizados a través de **SQL Dump** suelen
+Para finalizar, **por lo general**, los respaldos realizados a través de **SQL Dump** suelen
 ser más livianos, en tamaño, que los realizados a través de respaldo de archivos, ya que,
 por ejemplo en el caso de pg_dump no es necesario copiar índices de tablas o cosas por
 el estilo; sino que sólo los comandos que los crean. Es por ello que, generalmente estos
 últimos, son más rápidos.
 
-
+[1] http://www.howtoforge.com/how-to-easily-migrate-a-postgresql-server-with-minimal-downtime
 
 
