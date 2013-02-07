@@ -138,7 +138,7 @@ donde se alojará el archivo.
   para acceder a la carpeta de postgres. Si desea realizar pruebas desde el servidor dedicado, puede 
   crear BDs desde su sesión y alojar los archivos de respaldo en su capeta home.
 
-.. warning::
+.. note::
   
  Es posible cambiar los permisos de lectura y escritura de las carpetas, dar accesos a usuarios que no 
  son dueños de las BD. No se profundiza esto, pues escapa a los alcances de este curso.
