@@ -359,7 +359,7 @@ que utilizar pg_dump:
  pués es necesario configurar archivos de confguración de postgres. Es de suma importancia que se realicen
  de forma correcta, pués ante algún fallo es posible destruir la base de datos de forma completa.
  Por lo tanto, no se abordará de forma extensa este apartado. No obstante es posible obtener información
- en foros y Twikis [1].
+ en foros y Twikis.
 
 Rsync
 ^^^^^
@@ -372,7 +372,12 @@ en llaves de autentificación.
 La principal ventaja de utilizar *rsync* a diferencia de otros comandos similares, como *scp*, es que si
 el archivo que se encuentra en la fuente, es el mismo que, el que se encuentra en el objetivo, no hay 
 transmisión de datos; si el archivo que se encuentra en el objetivo difiere del que se encuentra en
-la fuente, **sólo aquellas partes que difieren son transmitidas**, en lugar de transmitir todo.
+la fuente, **sólo aquellas partes que difieren son transmitidas**, en lugar de transmitir todo, por lo
+que el *downtime* de la BD, es decir, el tiempo que debe permanecer apagada, es mucho menor.
+
+Cabe destacar que es de suma importancia realizar una adecuada preparación de la  BD, para 
+evitar posibles desastres. En [1] se explican con gran nivel de detalle. No obstante, los cambios realizados
+son bajo su  propio riesgo, y se recomienda fuertemente realizar pruebas de manera local.
 
 =============
 Conclusiones
