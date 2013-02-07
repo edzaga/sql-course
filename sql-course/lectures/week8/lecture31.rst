@@ -335,17 +335,10 @@ Datos vacíos. Posteriormente se invoca pg_dump por cada BD para corroborar cons
 =============================
 Respaldo a nivel de archivos
 =============================
+ 
+Otra forma de realizar respaldos es a través del manejo directo de archivos, en lugar de las sentencias 
+utilizadas.
 
-.. Otra estrategia de respaldo es realizar copias de los archivos, los cuales por lo general
- se encuentran en la ruta **/usr/local/pgsql/data**
- 
- .. note::
-  Esto utilizando un sistema basado en UNIX.
- 
- Para poder realizar el respaldo::
- 
-  tar -cf backup.tar /usr/local/pgsql/data
- 
 No obstante, existen 2 restricciones que hacen que este método sea menos práctico
 que utilizar pg_dump:
 
