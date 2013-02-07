@@ -69,7 +69,7 @@ este comando.
 
 .. note::
   
-  Esto ocurre siempre y cuando la BD esté vacia, es decir, en el mismo estado inicial. pg_dump
+  Esto ocurre siempre y cuando la BD esté vacía, es decir, en el mismo estado inicial. pg_dump
   guarda los comandos introducidos hasta el punto de control. El ejemplo 1 permitirá aclarar dudas.
 
 
@@ -102,7 +102,7 @@ Es decir:
 
  CREATE DATABASE lecture31;
 
-conectandose::
+conectándose::
 
  \c lecture31
 
@@ -141,7 +141,7 @@ donde se alojará el archivo.
 .. warning::
   
  Es posible cambiar los permisos de lectura y escritura de las carpetas, dar accesos a usuarios que no 
- son dueños de las BD. No se profundiza esto, pués escapa a los alcances de este curso.
+ son dueños de las BD. No se profundiza esto, pues escapa a los alcances de este curso.
 
 
 Supongamos que se comete un error, se borra información de seguridad nacional, digamos la tupla "1, One". Utilizando
@@ -151,7 +151,7 @@ el archivo de respaldo es posible volver al estado anterior::
 
 .. note::
     
- Notese que dentro de la salida del comando aparece: ERROR: relation "numbers" already exists
+ Nótese que dentro de la salida del comando aparece: ERROR: relation "numbers" already exists
 
 Revisando la tabla a través de::
 
@@ -178,11 +178,11 @@ Lo cual, claramente, no corresponde a la información inicial.
 que poseían ciertos objetos o permisos. Si esto no calza con la BD, original, es posible que la restauración
 no se realice correctamente.**
 
-En este caso el contexto inicial corresponde a una BD vacia, dentro de la cual se crea una tabla y 
+En este caso el contexto inicial corresponde a una BD vacía, dentro de la cual se crea una tabla y 
 se agregan algunos datos Se invita al lector a borrar la tabla y realizar la restauración. 
 
 Es necesario aclarar que se necesita una BD existente para hacer la restauración. Si ésta no existe, 
-por ejemplo utlizar lecture32 en lugar de 31, el siguiente error aparecerá:: 
+por ejemplo utilizar lecture32 en lugar de 31, el siguiente error aparecerá:: 
    
  psql: FATAL: database "lecture32" does not exist
 
@@ -245,7 +245,7 @@ Posteriormente se realiza la restauración::
  psql lecture31 < resp.sql
 
 .. note::
- Notese que en la salida, es posible ver: 
+ Nótese que en la salida, es posible ver: 
  setval
  3
 
@@ -295,13 +295,13 @@ Se deja en manos del lector ver que ocurre en caso de trabajar con atributo seri
 
 y luego seguir los mismos pasos, es decir agregar las tuplas (1, 'One'), (2, 'Two') y (3, 'Three'). Luego
 realizar un respaldo, acceder a la BD, eliminar la última tupla, agregar (4, 'Four'), realizar la 
-restauración, intentar agregar más tuplas (conectandose a la BD primero) y los que desee hacer el lector.
+restauración, intentar agregar más tuplas (conectándose a la BD primero) y los que desee hacer el lector.
 
 A modo de pista, si al agregar una tupla, aparece::
  
  ERROR: duplicate key value violates unique constraint "numbers2_pkey"
 
-Siga intentando, verá que es posible agregar más tuplas. Fijese en el valor de la llave primaria. ¿Cuántas veces
+Siga intentando, verá que es posible agregar más tuplas. Fíjese en el valor de la llave primaria. ¿Cuántas veces
 tuvo que intentar?
 
 ¿Qué ocurre si en lugar de eliminar la última tupla, se elimina la primera?
@@ -323,8 +323,8 @@ y para realizar la restauración::
 
   psql -f archivo_entrada postgres
 
-Que trabaja emitiendo las consultas y comandos para re-crear roles, tablespaces y Bases de
-Datos vacios. Posteriormente se invoca pg_dump por cada BD para corroborar consistencia interna.
+Que trabaja emitiendo las consultas y comandos para recrear roles, tablespaces y Bases de
+Datos vacíos. Posteriormente se invoca pg_dump por cada BD para corroborar consistencia interna.
 
 .. warning:: 
  
@@ -350,14 +350,14 @@ No obstante, existen 2 restricciones que hacen que este método sea menos práct
 que utilizar pg_dump:
 
 1. El servidor **debe** ser apagado para poder obtener un respaldo utilizable.
-2. Cada vez que se realize un respado, el servidor debe estar apagado, para que los cambios se guarden
+2. Cada vez que se realice un respaldo, el servidor debe estar apagado, para que los cambios se guarden
    en su totalidad. 
 
 .. warning::
  
  La mayor parte de las veces, se necesita acceso root, para poder realizar este tipo de operación,
- pués es necesario configurar archivos de confguración de postgres. Es de suma importancia que se realicen
- de forma correcta, pués ante algún fallo es posible destruir la base de datos de forma completa.
+ pues es necesario configurar archivos de configuración de postgres. Es de suma importancia que se realicen
+ de forma correcta, pues ante algún fallo es posible destruir la base de datos de forma completa.
  Por lo tanto, no se abordará de forma extensa este apartado. No obstante es posible obtener información
  en foros y Twikis.
 
@@ -367,7 +367,7 @@ Rsync
 *Rsync*  corresponde a un programa que sincroniza dos directorios a través
 de distintos sistemas de archivos, incluso si están en distinto computadores, físicamente hablando. A través
 del uso de SSH o *Secure SHell* por sus siglas en inglés, se pueden realizar transferencias seguras y basadas
-en llaves de autentificación.
+en llaves de autenticación.
 
 La principal ventaja de utilizar *rsync* a diferencia de otros comandos similares, como *scp*, es que si
 el archivo que se encuentra en la fuente, es el mismo que, el que se encuentra en el objetivo, no hay 
