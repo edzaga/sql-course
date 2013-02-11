@@ -22,7 +22,7 @@ Una vista materializada **almacena físicamente los datos** resultantes de ejecu
 consulta definida en la vista. Inicialmente se almacenan los datos de las tablas base 
 al ejecutar la consulta y se actualiza periódicamente a partir de las tablas originales.  
 Las vistas materializadas constituyen datos redundantes, en el sentido de que su contenido 
-puede deducirse de la definición de la vista y del resto del contenido de la base de datos. 
+se puede deducir de la definición de la vista y del resto del contenido de la base de datos. 
 
 Se define una vista especificando una consulta de Vista en SQL, a través de un conjunto de
 tablas existentes **(R1, R2,…Rn)**.
@@ -246,11 +246,11 @@ vista materializada *player_total_score_mv* y el nombre de la vista virtual *pla
 	 
 	(1 row)
 
-Al ejecutar un select sobre la vista se observa que está creada y vacía:
+Al ejecutar un :sql:`SELECT` sobre la vista materializada se observa que está creada y vacía:
 
 .. code-block:: sql
 
-	viewm=# SELECT * from player_total_score_mv;
+	viewm=# SELECT * FROM player_total_score_mv;
 	 pname | total_score 
 	-------+-------------
 	(0 row)
@@ -259,7 +259,7 @@ Los datos de la vista se almacena en la relación *matviews*
 
 .. code-block:: sql
 
-	 SELECT * from matviews;
+	 SELECT * FROM matviews;
 		mv_name        |        v_name        |         last_refresh         
 	-----------------------+----------------------+------------------------------
 	 player_total_score_mv | player_total_score_v | 2013-02-11 10:54:56.08571-03
@@ -277,7 +277,7 @@ Al ejecutar un :sql:`SELECT` se observa que la vista se mantiene vacía:
 
 .. code-block:: sql
 
-	viewm=# SELECT * from player_total_score_mv;
+	viewm=# SELECT * FROM player_total_score_mv;
 	 pname | total_score 
 	-------+-------------
 	(0 row)
@@ -292,18 +292,18 @@ Para actualizar la vista materializada se debe ocupar la función *refresh_matvi
 	 
 	(1 row)
 
-Esta vez al volver a seleccionar la vista aparecen los valores insertados en la relación *game_score*
+Esta vez al volver a seleccionar la vista materializada aparecen los valores insertados en la relación *game_score*
 
 .. code-block:: sql
 
-	viewm=# SELECT * from player_total_score_mv;
+	viewm=# SELECT * FROM player_total_score_mv;
 	 pname | total_score 
 	-------+-------------
 	 SW    |           4
 	 UCH   |           2
 	(2 rows)
 
-Para eliminar la vista se usa la función *drop_matview*:
+Para eliminar la vista materializada se usa la función *drop_matview*:
 
 .. code-block:: sql
 
@@ -317,7 +317,7 @@ Al hacer un :sql:`SELECT` a la vista materializada, aparece un error pues ya no 
 
 .. code-block:: sql
 
-	viewm2=# SELECT * from player_total_score_mv;
+	viewm2=# SELECT * FROM player_total_score_mv;
 	ERROR:  relation "player_total_score_mv" does not exist
 	LÍNEA 1: SELECT * from player_total_score_mv;
 
