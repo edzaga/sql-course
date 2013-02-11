@@ -6,7 +6,7 @@ Fecha de entrega: Miércoles  06 de Marzo de 2013 hasta 23:59
 
 
 .. role:: sql(code)
-      :language: sql
+   :language: sql
    :class: highlight
 
 -------------------------------------
@@ -21,7 +21,7 @@ Servicios de respaldo y recuperación para Bases de Datos (BD)
 --------------------------------------------------------------
 
 Pregunta 1 (15 ptos)
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 De acuerdo a la lectura y en sus palabras:
 
