@@ -208,7 +208,7 @@ Se utiliza un algoritmo que elimina todas las filas y vuelve a colocarlas en la 
 	';
 
 Ejemplo
-^^^^^^^^
+============
 
 Para este ejemplo se utilizarán las funciones mostradas anteriormente, primero se instala el lenguaje plpgsql:
 
@@ -324,6 +324,7 @@ Al hacer un :sql:`SELECT` a la vista materializada, aparece un error pues ya no 
 Se revisa la relación *matviews* y aquí también se eliminó la vista materializada: 
 
 .. code-block:: sql
+
 	viewm=# SELECT * from matviews;
 	 mv_name | v_name | last_refresh 
 	---------+--------+--------------
