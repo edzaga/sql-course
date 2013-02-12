@@ -319,7 +319,7 @@ su sintaxis es::
 
   pg_dumpall > archivo_salida
 
-y para realizar la restauración::
+y para realizar la restauración (utilizar el comando unix) ::
 
   psql -f archivo_entrada postgres
 
@@ -352,7 +352,7 @@ que utilizar pg_dump:
  pues es necesario configurar archivos de configuración de postgres. Es de suma importancia que se realicen
  de forma correcta, pues ante algún fallo es posible destruir la base de datos de forma completa.
  Por lo tanto, no se abordará de forma extensa este apartado. No obstante es posible obtener información
- en foros y Twikis.
+ en internet.
 
 Rsync
 ^^^^^
@@ -383,5 +383,6 @@ el estilo; sino que sólo los comandos que los crean. Es por ello que, generalme
 últimos, son más rápidos.
 
 [1] http://www.howtoforge.com/how-to-easily-migrate-a-postgresql-server-with-minimal-downtime
+
 
 
