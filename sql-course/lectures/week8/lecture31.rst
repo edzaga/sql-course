@@ -68,7 +68,7 @@ al servidor, se deja a la BD en el mismo estado en el que se encontraba al momen
 este comando.
 
 .. note::
-  
+
   Esto ocurre siempre y cuando la BD esté vacía, es decir, en el mismo estado inicial. pg_dump
   guarda los comandos introducidos hasta el punto de control. El ejemplo 1 permitirá aclarar dudas.
 
@@ -89,10 +89,10 @@ Donde **archivo_entrada** corresponde al **archivo_salida** de la instrucción *
 
 Ejemplo 1
 ^^^^^^^^^^
-Supongamos que tenemos una BD llamada lecture31 y dentro de ella una única tabla llamada **Numbers** con atributos 
+Supongamos que tenemos una BD llamada lecture31 y dentro de ella una única tabla llamada **Numbers** con atributos
 *Number* Y *Name*, con datos::
- 
- 1 One 
+
+ 1 One
  2 Two
  3 Three
 
@@ -114,15 +114,15 @@ conectándose::
  INSERT INTO Numbers VALUES (3, 'Three' );
 
 A través de un select::
- 
- number | name 
+
+ number | name
  -------+-------
-   1    | One 
+   1    | One
    2    | Two
    3    | Three
 
 Para realizar el respaldo, se  utiliza pg_dump::
- 
+
  pg_dump lecture31 > resp.sql
 
 Un posible problema a la hora de ejecutar pg_dump es::
@@ -134,23 +134,23 @@ donde se alojará el archivo.
 
 .. note::
 
-  Para los usuarios locales, basta con hacer "cd" en la linea de comandos (como usuario postgres), 
-  para acceder a la carpeta de postgres. Si desea realizar pruebas desde el servidor dedicado, puede 
+  Para los usuarios locales, basta con hacer "cd" en la linea de comandos (como usuario postgres),
+  para acceder a la carpeta de postgres. Si desea realizar pruebas desde el servidor dedicado, puede
   crear BDs desde su sesión y alojar los archivos de respaldo en su capeta home.
 
 .. note::
-  
- Es posible cambiar los permisos de lectura y escritura de las carpetas, dar accesos a usuarios que no 
+
+ Es posible cambiar los permisos de lectura y escritura de las carpetas, dar accesos a usuarios que no
  son dueños de las BD. No se profundiza esto, pues escapa a los alcances de este curso.
 
 
 Supongamos que se comete un error, se borra información de seguridad nacional, digamos la tupla "1, One". Utilizando
 el archivo de respaldo es posible volver al estado anterior::
- 
+
  psql lecture31 < resp.sql
 
 .. note::
-    
+
  Nótese que dentro de la salida del comando aparece: ERROR: relation "numbers" already exists
 
 Revisando la tabla a través de::
@@ -163,12 +163,12 @@ Revisando la tabla a través de::
 
 La salida es::
 
- 
- number | name 
+
+ number | name
  -------+-------
    2    | Two
    3    | Three
-   1    | One 
+   1    | One
    2    | Two
    3    | Three
 
@@ -178,12 +178,12 @@ Lo cual, claramente, no corresponde a la información inicial.
 que poseían ciertos objetos o permisos. Si esto no calza con la BD, original, es posible que la restauración
 no se realice correctamente.**
 
-En este caso el contexto inicial corresponde a una BD vacía, dentro de la cual se crea una tabla y 
-se agregan algunos datos Se invita al lector a borrar la tabla y realizar la restauración. 
+En este caso el contexto inicial corresponde a una BD vacía, dentro de la cual se crea una tabla y
+se agregan algunos datos Se invita al lector a borrar la tabla y realizar la restauración.
 
-Es necesario aclarar que se necesita una BD existente para hacer la restauración. Si ésta no existe, 
-por ejemplo utilizar lecture32 en lugar de 31, el siguiente error aparecerá:: 
-   
+Es necesario aclarar que se necesita una BD existente para hacer la restauración. Si ésta no existe,
+por ejemplo utilizar lecture32 en lugar de 31, el siguiente error aparecerá::
+
  psql: FATAL: database "lecture32" does not exist
 
 
@@ -191,14 +191,14 @@ Pero ¿Qué ocurre si utilizamos el atributo *number* como PK?, es decir modific
 de los pasos de la misma forma):
 
 .. code-block:: sql
- 
+
  CREATE TABLE Numbers(Number INTEGER, Name VARCHAR(20), PRIMARY KEY (Number));
 
 Al momento de borrar la tupla, digamos (3, 'Three'), e intentar restaurar, dentro de la salida del comando aparece::
- 
+
  ERROR: relation "numbers" already exists
  ERROR: duplicate key violates unique constraint "numbers_pkey"
- CONTEXT: COPY numbers, line 1: "1    One" 
+ CONTEXT: COPY numbers, line 1: "1    One"
  ERROR: multiple primary keys for table "numbers" are not allowed
 
 ¿Qué ocurre si se elimina la primera tupla antes de restaurar?
@@ -212,7 +212,7 @@ INTEGER, se trabajará con atributo serial es decir::
  \c lecture31
 
 .. code-block:: sql
- 
+
  DROP TABLE Numbers;
  CREATE TABLE Numbers2(Number SERIAL, Name VARCHAR(20));
  INSERT INTO Numbers2 (name) VALUES ('One' );
@@ -220,38 +220,38 @@ INTEGER, se trabajará con atributo serial es decir::
  INSERT INTO Numbers2 (name) VALUES ('Three' );
 
 Es decir que si se hace un select, se podrá ver::
- 
- number | name 
+
+ number | name
  -------+-------
-   1    | One 
+   1    | One
    2    | Two
    3    | Three
 
 Para poder realizar el respaldo, utilizando pg_dump::
- 
+
  pg_dump lecture31 > resp2.sql
 
 Digamos que se agrega la tupla (4, 'Four') y  borra la tupla (3, 'Three'). Después de realizar
 el respaldo::
 
- number | name 
+ number | name
  -------+-------
-   1    | One 
+   1    | One
    2    | Two
    4    | Four
 
 Posteriormente se realiza la restauración::
- 
+
  psql lecture31 < resp.sql
 
 .. note::
- Nótese que en la salida, es posible ver: 
+ Nótese que en la salida, es posible ver:
  setval
  3
 
 
 Revisando la tabla a través de::
- 
+
  \c lecture31
 
 .. code-block:: sql
@@ -260,24 +260,24 @@ Revisando la tabla a través de::
 
 La salida es::
 
- number | name 
+ number | name
  -------+-------
-   1    | One 
+   1    | One
    2    | Two
    4    | Four
-   1    | One 
+   1    | One
    2    | Two
    3    | Three
 
 Lo cual es un problema, pues se trabaja con valores seriales.
 De hecho si en este estado se agrega la tupla (4, Four) y se revisan los contenidos de la tabla, la salida es::
 
- number | name 
+ number | name
  -------+-------
-   1    | One 
+   1    | One
    2    | Two
    4    | Four
-   1    | One 
+   1    | One
    2    | Two
    3    | Three
    4    | Four
@@ -290,15 +290,15 @@ Ejercicio propuesto
 Se deja en manos del lector ver que ocurre en caso de trabajar con atributo serial PK, es decir:
 
 .. code-block:: sql
- 
+
  CREATE TABLE Numbers2(Number SERIAL, Name VARCHAR(20), PRIMARY KEY (number));
 
 y luego seguir los mismos pasos, es decir agregar las tuplas (1, 'One'), (2, 'Two') y (3, 'Three'). Luego
-realizar un respaldo, acceder a la BD, eliminar la última tupla, agregar (4, 'Four'), realizar la 
+realizar un respaldo, acceder a la BD, eliminar la última tupla, agregar (4, 'Four'), realizar la
 restauración, intentar agregar más tuplas (conectándose a la BD primero) y los que desee hacer el lector.
 
 A modo de pista, si al agregar una tupla, aparece::
- 
+
  ERROR: duplicate key value violates unique constraint "numbers2_pkey"
 
 Siga intentando, verá que es posible agregar más tuplas. Fíjese en el valor de la llave primaria. ¿Cuántas veces
@@ -326,17 +326,17 @@ y para realizar la restauración::
 Que trabaja emitiendo las consultas y comandos para recrear roles, tablespaces y Bases de
 Datos vacíos. Posteriormente se invoca pg_dump por cada BD para corroborar consistencia interna.
 
-.. warning:: 
- 
- Es posible que el servidor dedicado no le permita restaurar, debido a que se utiliza 
+.. warning::
+
+ Es posible que el servidor dedicado no le permita restaurar, debido a que se utiliza
  con el usuario postgres. Por favor, utilice este comando sólo de manera local.
 
 
 =============================
 Respaldo a nivel de archivos
 =============================
- 
-Otra forma de realizar respaldos es a través del manejo directo de archivos, en lugar de las sentencias 
+
+Otra forma de realizar respaldos es a través del manejo directo de archivos, en lugar de las sentencias
 utilizadas.
 
 No obstante, existen 2 restricciones que hacen que este método sea menos práctico
@@ -344,10 +344,10 @@ que utilizar pg_dump:
 
 1. El servidor **debe** ser apagado para poder obtener un respaldo utilizable.
 2. Cada vez que se realice un respaldo, el servidor debe estar apagado, para que los cambios se guarden
-   en su totalidad. 
+   en su totalidad.
 
 .. warning::
- 
+
  La mayor parte de las veces, se necesita acceso root, para poder realizar este tipo de operación,
  pues es necesario configurar archivos de configuración de postgres. Es de suma importancia que se realicen
  de forma correcta, pues ante algún fallo es posible destruir la base de datos de forma completa.
@@ -363,12 +363,12 @@ del uso de SSH o *Secure SHell* por sus siglas en inglés, se pueden realizar tr
 en llaves de autenticación.
 
 La principal ventaja de utilizar *rsync* a diferencia de otros comandos similares, como *scp*, es que si
-el archivo que se encuentra en la fuente, es el mismo que, el que se encuentra en el objetivo, no hay 
+el archivo que se encuentra en la fuente, es el mismo que, el que se encuentra en el objetivo, no hay
 transmisión de datos; si el archivo que se encuentra en el objetivo difiere del que se encuentra en
 la fuente, **sólo aquellas partes que difieren son transmitidas**, en lugar de transmitir todo, por lo
 que el *downtime* de la BD, es decir, el tiempo que debe permanecer apagada, es mucho menor.
 
-Cabe destacar que es de suma importancia realizar una adecuada preparación de la  BD, para 
+Cabe destacar que es de suma importancia realizar una adecuada preparación de la  BD, para
 evitar posibles desastres. En [1] se explican con gran nivel de detalle. No obstante, los cambios realizados
 son bajo su  propio riesgo, y se recomienda fuertemente realizar pruebas de manera local.
 
