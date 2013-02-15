@@ -17,7 +17,7 @@ Oracle
 ======
 
 Primero para poder realizar una conexión a la base de datos de Oracle, debemos descargar 
-el software ``Oracle Database Express Edition 11g Release 2``, `aquí <http://www.oracle.com/technetwork/products/express-edition/downloads/index.html>`_.
+el software ``Oracle Database Express Edition 11g Release 2``, desde este `enlace <http://www.oracle.com/technetwork/products/express-edition/downloads/index.html>`_.
 
 En la instalación de este software deberemos ingresar una contraseña (no debemos olvidarla) 
 que será utilizada más adelante. Terminada la instalación ingresamos la dirección `http://127.0.0.1:8080 <http://127.0.0.1:8080>`_ 
