@@ -1,8 +1,117 @@
 Lectura 32 - Uso de SQL Developer
 ---------------------------------
 
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
+
 En esta lectura se explicaran en detalle algunas herramientas importantes del software 
 ``Oracle SQL Developer`` que se puede descargar `aquí <http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html>`_.
+
+Si no está instalado **"JDK"**, es necesario instalarlo desde este `link <http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html>`_.
+
+Conexión a una base de datos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Oracle
+======
+
+Primero para poder realizar una conexión a la base de datos de Oracle, debemos descargar 
+el software ``Oracle Database Express Edition 11g Release 2``, `aquí <http://www.oracle.com/technetwork/products/express-edition/downloads/index.html>`_.
+
+En la instalación de este software deberemos ingresar una contraseña (no debemos olvidarla) 
+que será utilizada más adelante. Terminada la instalación ingresamos la dirección `http://127.0.0.1:8080 <http://127.0.0.1:8080>`_ 
+en nuestro navegador, apareciendo una pantalla en que deberemos ingresar nuestro ``login: SYSTEM`` 
+y la contraseña ingresada en la instalación del software.
+
+Entrará a la sesión ``SYSTEM``, hacemos click en la pestaña ``Application Express`` y 
+creamos una nueva base de datos, para este ejemplo será el nombre **COURSESQL** y se debe 
+ingresar una password a convenir.
+
+.. image:: ../../../sql-course/src/lectura32/oracle2/imagen1.png                             
+   :height: 500 px                                                                   
+   :width: 800 px                                                                    
+   :scale: 50 %                                                                      
+   :align: center   
+
+Luego abrimos el software ``Oracle SQL Developer``, hacemos click derecho en ``Conexiones->
+Nueva Conexión...`` 
+
+.. image:: ../../../sql-course/src/lectura32/oracle2/imagen2.png                             
+   :height: 500 px                                                                   
+   :width: 800 px                                                                    
+   :scale: 50 %                                                                      
+   :align: center  
+
+Aparecerá una ventana que deberemos ingresar los datos de la página web: ``Nombre de conexión: course_sql``, 
+``Usuario: COURSESQL`` (ingresado en la página) y ``PASSWORD: (ingresada en la página)``. Hacemos 
+click en **"Probar"**, debiendo aparecer **"Estado: Correcto"**  en la parte izquierda de la ventana 
+y si todo está correcto hacemos click en **"Conectar"**.
+
+.. image:: ../../../sql-course/src/lectura32/oracle2/imagen3.png                             
+   :height: 500 px                                                                   
+   :width: 800 px                                                                    
+   :scale: 50 %                                                                      
+   :align: center   
+
+Finalmente ya podemos interactuar mediante código con la base de datos creada, haciendo 
+click en la ``Hoja de trabajo SQL``, llamada **"course_sql"**.
+
+.. image:: ../../../sql-course/src/lectura32/oracle2/imagen4.png                             
+   :height: 500 px                                                                   
+   :width: 800 px                                                                    
+   :scale: 50 %                                                                      
+   :align: center 
+
+Ahora realizaremos las consultas del zoologico de la tarea 4, los datos pueden ser descargados
+aquí (poner link).
+
+Pegamos los datos en la pantalla y hacemos click en la herramienta **"Ejecutar Script"**.
+
+.. image:: ../../../sql-course/src/lectura32/oracle2/imagen5.png                             
+   :height: 500 px                                                                   
+   :width: 800 px                                                                    
+   :scale: 50 %                                                                      
+   :align: center  
+
+Y hacemos click en **"Refrescar"**, para que actualice la base de datos con los comandos 
+que ingresamos en el Script.
+
+.. image:: ../../../sql-course/src/lectura32/oracle2/imagen6.png                             
+   :height: 500 px                                                                   
+   :width: 800 px                                                                    
+   :scale: 50 %                                                                      
+   :align: center 
+
+También podemos probar consultas como la segunda pregunta de la tarea 4 que dice:
+
+*"Asignarle un valor desconocido (NULL) al año de nacimiento del animal que posee el nombre 
+común ‘Leon’ y que habita en el ‘Parque Safari’."*
+
+Realizamos un :sql:`SELECT` para poder visualizar los cambios.
+
+.. image:: ../../../sql-course/src/lectura32/oracle2/imagen7.png                             
+   :height: 500 px                                                                   
+   :width: 800 px                                                                    
+   :scale: 50 %                                                                      
+   :align: center 
+
+Ahora la modificación con el comando :sql:`UPDATE` asignando el valor **NULL** al animal que 
+posee el nombre común "León" y habita en el "Parque Safari".
+
+.. image:: ../../../sql-course/src/lectura32/oracle2/imagen8.png                             
+   :height: 500 px                                                                   
+   :width: 800 px                                                                    
+   :scale: 50 %                                                                      
+   :align: center 
+
+Y ahora volvemos a realizar un :sql:`SELECT`, para verificar la modificación realizada.
+
+.. image:: ../../../sql-course/src/lectura32/oracle2/imagen9.png                             
+   :height: 500 px                                                                   
+   :width: 800 px                                                                    
+   :scale: 50 %                                                                      
+   :align: center 
 
 Creación de un modelo relacional
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
