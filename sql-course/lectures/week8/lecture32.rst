@@ -10,6 +10,28 @@ En esta lectura se explicaran en detalle algunas herramientas importantes del so
 
 Si no está instalado **"JDK"**, es necesario instalarlo desde este `link <http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html>`_.
 
+Oracle SQL Developer
+~~~~~~~~~~~~~~~~~~~~
+
+Oracle SQL Developer es una versión gráfica de SQL * Plus que ofrece a los desarrolladores 
+de bases de datos una manera conveniente para llevar a cabo tareas básicas. Puede explorar, 
+crear, editar y eliminar los objetos de una base de datos, ejecutar sentencias SQL y scripts.
+
+Puede conectarse a cualquier esquema de base de datos Oracle de destino utilizando autenticación 
+estándar de base de datos Oracle. Una vez conectado, puede realizar operaciones sobre los 
+objetos de la base de datos.
+
+También puede conectarse a los esquemas seleccionados para terceros (no-Oracle), bases de datos 
+como My SQL, Microsoft SQL Server y Microsoft Access.
+
+Instalación
+~~~~~~~~~~~
+
+1. Descargar el archivo de la página principal de Oracle.
+2. Ejecutar el archivo ``“sqldeveloper.exe”`` del archivo descargado.
+3. Aparecerá una ventana pidiendo la ruta de un archivo ``java`` que se encuentra para el caso de Windows en el disco C, ``Archivos de programas->Java->jdk1.7.0_13->bin->java``.  	
+4. Realizado lo anterior  de inmediato se empezara a cargar e iniciar Oracle SQL Developer.
+
 Conexión a una base de datos
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -64,7 +86,12 @@ click en la ``Hoja de trabajo SQL``, llamada **"course_sql"**.
    :align: center 
 
 Ahora realizaremos las consultas del zoologico de la tarea 4, los datos pueden ser descargados
-aquí (poner link).
+desde la plataforma claroline.
+
+.. note::
+
+ Los tipos de datos difieren de PostgreSQL con Oracle. El tipo ``serial`` 
+ no existe solo se puede crear un trigger para que el entero se autoincremente.
 
 Pegamos los datos en la pantalla y hacemos click en la herramienta **"Ejecutar Script"**.
 
@@ -111,7 +138,7 @@ Y ahora volvemos a realizar un :sql:`SELECT`, para verificar la modificación re
    :height: 500 px                                                                   
    :width: 800 px                                                                    
    :scale: 50 %                                                                      
-   :align: center 
+   :align: center
 
 Creación de un modelo relacional
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
