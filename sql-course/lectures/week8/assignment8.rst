@@ -9,16 +9,24 @@ Fecha de entrega: Miércoles  06 de Marzo de 2013 hasta 23:59
    :language: sql
    :class: highlight
 
+
 -------------------------------------
-Mantenimiento de Bases de Datos (BD)
+Vistas Materializadas (ptos)
 -------------------------------------
+
+
+
+
+------------------------------------------------
+Mantenimiento de Bases de Datos (BD) (ptos)
+------------------------------------------------
 
 **Esperando la lectura**
 
 
---------------------------------------------------------------
-Servicios de respaldo y recuperación para Bases de Datos (BD)
---------------------------------------------------------------
+--------------------------------------------------------------------------
+Servicios de respaldo y recuperación para Bases de Datos (BD) (35 ptos) 
+--------------------------------------------------------------------------
 
 Pregunta 1 (15 ptos)
 ^^^^^^^^^^^^^^^^^^^^^
@@ -36,9 +44,9 @@ Pregunta 2 (20 puntos)
 
 **agregar algún ejemplo práctico**
 
-------------------------------
-Usando un SQL Developer
-------------------------------
-
-**esperando la lectura**
+.. ------------------------------
+ Usando un SQL Developer
+ ------------------------------
+ 
+ **esperando la lectura**
 
