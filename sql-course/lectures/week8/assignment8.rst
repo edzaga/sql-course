@@ -43,7 +43,7 @@ De acuerdo a la lectura y en sus palabras:
 
 3. ¿Cuál es la importancia de utilizar índices en una tabla? (5 ptos)
 
-3. ¿Qué realiza EXPLAIN? (4 ptos)
+4. ¿Qué realiza EXPLAIN? (4 ptos)
 
 
 Pregunta 2 (15 ptos)
