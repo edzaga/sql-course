@@ -11,7 +11,7 @@ Fecha de entrega: Miércoles  06 de Marzo de 2013 hasta 23:59
 
 
 -------------------------------------
-Vistas Materializadas (ptos)
+Vistas Materializadas (20 ptos)
 -------------------------------------
 
 Pregunta 1 (20 ptos)
@@ -53,7 +53,7 @@ Borre una (o más) tupla(s) a su gusto y realice nuevamente la operación VACUUM
 
 1. Analice que hace falta para que VACUUM realice algún cambio dentro de la tabla (12 ptos)
 
-HINT: Puede utilizar un archivo con el siguiente contenido para crear la tabla e ingresar datos. Es libre de agregar más tuplas:
+**HINT:** Puede utilizar un archivo con el siguiente contenido para crear la tabla e ingresar datos. Es libre de agregar más tuplas:
 
 .. code-block:: sql
 
