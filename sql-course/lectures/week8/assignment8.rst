@@ -57,8 +57,8 @@ Borre una (o más) tupla(s) a su gusto y realice nuevamente la operación VACUUM
 
 1. Analice que hace falta para que VACUUM realice algún cambio dentro de la tabla (15 ptos)
 
-**HINT:** Puede utilizar un archivo con el siguiente contenido para crear la tabla e ingresar datos. Es libre de agregar más tuplas:
-:) 
+**HINT:** Puede utilizar un archivo con el siguiente contenido para crear la tabla e ingresar datos. Es libre de agregar más tuplas: 
+
 .. code-block:: sql
 
  create table score (a serial, b integer);
