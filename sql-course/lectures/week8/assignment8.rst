@@ -11,10 +11,10 @@ Fecha de entrega: Miércoles  06 de Marzo de 2013 hasta 23:59
 
 
 -------------------------------------
-Vistas Materializadas (20 ptos)
+Vistas Materializadas (25 ptos)
 -------------------------------------
 
-Pregunta 1 (20 ptos)
+Pregunta 1 (25 ptos)
 ^^^^^^^^^^^^^^^^^^^^^
 
 De acuerdo a la lectura y en sus palabras:
@@ -23,7 +23,9 @@ De acuerdo a la lectura y en sus palabras:
 
 2. ¿Para qué sirve el comando *refresh matviews*? ¿Qué ocurre con la vista materializada si no se utiliza ? (8 ptos)
 
-3. Nombre una ventaja y una desventaja respecto a las vistas virtuales. De acuerdo a sus funciones laborales y a lo visto en el curso
+3. ¿Cómo se relacionan una vista materialiazada y el concepto de mantenimiento incremental? (5 ptos)
+
+4. Nombre una ventaja y una desventaja respecto a las vistas virtuales. De acuerdo a sus funciones laborales y a lo visto en el curso
    ¿Cuál cree que es mejor para su trabajo? Explique. (5 ptos)
 
 ------------------------------------------------
@@ -51,7 +53,7 @@ Cree una base de datos, una tabla e ingrese datos. Realice la operación VACUUM 
 Borre una (o más) tupla(s) a su gusto y realice nuevamente la operación VACUUM VERBOSE sobre su tabla.
 ¿Cuál es la salida?
 
-1. Analice que hace falta para que VACUUM realice algún cambio dentro de la tabla (12 ptos)
+1. Analice que hace falta para que VACUUM realice algún cambio dentro de la tabla (15 ptos)
 
 **HINT:** Puede utilizar un archivo con el siguiente contenido para crear la tabla e ingresar datos. Es libre de agregar más tuplas:
 
@@ -68,10 +70,10 @@ Borre una (o más) tupla(s) a su gusto y realice nuevamente la operación VACUUM
 
 
 --------------------------------------------------------------------------
-Servicios de respaldo y recuperación para Bases de Datos (BD) (25 ptos) 
+Servicios de respaldo y recuperación para Bases de Datos (BD) (30 ptos) 
 --------------------------------------------------------------------------
 
-Pregunta 1 (25 ptos)
+Pregunta 1 (30 ptos)
 ^^^^^^^^^^^^^^^^^^^^^
 
 De acuerdo a la lectura y en sus palabras:
@@ -82,6 +84,6 @@ De acuerdo a la lectura y en sus palabras:
 
 3. ¿Cuál es la principal diferencia en utilizar respaldos por *DUMP* que por archivos? (8 ptos)
 
-
+4. ¿Cuál es la diferencia entre pg_dump y pg_dumpall? (5 ptos)
 
 
