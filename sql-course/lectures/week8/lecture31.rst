@@ -328,8 +328,9 @@ Datos vacíos. Posteriormente se invoca pg_dump por cada BD para corroborar cons
 
 .. warning::
 
- Es posible que el servidor dedicado no le permita restaurar, debido a que se utiliza
+ Es posible que el servidor dedicado no le permita restaurar, si se  utiliza
  con el usuario postgres. Por favor, utilice este comando sólo de manera local.
+ Pruebe utilizando su propio usuario.
 
 
 =============================
