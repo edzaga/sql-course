@@ -44,9 +44,4 @@ Pregunta 2 (20 puntos)
 
 **agregar algún ejemplo práctico**
 
-.. ------------------------------
- Usando un SQL Developer
- ------------------------------
- 
- **esperando la lectura**
 
