@@ -29,10 +29,10 @@ De acuerdo a la lectura y en sus palabras:
    ¿Cuál cree que es mejor para su trabajo? Explique. (5 ptos)
 
 ------------------------------------------------
-Mantenimiento de Bases de Datos (BD) (35 ptos)
+Mantenimiento de Bases de Datos (BD) (40 ptos)
 ------------------------------------------------
 
-Pregunta 1 (20 ptos)
+Pregunta 1 (25 ptos)
 ^^^^^^^^^^^^^^^^^^^^^
 
 De acuerdo a la lectura y en sus palabras:
@@ -40,6 +40,8 @@ De acuerdo a la lectura y en sus palabras:
 1. ¿Qué realiza VACUUM? ¿Cuál es su importancia? (8 ptos)
 
 2. ¿Qué realiza REINDEX DATABASE? ¿Cómo funciona? (8 ptos)
+
+3. ¿Cuál es la importancia de utilizar índices en una tabla? (5 ptos)
 
 3. ¿Qué realiza EXPLAIN? (4 ptos)
 
@@ -56,7 +58,7 @@ Borre una (o más) tupla(s) a su gusto y realice nuevamente la operación VACUUM
 1. Analice que hace falta para que VACUUM realice algún cambio dentro de la tabla (15 ptos)
 
 **HINT:** Puede utilizar un archivo con el siguiente contenido para crear la tabla e ingresar datos. Es libre de agregar más tuplas:
-
+:) 
 .. code-block:: sql
 
  create table score (a serial, b integer);
@@ -70,10 +72,10 @@ Borre una (o más) tupla(s) a su gusto y realice nuevamente la operación VACUUM
 
 
 --------------------------------------------------------------------------
-Servicios de respaldo y recuperación para Bases de Datos (BD) (30 ptos) 
+Servicios de respaldo y recuperación para Bases de Datos (BD) (35 ptos) 
 --------------------------------------------------------------------------
 
-Pregunta 1 (30 ptos)
+Pregunta 1 (35 ptos)
 ^^^^^^^^^^^^^^^^^^^^^
 
 De acuerdo a la lectura y en sus palabras:
@@ -86,4 +88,5 @@ De acuerdo a la lectura y en sus palabras:
 
 4. ¿Cuál es la diferencia entre pg_dump y pg_dumpall? (5 ptos)
 
+5. ¿Qué es Rsync? ¿Es posible decir que Rsync trabaja con mantención incremental? Explique (5 ptos) 
 
