@@ -88,7 +88,7 @@ Reindexación
 
 Para facilitas la obtención de información de una tabla se utilizan índices. El índice de una tabla permite encontrar datos rápidamente. Sin índice se debería recorrer secuencialmente toda la tabla para encontrar un registro. Es muy útil para bases de datos que posee mucha información. 
 
-Una tabla se indeza por un campo o varios. Es importante identificar el o los datos por lo que sería útil crear un índice, aquellos campos por los cuales se realizan operaciones de búsqueda con frecuencia.
+Una tabla se indexa por un campo o varios. Es importante identificar el o los datos por lo que sería útil crear un índice, aquellos campos por los cuales se realizan operaciones de búsqueda con frecuencia.
 
 Hay distintos tipos de índice:
 

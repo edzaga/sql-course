@@ -6,9 +6,9 @@ Lectura 32 - Uso de SQL Developer
    :class: highlight
 
 En esta lectura se explicaran en detalle algunas herramientas importantes del software 
-``Oracle SQL Developer`` que se puede descargar `aquí <http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html>`_.
+``Oracle SQL Developer`` que se puede descargar en `primer link <http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html>`_.
 
-Si no está instalado **"JDK"**, es necesario instalarlo desde este `link <http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html>`_.
+Si no está instalado **"JDK"**, es necesario instalarlo desde este `segundo link <http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html>`_.
 
 Oracle SQL Developer
 ~~~~~~~~~~~~~~~~~~~~
@@ -39,7 +39,7 @@ Oracle
 ======
 
 Primero para poder realizar una conexión a la base de datos de Oracle, debemos descargar 
-el software ``Oracle Database Express Edition 11g Release 2``, desde este `enlace <http://www.oracle.com/technetwork/products/express-edition/downloads/index.html>`_.
+el software ``Oracle Database Express Edition 11g Release 2``, desde este `tercer link <http://www.oracle.com/technetwork/products/express-edition/downloads/index.html>`_.
 
 En la instalación de este software deberemos ingresar una contraseña (no debemos olvidarla) 
 que será utilizada más adelante. Terminada la instalación ingresamos la dirección `http://127.0.0.1:8080 <http://127.0.0.1:8080>`_ 
@@ -85,7 +85,7 @@ click en la ``Hoja de trabajo SQL``, llamada **"course_sql"**.
    :scale: 50 %                                                                      
    :align: center 
 
-Ahora realizaremos las consultas del zoologico de la tarea 4, los datos pueden ser descargados
+Ahora realizaremos las consultas del zoológico de la tarea 4, los datos pueden ser descargados
 desde la plataforma claroline.
 
 .. note::
@@ -171,7 +171,7 @@ Dibujamos la entidad y nos saldrá el siguiente cuadro.
    :scale: 50 %    
    :align: center 
 
-Realizaremos el ejemplo de la tarea 4 del zoologico, entonces en la sección **"general"** 
+Realizaremos el ejemplo de la tarea 4 del zoológico, entonces en la sección **"general"** 
 agregamos el nombre de la tabla que se llamará ``"Zoo"``.
 
 .. image:: ../../../sql-course/src/lectura32/oracle4.png

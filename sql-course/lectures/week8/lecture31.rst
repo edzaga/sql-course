@@ -1,4 +1,4 @@
-Lecture 31 - Servicios de  Respaldo y Recuperación para Bases de Datos (BD)
+Lectura 31 - Servicios de  Respaldo y Recuperación para Bases de Datos (BD)
 ---------------------------------------------------------------------------
 
 .. role:: sql(code)
