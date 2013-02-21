@@ -1,7 +1,7 @@
-Eighth week
------------
+Octava semana
+-------------
 
-Lectures:
+Lecturas:
 
 .. toctree::
    :maxdepth: 3
@@ -10,4 +10,4 @@ Lectures:
    lecture30
    lecture31
    lecture32
-   tarea8
+   assignment8
